@@ -13,10 +13,16 @@
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+
+#
+app.json
+yarn.lock
+package-lock.json
 
 npm-debug.log*
 yarn-debug.log*
