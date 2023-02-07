@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useEffect, useState } from 'react';
+import { useQueryClient, useInfiniteQuery, useQuery } from 'react-query';
 import styled from 'styled-components';
 import { fetchStayData } from '../apis/publicAPI';
 import SelectBtn from '../components/SelectBtn';
@@ -9,19 +9,11 @@ import { staySelectionState } from '../recoil/apiDataAtoms';
 import { FetchedStayDataType } from '../apis/publicAPI';
 
 const MainPage = () => {
+  const queryClient = useQueryClient();
   const stay = useRecoilValue(staySelectionState);
-  // const { data, isLoading } = useInfiniteQuery(['stay_data'], fetchStayData);
-  // const { data, isLoading } = useQuery(['stay_data'], fetchStayData);
-  const { data, isLoading } = useQuery(['stay_data'], () =>
+  const { data, isLoading } = useQuery(['stay_data', stay], () =>
     fetchStayData({ stay })
   );
-
-  // if (!isLoading) {
-  //   console.log('data?', data);
-  //   console.log('recoil stay state:', stay);
-  // }
-
-  // const arr = Object.keys(STAY_TYPE);
 
   return (
     <>
@@ -65,4 +57,11 @@ const SearchListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 `;
