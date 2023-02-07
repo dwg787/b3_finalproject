@@ -5,13 +5,13 @@ import { STAY_TYPE } from '../apis/apiCodes';
 import { AxiosError } from 'axios';
 import { useRecoilState } from 'recoil';
 import { staySelectionState } from '../recoil/apiDataAtoms';
+import styled from 'styled-components';
 
 const SelectBtn = ({ children }: { children: string }) => {
   const [stay, setStay] = useRecoilState(staySelectionState);
-  //   const { data, isLoading } = useQuery(['stay_data'], fetchStayData);
-  //   const queryClient = useQueryClient();
-
   const value = STAY_TYPE.find((e) => e.type === children)?.id;
+
+  const isSelectedStay = value === stay ? true : false;
 
   const handleStaySelection = () => {
     if (value) {
@@ -30,14 +30,24 @@ const SelectBtn = ({ children }: { children: string }) => {
 
   return (
     <>
-      <button
+      <CustomBtn
         onClick={() => {
           handleStaySelection();
         }}
+        isSelectedStay={isSelectedStay}
       >
         {children}
-      </button>
+      </CustomBtn>
     </>
   );
 };
 export default SelectBtn;
+
+const CustomBtn = styled.button<{ isSelectedStay: boolean }>`
+  width: 70px;
+  height: 30px;
+  background-color: ${(props) =>
+    props.isSelectedStay ? '#f19936' : '#d7d7d7'};
+  border: none;
+  border-radius: 5px;
+`;

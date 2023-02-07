@@ -3,21 +3,25 @@ import { useQueryClient, useInfiniteQuery, useQuery } from 'react-query';
 import styled from 'styled-components';
 import { fetchStayData } from '../apis/publicAPI';
 import SelectBtn from '../components/SelectBtn';
-import { STAY_TYPE } from '../apis/apiCodes';
+import SelectRegionBtn from '../components/SelectRegionBtn';
+import { STAY_TYPE, AREA_CODE } from '../apis/apiCodes';
 import { useRecoilValue } from 'recoil';
-import { staySelectionState } from '../recoil/apiDataAtoms';
+import {
+  regionSelectionState,
+  staySelectionState,
+} from '../recoil/apiDataAtoms';
 import { FetchedStayDataType } from '../apis/publicAPI';
 
 const MainPage = () => {
   const queryClient = useQueryClient();
   const stay = useRecoilValue(staySelectionState);
-  const { data, isLoading } = useQuery(['stay_data', stay], () =>
-    fetchStayData({ stay })
+  const region = useRecoilValue(regionSelectionState);
+  const { data, isLoading } = useQuery(['stay_data', stay, region], () =>
+    fetchStayData({ stay, region })
   );
 
   return (
-    <>
-      메인페이지
+    <Container>
       {data && (
         <SearchListWrapper>
           {data.map((e: FetchedStayDataType) => {
@@ -25,23 +29,47 @@ const MainPage = () => {
           })}
         </SearchListWrapper>
       )}
-      <SelectRegionBtnWrapper>
-        {STAY_TYPE.map((e) => {
-          // return <button onClick={handleStaySelection}>{e}</button>;
-          return <SelectBtn key={e.id}>{e.type}</SelectBtn>;
-          // if (!isLoading) {
-          // }
-        })}
-      </SelectRegionBtnWrapper>
-    </>
+      <BtnWrapper>
+        <SelectRegionBtnWrapper>
+          {AREA_CODE.map((e) => {
+            return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
+          })}
+        </SelectRegionBtnWrapper>
+        <SelectStayBtnWrapper>
+          {STAY_TYPE.map((e) => {
+            return <SelectBtn key={e.id}>{e.type}</SelectBtn>;
+          })}
+        </SelectStayBtnWrapper>
+      </BtnWrapper>
+    </Container>
   );
 };
 
 export default MainPage;
 
+const BtnWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 const SelectRegionBtnWrapper = styled.div`
-  width: 500px;
+  width: 300px;
   height: 500px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
+
+const SelectStayBtnWrapper = styled.div`
+  width: 300px;
+  height: 300px;
   background-color: #fff;
   display: flex;
   flex-direction: row;
@@ -53,10 +81,11 @@ const SelectRegionBtnWrapper = styled.div`
 const SearchListWrapper = styled.div`
   width: 500;
   height: 100%;
-  background-color: #dddada;
+  /* background-color: #dddada; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 `;
 
 const Container = styled.div`
@@ -64,4 +93,6 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
