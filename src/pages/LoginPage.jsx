@@ -4,7 +4,7 @@ import { auth } from "../apis/firebase.ts";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import KakaoLoginButton from "../components/Login/KakaoLoginButton";
 import KakaoLogoutButton from "../components/Login/KakaoLogoutButton";
-import Kakao from "../components/Login/Kakao";
+import Naver from "../components/Login/Naver";
 
 const LoginPage = () => {
   const emailRef = useRef(null);
@@ -46,7 +46,7 @@ const LoginPage = () => {
       </button>
       <KakaoLoginButton />
       <KakaoLogoutButton />
-      {/* <Kakao /> */}
+      <Naver />
     </div>
   );
 };
