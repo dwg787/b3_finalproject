@@ -2,6 +2,9 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../apis/firebase.ts";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import KakaoLoginButton from "../components/Login/KakaoLoginButton";
+import KakaoLogoutButton from "../components/Login/KakaoLogoutButton";
+import Kakao from "../components/Login/Kakao";
 
 const LoginPage = () => {
   const emailRef = useRef(null);
@@ -41,6 +44,9 @@ const LoginPage = () => {
       <button onClick={logIn} type="submit">
         login
       </button>
+      <KakaoLoginButton />
+      <KakaoLogoutButton />
+      {/* <Kakao /> */}
     </div>
   );
 };
