@@ -1,3 +1,6 @@
+
+import LandingPage from "../components/Map/LandingPage";
+
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { fetchSpotDetailData } from '../apis/publicAPI';
@@ -11,6 +14,7 @@ const MapPage = () => {
   // console.log('상세페이지 정보:', data);
   return (
     <div>
+     <LandingPage />
       {data &&
         data.map((e) => {
           return (
@@ -20,6 +24,7 @@ const MapPage = () => {
           );
         })}
     </div>
+
   );
 };
 
