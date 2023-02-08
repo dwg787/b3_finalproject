@@ -15,9 +15,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const fireStore = getFirestore(app);
-const authService = getAuth(app);
+const db = getFirestore(app);
+const auth = getAuth(app);
 const apiKey = firebaseConfig.apiKey;
 
+export { app, db, auth, apiKey };
 // const imgStorage = getStorage(firebaseApp); //이미지 업로드 만약에 쓴다면
-export { fireStore, authService, apiKey };

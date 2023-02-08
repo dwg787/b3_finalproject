@@ -1,6 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { authService } from '../apis/firebase';
+import { auth } from '../apis/firebase';
 import styled from 'styled-components';
 
 const Navbar = () => {
