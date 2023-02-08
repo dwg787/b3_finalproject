@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import {
   MainPage,
   LoginPage,
@@ -13,6 +14,7 @@ import {
 const Router = () => {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
