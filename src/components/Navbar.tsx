@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Navbar = () => {
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
-  const currentUser = localStorage.getItem("email");
+  const currentUser = sessionStorage.getItem("email");
   console.log(currentUser);
 
   // 로그아웃
@@ -22,7 +22,7 @@ const Navbar = () => {
         // 로그아웃 실패
         alert("로그아웃에 실패했습니다.");
       });
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.reload();
   };
   //   const { isLoggedIn, isAuthorizedInSession, userObjParsed } = useLoginState();
