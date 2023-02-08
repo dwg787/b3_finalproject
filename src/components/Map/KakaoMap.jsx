@@ -1,44 +1,32 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { MapMarker, Map } from "react-kakao-maps-sdk";
 
 const { kakao } = window;
 
-const KakaoMap = ({ searchPlace }) => {
-  // const [Places, setPlaces] = useState([]);
-
-  useEffect(() => {
-    var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-    const container = document.getElementById("myMap");
-    const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3,
-    };
-    const map = new kakao.maps.Map(container, options);
-
-    //지도 내 마커 표시
-    const markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
-    const marker = new kakao.maps.Marker({
-      position: markerPosition,
-    });
-    marker.setMap(map);
-
-    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-    const mapTypeControl = new kakao.maps.MapTypeControl();
-
-    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-    // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-    const zoomControl = new kakao.maps.ZoomControl();
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-    console.log("kakaomap로딩완료");
-  }, []);
+const KakaoMap = () => {
   return (
-    <>
-      <StMap id="myMap"></StMap>;
-    </>
+    <Map // 지도를 표시할 Container
+      center={{
+        // 지도의 중심좌표
+        lat: 33.450701,
+        lng: 126.570667,
+      }}
+      style={{
+        // 지도의 크기
+        width: "100%",
+        height: "450px",
+      }}
+      level={4} // 지도의 확대 레벨
+    >
+      <MapMarker // 마커를 생성합니다
+        position={{
+          // 마커가 표시될 위치입니다
+          lat: 33.450701,
+          lng: 126.570667,
+        }}
+      />
+    </Map>
   );
 };
 
