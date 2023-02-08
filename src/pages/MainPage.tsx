@@ -23,7 +23,7 @@ const MainPage = () => {
 
   return (
     <Container>
-      {data && (
+      {data ? (
         <SearchListWrapper>
           {data.map((e: FetchedStayDataType) => {
             return (
@@ -33,6 +33,8 @@ const MainPage = () => {
             );
           })}
         </SearchListWrapper>
+      ) : (
+        <SearchListWrapper></SearchListWrapper>
       )}
       <BtnWrapper>
         <SelectRegionBtnWrapper>
