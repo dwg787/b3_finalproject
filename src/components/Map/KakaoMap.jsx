@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-const { kakao } = window;
+const KakaoMap = ({ mapx, mapy }) => {
+  const mapcontainer = useRef(null);
+  const { kakao } = window;
 
-const KakaoMap = ({ searchPlace }) => {
-  // const [Places, setPlaces] = useState([]);
+  const options = {
+    center: new window.kakao.maps.LatLng(mapy, mapx),
+    level: 3,
+  };
 
   useEffect(() => {
-    var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-    const container = document.getElementById("myMap");
-    const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3,
-    };
-    const map = new kakao.maps.Map(container, options);
+    console.log(mapx, mapy);
+
+    const map = new window.kakao.maps.Map(mapcontainer.current, options);
 
     //지도 내 마커 표시
-    const markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+    const markerPosition = new kakao.maps.LatLng(mapy, mapx);
     const marker = new kakao.maps.Marker({
       position: markerPosition,
     });
+
     marker.setMap(map);
 
     // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
@@ -34,10 +35,10 @@ const KakaoMap = ({ searchPlace }) => {
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
     console.log("kakaomap로딩완료");
-  }, [searchPlace]);
+  }, []);
   return (
     <>
-      <StMap id="myMap"></StMap>;
+      <StMap id="map" ref={mapcontainer}></StMap>
     </>
   );
 };

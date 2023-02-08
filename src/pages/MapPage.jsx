@@ -1,30 +1,28 @@
-
 import LandingPage from "../components/Map/LandingPage";
 
-import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
-import { fetchAttractionDetailData } from '../apis/publicAPI';
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { fetchAttractionDetailData } from "../apis/publicAPI";
+import KakaoMap from "../components/Map/KakaoMap";
 
 const MapPage = () => {
   const param = useParams();
-  const { data, isLoading } = useQuery(['attractions_detail', param], () =>
+  const { data, isLoading } = useQuery(["attractions_detail", param], () =>
     fetchAttractionDetailData({ param })
   );
 
-  console.log('상세페이지 정보:', data);
+  console.log("상세페이지 정보:", data);
   return (
     <div>
-     <LandingPage />
       {data &&
         data.map((e) => {
           return (
             <div>
-              x좌표:{e.mapx}, y좌표{e.mapy}
+              <KakaoMap mapx={e.mapx} mapy={e.mapy} />
             </div>
           );
         })}
     </div>
-
   );
 };
 
