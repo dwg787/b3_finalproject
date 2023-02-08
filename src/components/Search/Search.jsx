@@ -1,13 +1,26 @@
 import React, { useState } from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import {
+  fetchSpotDetailData,
+  fetchNearStayData,
+  fetchNearRestaurantData,
+  getsearchData,
+} from "../../apis/publicAPI";
 
 export default function Search() {
   const [searchItem, setSearchItem] = useState("");
-  console.log(searchItem);
+
+  const param = useParams();
 
   const searchItemHandler = (e) => {
     setSearchItem(e.target.value);
   };
+
+  const { data, isLoading } = useQuery(["spot_detail", param], () =>
+    fetchSpotDetailData({ param })
+  );
 
   return (
     <>
