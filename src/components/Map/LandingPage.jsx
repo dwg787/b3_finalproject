@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import KakaoMap from "./KakaoMap";
 
-function LandingPage() {
+function LandingPage({ mapx, mapy }) {
   const [InputText, setInputText] = useState("");
   const [Place, setPlace] = useState("");
 
@@ -26,7 +26,7 @@ function LandingPage() {
         />
         <button type="submit">검색</button>
       </form>
-      <KakaoMap searchPlace={Place} />
+      <KakaoMap searchPlace={Place} mapx={mapx} mapy={mapy} />
     </>
   );
 }

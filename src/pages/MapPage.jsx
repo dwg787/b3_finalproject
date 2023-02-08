@@ -1,9 +1,9 @@
 
-import LandingPage from "../components/Map/LandingPage";
 
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { fetchSpotDetailData } from '../apis/publicAPI';
+import KakaoMap from "../components/Map/KakaoMap";
 
 const MapPage = () => {
   const param = useParams();
@@ -12,19 +12,20 @@ const MapPage = () => {
   );
 
   // console.log('상세페이지 정보:', data);
+
   return (
     <div>
-     <LandingPage />
       {data &&
         data.map((e) => {
           return (
+
             <div key={param.id}>
-              x좌표:{e.mapx}, y좌표{e.mapy}
+              <KakaoMap mapx={e.mapx} mapy={e.mapy} />
+
             </div>
           );
         })}
     </div>
-
   );
 };
 
