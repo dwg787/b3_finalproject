@@ -1,10 +1,30 @@
-import { useNavigate, Link } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../apis/firebase';
-import styled from 'styled-components';
+import { useNavigate, Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../apis/firebase";
+import styled from "styled-components";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  // const currentUser = auth.currentUser;
+  const currentUser = sessionStorage.getItem("email");
+  console.log(currentUser);
+
+  // 로그아웃
+  const LogOutHandler = async () => {
+    await signOut(auth)
+      .then(() => {
+        alert("로그아웃 되었습니다.");
+
+        // 로그아웃 성공
+        navigate("/");
+      })
+      .catch((error) => {
+        // 로그아웃 실패
+        alert("로그아웃에 실패했습니다.");
+      });
+    sessionStorage.clear();
+    window.location.reload();
+  };
   //   const { isLoggedIn, isAuthorizedInSession, userObjParsed } = useLoginState();
 
   //   const handleLogout = () => {
@@ -21,7 +41,7 @@ const Navbar = () => {
   return (
     <Nav>
       <LeftSection>
-        <Link to='/' style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           방방곡곡 로고 자리
           {/* <LogoImg src={logoImg} alt="Logo" /> */}
         </Link>
@@ -51,7 +71,16 @@ const Navbar = () => {
           </ImgNick>
         ) : null} */}
         <LoginButtonBox>
-          <LoginButton onClick={() => navigate('/login')}>Login</LoginButton>
+          {currentUser !== null ? (
+            <>
+              <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
+            </>
+          ) : (
+            <>
+              <LoginButton onClick={() => navigate("/login")}>Login</LoginButton>
+            </>
+          )}
+
           {/* {isLoggedIn && isAuthorizedInSession ? (
             <LoginButton onClick={handleLogout}>Logout</LoginButton>
           ) : (
