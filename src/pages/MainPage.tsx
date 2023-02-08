@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQueryClient, useInfiniteQuery, useQuery } from 'react-query';
 import styled from 'styled-components';
-import { fetchStayData } from '../apis/publicAPI';
+import { fetchAttractionData } from '../apis/publicAPI';
 import SelectBtn from '../components/SelectBtn';
 import SelectRegionBtn from '../components/SelectRegionBtn';
 import { STAY_TYPE, AREA_CODE } from '../apis/apiCodes';
@@ -11,13 +11,14 @@ import {
   staySelectionState,
 } from '../recoil/apiDataAtoms';
 import { FetchedStayDataType } from '../apis/publicAPI';
+import StayDetail from '../components/StayDetail';
 
 const MainPage = () => {
   const queryClient = useQueryClient();
   const stay = useRecoilValue(staySelectionState);
   const region = useRecoilValue(regionSelectionState);
-  const { data, isLoading } = useQuery(['stay_data', stay, region], () =>
-    fetchStayData({ stay, region })
+  const { data, isLoading } = useQuery(['attractions_data', stay, region], () =>
+    fetchAttractionData({ stay, region })
   );
 
   return (
@@ -25,7 +26,11 @@ const MainPage = () => {
       {data && (
         <SearchListWrapper>
           {data.map((e: FetchedStayDataType) => {
-            return <div key={e.contentid}>{e.title}</div>;
+            return (
+              <StayDetail key={e.contentid} id={e.contentid}>
+                {e.title}
+              </StayDetail>
+            );
           })}
         </SearchListWrapper>
       )}
@@ -35,11 +40,11 @@ const MainPage = () => {
             return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
           })}
         </SelectRegionBtnWrapper>
-        <SelectStayBtnWrapper>
+        {/* <SelectStayBtnWrapper>
           {STAY_TYPE.map((e) => {
             return <SelectBtn key={e.id}>{e.type}</SelectBtn>;
           })}
-        </SelectStayBtnWrapper>
+        </SelectStayBtnWrapper> */}
       </BtnWrapper>
     </Container>
   );

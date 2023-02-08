@@ -47,4 +47,9 @@ export const TOURIST_ATTRACTION_TYPE = [
     smallGroup: 'A01011200',
     type: '해수욕장',
   },
+  {
+    largeGroup: 'A02',
+    middleGroup: 'A0201',
+    type: '역사관광지',
+  },
 ];
