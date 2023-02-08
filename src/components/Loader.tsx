@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Button = () => {
+const Loader = () => {
   return <div></div>;
 };
-export default Button;
+
+export default Loader;
