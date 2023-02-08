@@ -2,6 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, provider } from "../apis/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import KakaoLoginButton from "../components/Login/KakaoLoginButton";
+import KakaoLogoutButton from "../components/Login/KakaoLogoutButton";
+import Naver from "../components/Login/Naver";
 
 const LoginPage = () => {
   const [value, setValue] = useState("");
@@ -43,6 +46,9 @@ const LoginPage = () => {
         login
       </button>
       <button onClick={handleclick}>google로그인</button>
+      <KakaoLoginButton />
+      <KakaoLogoutButton />
+      <Naver />
     </div>
   );
 };
