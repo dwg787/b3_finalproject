@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
 import { useQueryClient, useInfiniteQuery, useQuery } from 'react-query';
 import styled from 'styled-components';
-import { fetchAttractionData } from '../apis/publicAPI';
+import { fetchSpotData } from '../apis/publicAPI';
 import SelectBtn from '../components/SelectBtn';
 import SelectRegionBtn from '../components/SelectRegionBtn';
 import { STAY_TYPE, AREA_CODE } from '../apis/apiCodes';
@@ -16,10 +15,9 @@ import Loader from '../components/Loader';
 
 const MainPage = () => {
   const queryClient = useQueryClient();
-  const stay = useRecoilValue(staySelectionState);
   const region = useRecoilValue(regionSelectionState);
-  const { data, isLoading } = useQuery(['attractions_data', stay, region], () =>
-    fetchAttractionData({ stay, region })
+  const { data, isLoading } = useQuery(['spot_data', region], () =>
+    fetchSpotData({ region })
   );
 
   return (

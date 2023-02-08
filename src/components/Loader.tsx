@@ -1,11 +1,11 @@
 import React from 'react';
-import { RingLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 import styled from 'styled-components';
 
 const Loader = () => {
   return (
     <Container>
-      <RingLoader color='#f19936' />
+      <ScaleLoader color='#f19936' />
     </Container>
   );
 };
