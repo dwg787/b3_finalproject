@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { fetchAttractionData } from '../apis/publicAPI';
+// import { fetchSpotData } from '../apis/publicAPI';
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import { STAY_TYPE } from '../apis/apiCodes';
 import { AxiosError } from 'axios';

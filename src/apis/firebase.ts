@@ -21,3 +21,4 @@ const apiKey = firebaseConfig.apiKey;
 
 export { app, db, auth, apiKey };
 // const imgStorage = getStorage(firebaseApp); //이미지 업로드 만약에 쓴다면
+export { fireStore, authService, apiKey };
