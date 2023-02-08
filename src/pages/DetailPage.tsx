@@ -22,7 +22,7 @@ const DetailPage = () => {
         {data &&
           data.map((e: any) => {
             return (
-              <>
+              <div key={param.id}>
                 <Link to={'/'}>메인으로</Link>
                 <div>{e.title}</div>
                 <img src={e.firstimage} alt='관광지 사진' />
@@ -34,7 +34,7 @@ const DetailPage = () => {
                   <div>주변 숙박정보</div>
                   <div>주변 맛집정보</div>
                 </SideInfoWrapper>
-              </>
+              </div>
             );
           })}
       </div>

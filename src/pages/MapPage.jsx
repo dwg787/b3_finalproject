@@ -14,7 +14,7 @@ const MapPage = () => {
       {data &&
         data.map((e) => {
           return (
-            <div>
+            <div key={param.id}>
               x좌표:{e.mapx}, y좌표{e.mapy}
             </div>
           );

@@ -13,6 +13,7 @@ export interface FetchedStayDataType {
 //   return res.data.response.body.items.item;
 // };
 
+//메인페이지 api
 export const fetchAttractionData = async ({
   stay,
   region,
@@ -29,6 +30,7 @@ export const fetchAttractionData = async ({
   return res.data.response.body;
 };
 
+//상세페이지 api
 export const fetchAttractionDetailData = async ({
   param,
 }: {

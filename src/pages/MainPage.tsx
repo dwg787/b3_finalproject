@@ -11,7 +11,8 @@ import {
   staySelectionState,
 } from '../recoil/apiDataAtoms';
 import { FetchedStayDataType } from '../apis/publicAPI';
-import StayDetail from '../components/StayDetail';
+import SpotDetail from '../components/SpotDetail';
+import Loader from '../components/Loader';
 
 const MainPage = () => {
   const queryClient = useQueryClient();
@@ -21,11 +22,23 @@ const MainPage = () => {
     fetchAttractionData({ stay, region })
   );
 
-  console.log('메인페이지 fetch:', data);
-
   return (
     <Container>
-      {data ? (
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <SearchListWrapper>
+          <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
+          {data.items.item.map((e: FetchedStayDataType) => {
+            return (
+              <SpotDetail key={e.contentid} id={e.contentid}>
+                {e.title}
+              </SpotDetail>
+            );
+          })}
+        </SearchListWrapper>
+      )}
+      {/* {data ? (
         <SearchListWrapper>
           <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
           {data.items.item.map((e: FetchedStayDataType) => {
@@ -38,7 +51,7 @@ const MainPage = () => {
         </SearchListWrapper>
       ) : (
         <SearchListWrapper></SearchListWrapper>
-      )}
+      )} */}
       <BtnWrapper>
         <SelectRegionBtnWrapper>
           {AREA_CODE.map((e) => {
