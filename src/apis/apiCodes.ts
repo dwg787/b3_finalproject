@@ -34,7 +34,7 @@ export const STAY_TYPE = [
   { id: 'B02011600', type: '한옥' },
 ];
 
-export const TOURIST_ATTRACTION_TYPE = [
+export const TOURIST_SPOT_TYPE = [
   {
     largeGroup: 'A01',
     middleGroup: 'A0101',
