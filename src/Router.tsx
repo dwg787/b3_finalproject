@@ -11,6 +11,8 @@ import {
   PurchasePage,
 } from './pages';
 
+import SignUpPage from '../src/pages/SignUpPage';
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -24,6 +26,7 @@ const Router = () => {
         <Route path='/:id/map' element={<MapPage />} />
         <Route path='/reservation' element={<ReservationPage />} />
         <Route path='/purchase' element={<PurchasePage />} />
+        <Route path='/signup' element={<SignUpPage />} />
       </Routes>
     </BrowserRouter>
   );
