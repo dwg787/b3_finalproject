@@ -6,7 +6,7 @@ const Menu = () => {
   return (
     <MenuContainer>
       {menuList.map((e) => {
-        return <MenuEachItem>{e}</MenuEachItem>;
+        return <MenuEachItem key={e}>{e}</MenuEachItem>;
       })}
     </MenuContainer>
   );

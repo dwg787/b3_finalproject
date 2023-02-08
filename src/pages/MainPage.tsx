@@ -13,6 +13,8 @@ import { FetchedStayDataType } from '../apis/publicAPI';
 import SpotDetail from '../components/SpotDetail';
 import Loader from '../components/Loader';
 import Menu from '../components/Menu';
+import mainImg from '../assets/mainImg.png';
+import mainImg2 from '../assets/mainImg2.png';
 
 const MainPage = () => {
   const queryClient = useQueryClient();
@@ -25,6 +27,7 @@ const MainPage = () => {
     <Container>
       <Menu />
       <SelectRegionBtnWrapper>
+        {/* <MainImg src={mainImg} alt='이미지' /> */}
         {AREA_CODE.map((e) => {
           return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
         })}
@@ -86,11 +89,13 @@ const BtnWrapper = styled.div`
 
 const SelectRegionBtnWrapper = styled.div`
   width: 100%;
-  height: 50px;
-  background-color: #fff;
+  height: 500px;
+  padding-top: 10px;
+  background-image: url(${mainImg2});
+  background-size: cover;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   /* flex-wrap: wrap; */
   /* justify-content: center; */
   gap: 10px;
@@ -136,4 +141,9 @@ const SearchOverallResultContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const MainImg = styled.img`
+  width: 100%;
+  height: 100%;
 `;
