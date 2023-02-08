@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from '@firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "@firebase/firestore";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // import { getStorage } from 'firebase/storage'; //이미지 업로드 만약에 쓴다면
 
 const firebaseConfig = {
@@ -17,7 +17,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 const apiKey = firebaseConfig.apiKey;
 
-export { app, db, auth, apiKey };
+export { db, auth, provider, apiKey };
 // const imgStorage = getStorage(firebaseApp); //이미지 업로드 만약에 쓴다면

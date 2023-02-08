@@ -1,46 +1,48 @@
-import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../apis/firebase.ts';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, provider } from "../apis/firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const LoginPage = () => {
+  const [value, setValue] = useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
 
+  const handleclick = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      setValue(data.user.email);
+      sessionStorage.setItem("email", data.user.email);
+      navigate("/");
+    });
+  };
+
+  useEffect(() => {
+    setValue(sessionStorage.getItem("email"));
+  });
+
   const logIn = async () => {
-    const login = await signInWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      passwordRef.current.value
-    );
-    alert('login 성공!');
+    const login = await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
+    alert("login 성공!");
     console.log(login);
-    console.log('이메일', emailRef.current.value);
-    console.log('비번', passwordRef.current.value);
-    navigate('/');
+    console.log("이메일", emailRef.current.value);
+    console.log("비번", passwordRef.current.value);
+    navigate("/");
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <div>로그인 페이지</div>
       <div>
-        <input
-          ref={emailRef}
-          type='text'
-          placeholder='이메일을 입력해주세요.'
-        />
+        <input ref={emailRef} type="text" placeholder="이메일을 입력해주세요." />
       </div>
       <div>
-        <input
-          ref={passwordRef}
-          type='password'
-          placeholder='비밀번호를 입력해주세요'
-        />
+        <input ref={passwordRef} type="password" placeholder="비밀번호를 입력해주세요" />
       </div>
-      <button onClick={logIn} type='submit'>
+      <button onClick={logIn} type="submit">
         login
       </button>
+      <button onClick={handleclick}>google로그인</button>
     </div>
   );
 };
