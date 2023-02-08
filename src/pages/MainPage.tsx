@@ -21,11 +21,14 @@ const MainPage = () => {
     fetchAttractionData({ stay, region })
   );
 
+  console.log('메인페이지 fetch:', data);
+
   return (
     <Container>
       {data ? (
         <SearchListWrapper>
-          {data.map((e: FetchedStayDataType) => {
+          <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
+          {data.items.item.map((e: FetchedStayDataType) => {
             return (
               <StayDetail key={e.contentid} id={e.contentid}>
                 {e.title}
@@ -102,4 +105,8 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+`;
+
+const ListItemCount = styled.p`
+  margin-bottom: 30px;
 `;

@@ -9,7 +9,11 @@ const StayDetail = (props: FetchedStayDataType) => {
   //     navigate(`/${props.id}`);
   //   };
 
-  return <Link to={`/${props.id}`}>{props.children}</Link>;
+  return (
+    <Link style={{ textDecoration: 'none' }} to={`/${props.id}`}>
+      {props.children}
+    </Link>
+  );
 };
 
 export default StayDetail;

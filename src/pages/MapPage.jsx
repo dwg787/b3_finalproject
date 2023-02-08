@@ -8,7 +8,7 @@ const MapPage = () => {
     fetchAttractionDetailData({ param })
   );
 
-  console.log('상세페이지 정보:', data);
+  // console.log('상세페이지 정보:', data);
   return (
     <div>
       {data &&
