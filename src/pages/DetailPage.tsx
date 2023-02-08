@@ -1,16 +1,18 @@
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { fetchAttractionDetailData } from '../apis/publicAPI';
 import styled from 'styled-components';
 import Loader from '../components/Loader';
 
 const DetailPage = () => {
   const param = useParams();
+  const navigate = useNavigate();
   const { data, isLoading } = useQuery(['attractions_detail', param], () =>
     fetchAttractionDetailData({ param })
   );
 
-  console.log('상세페이지 정보:', data);
+  // console.log('상세페이지 정보:', data);
 
   if (isLoading) return <Loader />;
 
@@ -21,9 +23,11 @@ const DetailPage = () => {
           data.map((e: any) => {
             return (
               <>
+                <Link to={'/'}>메인으로</Link>
                 <div>{e.title}</div>
-                <div>{e.addr1}</div>
                 <img src={e.firstimage} alt='관광지 사진' />
+                <div>주소 : {e.addr1}</div>
+                <Link to={`/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
                 <div>{e.overview}</div>
                 <SideInfoWrapper>
