@@ -58,12 +58,3 @@ export const fetchNearRestaurantData = async ({
   );
   return res.data.response.body.items.item;
 };
-
-//serchpage test
-// export const getsearchData = async () => {
-//   return axios
-//     .get(
-//       `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${region}&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`
-//     )
-//     .then((res) => res.data);
-// };
