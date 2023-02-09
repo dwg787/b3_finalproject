@@ -1,36 +1,41 @@
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { useNavigate, Link } from "react-router-dom";
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   fetchSpotDetailData,
   fetchNearStayData,
   fetchNearRestaurantData,
-} from "../apis/publicAPI";
-import styled from "styled-components";
-import Loader from "../components/Loader";
+} from '../apis/publicAPI';
+import styled from 'styled-components';
+import Loader from '../components/Loader';
 
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
 
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
-    ["spot_detail", param],
+    ['spot_detail', param],
     () => fetchSpotDetailData({ param })
   );
 
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
-    ["stay_detail", spotData],
-    () =>
-      fetchNearStayData({ mapx: spotData[0]?.mapx, mapy: spotData[0]?.mapy })
+    ['stay_detail', spotData],
+    () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
+    {
+      enabled: !!spotData,
+    }
   );
 
   const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ["restaurant_detail", spotData],
+    ['restaurant_detail', spotData],
     () =>
       fetchNearRestaurantData({
-        mapx: spotData[0]?.mapx,
-        mapy: spotData[0]?.mapy,
-      })
+        mapx: spotData.mapx,
+        mapy: spotData.mapy,
+      }),
+    {
+      enabled: !!spotData,
+    }
   );
 
   return (
@@ -41,19 +46,15 @@ const DetailPage = () => {
         ) : (
           <>
             {spotData ? (
-              spotData.map((e: any) => {
-                return (
-                  <div key={param.id}>
-                    <Link to={"/"}>메인으로</Link>
-                    <div>{e.title}</div>
-                    <img src={e.firstimage} alt="관광지 사진" />
-                    <div>주소 : {e.addr1}</div>
-                    <Link to={`/${param.id}/map`}>지도보기</Link>
-                    {/* <div>{e.homepage}</div> */}
-                    <div>{e.overview}</div>
-                  </div>
-                );
-              })
+              <div key={param.id}>
+                <Link to={'/'}>메인으로</Link>
+                <div>{spotData.title}</div>
+                <img src={spotData.firstimage} alt='관광지 사진' />
+                <div>주소 : {spotData.addr1}</div>
+                <Link to={`/${param.id}/map`}>지도보기</Link>
+                {/* <div>{e.homepage}</div> */}
+                <div>{spotData.overview}</div>
+              </div>
             ) : (
               <div>찾으시는 정보가 없습니다</div>
             )}
@@ -71,7 +72,7 @@ const DetailPage = () => {
                     <>
                       <StayImage
                         src={stayData[0]?.firstimage}
-                        alt="주변숙소 이미지"
+                        alt='주변숙소 이미지'
                       />
                       <div>{stayData[0]?.title}</div>
                     </>
@@ -95,7 +96,7 @@ const DetailPage = () => {
                     <>
                       <StayImage
                         src={restaurantData[0]?.firstimage}
-                        alt="주변맛집 이미지"
+                        alt='주변맛집 이미지'
                       />
                       <div>{restaurantData[0]?.title}</div>
                     </>

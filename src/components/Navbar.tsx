@@ -1,26 +1,26 @@
-import { useNavigate, Link } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../apis/firebase";
-import styled from "styled-components";
+import { useNavigate, Link } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../apis/firebase';
+import styled from 'styled-components';
 
 const Navbar = () => {
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
-  const currentUser = sessionStorage.getItem("email");
+  const currentUser = sessionStorage.getItem('email');
   console.log(currentUser);
 
   // 로그아웃
   const LogOutHandler = async () => {
     await signOut(auth)
       .then(() => {
-        alert("로그아웃 되었습니다.");
+        alert('로그아웃 되었습니다.');
 
         // 로그아웃 성공
-        navigate("/");
+        navigate('/');
       })
       .catch((error) => {
         // 로그아웃 실패
-        alert("로그아웃에 실패했습니다.");
+        alert('로그아웃에 실패했습니다.');
       });
     sessionStorage.clear();
     window.location.reload();
@@ -41,12 +41,13 @@ const Navbar = () => {
   return (
     <Nav>
       <LeftSection>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to='/' style={{ textDecoration: 'none' }}>
           방방곡곡 로고 자리
           {/* <LogoImg src={logoImg} alt="Logo" /> */}
         </Link>
       </LeftSection>
       <MenuSection>
+        <input onClick={() => navigate('/search')} />
         <NavUl>
           {/* <NavLi>
             <NavText to='/'>메뉴1</NavText>
@@ -77,7 +78,9 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <LoginButton onClick={() => navigate("/login")}>Login</LoginButton>
+              <LoginButton onClick={() => navigate('/login')}>
+                Login
+              </LoginButton>
             </>
           )}
 

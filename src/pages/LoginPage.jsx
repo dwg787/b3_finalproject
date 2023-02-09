@@ -25,10 +25,17 @@ const LoginPage = () => {
     const login = await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
     alert("login 성공!");
     console.log(login);
+<<<<<<< HEAD
     console.log("이메일", emailRef.current.value);
     console.log("비번", passwordRef.current.value);
     sessionStorage.setItem("email", login.user.email);
     navigate("/");
+=======
+    console.log('이메일', emailRef.current.value);
+    console.log('비번', passwordRef.current.value);
+    sessionStorage.setItem('email', login.user.email);
+    navigate('/', { replace: true });
+>>>>>>> 1b90876db3bb9d13f0bb43b62651f3cfc7924615
   };
 
   useEffect(() => {
