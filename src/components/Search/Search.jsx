@@ -1,26 +1,22 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import {
-  fetchSpotDetailData,
-  fetchNearStayData,
-  fetchNearRestaurantData,
-  fetchSpotData,
-} from "../../apis/publicAPI";
+import { fetchSpotSearchData } from "../../apis/publicAPI";
 
 export default function Search() {
   const [searchItem, setSearchItem] = useState("");
 
-  const param = useParams();
-
   const searchItemHandler = (e) => {
     setSearchItem(e.target.value);
   };
+  //api 전체 데이타 소환
+  const { data, isLoading } = useQuery("res", fetchSpotSearchData);
 
-  const { data, isLoading } = useQuery("res", fetchSpotSearchData());
+  const itemLength = data?.items.item.length + "";
+  console.log(itemLength);
 
-  console.log(data, isLoading);
+  //   const [totalCount, setTotalCount] = useState("");
+  //   console.log(data.items.length);
 
   return (
     <>
