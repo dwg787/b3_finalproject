@@ -18,7 +18,7 @@ export default function Search() {
     setSearchItem(e.target.value);
   };
 
-  const { data, isLoading } = useQuery("region", fetchSpotData());
+  const { data, isLoading } = useQuery("res", fetchSpotSearchData());
 
   console.log(data, isLoading);
 
