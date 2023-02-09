@@ -6,6 +6,7 @@ import {
   fetchSpotDetailData,
   fetchNearStayData,
   fetchNearRestaurantData,
+  fetchSpotData,
 } from "../../apis/publicAPI";
 
 export default function Search() {
@@ -17,9 +18,7 @@ export default function Search() {
     setSearchItem(e.target.value);
   };
 
-  const { data, isLoading } = useQuery(["spot_detail", param], () =>
-    fetchSpotDetailData({ param })
-  );
+  const { data, isLoading } = useQuery("region", fetchSpotData());
 
   console.log(data, isLoading);
 
