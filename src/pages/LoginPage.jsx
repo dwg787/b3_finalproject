@@ -31,7 +31,7 @@ const LoginPage = () => {
     console.log('이메일', emailRef.current.value);
     console.log('비번', passwordRef.current.value);
     sessionStorage.setItem('email', login.user.email);
-    navigate('/');
+    navigate('/', { replace: true });
   };
 
   useEffect(() => {
