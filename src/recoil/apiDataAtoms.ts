@@ -9,8 +9,3 @@ export const regionSelectionState = atom({
   key: "regionSelecionState",
   default: "",
 });
-
-export const allItemTotalCount = atom({
-  key: "itemTotalCount",
-  default: "",
-});
