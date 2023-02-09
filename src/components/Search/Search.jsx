@@ -1,26 +1,21 @@
-import React, { useState } from "react";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import {
-  fetchSpotDetailData,
-  fetchNearStayData,
-  fetchNearRestaurantData,
-  getsearchData,
-} from "../../apis/publicAPI";
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { fetchSpotSearchData } from '../../apis/publicAPI';
 
 export default function Search() {
-  const [searchItem, setSearchItem] = useState("");
-
-  const param = useParams();
+  const [searchItem, setSearchItem] = useState('');
 
   const searchItemHandler = (e) => {
     setSearchItem(e.target.value);
   };
 
-  const { data, isLoading } = useQuery(["spot_detail", param], () =>
-    fetchSpotDetailData({ param })
+  const { data, isLoading } = useQuery(['search_spot'], () =>
+    fetchSpotSearchData()
   );
+
+  console.log('data넘어오는 값', data);
 
   return (
     <>
@@ -28,7 +23,7 @@ export default function Search() {
         <WrapDiv>
           <SearchTitleH1>어떤걸 찾는가?</SearchTitleH1>
           <SearchInput
-            placeholder="여기에 입력하면 무엇이던지 찾을수있지!"
+            placeholder='여기에 입력하면 무엇이던지 찾을수있지!'
             target={searchItem}
             onChange={searchItemHandler}
           ></SearchInput>
