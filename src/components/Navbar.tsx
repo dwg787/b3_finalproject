@@ -1,13 +1,14 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams, useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../apis/firebase';
 import styled from 'styled-components';
+import searchIcon from '../assets/search.png';
 
 const Navbar = () => {
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
   const currentUser = sessionStorage.getItem('email');
-  console.log(currentUser);
+  // console.log(currentUser);
 
   // 로그아웃
   const LogOutHandler = async () => {
@@ -47,7 +48,15 @@ const Navbar = () => {
         </Link>
       </LeftSection>
       <MenuSection>
-        <input onClick={() => navigate('/search')} />
+        <LinktoSearchPageBtnWrapper>
+          <label>
+            <LinktoSearchPageBtn onClick={() => navigate('/search')}>
+              관광지 검색하러 가기!
+            </LinktoSearchPageBtn>
+            {/* <SearchBtnPlaceholder>관광지 검색하러 가기!</SearchBtnPlaceholder> */}
+            <SearchIcon src={searchIcon} alt='' />
+          </label>
+        </LinktoSearchPageBtnWrapper>
         <NavUl>
           {/* <NavLi>
             <NavText to='/'>메뉴1</NavText>
@@ -198,3 +207,34 @@ const ProfileImg = styled.img`
   height: 45px;
   border-radius: 100%;
 `;
+
+const LinktoSearchPageBtn = styled.button`
+  width: 300px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid black;
+  text-indent: 10px;
+  font-weight: 500;
+  text-align: left;
+  background-color: #fff;
+`;
+
+const LinktoSearchPageBtnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const SearchIcon = styled.img`
+  position: relative;
+  width: 15px;
+  height: 15px;
+  margin-left: -25px;
+  margin-bottom: -3px;
+`;
+
+// const SearchBtnPlaceholder = styled.span`
+//   position: relative;
+//   width: 200px;
+//   margin-left: 10px;
+//   /* margin-top: -20px; */
+// `;

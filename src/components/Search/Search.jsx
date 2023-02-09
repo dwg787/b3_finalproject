@@ -15,7 +15,7 @@ export default function Search() {
     fetchSpotSearchData()
   );
 
-  console.log('data넘어오는 값', data);
+  // console.log('data넘어오는 값', data);
 
   return (
     <>

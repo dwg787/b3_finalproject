@@ -23,8 +23,6 @@ const MainPage = () => {
     fetchSpotData({ region })
   );
 
-  console.log('data값:', data);
-
   return (
     <Container>
       <Menu />
