@@ -18,6 +18,7 @@ const SignUpPage = () => {
       id_ref.current.value,
       pw_ref.current.value
     );
+    sessionStorage.setItem('email', user.user.email);
     console.log(user);
     const user_doc = await addDoc(collection(db, 'users'), {
       user_id: user.user.email,
