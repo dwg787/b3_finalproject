@@ -1,5 +1,5 @@
-import axios from "axios";
-import { Params } from "react-router-dom";
+import axios from 'axios';
+import { Params } from 'react-router-dom';
 
 export interface FetchedStayDataType {
   [key: string]: string;
@@ -27,7 +27,7 @@ export const fetchSpotDetailData = async ({
     // `http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&contentId=${param}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`
     `http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`
   );
-  return res.data.response.body.items.item;
+  return res.data.response.body.items.item[0];
 };
 
 //상세페이지 주변 숙박 api
