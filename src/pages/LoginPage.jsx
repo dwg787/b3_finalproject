@@ -25,11 +25,7 @@ const LoginPage = () => {
 
   const logIn = async (e) => {
     e.preventDefault();
-    const login = await signInWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      passwordRef.current.value
-    );
+    const login = await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
     alert("login 성공!");
     console.log(login);
     console.log(auth);
@@ -47,16 +43,14 @@ const LoginPage = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <LoginText>로그인</LoginText>
-      <LoginContent>
-        간편하게 로그인하고 꿈꾸던 여행을 계획해보세요
-      </LoginContent>
-      <InputWrap>
-        <EmailInput ref={emailRef} type="text" placeholder="Email" />
-        <PwInput ref={passwordRef} type="password" placeholder="Password" />
-      </InputWrap>
-      <LoginBtn onClick={logIn} type="submit">
-        로그인
-      </LoginBtn>
+      <LoginContent>간편하게 로그인하고 꿈꾸던 여행을 계획해보세요</LoginContent>
+      <form onSubmit={logIn}>
+        <InputWrap>
+          <EmailInput ref={emailRef} type="text" placeholder="Email" />
+          <PwInput ref={passwordRef} type="password" placeholder="Password" />
+        </InputWrap>
+        <LoginBtn>로그인</LoginBtn>
+      </form>
       <TextDiv>다른 로그인 방식</TextDiv>
       <div style={{ display: "flex", gap: "40px" }}>
         <KakaoLoginButton />

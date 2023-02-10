@@ -90,13 +90,13 @@ const Navbar = () => {
     //   method: "POST",
     // }).then((res) => res.json());
 
-    console.log("isLogout", islogout);
+    // console.log("isLogout", islogout);
     //   .then(() => {
     //     alert("로그아웃 되었습니다.");
 
-    //     // 로그아웃 성공
-    //     setShowModal(false);
-    //     navigate("/", { replace: true });
+    // 로그아웃 성공
+    setShowModal(false);
+    navigate("/", { replace: true });
     //   })
     //   .catch((error) => {
     //     // 로그아웃 실패
@@ -105,7 +105,7 @@ const Navbar = () => {
     sessionStorage.removeItem("id");
     localStorage.removeItem("token_for_kakaotalk");
     navigate("/");
-    window.location.reload();
+    // window.location.reload();
   };
   const localId = sessionStorage.getItem("id");
   console.log(localId);
