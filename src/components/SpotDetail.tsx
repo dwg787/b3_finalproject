@@ -18,7 +18,7 @@ const SpotDetail = (props: FetchedStayDataType) => {
 export default SpotDetail;
 
 const SpotEachItemWrapper = styled.div`
-  width: 18%;
+  width: 17%;
   height: 200px;
   margin: 10px 10px 10px 10px;
 `;

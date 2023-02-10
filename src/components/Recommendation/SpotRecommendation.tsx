@@ -61,6 +61,7 @@ const Container = styled.div`
   height: 500px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   /* background-color: #d7d7d7; */
 `;
 
