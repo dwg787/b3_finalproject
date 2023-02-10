@@ -34,6 +34,13 @@ export const STAY_TYPE = [
   { id: 'B02011600', type: '한옥' },
 ];
 
+export const MENU_TYPE = [
+  { id: '0', type: 'HOME' },
+  { id: '12', type: '관광지' },
+  { id: '32', type: '숙박' },
+  { id: '39', type: '음식점' },
+];
+
 export const TOURIST_SPOT_TYPE = [
   {
     largeGroup: 'A01',
