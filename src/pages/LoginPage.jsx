@@ -1,62 +1,58 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth, provider } from '../apis/firebase';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import KakaoLoginButton from '../components/Login/KakaoLoginButton';
-import KakaoLogoutButton from '../components/Login/KakaoLogoutButton';
-import Naver from '../components/Login/Naver';
-import styled from 'styled-components';
-import Google from '../assets/google.png';
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, provider } from "../apis/firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import KakaoLoginButton from "../components/Login/KakaoLoginButton";
+import KakaoLogoutButton from "../components/Login/KakaoLogoutButton";
+import Naver from "../components/Login/Naver";
+import styled from "styled-components";
+import Google from "../assets/google.png";
 
 const LoginPage = () => {
-  const [value, setValue] = useState('');
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const [value, setValue] = useState("");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
   const navigate = useNavigate();
 
   const handleclick = () => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email);
-      sessionStorage.setItem('email', data.user.email);
-      // navigate('/');
-      window.location.reload();
+      sessionStorage.setItem("id", data.user.displayName);
+      console.log("data", data);
+      navigate("/");
     });
   };
 
-  const logIn = async () => {
-    const login = await signInWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      passwordRef.current.value
-    );
-    alert('login 성공!');
+  const logIn = async (e) => {
+    e.preventDefault();
+    const login = await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
+    alert("login 성공!");
     console.log(login);
-    console.log('이메일', emailRef.current.value);
-    console.log('비번', passwordRef.current.value);
-    sessionStorage.setItem('email', login.user.email);
-    // navigate('/', { replace: true });
-    window.location.reload();
+    console.log(auth);
+    console.log("이메일", emailRef.current.value);
+    console.log("비번", passwordRef.current.value);
+    sessionStorage.setItem("id", login.user.displayName);
+
+    navigate("/");
   };
 
   useEffect(() => {
-    setValue(sessionStorage.getItem('email'));
+    setValue(sessionStorage.getItem("email"));
   });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <LoginText>로그인</LoginText>
-      <LoginContent>
-        간편하게 로그인하고 꿈꾸던 여행을 계획해보세요
-      </LoginContent>
+      <LoginContent>간편하게 로그인하고 꿈꾸던 여행을 계획해보세요</LoginContent>
       <InputWrap>
-        <EmailInput ref={emailRef} type='text' placeholder='Email' />
-        <PwInput ref={passwordRef} type='password' placeholder='Password' />
+        <EmailInput ref={emailRef} type="text" placeholder="Email" />
+        <PwInput ref={passwordRef} type="password" placeholder="Password" />
       </InputWrap>
-      <LoginBtn onClick={logIn} type='submit'>
+      <LoginBtn onClick={logIn} type="submit">
         로그인
       </LoginBtn>
       <TextDiv>다른 로그인 방식</TextDiv>
-      <div style={{ display: 'flex', gap: '40px' }}>
+      <div style={{ display: "flex", gap: "40px" }}>
         <KakaoLoginButton />
         <GoogleBtn onClick={handleclick}>
           <GoogleImg src={Google} />

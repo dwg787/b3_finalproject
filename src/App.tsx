@@ -1,7 +1,7 @@
-import './App.css';
-import Router from './Router';
-import { RecoilRoot } from 'recoil';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import "./App.css";
+import Router from "./Router";
+import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 
