@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-// import { fetchSpotData } from '../apis/publicAPI';
-import { useQuery, useQueryClient, useMutation } from 'react-query';
 import { STAY_TYPE } from '../apis/apiCodes';
-import { AxiosError } from 'axios';
 import { useRecoilState } from 'recoil';
 import { staySelectionState } from '../recoil/apiDataAtoms';
 import styled from 'styled-components';
@@ -20,13 +16,6 @@ const SelectBtn = ({ children }: { children: string }) => {
       setStay(value);
     }
   };
-
-  //   const { mutate } = useMutation(fetchStayData, {
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries(['stay_data']);
-  //     },
-  //   });
-  //   if (!isLoading) console.log('data', data);
 
   return (
     <>

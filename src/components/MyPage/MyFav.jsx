@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { auth, db } from "../../apis/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import Loader from "../Loader";
-import styled from "styled-components";
-import MyFavDetail from "./MyFavDetail";
+import React, { useEffect, useState } from 'react';
+import { auth, db } from '../../apis/firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import Loader from '../Loader/Loader';
+import styled from 'styled-components';
+import MyFavDetail from './MyFavDetail';
 
 // 1. 좋아요 또는 찜하기 기능만들기 > 마이페이지 좋아요탭에서 내가 누른 좋아요 게시물을 확인가능하도록
 // 2. 디테일 페이지에 좋아요 기능넣기
@@ -16,7 +16,7 @@ const MyFav = () => {
 
   const getLiked = async () => {
     const uid = auth.currentUser.uid;
-    const q = query(collection(db, "bookmarks"), where("uid", "==", uid));
+    const q = query(collection(db, 'bookmarks'), where('uid', '==', uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       setBookmarks(doc.data().bookmarks);

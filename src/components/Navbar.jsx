@@ -1,7 +1,8 @@
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../apis/firebase";
 import styled from "styled-components";
+import searchIcon from "../assets/search.png";
 import { useEffect, useState } from "react";
 import { LoginPage } from "../pages";
 import axios from "axios";
@@ -18,7 +19,6 @@ const Navbar = () => {
   const currentUsers = sessionStorage.getItem("id");
   const currentUser = auth.currentUser;
   const userNickName = currentUser?.displayName;
-  console.log(userNickName);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -80,17 +80,17 @@ const Navbar = () => {
   // 로그아웃
   const LogOutHandler = async () => {
     await signOut(auth);
-    // const AccessToken = window.localStorage.getItem("token_for_kakaotalk");
-    // console.log(AccessToken);
-    // const islogout = await fetch("https://kapi.kakao.com/v1/user/logout", {
-    //   headers: {
-    //     Authorization: `Bearer ${AccessToken}`,
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //   },
-    //   method: "POST",
-    // }).then((res) => res.json());
+    const AccessToken = window.localStorage.getItem("token_for_kakaotalk");
+    console.log(AccessToken);
+    const islogout = await fetch("https://kapi.kakao.com/v1/user/logout", {
+      headers: {
+        Authorization: `Bearer ${AccessToken}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      method: "POST",
+    }).then((res) => res.json());
 
-    // console.log("isLogout", islogout);
+    console.log("isLogout", islogout);
     //   .then(() => {
     //     alert("로그아웃 되었습니다.");
 
@@ -105,7 +105,6 @@ const Navbar = () => {
     sessionStorage.removeItem("id");
     localStorage.removeItem("token_for_kakaotalk");
     navigate("/");
-    // window.location.reload();
   };
   const localId = sessionStorage.getItem("id");
   console.log(localId);
@@ -113,12 +112,28 @@ const Navbar = () => {
     <Nav>
       <LeftSection>
         <Link to="/" style={{ textDecoration: "none" }}>
-          방방곡곡 로고 자리
+          방방곡곡 로고
         </Link>
       </LeftSection>
       <MenuSection>
-        <input onClick={() => navigate("/search")} />
-        <NavUl></NavUl>
+        <LinktoSearchPageBtnWrapper>
+          <label>
+            <LinktoSearchPageBtn onClick={() => navigate("/search")}>관광지 검색하러 가기!</LinktoSearchPageBtn>
+            {/* <SearchBtnPlaceholder>관광지 검색하러 가기!</SearchBtnPlaceholder> */}
+            <SearchIcon src={searchIcon} alt="" />
+          </label>
+        </LinktoSearchPageBtnWrapper>
+        <NavUl>
+          {/* <NavLi>
+            <NavText to='/'>메뉴1</NavText>
+          </NavLi>
+          <NavLi>
+            <NavText to='/map'>메뉴2</NavText>
+          </NavLi>
+          <NavLi>
+            <NavText to='/mypage'>메뉴3</NavText>
+          </NavLi> */}
+        </NavUl>
       </MenuSection>
       <InfoSection>
         <LoginButtonBox>
@@ -157,7 +172,7 @@ const Nav = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #f9f9fb;
+  background-color: #e34647;
 `;
 
 const LeftSection = styled.div`
@@ -253,6 +268,36 @@ const ProfileImg = styled.img`
   border-radius: 100%;
 `;
 
+const LinktoSearchPageBtn = styled.button`
+  width: 300px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid white;
+  text-indent: 10px;
+  font-weight: 500;
+  text-align: left;
+  background-color: #fff;
+`;
+
+const LinktoSearchPageBtnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const SearchIcon = styled.img`
+  position: relative;
+  width: 15px;
+  height: 15px;
+  margin-left: -25px;
+  margin-bottom: -3px;
+`;
+
+// const SearchBtnPlaceholder = styled.span`
+//   position: relative;
+//   width: 200px;
+//   margin-left: 10px;
+//   /* margin-top: -20px; */
+// `;
 const ModalWrapper = styled.div`
   position: fixed;
   top: 0;

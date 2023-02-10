@@ -1,13 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Fuse from "fuse.js";
-import InfiniteScroll from "react-infinite-scroll-component";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Fuse from 'fuse.js';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음
   // const [searchItem, setSearchItem] = useState("");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   //모든객체를 가지고있음
   const [totalApi, setTotalApi] = useState([]);
 
@@ -17,7 +17,7 @@ export default function Search() {
   console.log(items);
 
   const fuse = new Fuse(totalApi, {
-    keys: ["addr1", "title"],
+    keys: ['addr1', 'title'],
     includeScore: true,
   });
 
@@ -59,7 +59,7 @@ export default function Search() {
           <InputBox>
             <SearchTitleH1>어떤걸 찾는가?</SearchTitleH1>
             <SearchInput
-              placeholder="여기에 입력하면 무엇이던지 찾을수있지!"
+              placeholder='여기에 입력하면 무엇이던지 찾을수있지!'
               // target={searchItem}
               value={query}
               onChange={searchItemHandler}
@@ -79,7 +79,7 @@ export default function Search() {
                 return (
                   <>
                     <ListDiv key={item.key}>
-                      <ListImg src={item.item.firstimage} alt="" />
+                      <ListImg src={item.item.firstimage} alt='' />
                       {item.item.title}
                     </ListDiv>
                   </>
