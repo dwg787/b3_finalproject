@@ -17,15 +17,15 @@ export const fetchSpotData = async ({ region }: { region: string }) => {
 };
 
 //검색페이지 api
-export const fetchSpotSearchData = async () => {
-  // console.log('recoil에 의해 변경되는 전역 상태 값:', stay);
-  const res = await axios.get(
-    `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=3974&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`
-    // `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=${region}&sigunguCode=&cat1=B02&cat2=B0201&cat3=${stay}&_type=json`
-    // `http://apis.data.go.kr/B551011/KorService/searchStay?areaCode=${region}&sigunguCode=&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`
-  );
-  return res.data.response.body;
-};
+// export const fetchSpotSearchData = async () => {
+//   // console.log('recoil에 의해 변경되는 전역 상태 값:', stay);
+//   const res = await axios.get(
+//     `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=3974&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`
+//     // `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=${region}&sigunguCode=&cat1=B02&cat2=B0201&cat3=${stay}&_type=json`
+//     // `http://apis.data.go.kr/B551011/KorService/searchStay?areaCode=${region}&sigunguCode=&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`
+//   );
+//   return res.data.response.body;
+// };
 
 //상세페이지 관광지 api
 export const fetchSpotDetailData = async ({ param }: { param: Readonly<Params<string>> }) => {
@@ -53,12 +53,3 @@ export const fetchNearRestaurantData = async ({ mapx, mapy }: { mapx: string; ma
   );
   return res.data.response.body.items.item;
 };
-
-//serchpage test
-// export const getsearchData = async () => {
-//   return axios
-//     .get(
-//       `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${region}&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`
-//     )
-//     .then((res) => res.data);
-// };

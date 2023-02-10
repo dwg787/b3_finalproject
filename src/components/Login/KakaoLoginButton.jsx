@@ -40,6 +40,7 @@ export default function KakaoLoginButton() {
     console.log("ACCESS_TOKEN1", ACCESS_TOKEN);
     setAccessToken(ACCESS_TOKEN.access_token);
     console.log("ACCESS_TOKEN2", ACCESS_TOKEN.access_token);
+    localStorage.setItem("token_for_kakaotalk", ACCESS_TOKEN.access_token);
 
     const user = await axios.get("https://kapi.kakao.com/v2/user/me", {
       headers: {
