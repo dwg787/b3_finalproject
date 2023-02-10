@@ -28,9 +28,9 @@ const RestaurantInfo = ({ spotData }) => {
           <>
             {restaurantData ? (
               <>
-                {restaurantData.slice(0, 5).map((item) => {
+                {restaurantData.slice(0, 5).map((item, i) => {
                   return (
-                    <SpotEachItemWrapper>
+                    <SpotEachItemWrapper key={i}>
                       <SpotEachItemImgWrapper
                         src={item?.firstimage}
                         alt="주변맛집 이미지"
