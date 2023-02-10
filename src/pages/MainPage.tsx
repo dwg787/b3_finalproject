@@ -15,6 +15,7 @@ import Loader from '../components/Loader';
 import Menu from '../components/Menu';
 import mainImg from '../assets/mainImg.png';
 import mainImg2 from '../assets/mainImg2.png';
+import Recommendation from '../components/Recommendation/Recommendation';
 
 const MainPage = () => {
   const queryClient = useQueryClient();
@@ -32,6 +33,7 @@ const MainPage = () => {
           return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
         })}
       </SelectRegionBtnWrapper>
+      {isLoading ? <Loader /> : <Recommendation />}
       {isLoading ? (
         <Loader />
       ) : (
@@ -52,27 +54,6 @@ const MainPage = () => {
           </SearchListWrapper>
         </SearchOverallResultContainer>
       )}
-      {/* {data ? (
-        <SearchListWrapper>
-          <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
-          {data.items.item.map((e: FetchedStayDataType) => {
-            return (
-              <StayDetail key={e.contentid} id={e.contentid}>
-                {e.title}
-              </StayDetail>
-            );
-          })}
-        </SearchListWrapper>
-      ) : (
-        <SearchListWrapper></SearchListWrapper>
-      )} */}
-      <BtnWrapper>
-        {/* <SelectStayBtnWrapper>
-          {STAY_TYPE.map((e) => {
-            return <SelectBtn key={e.id}>{e.type}</SelectBtn>;
-          })}
-        </SelectStayBtnWrapper> */}
-      </BtnWrapper>
     </Container>
   );
 };

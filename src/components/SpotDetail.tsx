@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React, { Children, useCallback, useEffect } from 'react';
 import { FetchedStayDataType } from '../apis/publicAPI';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';

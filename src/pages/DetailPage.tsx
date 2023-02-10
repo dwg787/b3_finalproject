@@ -1,6 +1,6 @@
+import { useCallback } from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import {
   fetchSpotDetailData,
   fetchNearStayData,
@@ -8,10 +8,30 @@ import {
 } from '../apis/publicAPI';
 import styled from 'styled-components';
 import Loader from '../components/Loader';
+import { useRecoilState } from 'recoil';
+import { recommendationCnt } from '../recoil/apiDataAtoms';
+import { useEffect } from 'react';
+import {
+  doc,
+  addDoc,
+  setDoc,
+  onSnapshot,
+  getDocs,
+  query,
+  orderBy,
+  updateDoc,
+  collection,
+  DocumentData,
+  increment,
+} from 'firebase/firestore';
+import { db } from '../apis/firebase';
 
 const DetailPage = () => {
   const param = useParams();
-  const navigate = useNavigate();
+  const [recCnt, setRecCnt] = useRecoilState(recommendationCnt);
+  const recCntRef = collection(db, 'recommendation');
+  const target = recCnt.findIndex((e) => e.id === param.id);
+  // const target = recCnt.find((e: string | undefined)=>e === param.id)
 
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
@@ -37,6 +57,47 @@ const DetailPage = () => {
       enabled: !!spotData,
     }
   );
+
+  const saveNewRecCnt = async () => {
+    await setDoc(doc(recCntRef), {
+      param: param.id,
+      viewCnt: 0,
+    });
+  };
+
+  const updateRecCnt = async () => {
+    await updateDoc(doc(recCntRef), {
+      viewCnt: increment(1),
+    });
+  };
+
+  const getRecCnt = useCallback(async () => {
+    const data = await getDocs(recCntRef);
+    // console.log(data)
+    // setRecCnt(
+    // data.docs.map((doc: DocumentData) => {
+    //   return {
+    //     ...doc.data(),
+    //   };
+    // })
+    // );
+  }, [setRecCnt, recCntRef]);
+
+  useEffect(() => {
+    getRecCnt();
+  }, []);
+
+  useEffect(() => {
+    if (recCnt[target]) {
+      updateRecCnt();
+    } else {
+      saveNewRecCnt();
+    }
+  }, []);
+
+  console.log('타겟', target);
+  console.log('이미 저장된', recCnt);
+  console.log('현재 param', param.id);
 
   return (
     <Container>
