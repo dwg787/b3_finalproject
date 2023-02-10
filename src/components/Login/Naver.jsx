@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Naver = ({ setGetToken, setUserInfo }) => {
+  const [userName, setUserName] = useState("");
+  console.log(userName);
   const { naver } = window;
   const NAVER_CLIENT_ID = "o47rUj6rR0GWdh1UKf95";
   const NAVER_CALLBACK_URL = "http://localhost:3000/login";
@@ -33,7 +35,8 @@ const Naver = ({ setGetToken, setUserInfo }) => {
         const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
         // 정보 전체를 아래처럼 state 에 저장하여 추출하여 사용가능하다.
-        // setUserInfo(naverLogin.user)
+        //   setUserInfo(naverLogin.user);
+        setUserName(username);
       }
     });
     // 요기!

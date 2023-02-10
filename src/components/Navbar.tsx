@@ -2,21 +2,22 @@ import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../apis/firebase";
 import styled from "styled-components";
+import { useState } from "react";
+import { LoginPage } from "../pages";
 
 const Navbar = () => {
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
+
   const currentUser = sessionStorage.getItem("email");
-  // console.log(currentUser);
+  console.log(currentUser);
+  const [showModal, setShowModal] = useState(false);
 
   // 로그아웃
   const LogOutHandler = async () => {
     await signOut(auth)
       .then(() => {
         alert("로그아웃 되었습니다.");
-
-        // 로그아웃 성공
-        navigate("/");
       })
       .catch((error) => {
         // 로그아웃 실패
@@ -78,9 +79,19 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <LoginButton onClick={() => navigate("/login")}>
+              <LoginButton onClick={() => setShowModal(true)}>
                 Login
               </LoginButton>
+              {showModal && (
+                <ModalWrapper>
+                  <Modal>
+                    <ModalHeader>
+                      <CloseBtn onClick={() => setShowModal(false)}>X</CloseBtn>
+                    </ModalHeader>
+                    <LoginPage />
+                  </Modal>
+                </ModalWrapper>
+              )}
             </>
           )}
 
@@ -197,4 +208,45 @@ const ProfileImg = styled.img`
   width: 45px;
   height: 45px;
   border-radius: 100%;
+`;
+
+const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Modal = styled.div`
+  background-color: #ffff;
+  width: 25%;
+  height: 60%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 3px 12px 3px #555555;
+`;
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 186%;
+  height: 12%;
+  padding: 10px;
+`;
+
+const CloseBtn = styled.button`
+  background-color: transparent;
+  /* position: absolute;
+  right: 770px;
+  top: 280px; */
+  border: none;
+  font-size: 18px;
+  color: #1f1f1f;
+  cursor: pointer;
 `;
