@@ -24,9 +24,9 @@ const Stayinfo = ({ spotData }) => {
           <>
             {stayData ? (
               <>
-                {stayData.slice(0, 5).map((item) => {
+                {stayData.slice(0, 5).map((item, i) => {
                   return (
-                    <SpotEachItemWrapper>
+                    <SpotEachItemWrapper key={i}>
                       <SpotEachItemImgWrapper
                         src={item?.firstimage}
                         alt="주변맛집 이미지"
