@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore';
 import SpotDetail from '../SpotDetail';
 import { recCnts } from '../../apis/publicAPI';
+import { Link } from 'react-router-dom';
 
 const Recommendation = (propsData: any) => {
   const [recommendList, setRecommendList] = useState<recCnts>();
@@ -38,7 +39,7 @@ const Recommendation = (propsData: any) => {
     <Container>
       <RecommendListIntroWrapper>
         <RecommendListTitle>추천 관광지</RecommendListTitle>
-        <RecommendListTitle>전체보기</RecommendListTitle>
+        <RecommendListLink to={'/my'}>전체보기</RecommendListLink>
       </RecommendListIntroWrapper>
       <RecommendListWrapper>
         {recommendList &&
@@ -61,15 +62,14 @@ const Container = styled.div`
   height: 500px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   /* background-color: #d7d7d7; */
 `;
 
 const RecommendListIntroWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
 `;
 
 const RecommendListWrapper = styled.div`
@@ -77,4 +77,13 @@ const RecommendListWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const RecommendListTitle = styled.div``;
+const RecommendListTitle = styled.div`
+  margin-left: 10px;
+  margin-top: 10px;
+`;
+
+const RecommendListLink = styled(Link)`
+  margin-right: 10px;
+  margin-top: 10px;
+  text-decoration: none;
+`;
