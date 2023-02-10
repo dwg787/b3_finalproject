@@ -20,19 +20,19 @@ const Navbar = () => {
 
   // 로그아웃
   const LogOutHandler = async () => {
-    await signOut(auth);
-    const AccessToken = window.localStorage.getItem("token_for_kakaotalk");
-    console.log(AccessToken);
-    const islogout = await fetch("https://kapi.kakao.com/v1/user/logout", {
-      headers: {
-        Authorization: `Bearer ${AccessToken}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      method: "POST",
-    }).then((res) => res.json());
+    await signOut(auth)
+      // const AccessToken = window.localStorage.getItem("token_for_kakaotalk");
+      // console.log(AccessToken);
+      // const islogout = await fetch("https://kapi.kakao.com/v1/user/logout", {
+      //   headers: {
+      //     Authorization: `Bearer ${AccessToken}`,
+      //     "Content-Type": "application/x-www-form-urlencoded",
+      //   },
+      //   method: "POST",
+      // }).then((res) => res.json());
 
-    console
-      .log("isLogout", islogout)
+      // console
+      //   .log("isLogout", islogout)
       .then(() => {
         alert("로그아웃 되었습니다.");
 
@@ -70,9 +70,7 @@ const Navbar = () => {
           ) : (
             <>
               {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
-              <LoginButton onClick={() => setShowModal(true)}>
-                Login
-              </LoginButton>
+              <LoginButton onClick={() => setShowModal(true)}>Login</LoginButton>
               {showModal && (
                 <ModalWrapper>
                   <Modal>
