@@ -1,21 +1,24 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
+
 import { fetchSpotDetailData } from "../apis/publicAPI";
 import styled from "styled-components";
 import Loader from "../components/Loader";
 import RestaurantInfo from "../components/RestaurantInfo";
-
 import Stayinfo from "../components/Stayinfo";
+
 
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
 
+
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ["spot_detail", param],
     () => fetchSpotDetailData({ param })
   );
+
 
   return (
     <Container>
@@ -42,10 +45,12 @@ const DetailPage = () => {
 
         <SideInfoWrapper>
           <StayInfoWrapper>
+
             <Stayinfo spotData={spotData} />
           </StayInfoWrapper>
           <RestaurantInfoWrapper>
             <RestaurantInfo spotData={spotData} />
+
           </RestaurantInfoWrapper>
         </SideInfoWrapper>
       </div>
