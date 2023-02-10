@@ -16,7 +16,6 @@ export default function KakaoLogoutButton() {
       },
       method: "POST",
     }).then((res) => res.json());
-    localStorage.clear();
     console.log("isLogout", islogout);
   };
 

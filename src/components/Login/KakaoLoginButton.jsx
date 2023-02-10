@@ -50,6 +50,7 @@ export default function KakaoLoginButton() {
     console.log(user);
     setNickName(user.data.properties.nickname);
     setProfileImage(user.data.properties.profile_image);
+    localStorage.setItem("token_for_kakaotalk", ACCESS_TOKEN.access_token);
     sessionStorage.setItem("id", user.data.properties.nickname);
   };
   console.log(nickName, profileImage);
