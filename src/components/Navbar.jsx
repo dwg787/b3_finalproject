@@ -8,9 +8,17 @@ import { LoginPage } from "../pages";
 const Navbar = () => {
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
+<<<<<<< HEAD:src/components/Navbar.tsx
 
   const currentUser = sessionStorage.getItem("email");
   console.log(currentUser);
+=======
+  const currentUsers = sessionStorage.getItem("id");
+  const currentUser = auth.currentUser;
+  const userNickName = currentUser?.displayName;
+  console.log(userNickName);
+
+>>>>>>> bdad8e4543cbf10c8a60c40416db9816e81e0982:src/components/Navbar.jsx
   const [showModal, setShowModal] = useState(false);
 
   // 로그아웃
@@ -18,37 +26,32 @@ const Navbar = () => {
     await signOut(auth)
       .then(() => {
         alert("로그아웃 되었습니다.");
+<<<<<<< HEAD:src/components/Navbar.tsx
+=======
+
+        // 로그아웃 성공
+        setShowModal(false);
+        navigate("/", { replace: true });
+>>>>>>> bdad8e4543cbf10c8a60c40416db9816e81e0982:src/components/Navbar.jsx
       })
       .catch((error) => {
         // 로그아웃 실패
         alert("로그아웃에 실패했습니다.");
       });
-    sessionStorage.clear();
-    window.location.reload();
+    sessionStorage.removeItem("id");
+    // window.location.reload();
   };
-  //   const { isLoggedIn, isAuthorizedInSession, userObjParsed } = useLoginState();
-
-  //   const handleLogout = () => {
-  //     signOut(authService)
-  //       .then(() => {
-  //         alert('로그아웃 되었습니다.');
-  //         navigate('/', { replace: true });
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
 
   return (
     <Nav>
       <LeftSection>
         <Link to="/" style={{ textDecoration: "none" }}>
           방방곡곡 로고 자리
-          {/* <LogoImg src={logoImg} alt="Logo" /> */}
         </Link>
       </LeftSection>
       <MenuSection>
         <input onClick={() => navigate("/search")} />
+<<<<<<< HEAD:src/components/Navbar.tsx
         <NavUl>
           {/* <NavLi>
             <NavText to='/'>메뉴1</NavText>
@@ -60,28 +63,21 @@ const Navbar = () => {
             <NavText to='/mypage'>메뉴3</NavText>
           </NavLi> */}
         </NavUl>
+=======
+        <NavUl></NavUl>
+>>>>>>> bdad8e4543cbf10c8a60c40416db9816e81e0982:src/components/Navbar.jsx
       </MenuSection>
       <InfoSection>
-        {/* {isLoggedIn && isAuthorizedInSession ? (
-          <ImgNick>
-            <FbImg>
-              <ProfileImg src={userObjParsed.photoURL || profileImgDefault} />
-            </FbImg>
-            <FontBox>
-              <Font>{userObjParsed.displayName} </Font>
-            </FontBox>
-          </ImgNick>
-        ) : null} */}
         <LoginButtonBox>
-          {currentUser !== null ? (
+          {currentUsers !== null ? (
             <>
+              <di>{currentUsers}님</di>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
             </>
           ) : (
             <>
-              <LoginButton onClick={() => setShowModal(true)}>
-                Login
-              </LoginButton>
+              {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
+              <LoginButton onClick={() => setShowModal(true)}>Login</LoginButton>
               {showModal && (
                 <ModalWrapper>
                   <Modal>
@@ -94,12 +90,6 @@ const Navbar = () => {
               )}
             </>
           )}
-
-          {/* {isLoggedIn && isAuthorizedInSession ? (
-            <LoginButton onClick={handleLogout}>Logout</LoginButton>
-          ) : (
-            <LoginButton onClick={() => navigate('/login')}>Login</LoginButton>
-          )} */}
         </LoginButtonBox>
       </InfoSection>
     </Nav>

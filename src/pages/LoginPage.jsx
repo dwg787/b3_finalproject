@@ -10,20 +10,21 @@ import Google from "../assets/google.png";
 
 const LoginPage = () => {
   const [value, setValue] = useState("");
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
   const navigate = useNavigate();
 
   const handleclick = () => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email);
-      sessionStorage.setItem("email", data.user.email);
-      // navigate('/');
-      window.location.reload();
+      sessionStorage.setItem("id", data.user.displayName);
+      console.log("data", data);
+      navigate("/");
     });
   };
 
-  const logIn = async () => {
+  const logIn = async (e) => {
+    e.preventDefault();
     const login = await signInWithEmailAndPassword(
       auth,
       emailRef.current.value,
@@ -31,11 +32,12 @@ const LoginPage = () => {
     );
     alert("login 성공!");
     console.log(login);
+    console.log(auth);
     console.log("이메일", emailRef.current.value);
     console.log("비번", passwordRef.current.value);
-    sessionStorage.setItem("email", login.user.email);
-    // navigate('/', { replace: true });
-    window.location.reload();
+    sessionStorage.setItem("id", login.user.displayName);
+
+    navigate("/");
   };
 
   useEffect(() => {
