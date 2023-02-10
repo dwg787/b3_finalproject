@@ -7,18 +7,16 @@ import styled from "styled-components";
 import Loader from "../components/Loader";
 import RestaurantInfo from "../components/RestaurantInfo";
 import Stayinfo from "../components/Stayinfo";
-
+import Liked from "../components/Liked";
 
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
 
-
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ["spot_detail", param],
     () => fetchSpotDetailData({ param })
   );
-
 
   return (
     <Container>
@@ -35,6 +33,7 @@ const DetailPage = () => {
                 <div>주소 : {spotData.addr1}</div>
                 <Link to={`/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
+                <Liked spotData={spotData} />
                 <div>{spotData.overview}</div>
               </div>
             ) : (
@@ -45,12 +44,10 @@ const DetailPage = () => {
 
         <SideInfoWrapper>
           <StayInfoWrapper>
-
             <Stayinfo spotData={spotData} />
           </StayInfoWrapper>
           <RestaurantInfoWrapper>
             <RestaurantInfo spotData={spotData} />
-
           </RestaurantInfoWrapper>
         </SideInfoWrapper>
       </div>
