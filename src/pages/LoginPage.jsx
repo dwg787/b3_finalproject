@@ -18,7 +18,7 @@ const LoginPage = () => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email);
       sessionStorage.setItem("id", data.user.displayName);
-      console.log("data", data);
+      // console.log("data", data);
       navigate("/");
     });
   };

@@ -11,6 +11,11 @@ export default function Search() {
   //모든객체를 가지고있음
   const [totalApi, setTotalApi] = useState([]);
 
+  //infinite scroll
+  const [items, setItems] = useState(Array.from({ length: 7 }));
+  const [infiniteItems, setInfiniteItems] = useState([]);
+  console.log(items);
+
   const fuse = new Fuse(totalApi, {
     keys: ["addr1", "title"],
     includeScore: true,
@@ -31,9 +36,20 @@ export default function Search() {
     return setTotalApi(res.data.response.body.items.item);
   };
 
+  const fetchData = () => {
+    setInfiniteItems(totalApi);
+
+    setTimeout(() => {
+      setItems(items.concat(Array.from({ length: 7 })));
+    }, 3000);
+  };
+
   useEffect(() => {
     fetchSpotSearchData();
-    // setQuery(value);
+  }, []);
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (
@@ -52,7 +68,11 @@ export default function Search() {
               인기검색어 : 살려주세요, 정신나갈거같아, 취업할수있을까?
             </RecommendH4>
           </InputBox>
-          <ListBoxInfinite>
+          <ListBoxInfinite
+            dataLength={items.length}
+            next={fetchData}
+            hasMore={true}
+          >
             {results.map((item) => {
               if (item.score < 0.34) {
                 console.log(item);
@@ -109,7 +129,7 @@ const SearchInput = styled.input`
 
 const RecommendH4 = styled.h4``;
 
-const ListBoxInfinite = styled.div`
+const ListBoxInfinite = styled(InfiniteScroll)`
   width: 100%;
   display: flex;
   flex-direction: row;
