@@ -18,14 +18,18 @@ const LoginPage = () => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email);
       sessionStorage.setItem("id", data.user.displayName);
-      console.log("data", data);
+      // console.log("data", data);
       navigate("/");
     });
   };
 
   const logIn = async (e) => {
     e.preventDefault();
-    const login = await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
+    const login = await signInWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passwordRef.current.value
+    );
     alert("login 성공!");
     console.log(login);
     console.log(auth);
@@ -43,7 +47,9 @@ const LoginPage = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <LoginText>로그인</LoginText>
-      <LoginContent>간편하게 로그인하고 꿈꾸던 여행을 계획해보세요</LoginContent>
+      <LoginContent>
+        간편하게 로그인하고 꿈꾸던 여행을 계획해보세요
+      </LoginContent>
       <InputWrap>
         <EmailInput ref={emailRef} type="text" placeholder="Email" />
         <PwInput ref={passwordRef} type="password" placeholder="Password" />
@@ -59,7 +65,7 @@ const LoginPage = () => {
           <GoogleText>Google</GoogleText>
         </GoogleBtn>
         {/* <KakaoLogoutButton /> */}
-        {/* <Naver /> */}
+        <Naver />
       </div>
       <FooterText>
         로그인 또는 회원가입 시 이용약관 및 개인정보 정책에<br></br>

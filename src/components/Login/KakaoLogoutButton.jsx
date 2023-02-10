@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export default function KakaoLogoutButton() {
   const REST_API_KEY = "06264d97cddc6d0d5ef77a0f28d69af9";
-  const REDIRECT_URI = "http://localhost:3000/login";
+  const REDIRECT_URI = "http://localhost:3000/";
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const logout = async () => {

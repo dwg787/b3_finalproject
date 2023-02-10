@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Naver = ({ setGetToken, setUserInfo }) => {
+  const [userName, setUserName] = useState("");
+  console.log(userName);
   const { naver } = window;
   const NAVER_CLIENT_ID = "o47rUj6rR0GWdh1UKf95";
-  const NAVER_CALLBACK_URL = "http://localhost:3000/login";
+  const NAVER_CALLBACK_URL = "http://localhost:3000/";
 
   const initializeNaverLogin = () => {
     const naverLogin = new naver.LoginWithNaverId({
@@ -12,7 +14,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       // 팝업창으로 로그인을 진행할 것인지?
       isPopup: false,
       // 버튼 타입 ( 색상, 타입, 크기 변경 가능 )
-      loginButton: { color: "green", type: 3, height: 58 },
+      loginButton: { color: "green", type: 1, height: 30 },
       callbackHandle: true,
     });
     naverLogin.init();
@@ -33,7 +35,8 @@ const Naver = ({ setGetToken, setUserInfo }) => {
         const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
         // 정보 전체를 아래처럼 state 에 저장하여 추출하여 사용가능하다.
-        // setUserInfo(naverLogin.user)
+        //   setUserInfo(naverLogin.user);
+        setUserName(username);
       }
     });
     // 요기!
@@ -52,8 +55,8 @@ const Naver = ({ setGetToken, setUserInfo }) => {
     // console.log, alert 창을 통해 토큰이 잘 추출 되는지 확인하자!
 
     // 이후 로컬 스토리지 또는 state에 저장하여 사용하자!
-    // localStorage.setItem('access_token', token)
-    // setGetToken(token)
+    // sessionStorage.setItem("id", token.user.userid);
+    // setGetToken(token);
   };
 
   // 화면 첫 렌더링이후 바로 실행하기 위해 useEffect 를 사용하였다.

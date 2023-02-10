@@ -18,6 +18,7 @@ import mainImg from '../assets/mainImg.png';
 import mainImg2 from '../assets/mainImg2.png';
 import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
 import noimg from '../assets/noimg.png';
+import { auth } from '../apis/firebase';
 
 const MainPage = () => {
   const region = useRecoilValue(regionSelectionState);

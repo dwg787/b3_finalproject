@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
   fetchSpotDetailData,
   fetchNearStayData,
@@ -12,10 +12,12 @@ import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
+import Liked from '../components/Liked';
 import StayInfo from '../components/StayInfo';
 
 const DetailPage = () => {
   const param = useParams();
+  const navigate = useNavigate();
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
     () => fetchSpotDetailData({ param })
@@ -94,6 +96,7 @@ const DetailPage = () => {
                 <div>주소 : {spotData.addr1}</div>
                 <Link to={`/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
+                <Liked spotData={spotData} />
                 <div>{spotData.overview}</div>
               </div>
             ) : (
