@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fuse from 'fuse.js';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Loader from '../Loader/Loader';
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음
@@ -68,25 +69,27 @@ export default function Search() {
               인기검색어 : 살려주세요, 정신나갈거같아, 취업할수있을까?
             </RecommendH4>
           </InputBox>
-          <ListBoxInfinite
-            dataLength={items.length}
-            next={fetchData}
-            hasMore={true}
-          >
-            {results.map((item) => {
-              if (item.score < 0.34) {
-                console.log(item);
-                return (
-                  <>
-                    <ListDiv key={item.key}>
-                      <ListImg src={item.item.firstimage} alt='' />
-                      {item.item.title}
-                    </ListDiv>
-                  </>
-                );
-              }
-            })}
-          </ListBoxInfinite>
+          <Suspense fallback={<Loader />}>
+            <ListBoxInfinite
+              dataLength={items.length}
+              next={fetchData}
+              hasMore={true}
+            >
+              {results.map((item) => {
+                if (item.score < 0.34) {
+                  console.log(item);
+                  return (
+                    <>
+                      <ListDiv key={item.key}>
+                        <ListImg src={item.item.firstimage} alt='' />
+                        {item.item.title}
+                      </ListDiv>
+                    </>
+                  );
+                }
+              })}
+            </ListBoxInfinite>
+          </Suspense>
         </WrapDiv>
       </ContainerDiv>
     </>
