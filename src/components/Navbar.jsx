@@ -6,6 +6,9 @@ import { useState } from "react";
 import { LoginPage } from "../pages";
 
 const Navbar = () => {
+  const REST_API_KEY = "06264d97cddc6d0d5ef77a0f28d69af9";
+  const REDIRECT_URI = "http://localhost:3000/";
+  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
   const currentUsers = sessionStorage.getItem("id");
@@ -17,7 +20,19 @@ const Navbar = () => {
 
   // 로그아웃
   const LogOutHandler = async () => {
-    await signOut(auth)
+    await signOut(auth);
+    const AccessToken = window.localStorage.getItem("token_for_kakaotalk");
+    console.log(AccessToken);
+    const islogout = await fetch("https://kapi.kakao.com/v1/user/logout", {
+      headers: {
+        Authorization: `Bearer ${AccessToken}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      method: "POST",
+    }).then((res) => res.json());
+
+    console
+      .log("isLogout", islogout)
       .then(() => {
         alert("로그아웃 되었습니다.");
 
@@ -48,7 +63,7 @@ const Navbar = () => {
         <LoginButtonBox>
           {currentUsers !== null ? (
             <>
-              <di>{currentUsers}님</di>
+              <div>{currentUsers}님</div>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
             </>
           ) : (
