@@ -33,7 +33,7 @@ const MainPage = () => {
           return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
         })}
       </SelectRegionBtnWrapper>
-      {isLoading ? <Loader /> : <Recommendation />}
+      {isLoading ? <Loader /> : <Recommendation propsData={data.items.item} />}
       {isLoading ? (
         <Loader />
       ) : (

@@ -20,8 +20,5 @@ export const regionSelectionState = atom({
 //추천 수 카운트 state
 export const recommendationCnt = atom<recCnts>({
   key: 'recommendationCnt',
-  default: [
-    { id: '2513971', viewCnt: 1 },
-    { id: '2788127', viewCnt: 1 },
-  ],
+  default: [],
 });
