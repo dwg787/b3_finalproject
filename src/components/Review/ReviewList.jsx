@@ -12,32 +12,13 @@ import {
 import { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 
-export default function ReviewList({ review, i }) {
+export default function ReviewList({ review, i, reviews, setReviews }) {
   const [newReview, setNewReview] = useState('');
-  const [reviews, setReviews] = useState([]);
   const [editBox, setEditBox] = useState(false);
-  const [editValue, setEditValue] = useState(auth.currentUser.review);
+  const [editValue, setEditValue] = useState(reviews.review);
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
 
-  const creatReview = async () => {
-    const loginUser = auth.currentUser;
-
-    if (loginUser) {
-      const addRev = await addDoc(usersCollectionRef, {
-        review: newReview,
-        uid: loginUser.uid,
-        email: loginUser.email,
-        modify: true,
-
-        displayName: loginUser?.displayName,
-        //파이어베이스에 저장이됨
-      });
-    } else {
-      alert('로그인을 하세요');
-    }
-    // console.log(addRev);
-  };
   const handleDelete = async (id, i) => {
     if (auth.currentUser.uid === reviews[i].uid) {
       const reviewDoc = doc(db, 'reviews', id);
@@ -47,9 +28,12 @@ export default function ReviewList({ review, i }) {
       //작성가 다르거나 비로그인 유저에게 버튼이 보이지 않는다면 필요없어짐.
     }
   };
+  // console.log('유저 uid ', auth.currentUser.displayName);
+  // console.log('리뷰 uid', reviews);
+
   //업데이트
-  const handleUpdate = async (id, review) => {
-    await updateDoc(doc(db, 'reviews', auth.currentUser.uid), {
+  const handleUpdate = async (id) => {
+    await updateDoc(doc(usersCollectionRef, id), {
       review: editValue,
     });
   };
@@ -61,13 +45,15 @@ export default function ReviewList({ review, i }) {
         <h1>리뷰: {review.review}</h1>
       ) : (
         <input
+          placeholder={review.review}
           value={editValue}
           onChange={(e) => {
             setEditValue(e.target.value);
+            // console.log(editValue);
           }}
         />
       )}
-      {/* <h1>리뷰: {review.review}</h1> */}
+
       {loginUser.uid === review.uid ? (
         <button
           onClick={() => {
@@ -80,7 +66,7 @@ export default function ReviewList({ review, i }) {
       {loginUser.uid === review.uid ? (
         <button
           onClick={() => {
-            handleUpdate(review.id, i, auth.currentUser.id, auth.currentUser);
+            handleUpdate(review.id);
             setEditBox(!editBox);
           }}
         >
