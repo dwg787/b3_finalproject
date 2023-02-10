@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MENU_TYPE } from '../../apis/apiCodes';
 import SelectMenu from '../SelectMenu';

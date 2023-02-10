@@ -1,17 +1,10 @@
-<<<<<<< HEAD
+
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import Fuse from "fuse.js";
 import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash";
-=======
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Fuse from 'fuse.js';
-import InfiniteScroll from 'react-infinite-scroll-component';
->>>>>>> a509d0bf60baf3d25f4d9ce7e6e2035f939a47c4
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음
