@@ -25,6 +25,8 @@ import {
   increment,
 } from 'firebase/firestore';
 import { db } from '../apis/firebase';
+import Stayinfo from '../components/Stayinfo';
+import RestaurantInfo from '../components/RestaurantInfo';
 
 const DetailPage = () => {
   const param = useParams();
@@ -121,9 +123,10 @@ const DetailPage = () => {
             )}
           </>
         )}
+
         <SideInfoWrapper>
           <StayInfoWrapper>
-            <div>주변 숙박정보</div>
+            {/* <div>주변 숙박정보</div>
             <div>
               {isLoadingStay ? (
                 <Loader />
@@ -144,10 +147,9 @@ const DetailPage = () => {
                   )}
                 </>
               )}
-            </div>
+            </div> */}
           </StayInfoWrapper>
-          <RestaurantInfoWrapper>
-            <div>주변 맛집정보</div>
+          {/* <div>주변 맛집정보</div>
             <div>
               {isLoadingRestaurant ? (
                 <Loader />
@@ -168,7 +170,11 @@ const DetailPage = () => {
                   )}
                 </>
               )}
-            </div>
+            </div> */}
+
+          <Stayinfo spotData={spotData} />
+          <RestaurantInfoWrapper>
+            <RestaurantInfo spotData={spotData} />
           </RestaurantInfoWrapper>
         </SideInfoWrapper>
       </div>
@@ -190,7 +196,7 @@ const Container = styled.div`
 const SideInfoWrapper = styled.div`
   margin-top: 50px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `;
 
 const StayInfoWrapper = styled.div`
