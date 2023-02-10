@@ -1,34 +1,35 @@
-import { useQueryClient, useInfiniteQuery, useQuery } from 'react-query';
-import styled from 'styled-components';
-import { fetchSpotData } from '../apis/publicAPI';
-import SelectBtn from '../components/SelectBtn';
-import SelectRegionBtn from '../components/SelectRegionBtn';
-import { STAY_TYPE, AREA_CODE } from '../apis/apiCodes';
-import { useRecoilValue } from 'recoil';
+import { useQueryClient, useInfiniteQuery, useQuery } from "react-query";
+import styled from "styled-components";
+import { fetchSpotData } from "../apis/publicAPI";
+import SelectBtn from "../components/SelectBtn";
+import SelectRegionBtn from "../components/SelectRegionBtn";
+import { STAY_TYPE, AREA_CODE } from "../apis/apiCodes";
+import { useRecoilValue } from "recoil";
 import {
   menuSelectionState,
   regionSelectionState,
   staySelectionState,
-} from '../recoil/apiDataAtoms';
-import { FetchedStayDataType } from '../apis/publicAPI';
-import SpotDetail from '../components/SpotDetail';
-import Loader from '../components/Loader/Loader';
-import Menu from '../components/Menu/Menu';
-import mainImg from '../assets/mainImg.png';
-import mainImg2 from '../assets/mainImg2.png';
-import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
-import noimg from '../assets/noimg.png';
-import { auth } from '../apis/firebase';
+} from "../recoil/apiDataAtoms";
+import { FetchedStayDataType } from "../apis/publicAPI";
+import SpotDetail from "../components/SpotDetail";
+import Loader from "../components/Loader/Loader";
+import Menu from "../components/Menu/Menu";
+import mainImg from "../assets/mainImg.png";
+import mainImg2 from "../assets/mainImg2.png";
+import SpotRecommendation from "../components/Recommendation/SpotRecommendation";
+import noimg from "../assets/noimg.png";
+import { auth } from "../apis/firebase";
 
 const MainPage = () => {
   const region = useRecoilValue(regionSelectionState);
   const selectedMenu = useRecoilValue(menuSelectionState);
-  const { data, isLoading } = useQuery(['spot_data', region], () =>
+  const { data, isLoading } = useQuery(["spot_data", region], () =>
     fetchSpotData({ region })
   );
 
   // const isClicked
 
+  // console.log(data);
   return (
     <Container>
       <Menu />
