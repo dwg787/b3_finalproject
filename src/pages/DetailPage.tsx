@@ -1,31 +1,24 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
-import { fetchSpotDetailData, fetchNearStayData, fetchNearRestaurantData } from "../apis/publicAPI";
+
+import { fetchSpotDetailData } from "../apis/publicAPI";
 import styled from "styled-components";
 import Loader from "../components/Loader";
+import RestaurantInfo from "../components/RestaurantInfo";
+import Stayinfo from "../components/Stayinfo";
+
 
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
 
-  const { data: spotData, isLoading: isLoadingSpot } = useQuery(["spot_detail", param], () => fetchSpotDetailData({ param }));
 
-  const { data: stayData, isLoading: isLoadingStay } = useQuery(["stay_detail", spotData], () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }), {
-    enabled: !!spotData,
-  });
-
-  const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ["restaurant_detail", spotData],
-    () =>
-      fetchNearRestaurantData({
-        mapx: spotData.mapx,
-        mapy: spotData.mapy,
-      }),
-    {
-      enabled: !!spotData,
-    }
+  const { data: spotData, isLoading: isLoadingSpot } = useQuery(
+    ["spot_detail", param],
+    () => fetchSpotDetailData({ param })
   );
+
 
   return (
     <Container>
@@ -49,48 +42,15 @@ const DetailPage = () => {
             )}
           </>
         )}
+
         <SideInfoWrapper>
           <StayInfoWrapper>
-            <div>주변 숙박정보</div>
-            <div>
-              {isLoadingStay ? (
-                <Loader />
-              ) : (
-                <>
-                  {stayData ? (
-                    <>
-                      <StayImage src={stayData[0]?.firstimage} alt="주변숙소 이미지" />
-                      <div>{stayData[0]?.title}</div>
-                    </>
-                  ) : (
-                    <>
-                      <div>주변 숙박정보가 없습니다.</div>
-                    </>
-                  )}
-                </>
-              )}
-            </div>
+
+            <Stayinfo spotData={spotData} />
           </StayInfoWrapper>
           <RestaurantInfoWrapper>
-            <div>주변 맛집정보</div>
-            <div>
-              {isLoadingRestaurant ? (
-                <Loader />
-              ) : (
-                <>
-                  {restaurantData ? (
-                    <>
-                      <StayImage src={restaurantData[0]?.firstimage} alt="주변맛집 이미지" />
-                      <div>{restaurantData[0]?.title}</div>
-                    </>
-                  ) : (
-                    <>
-                      <div>주변 맛집정보가 없습니다.</div>
-                    </>
-                  )}
-                </>
-              )}
-            </div>
+            <RestaurantInfo spotData={spotData} />
+
           </RestaurantInfoWrapper>
         </SideInfoWrapper>
       </div>
@@ -112,7 +72,7 @@ const Container = styled.div`
 const SideInfoWrapper = styled.div`
   margin-top: 50px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `;
 
 const StayInfoWrapper = styled.div`
