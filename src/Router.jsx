@@ -1,15 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import {
-  MainPage,
-  LoginPage,
-  RegisterPage,
-  ReservationPage,
-  MyPage,
-  DetailPage,
-  MapPage,
-  PurchasePage,
-} from "./pages";
+import { MainPage, LoginPage, RegisterPage, ReservationPage, MyPage, DetailPage, MapPage, PurchasePage } from "./pages";
 
 import SignUpPage from "../src/pages/SignUpPage";
 import SearchPage from "./pages/SearchPage";

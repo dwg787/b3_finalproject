@@ -8,27 +8,30 @@ import Naver from "../components/Login/Naver";
 
 const LoginPage = () => {
   const [value, setValue] = useState("");
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
   const navigate = useNavigate();
 
-  // 구글로그인
   const handleclick = () => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email);
-      sessionStorage.setItem("email", data.user.email);
+      sessionStorage.setItem("id", data.user.displayName);
+      console.log("data", data);
       navigate("/");
     });
   };
 
-  const logIn = async () => {
+  const logIn = async (e) => {
+    e.preventDefault();
     const login = await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
     alert("login 성공!");
     console.log(login);
+    console.log(auth);
     console.log("이메일", emailRef.current.value);
     console.log("비번", passwordRef.current.value);
-    sessionStorage.setItem("email", login.user.email);
-    navigate("/", { replace: true });
+    sessionStorage.setItem("id", login.user.displayName);
+
+    navigate("/");
   };
 
   useEffect(() => {
