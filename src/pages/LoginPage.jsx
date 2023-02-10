@@ -117,6 +117,7 @@ const LoginBtn = styled.button`
   font-size: 19px;
   border-radius: 10px;
   border: none;
+  cursor: pointer;
 `;
 
 const GoogleBtn = styled.button`

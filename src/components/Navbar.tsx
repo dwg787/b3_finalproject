@@ -232,6 +232,7 @@ const Modal = styled.div`
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+  box-shadow: 3px 3px 12px 3px #555555;
 `;
 const ModalHeader = styled.div`
   display: flex;
