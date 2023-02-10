@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { MainPage, LoginPage, RegisterPage, ReservationPage, MyPage, DetailPage, MapPage, PurchasePage } from "./pages";
 
+import CommunicationPage from "../src/pages/CommunicationPage";
 import SignUpPage from "../src/pages/SignUpPage";
 import SearchPage from "./pages/SearchPage";
 
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/purchase" element={<PurchasePage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/communication" element={<CommunicationPage />} />
       </Routes>
     </BrowserRouter>
   );
