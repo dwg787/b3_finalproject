@@ -7,12 +7,12 @@ import {
   FetchedStayDataType,
 } from '../apis/publicAPI';
 import styled from 'styled-components';
-import Loader from '../components/Loader';
+import Loader from '../components/Loader/Loader';
 import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
-import Stayinfo from '../components/Stayinfo';
+import StayInfo from '../components/StayInfo';
 
 const DetailPage = () => {
   const param = useParams();
@@ -153,7 +153,7 @@ const DetailPage = () => {
             </div> */}
 
           <StayInfoWrapper>
-            <Stayinfo spotData={spotData} />
+            <StayInfo spotData={spotData} />
           </StayInfoWrapper>
           <RestaurantInfoWrapper>
             <RestaurantInfo spotData={spotData} />

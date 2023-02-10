@@ -6,23 +6,27 @@ import SelectRegionBtn from '../components/SelectRegionBtn';
 import { STAY_TYPE, AREA_CODE } from '../apis/apiCodes';
 import { useRecoilValue } from 'recoil';
 import {
+  menuSelectionState,
   regionSelectionState,
   staySelectionState,
 } from '../recoil/apiDataAtoms';
 import { FetchedStayDataType } from '../apis/publicAPI';
 import SpotDetail from '../components/SpotDetail';
-import Loader from '../components/Loader';
-import Menu from '../components/Menu';
+import Loader from '../components/Loader/Loader';
+import Menu from '../components/Menu/Menu';
 import mainImg from '../assets/mainImg.png';
 import mainImg2 from '../assets/mainImg2.png';
 import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
+import noimg from '../assets/noimg.png';
 
 const MainPage = () => {
-  const queryClient = useQueryClient();
   const region = useRecoilValue(regionSelectionState);
+  const selectedMenu = useRecoilValue(menuSelectionState);
   const { data, isLoading } = useQuery(['spot_data', region], () =>
     fetchSpotData({ region })
   );
+
+  // const isClicked
 
   return (
     <Container>
@@ -49,7 +53,7 @@ const MainPage = () => {
                 <SpotDetail
                   key={e.contentid}
                   id={e.contentid}
-                  img={e.firstimage}
+                  img={e.firstimage || noimg}
                 >
                   {e.title}
                 </SpotDetail>

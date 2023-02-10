@@ -36,7 +36,10 @@ const Recommendation = (propsData: any) => {
 
   return (
     <Container>
-      <RecommendListTitle>추천 관광지</RecommendListTitle>
+      <RecommendListIntroWrapper>
+        <RecommendListTitle>추천 관광지</RecommendListTitle>
+        <RecommendListTitle>전체보기</RecommendListTitle>
+      </RecommendListIntroWrapper>
       <RecommendListWrapper>
         {recommendList &&
           recommendList.map((e) => {
@@ -58,14 +61,19 @@ const Container = styled.div`
   height: 500px;
   display: flex;
   flex-direction: column;
-  background-color: #d7d7d7;
+  /* background-color: #d7d7d7; */
+`;
+
+const RecommendListIntroWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 const RecommendListWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
-const RecommendListTitle = styled.div`
-  margin-left: 0;
-`;
+const RecommendListTitle = styled.div``;

@@ -3,9 +3,9 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchNearStayData } from '../apis/publicAPI';
-import Loader from './Loader';
+import Loader from './Loader/Loader';
 
-const Stayinfo = ({ spotData }) => {
+const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
     ['stay_detail', spotData],
     () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
@@ -53,7 +53,7 @@ const Stayinfo = ({ spotData }) => {
   );
 };
 
-export default Stayinfo;
+export default StayInfo;
 
 // const StayImage = styled.img`
 //   width: 300px;

@@ -36,7 +36,7 @@ const Navbar = () => {
     <Nav>
       <LeftSection>
         <Link to='/' style={{ textDecoration: 'none' }}>
-          방방곡곡 로고 자리
+          방방곡곡 로고
         </Link>
       </LeftSection>
       <MenuSection>
@@ -100,7 +100,7 @@ const Nav = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #f9f9fb;
+  background-color: #e34647;
 `;
 
 const LeftSection = styled.div`
@@ -200,7 +200,7 @@ const LinktoSearchPageBtn = styled.button`
   width: 300px;
   height: 30px;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid white;
   text-indent: 10px;
   font-weight: 500;
   text-align: left;
