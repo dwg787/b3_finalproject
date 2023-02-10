@@ -1,11 +1,11 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const staySelectionState = atom({
-  key: 'staySelectionState',
-  default: '',
+  key: "staySelectionState",
+  default: "",
 });
 
 export const regionSelectionState = atom({
-  key: 'regionSelecionState',
-  default: '',
+  key: "regionSelecionState",
+  default: "",
 });

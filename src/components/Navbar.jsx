@@ -69,7 +69,9 @@ const Navbar = () => {
           ) : (
             <>
               {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
-              <LoginButton onClick={() => setShowModal(true)}>Login</LoginButton>
+              <LoginButton onClick={() => setShowModal(true)}>
+                Login
+              </LoginButton>
               {showModal && (
                 <ModalWrapper>
                   <Modal>
