@@ -15,7 +15,7 @@ import Loader from '../components/Loader';
 import Menu from '../components/Menu';
 import mainImg from '../assets/mainImg.png';
 import mainImg2 from '../assets/mainImg2.png';
-import Recommendation from '../components/Recommendation/Recommendation';
+import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
 
 const MainPage = () => {
   const queryClient = useQueryClient();
@@ -33,7 +33,11 @@ const MainPage = () => {
           return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
         })}
       </SelectRegionBtnWrapper>
-      {isLoading ? <Loader /> : <Recommendation propsData={data.items.item} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <SpotRecommendation propsData={data.items.item} />
+      )}
       {isLoading ? (
         <Loader />
       ) : (

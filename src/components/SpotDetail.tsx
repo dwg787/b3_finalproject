@@ -4,12 +4,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SpotDetail = (props: FetchedStayDataType) => {
-  //   const navigate = useNavigate();
-  // console.log('개별 컴포넌트 props', props);
-  //   const handleGetDetailStayInfo = () => {
-  //     navigate(`/${props.id}`);
-  //   };
-
   return (
     <SpotEachItemWrapper>
       <SpotEachItemImgWrapper src={props.img} alt='사진' />

@@ -12,7 +12,6 @@ const Navbar = () => {
   const currentUsers = sessionStorage.getItem('id');
   const currentUser = auth.currentUser;
   const userNickName = currentUser?.displayName;
-  console.log(userNickName);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -31,7 +30,6 @@ const Navbar = () => {
         alert('로그아웃에 실패했습니다.');
       });
     sessionStorage.removeItem('id');
-    // window.location.reload();
   };
 
   return (

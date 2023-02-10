@@ -1,11 +1,5 @@
 import { atom } from 'recoil';
-
-interface recCnt {
-  id: string;
-  viewCnt: number;
-}
-
-interface recCnts extends Array<recCnt> {}
+import { recCnts } from '../apis/publicAPI';
 
 export const staySelectionState = atom({
   key: 'staySelectionState',
