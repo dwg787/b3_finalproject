@@ -19,7 +19,7 @@ export default function KakaoLoginButton() {
   const loginHandler = () => {
     window.location.replace(link);
   };
-
+  console.log(accessToken);
   const getUser = async () => {
     const ACCESS_TOKEN = await fetch("https://kauth.kakao.com/oauth/token", {
       method: "POST",
@@ -51,6 +51,7 @@ export default function KakaoLoginButton() {
     console.log(user);
     setNickName(user.data.properties.nickname);
     setProfileImage(user.data.properties.profile_image);
+    sessionStorage.setItem("id", user.data.properties.nickname);
   };
   console.log(nickName, profileImage);
 

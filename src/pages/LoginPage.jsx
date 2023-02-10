@@ -65,7 +65,7 @@ const LoginPage = () => {
           <GoogleText>Google</GoogleText>
         </GoogleBtn>
         {/* <KakaoLogoutButton /> */}
-        {/* <Naver /> */}
+        <Naver />
       </div>
       <FooterText>
         로그인 또는 회원가입 시 이용약관 및 개인정보 정책에<br></br>

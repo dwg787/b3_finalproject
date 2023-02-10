@@ -5,7 +5,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
   console.log(userName);
   const { naver } = window;
   const NAVER_CLIENT_ID = "o47rUj6rR0GWdh1UKf95";
-  const NAVER_CALLBACK_URL = "http://localhost:3000/login";
+  const NAVER_CALLBACK_URL = "http://localhost:3000/";
 
   const initializeNaverLogin = () => {
     const naverLogin = new naver.LoginWithNaverId({
@@ -55,8 +55,8 @@ const Naver = ({ setGetToken, setUserInfo }) => {
     // console.log, alert 창을 통해 토큰이 잘 추출 되는지 확인하자!
 
     // 이후 로컬 스토리지 또는 state에 저장하여 사용하자!
-    // localStorage.setItem('access_token', token)
-    // setGetToken(token)
+    // sessionStorage.setItem("id", token.user.userid);
+    // setGetToken(token);
   };
 
   // 화면 첫 렌더링이후 바로 실행하기 위해 useEffect 를 사용하였다.
