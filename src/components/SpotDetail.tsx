@@ -2,11 +2,12 @@ import React, { Children, useCallback, useEffect } from 'react';
 import { FetchedStayDataType } from '../apis/publicAPI';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import noimg from '../assets/noimg.png';
 
 const SpotDetail = (props: FetchedStayDataType) => {
   return (
     <SpotEachItemWrapper>
-      <SpotEachItemImgWrapper src={props.img} alt='사진' />
+      <SpotEachItemImgWrapper src={props.img || noimg} alt='사진' />
       <Link style={{ textDecoration: 'none' }} to={`/${props.id}`}>
         {props.children}
       </Link>

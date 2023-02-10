@@ -10,7 +10,6 @@ const SelectMenu = ({ children }: { children: string }) => {
 
   const handleMainPageUI = () => {
     if (value) {
-      console.log('메뉴 선택', value);
       setSelectedMenu(value);
     }
   };
