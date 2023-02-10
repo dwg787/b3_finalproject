@@ -38,12 +38,12 @@ const Recommendation = (propsData: any) => {
   return (
     <Container>
       <RecommendListIntroWrapper>
-        <RecommendListTitle>추천 관광지</RecommendListTitle>
+        <RecommendListTitle>추천 관광지 TOP 10</RecommendListTitle>
         <RecommendListLink to={'/my'}>전체보기</RecommendListLink>
       </RecommendListIntroWrapper>
       <RecommendListWrapper>
         {recommendList &&
-          recommendList.map((e) => {
+          recommendList.slice(0, 10).map((e) => {
             return (
               <SpotDetail key={e.contentid} id={e.contentid} img={e.firstimage}>
                 {e.title}
