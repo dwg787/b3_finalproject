@@ -6,24 +6,28 @@ import SelectRegionBtn from '../components/SelectRegionBtn';
 import { STAY_TYPE, AREA_CODE } from '../apis/apiCodes';
 import { useRecoilValue } from 'recoil';
 import {
+  menuSelectionState,
   regionSelectionState,
   staySelectionState,
 } from '../recoil/apiDataAtoms';
 import { FetchedStayDataType } from '../apis/publicAPI';
 import SpotDetail from '../components/SpotDetail';
-import Loader from '../components/Loader';
-import Menu from '../components/Menu';
+import Loader from '../components/Loader/Loader';
+import Menu from '../components/Menu/Menu';
 import mainImg from '../assets/mainImg.png';
 import mainImg2 from '../assets/mainImg2.png';
+import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
+import noimg from '../assets/noimg.png';
+import { auth } from '../apis/firebase';
 
 const MainPage = () => {
-  const queryClient = useQueryClient();
   const region = useRecoilValue(regionSelectionState);
+  const selectedMenu = useRecoilValue(menuSelectionState);
   const { data, isLoading } = useQuery(['spot_data', region], () =>
     fetchSpotData({ region })
   );
 
-  console.log('data값:', data);
+  // const isClicked
 
   return (
     <Container>
@@ -37,6 +41,11 @@ const MainPage = () => {
       {isLoading ? (
         <Loader />
       ) : (
+        <SpotRecommendation propsData={data.items.item} />
+      )}
+      {isLoading ? (
+        <Loader />
+      ) : (
         <SearchOverallResultContainer>
           <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
           <SearchListWrapper>
@@ -45,7 +54,7 @@ const MainPage = () => {
                 <SpotDetail
                   key={e.contentid}
                   id={e.contentid}
-                  img={e.firstimage}
+                  img={e.firstimage || noimg}
                 >
                   {e.title}
                 </SpotDetail>
@@ -54,27 +63,6 @@ const MainPage = () => {
           </SearchListWrapper>
         </SearchOverallResultContainer>
       )}
-      {/* {data ? (
-        <SearchListWrapper>
-          <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
-          {data.items.item.map((e: FetchedStayDataType) => {
-            return (
-              <StayDetail key={e.contentid} id={e.contentid}>
-                {e.title}
-              </StayDetail>
-            );
-          })}
-        </SearchListWrapper>
-      ) : (
-        <SearchListWrapper></SearchListWrapper>
-      )} */}
-      <BtnWrapper>
-        {/* <SelectStayBtnWrapper>
-          {STAY_TYPE.map((e) => {
-            return <SelectBtn key={e.id}>{e.type}</SelectBtn>;
-          })}
-        </SelectStayBtnWrapper> */}
-      </BtnWrapper>
     </Container>
   );
 };
