@@ -88,7 +88,7 @@ export const fetchRestaurantDetailInfo = async ({
     `http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=39&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`
     // `http://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=39&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`
   );
-  return res.data.response.body.items.item;
+  return res.data.response.body.items.item[0];
 };
 
 //숙박 상세내용
@@ -100,5 +100,5 @@ export const fetchStayDetailInfo = async ({
   const res = await axios.get(
     `http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`
   );
-  return res.data.response.body.items.item;
+  return res.data.response.body.items.item[0];
 };

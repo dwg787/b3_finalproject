@@ -7,7 +7,7 @@ import Loader from './Loader/Loader';
 
 const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
-    ['stay_detail', spotData],
+    ['stay_list', spotData],
     () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
     {
       enabled: !!spotData,
@@ -33,7 +33,7 @@ const StayInfo = ({ spotData }) => {
                       />
                       <Link
                         style={{ textDecoration: 'none' }}
-                        to={`/${item.contentid}`}
+                        to={`/stay/${item.contentid}`}
                       >
                         {item?.title}
                       </Link>

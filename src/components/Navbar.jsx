@@ -35,7 +35,7 @@ const Navbar = () => {
   const [profileImage, setProfileImage] = useState();
   const [accessToken, setAccessToken] = useState();
 
-  console.log(accessToken);
+  // console.log(accessToken);
   const getUser = async () => {
     const ACCESS_TOKEN = await fetch('https://kauth.kakao.com/oauth/token', {
       method: 'POST',
@@ -69,7 +69,7 @@ const Navbar = () => {
     setProfileImage(user.data.properties.profile_image);
     sessionStorage.setItem('id', user.data.properties.nickname);
   };
-  console.log(nickName, profileImage);
+  // console.log(nickName, profileImage);
 
   useEffect(() => {
     getUser();
@@ -90,7 +90,7 @@ const Navbar = () => {
       method: 'POST',
     }).then((res) => res.json());
 
-    console.log('isLogout', islogout);
+    // console.log('isLogout', islogout);
     //   .then(() => {
     //     alert("로그아웃 되었습니다.");
 
@@ -107,7 +107,7 @@ const Navbar = () => {
     navigate('/');
   };
   const localId = sessionStorage.getItem('id');
-  console.log(localId);
+  // console.log(localId);
   return (
     <Nav>
       <LeftSection>

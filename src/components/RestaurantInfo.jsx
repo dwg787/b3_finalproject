@@ -7,7 +7,7 @@ import Loader from './Loader/Loader';
 
 const RestaurantInfo = ({ spotData }) => {
   const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ['restaurant_detail', spotData],
+    ['restaurant_list', spotData],
     () =>
       fetchNearRestaurantData({
         mapx: spotData.mapx,
@@ -37,7 +37,7 @@ const RestaurantInfo = ({ spotData }) => {
                       />
                       <Link
                         style={{ textDecoration: 'none' }}
-                        to={`/${item.contentid}`}
+                        to={`/restaurant/${item.contentid}`}
                       >
                         {item?.title}
                       </Link>

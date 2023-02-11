@@ -61,26 +61,6 @@ const DetailPage = () => {
     getFirestoreRecCnt();
   }, [spotData]);
 
-  const { data: stayData, isLoading: isLoadingStay } = useQuery(
-    ['stay_detail', spotData],
-    () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
-    {
-      enabled: !!spotData,
-    }
-  );
-
-  const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ['restaurant_detail', spotData],
-    () =>
-      fetchNearRestaurantData({
-        mapx: spotData.mapx,
-        mapy: spotData.mapy,
-      }),
-    {
-      enabled: !!spotData,
-    }
-  );
-
   return (
     <Container>
       <div>
@@ -94,7 +74,7 @@ const DetailPage = () => {
                 <div>{spotData.title}</div>
                 <img src={spotData.firstimage} alt='관광지 사진' />
                 <div>주소 : {spotData.addr1}</div>
-                <Link to={`/${param.id}/map`}>지도보기</Link>
+                <Link to={`/spot/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
                 <Liked spotData={spotData} />
                 <div>{spotData.overview}</div>
