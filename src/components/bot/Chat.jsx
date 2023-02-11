@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatBot from "react-simple-chatbot";
 import styled, { ThemeProvider } from "styled-components";
 
@@ -14,7 +14,7 @@ export default function Chat() {
       options: [
         { value: 1, label: "결제문의", trigger: "3", message: "결제문의" },
         { value: 2, label: "상품문의", trigger: "4", message: "상품문의" },
-        { value: 3, label: "고객센터", trigger: "5", message: "고객센터" },
+        { value: 3, label: "고객센터", trigger: "9", message: "고객센터" },
       ],
     },
     {
@@ -24,8 +24,8 @@ export default function Chat() {
     },
     {
       id: "4",
-      message: "아직준비중이에요 :(",
-      end: false,
+      message: "상품문의를 선택하셧는데 어떤 도움이 필요하신가요?",
+      trigger: "20",
     },
     {
       id: "5",
@@ -85,7 +85,7 @@ export default function Chat() {
     {
       id: "13",
       options: [
-        { value: 1, label: "예", trigger: "2", message: "예" },
+        { value: 1, label: "예", trigger: "14", message: "예" },
         { value: 2, label: "아니오", trigger: "2", message: "아니오" },
       ],
     },
@@ -123,34 +123,79 @@ export default function Chat() {
         { value: 2, label: "아니오", trigger: "14", message: "아니오" },
       ],
     },
+    {
+      id: "20",
+      options: [
+        {
+          value: 1,
+          label: "상품이안와요",
+          trigger: "21",
+          message: "상품이안와요",
+        },
+        {
+          value: 2,
+          label: "상품하자접수",
+          trigger: "22",
+          message: "상품하자접수",
+        },
+        { value: 3, label: "고객센터", trigger: "9", message: "고객센터" },
+      ],
+    },
+    {
+      id: "21",
+      message:
+        "상품도착은 결제완료후 평균 2~3일후 도착은하나 악천후나 택배업체 사정에따른 지연이 걸릴수있습니다.",
+      trigger: "12",
+    },
+    {
+      id: "22",
+      message: "상뭎에 하자가 발생하셧군요 어떤 문제가있는지 입력해주세요 ^^",
+      trigger: "23",
+    },
+    {
+      id: "23",
+      user: true,
+      trigger: "24",
+    },
+    {
+      id: "24",
+      message:
+        "문제점 <{previousValue}>가 상품발송팀으로 전달되었습니다! 빠른시일내로 연락드리겠습니다! 감사합니다!",
+      trigger: "12",
+    },
   ];
 
   const theme = {
-    background: "#ffffff",
+    background: "#FAFAFA",
     fontFamily: "Helvetica Neue",
-    headerBgColor: "#ff009d",
-    headerFontColor: "#fff",
+    headerBgColor: "#6478FF",
+    headerFontColor: "#333333",
     headerFontSize: "15px",
-    botBubbleColor: "#ff009d",
+    botBubbleColor: "#6478FF",
     botFontColor: "#fff",
     userBubbleColor: "#fff",
-    userFontColor: "#252525",
+    userFontColor: "#333333",
   };
 
   return (
-    <Fuckdiv>
-      <ThemeProvider theme={theme}>
-        <ChatBot
-          steps={steps}
-          hideHeader={true}
-          placeholder={"이곳에 질문하세요 :)"}
-          recognitionEnable={true}
-        />
-      </ThemeProvider>
-    </Fuckdiv>
+    <>
+      <Fuckdiv>
+        <ThemeProvider theme={theme}>
+          <ChatBot
+            steps={steps}
+            hideHeader={true}
+            placeholder={"이곳에 질문하세요 :)"}
+            recognitionEnable={true}
+          />
+        </ThemeProvider>
+      </Fuckdiv>
+    </>
   );
 }
 
 const Fuckdiv = styled.div`
+  position: fixed;
   margin-top: 150px;
+  left: 80%;
+  top: 14%;
 `;

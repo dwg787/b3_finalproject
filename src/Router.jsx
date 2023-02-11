@@ -15,12 +15,13 @@ import CommunicationPage from "../src/pages/CommunicationPage";
 import SignUpPage from "../src/pages/SignUpPage";
 import SearchPage from "./pages/SearchPage";
 import Ticketing from "./components/reservation/Tiketing";
-import Chat from "./components/bot/Chat";
+import ChatBotModal from "./components/bot/ChatBotModal";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Navbar />
+      <ChatBotModal />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -32,7 +33,6 @@ const Router = () => {
         <Route path="/purchase" element={<PurchasePage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/chat" element={<Chat />} />
         <Route path="/tiket" element={<Ticketing />} />
       </Routes>
     </BrowserRouter>
