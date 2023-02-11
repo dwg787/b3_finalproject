@@ -8,7 +8,7 @@ const SpotDetail = (props: FetchedStayDataType) => {
   return (
     <SpotEachItemWrapper>
       <SpotEachItemImgWrapper src={props.img || noimg} alt='사진' />
-      <Link style={{ textDecoration: 'none' }} to={`/${props.id}`}>
+      <Link style={{ textDecoration: 'none' }} to={`/spot/${props.id}`}>
         {props.children}
       </Link>
     </SpotEachItemWrapper>
