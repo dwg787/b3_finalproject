@@ -1,15 +1,27 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import { MainPage, LoginPage, RegisterPage, ReservationPage, MyPage, DetailPage, MapPage, PurchasePage } from "./pages";
+import {
+  MainPage,
+  LoginPage,
+  RegisterPage,
+  ReservationPage,
+  MyPage,
+  DetailPage,
+  MapPage,
+  PurchasePage,
+} from "./pages";
 
 import CommunicationPage from "../src/pages/CommunicationPage";
 import SignUpPage from "../src/pages/SignUpPage";
 import SearchPage from "./pages/SearchPage";
+import Ticketing from "./components/reservation/Tiketing";
+import ChatBotModal from "./components/bot/ChatBotModal";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Navbar />
+      <ChatBotModal />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -21,7 +33,7 @@ const Router = () => {
         <Route path="/purchase" element={<PurchasePage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/communication" element={<CommunicationPage />} />
+        <Route path="/tiket" element={<Ticketing />} />
       </Routes>
     </BrowserRouter>
   );
