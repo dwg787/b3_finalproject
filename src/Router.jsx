@@ -21,8 +21,8 @@ import {
 
 const Router = () => {
   return (
-    <Suspense fallback={<Loader />}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Suspense fallback={<Loader />}>
         <Navbar />
         <ChatBotModal />
         <Routes>
@@ -40,8 +40,8 @@ const Router = () => {
           <Route path='/communication' element={<CommunicationPage />} />
           <Route path='/ticket' element={<Ticketing />} />
         </Routes>
-      </BrowserRouter>
-    </Suspense>
+      </Suspense>
+    </BrowserRouter>
   );
 };
 

@@ -13,6 +13,7 @@ const SpotDetail = (props: FetchedStayDataType) => {
           src={props.img || noimg}
           alt='사진'
           onClick={() => navigate(`/spot/${props.id}`)}
+          onMouseOver={() => {}}
         />
       </SpotImgWrapper>
       <SpotTitle>{props.children}</SpotTitle>
