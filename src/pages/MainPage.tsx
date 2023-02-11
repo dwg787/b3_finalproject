@@ -1,4 +1,3 @@
-
 import { useQueryClient, useInfiniteQuery, useQuery } from 'react-query';
 import styled from 'styled-components';
 import { fetchSpotData } from '../apis/publicAPI';
@@ -8,7 +7,6 @@ import {
   menuSelectionState,
   regionSelectionState,
   staySelectionState,
-
 } from '../recoil/apiDataAtoms';
 import Loader from '../components/Loader/Loader';
 import Menu from '../components/Menu/Menu';
@@ -16,15 +14,15 @@ import SpotRecommendation from '../components/Recommendation/SpotRecommendation'
 import RegionSelection from '../components/Selection/RegionSelection';
 import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
-
+import StayRecommendation from '../components/Recommendation/StayRecommendation';
+import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
 
 const MainPage = () => {
   const region = useRecoilValue(regionSelectionState);
   const selectedMenu = useRecoilValue(menuSelectionState);
-  const { data, isLoading } = useQuery(["spot_data", region], () =>
+  const { data, isLoading } = useQuery(['spot_data', region], () =>
     fetchSpotData({ region })
   );
-
 
   return (
     <Container>
@@ -38,6 +36,8 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <SpotRecommendation propsData={data.items.item} />
+          <StayRecommendation />
+          <RestaurantRecommendation />
         </>
       ) : selectedMenu === '관광지' ? (
         <SelectionResult propsData={data} />
@@ -49,6 +49,8 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <SpotRecommendation propsData={data.items.item} />
+          <StayRecommendation />
+          <RestaurantRecommendation />
         </>
       )}
       {/* {isLoading ? (

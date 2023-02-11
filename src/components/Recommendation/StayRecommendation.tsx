@@ -8,16 +8,16 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore';
-import RestaurantDetail from '../RestaurantDetail';
+import SpotDetail from '../SpotDetail';
 import { recCnts } from '../../apis/publicAPI';
 import { Link } from 'react-router-dom';
 
-const SpotRecommendation = (propsData: any) => {
+const StayRecommendation = (propsData: any) => {
   const [recommendList, setRecommendList] = useState<recCnts>();
 
-  const spotRecommendationList = async () => {
+  const stayRecommendationList = async () => {
     const data = await getDocs(
-      query(collection(db, 'recommendation'), orderBy('viewCnt', 'desc'))
+      query(collection(db, 'stay_recommendation'), orderBy('viewCnt', 'desc'))
     );
     const res = data.docs.map((doc: DocumentData) => {
       return {
@@ -29,7 +29,7 @@ const SpotRecommendation = (propsData: any) => {
 
   useEffect(() => {
     const fetchRecList = async () => {
-      const res = await spotRecommendationList();
+      const res = await stayRecommendationList();
       setRecommendList(res);
     };
     fetchRecList();
@@ -38,20 +38,16 @@ const SpotRecommendation = (propsData: any) => {
   return (
     <Container>
       <RecommendListIntroWrapper>
-        <RecommendListTitle>추천 관광지 TOP 10</RecommendListTitle>
+        <RecommendListTitle>추천 숙박 TOP 10</RecommendListTitle>
         <RecommendListLink to={'/my'}>전체보기</RecommendListLink>
       </RecommendListIntroWrapper>
       <RecommendListWrapper>
         {recommendList &&
           recommendList.slice(0, 10).map((e) => {
             return (
-              <RestaurantDetail
-                key={e.contentid}
-                id={e.contentid}
-                img={e.firstimage}
-              >
+              <SpotDetail key={e.contentid} id={e.contentid} img={e.firstimage}>
                 {e.title}
-              </RestaurantDetail>
+              </SpotDetail>
             );
           })}
       </RecommendListWrapper>
@@ -59,7 +55,7 @@ const SpotRecommendation = (propsData: any) => {
   );
 };
 
-export default SpotRecommendation;
+export default StayRecommendation;
 
 const Container = styled.div`
   width: 100%;

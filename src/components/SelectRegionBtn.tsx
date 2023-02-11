@@ -38,6 +38,6 @@ const CustomBtn = styled.button<{ isSelectedRegion: boolean }>`
     props.isSelectedRegion ? '#f19936' : '#000000'};
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
 `;

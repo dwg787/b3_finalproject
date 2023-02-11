@@ -1,9 +1,13 @@
+import { useEffect } from 'react';
 import { fetchRestaurantDetailInfo } from '../apis/publicAPI';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../components/Loader/Loader';
 import Liked from '../components/Liked';
 import KakaoMap from '../components/Map/KakaoMap';
+import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
+import { FetchedStayDataType } from '../apis/publicAPI';
+import { db } from '../apis/firebase';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -11,6 +15,46 @@ const RestaurantDetailPage = () => {
     useQuery(['restaurant_detail', param], () =>
       fetchRestaurantDetailInfo({ param })
     );
+
+  const getRestaurantRecCnt = async () => {
+    if (param.id) {
+      const data = await getDoc(
+        doc(db, 'restaurant_recommendation', `${param.id}`)
+      );
+      return data.data();
+    } else {
+      return;
+    }
+  };
+
+  const updateRestaurantRecCnt = async () => {
+    if (param.id) {
+      await updateDoc(doc(db, 'restaurant_recommendation', param.id), {
+        viewCnt: increment(1),
+      });
+    }
+  };
+
+  const saveNewRestaurantRecCnt = async (spotData: FetchedStayDataType) => {
+    if (param.id) {
+      await setDoc(doc(db, 'restaurant_recommendation', param.id), {
+        ...restaurantDetailData,
+        viewCnt: 1,
+      });
+    }
+  };
+
+  useEffect(() => {
+    const getFirestoreRecCnt = async () => {
+      const res = await getRestaurantRecCnt();
+      if (res) {
+        updateRestaurantRecCnt();
+      } else {
+        if (restaurantDetailData) saveNewRestaurantRecCnt(restaurantDetailData);
+      }
+    };
+    getFirestoreRecCnt();
+  }, [restaurantDetailData]);
 
   //   console.log('식당정보', restaurantDetailData);
   return (

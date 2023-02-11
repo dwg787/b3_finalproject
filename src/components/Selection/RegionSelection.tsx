@@ -16,11 +16,12 @@ const RegionSelection = () => {
 export default RegionSelection;
 
 const SelectRegionBtnWrapper = styled.div`
-  width: 100%;
-  /* height: 500px; */
+  width: 60%;
+  height: 100px;
   padding-top: 10px;
   background-size: cover;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 10px;
 `;

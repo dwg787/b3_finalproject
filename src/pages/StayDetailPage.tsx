@@ -1,9 +1,13 @@
+import { useEffect } from 'react';
 import { fetchStayDetailInfo } from '../apis/publicAPI';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../components/Loader/Loader';
 import Liked from '../components/Liked';
 import KakaoMap from '../components/Map/KakaoMap';
+import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
+import { FetchedStayDataType } from '../apis/publicAPI';
+import { db } from '../apis/firebase';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -12,6 +16,43 @@ const StayDetailPage = () => {
     () => fetchStayDetailInfo({ param })
   );
 
+  const getStayRecCnt = async () => {
+    if (param.id) {
+      const data = await getDoc(doc(db, 'stay_recommendation', `${param.id}`));
+      return data.data();
+    } else {
+      return;
+    }
+  };
+
+  const updateStayRecCnt = async () => {
+    if (param.id) {
+      await updateDoc(doc(db, 'stay_recommendation', param.id), {
+        viewCnt: increment(1),
+      });
+    }
+  };
+
+  const saveNewStayRecCnt = async (spotData: FetchedStayDataType) => {
+    if (param.id) {
+      await setDoc(doc(db, 'stay_recommendation', param.id), {
+        ...stayDetailData,
+        viewCnt: 1,
+      });
+    }
+  };
+
+  useEffect(() => {
+    const getFirestoreRecCnt = async () => {
+      const res = await getStayRecCnt();
+      if (res) {
+        updateStayRecCnt();
+      } else {
+        if (stayDetailData) saveNewStayRecCnt(stayDetailData);
+      }
+    };
+    getFirestoreRecCnt();
+  }, [stayDetailData]);
   // console.log('숙박 상세정보', stayDetailData);
   return (
     <div>
