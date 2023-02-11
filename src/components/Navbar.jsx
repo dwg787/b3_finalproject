@@ -176,7 +176,8 @@ const Nav = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #e34647;
+  /* background-color: #e34647; */
+  background-color: #6478ff;
 `;
 
 const LeftSection = styled.div`

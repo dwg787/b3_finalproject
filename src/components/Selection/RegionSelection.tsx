@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import SelectRegionBtn from '../SelectRegionBtn';
+import SelectRegionBtn from './SelectRegionBtn';
 import { AREA_CODE } from '../../apis/apiCodes';
 
 const RegionSelection = () => {

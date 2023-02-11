@@ -8,7 +8,7 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore';
-import RestaurantDetail from '../RestaurantDetail';
+import SpotDetail from '../SpotDetail';
 import { recCnts } from '../../apis/publicAPI';
 import { Link } from 'react-router-dom';
 
@@ -45,13 +45,9 @@ const SpotRecommendation = (propsData: any) => {
         {recommendList &&
           recommendList.slice(0, 10).map((e) => {
             return (
-              <RestaurantDetail
-                key={e.contentid}
-                id={e.contentid}
-                img={e.firstimage}
-              >
+              <SpotDetail key={e.contentid} id={e.contentid} img={e.firstimage}>
                 {e.title}
-              </RestaurantDetail>
+              </SpotDetail>
             );
           })}
       </RecommendListWrapper>

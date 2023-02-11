@@ -1,6 +1,6 @@
-import { STAY_TYPE } from '../apis/apiCodes';
+import { STAY_TYPE } from '../../apis/apiCodes';
 import { useRecoilState } from 'recoil';
-import { staySelectionState } from '../recoil/apiDataAtoms';
+import { staySelectionState } from '../../recoil/apiDataAtoms';
 import styled from 'styled-components';
 
 const SelectBtn = ({ children }: { children: string }) => {

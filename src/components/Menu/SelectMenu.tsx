@@ -1,7 +1,7 @@
-import { MENU_TYPE } from '../apis/apiCodes';
+import { MENU_TYPE } from '../../apis/apiCodes';
 import styled, { css } from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { menuSelectionState } from '../recoil/apiDataAtoms';
+import { menuSelectionState } from '../../recoil/apiDataAtoms';
 
 const SelectMenu = ({ children }: { children: string }) => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);

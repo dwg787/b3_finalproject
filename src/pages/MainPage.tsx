@@ -35,7 +35,7 @@ const MainPage = () => {
       ) : selectedMenu === 'HOME' ? (
         <>
           <SliderBanner />
-          <SpotRecommendation propsData={data.items.item} />
+          <SpotRecommendation propsData={data?.items.item} />
           <StayRecommendation />
           <RestaurantRecommendation />
         </>
@@ -48,7 +48,7 @@ const MainPage = () => {
       ) : (
         <>
           <SliderBanner />
-          <SpotRecommendation propsData={data.items.item} />
+          <SpotRecommendation propsData={data?.items.item} />
           <StayRecommendation />
           <RestaurantRecommendation />
         </>
