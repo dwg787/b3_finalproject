@@ -13,12 +13,15 @@ import {
   SearchPage,
   StayDetailPage,
   RestaurantDetailPage,
+  ChatBotModal,
+  Ticketing,
 } from './pages';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Navbar />
+      <ChatBotModal />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
@@ -32,6 +35,7 @@ const Router = () => {
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/search' element={<SearchPage />} />
         <Route path='/communication' element={<CommunicationPage />} />
+        <Route path='/ticket' element={<Ticketing />} />
       </Routes>
     </BrowserRouter>
   );

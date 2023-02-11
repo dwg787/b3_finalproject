@@ -1,26 +1,28 @@
-
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import Fuse from "fuse.js";
-import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash";
+import SpotDetail from "../SpotDetail";
+import noimg from "../../assets/noimg.png";
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음
   // const [searchItem, setSearchItem] = useState("");
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   //모든객체를 가지고있음
   const [totalApi, setTotalApi] = useState([]);
 
+  //타이핑 되는 글자 근사치 검색
   const fuse = new Fuse(totalApi, {
-    keys: ['addr1', 'title'],
+    keys: ["addr1", "title"],
     includeScore: true,
   });
 
   const results = fuse.search(query);
 
   // debounce=======================================================================================================================
+
   // const debounce = (callback, delay) => {
   //   let timerId = null;
   //   return (...args) => {
@@ -38,11 +40,10 @@ export default function Search() {
     });
   };
 
-  const handleSearchText = useCallback(selectEventControl(1000), []);
+  const handleSearchText = useCallback(selectEventControl(400), []);
 
   const searchItemHandler = (e) => {
     handleSearchText(e.target.value);
-    // setQuery(e.target.value);
   };
   // ================================================================================================================================
   const fetchSpotSearchData = async () => {
@@ -63,9 +64,7 @@ export default function Search() {
           <InputBox>
             <SearchTitleH1>어떤걸 찾는가?</SearchTitleH1>
             <SearchInput
-              placeholder='여기에 입력하면 무엇이던지 찾을수있지!'
-              // target={searchItem}
-              // value={query}
+              placeholder="여기에 입력하면 무엇이던지 찾을수있지!"
               onChange={searchItemHandler}
             ></SearchInput>
             <RecommendH4>
@@ -73,16 +72,17 @@ export default function Search() {
             </RecommendH4>
           </InputBox>
           <ListBoxInfinite>
-            {results.map((item) => {
-              if (item.score < 0.34) {
-                console.log(item);
+            {results.map((e) => {
+              if (e.score < 0.34) {
+                console.log(e);
                 return (
-                  <>
-                    <ListDiv key={item.key}>
-                      <ListImg src={item.item.firstimage} alt='' />
-                      {item.item.title}
-                    </ListDiv>
-                  </>
+                  <SpotDetail
+                    key={e.item.contentid}
+                    id={e.item.contentid}
+                    img={e.item.firstimage || noimg}
+                  >
+                    {e.item.title}
+                  </SpotDetail>
                 );
               }
             })}

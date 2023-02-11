@@ -10,6 +10,8 @@ import SearchPage from './SearchPage';
 import SignUpPage from './SignUpPage';
 import StayDetailPage from './StayDetailPage';
 import RestaurantDetailPage from './RestaurantDetailPage';
+import Ticketing from '../components/Reservation/Ticketing';
+import ChatBotModal from '../components/bot/ChatBotModal';
 
 export {
   MainPage,
@@ -24,4 +26,6 @@ export {
   SignUpPage,
   StayDetailPage,
   RestaurantDetailPage,
+  ChatBotModal,
+  Ticketing,
 };
