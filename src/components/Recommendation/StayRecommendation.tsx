@@ -8,7 +8,7 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore';
-import SpotDetail from '../SpotDetail';
+import StayDetail from '../StayDetail';
 import { recCnts } from '../../apis/publicAPI';
 import { Link } from 'react-router-dom';
 
@@ -45,9 +45,9 @@ const StayRecommendation = (propsData: any) => {
         {recommendList &&
           recommendList.slice(0, 10).map((e) => {
             return (
-              <SpotDetail key={e.contentid} id={e.contentid} img={e.firstimage}>
+              <StayDetail key={e.contentid} id={e.contentid} img={e.firstimage}>
                 {e.title}
-              </SpotDetail>
+              </StayDetail>
             );
           })}
       </RecommendListWrapper>

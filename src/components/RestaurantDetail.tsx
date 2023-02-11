@@ -7,7 +7,7 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
   return (
     <SpotEachItemWrapper>
       <SpotEachItemImgWrapper src={props.img || noimg} alt='사진' />
-      <Link style={{ textDecoration: 'none' }} to={`/spot/${props.id}`}>
+      <Link style={{ textDecoration: 'none' }} to={`/restaurant/${props.id}`}>
         {props.children}
       </Link>
     </SpotEachItemWrapper>
