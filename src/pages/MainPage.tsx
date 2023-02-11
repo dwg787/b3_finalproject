@@ -53,13 +53,6 @@ const MainPage = () => {
           <RestaurantRecommendation />
         </>
       )}
-      {/* {isLoading ? (
-        <Loader />
-      ) : selectedMenu === 'HOME' || selectedMenu === undefined ? (
-        <SpotRecommendation propsData={data.items.item} />
-      ) : (
-        <div>컨텐츠 준비중</div>
-      )} */}
     </Container>
   );
 };

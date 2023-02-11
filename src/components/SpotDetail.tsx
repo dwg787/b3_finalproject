@@ -15,9 +15,9 @@ const SpotDetail = (props: FetchedStayDataType) => {
         alt='사진'
         onClick={() => navigate(`/spot/${props.id}`)}
       />
-      <Link style={{ textDecoration: 'none' }} to={`/spot/${props.id}`}>
+      {/* <Link style={{ textDecoration: 'none' }} to={`/spot/${props.id}`}>
         {props.children}
-      </Link>
+      </Link> */}
     </SpotEachItemWrapper>
   );
 };
@@ -38,7 +38,6 @@ const SpotEachItemImg = styled.img`
   cursor: pointer;
   &:hover {
     transform: scale(1.2);
-    /* opacity: 0; */
     transition: all 0.35s;
   }
 `;

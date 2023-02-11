@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import {
   MainPage,
   LoginPage,
-  RegisterPage,
   ReservationPage,
   MyPage,
   DetailPage,
@@ -23,7 +22,6 @@ const Router = () => {
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
         <Route path='/my' element={<MyPage />} />
         <Route path='/spot/:id' element={<DetailPage />} />
         <Route path='/spot/:id/map' element={<MapPage />} />

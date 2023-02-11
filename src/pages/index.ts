@@ -1,6 +1,5 @@
 import MainPage from './MainPage';
 import LoginPage from './LoginPage';
-import RegisterPage from './RegisterPage';
 import PurchasePage from './PurchasePage';
 import MapPage from './MapPage';
 import ReservationPage from './ReservationPage';
@@ -15,7 +14,6 @@ import RestaurantDetailPage from './RestaurantDetailPage';
 export {
   MainPage,
   LoginPage,
-  RegisterPage,
   ReservationPage,
   PurchasePage,
   MapPage,
