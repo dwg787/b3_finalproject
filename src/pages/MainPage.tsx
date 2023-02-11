@@ -1,11 +1,14 @@
+
 import { useQueryClient, useInfiniteQuery, useQuery } from 'react-query';
 import styled from 'styled-components';
 import { fetchSpotData } from '../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
+
 import {
   menuSelectionState,
   regionSelectionState,
   staySelectionState,
+
 } from '../recoil/apiDataAtoms';
 import Loader from '../components/Loader/Loader';
 import Menu from '../components/Menu/Menu';
@@ -13,12 +16,14 @@ import SpotRecommendation from '../components/Recommendation/SpotRecommendation'
 import RegionSelection from '../components/Selection/RegionSelection';
 import SelectionResult from '../components/Selection/SelectionResult';
 
+
 const MainPage = () => {
   const region = useRecoilValue(regionSelectionState);
   const selectedMenu = useRecoilValue(menuSelectionState);
-  const { data, isLoading } = useQuery(['spot_data', region], () =>
+  const { data, isLoading } = useQuery(["spot_data", region], () =>
     fetchSpotData({ region })
   );
+
 
   return (
     <Container>
