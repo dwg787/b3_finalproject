@@ -11,6 +11,7 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
         <RestaurantEachItemImg
           src={props.img || noimg}
           alt='사진'
+          decoding='async'
           onClick={() => navigate(`/restaurant/${props.id}`)}
         />
       </RestaurantImgWrapper>

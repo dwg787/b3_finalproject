@@ -12,6 +12,7 @@ const StayDetail = (props: FetchedStayDataType) => {
         <StayEachItemImg
           src={props.img || noimg}
           alt='사진'
+          decoding='async'
           onClick={() => navigate(`/stay/${props.id}`)}
         />
       </StayImgWrapper>
