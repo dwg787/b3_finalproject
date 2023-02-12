@@ -1,24 +1,23 @@
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { useNavigate, Link } from "react-router-dom";
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
-import { fetchSpotDetailData } from "../apis/publicAPI";
-import styled from "styled-components";
-import Loader from "../components/Loader";
-import RestaurantInfo from "../components/RestaurantInfo";
-import Stayinfo from "../components/Stayinfo";
-
+import { fetchSpotDetailData } from '../apis/publicAPI';
+import styled from 'styled-components';
+import Loader from '../components/Loader';
+import RestaurantInfo from '../components/RestaurantInfo';
+import Stayinfo from '../components/Stayinfo';
+import ReviewList from '../components/Review/ReviewList';
+import Communication from '../components/Review/Communication';
 
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
 
-
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
-    ["spot_detail", param],
+    ['spot_detail', param],
     () => fetchSpotDetailData({ param })
   );
-
 
   return (
     <Container>
@@ -29,10 +28,11 @@ const DetailPage = () => {
           <>
             {spotData ? (
               <div key={param.id}>
-                <Link to={"/"}>메인으로</Link>
+                <Link to={'/'}>메인으로</Link>
                 <div>{spotData.title}</div>
-                <img src={spotData.firstimage} alt="관광지 사진" />
+                <img src={spotData.firstimage} alt='관광지 사진' />
                 <div>주소 : {spotData.addr1}</div>
+                <Communication />
                 <Link to={`/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
                 <div>{spotData.overview}</div>
@@ -45,12 +45,10 @@ const DetailPage = () => {
 
         <SideInfoWrapper>
           <StayInfoWrapper>
-
             <Stayinfo spotData={spotData} />
           </StayInfoWrapper>
           <RestaurantInfoWrapper>
             <RestaurantInfo spotData={spotData} />
-
           </RestaurantInfoWrapper>
         </SideInfoWrapper>
       </div>

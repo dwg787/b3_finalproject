@@ -12,7 +12,7 @@ import {
 import { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 
-export default function ReviewList({ review, i, reviews, setReviews }) {
+export default function ReviewList({ review, i, reviews, key }) {
   const [newReview, setNewReview] = useState('');
   const [editBox, setEditBox] = useState(false);
   const [editValue, setEditValue] = useState(reviews.review);
@@ -40,9 +40,9 @@ export default function ReviewList({ review, i, reviews, setReviews }) {
 
   return (
     <div key={review.id}>
-      <h1>닉네임: {review.displayName}</h1>
+      <h2>닉네임: {review.displayName}</h2>
       {!editBox ? (
-        <h1>리뷰: {review.review}</h1>
+        <h2>댓글: {review.review}</h2>
       ) : (
         <input
           placeholder={review.review}
