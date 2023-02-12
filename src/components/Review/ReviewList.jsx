@@ -40,12 +40,12 @@ export default function ReviewList({ review, i, reviews, key }) {
 
   return (
     <div key={review.id}>
-      <h2>닉네임: {review.displayName}</h2>
+      <h2>닉네임: {review?.displayName}</h2>
       {!editBox ? (
-        <h2>댓글: {review.review}</h2>
+        <h2>댓글: {review?.review}</h2>
       ) : (
         <input
-          placeholder={review.review}
+          placeholder={review?.review}
           value={editValue}
           onChange={(e) => {
             setEditValue(e.target.value);
@@ -54,7 +54,7 @@ export default function ReviewList({ review, i, reviews, key }) {
         />
       )}
 
-      {loginUser.uid === review.uid ? (
+      {loginUser?.uid === review?.uid ? (
         <button
           onClick={() => {
             handleDelete(review.id, i);
@@ -63,7 +63,7 @@ export default function ReviewList({ review, i, reviews, key }) {
           {!editBox ? '삭제' : null}
         </button>
       ) : null}
-      {loginUser.uid === review.uid ? (
+      {loginUser?.uid === review?.uid ? (
         <button
           onClick={() => {
             handleUpdate(review.id);

@@ -53,7 +53,7 @@ export default function CommunicationPage() {
     if (loginUser) {
       const addRev = await addDoc(usersCollectionRef, {
         review: newReview,
-        uid: loginUser.uid,
+        uid: loginUser?.uid,
         email: loginUser.email,
         displayName: loginUser?.displayName,
         paramId: params.id,
