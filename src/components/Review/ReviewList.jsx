@@ -28,8 +28,6 @@ export default function ReviewList({ review, i, reviews, key }) {
       //작성가 다르거나 비로그인 유저에게 버튼이 보이지 않는다면 필요없어짐.
     }
   };
-  // console.log('유저 uid ', auth.currentUser.displayName);
-  // console.log('리뷰 uid', reviews);
 
   //업데이트
   const handleUpdate = async (id) => {
@@ -49,7 +47,6 @@ export default function ReviewList({ review, i, reviews, key }) {
           value={editValue}
           onChange={(e) => {
             setEditValue(e.target.value);
-            // console.log(editValue);
           }}
         />
       )}

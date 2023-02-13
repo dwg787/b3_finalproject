@@ -22,11 +22,8 @@ export default function CommunicationPage() {
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
   const params = useParams();
-  // console.log(loginUser.uid);
-  // const { id } = useParams();
-  // console.log({ id });
 
-  //useparams 를 사용하여 url 주소값을 파이어베이스로 보낸후
+  //useparams 를 사용하여 id 값을 파이어베이스로 보낸후
   //파이어베이스에서 데이터를 가져올 때 useparams의 값이 같은 것만
   //map을 돌려서 return 해준다!
 
@@ -64,7 +61,6 @@ export default function CommunicationPage() {
     } else {
       alert('로그인을 하세요');
     }
-    // console.log(addRev);
   };
   return (
     <div>
