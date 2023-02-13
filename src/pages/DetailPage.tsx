@@ -14,6 +14,7 @@ import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
 import Liked from '../components/Liked';
 import StayInfo from '../components/Stayinfo';
+import Communication from '../components/Review/Communication';
 
 const DetailPage = () => {
   const param = useParams();
@@ -76,6 +77,7 @@ const DetailPage = () => {
                 <div>{spotData.title}</div>
                 <img src={spotData.firstimage} alt='관광지 사진' />
                 <div>주소 : {spotData.addr1}</div>
+                <Communication />
                 <Link to={`/spot/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
                 <Liked spotData={spotData} />
