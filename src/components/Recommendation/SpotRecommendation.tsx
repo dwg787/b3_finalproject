@@ -62,7 +62,8 @@ const Container = styled.div`
   height: 500px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
+  justify-content: center;
   /* background-color: #d7d7d7; */
 `;
 
@@ -75,6 +76,8 @@ const RecommendListIntroWrapper = styled.div`
 const RecommendListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 const RecommendListTitle = styled.div`

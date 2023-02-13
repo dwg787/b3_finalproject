@@ -81,6 +81,8 @@ const RecommendListIntroWrapper = styled.div`
 const RecommendListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 const RecommendListTitle = styled.div`
