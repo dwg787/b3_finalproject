@@ -1,7 +1,7 @@
-import { FetchedStayDataType } from '../apis/publicAPI';
-import styled from 'styled-components';
-import noimg from '../assets/noimg.png';
-import { useNavigate } from 'react-router-dom';
+import { FetchedStayDataType } from "../apis/publicAPI";
+import styled from "styled-components";
+import noimg from "../assets/noimg.png";
+import { useNavigate } from "react-router-dom";
 
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const SpotDetail = (props: FetchedStayDataType) => {
       <SpotImgWrapper>
         <SpotEachItemImg
           src={props.img || noimg}
-          alt='사진'
+          alt="사진"
           onClick={() => navigate(`/spot/${props.id}`)}
           onMouseOver={() => {}}
         />
@@ -35,6 +35,7 @@ const SpotImgWrapper = styled.div`
   position: relative;
   border-radius: 5px;
   overflow: hidden;
+  z-index: -1;
 `;
 
 const SpotEachItemImg = styled.img`
