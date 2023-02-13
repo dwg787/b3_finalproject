@@ -17,7 +17,8 @@ const Navbar = () => {
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
-  const currentUsers = sessionStorage.getItem('id');
+  const localId = sessionStorage.getItem('id');
+  console.log(localId);
   const currentUser = auth.currentUser;
   const userNickName = currentUser?.displayName;
   console.log(userNickName);
@@ -96,9 +97,9 @@ const Navbar = () => {
     //   .then(() => {
     //     alert("로그아웃 되었습니다.");
 
-    //     // 로그아웃 성공
-    //     setShowModal(false);
-    //     navigate("/", { replace: true });
+    // 로그아웃 성공
+    setShowModal(false);
+    navigate('/', { replace: true });
     //   })
     //   .catch((error) => {
     //     // 로그아웃 실패
@@ -109,7 +110,7 @@ const Navbar = () => {
     navigate('/');
     window.location.reload();
   };
-  const localId = sessionStorage.getItem('id');
+  // const localId = sessionStorage.getItem('id');
   // console.log(localId);
   return (
     <Nav>
@@ -130,7 +131,9 @@ const Navbar = () => {
         <LoginButtonBox>
           {localId !== null ? (
             <LoginBox>
-              <div>{localId}님</div>
+              <NickNameBtn onClick={() => navigate('/my')}>
+                {localId}님
+              </NickNameBtn>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
             </LoginBox>
           ) : (
@@ -337,4 +340,12 @@ const CloseBtn = styled.button`
 const SearchIconImg = styled.img`
   width: 20px;
   height: 20px;
+`;
+
+const NickNameBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 17px;
+  margin-right: 10px;
 `;

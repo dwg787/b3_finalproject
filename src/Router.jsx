@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loader from "./components/Loader/Loader";
 import Navbar from "./components/Navbar";
+import TopButton from "./components/TopButton/TopButton";
 import {
   MainPage,
   LoginPage,
@@ -10,7 +11,6 @@ import {
   DetailPage,
   MapPage,
   PurchasePage,
-  CommunicationPage,
   SignUpPage,
   SearchPage,
   StayDetailPage,
@@ -25,6 +25,7 @@ const Router = () => {
       <Suspense fallback={<Loader />}>
         <Navbar />
         <ChatBotModal />
+        <TopButton />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -37,7 +38,6 @@ const Router = () => {
           <Route path="/purchase" element={<PurchasePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
-          <Route path="/communication" element={<CommunicationPage />} />
           <Route path="/ticket" element={<Ticketing />} />
         </Routes>
       </Suspense>

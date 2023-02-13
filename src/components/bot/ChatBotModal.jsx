@@ -31,4 +31,5 @@ const Chatimgbtn = styled.div`
   border-radius: 20px;
   left: 94%;
   top: 90%;
+  z-index: 1000;
 `;
