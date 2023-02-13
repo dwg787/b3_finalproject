@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MyCart from "../components/MyPage/MyCart";
 import MyFav from "../components/MyPage/MyFav";
 import MyInfo from "../components/MyPage/MyInfo";
+import MyTicket from "../components/MyPage/MyTicket";
 
 const MyPage = () => {
   // 초기 화면에 0번째 탭이 active되길 원한다면 0값을 입력한다.
@@ -43,7 +44,7 @@ const MyPage = () => {
     {
       tabTitle: (
         <li
-          className={activeIndex === 0 ? "is-active" : ""}
+          className={activeIndex === 2 ? "is-active" : ""}
           onClick={() => tabClickHandler(2)}
         >
           찜하기
@@ -52,6 +53,21 @@ const MyPage = () => {
       tabCont: (
         <div>
           <MyFav />
+        </div>
+      ),
+    },
+    {
+      tabTitle: (
+        <li
+          className={activeIndex === 3 ? "is-active" : ""}
+          onClick={() => tabClickHandler(3)}
+        >
+          내 예약 정보
+        </li>
+      ),
+      tabCont: (
+        <div>
+          <MyTicket />
         </div>
       ),
     },

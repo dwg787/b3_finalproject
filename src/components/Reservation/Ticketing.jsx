@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  setDoc,
+  getDoc,
+  collection,
+} from "firebase/firestore";
+import { auth, db } from "../../apis/firebase";
 
 const Ticketing = ({ stayDetailData }) => {
   const [name, setName] = useState("");
@@ -7,15 +16,42 @@ const Ticketing = ({ stayDetailData }) => {
   const [startDate, setStartDate] = useState();
   const [termDate, setTermDate] = useState();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    //유저 아이디 가져오기
     e.preventDefault();
-    // process the ticket purchase here
+    const uid = auth.currentUser.uid;
+    const docRef = doc(collection(db, "reservations"));
+
+    // 유저 컬렉션이 존재하는지 확인
+    await getDoc(docRef)
+      .then((doc) => {
+        // 없으면 새로 생성
+        if (!doc.exists()) {
+          setDoc(docRef, {
+            title: stayDetailData.title,
+            count: quantity,
+            startDate: startDate,
+            termDate: termDate,
+            name: name,
+            email: email,
+            uid: uid,
+          });
+        }
+      })
+      .catch((e) => console.log(e));
+    await updateDoc(docRef, {
+      title: stayDetailData.title,
+      count: quantity,
+      startDate: startDate,
+      termDate: termDate,
+      name: name,
+      email: email,
+      uid: uid,
+    }).catch((e) => console.log(e));
     alert(
       `${quantity} 장의 티켓이 ${startDate}~${termDate}로 예약되었습니다 ${name} 님 (${email}) 로 ${stayDetailData.title}예약발송 되셧습니다`
     );
   };
-
-  // console.log(startDate);
 
   return (
     <form onSubmit={handleSubmit}>
