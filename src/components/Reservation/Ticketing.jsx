@@ -35,6 +35,7 @@ const Ticketing = ({ stayDetailData }) => {
             name: name,
             email: email,
             uid: uid,
+            img: stayDetailData.firstimage,
           });
         }
       })
@@ -47,6 +48,7 @@ const Ticketing = ({ stayDetailData }) => {
       name: name,
       email: email,
       uid: uid,
+      img: stayDetailData.firstimage,
     }).catch((e) => console.log(e));
     alert(
       `${quantity} 장의 티켓이 ${startDate}~${termDate}로 예약되었습니다 ${name} 님 (${email}) 로 ${stayDetailData.title}예약발송 되셧습니다`

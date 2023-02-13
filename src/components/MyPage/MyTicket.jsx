@@ -29,37 +29,86 @@ const MyTicket = () => {
   }
 
   return (
-    <StTicket>
-      {tickets.map((data, i) => {
-        return (
-          <div key={i}>
-            <StTicketCard>
-              <h2>{data.title}</h2>
-              <p>이름 : {data.name}</p>
-              <p>이메일 : {data.email}</p>
-              <p>숙박인원 : {data.count}</p>
-              <p>숙박 시작일 : {data.startDate}</p>
-              <p>숙박 종료일 : {data.termDate}</p>
+    <StTicketWrap>
+      <h1>예약 페이지</h1>
+      <StTicket>
+        {tickets.map((data, i) => {
+          return (
+            <StTicketCard key={i}>
+              <StTicketCardLeft>
+                <StMyTicketImage src={data.img} alt="숙박 사진" />
+              </StTicketCardLeft>
+              <StTicketCardRight>
+                <h2>{data.title}</h2>
+                <p>이름 : {data.name}</p>
+                <p>이메일 : {data.email}</p>
+                <p>숙박인원 : {data.count}</p>
+                <p>숙박 시작일 : {data.startDate}</p>
+                <p>숙박 종료일 : {data.termDate}</p>
+              </StTicketCardRight>
             </StTicketCard>
-          </div>
-        );
-      })}
-    </StTicket>
+          );
+        })}
+      </StTicket>
+    </StTicketWrap>
   );
 };
 
 export default MyTicket;
 
-const StTicket = styled.div`
+const StTicketWrap = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StTicket = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 65%
   height: 90%;
-  background-color: teal;
+  /* background-color: teal; */
   margin: 10px;
+  box-sizing: border-box;
+  /* border-radius: 10px; */
 `;
 
 const StTicketCard = styled.div`
-  width: 400px;
-  height: 200px;
+  width: 100%;
   margin: 10px;
-  background-color: #d7dce0;
+  background-color: aliceblue;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  clear: both;
+`;
+
+const StTicketCardRight = styled.div`
+  width: 55%;
+  /* padding: 30px; */
+  float: right;
+  height: 200px;
+  /* margin: 10px; */
+  /* background-color: #d7dce0; */
+`;
+
+const StTicketCardLeft = styled.div`
+  width: 40%;
+  float: left;
+  /* background-color: #6b9cc7; */
+  box-sizing: border-box;
+`;
+
+const StMyTicketImage = styled.img`
+  width: 100%;
+  /* height: 150%; */
+  box-sizing: border-box;
+  border-radius: 10px;
 `;
