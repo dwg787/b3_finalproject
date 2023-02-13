@@ -131,7 +131,7 @@ const Navbar = () => {
         <LoginButtonBox>
           {localId !== null ? (
             <LoginBox>
-              <div>{localId}님</div>
+              <NickNameBtn onClick={() => navigate("/my")}>{localId}님</NickNameBtn>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
             </LoginBox>
           ) : (
@@ -336,4 +336,12 @@ const CloseBtn = styled.button`
 const SearchIconImg = styled.img`
   width: 20px;
   height: 20px;
+`;
+
+const NickNameBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 17px;
+  margin-right: 10px;
 `;

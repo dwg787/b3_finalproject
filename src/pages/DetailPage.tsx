@@ -55,25 +55,6 @@ const DetailPage = () => {
     getFirestoreRecCnt();
   }, [spotData]);
 
-<<<<<<< HEAD
-  const { data: stayData, isLoading: isLoadingStay } = useQuery(["stay_detail", spotData], () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }), {
-    enabled: !!spotData,
-  });
-
-  const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ["restaurant_detail", spotData],
-    () =>
-      fetchNearRestaurantData({
-        mapx: spotData.mapx,
-        mapy: spotData.mapy,
-      }),
-    {
-      enabled: !!spotData,
-    }
-  );
-
-=======
->>>>>>> 4f87807ab14383a343d9f12a7a990aef8fdd2402
   return (
     <Container>
       <div>
