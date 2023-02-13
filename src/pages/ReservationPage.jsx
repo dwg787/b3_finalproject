@@ -78,7 +78,7 @@ const StTicketing = styled.div`
   width: 30%;
   padding: 30px;
   float: right;
-  background-color: teal;
+  background-color: #ccd4d4;
   display: flex;
   justify-content: center;
   /* align-items: center; */
