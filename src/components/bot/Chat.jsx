@@ -186,6 +186,7 @@ export default function Chat() {
             hideHeader={true}
             placeholder={"이곳에 질문하세요 :)"}
             recognitionEnable={true}
+            hideBotAvatar={true}
           />
         </ThemeProvider>
       </Fuckdiv>
@@ -195,7 +196,11 @@ export default function Chat() {
 
 const Fuckdiv = styled.div`
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 150px;
   left: 80%;
   top: 14%;
+  z-index: 1000;
 `;
