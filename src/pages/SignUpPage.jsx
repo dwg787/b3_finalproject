@@ -29,9 +29,6 @@ const SignUpPage = () => {
   const [isPwConfirm, setIsPwConfirm] = useState(false);
   const [isNickName, setIsNickName] = useState(false);
 
-  // 회원가입 버튼 활성화
-  const [notAllow, setNotAllow] = useState(true);
-
   // 에러 나면 그곳에 커서 이동되도록
   const idRef = useRef(null);
   const nickNameRef = useRef(null);
@@ -42,20 +39,22 @@ const SignUpPage = () => {
 
   const signup = async (e) => {
     e.preventDefault();
-    const currentUser = auth.currentUser;
-
-    const sign = await createUserWithEmailAndPassword(auth, id, pw).then(() => {
+    await createUserWithEmailAndPassword(auth, id, pw).then((data) => {
       if (auth.currentUser)
         updateProfile(auth?.currentUser, {
           displayName: nickName,
         })
           .then(() => {
             alert("회원가입이 완료되었습니다");
-            console.log("sign", sign);
+            console.log("data", data);
             setId("");
             setNickName("");
             setPw("");
             sessionStorage.setItem("id", nickName);
+            addDoc(collection(db, "users"), {
+              email: data.user.email,
+              name: data.user.displayName,
+            });
             navigate("/");
           })
           .catch((error) => {
@@ -124,14 +123,6 @@ const SignUpPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (isId && isNickName && isPw && isPwConfirm) {
-      setNotAllow(false);
-      return;
-    }
-    setNotAllow(true);
-  }, [isId, isNickName, isPw, isPwConfirm]);
-
   return (
     <SignUpContainer>
       <Id>
@@ -160,7 +151,7 @@ const SignUpPage = () => {
         <span className={`message ${isPwConfirm ? "success" : "error"}`}>{pwConfirmErrMsg}</span>
       </Error>
       <div>
-        <button onClick={signup}>회원가입</button>
+        <BlueButton onClick={signup}>회원가입</BlueButton>
       </div>
     </SignUpContainer>
   );
@@ -231,4 +222,15 @@ const Input = styled.input`
   }
   margin-top: 3px;
   padding-left: 5px;
+`;
+
+const BlueButton = styled.button`
+  align-items: center;
+  background-color: #555555;
+  border-radius: 5px;
+  width: 250px;
+  height: 40px;
+  color: #ffff;
+  font-size: 15px;
+  cursor: pointer;
 `;

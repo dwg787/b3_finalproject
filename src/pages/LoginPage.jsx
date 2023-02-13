@@ -7,8 +7,11 @@ import KakaoLogoutButton from "../components/Login/KakaoLogoutButton";
 import Naver from "../components/Login/Naver";
 import styled from "styled-components";
 import Google from "../assets/google.png";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../apis/firebase";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("");
   const emailRef = useRef("");
   const passwordRef = useRef("");
@@ -18,18 +21,8 @@ const LoginPage = () => {
   const [idValid, setIdValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [pwErrMsg, setPwErrMsg] = useState("");
-  const navigate = useNavigate();
 
-  const handleclick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      setValue(data.user.email);
-      sessionStorage.setItem("id", data.user.displayName);
-      // console.log("data", data);
-      navigate("/");
-    });
-  };
-
-  //* id (이메일) 유효성 검사
+  // id(이메일) 유효성 검사
   const onChangeId = (e) => {
     const currentId = e.target.value;
     setId(currentId);
@@ -41,30 +34,37 @@ const LoginPage = () => {
     }
   };
 
-  //* 비밀번호 유효성 검사
+  // 비밀번호 유효성 검사
   const onChangePw = (e) => {
     const currentPw = e.target.value;
     setPw(currentPw);
     const pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 
     if (!pwRegex.test(currentPw)) {
-      setPwErrMsg("! 비밀번호를 다시 확인해주세요");
+      setPwErrMsg("비밀번호를 다시 확인해주세요");
       setPwValid(true);
     } else {
       setPwValid(false);
     }
   };
 
+  // 일반 로그인
   const logIn = async (e) => {
     e.preventDefault();
-    const login = await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
-      .then(() => {
+    await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
+      .then((data) => {
         alert("login 성공!");
-        console.log(login);
+        console.log(data);
         console.log(auth);
         console.log("이메일", emailRef.current.value);
         console.log("비번", passwordRef.current.value);
-        sessionStorage.setItem("id", login.user.displayName);
+        sessionStorage.setItem("id", data.user.displayName);
+        const user_doc = addDoc(collection(db, "users"), {
+          email: emailRef.current.value,
+          name: data.user.displayName,
+        });
+
+        console.log(user_doc.id);
 
         navigate("/");
       })
@@ -76,9 +76,19 @@ const LoginPage = () => {
       });
   };
 
-  useEffect(() => {
-    setValue(sessionStorage.getItem("email"));
-  });
+  // 구글 로그인
+  const handleclick = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      setValue(data.user.email);
+      sessionStorage.setItem("id", data.user.displayName);
+      // console.log("data", data);
+      navigate("/");
+    });
+  };
+
+  // useEffect(() => {
+  //   setValue(sessionStorage.getItem("email"));
+  // });
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>

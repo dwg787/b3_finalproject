@@ -16,7 +16,8 @@ const Navbar = () => {
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
-  const currentUsers = sessionStorage.getItem("id");
+  const localId = sessionStorage.getItem("id");
+  console.log(localId);
   const currentUser = auth.currentUser;
   const userNickName = currentUser?.displayName;
 
@@ -106,8 +107,7 @@ const Navbar = () => {
     localStorage.removeItem("token_for_kakaotalk");
     navigate("/");
   };
-  const localId = sessionStorage.getItem("id");
-  console.log(localId);
+
   return (
     <Nav>
       <LeftSection>
@@ -138,10 +138,10 @@ const Navbar = () => {
       <InfoSection>
         <LoginButtonBox>
           {localId !== null ? (
-            <>
-              <div>{localId}님</div>
+            <NicknameBox>
+              <NickName onClick={() => navigate("/my")}>{localId}님</NickName>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
-            </>
+            </NicknameBox>
           ) : (
             <>
               {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
@@ -173,6 +173,19 @@ const Nav = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #e34647;
+`;
+
+const NicknameBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NickName = styled.button`
+  margin-right: 50px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 17px;
 `;
 
 const LeftSection = styled.div`
