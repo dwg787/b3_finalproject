@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Ticketing = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [quantity, setQuantity] = useState(1);
 
   const handleSubmit = (e) => {
@@ -15,31 +15,36 @@ const Ticketing = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor='name'>이름 : </label>
+      <label htmlFor="name">이름 : </label>
       <input
-        type='text'
-        id='name'
+        type="text"
+        id="name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <br />
-      <label htmlFor='email'>이메일 : </label>
+      <label htmlFor="email">이메일 : </label>
       <input
-        type='email'
-        id='email'
+        type="email"
+        id="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <br />
-      <label htmlFor='quantity'>수량 : </label>
+      <label htmlFor="quantity">수량 : </label>
       <input
-        type='number'
-        id='quantity'
+        type="number"
+        id="quantity"
         value={quantity}
         onChange={(e) => setQuantity(e.target.value)}
       />
       <br />
-      <button type='submit'>예약하기</button>
+      <p>시작일</p>
+      <input type="date" />
+      <p>종료일</p>
+      <input type="date" />
+      <button type="submit">장바구니담기</button>
+      <button>구매하기</button>
     </form>
   );
 };
