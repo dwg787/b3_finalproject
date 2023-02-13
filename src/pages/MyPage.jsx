@@ -130,7 +130,7 @@ const StMyList = styled.ul`
 
 const StMyPageInfo = styled.div`
   width: 90%;
-  height: 700px;
+  /* height: 700px; */
   display: flex;
   /* flex-direction: column; */
   /* justify-content: center; */

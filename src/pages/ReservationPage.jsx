@@ -20,7 +20,7 @@ const ReservationPage = () => {
     () => fetchStayDetailInfo({ param })
   );
 
-  // console.log(stayDetailData);
+  console.log(stayDetailData);
 
   return (
     <StTicketMainWrap>

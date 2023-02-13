@@ -3,6 +3,7 @@ import Loader from "../Loader/Loader";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../../apis/firebase";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MyTicket = () => {
   const [tickets, setTickets] = useState([]);
@@ -45,6 +46,7 @@ const MyTicket = () => {
                 <p>숙박인원 : {data.count}</p>
                 <p>숙박 시작일 : {data.startDate}</p>
                 <p>숙박 종료일 : {data.termDate}</p>
+                <Link to={`/stay/${data.contentid}`}>상세정보보기</Link>
               </StTicketCardRight>
             </StTicketCard>
           );
