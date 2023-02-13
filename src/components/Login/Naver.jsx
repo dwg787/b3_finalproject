@@ -30,7 +30,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
   };
 
   const userAccessToken = () => {
-    window.location.href.includes("access_token") && getToken();
+    window.location.href.includes("id") && getToken();
   };
 
   const getToken = () => {

@@ -37,6 +37,11 @@ const Navbar = () => {
   const [nickName, setNickName] = useState();
   const [profileImage, setProfileImage] = useState();
   const [accessToken, setAccessToken] = useState();
+  const [userName, setUserName] = useState("");
+  console.log(userName);
+  const { naver } = window;
+  const NAVER_CLIENT_ID = "o47rUj6rR0GWdh1UKf95";
+  const NAVER_CALLBACK_URL = "http://localhost:3000/";
 
   // console.log(accessToken);
   const getUser = async () => {
@@ -116,11 +121,61 @@ const Navbar = () => {
     //   });
     sessionStorage.removeItem("id");
     localStorage.removeItem("token_for_kakaotalk");
+    localStorage.removeItem("com.naver.nid.access_token");
+    localStorage.removeItem("com.naver.nid.oauth.state_token");
     navigate("/");
     window.location.reload();
   };
   // const localId = sessionStorage.getItem('id');
   // console.log(localId);
+
+  const initializeNaverLogin = () => {
+    const naverLogin = new naver.LoginWithNaverId({
+      clientId: NAVER_CLIENT_ID,
+      callbackUrl: NAVER_CALLBACK_URL,
+      // 팝업창으로 로그인을 진행할 것인지?
+      isPopup: false,
+      loginButton: { color: "green", type: 1, height: 30 },
+      callbackHandle: true,
+    });
+    naverLogin.init();
+
+    naverLogin.getLoginStatus(async function(status) {
+      if (status) {
+        const userid = naverLogin.user.getEmail();
+        const username = naverLogin.user.getName();
+        setUserName(username);
+        window.localStorage.setItem("id", username);
+        window.sessionStorage.setItem("id", username);
+      }
+    });
+  };
+
+  useEffect(() => {
+    let naverUser = setTimeout(() => {
+      initializeNaverLogin();
+      const naverLogin = new naver.LoginWithNaverId({
+        clientId: NAVER_CLIENT_ID,
+        callbackUrl: NAVER_CALLBACK_URL,
+        // 팝업창으로 로그인을 진행할 것인지?
+        isPopup: false,
+        loginButton: { color: "green", type: 1, height: 30 },
+        callbackHandle: true,
+      });
+      naverLogin.init();
+
+      naverLogin.getLoginStatus(async function(status) {
+        if (status) {
+          const userid = naverLogin.user.getEmail();
+          const username = naverLogin.user.getName();
+          setUserName(username);
+          window.localStorage.setItem("id", username);
+          window.sessionStorage.setItem("id", username);
+        }
+      });
+    }, 500);
+  }, []);
+
   return (
     <Nav>
       <div>
