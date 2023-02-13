@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
 const KakaoMap = ({ mapx, mapy }) => {
   const mapcontainer = useRef(null);
@@ -11,7 +11,7 @@ const KakaoMap = ({ mapx, mapy }) => {
   };
 
   useEffect(() => {
-    console.log(mapx, mapy);
+    // console.log(mapx, mapy);
 
     const map = new window.kakao.maps.Map(mapcontainer.current, options);
 
@@ -34,11 +34,11 @@ const KakaoMap = ({ mapx, mapy }) => {
     const zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-    console.log("kakaomap로딩완료");
+    // console.log("kakaomap로딩완료");
   }, []);
   return (
     <>
-      <StMap id="map" ref={mapcontainer}></StMap>
+      <StMap id='map' ref={mapcontainer}></StMap>
     </>
   );
 };
