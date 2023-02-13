@@ -24,7 +24,7 @@ const DetailPage = () => {
     () => fetchSpotDetailData({ param })
   );
 
-  console.log(spotData);
+  // console.log(spotData);
 
   const getRecCnt = async () => {
     if (param.id) {
