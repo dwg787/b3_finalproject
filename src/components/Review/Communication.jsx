@@ -53,7 +53,8 @@ const Communication = () => {
         review: newReview,
         uid: loginUser?.uid,
         email: loginUser.email,
-        displayName: loginUser?.displayName,
+        displayName: sessionStorage.getItem('id', auth.currentUser.displayName),
+        //loginUser?.displayName
         paramId: params.id,
         date: Date.now(),
         //파이어스토어 db, reviews 에 저장

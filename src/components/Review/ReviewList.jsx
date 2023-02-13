@@ -19,6 +19,7 @@ export default function ReviewList({ review, i, reviews, key }) {
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
 
+  //삭제
   const handleDelete = async (id, i) => {
     if (auth.currentUser.uid === reviews[i].uid) {
       const reviewDoc = doc(db, 'reviews', id);
