@@ -18,16 +18,16 @@ const Navbar = () => {
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
   const localId = sessionStorage.getItem('id');
-  console.log(localId);
+  // console.log(localId);
   const currentUser = auth.currentUser;
   const userNickName = currentUser?.displayName;
-  console.log(userNickName);
+  // console.log(userNickName);
 
   const [showModal, setShowModal] = useState(false);
 
   //kakaologin get location
   const KAKAO_CODE = location.search.split('=')[1];
-  console.log(KAKAO_CODE);
+  // console.log(KAKAO_CODE);
   //   getuser 실행
 
   const REST_API_KEY_KAKAO = '06264d97cddc6d0d5ef77a0f28d69af9';

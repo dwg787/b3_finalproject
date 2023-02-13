@@ -16,7 +16,8 @@ import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
 import { Snapshot } from 'recoil';
-export default function CommunicationPage() {
+
+const Communication = () => {
   const [newReview, setNewReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const loginUser = auth.currentUser;
@@ -90,4 +91,6 @@ export default function CommunicationPage() {
       </div>
     </div>
   );
-}
+};
+
+export default Communication;

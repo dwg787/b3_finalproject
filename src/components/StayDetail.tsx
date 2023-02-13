@@ -1,7 +1,7 @@
-import { FetchedStayDataType } from "../apis/publicAPI";
-import styled from "styled-components";
-import noimg from "../assets/noimg.png";
-import { useNavigate } from "react-router-dom";
+import { FetchedStayDataType } from '../apis/publicAPI';
+import styled from 'styled-components';
+import noimg from '../assets/noimg.png';
+import { useNavigate } from 'react-router-dom';
 
 const StayDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
@@ -9,12 +9,18 @@ const StayDetail = (props: FetchedStayDataType) => {
   return (
     <StayEachItemWrapper>
       <StayImgWrapper>
-        <StayEachItemImg
-          src={props.img || noimg}
-          alt="사진"
-          decoding="async"
-          onClick={() => navigate(`/stay/${props.id}`)}
-        />
+        <picture>
+          <source srcSet={props.img || noimg} type='image/avif'></source>
+          <source srcSet={props.img || noimg} type='image/webp'></source>
+          <source srcSet={props.img || noimg} type='image/jpg'></source>
+          <StayEachItemImg
+            src={props.img || noimg}
+            alt='사진'
+            decoding='async'
+            loading='lazy'
+            onClick={() => navigate(`/stay/${props.id}`)}
+          />
+        </picture>
       </StayImgWrapper>
       <StayTitle>{props.children}</StayTitle>
     </StayEachItemWrapper>
@@ -38,8 +44,8 @@ const StayImgWrapper = styled.div`
 `;
 
 const StayEachItemImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 250px;
+  aspect-ratio: 1;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);

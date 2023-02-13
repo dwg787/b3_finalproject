@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { AREA_CODE } from '../../apis/apiCodes';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import styled from 'styled-components';
+// import noimg from '../../assets/'
 
 const SelectRegionBtn = ({ children }: { children: string }) => {
   const [region, setRegion] = useRecoilState(regionSelectionState);
@@ -12,8 +13,13 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
 
   const handleRegionSelection = () => {
     if (regionCode) setRegion(regionCode);
-    console.log('누른 지역:', regionCode);
+    // console.log('누른 지역:', regionCode);
   };
+
+  // const handleImgPreloading = () => {
+  //   const img = new Image();
+  //   img.src = '../../asset/noimg.png';
+  // };
 
   return (
     <>
@@ -21,6 +27,7 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
         onClick={() => {
           handleRegionSelection();
         }}
+        // onMouseOver={handleImgPreloading}
         isSelectedRegion={isSelectedRegion}
       >
         {children}
