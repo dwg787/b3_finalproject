@@ -15,10 +15,6 @@ import { useEffect, useState } from 'react';
 const SelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
   const [curPage, setCurPage] = useState(1);
-  // const { data, isLoading } = useQuery(['spot_data', region], () =>
-  //   fetchSpotData({ region })
-  // );
-
   const {
     data,
     isLoading,
@@ -30,7 +26,6 @@ const SelectionResult = () => {
     ({ pageParam = 1 }) => fetchSpotData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
-        // !lastPage.isLast ? lastPage.nextPage : undefined
         return lastPage?.pageNo ===
           Math.ceil(lastPage?.totalCount / lastPage?.numOfRows)
           ? undefined
@@ -39,71 +34,82 @@ const SelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
+      // staleTime: 1000 * 60 * 5,
     }
   );
   useEffect(() => {
     fetchNextPage();
   }, [curPage]);
 
-  // const settings = {
-  //   dots: true,
-  //   arrow: true,
-  //   inifinite: true,
-  //   speed: 500,
-  //   slidesToShow: 10,
-  //   slidesToScroll: 10,
-  //   autoplay: false,
-  // };
+  useEffect(() => {
+    setCurPage(1);
+  }, [region]);
 
   return (
-    <>
+    <SearchOverallResultContainer>
       {isLoading || data === undefined ? (
-        <Loader />
+        <>
+          <ListItemCount>결과가 없습니다.</ListItemCount>
+          <Loader />
+          <SearchListWrapper>
+            <BtnWrapper>
+              <button disabled={true}>이전</button>
+            </BtnWrapper>
+            <ResultWrapper></ResultWrapper>
+            <BtnWrapper>
+              <button disabled={true}>다음</button>
+            </BtnWrapper>
+          </SearchListWrapper>
+        </>
       ) : (
-        <SearchOverallResultContainer>
+        <>
           <ListItemCount>
             총 {data.pages[curPage - 1]?.totalCount} 개의 결과
           </ListItemCount>
-          {/* <CustomSlider {...settings}></CustomSlider> */}
-          <ResultWrapper>
-            {data.pages[curPage - 1]?.items.item.map(
-              (e: FetchedStayDataType) => {
-                return (
-                  <SpotDetail
-                    key={e.contentid}
-                    id={e.contentid}
-                    img={e.firstimage || noimg}
-                  >
-                    {e.title}
-                  </SpotDetail>
-                );
-              }
-            )}
-          </ResultWrapper>
-          <BtnWrapper>
-            <button
-              onClick={() => setCurPage(curPage - 1)}
-              disabled={data.pages[curPage - 1]?.pageNo - 1 < 1 ? true : false}
-            >
-              이전
-            </button>
-            <button
-              onClick={() => setCurPage(curPage + 1)}
-              disabled={
-                Math.ceil(
-                  data.pages[0]?.totalCount / data.pages[0]?.numOfRows
-                ) <= curPage
-                  ? true
-                  : false
-              }
-            >
-              다음
-            </button>
-          </BtnWrapper>
-          <SearchListWrapper></SearchListWrapper>
-        </SearchOverallResultContainer>
+          <SearchListWrapper>
+            <BtnWrapper>
+              <button
+                onClick={() => setCurPage(curPage - 1)}
+                disabled={
+                  data.pages[curPage - 1]?.pageNo - 1 < 1 ? true : false
+                }
+              >
+                이전
+              </button>
+            </BtnWrapper>
+            <ResultWrapper>
+              {data.pages[curPage - 1]?.items.item.map(
+                (e: FetchedStayDataType) => {
+                  return (
+                    <SpotDetail
+                      key={e.contentid}
+                      id={e.contentid}
+                      img={e.firstimage || noimg}
+                    >
+                      {e.title}
+                    </SpotDetail>
+                  );
+                }
+              )}
+            </ResultWrapper>
+            <BtnWrapper>
+              <button
+                onClick={() => setCurPage(curPage + 1)}
+                disabled={
+                  Math.ceil(
+                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows
+                  ) <= curPage
+                    ? true
+                    : false
+                }
+              >
+                다음
+              </button>
+            </BtnWrapper>
+          </SearchListWrapper>
+        </>
       )}
-    </>
+    </SearchOverallResultContainer>
   );
 };
 
@@ -123,11 +129,9 @@ const ListItemCount = styled.div`
 
 const SearchListWrapper = styled.div`
   width: 100%;
-  /* height: 300px; */
-  /* background-color: #f6d6d6; */
   display: flex;
-  flex-direction: column;
-  /* margin: 10px 10px 10px 10px; */
+  flex-direction: row;
+  align-items: center;
 `;
 
 const ResultWrapper = styled.div`
@@ -137,12 +141,6 @@ const ResultWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-`;
-
-const CustomSlider = styled(Slider)`
-  .slick-l {
-    width: 100%;
-  }
 `;
 
 const BtnWrapper = styled.div`

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchNearRestaurantData } from '../apis/publicAPI';
 import Loader from './Loader/Loader';
+import RestaurantDetail from './RestaurantDetail';
+import noimg from '../assets/noimg.png';
 
 const RestaurantInfo = ({ spotData }) => {
   const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
@@ -30,18 +32,13 @@ const RestaurantInfo = ({ spotData }) => {
               <>
                 {restaurantData.slice(0, 5).map((item) => {
                   return (
-                    <SpotEachItemWrapper key={item.contentid}>
-                      <SpotEachItemImgWrapper
-                        src={item?.firstimage}
-                        alt='주변맛집 이미지'
-                      />
-                      <Link
-                        style={{ textDecoration: 'none' }}
-                        to={`/restaurant/${item.contentid}`}
-                      >
-                        {item?.title}
-                      </Link>
-                    </SpotEachItemWrapper>
+                    <RestaurantDetail
+                      key={item.contentid}
+                      id={item.contentid}
+                      img={item.firstimage || noimg}
+                    >
+                      {item.title}
+                    </RestaurantDetail>
                   );
                 })}
               </>
@@ -85,9 +82,9 @@ const SpotEachItemWrapper = styled.div`
   border-radius: 10px; */
 `;
 
-const SpotEachItemImgWrapper = styled.img`
-  width: 100%;
-  height: 100%;
+const SpotEachItemImg = styled.img`
+  width: 200px;
+  aspect-ratio: 1;
   border-radius: 10px;
   /* &:hover {
     transform: scale(1.4);

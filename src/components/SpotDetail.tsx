@@ -1,7 +1,7 @@
-import { FetchedStayDataType } from "../apis/publicAPI";
-import styled from "styled-components";
-import noimg from "../assets/noimg.png";
-import { useNavigate } from "react-router-dom";
+import { FetchedStayDataType } from '../apis/publicAPI';
+import styled from 'styled-components';
+import noimg from '../assets/noimg.png';
+import { useNavigate } from 'react-router-dom';
 
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
@@ -9,12 +9,19 @@ const SpotDetail = (props: FetchedStayDataType) => {
   return (
     <SpotEachItemWrapper>
       <SpotImgWrapper>
-        <SpotEachItemImg
-          src={props.img || noimg}
-          alt="사진"
-          onClick={() => navigate(`/spot/${props.id}`)}
-          onMouseOver={() => {}}
-        />
+        <picture>
+          <source srcSet={props.img || noimg} type='image/avif'></source>
+          <source srcSet={props.img || noimg} type='image/webp'></source>
+          <source srcSet={props.img || noimg} type='image/jpg'></source>
+          <SpotEachItemImg
+            src={props.img || noimg}
+            alt='사진'
+            // onMouseOver={() => {}}
+            decoding='async'
+            loading='lazy'
+            onClick={() => navigate(`/spot/${props.id}`)}
+          />
+        </picture>
       </SpotImgWrapper>
       <SpotTitle>{props.children}</SpotTitle>
     </SpotEachItemWrapper>
@@ -38,8 +45,8 @@ const SpotImgWrapper = styled.div`
 `;
 
 const SpotEachItemImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 250px;
+  aspect-ratio: 1;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);
