@@ -12,13 +12,13 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       clientId: NAVER_CLIENT_ID,
       callbackUrl: NAVER_CALLBACK_URL,
       // 팝업창으로 로그인을 진행할 것인지?
-      isPopup: false,
+      isPopup: true,
       loginButton: { color: "green", type: 1, height: 30 },
       callbackHandle: true,
     });
     naverLogin.init();
 
-    naverLogin.getLoginStatus(async function (status) {
+    naverLogin.getLoginStatus(async function(status) {
       if (status) {
         const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
