@@ -3,11 +3,11 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchNearStayData } from '../apis/publicAPI';
-import Loader from './Loader';
+import Loader from './Loader/Loader';
 
-const Stayinfo = ({ spotData }) => {
+const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
-    ['stay_detail', spotData],
+    ['stay_list', spotData],
     () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
     {
       enabled: !!spotData,
@@ -26,14 +26,14 @@ const Stayinfo = ({ spotData }) => {
               <>
                 {stayData.slice(0, 5).map((item) => {
                   return (
-                    <SpotEachItemWrapper>
+                    <SpotEachItemWrapper key={item.contentid}>
                       <SpotEachItemImgWrapper
                         src={item?.firstimage}
                         alt='주변맛집 이미지'
                       />
                       <Link
                         style={{ textDecoration: 'none' }}
-                        to={`/${item.contentid}`}
+                        to={`/stay/${item.contentid}`}
                       >
                         {item?.title}
                       </Link>
@@ -53,7 +53,7 @@ const Stayinfo = ({ spotData }) => {
   );
 };
 
-export default Stayinfo;
+export default StayInfo;
 
 // const StayImage = styled.img`
 //   width: 300px;

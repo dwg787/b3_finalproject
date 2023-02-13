@@ -1,23 +1,67 @@
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
-import { useNavigate, Link } from 'react-router-dom';
-
-import { fetchSpotDetailData } from '../apis/publicAPI';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import {
+  fetchSpotDetailData,
+  fetchNearStayData,
+  fetchNearRestaurantData,
+  FetchedStayDataType,
+} from '../apis/publicAPI';
 import styled from 'styled-components';
-import Loader from '../components/Loader';
+import Loader from '../components/Loader/Loader';
+import { useEffect } from 'react';
+import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
+import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
-import Stayinfo from '../components/Stayinfo';
-import ReviewList from '../components/Review/ReviewList';
-import Communication from '../components/Review/Communication';
+import Liked from '../components/Liked';
+import StayInfo from '../components/Stayinfo';
 
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
-
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
     () => fetchSpotDetailData({ param })
   );
+
+  console.log(spotData);
+
+  const getRecCnt = async () => {
+    if (param.id) {
+      const data = await getDoc(doc(db, 'recommendation', `${param.id}`));
+      return data.data();
+    } else {
+      return;
+    }
+  };
+
+  const updateRecCnt = async () => {
+    if (param.id) {
+      await updateDoc(doc(db, 'recommendation', param.id), {
+        viewCnt: increment(1),
+      });
+    }
+  };
+
+  const saveNewRecCnt = async (spotData: FetchedStayDataType) => {
+    if (param.id) {
+      await setDoc(doc(db, 'recommendation', param.id), {
+        ...spotData,
+        viewCnt: 1,
+      });
+    }
+  };
+
+  useEffect(() => {
+    const getFirestoreRecCnt = async () => {
+      const res = await getRecCnt();
+      if (res) {
+        updateRecCnt();
+      } else {
+        if (spotData) saveNewRecCnt(spotData);
+      }
+    };
+    getFirestoreRecCnt();
+  }, [spotData]);
 
   return (
     <Container>
@@ -32,9 +76,9 @@ const DetailPage = () => {
                 <div>{spotData.title}</div>
                 <img src={spotData.firstimage} alt='관광지 사진' />
                 <div>주소 : {spotData.addr1}</div>
-                <Communication />
-                <Link to={`/${param.id}/map`}>지도보기</Link>
+                <Link to={`/spot/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
+                <Liked spotData={spotData} />
                 <div>{spotData.overview}</div>
               </div>
             ) : (
@@ -42,10 +86,9 @@ const DetailPage = () => {
             )}
           </>
         )}
-
         <SideInfoWrapper>
           <StayInfoWrapper>
-            <Stayinfo spotData={spotData} />
+            <StayInfo spotData={spotData} />
           </StayInfoWrapper>
           <RestaurantInfoWrapper>
             <RestaurantInfo spotData={spotData} />

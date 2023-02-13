@@ -3,33 +3,32 @@ import styled from 'styled-components';
 import noimg from '../assets/noimg.png';
 import { useNavigate } from 'react-router-dom';
 
-const SpotDetail = (props: FetchedStayDataType) => {
+const RestaurantDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
-
   return (
-    <SpotEachItemWrapper>
-      <SpotImgWrapper>
-        <SpotEachItemImg
+    <RestaurantEachItemWrapper>
+      <RestaurantImgWrapper>
+        <RestaurantEachItemImg
           src={props.img || noimg}
           alt='사진'
-          onClick={() => navigate(`/spot/${props.id}`)}
-          onMouseOver={() => {}}
+          decoding='async'
+          onClick={() => navigate(`/restaurant/${props.id}`)}
         />
-      </SpotImgWrapper>
-      <SpotTitle>{props.children}</SpotTitle>
-    </SpotEachItemWrapper>
+      </RestaurantImgWrapper>
+      <RestaurantTitle>{props.children}</RestaurantTitle>
+    </RestaurantEachItemWrapper>
   );
 };
 
-export default SpotDetail;
+export default RestaurantDetail;
 
-const SpotEachItemWrapper = styled.div`
+const RestaurantEachItemWrapper = styled.div`
   width: 17%;
   height: 200px;
   margin: 10px 10px 10px 10px;
 `;
 
-const SpotImgWrapper = styled.div`
+const RestaurantImgWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
@@ -37,7 +36,7 @@ const SpotImgWrapper = styled.div`
   overflow: hidden;
 `;
 
-const SpotEachItemImg = styled.img`
+const RestaurantEachItemImg = styled.img`
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -47,4 +46,4 @@ const SpotEachItemImg = styled.img`
   }
 `;
 
-const SpotTitle = styled.div``;
+const RestaurantTitle = styled.div``;

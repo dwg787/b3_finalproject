@@ -1,13 +1,13 @@
-import React from "react";
-import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { fetchNearRestaurantData } from "../apis/publicAPI";
-import Loader from "./Loader";
+import React from 'react';
+import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { fetchNearRestaurantData } from '../apis/publicAPI';
+import Loader from './Loader/Loader';
 
 const RestaurantInfo = ({ spotData }) => {
   const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ["restaurant_detail", spotData],
+    ['restaurant_list', spotData],
     () =>
       fetchNearRestaurantData({
         mapx: spotData.mapx,
@@ -30,14 +30,14 @@ const RestaurantInfo = ({ spotData }) => {
               <>
                 {restaurantData.slice(0, 5).map((item) => {
                   return (
-                    <SpotEachItemWrapper>
+                    <SpotEachItemWrapper key={item.contentid}>
                       <SpotEachItemImgWrapper
                         src={item?.firstimage}
-                        alt="주변맛집 이미지"
+                        alt='주변맛집 이미지'
                       />
                       <Link
-                        style={{ textDecoration: "none" }}
-                        to={`/${item.contentid}`}
+                        style={{ textDecoration: 'none' }}
+                        to={`/restaurant/${item.contentid}`}
                       >
                         {item?.title}
                       </Link>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { AREA_CODE } from '../apis/apiCodes';
-import { regionSelectionState } from '../recoil/apiDataAtoms';
+import { AREA_CODE } from '../../apis/apiCodes';
+import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import styled from 'styled-components';
 
 const SelectRegionBtn = ({ children }: { children: string }) => {
@@ -38,6 +38,6 @@ const CustomBtn = styled.button<{ isSelectedRegion: boolean }>`
     props.isSelectedRegion ? '#f19936' : '#000000'};
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
 `;

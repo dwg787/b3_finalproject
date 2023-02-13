@@ -1,0 +1,97 @@
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { db } from '../../apis/firebase';
+import {
+  getDocs,
+  collection,
+  DocumentData,
+  orderBy,
+  query,
+} from 'firebase/firestore';
+import RestaurantDetail from '../RestaurantDetail';
+import { recCnts } from '../../apis/publicAPI';
+import { Link } from 'react-router-dom';
+
+const RestaurantRecommendation = (propsData: any) => {
+  const [recommendList, setRecommendList] = useState<recCnts>();
+
+  const restaurantRecommendationList = async () => {
+    const data = await getDocs(
+      query(
+        collection(db, 'restaurant_recommendation'),
+        orderBy('viewCnt', 'desc')
+      )
+    );
+    const res = data.docs.map((doc: DocumentData) => {
+      return {
+        ...doc.data(),
+      };
+    });
+    return res;
+  };
+
+  useEffect(() => {
+    const fetchRecList = async () => {
+      const res = await restaurantRecommendationList();
+      setRecommendList(res);
+    };
+    fetchRecList();
+  }, []);
+  return (
+    <Container>
+      <RecommendListIntroWrapper>
+        <RecommendListTitle>추천 맛집 TOP 10</RecommendListTitle>
+        <RecommendListLink to={'/my'}>전체보기</RecommendListLink>
+      </RecommendListIntroWrapper>
+      <RecommendListWrapper>
+        {recommendList &&
+          recommendList.slice(0, 10).map((e) => {
+            return (
+              <RestaurantDetail
+                key={e.contentid}
+                id={e.contentid}
+                img={e.firstimage}
+              >
+                {e.title}
+              </RestaurantDetail>
+            );
+          })}
+      </RecommendListWrapper>
+    </Container>
+  );
+};
+
+export default RestaurantRecommendation;
+
+const Container = styled.div`
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* background-color: #d7d7d7; */
+`;
+
+const RecommendListIntroWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
+const RecommendListWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+const RecommendListTitle = styled.div`
+  margin-left: 10px;
+  margin-top: 10px;
+`;
+
+const RecommendListLink = styled(Link)`
+  margin-right: 10px;
+  margin-top: 10px;
+  text-decoration: none;
+`;
