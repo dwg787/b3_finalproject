@@ -1,13 +1,15 @@
-import React from "react";
-import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { fetchNearStayData } from "../apis/publicAPI";
-import Loader from "./Loader/Loader";
+import React from 'react';
+import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { fetchNearStayData } from '../apis/publicAPI';
+import Loader from './Loader/Loader';
+import StayDetail from './StayDetail';
+import noimg from '../assets/noimg.png';
 
 const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
-    ["stay_list", spotData],
+    ['stay_list', spotData],
     () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
     {
       enabled: !!spotData,
@@ -26,18 +28,13 @@ const StayInfo = ({ spotData }) => {
               <>
                 {stayData.slice(0, 5).map((item) => {
                   return (
-                    <SpotEachItemWrapper key={item.contentid}>
-                      <SpotEachItemImgWrapper
-                        src={item?.firstimage}
-                        alt="주변맛집 이미지"
-                      />
-                      <Link
-                        style={{ textDecoration: "none" }}
-                        to={`/stay/${item.contentid}`}
-                      >
-                        {item?.title}
-                      </Link>
-                    </SpotEachItemWrapper>
+                    <StayDetail
+                      key={item.contentid}
+                      id={item.contentid}
+                      img={item.firstimage || noimg}
+                    >
+                      {item.title}
+                    </StayDetail>
                   );
                 })}
               </>
@@ -91,9 +88,9 @@ const SpotEachItemWrapper = styled.div`
   border-radius: 10px; */
 `;
 
-const SpotEachItemImgWrapper = styled.img`
-  width: 100%;
-  height: 100%;
+const SpotEachItemImg = styled.img`
+  width: 200px;
+  aspect-ratio: 1;
   border-radius: 10px;
   /* &:hover {
     transform: scale(1.4);

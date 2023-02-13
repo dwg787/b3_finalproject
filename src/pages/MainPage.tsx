@@ -1,14 +1,6 @@
-import { useQueryClient, useInfiniteQuery, useQuery } from 'react-query';
 import styled from 'styled-components';
-import { fetchSpotData } from '../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
-
-import {
-  menuSelectionState,
-  regionSelectionState,
-  staySelectionState,
-} from '../recoil/apiDataAtoms';
-import Loader from '../components/Loader/Loader';
+import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
 import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
 import RegionSelection from '../components/Selection/RegionSelection';
@@ -18,11 +10,7 @@ import StayRecommendation from '../components/Recommendation/StayRecommendation'
 import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
 
 const MainPage = () => {
-  const region = useRecoilValue(regionSelectionState);
   const selectedMenu = useRecoilValue(menuSelectionState);
-  const { data, isLoading } = useQuery(['spot_data', region], () =>
-    fetchSpotData({ region })
-  );
 
   return (
     <Container>
@@ -30,17 +18,15 @@ const MainPage = () => {
       {(selectedMenu === '관광지' ||
         selectedMenu === '음식점' ||
         selectedMenu === '숙박') && <RegionSelection />}
-      {isLoading ? (
-        <Loader />
-      ) : selectedMenu === 'HOME' ? (
+      {selectedMenu === 'HOME' ? (
         <>
           <SliderBanner />
-          <SpotRecommendation propsData={data?.items.item} />
+          <SpotRecommendation />
           <StayRecommendation />
           <RestaurantRecommendation />
         </>
       ) : selectedMenu === '관광지' ? (
-        <SelectionResult propsData={data} />
+        <SelectionResult />
       ) : selectedMenu === '숙박' ? (
         <div>숙박 정보 준비중</div>
       ) : selectedMenu === '음식점' ? (
@@ -48,7 +34,7 @@ const MainPage = () => {
       ) : (
         <>
           <SliderBanner />
-          <SpotRecommendation propsData={data?.items.item} />
+          <SpotRecommendation />
           <StayRecommendation />
           <RestaurantRecommendation />
         </>

@@ -5,15 +5,18 @@ import {
   fetchNearStayData,
   fetchNearRestaurantData,
   FetchedStayDataType,
-} from "../apis/publicAPI";
-import styled from "styled-components";
-import Loader from "../components/Loader/Loader";
-import { useEffect } from "react";
-import { doc, setDoc, getDoc, updateDoc, increment } from "firebase/firestore";
-import { db } from "../apis/firebase";
-import RestaurantInfo from "../components/RestaurantInfo";
-import Liked from "../components/Liked";
-import StayInfo from "../components/Stayinfo";
+
+} from '../apis/publicAPI';
+import styled from 'styled-components';
+import Loader from '../components/Loader/Loader';
+import { useEffect } from 'react';
+import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
+import { db } from '../apis/firebase';
+import RestaurantInfo from '../components/RestaurantInfo';
+import Liked from '../components/Liked';
+import StayInfo from '../components/StayInfo';
+import Communication from '../components/Review/Communication';
+
 
 const DetailPage = () => {
   const param = useParams();
@@ -76,6 +79,7 @@ const DetailPage = () => {
                 <div>{spotData.title}</div>
                 <img src={spotData.firstimage} alt="관광지 사진" />
                 <div>주소 : {spotData.addr1}</div>
+                <Communication />
                 <Link to={`/spot/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
                 <Liked spotData={spotData} />
