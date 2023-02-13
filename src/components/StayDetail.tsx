@@ -27,7 +27,6 @@ const StayEachItemWrapper = styled.div`
   width: 17%;
   height: 200px;
   margin: 10px 10px 10px 10px;
-  z-index: -1;
 `;
 
 const StayImgWrapper = styled.div`

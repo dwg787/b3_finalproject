@@ -26,7 +26,6 @@ const RestaurantEachItemWrapper = styled.div`
   width: 17%;
   height: 200px;
   margin: 10px 10px 10px 10px;
-  z-index: -1;
 `;
 
 const RestaurantImgWrapper = styled.div`

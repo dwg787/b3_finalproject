@@ -17,6 +17,7 @@ export default function MainSlide() {
     slidesToScroll: 1, // 몇개를 넘길것인가
     initialSlide: 1, //첫 번째 슬라이드의 인덱스
     autoplay: 1000, //1000 == 1s 자동으로 넘어가는 시간
+    Arrows: true,
   };
 
   return (
@@ -47,6 +48,7 @@ const ContainerDiv = styled.div`
   align-items: center;
   margin-top: 20px;
   z-index: -1;
+  background-color: gray;
 `;
 
 const WarpDiv = styled.div`

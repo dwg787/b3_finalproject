@@ -35,7 +35,6 @@ const SpotImgWrapper = styled.div`
   position: relative;
   border-radius: 5px;
   overflow: hidden;
-  z-index: -1;
 `;
 
 const SpotEachItemImg = styled.img`
