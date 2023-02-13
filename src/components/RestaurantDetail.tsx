@@ -1,7 +1,7 @@
-import { FetchedStayDataType } from '../apis/publicAPI';
-import styled from 'styled-components';
-import noimg from '../assets/noimg.png';
-import { useNavigate } from 'react-router-dom';
+import { FetchedStayDataType } from "../apis/publicAPI";
+import styled from "styled-components";
+import noimg from "../assets/noimg.png";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
@@ -10,8 +10,8 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
       <RestaurantImgWrapper>
         <RestaurantEachItemImg
           src={props.img || noimg}
-          alt='사진'
-          decoding='async'
+          alt="사진"
+          decoding="async"
           onClick={() => navigate(`/restaurant/${props.id}`)}
         />
       </RestaurantImgWrapper>
@@ -26,6 +26,7 @@ const RestaurantEachItemWrapper = styled.div`
   width: 17%;
   height: 200px;
   margin: 10px 10px 10px 10px;
+  z-index: -1;
 `;
 
 const RestaurantImgWrapper = styled.div`
