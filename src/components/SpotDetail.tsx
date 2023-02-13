@@ -1,15 +1,22 @@
-import React, { Children, useCallback, useEffect } from 'react';
 import { FetchedStayDataType } from '../apis/publicAPI';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import noimg from '../assets/noimg.png';
+import { useNavigate } from 'react-router-dom';
 
 const SpotDetail = (props: FetchedStayDataType) => {
+  const navigate = useNavigate();
+
   return (
     <SpotEachItemWrapper>
-      <SpotEachItemImgWrapper src={props.img} alt='사진' />
-      <Link style={{ textDecoration: 'none' }} to={`/${props.id}`}>
-        {props.children}
-      </Link>
+      <SpotImgWrapper>
+        <SpotEachItemImg
+          src={props.img || noimg}
+          alt='사진'
+          onClick={() => navigate(`/spot/${props.id}`)}
+          onMouseOver={() => {}}
+        />
+      </SpotImgWrapper>
+      <SpotTitle>{props.children}</SpotTitle>
     </SpotEachItemWrapper>
   );
 };
@@ -17,13 +24,27 @@ const SpotDetail = (props: FetchedStayDataType) => {
 export default SpotDetail;
 
 const SpotEachItemWrapper = styled.div`
-  width: 18%;
+  width: 17%;
   height: 200px;
   margin: 10px 10px 10px 10px;
 `;
 
-const SpotEachItemImgWrapper = styled.img`
+const SpotImgWrapper = styled.div`
   width: 100%;
-  height: 85%;
-  border-radius: 10px;
+  height: 100%;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
 `;
+
+const SpotEachItemImg = styled.img`
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    transition: all 0.35s;
+  }
+`;
+
+const SpotTitle = styled.div``;

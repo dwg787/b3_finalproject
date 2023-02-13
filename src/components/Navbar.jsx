@@ -1,12 +1,13 @@
-import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../apis/firebase";
 import styled from "styled-components";
-import searchIcon from "../assets/search.png";
 import { useEffect, useState } from "react";
 import { LoginPage } from "../pages";
 import axios from "axios";
 import QueryString from "qs";
+import mainlogo from "../assets/mainlogo.png";
+import SearchIcon from "../assets/search.png";
 
 const Navbar = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ const Navbar = () => {
   console.log(localId);
   const currentUser = auth.currentUser;
   const userNickName = currentUser?.displayName;
+  console.log(userNickName);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -36,7 +38,7 @@ const Navbar = () => {
   const [profileImage, setProfileImage] = useState();
   const [accessToken, setAccessToken] = useState();
 
-  console.log(accessToken);
+  // console.log(accessToken);
   const getUser = async () => {
     const ACCESS_TOKEN = await fetch("https://kauth.kakao.com/oauth/token", {
       method: "POST",
@@ -70,7 +72,7 @@ const Navbar = () => {
     setProfileImage(user.data.properties.profile_image);
     sessionStorage.setItem("id", user.data.properties.nickname);
   };
-  console.log(nickName, profileImage);
+  // console.log(nickName, profileImage);
 
   useEffect(() => {
     getUser();
@@ -106,44 +108,34 @@ const Navbar = () => {
     sessionStorage.removeItem("id");
     localStorage.removeItem("token_for_kakaotalk");
     navigate("/");
+    window.location.reload();
   };
-
+  // const localId = sessionStorage.getItem('id');
+  // console.log(localId);
   return (
     <Nav>
-      <LeftSection>
+      <div>
         <Link to="/" style={{ textDecoration: "none" }}>
-          방방곡곡 로고
+          <Mainlogo src={mainlogo} alt="" />
         </Link>
-      </LeftSection>
-      <MenuSection>
-        <LinktoSearchPageBtnWrapper>
-          <label>
-            <LinktoSearchPageBtn onClick={() => navigate("/search")}>관광지 검색하러 가기!</LinktoSearchPageBtn>
-            {/* <SearchBtnPlaceholder>관광지 검색하러 가기!</SearchBtnPlaceholder> */}
-            <SearchIcon src={searchIcon} alt="" />
-          </label>
-        </LinktoSearchPageBtnWrapper>
-        <NavUl>
-          {/* <NavLi>
-            <NavText to='/'>메뉴1</NavText>
-          </NavLi>
-          <NavLi>
-            <NavText to='/map'>메뉴2</NavText>
-          </NavLi>
-          <NavLi>
-            <NavText to='/mypage'>메뉴3</NavText>
-          </NavLi> */}
-        </NavUl>
-      </MenuSection>
-      <InfoSection>
+      </div>
+      <div>
+        <label>
+          <InputBox onClick={() => navigate("/search")}>
+            <div>관광지 검색하러 가기!</div>
+            <SearchIconImg src={SearchIcon} alt="" />
+          </InputBox>
+        </label>
+      </div>
+      <div>
         <LoginButtonBox>
           {localId !== null ? (
-            <NicknameBox>
-              <NickName onClick={() => navigate("/my")}>{localId}님</NickName>
+            <LoginBox>
+              <div>{localId}님</div>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
-            </NicknameBox>
+            </LoginBox>
           ) : (
-            <>
+            <LoginBox>
               {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
               <LoginButton onClick={() => setShowModal(true)}>Login</LoginButton>
               {showModal && (
@@ -156,161 +148,150 @@ const Navbar = () => {
                   </Modal>
                 </ModalWrapper>
               )}
-            </>
+            </LoginBox>
           )}
         </LoginButtonBox>
-      </InfoSection>
+      </div>
     </Nav>
   );
 };
 
 export default Navbar;
 
+const Mainlogo = styled.img`
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+`;
+
 const Nav = styled.div`
   width: 100%;
-  height: 8vh;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #e34647;
+  background-color: #fafafa;
 `;
 
-const NicknameBox = styled.div`
-  display: flex;
-  align-items: center;
-`;
+// const LeftSection = styled.div`
+//   width: 25%;
+//   margin-left: 2rem;
+// `;
 
-const NickName = styled.button`
-  margin-right: 50px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 17px;
-`;
+// const LogoImg = styled.img`
+//   width: 150px;
+// `;
 
-const LeftSection = styled.div`
-  width: 15%;
-  margin-left: 2rem;
-`;
+// const ImgNick = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-items: center;
+//   text-align: center;
+//   gap: 1rem;
+// `;
 
-const LogoImg = styled.img`
-  width: 150px;
-`;
+// const FbImg = styled.div`
+//   display: flex;
+//   align-items: center;
+// `;
 
-const ImgNick = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-  text-align: center;
-  gap: 1rem;
-`;
+// const FontBox = styled.div`
+//   width: 100%;
+//   @media (max-width: 850px) {
+//     display: none;
+//   }
+// `;
 
-const FbImg = styled.div`
-  display: flex;
-  align-items: center;
-`;
+// const Font = styled.h4`
+//   font-size: 25px;
+//   margin-top: 0.4rem;
+// `;
 
-const FontBox = styled.div`
-  width: 100%;
-  @media (max-width: 850px) {
-    display: none;
-  }
-`;
+// const MenuSection = styled.div`
+//   width: 40%;
+// `;
 
-const Font = styled.h4`
-  font-size: 25px;
-  margin-top: 0.4rem;
-`;
+// const NavUl = styled.ul`
+//   display: flex;
+//   flex-direction: row;
+//   @media screen and (max-width: 800px) {
+//     flex-direction: column;
+//   }
+// `;
 
-const MenuSection = styled.div`
-  width: 45%;
-`;
+// const NavLi = styled.li`
+//   list-style: none;
+//   text-decoration: none;
+//   &:hover {
+//     text-decoration: underline;
+//     color: #4285f4;
+//   }
+// `;
+// const NavText = styled(Link)`
+//   text-decoration: none;
+//   color: black;
+//   font-size: 20px;
+// `;
 
-const NavUl = styled.ul`
-  display: flex;
-  flex-direction: row;
-  @media screen and (max-width: 800px) {
-    flex-direction: column;
-  }
-`;
-
-const NavLi = styled.li`
-  list-style: none;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-    color: #4285f4;
-  }
-`;
-const NavText = styled(Link)`
-  text-decoration: none;
-  color: black;
-  font-size: 20px;
-`;
-
-const InfoSection = styled.div`
-  width: 30%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
+// const InfoSection = styled.div`
+//   width: 20%;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: center;
+// `;
 
 const LoginButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
   border: none;
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  font-size: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   border-radius: 10px;
   width: 100px;
-  background-color: #f19936;
-  /* background: linear-gradient(90deg, #4285f4 0%, #3b5d9d 100%); */
+  background-color: #6478ff;
   color: white;
-  font-weight: 1000;
   cursor: pointer;
 `;
 const LoginButtonBox = styled.div`
-  margin-right: 1.5rem;
+  /* margin-right: 1.5rem; */
   align-items: flex-end;
 `;
 
-const ProfileImg = styled.img`
-  width: 45px;
-  height: 45px;
-  border-radius: 100%;
+const LoginBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 `;
 
-const LinktoSearchPageBtn = styled.button`
-  width: 300px;
+const InputBox = styled.div`
+  display: flex;
+  gap: 150px;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
   height: 30px;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid #666666;
   text-indent: 10px;
   font-weight: 500;
-  text-align: left;
-  background-color: #fff;
+  background-color: white;
+  color: #666666;
+  cursor: pointer;
 `;
 
-const LinktoSearchPageBtnWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const SearchIcon = styled.img`
-  position: relative;
-  width: 15px;
-  height: 15px;
-  margin-left: -25px;
-  margin-bottom: -3px;
-`;
-
-// const SearchBtnPlaceholder = styled.span`
-//   position: relative;
-//   width: 200px;
-//   margin-left: 10px;
-//   /* margin-top: -20px; */
+// const ProfileImg = styled.img`
+//   width: 45px;
+//   height: 45px;
+//   border-radius: 100%;
 // `;
+
 const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -350,4 +331,9 @@ const CloseBtn = styled.button`
   font-size: 18px;
   color: #1f1f1f;
   cursor: pointer;
+`;
+
+const SearchIconImg = styled.img`
+  width: 20px;
+  height: 20px;
 `;

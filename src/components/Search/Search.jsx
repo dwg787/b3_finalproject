@@ -1,34 +1,51 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Fuse from 'fuse.js';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
+import styled from "styled-components";
+import Fuse from "fuse.js";
+import _ from "lodash";
+import SpotDetail from "../SpotDetail";
+import noimg from "../../assets/noimg.png";
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음
   // const [searchItem, setSearchItem] = useState("");
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   //모든객체를 가지고있음
   const [totalApi, setTotalApi] = useState([]);
 
-  //infinite scroll
-  const [items, setItems] = useState(Array.from({ length: 7 }));
-  const [infiniteItems, setInfiniteItems] = useState([]);
-  console.log(items);
-
+  //타이핑 되는 글자 근사치 검색
   const fuse = new Fuse(totalApi, {
-    keys: ['addr1', 'title'],
+    keys: ["addr1", "title"],
     includeScore: true,
   });
 
   const results = fuse.search(query);
-  console.log(results);
 
-  const searchItemHandler = ({ currentTarget = {} }) => {
-    const { value } = currentTarget;
-    setQuery(value);
+  // debounce=======================================================================================================================
+
+  // const debounce = (callback, delay) => {
+  //   let timerId = null;
+  //   return (...args) => {
+  //     if (timerId) clearTimeout(timerId);        프로젝트끝나면 열어보자!
+  //     timerId = setTimeout(() => {
+  //       callback(...args);
+  //     }, delay);
+  //   };
+  // };
+
+  const selectEventControl = (delay) => {
+    return _.debounce((text) => setQuery(text), delay, {
+      leading: false,
+      trailing: true,
+    });
   };
 
+  const handleSearchText = useCallback(selectEventControl(400), []);
+
+  const searchItemHandler = (e) => {
+    handleSearchText(e.target.value);
+  };
+  // ================================================================================================================================
   const fetchSpotSearchData = async () => {
     const res = await axios.get(
       `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`
@@ -36,20 +53,8 @@ export default function Search() {
     return setTotalApi(res.data.response.body.items.item);
   };
 
-  const fetchData = () => {
-    setInfiniteItems(totalApi);
-
-    setTimeout(() => {
-      setItems(items.concat(Array.from({ length: 7 })));
-    }, 3000);
-  };
-
   useEffect(() => {
     fetchSpotSearchData();
-  }, []);
-
-  useEffect(() => {
-    fetchData();
   }, []);
 
   return (
@@ -59,30 +64,25 @@ export default function Search() {
           <InputBox>
             <SearchTitleH1>어떤걸 찾는가?</SearchTitleH1>
             <SearchInput
-              placeholder='여기에 입력하면 무엇이던지 찾을수있지!'
-              // target={searchItem}
-              value={query}
+              placeholder="여기에 입력하면 무엇이던지 찾을수있지!"
               onChange={searchItemHandler}
             ></SearchInput>
             <RecommendH4>
               인기검색어 : 살려주세요, 정신나갈거같아, 취업할수있을까?
             </RecommendH4>
           </InputBox>
-          <ListBoxInfinite
-            dataLength={items.length}
-            next={fetchData}
-            hasMore={true}
-          >
-            {results.map((item) => {
-              if (item.score < 0.34) {
-                console.log(item);
+          <ListBoxInfinite>
+            {results.map((e) => {
+              if (e.score < 0.34) {
+                console.log(e);
                 return (
-                  <>
-                    <ListDiv key={item.key}>
-                      <ListImg src={item.item.firstimage} alt='' />
-                      {item.item.title}
-                    </ListDiv>
-                  </>
+                  <SpotDetail
+                    key={e.item.contentid}
+                    id={e.item.contentid}
+                    img={e.item.firstimage || noimg}
+                  >
+                    {e.item.title}
+                  </SpotDetail>
                 );
               }
             })}
@@ -129,7 +129,7 @@ const SearchInput = styled.input`
 
 const RecommendH4 = styled.h4``;
 
-const ListBoxInfinite = styled(InfiniteScroll)`
+const ListBoxInfinite = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;

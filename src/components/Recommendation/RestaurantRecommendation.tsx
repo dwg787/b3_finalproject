@@ -8,16 +8,19 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore';
-import SpotDetail from '../SpotDetail';
+import RestaurantDetail from '../RestaurantDetail';
 import { recCnts } from '../../apis/publicAPI';
 import { Link } from 'react-router-dom';
 
-const SpotRecommendation = (propsData: any) => {
+const RestaurantRecommendation = (propsData: any) => {
   const [recommendList, setRecommendList] = useState<recCnts>();
 
-  const spotRecommendationList = async () => {
+  const restaurantRecommendationList = async () => {
     const data = await getDocs(
-      query(collection(db, 'recommendation'), orderBy('viewCnt', 'desc'))
+      query(
+        collection(db, 'restaurant_recommendation'),
+        orderBy('viewCnt', 'desc')
+      )
     );
     const res = data.docs.map((doc: DocumentData) => {
       return {
@@ -29,25 +32,28 @@ const SpotRecommendation = (propsData: any) => {
 
   useEffect(() => {
     const fetchRecList = async () => {
-      const res = await spotRecommendationList();
+      const res = await restaurantRecommendationList();
       setRecommendList(res);
     };
     fetchRecList();
   }, []);
-
   return (
     <Container>
       <RecommendListIntroWrapper>
-        <RecommendListTitle>추천 관광지 TOP 10</RecommendListTitle>
+        <RecommendListTitle>추천 맛집 TOP 10</RecommendListTitle>
         <RecommendListLink to={'/my'}>전체보기</RecommendListLink>
       </RecommendListIntroWrapper>
       <RecommendListWrapper>
         {recommendList &&
           recommendList.slice(0, 10).map((e) => {
             return (
-              <SpotDetail key={e.contentid} id={e.contentid} img={e.firstimage}>
+              <RestaurantDetail
+                key={e.contentid}
+                id={e.contentid}
+                img={e.firstimage}
+              >
                 {e.title}
-              </SpotDetail>
+              </RestaurantDetail>
             );
           })}
       </RecommendListWrapper>
@@ -55,15 +61,14 @@ const SpotRecommendation = (propsData: any) => {
   );
 };
 
-export default SpotRecommendation;
+export default RestaurantRecommendation;
 
 const Container = styled.div`
   width: 100%;
   height: 500px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
   /* background-color: #d7d7d7; */
 `;
 
