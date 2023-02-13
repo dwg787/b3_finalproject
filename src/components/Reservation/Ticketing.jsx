@@ -8,6 +8,7 @@ import {
   collection,
 } from "firebase/firestore";
 import { auth, db } from "../../apis/firebase";
+import styled from "styled-components";
 
 const Ticketing = ({ stayDetailData }) => {
   const [name, setName] = useState("");
@@ -58,47 +59,85 @@ const Ticketing = ({ stayDetailData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">이름 : </label>
-      <input
-        type="text"
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br />
-      <label htmlFor="email">이메일 : </label>
-      <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br />
-      <label htmlFor="quantity">숙박인원 : </label>
-      <input
-        type="number"
-        id="quantity"
-        value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
-      />
-      <br />
-      <p>시작일</p>
-      <input
-        type="date"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-      />
-      <p>종료일</p>
-      <input
-        type="date"
-        value={termDate}
-        onChange={(e) => setTermDate(e.target.value)}
-      />
-      <button>장바구니담기</button>
-      <button>구매하기</button>
-    </form>
+    <StTicketingWrap>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">이름 : </label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <br />
+        <label htmlFor="email">이메일 : </label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <br />
+        <label htmlFor="quantity">숙박인원 : </label>
+        <input
+          type="number"
+          id="quantity"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+        <br />
+        <label htmlFor="start">시작일</label>
+        <input
+          id="start"
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <br />
+        <label htmlFor="term">종료일</label>
+        <input
+          id="term"
+          type="date"
+          value={termDate}
+          onChange={(e) => setTermDate(e.target.value)}
+        />
+        <StButton>
+          <Button>장바구니</Button>
+          <Button>구매하기</Button>
+        </StButton>
+      </form>
+    </StTicketingWrap>
   );
 };
 
 export default Ticketing;
+
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: none;
+  font-size: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 10px;
+  width: 100px;
+  background-color: #6478ff;
+  color: white;
+  margin: 10px;
+  cursor: pointer;
+`;
+
+const StButton = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const StTicketingWrap = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+`;

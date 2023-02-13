@@ -8,6 +8,7 @@ import KakaoMap from "../components/Map/KakaoMap";
 import { getDoc, setDoc, doc, updateDoc, increment } from "firebase/firestore";
 import { FetchedStayDataType } from "../apis/publicAPI";
 import { db } from "../apis/firebase";
+import noimg from "../assets/noimg.png";
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -69,7 +70,10 @@ const RestaurantDetailPage = () => {
             <div key={param.id}>
               <Link to={"/"}>메인으로</Link>
               <div>{restaurantDetailData.title}</div>
-              <img src={restaurantDetailData.firstimage} alt="관광지 사진" />
+              <img
+                src={restaurantDetailData.firstimage || noimg}
+                alt="관광지 사진"
+              />
               <div>주소 : {restaurantDetailData.addr1}</div>
               {/* <Link to={`/restaurant/${param.id}/map`}>지도보기</Link> */}
               {/* <div>{e.homepage}</div> */}

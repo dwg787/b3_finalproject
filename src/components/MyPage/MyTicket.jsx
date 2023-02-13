@@ -4,7 +4,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../../apis/firebase";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import noimg from "../../assets/noimg.png";
 const MyTicket = () => {
   const [tickets, setTickets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +37,7 @@ const MyTicket = () => {
           return (
             <StTicketCard key={i}>
               <StTicketCardLeft>
-                <StMyTicketImage src={data.img} alt="숙박 사진" />
+                <StMyTicketImage src={data.img || noimg} alt="숙박 사진" />
               </StTicketCardLeft>
               <StTicketCardRight>
                 <h2>{data.title}</h2>
@@ -106,11 +106,19 @@ const StTicketCardLeft = styled.div`
   float: left;
   /* background-color: #6b9cc7; */
   box-sizing: border-box;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 const StMyTicketImage = styled.img`
   width: 100%;
-  /* height: 150%; */
+  height: 100%;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    transition: all 0.35s;
+  }
 `;
