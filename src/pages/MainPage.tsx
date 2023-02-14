@@ -8,6 +8,8 @@ import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
 import StayRecommendation from '../components/Recommendation/StayRecommendation';
 import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
+import StaySelectionResult from '../components/Selection/StaySelectionResult';
+import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
 
 const MainPage = () => {
   const selectedMenu = useRecoilValue(menuSelectionState);
@@ -28,9 +30,9 @@ const MainPage = () => {
       ) : selectedMenu === '관광지' ? (
         <SelectionResult />
       ) : selectedMenu === '숙박' ? (
-        <div>숙박 정보 준비중</div>
+        <StaySelectionResult />
       ) : selectedMenu === '음식점' ? (
-        <div>음식점 정보 준비중</div>
+        <RestaurantSelectionResult />
       ) : (
         <>
           <SliderBanner />
