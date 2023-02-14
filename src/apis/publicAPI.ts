@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { Params } from 'react-router-dom';
+import axios from "axios";
+import { Params } from "react-router-dom";
 
 export interface FetchedStayDataType {
   [key: string]: string;
@@ -9,7 +9,7 @@ interface recCnt {
   [key: string]: string;
   // viewCnt: number;
 }
-type recCntWithViewCnt = Omit<recCnt, 'viewCnt'>;
+type recCntWithViewCnt = Omit<recCnt, "viewCnt">;
 
 export interface recCnts extends Array<recCnt> {}
 
