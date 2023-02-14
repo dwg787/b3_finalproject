@@ -51,6 +51,7 @@ const SignUpPage = () => {
             setNickName("");
             setPw("");
             sessionStorage.setItem("id", nickName);
+            sessionStorage.setItem("email", data.user.email);
             addDoc(collection(db, "users"), {
               email: data.user.email,
               name: data.user.displayName,
