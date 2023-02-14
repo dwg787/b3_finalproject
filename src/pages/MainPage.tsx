@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
 import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
@@ -8,11 +8,13 @@ import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
 import StayRecommendation from '../components/Recommendation/StayRecommendation';
 import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
-import StaySelectionResult from '../components/Selection/StaySelectionResult';
-import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
+// import StaySelectionResult from '../components/Selection/StaySelectionResult';
+// import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
 
 const MainPage = () => {
-  const selectedMenu = useRecoilValue(menuSelectionState);
+  const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
+  const selected = sessionStorage.getItem('mainpage_menu_type');
+  if (selected) setSelectedMenu(selected);
 
   return (
     <Container>
@@ -30,10 +32,12 @@ const MainPage = () => {
       ) : selectedMenu === '관광지' ? (
         <SelectionResult />
       ) : selectedMenu === '숙박' ? (
-        <StaySelectionResult />
-      ) : selectedMenu === '음식점' ? (
-        <RestaurantSelectionResult />
+        <div>작업중</div>
+      ) : // <StaySelectionResult />
+      selectedMenu === '음식점' ? (
+        <div>작업중</div>
       ) : (
+        // <RestaurantSelectionResult />
         <>
           <SliderBanner />
           <SpotRecommendation />
