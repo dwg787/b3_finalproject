@@ -1,18 +1,22 @@
-import { useState } from 'react';
-// import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { alarmState } from '../recoil/apiDataAtoms';
 
-// const useNotification = () => {
-//   const [noti, setNoti] = useState([]);
+const useNotification = (children: string) => {
+  const alarmMsg = useRecoilValue(alarmState);
+  const [noti, setNoti] = useState([]);
 
-//   const addNoti = () => {
-//     setNoti((prev) => {
-//       return prev.concat(`${faker.name.firstName()} joined!`);
-//     });
-//     setTimeout(() => {
-//       setNoti((prev) => prev.slice(1));
-//     }, 3000);
-//   };
-//   return { noti, setNoti, addNoti };
-// };
+  alarmMsg.push(children);
 
-// export default useNotification;
+  const addNoti = () => {
+    // setNoti((prev) => {
+    //   return prev.concat(alarmMsg);
+    // });
+    setTimeout(() => {
+      setNoti((prev) => prev.slice(1));
+    }, 3000);
+  };
+  return { noti, setNoti, addNoti };
+};
+
+export default useNotification;
