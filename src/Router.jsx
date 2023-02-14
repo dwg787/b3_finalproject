@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loader from "./components/Loader/Loader";
 import Navbar from "./components/Navbar";
 import ChatBotModal from "./components/bot/ChatBotModal";
 import TopButton from "./components/TopButton/TopButton";
+=======
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Loader from './components/Loader/Loader';
+import Navbar from './components/Navbar';
+import ChatBotModal from './components/bot/ChatBotModal';
+import TopButton from './components/TopButton/TopButton';
+import Ticketing from './components/Reservation/Ticketing';
+>>>>>>> 402ac7723ccd2ebb9db2de63fb9623212a9ca2d3
 import {
   MainPage,
   LoginPage,
@@ -16,7 +26,11 @@ import {
   SearchPage,
   StayDetailPage,
   RestaurantDetailPage,
+<<<<<<< HEAD
 } from "./pages";
+=======
+} from './pages';
+>>>>>>> 402ac7723ccd2ebb9db2de63fb9623212a9ca2d3
 
 const Router = () => {
   return (
@@ -26,6 +40,7 @@ const Router = () => {
         <ChatBotModal />
         <TopButton />
         <Routes>
+<<<<<<< HEAD
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/my" element={<MyPage />} />
@@ -37,6 +52,19 @@ const Router = () => {
           <Route path="/purchase" element={<PurchasePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
+=======
+          <Route path='/' element={<MainPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/my' element={<MyPage />} />
+          <Route path='/spot/:id' element={<DetailPage />} />
+          <Route path='/spot/:id/map' element={<MapPage />} />
+          <Route path='/stay/:id' element={<StayDetailPage />} />
+          <Route path='/restaurant/:id' element={<RestaurantDetailPage />} />
+          <Route path='/stay/:id/reservation' element={<ReservationPage />} />
+          <Route path='/purchase' element={<PurchasePage />} />
+          <Route path='/signup' element={<SignUpPage />} />
+          <Route path='/search' element={<SearchPage />} />
+>>>>>>> 402ac7723ccd2ebb9db2de63fb9623212a9ca2d3
         </Routes>
       </Suspense>
     </BrowserRouter>
