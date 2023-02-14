@@ -1,16 +1,15 @@
-import styled from 'styled-components';
-import SpotDetail from '../SpotDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
-import noimg from '../../assets/noimg.png';
-import Slider from 'react-slick';
-import { useInfiniteQuery, useQuery } from 'react-query';
-import { fetchSpotData } from '../../apis/publicAPI';
-import { useRecoilValue } from 'recoil';
-import { regionSelectionState } from '../../recoil/apiDataAtoms';
-import Loader from '../Loader/Loader';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { useEffect, useState } from 'react';
+import styled from "styled-components";
+import SpotDetail from "../SpotDetail";
+import { FetchedStayDataType } from "../../apis/publicAPI";
+import noimg from "../../assets/noimg.png";
+import { useInfiniteQuery, useQuery } from "react-query";
+import { fetchSpotData } from "../../apis/publicAPI";
+import { useRecoilValue } from "recoil";
+import { regionSelectionState } from "../../recoil/apiDataAtoms";
+import Loader from "../Loader/Loader";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useState } from "react";
 
 const SelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -22,7 +21,7 @@ const SelectionResult = () => {
     hasPreviousPage,
     fetchNextPage,
   } = useInfiniteQuery(
-    ['spot_data', region],
+    ["spot_data", region],
     ({ pageParam = 1 }) => fetchSpotData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
