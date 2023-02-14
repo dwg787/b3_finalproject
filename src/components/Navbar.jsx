@@ -17,7 +17,10 @@ const Navbar = () => {
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 29c767f4d36ddbbe51001c87622df4d5d307447f
   const localId = sessionStorage.getItem("id");
   // console.log(localId);
 
@@ -28,7 +31,10 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
 
   //kakaologin get location
+<<<<<<< HEAD
 
+=======
+>>>>>>> 29c767f4d36ddbbe51001c87622df4d5d307447f
   const KAKAO_CODE = location.search.split("=")[1];
   // console.log(KAKAO_CODE);
 
@@ -124,9 +130,14 @@ const Navbar = () => {
     //     alert("로그아웃에 실패했습니다.");
     //   });
     sessionStorage.removeItem("id");
+<<<<<<< HEAD
     localStorage.removeItem("token_for_kakaotalk");
     localStorage.removeItem("com.naver.nid.access_token");
     localStorage.removeItem("com.naver.nid.oauth.state_token");
+=======
+    sessionStorage.removeItem("email");
+    localStorage.removeItem("token_for_kakaotalk");
+>>>>>>> 29c767f4d36ddbbe51001c87622df4d5d307447f
     navigate("/");
     window.location.reload();
   };
@@ -199,17 +210,19 @@ const Navbar = () => {
         <LoginButtonBox>
           {localId !== null ? (
             <LoginBox>
+<<<<<<< HEAD
               <NickNameBtn onClick={() => navigate("/my")}>
                 {localId}님
               </NickNameBtn>
+=======
+              <NickNameBtn onClick={() => navigate("/my")}>{localId}님</NickNameBtn>
+>>>>>>> 29c767f4d36ddbbe51001c87622df4d5d307447f
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
             </LoginBox>
           ) : (
             <LoginBox>
               {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
-              <LoginButton onClick={() => setShowModal(true)}>
-                Login
-              </LoginButton>
+              <LoginButton onClick={() => setShowModal(true)}>Login</LoginButton>
               {showModal && (
                 <ModalWrapper>
                   <Modal>
