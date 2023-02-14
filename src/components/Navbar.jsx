@@ -1,23 +1,23 @@
-import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../apis/firebase';
-import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import { LoginPage } from '../pages';
-import axios from 'axios';
-import QueryString from 'qs';
-import mainlogo from '../assets/mainlogo.png';
-import SearchIcon from '../assets/search.png';
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../apis/firebase";
+import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { LoginPage } from "../pages";
+import axios from "axios";
+import QueryString from "qs";
+import mainlogo from "../assets/mainlogo.png";
+import SearchIcon from "../assets/search.png";
 
 const Navbar = () => {
   const location = useLocation();
   const history = useNavigate();
-  const REST_API_KEY = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI = 'http://localhost:3000/';
+  const REST_API_KEY = "06264d97cddc6d0d5ef77a0f28d69af9";
+  const REDIRECT_URI = "http://localhost:3000/";
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
-  const localId = sessionStorage.getItem('id');
+  const localId = sessionStorage.getItem("id");
   // console.log(localId);
   const currentUser = auth.currentUser;
   const userNickName = currentUser?.displayName;
@@ -26,27 +26,27 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
 
   //kakaologin get location
-  const KAKAO_CODE = location.search.split('=')[1];
+  const KAKAO_CODE = location.search.split("=")[1];
   // console.log(KAKAO_CODE);
   //   getuser 실행
 
-  const REST_API_KEY_KAKAO = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI_KAKAO = 'http://localhost:3000/';
+  const REST_API_KEY_KAKAO = "06264d97cddc6d0d5ef77a0f28d69af9";
+  const REDIRECT_URI_KAKAO = "http://localhost:3000/";
   const link_kakao = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY_KAKAO}&redirect_uri=${REDIRECT_URI_KAKAO}&response_type=code`;
-  const CLIENT_SECRET = 'jvRkvzZgcAhb2iq42YyYwqCoIY5t1uXS';
+  const CLIENT_SECRET = "jvRkvzZgcAhb2iq42YyYwqCoIY5t1uXS";
   const [nickName, setNickName] = useState();
   const [profileImage, setProfileImage] = useState();
   const [accessToken, setAccessToken] = useState();
 
   // console.log(accessToken);
   const getUser = async () => {
-    const ACCESS_TOKEN = await fetch('https://kauth.kakao.com/oauth/token', {
-      method: 'POST',
+    const ACCESS_TOKEN = await fetch("https://kauth.kakao.com/oauth/token", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
       },
       body: QueryString.stringify({
-        grant_type: 'authorization_code',
+        grant_type: "authorization_code",
         client_id: REST_API_KEY_KAKAO,
         redirect_uri: REDIRECT_URI_KAKAO,
         code: KAKAO_CODE,
@@ -54,14 +54,14 @@ const Navbar = () => {
       }),
     })
       .then((res) => res.json())
-      .catch((error) => console.log('error:', error));
+      .catch((error) => console.log("error:", error));
 
-    console.log('ACCESS_TOKEN1', ACCESS_TOKEN);
+    console.log("ACCESS_TOKEN1", ACCESS_TOKEN);
     setAccessToken(ACCESS_TOKEN.access_token);
-    console.log('ACCESS_TOKEN2', ACCESS_TOKEN.access_token);
-    localStorage.setItem('token_for_kakaotalk', ACCESS_TOKEN.access_token);
+    console.log("ACCESS_TOKEN2", ACCESS_TOKEN.access_token);
+    localStorage.setItem("token_for_kakaotalk", ACCESS_TOKEN.access_token);
 
-    const user = await axios.get('https://kapi.kakao.com/v2/user/me', {
+    const user = await axios.get("https://kapi.kakao.com/v2/user/me", {
       headers: {
         Authorization: `Bearer ${ACCESS_TOKEN.access_token}`,
       },
@@ -70,7 +70,7 @@ const Navbar = () => {
     console.log(user);
     setNickName(user.data.properties.nickname);
     setProfileImage(user.data.properties.profile_image);
-    sessionStorage.setItem('id', user.data.properties.nickname);
+    sessionStorage.setItem("id", user.data.properties.nickname);
   };
   // console.log(nickName, profileImage);
 
@@ -83,31 +83,32 @@ const Navbar = () => {
   // 로그아웃
   const LogOutHandler = async () => {
     await signOut(auth);
-    const AccessToken = window.localStorage.getItem('token_for_kakaotalk');
+    const AccessToken = window.localStorage.getItem("token_for_kakaotalk");
     console.log(AccessToken);
-    const islogout = await fetch('https://kapi.kakao.com/v1/user/logout', {
+    const islogout = await fetch("https://kapi.kakao.com/v1/user/logout", {
       headers: {
         Authorization: `Bearer ${AccessToken}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      method: 'POST',
+      method: "POST",
     }).then((res) => res.json());
 
-    console.log('isLogout', islogout);
+    console.log("isLogout", islogout);
     //   .then(() => {
     //     alert("로그아웃 되었습니다.");
 
     // 로그아웃 성공
     setShowModal(false);
-    navigate('/', { replace: true });
+    navigate("/", { replace: true });
     //   })
     //   .catch((error) => {
     //     // 로그아웃 실패
     //     alert("로그아웃에 실패했습니다.");
     //   });
-    sessionStorage.removeItem('id');
-    localStorage.removeItem('token_for_kakaotalk');
-    navigate('/');
+    sessionStorage.removeItem("id");
+    sessionStorage.removeItem("email");
+    localStorage.removeItem("token_for_kakaotalk");
+    navigate("/");
     window.location.reload();
   };
   // const localId = sessionStorage.getItem('id');
@@ -115,15 +116,15 @@ const Navbar = () => {
   return (
     <Nav>
       <div>
-        <Link to='/' style={{ textDecoration: 'none' }}>
-          <Mainlogo src={mainlogo} alt='' />
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Mainlogo src={mainlogo} alt="" />
         </Link>
       </div>
       <div>
         <label>
-          <InputBox onClick={() => navigate('/search')}>
+          <InputBox onClick={() => navigate("/search")}>
             <div>관광지 검색하러 가기!</div>
-            <SearchIconImg src={SearchIcon} alt='' />
+            <SearchIconImg src={SearchIcon} alt="" />
           </InputBox>
         </label>
       </div>
@@ -131,17 +132,13 @@ const Navbar = () => {
         <LoginButtonBox>
           {localId !== null ? (
             <LoginBox>
-              <NickNameBtn onClick={() => navigate('/my')}>
-                {localId}님
-              </NickNameBtn>
+              <NickNameBtn onClick={() => navigate("/my")}>{localId}님</NickNameBtn>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
             </LoginBox>
           ) : (
             <LoginBox>
               {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
-              <LoginButton onClick={() => setShowModal(true)}>
-                Login
-              </LoginButton>
+              <LoginButton onClick={() => setShowModal(true)}>Login</LoginButton>
               {showModal && (
                 <ModalWrapper>
                   <Modal>
