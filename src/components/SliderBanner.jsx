@@ -1,11 +1,14 @@
-import React from "react";
-import Slider from "react-slick";
-import styled from "styled-components";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import slide1 from "../assets/slider1.jpeg";
-import slide2 from "../assets/slide2.jpeg";
-import slider3 from "../assets/slider3.jpeg";
+import React from 'react';
+import Slider from 'react-slick';
+import styled from 'styled-components';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import slide1 from '../assets/slide1.jpeg';
+import mainImg from '../assets/mainImg.png';
+import mainImg2 from '../assets/mainImg2.png';
+// import slide1 from "../assets/slider1.jpeg";
+// import slide2 from "../assets/slide2.jpeg";
+// import slider3 from "../assets/slider3.jpeg";
 
 export default function MainSlide() {
   const settings = {
@@ -26,13 +29,13 @@ export default function MainSlide() {
       <WarpDiv>
         <MainSlider {...settings}>
           <ImgDiv>
-            <MainImg src={slide1} alt="배너2" srcSet="" />
+            <MainImg src={slide1} alt='배너1' srcSet='' />
           </ImgDiv>
           <ImgDiv>
-            <MainImg src={slide2} alt="배너3" srcSet="" />
+            <MainImg src={mainImg} alt='배너2' srcSet='' />
           </ImgDiv>
           <ImgDiv>
-            <MainImg src={slider3} alt="배너4" srcSet="" />
+            <MainImg src={mainImg2} alt='배너3' srcSet='' />
           </ImgDiv>
         </MainSlider>
       </WarpDiv>
@@ -52,12 +55,12 @@ const ContainerDiv = styled.div`
 `;
 
 const WarpDiv = styled.div`
-  width: 60%;
+  width: 80%;
   height: 480px;
 `;
 
 const MainSlider = styled(Slider)`
-  height: 95%;
+  height: 100%;
 `;
 
 const ImgDiv = styled.div`

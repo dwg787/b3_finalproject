@@ -4,7 +4,7 @@ import { FetchedStayDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.png';
 import Slider from 'react-slick';
 import { useInfiniteQuery, useQuery } from 'react-query';
-import { fetchSpotData } from '../../apis/publicAPI';
+import { fetchStayData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
@@ -12,11 +12,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState } from 'react';
 
-const SelectionResult = () => {
+const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
   const [curPage, setCurPage] = useState(1);
-  let firstNum = curPage - (curPage % 5) + 1;
-  let lastNum = curPage - (curPage % 5) + 5;
 
   const {
     data,
@@ -26,7 +24,7 @@ const SelectionResult = () => {
     fetchNextPage,
   } = useInfiniteQuery(
     ['spot_data', region],
-    ({ pageParam = 1 }) => fetchSpotData({ region, pageParam }),
+    ({ pageParam = 1 }) => fetchStayData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo ===
@@ -71,19 +69,17 @@ const SelectionResult = () => {
               </button>
             </BtnWrapper>
             <ResultWrapper>
-              {data.pages[curPage - 1]?.items.item.map(
-                (e: FetchedStayDataType) => {
-                  return (
-                    <SpotDetail
-                      key={e.contentid}
-                      id={e.contentid}
-                      img={e.firstimage || noimg}
-                    >
-                      {e.title}
-                    </SpotDetail>
-                  );
-                }
-              )}
+              {data.pages[curPage - 1]?.items.item.map((e) => {
+                return (
+                  <SpotDetail
+                    key={e.contentid}
+                    id={e.contentid}
+                    img={e.firstimage || noimg}
+                  >
+                    {e.title}
+                  </SpotDetail>
+                );
+              })}
             </ResultWrapper>
             <BtnWrapper>
               <button
@@ -106,7 +102,7 @@ const SelectionResult = () => {
   );
 };
 
-export default SelectionResult;
+export default StaySelectionResult;
 
 const SearchOverallResultContainer = styled.div`
   width: 100%;
