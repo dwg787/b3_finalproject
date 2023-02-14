@@ -79,7 +79,7 @@ const DetailPage = () => {
                 <img src={spotData.firstimage} alt='관광지 사진' />
                 <div>주소 : {spotData.addr1}</div>
                 <Communication />
-                {/* <Notification /> */}
+                <Notification />
                 <Link to={`/spot/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
                 <Liked spotData={spotData} />

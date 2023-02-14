@@ -28,5 +28,5 @@ export const recommendationCnt = atom<recCnts>({
 //알람 state
 export const alarmState = atom({
   key: 'alarmState',
-  default: [] as any,
+  default: [] as string[],
 });
