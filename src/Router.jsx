@@ -1,11 +1,11 @@
-import { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Loader from "./components/Loader/Loader";
-import Navbar from "./components/Navbar";
-import ChatBotModal from "./components/bot/ChatBotModal";
-import TopButton from "./components/TopButton/TopButton";
-import PayMent from "./components/PayMent/PayMent";
-import Ticketing from "./components/Reservation/Ticketing";
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Loader from './components/Loader/Loader';
+import Navbar from './components/Navbar';
+import ChatBotModal from './components/bot/ChatBotModal';
+import TopButton from './components/TopButton/TopButton';
+
+import Ticketing from './components/Reservation/Ticketing';
 
 import {
   MainPage,
@@ -19,7 +19,7 @@ import {
   SearchPage,
   StayDetailPage,
   RestaurantDetailPage,
-} from "./pages";
+} from './pages';
 
 const Router = () => {
   return (
@@ -40,7 +40,6 @@ const Router = () => {
           <Route path="/purchase" element={<PurchasePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
-          <Route path="/payment" element={<PayMent />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

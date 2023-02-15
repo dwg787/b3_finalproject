@@ -5,6 +5,7 @@ import {
   fetchNearStayData,
   fetchNearRestaurantData,
   FetchedStayDataType,
+<<<<<<< HEAD
 } from "../apis/publicAPI";
 import styled from "styled-components";
 import Loader from "../components/Loader/Loader";
@@ -16,13 +17,31 @@ import Liked from "../components/Liked";
 import StayInfo from "../components/StayInfo";
 import Communication from "../components/Review/Communication";
 import Notification from "../components/Notification/Notification";
+=======
+} from '../apis/publicAPI';
+import styled from 'styled-components';
+import Loader from '../components/Loader/Loader';
+import { useEffect } from 'react';
+import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
+import { db } from '../apis/firebase';
+import RestaurantInfo from '../components/RestaurantInfo';
+import Liked from '../components/Liked/Liked';
+import StayInfo from '../components/Stayinfo';
+import Communication from '../components/Review/Communication';
+import Notification from '../components/Notification/Notification';
+>>>>>>> 8e11f9753457ca95e9e500f9d8a9a965ba23e8e5
 
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
+<<<<<<< HEAD
     ["spot_detail", param],
     () => fetchSpotDetailData({ param })
+=======
+    ['spot_detail', param],
+    () => fetchSpotDetailData({ param }),
+>>>>>>> 8e11f9753457ca95e9e500f9d8a9a965ba23e8e5
   );
 
   // console.log(spotData);

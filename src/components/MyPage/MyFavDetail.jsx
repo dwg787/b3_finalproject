@@ -17,15 +17,6 @@ const MyFavDetail = ({ title, getLiked }) => {
     });
   };
 
-  // useEffect(() => {
-  //   delLiked()
-  //     .then(() => {
-  //       window.alert("Like 삭제 완료");
-  //       getLiked();
-  //     })
-  //     .catch((e) => console.log(e));
-  // }, [title]);
-
   console.log(title);
 
   return (

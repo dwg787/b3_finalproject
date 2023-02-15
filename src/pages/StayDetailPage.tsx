@@ -3,12 +3,13 @@ import { fetchStayDetailInfo } from "../apis/publicAPI";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import Loader from "../components/Loader/Loader";
-import Liked from "../components/Liked";
+import Liked from "../components/Liked/Liked";
 import KakaoMap from "../components/Map/KakaoMap";
 import { getDoc, setDoc, doc, updateDoc, increment } from "firebase/firestore";
 import { FetchedStayDataType } from "../apis/publicAPI";
 import { db } from "../apis/firebase";
 import Cart from "../components/Cart";
+import StayLiked from "../components/Liked/StayLiked";
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -69,7 +70,7 @@ const StayDetailPage = () => {
               <div>주소 : {stayDetailData.addr1}</div>
               {/* <Link to={`/restaurant/${param.id}/map`}>지도보기</Link> */}
               {/* <div>{e.homepage}</div> */}
-              <Liked stayDetailData={stayDetailData} />
+              <StayLiked stayDetailData={stayDetailData} />
               <Cart stayDetailData={stayDetailData} />
 
               <button>
