@@ -31,6 +31,7 @@ const SpotRecommendation = (propsData: any) => {
     };
     fetchRecList();
   }, []);
+
   return (
     <Container>
       <RecommendListIntroWrapper>

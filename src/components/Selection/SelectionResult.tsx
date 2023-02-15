@@ -65,6 +65,7 @@ const SelectionResult = () => {
   }, [spotCurPage]);
 
   useEffect(() => {
+    maxPageNo.current = 1;
     setSpotCurPage(1);
   }, [region]);
 

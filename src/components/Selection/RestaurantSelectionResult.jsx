@@ -70,7 +70,7 @@ const RestaurantSelectionResult = () => {
   }, [restaurantCurPage]);
 
   useEffect(() => {
-    console.log('setCurPage');
+    maxPageNo.current = 1;
     setRestaurantCurPage(1);
   }, [region]);
 
