@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import SpotDetail from '../SpotDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import StayDetail from '../StayDetail';
 import noimg from '../../assets/noimg.avif';
-import Slider from 'react-slick';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { fetchStayData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
@@ -20,8 +18,6 @@ const StaySelectionResult = () => {
   const {
     data,
     isLoading,
-    hasNextPage,
-    hasPreviousPage,
     fetchNextPage: fetchStayNextPage,
   } = useInfiniteQuery(
     ['stay_data', region],
@@ -39,14 +35,6 @@ const StaySelectionResult = () => {
       staleTime: 1000 * 60 * 60,
     },
   );
-
-  console.log('숙박 stayCurPage', stayCurPage);
-  console.log('숙박 리스트', data);
-  console.log('숙박 maxPage', maxPageNo);
-
-  // useEffect(() => {
-  //   fetchNextPage();
-  // }, [stayCurPage]);
 
   const handleFetchNextPage = () => {
     setStayCurPage(stayCurPage + 1);
@@ -97,13 +85,13 @@ const StaySelectionResult = () => {
             <ResultWrapper>
               {data.pages[stayCurPage - 1]?.items.item.map((e) => {
                 return (
-                  <SpotDetail
+                  <StayDetail
                     key={e.contentid}
                     id={e.contentid}
                     img={e.firstimage || noimg}
                   >
                     {e.title}
-                  </SpotDetail>
+                  </StayDetail>
                 );
               })}
             </ResultWrapper>

@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchSpotDetailData, FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
 import Loader from '../components/Loader/Loader';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
@@ -11,14 +11,12 @@ import Liked from '../components/Liked/Liked';
 import StayInfo from '../components/StayInfo';
 import Communication from '../components/Review/Communication';
 import Notification from '../components/Notification/Notification';
-import SideScroll from '../components/Scroll/SideScroll';
 import DetailScroll from '../components/Scroll/DetailScroll';
 import MapImoji from '../components/Map/MapImoji';
 import KakaoMap from '../components/Map/KakaoMap';
 
 const DetailPage = () => {
   const param = useParams();
-  const navigate = useNavigate();
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
     () => fetchSpotDetailData({ param }),

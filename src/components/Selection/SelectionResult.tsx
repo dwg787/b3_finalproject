@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import SpotDetail from '../SpotDetail';
 import { FetchedStayDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
-import Slider from 'react-slick';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { fetchSpotData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
@@ -20,8 +19,6 @@ const SelectionResult = () => {
   const {
     data,
     isLoading,
-    hasNextPage,
-    hasPreviousPage,
     fetchNextPage: fetchSpotNextPage,
   } = useInfiniteQuery(
     ['spot_data', region],
@@ -40,19 +37,12 @@ const SelectionResult = () => {
     },
   );
 
-  console.log('관광지 spotCurPage', spotCurPage);
-  console.log('관광지 데이터', data);
-  console.log('관광지 maxPage', maxPageNo);
-
   const handleFetchNextPage = () => {
     setSpotCurPage(spotCurPage + 1);
     if (data) {
       if (spotCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
         fetchSpotNextPage();
       }
-      // if (hasNextPage) {
-      //   fetchSpotNextPage();
-      // }
     }
   };
 

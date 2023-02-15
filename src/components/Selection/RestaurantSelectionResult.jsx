@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import RestaurantDetail from '../RestaurantDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
-import Slider from 'react-slick';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { fetchRestaurantData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
@@ -11,7 +9,6 @@ import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
 
 const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -21,10 +18,7 @@ const RestaurantSelectionResult = () => {
   const {
     data,
     isLoading,
-    hasNextPage,
-    hasPreviousPage,
     fetchNextPage: fetchRestaurantNextPage,
-    // fetchPreviousPage,
   } = useInfiniteQuery(
     ['restaurant_data', region],
     ({ pageParam = 1 }) => fetchRestaurantData({ region, pageParam }),
@@ -42,22 +36,12 @@ const RestaurantSelectionResult = () => {
     },
   );
 
-  console.log('음식점 데이터', data);
-  console.log('음식점 curPage', restaurantCurPage);
-  console.log('음식점 maxPage', maxPageNo);
-
-  // useEffect(() => {
-  //   fetchNextPage();
-  // }, [curPage]);
   const handleFetchNextPage = () => {
     setRestaurantCurPage(restaurantCurPage + 1);
     if (data) {
       if (restaurantCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
         fetchRestaurantNextPage();
       }
-      // if (hasNextPage) {
-      //   fetchRestaurantNextPage();
-      // }
     }
   };
 
