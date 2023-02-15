@@ -1,27 +1,16 @@
-import {
-  addDoc,
-  collection,
-  doc,
-  deleteDoc,
-  getDocs,
-  updateDoc,
-  query,
-  onSnapshot,
-  QuerySnapshot,
-  orderBy,
-} from 'firebase/firestore';
+import { addDoc, collection, doc, deleteDoc, getDocs, updateDoc, query, onSnapshot, QuerySnapshot, orderBy } from "firebase/firestore";
 
-import React, { useState, useEffect } from 'react';
-import { db, auth } from '../../apis/firebase';
-import { useParams } from 'react-router-dom';
-import ReviewList from './ReviewList';
-import { Snapshot } from 'recoil';
+import React, { useState, useEffect } from "react";
+import { db, auth } from "../../apis/firebase";
+import { useParams } from "react-router-dom";
+import ReviewList from "./ReviewList";
+import { Snapshot } from "recoil";
 
 const Communication = () => {
-  const [newReview, setNewReview] = useState('');
+  const [newReview, setNewReview] = useState("");
   const [reviews, setReviews] = useState([]);
   const loginUser = auth.currentUser;
-  const usersCollectionRef = collection(db, 'reviews');
+  const usersCollectionRef = collection(db, "reviews");
   const params = useParams();
 
   //useparams 를 사용하여 id 값을 파이어베이스로 보낸후
@@ -31,7 +20,7 @@ const Communication = () => {
   // 화면이 처음 렌더링 할때 데이터를 가져옴
   useEffect(() => {
     const getReviews = async () => {
-      const q = query(usersCollectionRef, orderBy('date', 'desc'));
+      const q = query(usersCollectionRef, orderBy("date", "desc"));
       const unsubscrible = onSnapshot(q, (querySnapshot) => {
         const newList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -53,15 +42,15 @@ const Communication = () => {
         review: newReview,
         uid: loginUser?.uid,
         email: loginUser.email,
-        displayName: sessionStorage.getItem('id', auth.currentUser.displayName),
+        displayName: localStorage.getItem("id", auth.currentUser.displayName),
         //loginUser?.displayName
         paramId: params.id,
         date: Date.now(),
         //파이어스토어 db, reviews 에 저장
       });
-      setNewReview('');
+      setNewReview("");
     } else {
-      alert('로그인을 하세요');
+      alert("로그인을 하세요");
     }
   };
   return (
@@ -70,19 +59,12 @@ const Communication = () => {
       <div>
         {reviews.map((review, i) => {
           if (review.paramId === params.id) {
-            return (
-              <ReviewList
-                reviews={reviews}
-                setReviews={setReviews}
-                review={review}
-                i={i}
-              />
-            );
+            return <ReviewList reviews={reviews} setReviews={setReviews} review={review} i={i} />;
           }
         })}
         <input
           value={newReview}
-          placeholder='리뷰를 입력하세요.'
+          placeholder="리뷰를 입력하세요."
           onChange={(event) => {
             setNewReview(event.target.value);
           }}

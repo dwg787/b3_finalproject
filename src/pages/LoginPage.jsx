@@ -58,11 +58,12 @@ const LoginPage = () => {
         console.log(auth);
         console.log("이메일", emailRef.current.value);
         console.log("비번", passwordRef.current.value);
-        sessionStorage.setItem("id", data.user.displayName);
-        sessionStorage.setItem("email", data.user.email);
+        localStorage.setItem("id", data.user.displayName);
+        localStorage.setItem("email", data.user.email);
         const user_doc = addDoc(collection(db, "users"), {
           email: emailRef.current.value,
           name: data.user.displayName,
+          id: data.user.uid,
         });
 
         console.log(user_doc.id);
@@ -81,7 +82,7 @@ const LoginPage = () => {
   const handleclick = () => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email);
-      sessionStorage.setItem("id", data.user.displayName);
+      localStorage.setItem("id", data.user.displayName);
       // console.log("data", data);
       navigate("/");
     });

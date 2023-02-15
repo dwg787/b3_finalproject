@@ -6,7 +6,6 @@ import { fetchNearStayData } from "../apis/publicAPI";
 import Loader from "./Loader/Loader";
 import StayDetail from "./StayDetail";
 import noimg from "../assets/noimg.png";
-
 const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(["stay_list", spotData], () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }), {
     enabled: !!spotData,

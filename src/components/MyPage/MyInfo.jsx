@@ -45,22 +45,22 @@ const MyInfo = () => {
   };
 
   // 유저 정보 가져오기
-  const getUserInfo = async () => {
-    const docRef = doc(db, "users", currentUser);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      setEmail(docSnap.data().email);
-    }
-  };
+  // const getUserInfo = async () => {
+  //   const docRef = doc(db, "users", currentUser);
+  //   const docSnap = await getDoc(docRef);
+  //   if (docSnap.exists()) {
+  //     setEmail(docSnap.data().email);
+  //   }
+  // };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(auth.currentUser.uid);
-        setUserName(sessionStorage.getItem("id", auth.currentUser.displayName));
-        setEmail(sessionStorage.getItem("email", auth.currentUser.email));
+        setUserName(localStorage.getItem("id", auth.currentUser.displayName));
+        setEmail(localStorage.getItem("email", auth.currentUser.email));
 
-        getUserInfo();
+        // getUserInfo();
         console.log("로그인 되어있음");
       } else if (!user) {
         console.log("로그인 안됨");
