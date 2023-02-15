@@ -1,20 +1,26 @@
 import styled from 'styled-components';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
-import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
 import RegionSelection from '../components/Selection/RegionSelection';
 import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
-import StayRecommendation from '../components/Recommendation/StayRecommendation';
-import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
 import StaySelectionResult from '../components/Selection/StaySelectionResult';
 import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
 import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
 import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
+import MySpot from '../components/Recommendation/MySpot';
+import { useEffect } from 'react';
 const MainPage = () => {
-  const selectedMenu = useRecoilValue(menuSelectionState);
+  const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
+  const selected = sessionStorage.getItem('mainpage_menu_type');
+  if (selected) setSelectedMenu(selected);
+
+  useEffect(() => {
+    if (selected) setSelectedMenu(selected);
+  }, [selected]);
+
   return (
     <Container>
       <Menu />
@@ -24,7 +30,7 @@ const MainPage = () => {
       {selectedMenu === 'HOME' ? (
         <>
           <SliderBanner />
-          <SpotRecommendation />
+          <MySpot />
           <WeeklyTop10 />
           <MyChild />
           <BestDate />
@@ -40,7 +46,7 @@ const MainPage = () => {
       ) : (
         <>
           <SliderBanner />
-          <SpotRecommendation />
+          <MySpot />
           <WeeklyTop10 />
           <MyChild />
           <BestDate />
