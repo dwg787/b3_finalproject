@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Fuse from 'fuse.js';
 import _ from 'lodash';
 import SpotDetail from '../SpotDetail';
-import noimg from '../../assets/noimg.png';
+import noimg from '../../assets/noimg.avif';
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음

@@ -30,3 +30,13 @@ export const alarmState = atom({
   key: 'alarmState',
   default: [] as string[],
 });
+
+//페이지 state
+export const curPageState = atom({
+  key: 'curPageState',
+  default: {
+    spotCurPage: 1,
+    stayCurPage: 1,
+    resCurPage: 1,
+  },
+});

@@ -7,13 +7,13 @@ import {
   where,
   doc,
   deleteDoc,
-} from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { auth, db } from "../../apis/firebase";
-import Loader from "../Loader/Loader";
-import noimg from "../../assets/noimg.png";
-import { Link } from "react-router-dom";
+} from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { auth, db } from '../../apis/firebase';
+import Loader from '../Loader/Loader';
+import noimg from '../../assets/noimg.avif';
+import { Link } from 'react-router-dom';
 
 const MyRestaurantLiked = () => {
   const [restaurant, setRestaurant] = useState([]);
@@ -21,7 +21,7 @@ const MyRestaurantLiked = () => {
   const uid = auth.currentUser.uid;
 
   const getRestaurantLiked = async () => {
-    const q = query(collection(db, "restaurantlike"), where("uid", "==", uid));
+    const q = query(collection(db, 'restaurantlike'), where('uid', '==', uid));
     const data = await getDocs(q);
     const newData = data.docs.map((doc) => ({
       ...doc.data(),
@@ -41,7 +41,7 @@ const MyRestaurantLiked = () => {
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
   const delResLiked = async () => {
-    const docRef = doc(db, "restaurantlike", uid);
+    const docRef = doc(db, 'restaurantlike', uid);
     console.log(docRef);
     await deleteDoc(docRef);
   };
@@ -61,7 +61,7 @@ const MyRestaurantLiked = () => {
                       onClick={() => {
                         delResLiked()
                           .then(() => {
-                            window.alert("Like 삭제 완료");
+                            window.alert('Like 삭제 완료');
                             getRestaurantLiked();
                           })
                           .catch((e) => console.log(e));
@@ -73,7 +73,7 @@ const MyRestaurantLiked = () => {
 
                   <StMyTicketImage src={data.img || noimg} alt="사진" />
                 </StTicketCardLeft>
-                <StCartTitle>{data.restaurant.split("[", 1)}</StCartTitle>
+                <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
               </StTicketCard>
             );
           })}
@@ -99,7 +99,7 @@ const StTicket = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%
+  width: 100%;
   height: 100%;
   box-sizing: border-box;
 `;

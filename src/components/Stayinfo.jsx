@@ -5,7 +5,9 @@ import styled from 'styled-components';
 import { fetchNearStayData } from '../apis/publicAPI';
 import Loader from './Loader/Loader';
 import StayDetail from './StayDetail';
-import noimg from '../assets/noimg.png';
+
+import noimg from '../assets/noimg.avif';
+
 
 const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
