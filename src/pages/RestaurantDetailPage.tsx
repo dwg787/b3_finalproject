@@ -1,28 +1,28 @@
-import { useEffect } from "react";
-import { fetchRestaurantDetailInfo } from "../apis/publicAPI";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { useQuery } from "react-query";
-import Loader from "../components/Loader/Loader";
-import KakaoMap from "../components/Map/KakaoMap";
-import { getDoc, setDoc, doc, updateDoc, increment } from "firebase/firestore";
-import { FetchedStayDataType } from "../apis/publicAPI";
-import { db } from "../apis/firebase";
-import noimg from "../assets/noimg.png";
-import RestaurantLiked from "../components/Liked/RestaurantLiked";
+import { useEffect } from 'react';
+import { fetchRestaurantDetailInfo } from '../apis/publicAPI';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import Loader from '../components/Loader/Loader';
+import KakaoMap from '../components/Map/KakaoMap';
+import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
+import { FetchedStayDataType } from '../apis/publicAPI';
+import { db } from '../apis/firebase';
+import noimg from '../assets/noimg.avif';
+import RestaurantLiked from '../components/Liked/RestaurantLiked';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
   const {
     data: restaurantDetailData,
     isLoading: isLoadingRestaurantDetail,
-  } = useQuery(["restaurant_detail", param], () =>
-    fetchRestaurantDetailInfo({ param })
+  } = useQuery(['restaurant_detail', param], () =>
+    fetchRestaurantDetailInfo({ param }),
   );
 
   const getRestaurantRecCnt = async () => {
     if (param.id) {
       const data = await getDoc(
-        doc(db, "restaurant_recommendation", `${param.id}`)
+        doc(db, 'restaurant_recommendation', `${param.id}`),
       );
       return data.data();
     } else {
@@ -32,7 +32,7 @@ const RestaurantDetailPage = () => {
 
   const updateRestaurantRecCnt = async () => {
     if (param.id) {
-      await updateDoc(doc(db, "restaurant_recommendation", param.id), {
+      await updateDoc(doc(db, 'restaurant_recommendation', param.id), {
         viewCnt: increment(1),
       });
     }
@@ -40,7 +40,7 @@ const RestaurantDetailPage = () => {
 
   const saveNewRestaurantRecCnt = async (spotData: FetchedStayDataType) => {
     if (param.id) {
-      await setDoc(doc(db, "restaurant_recommendation", param.id), {
+      await setDoc(doc(db, 'restaurant_recommendation', param.id), {
         ...restaurantDetailData,
         viewCnt: 1,
       });
@@ -68,7 +68,7 @@ const RestaurantDetailPage = () => {
         <>
           {restaurantDetailData ? (
             <div key={param.id}>
-              <Link to={"/"}>메인으로</Link>
+              <Link to={'/'}>메인으로</Link>
               <div>{restaurantDetailData.title}</div>
               <img
                 src={restaurantDetailData.firstimage || noimg}
@@ -79,7 +79,7 @@ const RestaurantDetailPage = () => {
               {/* <div>{e.homepage}</div> */}
               <RestaurantLiked restaurantDetailData={restaurantDetailData} />
               <button>
-                <Link to={"/reservation"}>예약하기</Link>
+                <Link to={'/reservation'}>예약하기</Link>
               </button>
               <div>{restaurantDetailData.overview}</div>
               <KakaoMap

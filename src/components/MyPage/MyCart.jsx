@@ -1,10 +1,10 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { auth, db } from "../../apis/firebase";
-import Loader from "../Loader/Loader";
-import noimg from "../../assets/noimg.png";
-import { Link } from "react-router-dom";
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { auth, db } from '../../apis/firebase';
+import Loader from '../Loader/Loader';
+import noimg from '../../assets/noimg.avif';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
   const [carts, setCarts] = useState([]);
@@ -12,7 +12,7 @@ const MyCart = () => {
 
   const getCart = async () => {
     const uid = auth.currentUser.uid;
-    const q = query(collection(db, "carts"), where("uid", "==", uid));
+    const q = query(collection(db, 'carts'), where('uid', '==', uid));
     const data = await getDocs(q);
     const newData = data.docs.map((doc) => ({
       ...doc.data(),
@@ -42,7 +42,7 @@ const MyCart = () => {
                   <StTicketCardLeft>
                     <StMyTicketImage src={data.img || noimg} alt="숙박 사진" />
                   </StTicketCardLeft>
-                  <StCartTitle>{data.carts.split("[", 1)}</StCartTitle>
+                  <StCartTitle>{data.carts.split('[', 1)}</StCartTitle>
                 </StTicketCard>
               </Link>
             );

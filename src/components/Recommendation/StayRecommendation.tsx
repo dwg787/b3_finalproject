@@ -17,7 +17,7 @@ const StayRecommendation = (propsData: any) => {
 
   const stayRecommendationList = async () => {
     const data = await getDocs(
-      query(collection(db, 'stay_recommendation'), orderBy('viewCnt', 'desc'))
+      query(collection(db, 'stay_recommendation'), orderBy('viewCnt', 'desc')),
     );
     const res = data.docs.map((doc: DocumentData) => {
       return {
@@ -58,14 +58,17 @@ const StayRecommendation = (propsData: any) => {
 export default StayRecommendation;
 
 const Container = styled.div`
-  width: 100%;
+  width: 99%;
   height: 500px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* background-color: #d7d7d7; */
+  align-items: center;
+  justify-content: center;
+  margin-top: 65px;
+  border: 1.5px solid #6478ff;
+  border-radius: 50px;
+  box-shadow: 5px 5px #c8c8c8;
 `;
-
 const RecommendListIntroWrapper = styled.div`
   width: 100%;
   display: flex;

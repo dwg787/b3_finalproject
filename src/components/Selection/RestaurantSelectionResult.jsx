@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import SpotDetail from '../SpotDetail';
+import RestaurantDetail from '../RestaurantDetail';
 import { FetchedStayDataType } from '../../apis/publicAPI';
-import noimg from '../../assets/noimg.png';
+import noimg from '../../assets/noimg.avif';
 import Slider from 'react-slick';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { fetchRestaurantData } from '../../apis/publicAPI';
@@ -10,20 +10,23 @@ import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
 
 const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
-  const [curPage, setCurPage] = useState(1);
+  const [restaurantCurPage, setRestaurantCurPage] = useState(1);
+  const maxPageNo = useRef(1);
 
   const {
     data,
     isLoading,
     hasNextPage,
     hasPreviousPage,
-    fetchNextPage,
+    fetchNextPage: fetchRestaurantNextPage,
+    // fetchPreviousPage,
   } = useInfiniteQuery(
-    ['spot_data', region],
+    ['restaurant_data', region],
     ({ pageParam = 1 }) => fetchRestaurantData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
@@ -35,15 +38,40 @@ const RestaurantSelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      // staleTime: 1000 * 60 * 5,
-    }
+      staleTime: 1000 * 60 * 60,
+    },
   );
-  useEffect(() => {
-    fetchNextPage();
-  }, [curPage]);
+
+  // console.log('음식점 데이터', data);
+  // console.log('음식점 curPage', restaurantCurPage);
+  // console.log('음식점 maxPage', maxPageNo);
+
+  // useEffect(() => {
+  //   fetchNextPage();
+  // }, [curPage]);
+  const handleFetchNextPage = () => {
+    setRestaurantCurPage(restaurantCurPage + 1);
+    if (data) {
+      if (restaurantCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
+        fetchRestaurantNextPage();
+      }
+      // if (hasNextPage) {
+      //   fetchRestaurantNextPage();
+      // }
+    }
+  };
 
   useEffect(() => {
-    setCurPage(1);
+    if (data) {
+      if (maxPageNo.current < data.pages.length) {
+        maxPageNo.current = data.pages.length;
+      }
+    }
+  }, [restaurantCurPage]);
+
+  useEffect(() => {
+    console.log('setCurPage');
+    setRestaurantCurPage(1);
   }, [region]);
 
   return (
@@ -55,39 +83,41 @@ const RestaurantSelectionResult = () => {
       ) : (
         <>
           <ListItemCount>
-            총 {data.pages[curPage - 1]?.totalCount} 개의 결과
+            총 {data.pages[restaurantCurPage - 1]?.totalCount} 개의 결과
           </ListItemCount>
           <SearchListWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setCurPage(curPage - 1)}
+                onClick={() => setRestaurantCurPage(restaurantCurPage - 1)}
                 disabled={
-                  data.pages[curPage - 1]?.pageNo - 1 < 1 ? true : false
+                  data.pages[restaurantCurPage - 1]?.pageNo - 1 < 1
+                    ? true
+                    : false
                 }
               >
                 이전
               </button>
             </BtnWrapper>
             <ResultWrapper>
-              {data.pages[curPage - 1]?.items.item.map((e) => {
+              {data.pages[restaurantCurPage - 1]?.items.item.map((e) => {
                 return (
-                  <SpotDetail
+                  <RestaurantDetail
                     key={e.contentid}
                     id={e.contentid}
                     img={e.firstimage || noimg}
                   >
                     {e.title}
-                  </SpotDetail>
+                  </RestaurantDetail>
                 );
               })}
             </ResultWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setCurPage(curPage + 1)}
+                onClick={handleFetchNextPage}
                 disabled={
                   Math.ceil(
-                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows
-                  ) <= curPage
+                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
+                  ) <= restaurantCurPage
                     ? true
                     : false
                 }
@@ -121,12 +151,13 @@ const SearchListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 const ResultWrapper = styled.div`
-  width: 100%;
+  width: 70%;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;

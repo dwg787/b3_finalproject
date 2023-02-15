@@ -2,15 +2,18 @@ import { MENU_TYPE } from '../../apis/apiCodes';
 import styled, { css } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { menuSelectionState } from '../../recoil/apiDataAtoms';
+import { useEffect } from 'react';
 
 const SelectMenu = ({ children }: { children: string }) => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const value = MENU_TYPE.find((e) => e.type === children)?.type;
-  const isSelectedMenu = value === selectedMenu ? true : false;
+  let curType = sessionStorage.getItem('mainpage_menu_type');
+  const isSelectedMenu = value === curType ? true : false;
 
   const handleMainPageUI = () => {
     if (value) {
       setSelectedMenu(value);
+      sessionStorage.setItem('mainpage_menu_type', value);
     }
   };
 

@@ -237,6 +237,7 @@ const Mainlogo = styled.img`
   width: 100px;
   height: 30px;
   margin-top: 10px;
+  margin-left: 40px;
 `;
 
 const Nav = styled.div`
@@ -250,6 +251,7 @@ const Nav = styled.div`
 
 const NavTextDiv = styled.div`
   color: white;
+  margin-right: 10px;
 `;
 
 const LoginButton = styled.button`
@@ -266,13 +268,16 @@ const LoginButton = styled.button`
   border-radius: 10px;
   width: 100px;
   background-color: #6478ff;
+  border: 1px solid white;
   color: white;
   cursor: pointer;
+  margin-left: 10px;
 `;
 const LoginButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 40px;
 `;
 
 const LoginBox = styled.div`
@@ -350,6 +355,8 @@ const CloseBtn = styled.button`
 const SearchIconImg = styled.img`
   width: 30px;
   height: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
 `;
 
 const NickNameBtn = styled.button`
