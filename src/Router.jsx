@@ -5,7 +5,19 @@ import Navbar from "./components/Navbar";
 import ChatBotModal from "./components/bot/ChatBotModal";
 import TopButton from "./components/TopButton/TopButton";
 import Ticketing from "./components/Reservation/Ticketing";
-import { MainPage, LoginPage, ReservationPage, MyPage, DetailPage, MapPage, PurchasePage, SignUpPage, SearchPage, StayDetailPage, RestaurantDetailPage } from "./pages";
+import {
+  MainPage,
+  LoginPage,
+  ReservationPage,
+  MyPage,
+  DetailPage,
+  MapPage,
+  PurchasePage,
+  SignUpPage,
+  SearchPage,
+  StayDetailPage,
+  RestaurantDetailPage,
+} from "./pages";
 
 const Router = () => {
   return (

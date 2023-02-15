@@ -3,12 +3,12 @@ import { fetchRestaurantDetailInfo } from "../apis/publicAPI";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import Loader from "../components/Loader/Loader";
-import Liked from "../components/Liked";
 import KakaoMap from "../components/Map/KakaoMap";
 import { getDoc, setDoc, doc, updateDoc, increment } from "firebase/firestore";
 import { FetchedStayDataType } from "../apis/publicAPI";
 import { db } from "../apis/firebase";
 import noimg from "../assets/noimg.png";
+import RestaurantLiked from "../components/Liked/RestaurantLiked";
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -77,9 +77,8 @@ const RestaurantDetailPage = () => {
               <div>주소 : {restaurantDetailData.addr1}</div>
               {/* <Link to={`/restaurant/${param.id}/map`}>지도보기</Link> */}
               {/* <div>{e.homepage}</div> */}
-              <Liked restaurantDetailData={restaurantDetailData} />
+              <RestaurantLiked restaurantDetailData={restaurantDetailData} />
               <button>
-                {" "}
                 <Link to={"/reservation"}>예약하기</Link>
               </button>
               <div>{restaurantDetailData.overview}</div>

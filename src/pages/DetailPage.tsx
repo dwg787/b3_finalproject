@@ -5,18 +5,16 @@ import {
   fetchNearStayData,
   fetchNearRestaurantData,
   FetchedStayDataType,
-
-} from '../apis/publicAPI';
-import styled from 'styled-components';
-import Loader from '../components/Loader/Loader';
-import { useEffect } from 'react';
-import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
-import { db } from '../apis/firebase';
-import RestaurantInfo from '../components/RestaurantInfo';
-import Liked from '../components/Liked';
-import StayInfo from '../components/StayInfo';
-import Communication from '../components/Review/Communication';
-
+} from "../apis/publicAPI";
+import styled from "styled-components";
+import Loader from "../components/Loader/Loader";
+import { useEffect } from "react";
+import { doc, setDoc, getDoc, updateDoc, increment } from "firebase/firestore";
+import { db } from "../apis/firebase";
+import RestaurantInfo from "../components/RestaurantInfo";
+import Liked from "../components/Liked/Liked";
+import StayInfo from "../components/StayInfo";
+import Communication from "../components/Review/Communication";
 
 const DetailPage = () => {
   const param = useParams();

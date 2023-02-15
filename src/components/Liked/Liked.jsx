@@ -1,6 +1,7 @@
 import { doc, updateDoc, arrayUnion, setDoc, getDoc } from "firebase/firestore";
 import React from "react";
-import { auth, db } from "../apis/firebase";
+
+import { auth, db } from "../../apis/firebase";
 
 export default function Liked({ spotData }: UserProps): React.ReactElement {
   // const uid = auth.currentUser.uid;
