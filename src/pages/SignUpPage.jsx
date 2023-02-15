@@ -132,25 +132,70 @@ const SignUpPage = () => {
     <TestDiv>
       <SignUpContainer>
         <Login>
-          <h2>Login</h2>
+          <h2>Sign Up</h2>
         </Login>
 
-        <form>
+        <form onSubmit={signup}>
           <LoginBox>
-            <LoginInput className="user-box" type="text" />
+            <LoginInput
+              onChange={onChangeId}
+              value={id}
+              ref={idRef}
+              className="user-box"
+              type="text"
+            />
             <LoginLabel>이메일</LoginLabel>
+            <Error>
+              {id.length > 0 && (
+                <span className={`message ${isId ? 'success' : 'error'}`}>
+                  {idErrMsg}
+                </span>
+              )}
+            </Error>
           </LoginBox>
+
           <LoginBox>
-            <LoginInput type="text" />
+            <LoginInput
+              onChange={onChangeNickName}
+              value={nickName}
+              maxLength={10}
+              ref={nickNameRef}
+              type="text"
+            />
             <LoginLabel>닉네임</LoginLabel>
+            <Error>
+              <span className={`message ${isNickName ? 'success' : 'error'}`}>
+                {nickNameErrMsg}
+              </span>
+            </Error>
           </LoginBox>
           <LoginBox>
-            <LoginInput type="password" />
+            <LoginInput
+              onChange={onChangePw}
+              value={pw}
+              ref={pwRef}
+              type="password"
+            />
             <LoginLabel>비밀번호</LoginLabel>
+            <Error>
+              <span className={`message ${isPw ? 'success' : 'error'}`}>
+                {pwErrMsg}
+              </span>
+            </Error>
           </LoginBox>
           <LoginBox>
-            <LoginInput type="password" />
+            <LoginInput
+              type="password"
+              ref={pwConfirmRef}
+              value={pwConfirm}
+              onChange={onChangePwConfirm}
+            />
             <LoginLabel>비밀번호확인</LoginLabel>
+            <Error>
+              <span className={`message ${isPwConfirm ? 'success' : 'error'}`}>
+                {pwConfirmErrMsg}
+              </span>
+            </Error>
           </LoginBox>
           <LoginBox>
             <LoginInput type="text" />
@@ -160,7 +205,8 @@ const SignUpPage = () => {
             <LoginInput type="text" />
             <LoginLabel>휴대폰</LoginLabel>
           </LoginBox>
-          <SignUpBtn>회원가입</SignUpBtn>
+
+          <SignUpBtn data-text="회원가입">회원가입</SignUpBtn>
         </form>
       </SignUpContainer>
     </TestDiv>
@@ -168,41 +214,18 @@ const SignUpPage = () => {
 };
 export default SignUpPage;
 
-// const Error = styled.div`
-//   font-size: 12px;
-//   padding: 5px;
-//   .message {
-//     &.error {
-//       color: red;
-//     }
-//   }
-// `;
+const Error = styled.div`
+  position: absolute;
+  top: 40px;
+  font-size: 12px;
+  padding: 5px;
 
-// const Id = styled.div`
-//   display: flex;
-//   align-items: center;
-//   width: 300px;
-// `;
-
-// const Name = styled.div`
-//   display: flex;
-//   align-items: center;
-//   width: 300px;
-// `;
-
-// const Password = styled.div`
-//   display: flex;
-//   align-items: center;
-//   width: 300px;
-//   padding-right: 5px;
-// `;
-
-// const PasswordCheck = styled.div`
-//   display: flex;
-//   align-items: center;
-//   width: 300px;
-//   padding-right: 30px;
-// `;
+  .message {
+    &.error {
+      color: red;
+    }
+  }
+`;
 
 const TestDiv = styled.div`
   width: 100%;
@@ -218,9 +241,8 @@ const SignUpContainer = styled.div`
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(40, 45, 73, 0.5);
   border-radius: 10px;
-  padding: 40px;
 `;
 
 const Login = styled.div`
@@ -268,54 +290,53 @@ const SignUpBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  background-color: #e5e9ef;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  color: #343436;
-  font-size: 16px;
-  font-weight: 600;
-  transition: 0.5s;
+  margin-right: 30px;
   margin-top: 40px;
-  letter-spacing: 4px;
-  :hover {
-    background: #03e9f4;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: #ccc;
+  :before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: #4bb5cf;
     color: #fff;
-    box-shadow: 0 0 5px #27bdc5, 0 0 25px #2ac5cd, 0 0 50px #49c0c6,
-      0 0 100px #29b3bb;
+    transition: 0.5s;
+    transform-origin: bottom;
+    transform: translatey(-100%) rotatex(90deg);
+  }
+  :hover:before {
+    transform: translatey(0) rotatex(0deg);
+  }
+  :after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: #4bb5cf;
+    color: #fff;
+    transition: 0.5s;
+    transform-origin: top;
+    transform: translatey(0) rotatex(0deg);
+  }
+  :hover:after {
+    transform: translatey(100%) rotatex(90deg);
   }
 `;
-
-// const Label = styled.div`
-//   display: flex;
-// `;
-
-// const PasswordCheckLabel = styled.div`
-//   white-space: nowrap;
-//   /* font-size: 10px; */
-// `;
-
-// const Input = styled.input`
-//   border: none;
-//   border-bottom: 1px solid #ccc;
-//   color: #555;
-//   box-sizing: border-box;
-//   font-size: 18px;
-//   :focus-visible {
-//     outline: none;
-//   }
-//   margin-top: 3px;
-//   padding-left: 5px;
-// `;
-
-// const BlueButton = styled.button`
-//   align-items: center;
-//   background-color: #555555;
-//   border-radius: 5px;
-//   width: 250px;
-//   height: 40px;
-//   color: #ffff;
-//   font-size: 15px;
-//   cursor: pointer;
-// `;

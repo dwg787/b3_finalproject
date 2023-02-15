@@ -72,7 +72,6 @@ const LoginPage = ({ showModal, setShowModal }) => {
         const user_doc = addDoc(collection(db, 'users'), {
           email: emailRef.current.value,
           name: data.user.displayName,
-          id: data.user.uid,
         });
 
         console.log(user_doc.id);

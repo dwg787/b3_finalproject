@@ -17,7 +17,7 @@ const Navbar = () => {
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
-  const localId = sessionStorage.getItem('id');
+  const localId = localStorage.getItem('id');
   // console.log(localId);
 
   const currentUser = auth.currentUser;
