@@ -42,9 +42,9 @@ const RestaurantSelectionResult = () => {
     },
   );
 
-  // console.log('음식점 데이터', data);
-  // console.log('음식점 curPage', restaurantCurPage);
-  // console.log('음식점 maxPage', maxPageNo);
+  console.log('음식점 데이터', data);
+  console.log('음식점 curPage', restaurantCurPage);
+  console.log('음식점 maxPage', maxPageNo);
 
   // useEffect(() => {
   //   fetchNextPage();
@@ -70,7 +70,7 @@ const RestaurantSelectionResult = () => {
   }, [restaurantCurPage]);
 
   useEffect(() => {
-    console.log('setCurPage');
+    maxPageNo.current = 1;
     setRestaurantCurPage(1);
   }, [region]);
 
