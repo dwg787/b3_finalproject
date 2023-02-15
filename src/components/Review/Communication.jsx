@@ -1,13 +1,8 @@
 import {
   addDoc,
   collection,
-  doc,
-  deleteDoc,
-  getDocs,
-  updateDoc,
   query,
   onSnapshot,
-  QuerySnapshot,
   orderBy,
 } from 'firebase/firestore';
 
@@ -15,7 +10,6 @@ import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
-import { Snapshot } from 'recoil';
 
 const Communication = () => {
   const [newReview, setNewReview] = useState('');
