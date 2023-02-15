@@ -129,39 +129,41 @@ const SignUpPage = () => {
   };
 
   return (
-    <SignUpContainer>
-      <Login>
-        <h2>Login</h2>
-      </Login>
+    <TestDiv>
+      <SignUpContainer>
+        <Login>
+          <h2>Login</h2>
+        </Login>
 
-      <form>
-        <LoginBox>
-          <LoginInput className="user-box" type="text" />
-          <LoginLabel>이메일</LoginLabel>
-        </LoginBox>
-        <LoginBox>
-          <LoginInput type="text" />
-          <LoginLabel>닉네임</LoginLabel>
-        </LoginBox>
-        <LoginBox>
-          <LoginInput type="password" />
-          <LoginLabel>비밀번호</LoginLabel>
-        </LoginBox>
-        <LoginBox>
-          <LoginInput type="password" />
-          <LoginLabel>비밀번호확인</LoginLabel>
-        </LoginBox>
-        <LoginBox>
-          <LoginInput type="text" />
-          <LoginLabel>주소</LoginLabel>
-        </LoginBox>
-        <LoginBox>
-          <LoginInput type="text" />
-          <LoginLabel>휴대폰</LoginLabel>
-        </LoginBox>
-        <SignUpBtn>회원가입</SignUpBtn>
-      </form>
-    </SignUpContainer>
+        <form>
+          <LoginBox>
+            <LoginInput className="user-box" type="text" />
+            <LoginLabel>이메일</LoginLabel>
+          </LoginBox>
+          <LoginBox>
+            <LoginInput type="text" />
+            <LoginLabel>닉네임</LoginLabel>
+          </LoginBox>
+          <LoginBox>
+            <LoginInput type="password" />
+            <LoginLabel>비밀번호</LoginLabel>
+          </LoginBox>
+          <LoginBox>
+            <LoginInput type="password" />
+            <LoginLabel>비밀번호확인</LoginLabel>
+          </LoginBox>
+          <LoginBox>
+            <LoginInput type="text" />
+            <LoginLabel>주소</LoginLabel>
+          </LoginBox>
+          <LoginBox>
+            <LoginInput type="text" />
+            <LoginLabel>휴대폰</LoginLabel>
+          </LoginBox>
+          <SignUpBtn>회원가입</SignUpBtn>
+        </form>
+      </SignUpContainer>
+    </TestDiv>
   );
 };
 export default SignUpPage;
@@ -201,6 +203,11 @@ export default SignUpPage;
 //   width: 300px;
 //   padding-right: 30px;
 // `;
+
+const TestDiv = styled.div`
+  width: 100%;
+  height: 900px;
+`;
 
 const SignUpContainer = styled.div`
   position: absolute;

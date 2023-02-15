@@ -1,25 +1,28 @@
-import { addDoc, collection, doc, deleteDoc, getDocs, updateDoc, query, onSnapshot, QuerySnapshot, orderBy } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  deleteDoc,
+  getDocs,
+  updateDoc,
+  query,
+  onSnapshot,
+  QuerySnapshot,
+  orderBy,
+} from 'firebase/firestore';
 
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import { db, auth } from "../../apis/firebase";
-import { useParams } from "react-router-dom";
-import ReviewList from "./ReviewList";
-import { Snapshot } from "recoil";
-=======
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
 import { Snapshot } from 'recoil';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
->>>>>>> 69f5ea43f671637eede82d3e064a75b578aa557b
 
 const Communication = () => {
-  const [newReview, setNewReview] = useState("");
+  const [newReview, setNewReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const loginUser = auth.currentUser;
-  const usersCollectionRef = collection(db, "reviews");
+  const usersCollectionRef = collection(db, 'reviews');
   const params = useParams();
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
@@ -31,7 +34,7 @@ const Communication = () => {
   // 화면이 처음 렌더링 할때 데이터를 가져옴
   useEffect(() => {
     const getReviews = async () => {
-      const q = query(usersCollectionRef, orderBy("date", "desc"));
+      const q = query(usersCollectionRef, orderBy('date', 'desc'));
       const unsubscrible = onSnapshot(q, (querySnapshot) => {
         const newList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -53,15 +56,15 @@ const Communication = () => {
         review: newReview,
         uid: loginUser?.uid,
         email: loginUser.email,
-        displayName: localStorage.getItem("id", auth.currentUser.displayName),
+        displayName: localStorage.getItem('id', auth.currentUser.displayName),
         //loginUser?.displayName
         paramId: params.id,
         date: Date.now(),
         //파이어스토어 db, reviews 에 저장
       });
-      setNewReview("");
+      setNewReview('');
     } else {
-      alert("로그인을 하세요");
+      alert('로그인을 하세요');
     }
   };
   return (
@@ -70,7 +73,14 @@ const Communication = () => {
       <div>
         {reviews.map((review, i) => {
           if (review.paramId === params.id) {
-            return <ReviewList reviews={reviews} setReviews={setReviews} review={review} i={i} />;
+            return (
+              <ReviewList
+                reviews={reviews}
+                setReviews={setReviews}
+                review={review}
+                i={i}
+              />
+            );
           }
         })}
         <input
