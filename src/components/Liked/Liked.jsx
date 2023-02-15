@@ -1,7 +1,8 @@
 import { doc, updateDoc, arrayUnion, setDoc, getDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
-import { auth, db } from '../apis/firebase';
-import useNotification from '../hooks/useNotification'; // 알람관련코드1
+import { auth, db } from '../../apis/firebase';
+
+import useNotification from '../../hooks/useNotification.ts'; // 알람관련코드1
 
 export default function Liked({ spotData }: UserProps): React.ReactElement {
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state

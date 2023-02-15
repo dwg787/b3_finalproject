@@ -24,7 +24,7 @@ const StaySelectionResult = () => {
     hasPreviousPage,
     fetchNextPage: fetchStayNextPage,
   } = useInfiniteQuery(
-    ['spot_data', region],
+    ['stay_data', region],
     ({ pageParam = 1 }) => fetchStayData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
@@ -36,7 +36,7 @@ const StaySelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      // staleTime: 1000 * 60,
+      staleTime: 1000 * 60 * 5,
     },
   );
 
@@ -58,14 +58,19 @@ const StaySelectionResult = () => {
     }
 
     if (data) {
-      if (maxPageNo.current < data.pages.length) {
-        maxPageNo.current = data.pages.length;
-      }
       if (stayCurPage === data.pages[maxPageNo.current - 1].pageNo) {
         fetchStayNextPage();
       }
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      if (maxPageNo.current < data.pages.length) {
+        maxPageNo.current = data.pages.length;
+      }
+    }
+  }, [stayCurPage]);
 
   useEffect(() => {
     setStayCurPage(1);

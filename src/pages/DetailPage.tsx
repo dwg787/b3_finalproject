@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
-import Liked from '../components/Liked';
+import Liked from '../components/Liked/Liked';
 import StayInfo from '../components/StayInfo';
 import Communication from '../components/Review/Communication';
 import Notification from '../components/Notification/Notification';
@@ -22,7 +22,7 @@ const DetailPage = () => {
   const navigate = useNavigate();
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
-    () => fetchSpotDetailData({ param })
+    () => fetchSpotDetailData({ param }),
   );
 
   // console.log(spotData);
@@ -76,7 +76,7 @@ const DetailPage = () => {
               <div key={param.id}>
                 <Link to={'/'}>메인으로</Link>
                 <div>{spotData.title}</div>
-                <img src={spotData.firstimage} alt='관광지 사진' />
+                <img src={spotData.firstimage} alt="관광지 사진" />
                 <div>주소 : {spotData.addr1}</div>
                 <Communication />
                 <Notification />

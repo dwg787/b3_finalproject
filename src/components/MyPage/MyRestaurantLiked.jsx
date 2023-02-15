@@ -1,4 +1,13 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import {
+  arrayRemove,
+  collection,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+  doc,
+  deleteDoc,
+} from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { auth, db } from '../../apis/firebase';
@@ -6,22 +15,22 @@ import Loader from '../Loader/Loader';
 import noimg from '../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
 
-const MyCart = () => {
-  const [carts, setCarts] = useState([]);
+const MyRestaurantLiked = () => {
+  const [restaurant, setRestaurant] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const uid = auth.currentUser.uid;
 
-  const getCart = async () => {
-    const uid = auth.currentUser.uid;
-    const q = query(collection(db, 'carts'), where('uid', '==', uid));
+  const getRestaurantLiked = async () => {
+    const q = query(collection(db, 'restaurantlike'), where('uid', '==', uid));
     const data = await getDocs(q);
     const newData = data.docs.map((doc) => ({
       ...doc.data(),
     }));
-    setCarts(newData);
+    setRestaurant(newData);
   };
 
   useEffect(() => {
-    getCart()
+    getRestaurantLiked()
       .then(() => setIsLoading(false))
       .catch((e) => console.log(e));
   }, []);
@@ -30,21 +39,42 @@ const MyCart = () => {
     return <Loader />;
   }
 
+  // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
+  const delResLiked = async () => {
+    const docRef = doc(db, 'restaurantlike', uid);
+    console.log(docRef);
+    await deleteDoc(docRef);
+  };
+
   return (
     <>
       <StTicketWrap>
-        <h1>장바구니</h1>
         <StTicket>
-          {carts.map((data, i) => {
+          {restaurant.map((data, i) => {
             return (
-              <Link to={`/stay/${data.contentid}`}>
-                <StTicketCard key={i}>
-                  <StTicketCardLeft>
-                    <StMyTicketImage src={data.img || noimg} alt="숙박 사진" />
-                  </StTicketCardLeft>
-                  <StCartTitle>{data.carts.split('[', 1)}</StCartTitle>
-                </StTicketCard>
-              </Link>
+              // <Link to={`/restaurant/${data.contentid}`}> </Link>
+              <StTicketCard key={i}>
+                <StTicketCardLeft>
+                  <StTicketHeader>
+                    <StCartMenu>음식점</StCartMenu>
+                    <button
+                      onClick={() => {
+                        delResLiked()
+                          .then(() => {
+                            window.alert('Like 삭제 완료');
+                            getRestaurantLiked();
+                          })
+                          .catch((e) => console.log(e));
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </StTicketHeader>
+
+                  <StMyTicketImage src={data.img || noimg} alt="사진" />
+                </StTicketCardLeft>
+                <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+              </StTicketCard>
             );
           })}
         </StTicket>
@@ -53,7 +83,7 @@ const MyCart = () => {
   );
 };
 
-export default MyCart;
+export default MyRestaurantLiked;
 
 const StTicketWrap = styled.div`
   width: 100%;
@@ -69,10 +99,8 @@ const StTicket = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
-  height: 90%;
-  /* background-color: teal; */
-  /* margin: 10px; */
+  width: 100%
+  height: 100%;
   box-sizing: border-box;
 `;
 
@@ -107,19 +135,15 @@ const StMyTicketImage = styled.img`
   box-sizing: border-box;
   border-radius: 5px;
   cursor: pointer;
-  &:hover {
+  /* &:hover {
     transform: scale(1.1);
     transition: all 0.35s;
-  }
+  } */
   position: relative;
   display: flex;
 
   box-shadow: 5px 5px 10px grey;
   opacity: 0.7;
-  /* top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px; */
 `;
 
 const StCartTitle = styled.span`
@@ -128,4 +152,19 @@ const StCartTitle = styled.span`
   font-weight: 900;
   z-index: 100;
   text-align: center;
+`;
+
+const StCartMenu = styled.span`
+  color: #fafafa;
+  font-weight: 900;
+  z-index: 100;
+  background-color: teal;
+  margin-right: 130px;
+`;
+
+const StTicketHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 100;
 `;

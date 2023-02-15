@@ -26,7 +26,7 @@ const RestaurantSelectionResult = () => {
     fetchNextPage: fetchRestaurantNextPage,
     // fetchPreviousPage,
   } = useInfiniteQuery(
-    ['spot_data', region],
+    ['restaurant_data', region],
     ({ pageParam = 1 }) => fetchRestaurantData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
@@ -38,7 +38,7 @@ const RestaurantSelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      // staleTime: 1000 * 60,
+      staleTime: 1000 * 60 * 5,
     },
   );
 
@@ -59,14 +59,22 @@ const RestaurantSelectionResult = () => {
     }
 
     if (data) {
-      if (maxPageNo.current < data.pages.length) {
-        maxPageNo.current = data.pages.length;
-      }
       if (restaurantCurPage === data.pages[maxPageNo.current - 1].pageNo) {
         fetchRestaurantNextPage();
       }
+      // if (hasNextPage) {
+      //   fetchRestaurantNextPage();
+      // }
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      if (maxPageNo.current < data.pages.length) {
+        maxPageNo.current = data.pages.length;
+      }
+    }
+  }, [restaurantCurPage]);
 
   useEffect(() => {
     console.log('setCurPage');

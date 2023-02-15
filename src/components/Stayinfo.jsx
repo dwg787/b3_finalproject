@@ -13,7 +13,7 @@ const StayInfo = ({ spotData }) => {
     () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
     {
       enabled: !!spotData,
-    }
+    },
   );
 
   return (

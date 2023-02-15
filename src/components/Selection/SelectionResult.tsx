@@ -36,21 +36,13 @@ const SelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      // staleTime: 1000 * 60,
+      staleTime: 1000 * 60 * 5,
     },
   );
 
   console.log('관광지 spotCurPage', spotCurPage);
   console.log('관광지 데이터', data);
   console.log('관광지 maxPage', maxPageNo);
-
-  // useEffect(() => {
-  //   fetchNextPage();
-  // }, [spotCurPage]);
-
-  useEffect(() => {
-    setSpotCurPage(1);
-  }, [region]);
 
   const handleFetchNextPage = () => {
     setSpotCurPage(spotCurPage + 1);
@@ -62,14 +54,26 @@ const SelectionResult = () => {
     }
 
     if (data) {
-      if (maxPageNo.current < data.pages.length) {
-        maxPageNo.current = data.pages.length;
-      }
       if (spotCurPage === data.pages[maxPageNo.current - 1].pageNo) {
         fetchSpotNextPage();
       }
+      // if (hasNextPage) {
+      //   fetchSpotNextPage();
+      // }
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      if (maxPageNo.current < data.pages.length) {
+        maxPageNo.current = data.pages.length;
+      }
+    }
+  }, [spotCurPage]);
+
+  useEffect(() => {
+    setSpotCurPage(1);
+  }, [region]);
 
   return (
     <SearchOverallResultContainer>
@@ -153,7 +157,6 @@ const SearchListWrapper = styled.div`
 const ResultWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
