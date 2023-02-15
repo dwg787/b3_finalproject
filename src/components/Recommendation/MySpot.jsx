@@ -33,9 +33,9 @@ const MySpot = (propsData) => {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 400,
-    slidesToShow: 4,
+    slidesToShow: 5.4,
     slidesToScroll: 1,
     nextArrow: (
       <NextTo>

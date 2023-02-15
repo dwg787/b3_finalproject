@@ -22,7 +22,10 @@ const MySpotDetail = (props: FetchedStayDataType) => {
             onClick={() => navigate(`/spot/${props.id}`)}
           />
         </picture>
+        <SpotTopdiv>관광</SpotTopdiv>
         <SpotTitle>{props.children}</SpotTitle>
+        <SpotSubText1>여긴어때?</SpotSubText1>
+        <SpotSubText2>Click Here!</SpotSubText2>
       </SpotImgWrapper>
     </SpotEachItemWrapper>
   );
@@ -66,4 +69,32 @@ const SpotTitle = styled.div`
   font-weight: bold;
   color: white;
   margin-top: 220px;
+`;
+
+const SpotSubText1 = styled.p`
+  color: white;
+  position: absolute;
+  margin-top: 300px;
+  font-size: 16px;
+`;
+
+const SpotSubText2 = styled.p`
+  color: white;
+  position: absolute;
+  margin-top: 340px;
+  font-weight: bold;
+`;
+
+const SpotTopdiv = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 60px;
+  height: 28px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 360px;
+  margin-right: 200px;
 `;
