@@ -20,6 +20,7 @@ import {
   StayDetailPage,
   RestaurantDetailPage,
 } from './pages';
+import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (
@@ -41,6 +42,7 @@ const Router = () => {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
         </Routes>
+        <Footer />
       </Suspense>
     </BrowserRouter>
   );

@@ -1,16 +1,16 @@
-import styled from "styled-components";
-import SpotDetail from "../SpotDetail";
-import { FetchedStayDataType } from "../../apis/publicAPI";
-import noimg from "../../assets/noimg.png";
-import Slider from "react-slick";
-import { useInfiniteQuery, useQuery } from "react-query";
-import { fetchStayData } from "../../apis/publicAPI";
-import { useRecoilValue } from "recoil";
-import { regionSelectionState } from "../../recoil/apiDataAtoms";
-import Loader from "../Loader/Loader";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { useEffect, useState } from "react";
+import styled from 'styled-components';
+import SpotDetail from '../SpotDetail';
+import { FetchedStayDataType } from '../../apis/publicAPI';
+import noimg from '../../assets/noimg.png';
+import Slider from 'react-slick';
+import { useInfiniteQuery, useQuery } from 'react-query';
+import { fetchStayData } from '../../apis/publicAPI';
+import { useRecoilValue } from 'recoil';
+import { regionSelectionState } from '../../recoil/apiDataAtoms';
+import Loader from '../Loader/Loader';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { useEffect, useState } from 'react';
 
 const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -23,7 +23,7 @@ const StaySelectionResult = () => {
     hasPreviousPage,
     fetchNextPage,
   } = useInfiniteQuery(
-    ["spot_data", region],
+    ['spot_data', region],
     ({ pageParam = 1 }) => fetchStayData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
@@ -36,7 +36,7 @@ const StaySelectionResult = () => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
       // staleTime: 1000 * 60 * 5,
-    }
+    },
   );
   useEffect(() => {
     fetchNextPage();
@@ -86,7 +86,7 @@ const StaySelectionResult = () => {
                 onClick={() => setCurPage(curPage + 1)}
                 disabled={
                   Math.ceil(
-                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows
+                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
                   ) <= curPage
                     ? true
                     : false
