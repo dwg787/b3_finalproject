@@ -4,17 +4,17 @@ import { FetchedStayDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
 import Slider from 'react-slick';
 import { useInfiniteQuery, useQuery } from 'react-query';
-import { fetchSpotData } from '../../apis/publicAPI';
+import { fetchStayData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
-const SelectionResult = () => {
+const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
-  const [spotCurPage, setSpotCurPage] = useState(1);
+  const [stayCurPage, setStayCurPage] = useState(1);
   const maxPageNo = useRef(1);
 
   const {
@@ -22,10 +22,10 @@ const SelectionResult = () => {
     isLoading,
     hasNextPage,
     hasPreviousPage,
-    fetchNextPage: fetchSpotNextPage,
+    fetchNextPage: fetchStayNextPage,
   } = useInfiniteQuery(
-    ['spot_data', region],
-    ({ pageParam = 1 }) => fetchSpotData({ region, pageParam }),
+    ['stay_data', region],
+    ({ pageParam = 1 }) => fetchStayData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo ===
@@ -40,19 +40,20 @@ const SelectionResult = () => {
     },
   );
 
-  // console.log('관광지 spotCurPage', spotCurPage);
-  // console.log('관광지 데이터', data);
-  // console.log('관광지 maxPage', maxPageNo);
+  // console.log('숙박 stayCurPage', stayCurPage);
+  // console.log('숙박 리스트', data);
+  // console.log('숙박 maxPage', maxPageNo);
+
+  // useEffect(() => {
+  //   fetchNextPage();
+  // }, [stayCurPage]);
 
   const handleFetchNextPage = () => {
-    setSpotCurPage(spotCurPage + 1);
+    setStayCurPage(stayCurPage + 1);
     if (data) {
-      if (spotCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
-        fetchSpotNextPage();
+      if (stayCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
+        fetchStayNextPage();
       }
-      // if (hasNextPage) {
-      //   fetchSpotNextPage();
-      // }
     }
   };
 
@@ -62,10 +63,10 @@ const SelectionResult = () => {
         maxPageNo.current = data.pages.length;
       }
     }
-  }, [spotCurPage]);
+  }, [stayCurPage]);
 
   useEffect(() => {
-    setSpotCurPage(1);
+    setStayCurPage(1);
   }, [region]);
 
   return (
@@ -77,33 +78,31 @@ const SelectionResult = () => {
       ) : (
         <>
           <ListItemCount>
-            총 {data.pages[spotCurPage - 1]?.totalCount} 개의 결과
+            총 {data.pages[stayCurPage - 1]?.totalCount} 개의 결과
           </ListItemCount>
           <SearchListWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setSpotCurPage(spotCurPage - 1)}
+                onClick={() => setStayCurPage(stayCurPage - 1)}
                 disabled={
-                  data.pages[spotCurPage - 1]?.pageNo - 1 < 1 ? true : false
+                  data.pages[stayCurPage - 1]?.pageNo - 1 < 1 ? true : false
                 }
               >
                 이전
               </button>
             </BtnWrapper>
             <ResultWrapper>
-              {data.pages[spotCurPage - 1]?.items.item.map(
-                (e: FetchedStayDataType) => {
-                  return (
-                    <SpotDetail
-                      key={e.contentid}
-                      id={e.contentid}
-                      img={e.firstimage || noimg}
-                    >
-                      {e.title}
-                    </SpotDetail>
-                  );
-                },
-              )}
+              {data.pages[stayCurPage - 1]?.items.item.map((e) => {
+                return (
+                  <SpotDetail
+                    key={e.contentid}
+                    id={e.contentid}
+                    img={e.firstimage || noimg}
+                  >
+                    {e.title}
+                  </SpotDetail>
+                );
+              })}
             </ResultWrapper>
             <BtnWrapper>
               <button
@@ -111,7 +110,7 @@ const SelectionResult = () => {
                 disabled={
                   Math.ceil(
                     data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
-                  ) <= spotCurPage
+                  ) <= stayCurPage
                     ? true
                     : false
                 }
@@ -126,7 +125,7 @@ const SelectionResult = () => {
   );
 };
 
-export default SelectionResult;
+export default StaySelectionResult;
 
 const SearchOverallResultContainer = styled.div`
   width: 100%;
@@ -151,6 +150,7 @@ const SearchListWrapper = styled.div`
 const ResultWrapper = styled.div`
   width: 70%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;

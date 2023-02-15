@@ -1,21 +1,21 @@
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
-import styled from "styled-components";
-import Fuse from "fuse.js";
-import _ from "lodash";
-import SpotDetail from "../SpotDetail";
-import noimg from "../../assets/noimg.png";
+import axios from 'axios';
+import React, { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Fuse from 'fuse.js';
+import _ from 'lodash';
+import SpotDetail from '../SpotDetail';
+import noimg from '../../assets/noimg.avif';
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음
   // const [searchItem, setSearchItem] = useState("");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   //모든객체를 가지고있음
   const [totalApi, setTotalApi] = useState([]);
   console.log(totalApi);
   //타이핑 되는 글자 근사치 검색
   const fuse = new Fuse(totalApi, {
-    keys: ["addr1", "title"],
+    keys: ['addr1', 'title'],
     includeScore: true,
   });
 
@@ -64,7 +64,7 @@ export default function Search() {
           <InputBox>
             <SearchTitleH1>어떤걸 찾는가?</SearchTitleH1>
             <SearchInput
-              placeholder="여기에 입력하면 무엇이던지 찾을수있지!"
+              placeholder='여기에 입력하면 무엇이던지 찾을수있지!'
               onChange={searchItemHandler}
             ></SearchInput>
             <RecommendH4>
@@ -74,7 +74,7 @@ export default function Search() {
           <ListBoxInfinite>
             {results.map((e) => {
               if (e.score < 0.34) {
-                console.log(e);
+                // console.log(e);
                 return (
                   <SpotDetail
                     key={e.item.contentid}

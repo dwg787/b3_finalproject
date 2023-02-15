@@ -1,20 +1,21 @@
 import styled from 'styled-components';
-import SpotDetail from '../SpotDetail';
+import RestaurantDetail from '../RestaurantDetail';
 import { FetchedStayDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
 import Slider from 'react-slick';
 import { useInfiniteQuery, useQuery } from 'react-query';
-import { fetchSpotData } from '../../apis/publicAPI';
+import { fetchRestaurantData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
 
-const SelectionResult = () => {
+const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
-  const [spotCurPage, setSpotCurPage] = useState(1);
+  const [restaurantCurPage, setRestaurantCurPage] = useState(1);
   const maxPageNo = useRef(1);
 
   const {
@@ -22,10 +23,11 @@ const SelectionResult = () => {
     isLoading,
     hasNextPage,
     hasPreviousPage,
-    fetchNextPage: fetchSpotNextPage,
+    fetchNextPage: fetchRestaurantNextPage,
+    // fetchPreviousPage,
   } = useInfiniteQuery(
-    ['spot_data', region],
-    ({ pageParam = 1 }) => fetchSpotData({ region, pageParam }),
+    ['restaurant_data', region],
+    ({ pageParam = 1 }) => fetchRestaurantData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo ===
@@ -40,18 +42,21 @@ const SelectionResult = () => {
     },
   );
 
-  // console.log('관광지 spotCurPage', spotCurPage);
-  // console.log('관광지 데이터', data);
-  // console.log('관광지 maxPage', maxPageNo);
+  // console.log('음식점 데이터', data);
+  // console.log('음식점 curPage', restaurantCurPage);
+  // console.log('음식점 maxPage', maxPageNo);
 
+  // useEffect(() => {
+  //   fetchNextPage();
+  // }, [curPage]);
   const handleFetchNextPage = () => {
-    setSpotCurPage(spotCurPage + 1);
+    setRestaurantCurPage(restaurantCurPage + 1);
     if (data) {
-      if (spotCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
-        fetchSpotNextPage();
+      if (restaurantCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
+        fetchRestaurantNextPage();
       }
       // if (hasNextPage) {
-      //   fetchSpotNextPage();
+      //   fetchRestaurantNextPage();
       // }
     }
   };
@@ -62,10 +67,11 @@ const SelectionResult = () => {
         maxPageNo.current = data.pages.length;
       }
     }
-  }, [spotCurPage]);
+  }, [restaurantCurPage]);
 
   useEffect(() => {
-    setSpotCurPage(1);
+    console.log('setCurPage');
+    setRestaurantCurPage(1);
   }, [region]);
 
   return (
@@ -77,33 +83,33 @@ const SelectionResult = () => {
       ) : (
         <>
           <ListItemCount>
-            총 {data.pages[spotCurPage - 1]?.totalCount} 개의 결과
+            총 {data.pages[restaurantCurPage - 1]?.totalCount} 개의 결과
           </ListItemCount>
           <SearchListWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setSpotCurPage(spotCurPage - 1)}
+                onClick={() => setRestaurantCurPage(restaurantCurPage - 1)}
                 disabled={
-                  data.pages[spotCurPage - 1]?.pageNo - 1 < 1 ? true : false
+                  data.pages[restaurantCurPage - 1]?.pageNo - 1 < 1
+                    ? true
+                    : false
                 }
               >
                 이전
               </button>
             </BtnWrapper>
             <ResultWrapper>
-              {data.pages[spotCurPage - 1]?.items.item.map(
-                (e: FetchedStayDataType) => {
-                  return (
-                    <SpotDetail
-                      key={e.contentid}
-                      id={e.contentid}
-                      img={e.firstimage || noimg}
-                    >
-                      {e.title}
-                    </SpotDetail>
-                  );
-                },
-              )}
+              {data.pages[restaurantCurPage - 1]?.items.item.map((e) => {
+                return (
+                  <RestaurantDetail
+                    key={e.contentid}
+                    id={e.contentid}
+                    img={e.firstimage || noimg}
+                  >
+                    {e.title}
+                  </RestaurantDetail>
+                );
+              })}
             </ResultWrapper>
             <BtnWrapper>
               <button
@@ -111,7 +117,7 @@ const SelectionResult = () => {
                 disabled={
                   Math.ceil(
                     data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
-                  ) <= spotCurPage
+                  ) <= restaurantCurPage
                     ? true
                     : false
                 }
@@ -126,7 +132,7 @@ const SelectionResult = () => {
   );
 };
 
-export default SelectionResult;
+export default RestaurantSelectionResult;
 
 const SearchOverallResultContainer = styled.div`
   width: 100%;
@@ -151,6 +157,7 @@ const SearchListWrapper = styled.div`
 const ResultWrapper = styled.div`
   width: 70%;
   display: flex;
+  /* flex-direction: row; */
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;

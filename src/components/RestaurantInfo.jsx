@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { fetchNearRestaurantData } from '../apis/publicAPI';
 import Loader from './Loader/Loader';
 import RestaurantDetail from './RestaurantDetail';
-import noimg from '../assets/noimg.png';
+import noimg from '../assets/noimg.avif';
 
 const RestaurantInfo = ({ spotData }) => {
   const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(

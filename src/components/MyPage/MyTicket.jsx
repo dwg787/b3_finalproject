@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import Loader from "../Loader/Loader";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, db } from "../../apis/firebase";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import noimg from "../../assets/noimg.png";
+import React, { useEffect, useState } from 'react';
+import Loader from '../Loader/Loader';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { auth, db } from '../../apis/firebase';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import noimg from '../../assets/noimg.avif';
 const MyTicket = () => {
   const [tickets, setTickets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const getTicket = async () => {
     const uid = auth.currentUser.uid;
-    const q = query(collection(db, "reservations"), where("uid", "==", uid));
+    const q = query(collection(db, 'reservations'), where('uid', '==', uid));
     const data = await getDocs(q);
     const newData = data.docs.map((doc) => ({
       ...doc.data(),
@@ -37,7 +37,7 @@ const MyTicket = () => {
           return (
             <StTicketCard key={i}>
               <StTicketCardLeft>
-                <StMyTicketImage src={data.img || noimg} alt="숙박 사진" />
+                <StMyTicketImage src={data.img || noimg} alt='숙박 사진' />
               </StTicketCardLeft>
               <StTicketCardRight>
                 <h2>{data.title}</h2>
@@ -71,7 +71,7 @@ const StTicket = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 65%
+  width: 65%;
   height: 90%;
   /* background-color: teal; */
   margin: 10px;
@@ -83,6 +83,7 @@ const StTicketCard = styled.div`
   width: 100%;
   margin: 10px;
   background-color: aliceblue;
+  box-shadow: 5px 5px 10px grey;
   box-sizing: border-box;
   border-radius: 10px;
   padding: 10px;
