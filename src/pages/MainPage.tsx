@@ -12,6 +12,7 @@ import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
 import MySpot from '../components/Recommendation/MySpot';
 import { useEffect } from 'react';
+import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -32,7 +33,7 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <MySpot />
-          <WeeklyTop10 />
+          <WeeklyTop10v2 />
           <MyChild />
           <BestDate />
           {/* <StayRecommendation />
@@ -48,7 +49,7 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <MySpot />
-          <WeeklyTop10 />
+          <WeeklyTop10v2 />
           <MyChild />
           <BestDate />
           {/* <StayRecommendation />
