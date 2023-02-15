@@ -55,13 +55,13 @@ const SideDiv = styled.div`
 `;
 
 const StLinkTextBox = styled.span`
-  margin: 20px 60px;
+  margin: 20px 0px;
   /* background-color: teal; */
   font-size: 15px;
   font-weight: 400;
   /* padding: 20px; */
   cursor: pointer;
-  width: 600px;
+  /* width: 600px; */
   /* position: absolute; */
 `;
 
@@ -70,4 +70,6 @@ const StLinkBox = styled.div`
   /* flex-direction: row; */
   box-sizing: border-box;
   width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
