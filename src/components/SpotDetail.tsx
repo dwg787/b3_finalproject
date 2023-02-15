@@ -31,9 +31,9 @@ const SpotDetail = (props: FetchedStayDataType) => {
 export default SpotDetail;
 
 const SpotEachItemWrapper = styled.div`
-  width: 100%;
-  height: 400px;
-  margin: 40px 20px 10px 20px;
+  width: 20%;
+  height: 200px;
+  margin: 10px 10px 10px 10px;
 `;
 
 const SpotImgWrapper = styled.div`
@@ -50,7 +50,6 @@ const SpotImgWrapper = styled.div`
 const SpotEachItemImg = styled.img`
   width: 300px;
   height: 400px;
-  aspect-ratio: 1;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);

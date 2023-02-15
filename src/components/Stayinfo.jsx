@@ -8,7 +8,6 @@ import StayDetail from './StayDetail';
 
 import noimg from '../assets/noimg.avif';
 
-
 const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
     ['stay_list', spotData],

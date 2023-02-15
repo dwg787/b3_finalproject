@@ -47,8 +47,8 @@ const StayImgWrapper = styled.div`
 `;
 
 const StayEachItemImg = styled.img`
-  width: 250px;
-  aspect-ratio: 1;
+  width: 300px;
+  height: 400px;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);

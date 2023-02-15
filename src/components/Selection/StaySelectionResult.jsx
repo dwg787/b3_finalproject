@@ -40,9 +40,9 @@ const StaySelectionResult = () => {
     },
   );
 
-  // console.log('숙박 stayCurPage', stayCurPage);
-  // console.log('숙박 리스트', data);
-  // console.log('숙박 maxPage', maxPageNo);
+  console.log('숙박 stayCurPage', stayCurPage);
+  console.log('숙박 리스트', data);
+  console.log('숙박 maxPage', maxPageNo);
 
   // useEffect(() => {
   //   fetchNextPage();

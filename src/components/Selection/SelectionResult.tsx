@@ -40,9 +40,9 @@ const SelectionResult = () => {
     },
   );
 
-  // console.log('관광지 spotCurPage', spotCurPage);
-  // console.log('관광지 데이터', data);
-  // console.log('관광지 maxPage', maxPageNo);
+  console.log('관광지 spotCurPage', spotCurPage);
+  console.log('관광지 데이터', data);
+  console.log('관광지 maxPage', maxPageNo);
 
   const handleFetchNextPage = () => {
     setSpotCurPage(spotCurPage + 1);

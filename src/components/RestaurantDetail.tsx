@@ -46,8 +46,8 @@ const RestaurantImgWrapper = styled.div`
 `;
 
 const RestaurantEachItemImg = styled.img`
-  width: 250px;
-  aspect-ratio: 1;
+  width: 300px;
+  height: 400px;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);
