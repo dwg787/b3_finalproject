@@ -1,14 +1,9 @@
 import { useQuery } from 'react-query';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import {
-  fetchSpotDetailData,
-  fetchNearStayData,
-  fetchNearRestaurantData,
-  FetchedStayDataType,
-} from '../apis/publicAPI';
+import { fetchSpotDetailData, FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
 import Loader from '../components/Loader/Loader';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
@@ -16,7 +11,9 @@ import Liked from '../components/Liked/Liked';
 import StayInfo from '../components/Stayinfo';
 import Communication from '../components/Review/Communication';
 import Notification from '../components/Notification/Notification';
-import '../App.css';
+import SideScroll from '../components/Scroll/SideScroll';
+import DetailScroll from '../components/Scroll/DetailScroll';
+import MapImoji from '../components/Map/MapImoji';
 
 const DetailPage = () => {
   const param = useParams();
@@ -66,6 +63,8 @@ const DetailPage = () => {
     getFirestoreRecCnt();
   }, [spotData]);
 
+  //스크롤 탭
+
   return (
     <DetailWrap>
       <Container>
@@ -74,36 +73,48 @@ const DetailPage = () => {
         ) : (
           <>
             {spotData ? (
-              <div key={param.id}>
+              <DeatilMapBox key={param.id}>
                 {/* <Link to={'/'}>메인으로</Link> */}
                 <DeatilTextBox>
                   <DetailText>{spotData.title}</DetailText>
-                  <Liked spotData={spotData} />
+                  <DeatilImojiBox>
+                    <Liked spotData={spotData} />
+
+                    <Link to={`/spot/${param.id}/map`}>
+                      <MapImoji />
+                    </Link>
+                  </DeatilImojiBox>
                 </DeatilTextBox>
-                <DetailImgBox>
+                <DetailScroll />
+
+                <DetailImgBox id="1">
                   <DetailImg src={spotData.firstimage} alt="관광지 사진" />
                 </DetailImgBox>
 
-                <div>주소 : {spotData.addr1}</div>
-                <Communication />
+                <div id="2">주소 : {spotData.addr1}</div>
+                <div id="3">
+                  <Communication />
+                </div>
+
                 <Notification />
-                <Link to={`/spot/${param.id}/map`}>지도보기</Link>
+
                 {/* <div>{e.homepage}</div> */}
 
                 <div>{spotData.overview}</div>
-              </div>
+              </DeatilMapBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>
             )}
           </>
         )}
-        <SideInfoWrapper>
-          <StayInfoWrapper>
-            <StayInfo spotData={spotData} />
-          </StayInfoWrapper>
-          <RestaurantInfoWrapper>
-            <RestaurantInfo spotData={spotData} />
-          </RestaurantInfoWrapper>
+
+        <SideInfoWrapper id="4">
+          {/* <StayInfoWrapper> */}
+          <StayInfo spotData={spotData} />
+          {/* </StayInfoWrapper>
+            <RestaurantInfoWrapper> */}
+          <RestaurantInfo spotData={spotData} />
+          {/* </RestaurantInfoWrapper> */}
         </SideInfoWrapper>
       </Container>
     </DetailWrap>
@@ -122,14 +133,7 @@ const DetailWrap = styled.div`
 `;
 
 const Container = styled.div`
-  /* width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center; */
-
-  width: 75%;
+  width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -140,11 +144,25 @@ const Container = styled.div`
   background-color: #8eb9dc;
 `;
 
+const DeatilMapBox = styled.div`
+  width: 90%;
+  flex-direction: column;
+  display: flex;
+  background-color: beige;
+`;
+
 const DeatilTextBox = styled.div`
   width: 100%;
   gap: 0.3rem;
-  margin-bottom: 50px;
+  /* margin-bottom: 2rem; */
   border-bottom: solid #d3d3d3 2px;
+`;
+
+const DeatilImojiBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: flex-end;
 `;
 
 const DetailText = styled.p`
@@ -156,17 +174,18 @@ const DetailText = styled.p`
 
 const DetailImgBox = styled.div`
   width: 100%;
+  justify-content: center;
+  display: flex;
 `;
 const DetailImg = styled.img`
   width: 90%;
-  justify-content: center;
-  display: flex;
 `;
 
 const SideInfoWrapper = styled.div`
   margin-top: 50px;
   display: flex;
   flex-direction: column;
+  width: 90%;
 `;
 
 const StayInfoWrapper = styled.div`

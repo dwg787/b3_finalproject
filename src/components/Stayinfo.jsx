@@ -1,23 +1,23 @@
-import React from "react";
-import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { fetchNearStayData } from "../apis/publicAPI";
-import Loader from "./Loader/Loader";
-import StayDetail from "./StayDetail";
-import noimg from "../assets/noimg.png";
+import React from 'react';
+import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { fetchNearStayData } from '../apis/publicAPI';
+import Loader from './Loader/Loader';
+import StayDetail from './StayDetail';
+import noimg from '../assets/noimg.png';
 
 const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
-    ["stay_list", spotData],
+    ['stay_list', spotData],
     () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
     {
       enabled: !!spotData,
-    }
+    },
   );
 
   return (
-    <>
+    <StayInfoWrapper>
       <div>주변 숙박정보</div>
       <Stres>
         {isLoadingStay ? (
@@ -46,11 +46,16 @@ const StayInfo = ({ spotData }) => {
           </>
         )}
       </Stres>
-    </>
+    </StayInfoWrapper>
   );
 };
 
 export default StayInfo;
+
+const StayInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 // const StayImage = styled.img`
 //   width: 300px;

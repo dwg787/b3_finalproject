@@ -45,9 +45,7 @@ export default function Liked({ spotData }: UserProps): React.ReactElement {
   return (
     <div>
       {/* 버튼 이모지 임의 지정 */}
-      <HeartButton onClick={addLiked} ref={buttonRef} like={like}>
-        Like❤️
-      </HeartButton>
+      <HeartButton onClick={addLiked} ref={buttonRef} like={like} />
     </div>
   );
 }
