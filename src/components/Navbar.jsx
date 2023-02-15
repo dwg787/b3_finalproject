@@ -192,14 +192,14 @@ const Navbar = () => {
         <LoginButtonBox>
           {localId !== null ? (
             <LoginBox>
-              <NickNameBtn onClick={() => navigate('/my')}>
-                {localId}님 환영합니다
-              </NickNameBtn>
+              <NickNameBtn>{localId}님 환영합니다</NickNameBtn>
               <InputBox onClick={() => navigate('/search')}>
                 <SearchIconImg src={SearchIcon} alt="" />
               </InputBox>
               <NavTextDiv>예약페이지</NavTextDiv>
-              <NavTextDiv>마이페이지</NavTextDiv>
+              <NavTextDiv onClick={() => navigate('/my')}>
+                마이페이지
+              </NavTextDiv>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
             </LoginBox>
           ) : (
@@ -255,6 +255,7 @@ const Nav = styled.div`
 const NavTextDiv = styled.div`
   color: white;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 const LoginButton = styled.button`
@@ -367,7 +368,6 @@ const SearchIconImg = styled.img`
 const NickNameBtn = styled.button`
   border: none;
   background-color: transparent;
-  cursor: pointer;
   font-size: 17px;
   margin-right: 10px;
   color: white;
