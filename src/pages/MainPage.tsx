@@ -12,6 +12,7 @@ import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
 import MySpot from '../components/Recommendation/MySpot';
 import { useEffect } from 'react';
+
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const selected = sessionStorage.getItem('mainpage_menu_type');

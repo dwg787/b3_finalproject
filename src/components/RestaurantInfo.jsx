@@ -30,7 +30,7 @@ const RestaurantInfo = ({ spotData }) => {
           <>
             {restaurantData ? (
               <>
-                {restaurantData.slice(0, 5).map((item) => {
+                {restaurantData.slice(0, 4).map((item) => {
                   return (
                     <RestaurantDetail
                       key={item.contentid}
@@ -71,6 +71,7 @@ const Stres = styled.div`
   justify-content: center;
   flex-direction: row;
   margin: 10px;
+  width: 90%;
 `;
 
 const Stdata = styled.div`

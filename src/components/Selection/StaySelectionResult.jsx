@@ -40,9 +40,9 @@ const StaySelectionResult = () => {
     },
   );
 
-  // console.log('숙박 stayCurPage', stayCurPage);
-  // console.log('숙박 리스트', data);
-  // console.log('숙박 maxPage', maxPageNo);
+  console.log('숙박 stayCurPage', stayCurPage);
+  console.log('숙박 리스트', data);
+  console.log('숙박 maxPage', maxPageNo);
 
   // useEffect(() => {
   //   fetchNextPage();
@@ -59,13 +59,16 @@ const StaySelectionResult = () => {
 
   useEffect(() => {
     if (data) {
+      console.log('두값 비교 if밖', maxPageNo.current, data.pages.length);
       if (maxPageNo.current < data.pages.length) {
         maxPageNo.current = data.pages.length;
+        console.log('두값 비교 if안', maxPageNo.current, data.pages.length);
       }
     }
   }, [stayCurPage]);
 
   useEffect(() => {
+    maxPageNo.current = 1;
     setStayCurPage(1);
   }, [region]);
 
