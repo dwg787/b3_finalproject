@@ -11,6 +11,8 @@ import {
 } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
+import styled from 'styled-components';
+import { getDate } from '../../common/utils';
 
 export default function ReviewList({ review, i, reviews, key }) {
   const [newReview, setNewReview] = useState('');
@@ -38,10 +40,10 @@ export default function ReviewList({ review, i, reviews, key }) {
   };
 
   return (
-    <div key={review.id}>
+    <CommentBox key={review.id}>
       <h2>닉네임: {review?.displayName}</h2>
       {!editBox ? (
-        <h2>댓글: {review?.review}</h2>
+        <h2>댓글 : {review?.review}</h2>
       ) : (
         <input
           placeholder={review?.review}
@@ -71,6 +73,14 @@ export default function ReviewList({ review, i, reviews, key }) {
           {!editBox ? '수정' : '수정완료'}
         </button>
       ) : null}
-    </div>
+
+      <h3>{getDate(review.date)}</h3>
+    </CommentBox>
   );
 }
+
+const CommentBox = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+`;

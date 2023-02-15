@@ -17,6 +17,7 @@ import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
 import { Snapshot } from 'recoil';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
+import styled from 'styled-components';
 
 const Communication = () => {
   const [newReview, setNewReview] = useState('');
@@ -68,9 +69,28 @@ const Communication = () => {
     }
   };
   return (
-    <div>
-      <div>커뮤니케이션</div>
-      <div>
+    <ReviewContainer>
+      {/* <DetailInfoText>여행톡</DetailInfoText> */}
+      <ReviewBox>
+        <ReviewInput
+          value={newReview}
+          placeholder="리뷰를 입력하세요."
+          onChange={(event) => {
+            setNewReview(event.target.value);
+          }}
+        />
+        <ReviewButton
+          onClick={() => {
+            creatReview();
+            setAlarmMsg('리뷰가 등록되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+            addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
+          }}
+        >
+          등록
+        </ReviewButton>
+      </ReviewBox>
+
+      <ReviewBoxList>
         {reviews.map((review, i) => {
           if (review.paramId === params.id) {
             return (
@@ -83,25 +103,69 @@ const Communication = () => {
             );
           }
         })}
-        <input
-          value={newReview}
-          placeholder='리뷰를 입력하세요.'
-          onChange={(event) => {
-            setNewReview(event.target.value);
-          }}
-        />
-        <button
-          onClick={() => {
-            creatReview();
-            setAlarmMsg('리뷰가 등록되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
-            addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
-          }}
-        >
-          리뷰 등록
-        </button>
-      </div>
-    </div>
+      </ReviewBoxList>
+    </ReviewContainer>
   );
 };
 
 export default Communication;
+
+const ReviewContainer = styled.div`
+  width: 100%;
+  /* display: flex; */
+  box-sizing: border-box;
+`;
+
+// const DetailInfoText = styled.div`
+//   margin-left: 30px;
+//   font-size: 25px;
+//   font-weight: 800;
+//   text-align: left;
+//   margin-bottom: 10px;
+//   box-sizing: border-box;
+// `;
+
+const ReviewBox = styled.div`
+  width: 100%;
+  height: 200px;
+  display: flex;
+  gap: 1rem;
+  margin: 10px 0;
+`;
+
+const ReviewBoxList = styled.div`
+  width: 100%;
+  height: 400px;
+  margin: 10px 0;
+`;
+
+//700 //100// 250 //350// div나눔
+
+const ReviewInput = styled.input`
+  height: 20%;
+  width: 85%;
+  border-radius: 10px;
+  padding: 10px;
+  border: solid #d6dcff 1px;
+`;
+
+const ReviewButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: none;
+  font-size: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 10px;
+  width: 70px;
+  background-color: #6478ff;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+  height: 20%;
+`;
