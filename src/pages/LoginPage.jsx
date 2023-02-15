@@ -140,10 +140,11 @@ const LoginPage = ({ showModal, setShowModal }) => {
         {/* <KakaoLogoutButton /> */}
         <Naver />
       </Otherlogins>
-      {/* <FooterText>
-        로그인 또는 회원가입 시 이용약관 및 개인정보 정책에<br></br>
-        동의한 것으로 간주합니다.
-      </FooterText> */}
+      <FooterText>
+        {/* 로그인 또는 회원가입 시 이용약관 및 개인정보 정책에<br></br>
+        동의한 것으로 간주합니다. */}
+        아이디/비밀번호를 잊어버렸나요?
+      </FooterText>
     </MainWrap>
   );
 };
@@ -281,12 +282,13 @@ const Otherlogins = styled.div`
 `;
 
 const FooterText = styled.div`
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: center;
-  color: #8a8a8a;
-  font-size: 12.86px;
+  color: #9a9a9a;
+  font-size: 14px;
+  text-decoration: underline;
 `;
 
 const Error = styled.div`
