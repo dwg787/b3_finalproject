@@ -36,25 +36,18 @@ const SelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 60,
     },
   );
 
-  console.log('관광지 spotCurPage', spotCurPage);
-  console.log('관광지 데이터', data);
-  console.log('관광지 maxPage', maxPageNo);
+  // console.log('관광지 spotCurPage', spotCurPage);
+  // console.log('관광지 데이터', data);
+  // console.log('관광지 maxPage', maxPageNo);
 
   const handleFetchNextPage = () => {
     setSpotCurPage(spotCurPage + 1);
     if (data) {
-      console.log(
-        'fetch된 가장 last 페이지 넘버:',
-        data.pages[spotCurPage - 1]?.pageNo,
-      );
-    }
-
-    if (data) {
-      if (spotCurPage === data.pages[maxPageNo.current - 1].pageNo) {
+      if (spotCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
         fetchSpotNextPage();
       }
       // if (hasNextPage) {
@@ -152,10 +145,11 @@ const SearchListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 const ResultWrapper = styled.div`
-  width: 100%;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;

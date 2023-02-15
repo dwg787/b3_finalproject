@@ -10,15 +10,15 @@ const SpotDetail = (props: FetchedStayDataType) => {
     <SpotEachItemWrapper>
       <SpotImgWrapper>
         <picture>
-          <source srcSet={props.img || noimg} type='image/avif'></source>
-          <source srcSet={props.img || noimg} type='image/webp'></source>
-          <source srcSet={props.img || noimg} type='image/jpg'></source>
+          <source srcSet={props.img || noimg} type="image/avif"></source>
+          <source srcSet={props.img || noimg} type="image/webp"></source>
+          <source srcSet={props.img || noimg} type="image/jpg"></source>
           <SpotEachItemImg
             src={props.img || noimg}
-            alt='사진'
+            alt="사진"
             // onMouseOver={() => {}}
-            decoding='async'
-            loading='lazy'
+            decoding="async"
+            loading="lazy"
             onClick={() => navigate(`/spot/${props.id}`)}
           />
         </picture>
@@ -31,7 +31,7 @@ const SpotDetail = (props: FetchedStayDataType) => {
 export default SpotDetail;
 
 const SpotEachItemWrapper = styled.div`
-  width: 17%;
+  width: 20%;
   height: 200px;
   margin: 10px 10px 10px 10px;
 `;
@@ -39,6 +39,9 @@ const SpotEachItemWrapper = styled.div`
 const SpotImgWrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   border-radius: 5px;
   overflow: hidden;

@@ -38,13 +38,13 @@ const RestaurantSelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 60,
     },
   );
 
-  console.log('음식점 데이터', data);
-  console.log('음식점 curPage', restaurantCurPage);
-  console.log('음식점 maxPage', maxPageNo);
+  // console.log('음식점 데이터', data);
+  // console.log('음식점 curPage', restaurantCurPage);
+  // console.log('음식점 maxPage', maxPageNo);
 
   // useEffect(() => {
   //   fetchNextPage();
@@ -52,14 +52,7 @@ const RestaurantSelectionResult = () => {
   const handleFetchNextPage = () => {
     setRestaurantCurPage(restaurantCurPage + 1);
     if (data) {
-      console.log(
-        'fetch된 가장 last 페이지 넘버:',
-        data.pages[restaurantCurPage - 1]?.pageNo,
-      );
-    }
-
-    if (data) {
-      if (restaurantCurPage === data.pages[maxPageNo.current - 1].pageNo) {
+      if (restaurantCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
         fetchRestaurantNextPage();
       }
       // if (hasNextPage) {
@@ -158,12 +151,13 @@ const SearchListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 const ResultWrapper = styled.div`
-  width: 100%;
+  width: 70%;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;

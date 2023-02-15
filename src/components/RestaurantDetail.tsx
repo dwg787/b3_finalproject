@@ -9,14 +9,14 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
     <RestaurantEachItemWrapper>
       <RestaurantImgWrapper>
         <picture>
-          <source srcSet={props.img || noimg} type='image/avif'></source>
-          <source srcSet={props.img || noimg} type='image/webp'></source>
-          <source srcSet={props.img || noimg} type='image/jpg'></source>
+          <source srcSet={props.img || noimg} type="image/avif"></source>
+          <source srcSet={props.img || noimg} type="image/webp"></source>
+          <source srcSet={props.img || noimg} type="image/jpg"></source>
           <RestaurantEachItemImg
             src={props.img || noimg}
-            alt='사진'
-            decoding='async'
-            loading='lazy'
+            alt="사진"
+            decoding="async"
+            loading="lazy"
             onClick={() => navigate(`/restaurant/${props.id}`)}
           />
         </picture>
@@ -29,7 +29,7 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
 export default RestaurantDetail;
 
 const RestaurantEachItemWrapper = styled.div`
-  width: 17%;
+  width: 20%;
   height: 200px;
   margin: 10px 10px 10px 10px;
 `;
@@ -37,6 +37,9 @@ const RestaurantEachItemWrapper = styled.div`
 const RestaurantImgWrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   border-radius: 5px;
   overflow: hidden;
@@ -44,8 +47,7 @@ const RestaurantImgWrapper = styled.div`
 
 const RestaurantEachItemImg = styled.img`
   width: 250px;
-  height: 250px;
-  /* aspect-ratio: 1; */
+  aspect-ratio: 1;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);

@@ -36,13 +36,13 @@ const StaySelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 60,
     },
   );
 
-  console.log('숙박 stayCurPage', stayCurPage);
-  console.log('숙박 리스트', data);
-  console.log('숙박 maxPage', maxPageNo);
+  // console.log('숙박 stayCurPage', stayCurPage);
+  // console.log('숙박 리스트', data);
+  // console.log('숙박 maxPage', maxPageNo);
 
   // useEffect(() => {
   //   fetchNextPage();
@@ -51,14 +51,7 @@ const StaySelectionResult = () => {
   const handleFetchNextPage = () => {
     setStayCurPage(stayCurPage + 1);
     if (data) {
-      console.log(
-        'fetch된 가장 last 페이지 넘버:',
-        data.pages[stayCurPage - 1]?.pageNo,
-      );
-    }
-
-    if (data) {
-      if (stayCurPage === data.pages[maxPageNo.current - 1].pageNo) {
+      if (stayCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
         fetchStayNextPage();
       }
     }
@@ -151,10 +144,11 @@ const SearchListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 const ResultWrapper = styled.div`
-  width: 100%;
+  width: 70%;
   display: flex;
   flex-direction: row;
   justify-content: center;
