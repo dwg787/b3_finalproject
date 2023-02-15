@@ -5,7 +5,9 @@ import styled from 'styled-components';
 import { fetchNearStayData } from '../apis/publicAPI';
 import Loader from './Loader/Loader';
 import StayDetail from './StayDetail';
+
 import noimg from '../assets/noimg.avif';
+
 
 const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
@@ -17,7 +19,7 @@ const StayInfo = ({ spotData }) => {
   );
 
   return (
-    <>
+    <StayInfoWrapper>
       <div>주변 숙박정보</div>
       <Stres>
         {isLoadingStay ? (
@@ -46,11 +48,16 @@ const StayInfo = ({ spotData }) => {
           </>
         )}
       </Stres>
-    </>
+    </StayInfoWrapper>
   );
 };
 
 export default StayInfo;
+
+const StayInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 // const StayImage = styled.img`
 //   width: 300px;

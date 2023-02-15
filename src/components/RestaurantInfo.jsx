@@ -17,11 +17,11 @@ const RestaurantInfo = ({ spotData }) => {
       }),
     {
       enabled: !!spotData,
-    }
+    },
   );
 
   return (
-    <>
+    <RestaurantInfoWrapper>
       <div>주변 맛집정보</div>
       <Stres>
         {isLoadingRestaurant ? (
@@ -50,11 +50,17 @@ const RestaurantInfo = ({ spotData }) => {
           </>
         )}
       </Stres>
-    </>
+    </RestaurantInfoWrapper>
   );
 };
 
 export default RestaurantInfo;
+
+const RestaurantInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+`;
 
 const StayImage = styled.img`
   width: 300px;
