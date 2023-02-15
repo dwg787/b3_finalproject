@@ -59,6 +59,7 @@ export default RestaurantInfo;
 const RestaurantInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 `;
 
 const StayImage = styled.img`

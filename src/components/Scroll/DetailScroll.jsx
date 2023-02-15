@@ -59,8 +59,9 @@ const StLinkTextBox = styled.span`
   /* background-color: teal; */
   font-size: 15px;
   font-weight: 400;
-  padding: 20px;
+  /* padding: 20px; */
   cursor: pointer;
+  width: 600px;
   /* position: absolute; */
 `;
 

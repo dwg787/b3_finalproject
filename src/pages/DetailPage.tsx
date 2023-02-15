@@ -14,6 +14,7 @@ import Notification from '../components/Notification/Notification';
 import SideScroll from '../components/Scroll/SideScroll';
 import DetailScroll from '../components/Scroll/DetailScroll';
 import MapImoji from '../components/Map/MapImoji';
+import KakaoMap from '../components/Map/KakaoMap';
 
 const DetailPage = () => {
   const param = useParams();
@@ -96,14 +97,14 @@ const DetailPage = () => {
 
                   <DetailInfo>{spotData.overview}</DetailInfo>
                   <DetailInfo>
-                    <span>지도들어가는곳</span>
+                    <KakaoMap mapx={spotData.mapx} mapy={spotData.mapy} />
                   </DetailInfo>
                   <DetailInfo>주소 : {spotData.addr1}</DetailInfo>
                 </DetailInformation>
 
-                <div id="3">
+                <CommunicationWrap id="3">
                   <Communication />
-                </div>
+                </CommunicationWrap>
 
                 <Notification />
 
@@ -182,6 +183,7 @@ const DetailImgBox = styled.div`
   width: 100%;
   justify-content: center;
   display: flex;
+  margin-bottom: 150px;
 `;
 const DetailImg = styled.img`
   width: 90%;
@@ -192,6 +194,7 @@ const SideInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
+  height: 800px;
 `;
 
 const DetailInformation = styled.div`
@@ -200,7 +203,9 @@ const DetailInformation = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px 0;
+  /* margin: 30px 0; */
+  height: 300px;
+  margin-top: 30px;
 `;
 
 const DetailInfoText = styled.span`
@@ -210,4 +215,17 @@ const DetailInfoText = styled.span`
 
 const DetailInfo = styled.div`
   width: 90%;
+  margin: 10px 0;
+`;
+
+const CommunicationWrap = styled.div`
+  width: 90%;
+  /* margin: margin: 10px 0; */
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 30px 0; */
+  height: 300px;
+  margin-top: 30px;
 `;
