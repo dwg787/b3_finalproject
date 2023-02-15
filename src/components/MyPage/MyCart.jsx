@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { auth, db } from '../../apis/firebase';
 import Loader from '../Loader/Loader';
-import noimg from '../../assets/noimg.png';
+import noimg from '../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
 
 const MyCart = () => {

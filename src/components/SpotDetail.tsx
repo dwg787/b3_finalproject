@@ -1,6 +1,6 @@
 import { FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
-import noimg from '../assets/noimg.png';
+import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 
 const SpotDetail = (props: FetchedStayDataType) => {

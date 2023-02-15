@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import SpotDetail from '../SpotDetail';
 import { FetchedStayDataType } from '../../apis/publicAPI';
-import noimg from '../../assets/noimg.png';
+import noimg from '../../assets/noimg.avif';
 import Slider from 'react-slick';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { fetchSpotData } from '../../apis/publicAPI';
@@ -40,6 +40,10 @@ const SelectionResult = () => {
       // staleTime: 1000 * 60 * 5,
     }
   );
+
+  console.log('관광지 curPage', curPage);
+  console.log('관광지 데이터', data);
+
   useEffect(() => {
     fetchNextPage();
   }, [curPage]);

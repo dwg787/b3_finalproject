@@ -1,11 +1,11 @@
-import React from "react";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import { auth } from "../apis/firebase";
-import { fetchStayDetailInfo } from "../apis/publicAPI";
-import Ticketing from "../components/Reservation/Ticketing";
-import noimg from "../assets/noimg.png";
+import React from 'react';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { auth } from '../apis/firebase';
+import { fetchStayDetailInfo } from '../apis/publicAPI';
+import Ticketing from '../components/Reservation/Ticketing';
+import noimg from '../assets/noimg.avif';
 
 // 예약페이지 만들기
 // 1. 예약페이지에 클릭한 해당 숙박의 상세내용과 티켓팅 컴퍼넌트를 같이 넣어 띄워주기 =>완료
@@ -17,7 +17,7 @@ import noimg from "../assets/noimg.png";
 const ReservationPage = () => {
   const param = useParams();
   const { data: stayDetailData, isLoading: isLoadingStayDetail } = useQuery(
-    ["stay_detail", param],
+    ['stay_detail', param],
     () => fetchStayDetailInfo({ param })
   );
 
@@ -32,7 +32,7 @@ const ReservationPage = () => {
           </div>
           <StTicketInfoImage
             src={stayDetailData.firstimage || noimg}
-            alt="숙박 사진"
+            alt='숙박 사진'
           />
           <div>주소 : {stayDetailData.addr1}</div>
         </StTicketInfo>

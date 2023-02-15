@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
@@ -8,13 +9,17 @@ import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
 import StayRecommendation from '../components/Recommendation/StayRecommendation';
 import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
-// import StaySelectionResult from '../components/Selection/StaySelectionResult';
-// import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
+import { useEffect } from 'react';
+import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
+import StaySelectionResult from '../components/Selection/StaySelectionResult';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const selected = sessionStorage.getItem('mainpage_menu_type');
-  if (selected) setSelectedMenu(selected);
+
+  useEffect(() => {
+    if (selected) setSelectedMenu(selected);
+  }, [selected]);
 
   return (
     <Container>
@@ -32,11 +37,13 @@ const MainPage = () => {
       ) : selectedMenu === '관광지' ? (
         <SelectionResult />
       ) : selectedMenu === '숙박' ? (
-        <div>작업중</div>
-      ) : // <StaySelectionResult />
+        <StaySelectionResult />
+      ) : // <div>작업중</div>
+      //
       selectedMenu === '음식점' ? (
-        <div>작업중</div>
+        <RestaurantSelectionResult />
       ) : (
+        // <div>작업중</div>
         // <RestaurantSelectionResult />
         <>
           <SliderBanner />

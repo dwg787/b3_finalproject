@@ -1,6 +1,6 @@
 import { FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
-import noimg from '../assets/noimg.png';
+import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 
 const RestaurantDetail = (props: FetchedStayDataType) => {
@@ -44,7 +44,8 @@ const RestaurantImgWrapper = styled.div`
 
 const RestaurantEachItemImg = styled.img`
   width: 250px;
-  aspect-ratio: 1;
+  height: 250px;
+  /* aspect-ratio: 1; */
   cursor: pointer;
   &:hover {
     transform: scale(1.2);
