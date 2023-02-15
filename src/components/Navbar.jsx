@@ -213,7 +213,10 @@ const Navbar = () => {
                     <ModalHeader>
                       <CloseBtn onClick={() => setShowModal(false)}>X</CloseBtn>
                     </ModalHeader>
-                    <LoginPage />
+                    <LoginPage
+                      showModal={showModal}
+                      setShowModal={setShowModal}
+                    />
                   </Modal>
                 </ModalWrapper>
               )}
@@ -312,12 +315,15 @@ const ModalWrapper = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1001;
+  box-sizing: border-box;
 `;
 
 const Modal = styled.div`
   background-color: #ffff;
-  width: 25%;
-  height: 60%;
+  width: 498px;
+  /* 25%; */
+  height: 662px;
+  /* 60%; */
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -328,7 +334,7 @@ const ModalHeader = styled.div`
   justify-content: flex-end;
   align-items: center;
   width: 186%;
-  height: 12%;
+  height: 10%;
   padding: 10px;
 `;
 
