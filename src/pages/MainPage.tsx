@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
+import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
@@ -20,9 +19,11 @@ const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const selected = sessionStorage.getItem('mainpage_menu_type');
   if (selected) setSelectedMenu(selected);
+
   useEffect(() => {
     if (selected) setSelectedMenu(selected);
   }, [selected]);
+
   return (
     <Container>
       <Menu />
