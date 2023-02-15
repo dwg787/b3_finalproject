@@ -8,6 +8,7 @@ import axios from 'axios';
 import QueryString from 'qs';
 import mainlogo from '../assets/mainlogo.png';
 import SearchIcon from '../assets/search.png';
+import Ximg from '../assets/ximg.png';
 
 const Navbar = () => {
   const location = useLocation();
@@ -214,7 +215,9 @@ const Navbar = () => {
                 <ModalWrapper>
                   <Modal>
                     <ModalHeader>
-                      <CloseBtn onClick={() => setShowModal(false)}>X</CloseBtn>
+                      <CloseBtn onClick={() => setShowModal(false)}>
+                        <CloseImg src={Ximg} />
+                      </CloseBtn>
                     </ModalHeader>
                     <LoginPage
                       showModal={showModal}
@@ -351,6 +354,8 @@ const CloseBtn = styled.button`
   color: #1f1f1f;
   cursor: pointer;
 `;
+
+const CloseImg = styled.img``;
 
 const SearchIconImg = styled.img`
   width: 30px;
