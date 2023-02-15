@@ -73,7 +73,7 @@ const DetailPage = () => {
         ) : (
           <>
             {spotData ? (
-              <DeatilMapBox key={param.id}>
+              <DeatilBox key={param.id}>
                 {/* <Link to={'/'}>메인으로</Link> */}
                 <DeatilTextBox>
                   <DetailText>{spotData.title}</DetailText>
@@ -91,7 +91,16 @@ const DetailPage = () => {
                   <DetailImg src={spotData.firstimage} alt="관광지 사진" />
                 </DetailImgBox>
 
-                <div id="2">주소 : {spotData.addr1}</div>
+                <DetailInformation id="2">
+                  <DetailInfoText>상세정보</DetailInfoText>
+
+                  <DetailInfo>{spotData.overview}</DetailInfo>
+                  <DetailInfo>
+                    <span>지도들어가는곳</span>
+                  </DetailInfo>
+                  <DetailInfo>주소 : {spotData.addr1}</DetailInfo>
+                </DetailInformation>
+
                 <div id="3">
                   <Communication />
                 </div>
@@ -99,9 +108,7 @@ const DetailPage = () => {
                 <Notification />
 
                 {/* <div>{e.homepage}</div> */}
-
-                <div>{spotData.overview}</div>
-              </DeatilMapBox>
+              </DeatilBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>
             )}
@@ -127,9 +134,8 @@ const DetailWrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center
-  background-color: #cda8a8;
- 
+  justify-content: center;
+  /* background-color: #cda8a8; */
 `;
 
 const Container = styled.div`
@@ -141,21 +147,21 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 80px;
-  background-color: #8eb9dc;
+  /* background-color: #8eb9dc; */
 `;
 
-const DeatilMapBox = styled.div`
-  width: 90%;
+const DeatilBox = styled.div`
+  width: 100%;
   flex-direction: column;
   display: flex;
-  background-color: beige;
+  /* background-color: beige; */
 `;
 
 const DeatilTextBox = styled.div`
   width: 100%;
   gap: 0.3rem;
   /* margin-bottom: 2rem; */
-  border-bottom: solid #d3d3d3 2px;
+  /* border-bottom: solid #d3d3d3 2px; */
 `;
 
 const DeatilImojiBox = styled.div`
@@ -188,17 +194,20 @@ const SideInfoWrapper = styled.div`
   width: 90%;
 `;
 
-const StayInfoWrapper = styled.div`
+const DetailInformation = styled.div`
+  width: 100%;
+  justify-content: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
 `;
 
-const RestaurantInfoWrapper = styled.div`
+const DetailInfoText = styled.span`
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
 `;
 
-const StayImage = styled.img`
-  width: 300px;
-  height: 200px;
+const DetailInfo = styled.div`
+  width: 90%;
 `;

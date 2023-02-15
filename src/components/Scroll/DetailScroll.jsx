@@ -35,7 +35,9 @@ const DetailScroll = () => {
 export default DetailScroll;
 
 const MainDiv = styled.div`
-  margin: 2rem 5rem;
+  margin: 1rem 5rem;
+  border-bottom: solid #d6dcff 1px;
+  border-top: solid #d6dcff 1px;
 `;
 
 const ContentDiv = styled.div`
@@ -49,12 +51,13 @@ const SideDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 1rem 0;
 `;
 
 const StLinkTextBox = styled.span`
-  margin: 20px 40px;
-  background-color: teal;
-  font-size: 20px;
+  margin: 20px 60px;
+  /* background-color: teal; */
+  font-size: 15px;
   font-weight: 400;
   padding: 20px;
   cursor: pointer;
