@@ -19,6 +19,7 @@ const Navbar = () => {
   // const currentUser = auth.currentUser;
   const localId = sessionStorage.getItem('id');
   // console.log(localId);
+
   const currentUser = auth.currentUser;
   const userNickName = currentUser?.displayName;
   // console.log(userNickName);
@@ -28,6 +29,7 @@ const Navbar = () => {
   //kakaologin get location
   const KAKAO_CODE = location.search.split('=')[1];
   // console.log(KAKAO_CODE);
+
   //   getuser 실행
 
   const REST_API_KEY_KAKAO = '06264d97cddc6d0d5ef77a0f28d69af9';
@@ -37,6 +39,11 @@ const Navbar = () => {
   const [nickName, setNickName] = useState();
   const [profileImage, setProfileImage] = useState();
   const [accessToken, setAccessToken] = useState();
+  const [userName, setUserName] = useState('');
+  console.log(userName);
+  const { naver } = window;
+  const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
+  const NAVER_CALLBACK_URL = 'http://localhost:3000/';
 
   // console.log(accessToken);
   const getUser = async () => {
@@ -74,8 +81,17 @@ const Navbar = () => {
   };
   // console.log(nickName, profileImage);
 
+  const userAccessToken = () => {
+    window.location.href.includes('access_token') && getToken();
+  };
+
+  const getToken = () => {
+    const token = window.location.href.split('=')[1].split('&')[0];
+  };
+
   useEffect(() => {
     getUser();
+    userAccessToken();
   }, []);
   //  userdata를 세션이나 로컬 스토리지에 담아준다
   // 또는 유즈이펙트로 감지하여 실행해준다
@@ -106,13 +122,64 @@ const Navbar = () => {
     //     alert("로그아웃에 실패했습니다.");
     //   });
     sessionStorage.removeItem('id');
-    sessionStorage.removeItem('email');
     localStorage.removeItem('token_for_kakaotalk');
+    localStorage.removeItem('com.naver.nid.access_token');
+    localStorage.removeItem('com.naver.nid.oauth.state_token');
+    sessionStorage.removeItem('email');
+
     navigate('/');
     window.location.reload();
   };
   // const localId = sessionStorage.getItem('id');
   // console.log(localId);
+
+  const initializeNaverLogin = () => {
+    const naverLogin = new naver.LoginWithNaverId({
+      clientId: NAVER_CLIENT_ID,
+      callbackUrl: NAVER_CALLBACK_URL,
+      // 팝업창으로 로그인을 진행할 것인지?
+      isPopup: false,
+      loginButton: { color: 'green', type: 1, height: 30 },
+      callbackHandle: true,
+    });
+    naverLogin.init();
+
+    naverLogin.getLoginStatus(async function(status) {
+      if (status) {
+        const userid = naverLogin.user.getEmail();
+        const username = naverLogin.user.getName();
+        setUserName(username);
+        window.localStorage.setItem('id', username);
+        window.sessionStorage.setItem('id', username);
+      }
+    });
+  };
+
+  useEffect(() => {
+    let naverUser = setTimeout(() => {
+      initializeNaverLogin();
+      const naverLogin = new naver.LoginWithNaverId({
+        clientId: NAVER_CLIENT_ID,
+        callbackUrl: NAVER_CALLBACK_URL,
+        // 팝업창으로 로그인을 진행할 것인지?
+        isPopup: false,
+        loginButton: { color: 'green', type: 1, height: 30 },
+        callbackHandle: true,
+      });
+      naverLogin.init();
+
+      naverLogin.getLoginStatus(async function(status) {
+        if (status) {
+          const userid = naverLogin.user.getEmail();
+          const username = naverLogin.user.getName();
+          setUserName(username);
+          window.localStorage.setItem('id', username);
+          window.sessionStorage.setItem('id', username);
+        }
+      });
+    }, 500);
+  }, []);
+
   return (
     <Nav>
       <div>
@@ -121,24 +188,24 @@ const Navbar = () => {
         </Link>
       </div>
       <div>
-        <label>
-          <InputBox onClick={() => navigate('/search')}>
-            <div>관광지 검색하러 가기!</div>
-            <SearchIconImg src={SearchIcon} alt="" />
-          </InputBox>
-        </label>
-      </div>
-      <div>
         <LoginButtonBox>
           {localId !== null ? (
             <LoginBox>
               <NickNameBtn onClick={() => navigate('/my')}>
-                {localId}님
+                {localId}님 환영합니다
               </NickNameBtn>
+              <InputBox onClick={() => navigate('/search')}>
+                <SearchIconImg src={SearchIcon} alt="" />
+              </InputBox>
+              <NavTextDiv>예약페이지</NavTextDiv>
+              <NavTextDiv>마이페이지</NavTextDiv>
               <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
             </LoginBox>
           ) : (
             <LoginBox>
+              <InputBox onClick={() => navigate('/search')}>
+                <SearchIconImg src={SearchIcon} alt="" />
+              </InputBox>
               {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
               <LoginButton onClick={() => setShowModal(true)}>
                 Login
@@ -178,76 +245,12 @@ const Nav = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fafafa;
+  background-color: #6478ff;
 `;
 
-// const LeftSection = styled.div`
-//   width: 25%;
-//   margin-left: 2rem;
-// `;
-
-// const LogoImg = styled.img`
-//   width: 150px;
-// `;
-
-// const ImgNick = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-items: center;
-//   text-align: center;
-//   gap: 1rem;
-// `;
-
-// const FbImg = styled.div`
-//   display: flex;
-//   align-items: center;
-// `;
-
-// const FontBox = styled.div`
-//   width: 100%;
-//   @media (max-width: 850px) {
-//     display: none;
-//   }
-// `;
-
-// const Font = styled.h4`
-//   font-size: 25px;
-//   margin-top: 0.4rem;
-// `;
-
-// const MenuSection = styled.div`
-//   width: 40%;
-// `;
-
-// const NavUl = styled.ul`
-//   display: flex;
-//   flex-direction: row;
-//   @media screen and (max-width: 800px) {
-//     flex-direction: column;
-//   }
-// `;
-
-// const NavLi = styled.li`
-//   list-style: none;
-//   text-decoration: none;
-//   &:hover {
-//     text-decoration: underline;
-//     color: #4285f4;
-//   }
-// `;
-// const NavText = styled(Link)`
-//   text-decoration: none;
-//   color: black;
-//   font-size: 20px;
-// `;
-
-// const InfoSection = styled.div`
-//   width: 20%;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: center;
-// `;
+const NavTextDiv = styled.div`
+  color: white;
+`;
 
 const LoginButton = styled.button`
   display: flex;
@@ -267,8 +270,9 @@ const LoginButton = styled.button`
   cursor: pointer;
 `;
 const LoginButtonBox = styled.div`
-  /* margin-right: 1.5rem; */
-  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const LoginBox = styled.div`
@@ -283,14 +287,12 @@ const InputBox = styled.div`
   gap: 150px;
   justify-content: space-around;
   align-items: center;
-  width: 400px;
+  /* width: 400px; */
   height: 30px;
   border-radius: 10px;
-  border: 1px solid #666666;
   text-indent: 10px;
   font-weight: 500;
-  background-color: white;
-  color: #666666;
+
   cursor: pointer;
 `;
 
@@ -345,8 +347,8 @@ const CloseBtn = styled.button`
 `;
 
 const SearchIconImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
 const NickNameBtn = styled.button`
@@ -355,4 +357,5 @@ const NickNameBtn = styled.button`
   cursor: pointer;
   font-size: 17px;
   margin-right: 10px;
+  color: white;
 `;

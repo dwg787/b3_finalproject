@@ -1,15 +1,15 @@
-import styled from 'styled-components';
-import { useRecoilValue } from 'recoil';
-import { menuSelectionState } from '../recoil/apiDataAtoms';
-import Menu from '../components/Menu/Menu';
-import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
-import RegionSelection from '../components/Selection/RegionSelection';
-import SelectionResult from '../components/Selection/SelectionResult';
-import SliderBanner from '../components/SliderBanner';
-import StayRecommendation from '../components/Recommendation/StayRecommendation';
-import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
-import StaySelectionResult from '../components/Selection/StaySelectionResult';
-import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
+import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { menuSelectionState } from "../recoil/apiDataAtoms";
+import Menu from "../components/Menu/Menu";
+import SpotRecommendation from "../components/Recommendation/SpotRecommendation";
+import RegionSelection from "../components/Selection/RegionSelection";
+import SelectionResult from "../components/Selection/SelectionResult";
+import SliderBanner from "../components/SliderBanner";
+import StayRecommendation from "../components/Recommendation/StayRecommendation";
+import RestaurantRecommendation from "../components/Recommendation/RestaurantRecommendation";
+import StaySelectionResult from "../components/Selection/StaySelectionResult";
+import RestaurantSelectionResult from "../components/Selection/RestaurantSelectionResult";
 
 const MainPage = () => {
   const selectedMenu = useRecoilValue(menuSelectionState);
@@ -17,21 +17,21 @@ const MainPage = () => {
   return (
     <Container>
       <Menu />
-      {(selectedMenu === '관광지' ||
-        selectedMenu === '음식점' ||
-        selectedMenu === '숙박') && <RegionSelection />}
-      {selectedMenu === 'HOME' ? (
+      {(selectedMenu === "관광지" ||
+        selectedMenu === "음식점" ||
+        selectedMenu === "숙박") && <RegionSelection />}
+      {selectedMenu === "HOME" ? (
         <>
           <SliderBanner />
           <SpotRecommendation />
           <StayRecommendation />
           <RestaurantRecommendation />
         </>
-      ) : selectedMenu === '관광지' ? (
+      ) : selectedMenu === "관광지" ? (
         <SelectionResult />
-      ) : selectedMenu === '숙박' ? (
+      ) : selectedMenu === "숙박" ? (
         <StaySelectionResult />
-      ) : selectedMenu === '음식점' ? (
+      ) : selectedMenu === "음식점" ? (
         <RestaurantSelectionResult />
       ) : (
         <>
