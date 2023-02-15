@@ -36,12 +36,16 @@ const KakaoMap = ({ mapx, mapy }) => {
 
     // console.log("kakaomap로딩완료");
   }, []);
-  return <StMap id="map" ref={mapcontainer}></StMap>;
+  return (
+    <div>
+      <StMap id="map" ref={mapcontainer}></StMap>
+    </div>
+  );
 };
 
 export default KakaoMap;
 
 const StMap = styled.div`
   width: 100%;
-  height: 300px;
+  height: 400px;
 `;

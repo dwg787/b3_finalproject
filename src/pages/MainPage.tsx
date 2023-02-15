@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { useRecoilState } from 'recoil';
+
+import { useRecoilState, useRecoilValue } from 'recoil';
+
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
 import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
@@ -14,6 +16,8 @@ import RestaurantSelectionResult from '../components/Selection/RestaurantSelecti
 import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
 import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
+
+import { useEffect } from 'react';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
