@@ -13,9 +13,10 @@ import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
 import Liked from '../components/Liked/Liked';
-import StayInfo from '../components/StayInfo';
+import StayInfo from '../components/Stayinfo';
 import Communication from '../components/Review/Communication';
 import Notification from '../components/Notification/Notification';
+import '../App.css';
 
 const DetailPage = () => {
   const param = useParams();
@@ -66,23 +67,28 @@ const DetailPage = () => {
   }, [spotData]);
 
   return (
-    <Container>
-      <div>
+    <DetailWrap>
+      <Container>
         {isLoadingSpot ? (
           <Loader />
         ) : (
           <>
             {spotData ? (
               <div key={param.id}>
-                <Link to={'/'}>메인으로</Link>
-                <div>{spotData.title}</div>
-                <img src={spotData.firstimage} alt="관광지 사진" />
+                {/* <Link to={'/'}>메인으로</Link> */}
+                <DeatilTextBox>
+                  <DetailText>{spotData.title}</DetailText>
+                  <Liked spotData={spotData} />
+                </DeatilTextBox>
+                <DetailImgBox>
+                  <DetailImg src={spotData.firstimage} alt="관광지 사진" />
+                </DetailImgBox>
+
                 <div>주소 : {spotData.addr1}</div>
                 <Communication />
                 <Notification />
                 <Link to={`/spot/${param.id}/map`}>지도보기</Link>
                 {/* <div>{e.homepage}</div> */}
-                <Liked spotData={spotData} />
 
                 <div>{spotData.overview}</div>
               </div>
@@ -99,20 +105,62 @@ const DetailPage = () => {
             <RestaurantInfo spotData={spotData} />
           </RestaurantInfoWrapper>
         </SideInfoWrapper>
-      </div>
-    </Container>
+      </Container>
+    </DetailWrap>
   );
 };
 
 export default DetailPage;
 
-const Container = styled.div`
+const DetailWrap = styled.div`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center
+  background-color: #cda8a8;
+ 
+`;
+
+const Container = styled.div`
+  /* width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center; */
+
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: center;
   justify-content: center;
+  margin-top: 80px;
+  background-color: #8eb9dc;
+`;
+
+const DeatilTextBox = styled.div`
+  width: 100%;
+  gap: 0.3rem;
+  margin-bottom: 50px;
+  border-bottom: solid #d3d3d3 2px;
+`;
+
+const DetailText = styled.p`
+  font-weight: 900;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 50px;
+`;
+
+const DetailImgBox = styled.div`
+  width: 100%;
+`;
+const DetailImg = styled.img`
+  width: 90%;
+  justify-content: center;
+  display: flex;
 `;
 
 const SideInfoWrapper = styled.div`
