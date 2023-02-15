@@ -12,7 +12,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       clientId: NAVER_CLIENT_ID,
       callbackUrl: NAVER_CALLBACK_URL,
       // 팝업창으로 로그인을 진행할 것인지?
-      isPopup: true,
+      isPopup: false,
       loginButton: { color: "green", type: 1, height: 30 },
       callbackHandle: true,
     });
@@ -23,12 +23,14 @@ const Naver = ({ setGetToken, setUserInfo }) => {
         const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
         setUserName(username);
+        window.localStorage.setItem("id", username);
+        window.sessionStorage.setItem("id", username);
       }
     });
   };
 
   const userAccessToken = () => {
-    window.location.href.includes("access_token") && getToken();
+    window.location.href.includes("id") && getToken();
   };
 
   const getToken = () => {

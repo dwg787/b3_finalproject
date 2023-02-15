@@ -13,7 +13,7 @@ import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import RestaurantInfo from '../components/RestaurantInfo';
 import Liked from '../components/Liked/Liked';
-import StayInfo from '../components/Stayinfo';
+import StayInfo from '../components/StayInfo';
 import Communication from '../components/Review/Communication';
 import Notification from '../components/Notification/Notification';
 
