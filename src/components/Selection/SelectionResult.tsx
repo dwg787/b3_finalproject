@@ -10,20 +10,19 @@ import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const SelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
-  const [curPage, setCurPage] = useState(1);
-  let firstNum = curPage - (curPage % 5) + 1;
-  let lastNum = curPage - (curPage % 5) + 5;
+  const [spotCurPage, setSpotCurPage] = useState(1);
+  const maxPageNo = useRef(1);
 
   const {
     data,
     isLoading,
     hasNextPage,
     hasPreviousPage,
-    fetchNextPage,
+    fetchNextPage: fetchSpotNextPage,
   } = useInfiniteQuery(
     ['spot_data', region],
     ({ pageParam = 1 }) => fetchSpotData({ region, pageParam }),
@@ -37,20 +36,40 @@ const SelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      // staleTime: 1000 * 60 * 5,
-    }
+      // staleTime: 1000 * 60,
+    },
   );
 
-  console.log('관광지 curPage', curPage);
+  console.log('관광지 spotCurPage', spotCurPage);
   console.log('관광지 데이터', data);
+  console.log('관광지 maxPage', maxPageNo);
+
+  // useEffect(() => {
+  //   fetchNextPage();
+  // }, [spotCurPage]);
 
   useEffect(() => {
-    fetchNextPage();
-  }, [curPage]);
-
-  useEffect(() => {
-    setCurPage(1);
+    setSpotCurPage(1);
   }, [region]);
+
+  const handleFetchNextPage = () => {
+    setSpotCurPage(spotCurPage + 1);
+    if (data) {
+      console.log(
+        'fetch된 가장 last 페이지 넘버:',
+        data.pages[spotCurPage - 1]?.pageNo,
+      );
+    }
+
+    if (data) {
+      if (maxPageNo.current < data.pages.length) {
+        maxPageNo.current = data.pages.length;
+      }
+      if (spotCurPage === data.pages[maxPageNo.current - 1].pageNo) {
+        fetchSpotNextPage();
+      }
+    }
+  };
 
   return (
     <SearchOverallResultContainer>
@@ -61,21 +80,21 @@ const SelectionResult = () => {
       ) : (
         <>
           <ListItemCount>
-            총 {data.pages[curPage - 1]?.totalCount} 개의 결과
+            총 {data.pages[spotCurPage - 1]?.totalCount} 개의 결과
           </ListItemCount>
           <SearchListWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setCurPage(curPage - 1)}
+                onClick={() => setSpotCurPage(spotCurPage - 1)}
                 disabled={
-                  data.pages[curPage - 1]?.pageNo - 1 < 1 ? true : false
+                  data.pages[spotCurPage - 1]?.pageNo - 1 < 1 ? true : false
                 }
               >
                 이전
               </button>
             </BtnWrapper>
             <ResultWrapper>
-              {data.pages[curPage - 1]?.items.item.map(
+              {data.pages[spotCurPage - 1]?.items.item.map(
                 (e: FetchedStayDataType) => {
                   return (
                     <SpotDetail
@@ -86,16 +105,16 @@ const SelectionResult = () => {
                       {e.title}
                     </SpotDetail>
                   );
-                }
+                },
               )}
             </ResultWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setCurPage(curPage + 1)}
+                onClick={handleFetchNextPage}
                 disabled={
                   Math.ceil(
-                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows
-                  ) <= curPage
+                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
+                  ) <= spotCurPage
                     ? true
                     : false
                 }

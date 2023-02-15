@@ -10,19 +10,21 @@ import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
 const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
-  const [curPage, setCurPage] = useState(1);
+  const [restaurantCurPage, setRestaurantCurPage] = useState(1);
+  const maxPageNo = useRef(1);
 
   const {
     data,
     isLoading,
     hasNextPage,
     hasPreviousPage,
-    fetchNextPage,
+    fetchNextPage: fetchRestaurantNextPage,
+    // fetchPreviousPage,
   } = useInfiniteQuery(
     ['spot_data', region],
     ({ pageParam = 1 }) => fetchRestaurantData({ region, pageParam }),
@@ -36,21 +38,39 @@ const RestaurantSelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      // staleTime: 1000 * 60 * 5,
-    }
+      // staleTime: 1000 * 60,
+    },
   );
 
   console.log('음식점 데이터', data);
-  console.log('음식점 curPage', curPage);
+  console.log('음식점 curPage', restaurantCurPage);
+  console.log('음식점 maxPage', maxPageNo);
 
-  useEffect(() => {
-    console.log('fetchNextPage');
-    fetchNextPage();
-  }, [curPage]);
+  // useEffect(() => {
+  //   fetchNextPage();
+  // }, [curPage]);
+  const handleFetchNextPage = () => {
+    setRestaurantCurPage(restaurantCurPage + 1);
+    if (data) {
+      console.log(
+        'fetch된 가장 last 페이지 넘버:',
+        data.pages[restaurantCurPage - 1]?.pageNo,
+      );
+    }
+
+    if (data) {
+      if (maxPageNo.current < data.pages.length) {
+        maxPageNo.current = data.pages.length;
+      }
+      if (restaurantCurPage === data.pages[maxPageNo.current - 1].pageNo) {
+        fetchRestaurantNextPage();
+      }
+    }
+  };
 
   useEffect(() => {
     console.log('setCurPage');
-    setCurPage(1);
+    setRestaurantCurPage(1);
   }, [region]);
 
   return (
@@ -62,21 +82,23 @@ const RestaurantSelectionResult = () => {
       ) : (
         <>
           <ListItemCount>
-            총 {data.pages[curPage - 1]?.totalCount} 개의 결과
+            총 {data.pages[restaurantCurPage - 1]?.totalCount} 개의 결과
           </ListItemCount>
           <SearchListWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setCurPage(curPage - 1)}
+                onClick={() => setRestaurantCurPage(restaurantCurPage - 1)}
                 disabled={
-                  data.pages[curPage - 1]?.pageNo - 1 < 1 ? true : false
+                  data.pages[restaurantCurPage - 1]?.pageNo - 1 < 1
+                    ? true
+                    : false
                 }
               >
                 이전
               </button>
             </BtnWrapper>
             <ResultWrapper>
-              {data.pages[curPage - 1]?.items.item.map((e) => {
+              {data.pages[restaurantCurPage - 1]?.items.item.map((e) => {
                 return (
                   <RestaurantDetail
                     key={e.contentid}
@@ -90,11 +112,11 @@ const RestaurantSelectionResult = () => {
             </ResultWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setCurPage(curPage + 1)}
+                onClick={handleFetchNextPage}
                 disabled={
                   Math.ceil(
-                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows
-                  ) <= curPage
+                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
+                  ) <= restaurantCurPage
                     ? true
                     : false
                 }
