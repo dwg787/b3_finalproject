@@ -19,8 +19,8 @@ const RestaurantRecommendation = (propsData: any) => {
     const data = await getDocs(
       query(
         collection(db, 'restaurant_recommendation'),
-        orderBy('viewCnt', 'desc')
-      )
+        orderBy('viewCnt', 'desc'),
+      ),
     );
     const res = data.docs.map((doc: DocumentData) => {
       return {
@@ -64,12 +64,16 @@ const RestaurantRecommendation = (propsData: any) => {
 export default RestaurantRecommendation;
 
 const Container = styled.div`
-  width: 100%;
+  width: 90%;
   height: 500px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* background-color: #d7d7d7; */
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+  border: 1.5px solid #6478ff;
+  border-radius: 50px;
+  box-shadow: 5px 5px #c8c8c8;
 `;
 
 const RecommendListIntroWrapper = styled.div`

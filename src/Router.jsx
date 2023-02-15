@@ -22,6 +22,7 @@ import {
   StayDetailPage,
   RestaurantDetailPage,
 } from './pages';
+import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (
@@ -44,6 +45,7 @@ const Router = () => {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </Suspense>
   );

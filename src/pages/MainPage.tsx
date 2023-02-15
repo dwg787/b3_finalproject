@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
 import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
@@ -9,18 +8,13 @@ import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
 import StayRecommendation from '../components/Recommendation/StayRecommendation';
 import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
-import { useEffect } from 'react';
-import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
 import StaySelectionResult from '../components/Selection/StaySelectionResult';
-
+import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
+import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
+import MyChild from '../components/Recommendation/MyChild';
+import BestDate from '../components/Recommendation/BestDate';
 const MainPage = () => {
-  const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
-  const selected = sessionStorage.getItem('mainpage_menu_type');
-
-  useEffect(() => {
-    if (selected) setSelectedMenu(selected);
-  }, [selected]);
-
+  const selectedMenu = useRecoilValue(menuSelectionState);
   return (
     <Container>
       <Menu />
@@ -31,33 +25,33 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <SpotRecommendation />
-          <StayRecommendation />
-          <RestaurantRecommendation />
+          <WeeklyTop10 />
+          <MyChild />
+          <BestDate />
+          {/* <StayRecommendation />
+          <RestaurantRecommendation /> */}
         </>
       ) : selectedMenu === '관광지' ? (
         <SelectionResult />
       ) : selectedMenu === '숙박' ? (
         <StaySelectionResult />
-      ) : // <div>작업중</div>
-      //
-      selectedMenu === '음식점' ? (
+      ) : selectedMenu === '음식점' ? (
         <RestaurantSelectionResult />
       ) : (
-        // <div>작업중</div>
-        // <RestaurantSelectionResult />
         <>
           <SliderBanner />
           <SpotRecommendation />
-          <StayRecommendation />
-          <RestaurantRecommendation />
+          <WeeklyTop10 />
+          <MyChild />
+          <BestDate />
+          {/* <StayRecommendation />
+          <RestaurantRecommendation /> */}
         </>
       )}
     </Container>
   );
 };
-
 export default MainPage;
-
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -65,8 +59,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(white 40%, #6478ff);
 `;
-
 const BtnWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -74,7 +68,6 @@ const BtnWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const SelectStayBtnWrapper = styled.div`
   width: 300px;
   height: 300px;
@@ -85,7 +78,6 @@ const SelectStayBtnWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const MainImg = styled.img`
   width: 100%;
   height: 100%;
