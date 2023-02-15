@@ -1,6 +1,6 @@
 import { FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
-import noimg from '../assets/noimg.png';
+import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 
 const SpotDetail = (props: FetchedStayDataType) => {
@@ -39,6 +39,9 @@ const SpotEachItemWrapper = styled.div`
 const SpotImgWrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   border-radius: 5px;
   overflow: hidden;

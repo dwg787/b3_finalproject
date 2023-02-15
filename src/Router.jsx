@@ -1,9 +1,11 @@
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
 import Navbar from './components/Navbar';
 import ChatBotModal from './components/bot/ChatBotModal';
 import TopButton from './components/TopButton/TopButton';
+// import Ticketing from './components/Reservation/Ticketing';
+import AdminPage from './pages/AdminPage';
 
 import Ticketing from './components/Reservation/Ticketing';
 
@@ -24,8 +26,8 @@ import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader />}>
+      <BrowserRouter>
         <Navbar />
         <ChatBotModal />
         <TopButton />
@@ -41,10 +43,11 @@ const Router = () => {
           <Route path="/purchase" element={<PurchasePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
         <Footer />
-      </Suspense>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Suspense>
   );
 };
 

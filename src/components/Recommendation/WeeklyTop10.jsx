@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 export default function WeeklyTop10() {
   return (
     <Container>
@@ -26,7 +25,6 @@ export default function WeeklyTop10() {
     </Container>
   );
 }
-
 const Container = styled.div`
   width: 90%;
   height: 850px;
@@ -38,7 +36,6 @@ const Container = styled.div`
   box-shadow: 5px 5px #c8c8c8;
   background-color: white;
 `;
-
 const WeeklyTopText = styled.p`
   margin-left: 70px;
   color: #6478ff;
@@ -46,12 +43,10 @@ const WeeklyTopText = styled.p`
   font-weight: bold;
   margin-top: 40px;
 `;
-
 const WeeklyButtonBox = styled.div`
   margin-top: 20px;
   margin-left: 40px;
 `;
-
 const WeeklyButton = styled.button`
   width: 70px;
   height: 35px;
@@ -62,17 +57,13 @@ const WeeklyButton = styled.button`
   color: #6478ff;
   border-radius: 20px;
 `;
-
 const WeeklyListWrapbox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
-
 const WeeklyListBox1 = styled.div``;
-
 const WeeklyListBox2 = styled.div``;
-
 const WeeklyList = styled.div`
   width: 600px;
   height: 200px;

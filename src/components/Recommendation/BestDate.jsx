@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 export default function MyChild() {
   return (
     <Container>
@@ -14,7 +13,6 @@ export default function MyChild() {
     </Container>
   );
 }
-
 const Container = styled.div`
   width: 90%;
   height: 600px;
@@ -26,7 +24,6 @@ const Container = styled.div`
   box-shadow: 5px 5px #c8c8c8;
   background-color: white;
 `;
-
 const MyChildTopText = styled.p`
   margin-left: 70px;
   color: #6478ff;
@@ -34,14 +31,12 @@ const MyChildTopText = styled.p`
   font-weight: bold;
   margin-top: 40px;
 `;
-
 const MyChildListBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 40px;
 `;
-
 const MyChildList = styled.div`
   width: 300px;
   height: 400px;

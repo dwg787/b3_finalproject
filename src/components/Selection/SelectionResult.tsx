@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import SpotDetail from '../SpotDetail';
 import { FetchedStayDataType } from '../../apis/publicAPI';
-import noimg from '../../assets/noimg.png';
+import noimg from '../../assets/noimg.avif';
+import Slider from 'react-slick';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { fetchSpotData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
@@ -9,20 +10,19 @@ import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const SelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
-  const [curPage, setCurPage] = useState(1);
-  let firstNum = curPage - (curPage % 5) + 1;
-  let lastNum = curPage - (curPage % 5) + 5;
+  const [spotCurPage, setSpotCurPage] = useState(1);
+  const maxPageNo = useRef(1);
 
   const {
     data,
     isLoading,
     hasNextPage,
     hasPreviousPage,
-    fetchNextPage,
+    fetchNextPage: fetchSpotNextPage,
   } = useInfiniteQuery(
     ['spot_data', region],
     ({ pageParam = 1 }) => fetchSpotData({ region, pageParam }),
@@ -36,15 +36,36 @@ const SelectionResult = () => {
       getPreviousPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo < 1 ? undefined : lastPage?.pageNo - 1;
       },
-      // staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 60,
     },
   );
-  useEffect(() => {
-    fetchNextPage();
-  }, [curPage]);
+
+  // console.log('관광지 spotCurPage', spotCurPage);
+  // console.log('관광지 데이터', data);
+  // console.log('관광지 maxPage', maxPageNo);
+
+  const handleFetchNextPage = () => {
+    setSpotCurPage(spotCurPage + 1);
+    if (data) {
+      if (spotCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
+        fetchSpotNextPage();
+      }
+      // if (hasNextPage) {
+      //   fetchSpotNextPage();
+      // }
+    }
+  };
 
   useEffect(() => {
-    setCurPage(1);
+    if (data) {
+      if (maxPageNo.current < data.pages.length) {
+        maxPageNo.current = data.pages.length;
+      }
+    }
+  }, [spotCurPage]);
+
+  useEffect(() => {
+    setSpotCurPage(1);
   }, [region]);
 
   return (
@@ -56,21 +77,21 @@ const SelectionResult = () => {
       ) : (
         <>
           <ListItemCount>
-            총 {data.pages[curPage - 1]?.totalCount} 개의 결과
+            총 {data.pages[spotCurPage - 1]?.totalCount} 개의 결과
           </ListItemCount>
           <SearchListWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setCurPage(curPage - 1)}
+                onClick={() => setSpotCurPage(spotCurPage - 1)}
                 disabled={
-                  data.pages[curPage - 1]?.pageNo - 1 < 1 ? true : false
+                  data.pages[spotCurPage - 1]?.pageNo - 1 < 1 ? true : false
                 }
               >
                 이전
               </button>
             </BtnWrapper>
             <ResultWrapper>
-              {data.pages[curPage - 1]?.items.item.map(
+              {data.pages[spotCurPage - 1]?.items.item.map(
                 (e: FetchedStayDataType) => {
                   return (
                     <SpotDetail
@@ -86,11 +107,11 @@ const SelectionResult = () => {
             </ResultWrapper>
             <BtnWrapper>
               <button
-                onClick={() => setCurPage(curPage + 1)}
+                onClick={handleFetchNextPage}
                 disabled={
                   Math.ceil(
                     data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
-                  ) <= curPage
+                  ) <= spotCurPage
                     ? true
                     : false
                 }
@@ -124,12 +145,12 @@ const SearchListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 const ResultWrapper = styled.div`
-  width: 100%;
+  width: 70%;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;

@@ -1,10 +1,10 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { auth, db } from "../../apis/firebase";
-import Loader from "../Loader/Loader";
-import noimg from "../../assets/noimg.png";
-import { Link } from "react-router-dom";
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { auth, db } from '../../apis/firebase';
+import Loader from '../Loader/Loader';
+import noimg from '../../assets/noimg.avif';
+import { Link } from 'react-router-dom';
 
 const MyStayLiked = () => {
   const [stays, setStays] = useState([]);
@@ -12,7 +12,7 @@ const MyStayLiked = () => {
 
   const getStayLiked = async () => {
     const uid = auth.currentUser.uid;
-    const q = query(collection(db, "staylike"), where("uid", "==", uid));
+    const q = query(collection(db, 'staylike'), where('uid', '==', uid));
     const data = await getDocs(q);
     const newData = data.docs.map((doc) => ({
       ...doc.data(),
@@ -42,7 +42,7 @@ const MyStayLiked = () => {
                     <StCartMenu>숙박</StCartMenu>
                     <StMyTicketImage src={data.img || noimg} alt="사진" />
                   </StTicketCardLeft>
-                  <StCartTitle>{data.stay.split("[", 1)}</StCartTitle>
+                  <StCartTitle>{data.stay.split('[', 1)}</StCartTitle>
                 </StTicketCard>
               </Link>
             );
@@ -69,7 +69,7 @@ const StTicket = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%
+  width: 100%;
   height: 100%;
   box-sizing: border-box;
 `;

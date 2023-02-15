@@ -11,10 +11,8 @@ import {
 import SpotDetail from '../SpotDetail';
 import { recCnts } from '../../apis/publicAPI';
 import { Link } from 'react-router-dom';
-
 const SpotRecommendation = (propsData: any) => {
   const [recommendList, setRecommendList] = useState<recCnts>();
-
   const spotRecommendationList = async () => {
     const data = await getDocs(
       query(collection(db, 'recommendation'), orderBy('viewCnt', 'desc')),
@@ -26,7 +24,6 @@ const SpotRecommendation = (propsData: any) => {
     });
     return res;
   };
-
   useEffect(() => {
     const fetchRecList = async () => {
       const res = await spotRecommendationList();
@@ -34,7 +31,6 @@ const SpotRecommendation = (propsData: any) => {
     };
     fetchRecList();
   }, []);
-
   return (
     <Container>
       <RecommendListIntroWrapper>
@@ -69,9 +65,7 @@ const SpotRecommendation = (propsData: any) => {
     </Container>
   );
 };
-
 export default SpotRecommendation;
-
 const SliderDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -80,7 +74,6 @@ const SliderDiv = styled.div`
   height: 300px;
   float: left;
 `;
-
 const Container = styled.div`
   width: 90%;
   height: 580px;
@@ -95,27 +88,23 @@ const Container = styled.div`
   overflow: hidden;
   background-color: white;
 `;
-
 const RecommendListIntroWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
 `;
-
 const RecommendListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 `;
-
 const RecommendListTitle = styled.div`
   margin-left: 70px;
   color: #6478ff;
   font-size: 20px;
   font-weight: bold;
 `;
-
 const RecommendListLink = styled(Link)`
   margin-right: 10px;
   margin-top: 10px;

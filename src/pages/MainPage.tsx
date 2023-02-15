@@ -13,10 +13,8 @@ import RestaurantSelectionResult from '../components/Selection/RestaurantSelecti
 import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
 import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
-
 const MainPage = () => {
   const selectedMenu = useRecoilValue(menuSelectionState);
-
   return (
     <Container>
       <Menu />
@@ -53,9 +51,7 @@ const MainPage = () => {
     </Container>
   );
 };
-
 export default MainPage;
-
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -65,7 +61,6 @@ const Container = styled.div`
   justify-content: center;
   background: linear-gradient(white 40%, #6478ff);
 `;
-
 const BtnWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -73,7 +68,6 @@ const BtnWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const SelectStayBtnWrapper = styled.div`
   width: 300px;
   height: 300px;
@@ -84,7 +78,6 @@ const SelectStayBtnWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const MainImg = styled.img`
   width: 100%;
   height: 100%;
