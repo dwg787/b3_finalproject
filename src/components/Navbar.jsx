@@ -313,6 +313,7 @@ const ModalWrapper = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1001;
+  box-sizing: border-box;
 `;
 
 const Modal = styled.div`

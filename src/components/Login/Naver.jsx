@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import NaverLogo from '../../assets/naver.png';
 
 const Naver = ({ setGetToken, setUserInfo }) => {
   const [userName, setUserName] = useState('');
@@ -13,7 +15,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       callbackUrl: NAVER_CALLBACK_URL,
       // 팝업창으로 로그인을 진행할 것인지?
       isPopup: false,
-      loginButton: { color: 'green', type: 1, height: 30 },
+      // loginButton: { color: 'green', type: 1, height: 30 },
       callbackHandle: true,
     });
     naverLogin.init();
@@ -48,9 +50,31 @@ const Naver = ({ setGetToken, setUserInfo }) => {
 
   return (
     <>
-      <button id="naverIdLogin" />
+      {/* 버튼에다 백그라운드 이미지 */}
+      {/* 이미지에다 이이디값 을 주거나  클릭 이벤트를하거나 */}
+
+      <NaverBtn id="naverIdLogin">
+        <NaverImg src={NaverLogo} />
+        <NaverText>Naver</NaverText>
+      </NaverBtn>
     </>
   );
 };
+
+const NaverBtn = styled.button`
+  background-color: transparent;
+  border: none;
+`;
+
+const NaverImg = styled.img`
+  width: 41px;
+  height: 41px;
+  cursor: pointer;
+`;
+
+const NaverText = styled.div`
+  color: #8a8a8a;
+  font-size: 12px;
+`;
 
 export default Naver;

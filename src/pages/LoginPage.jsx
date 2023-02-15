@@ -127,7 +127,9 @@ const LoginPage = ({ showModal, setShowModal }) => {
         <LoginBtn>로그인</LoginBtn>
         <GoSignUp onClick={goSignUp}>아직 계정을 만들지 않았나요?</GoSignUp>
       </form>
+
       <TextDiv>다른 로그인 방식</TextDiv>
+
       <Otherlogins>
         {/* style={{ display: 'flex', gap: '40px' }} */}
         <KakaoLoginButton />
@@ -138,10 +140,10 @@ const LoginPage = ({ showModal, setShowModal }) => {
         {/* <KakaoLogoutButton /> */}
         <Naver />
       </Otherlogins>
-      <FooterText>
+      {/* <FooterText>
         로그인 또는 회원가입 시 이용약관 및 개인정보 정책에<br></br>
         동의한 것으로 간주합니다.
-      </FooterText>
+      </FooterText> */}
     </MainWrap>
   );
 };
@@ -150,6 +152,7 @@ const MainWrap = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  box-sizing: border-box;
 `;
 
 const LoginText = styled.div`
@@ -159,8 +162,10 @@ const LoginText = styled.div`
 `;
 
 const LoginContent = styled.div`
-  margin-top: 5px;
-  margin-bottom: 25px;
+  /* margin-top: 20px;
+  margin-bottom: 25px; */
+  margin: 20px 0 25px 0;
+
   color: #6d6d6d;
   font-weight: 600;
   font-size: 16px;
@@ -173,20 +178,28 @@ const InputWrap = styled.div`
 
 const EmailInput = styled.input`
   width: 365px;
-  height: 55px;
+  height: 56px;
   border-radius: 10px;
   border: 1px solid #8a8a8a;
   padding: 15px;
   margin-bottom: -8px;
+  &::placeholder {
+    font-size: 18.7px;
+    color: #b8b8b8;
+  }
 `;
 
 const PwInput = styled.input`
   width: 365px;
-  height: 55px;
+  height: 56px;
   border-radius: 10px;
   border: 1px solid #8a8a8a;
   padding: 15px;
   margin-bottom: 17px;
+  &::placeholder {
+    font-size: 18.7px;
+    color: #b8b8b8;
+  }
 `;
 
 const LoginBtn = styled.button`
@@ -205,6 +218,8 @@ const GoSignUp = styled.div`
   font-size: 14px;
   color: #9a9a9a;
   cursor: pointer;
+  text-decoration: underline;
+  margin-bottom: 25px;
   /* border-bottom: 1px solid #9a9a9a; */
   /* width: 166px; */
 `;
@@ -227,14 +242,42 @@ const GoogleText = styled.div`
 
 const TextDiv = styled.div`
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  width: 80%;
+  margin-left: 50px;
   color: #8a8a8a;
-  font-size: 14.7px;
+  font-size: 15.13px;
+
+  //
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+
+  ::before {
+    content: '';
+    flex-grow: 1;
+    margin: 0px 30px;
+    background: #8a8a8a;
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+  }
+  ::after {
+    content: '';
+    flex-grow: 1;
+    margin: 0px 30px;
+    background: #8a8a8a;
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+  }
 `;
 
 const Otherlogins = styled.div`
   display: flex;
-  gap: 40px;
+  margin: 0 100px 0 100px;
+  /* width: 500px; */
+  /* gap: 10px; */
 `;
 
 const FooterText = styled.div`
