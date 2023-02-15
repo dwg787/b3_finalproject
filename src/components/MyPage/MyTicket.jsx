@@ -83,6 +83,7 @@ const StTicketCard = styled.div`
   width: 100%;
   margin: 10px;
   background-color: aliceblue;
+  box-shadow: 5px 5px 10px grey;
   box-sizing: border-box;
   border-radius: 10px;
   padding: 10px;
