@@ -17,7 +17,7 @@ const SpotRecommendation = (propsData: any) => {
 
   const spotRecommendationList = async () => {
     const data = await getDocs(
-      query(collection(db, 'recommendation'), orderBy('viewCnt', 'desc'))
+      query(collection(db, 'recommendation'), orderBy('viewCnt', 'desc')),
     );
     const res = data.docs.map((doc: DocumentData) => {
       return {
@@ -38,10 +38,25 @@ const SpotRecommendation = (propsData: any) => {
   return (
     <Container>
       <RecommendListIntroWrapper>
-        <RecommendListTitle>추천 관광지 TOP 10</RecommendListTitle>
-        <RecommendListLink to={'/my'}>전체보기</RecommendListLink>
+        <RecommendListTitle>나만 알고 싶은 감성 스팟</RecommendListTitle>
       </RecommendListIntroWrapper>
       <RecommendListWrapper>
+        <SliderDiv>
+          {recommendList &&
+            recommendList.slice(0, 10).map((e) => {
+              return (
+                <SpotDetail
+                  key={e.contentid}
+                  id={e.contentid}
+                  img={e.firstimage}
+                >
+                  {e.title}
+                </SpotDetail>
+              );
+            })}
+        </SliderDiv>
+      </RecommendListWrapper>
+      {/* <Slider {...settings}>
         {recommendList &&
           recommendList.slice(0, 10).map((e) => {
             return (
@@ -50,21 +65,35 @@ const SpotRecommendation = (propsData: any) => {
               </SpotDetail>
             );
           })}
-      </RecommendListWrapper>
+      </Slider> */}
     </Container>
   );
 };
 
 export default SpotRecommendation;
 
-const Container = styled.div`
+const SliderDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
   width: 100%;
-  height: 500px;
+  height: 300px;
+  float: left;
+`;
+
+const Container = styled.div`
+  width: 90%;
+  height: 580px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* background-color: #d7d7d7; */
+  margin-top: 70px;
+  padding-top: 40px;
+  border: 1.5px solid #6478ff;
+  border-radius: 50px;
+  box-shadow: 5px 5px #c8c8c8;
+  overflow: hidden;
+  background-color: white;
 `;
 
 const RecommendListIntroWrapper = styled.div`
@@ -81,8 +110,10 @@ const RecommendListWrapper = styled.div`
 `;
 
 const RecommendListTitle = styled.div`
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 70px;
+  color: #6478ff;
+  font-size: 20px;
+  font-weight: bold;
 `;
 
 const RecommendListLink = styled(Link)`
