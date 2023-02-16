@@ -1,21 +1,23 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
-
 import { useRecoilState, useRecoilValue } from 'recoil';
-
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
-import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
 import RegionSelection from '../components/Selection/RegionSelection';
 import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
-import StayRecommendation from '../components/Recommendation/StayRecommendation';
-import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
+// import StayRecommendation from '../components/Recommendation/StayRecommendation';
+// import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
 import StaySelectionResult from '../components/Selection/StaySelectionResult';
 import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
 import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
 import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
+<<<<<<< HEAD
+=======
+import MySpot from '../components/Recommendation/MySpot';
+import { useEffect } from 'react';
+import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
+>>>>>>> 5afa86d9ffbe903de3987e234068f0445a912a58
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -35,8 +37,9 @@ const MainPage = () => {
       {selectedMenu === 'HOME' ? (
         <>
           <SliderBanner />
-          <SpotRecommendation />
+          <MySpot />
           <WeeklyTop10 />
+          {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
           {/* <StayRecommendation />
@@ -51,8 +54,9 @@ const MainPage = () => {
       ) : (
         <>
           <SliderBanner />
-          <SpotRecommendation />
+          <MySpot />
           <WeeklyTop10 />
+          {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
           {/* <StayRecommendation />
@@ -71,25 +75,4 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background: linear-gradient(white 40%, #6478ff);
-`;
-const BtnWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-const SelectStayBtnWrapper = styled.div`
-  width: 300px;
-  height: 300px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: row;
-  /* flex-wrap: wrap; */
-  align-items: center;
-  justify-content: center;
-`;
-const MainImg = styled.img`
-  width: 100%;
-  height: 100%;
 `;

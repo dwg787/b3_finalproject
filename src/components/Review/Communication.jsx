@@ -98,10 +98,8 @@ const Communication = () => {
             );
           }
         })}
-
       </ReviewBoxList>
     </ReviewContainer>
-
   );
 };
 
