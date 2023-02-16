@@ -1,27 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { WEEKLY_TYPE } from '../../apis/apiCodes';
+
 export default function WeeklyTop10() {
   return (
     <Container>
       <WeeklyTopText>위클리 인기 TOP10</WeeklyTopText>
       <WeeklyButtonBox>
-        <WeeklyButton>관광</WeeklyButton>
-        <WeeklyButton>숙박</WeeklyButton>
-        <WeeklyButton>맛집</WeeklyButton>
-        <WeeklyButton>카페</WeeklyButton>
+        {WEEKLY_TYPE.map((e) => {
+          return <WeeklyButton key={e.id}>{e.type}</WeeklyButton>;
+        })}
       </WeeklyButtonBox>
-      <WeeklyListWrapbox>
-        <WeeklyListBox1>
-          <WeeklyList></WeeklyList>
-          <WeeklyList></WeeklyList>
-          <WeeklyList></WeeklyList>
-        </WeeklyListBox1>
-        <WeeklyListBox2>
-          <WeeklyList></WeeklyList>
-          <WeeklyList></WeeklyList>
-          <WeeklyList></WeeklyList>
-        </WeeklyListBox2>
-      </WeeklyListWrapbox>
     </Container>
   );
 }
@@ -47,16 +36,17 @@ const WeeklyButtonBox = styled.div`
   margin-top: 20px;
   margin-left: 40px;
 `;
+
 const WeeklyButton = styled.button`
   width: 70px;
   height: 35px;
   border: 1px solid #6478ff;
-  background-color: white;
   cursor: pointer;
   margin-left: 30px;
-  color: #6478ff;
   border-radius: 20px;
+  background-color: white;
 `;
+
 const WeeklyListWrapbox = styled.div`
   display: flex;
   justify-content: space-around;
