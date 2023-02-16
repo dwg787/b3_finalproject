@@ -87,13 +87,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
-  padding-top: 40px;
-  border: 1.5px solid #6478ff;
   border-radius: 50px;
-  box-shadow: 5px 5px #c8c8c8;
   overflow: hidden;
-  background-color: white;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px 1px gray;
+  padding: 30px;
 `;
 const RecommendListIntroWrapper = styled.div`
   width: 100%;
@@ -112,8 +111,3 @@ const RecommendListTitle = styled.div`
   font-size: 20px;
   font-weight: bold;
 `;
-// const RecommendListLink = styled(Link)`
-//   margin-right: 10px;
-//   margin-top: 10px;
-//   text-decoration: none;
-// `;

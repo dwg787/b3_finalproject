@@ -36,8 +36,8 @@ export default DetailScroll;
 
 const MainDiv = styled.div`
   margin: 1rem 5rem;
-  border-bottom: solid #d6dcff 1px;
-  border-top: solid #d6dcff 1px;
+  border-bottom: solid rgb(158, 171, 255, 0.61) 1px;
+  border-top: solid rgb(158, 171, 255, 0.61) 1px;
 `;
 
 const ContentDiv = styled.div`
