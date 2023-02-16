@@ -22,8 +22,6 @@ const DetailPage = () => {
     () => fetchSpotDetailData({ param }),
   );
 
-  console.log(spotData);
-
   const getRecCnt = async () => {
     if (param.id) {
       const data = await getDoc(doc(db, 'recommendation', `${param.id}`));

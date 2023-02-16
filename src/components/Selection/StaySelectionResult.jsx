@@ -1,18 +1,22 @@
 import styled from 'styled-components';
 import StayDetail from '../StayDetail';
 import noimg from '../../assets/noimg.avif';
-import { useInfiniteQuery } from 'react-query';
-import { fetchStayData } from '../../apis/publicAPI';
+import { useQuery, useInfiniteQuery } from 'react-query';
+import {
+  fetchStayData,
+  fetchStayAdditionalInfo1,
+  fetchStayAdditionalInfo2,
+} from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState, useRef } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
+import { useParams } from 'react-router-dom';
 
 const StaySelectionResult = () => {
+  const param = useParams();
   const region = useRecoilValue(regionSelectionState);
   const [stayCurPage, setStayCurPage] = useState(1);
   const maxPageNo = useRef(1);
@@ -47,12 +51,29 @@ const StaySelectionResult = () => {
     }
   };
 
+  // const {
+  //   data: stayAdditionalData1,
+  //   isLoading: isLoadingAdditional1,
+  // } = useQuery(['stay_additional1', param], () =>
+  //   fetchStayAdditionalInfo1({ param }),
+  // );
+
+  // const {
+  //   data: stayAdditionalData2,
+  //   isLoading: isLoadingAdditional2,
+  // } = useQuery(['stay_additional2', param], () =>
+  //   fetchStayAdditionalInfo1({ param }),
+  // );
+
+  // if (stayAdditionalData1 && stayAdditionalData2) {
+  //   console.log('숙박 상세 소개', stayAdditionalData1);
+  //   console.log('숙박 룸 정보', stayAdditionalData2);
+  // }
+
   useEffect(() => {
     if (data) {
-      // console.log('두값 비교 if밖', maxPageNo.current, data.pages.length);
       if (maxPageNo.current < data.pages.length) {
         maxPageNo.current = data.pages.length;
-        // console.log('두값 비교 if안', maxPageNo.current, data.pages.length);
       }
     }
   }, [stayCurPage]);
