@@ -142,6 +142,7 @@ const SearchListWrapper = styled.div`
 
 const ResultWrapper = styled.div`
   width: 70%;
+  height: 500px;
   display: flex;
   flex-direction: row;
   justify-content: center;
