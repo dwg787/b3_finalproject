@@ -32,7 +32,7 @@ export default function MyChild() {
               <LikeImg src={TapHeart} alt="" />
               <p>1892</p>
             </LikeBox>
-            <p>바로가기</p>
+            <GoButton>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
         <MyChildList>
@@ -44,7 +44,7 @@ export default function MyChild() {
               <LikeImg src={TapHeart} alt="" />
               <p>1622</p>
             </LikeBox>
-            <p>바로가기</p>
+            <GoButton>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
         <MyChildList>
@@ -56,7 +56,7 @@ export default function MyChild() {
               <LikeImg src={TapHeart} alt="" />
               <p>972</p>
             </LikeBox>
-            <p>바로가기</p>
+            <GoButton>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
       </MyChildListBox>
@@ -120,11 +120,13 @@ const MyChildTexth3 = styled.h3`
 
 const MyChildTextp = styled.p`
   color: #7f7f7f;
+  margin-top: 5px;
 `;
 
 const LikeBox = styled.div`
   display: flex;
   gap: 5px;
+  margin-top: 10px;
   align-items: center;
 `;
 
@@ -133,4 +135,18 @@ const LikeImg = styled.img`
   height: 20px;
 `;
 
-const GoButton = styled.button``;
+const GoButton = styled.button`
+  background-color: white;
+  border: 1px solid #6478ff;
+  color: #6478ff;
+  border-radius: 3px;
+  width: 100px;
+  height: 30px;
+  margin-left: 160px;
+  margin-top: 20px;
+  &:hover {
+    background-color: #6478ff;
+    border: 1px solid #6478ff;
+    color: white;
+  }
+`;
