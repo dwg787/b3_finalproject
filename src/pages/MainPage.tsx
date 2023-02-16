@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
-import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
 import RegionSelection from '../components/Selection/RegionSelection';
 import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
@@ -14,6 +12,9 @@ import RestaurantSelectionResult from '../components/Selection/RestaurantSelecti
 import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
 import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
+import MySpot from '../components/Recommendation/MySpot';
+import { useEffect } from 'react';
+import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -33,8 +34,9 @@ const MainPage = () => {
       {selectedMenu === 'HOME' ? (
         <>
           <SliderBanner />
-          <SpotRecommendation />
+          <MySpot />
           <WeeklyTop10 />
+          {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
           {/* <StayRecommendation />
@@ -49,8 +51,9 @@ const MainPage = () => {
       ) : (
         <>
           <SliderBanner />
-          <SpotRecommendation />
+          <MySpot />
           <WeeklyTop10 />
+          {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
           {/* <StayRecommendation />
