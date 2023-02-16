@@ -134,6 +134,7 @@ const InnerList = styled.div`
   align-items: center;
   position: relative;
   border: 1px solid #6478ff;
+  box-shadow: 5px 5px #d1d1d1;
   border-radius: 16px;
 `;
 

@@ -19,7 +19,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 65px;
-  border: 1.5px solid #6478ff;
+  border: 1.5px solid white;
   border-radius: 50px;
   box-shadow: 5px 5px #c8c8c8;
   background-color: white;
@@ -39,6 +39,9 @@ const MyChildListBox = styled.div`
 `;
 const MyChildList = styled.div`
   width: 300px;
-  height: 400px;
-  background-color: gray;
+  height: 413px;
+  background-color: white;
+  box-shadow: 5px 5px #d1d1d1;
+  border: 1px solid #6478ff;
+  border-radius: 13px;
 `;
