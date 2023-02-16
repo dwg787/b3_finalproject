@@ -41,6 +41,13 @@ export const MENU_TYPE = [
   { id: '39', type: '음식점' },
 ];
 
+export const WEEKLY_TYPE = [
+  { id: '81', type: '관광지' },
+  { id: '82', type: '숙박' },
+  { id: '83', type: '음식점' },
+  { id: '84', type: '카페' },
+];
+
 export const TOURIST_SPOT_TYPE = [
   {
     largeGroup: 'A01',
