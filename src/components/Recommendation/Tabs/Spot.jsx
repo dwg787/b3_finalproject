@@ -21,7 +21,7 @@ export default function Spot() {
             <InnerTextp>김알지의 탄생 설화가 깃든 숲</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>9812</p>
+              <p>9,812</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
@@ -35,7 +35,7 @@ export default function Spot() {
             <InnerTextp>신라 조경예술의 극치를 보여준다.</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>8181</p>
+              <p>8,181</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
@@ -49,7 +49,7 @@ export default function Spot() {
             <InnerTextp>고려시대 이후 입보용으로 사용된 성</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>7522</p>
+              <p>7,522</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
@@ -65,7 +65,7 @@ export default function Spot() {
             <InnerTextp>경상남도 사천시 대방동에 있는 인공항구</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>7117</p>
+              <p>7,117</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
@@ -79,7 +79,7 @@ export default function Spot() {
             <InnerTextp>우리나라에서 처음으로 차나무를 심은 곳</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>5401</p>
+              <p>5,401</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
@@ -93,7 +93,7 @@ export default function Spot() {
             <InnerTextp>옛 수강궁터에 창건한 궁</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>4991</p>
+              <p>4,991</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
