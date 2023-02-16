@@ -22,7 +22,7 @@ const DetailPage = () => {
     () => fetchSpotDetailData({ param }),
   );
 
-  // console.log(spotData);
+  console.log(spotData);
 
   const getRecCnt = async () => {
     if (param.id) {
@@ -76,6 +76,7 @@ const DetailPage = () => {
                 {/* <Link to={'/'}>메인으로</Link> */}
                 <DeatilTextBox>
                   <DetailText>{spotData.title}</DetailText>
+                  <DetailTextArr> {spotData.addr1.split(' ', 2)}</DetailTextArr>
                   <DeatilImojiBox>
                     <Liked spotData={spotData} />
 
@@ -91,9 +92,11 @@ const DetailPage = () => {
                 </DetailImgBox>
 
                 <DetailInformation id="2">
-                  <DetailInfoText>상세정보</DetailInfoText>
+                  <DetailInfoTextBox>
+                    <DetailInfoText>상세정보</DetailInfoText>
+                  </DetailInfoTextBox>
 
-                  <DetailInfo>{spotData.overview}</DetailInfo>
+                  <DetailInfo>{spotData.overview.split('<', 1)}</DetailInfo>
                   <DetailInfo>
                     <KakaoMap mapx={spotData.mapx} mapy={spotData.mapy} />
                   </DetailInfo>
@@ -101,6 +104,10 @@ const DetailPage = () => {
                 </DetailInformation>
 
                 <CommunicationWrap id="3">
+                  <DetailInfoTextBox>
+                    <DetailInfoText>여행톡</DetailInfoText>
+                  </DetailInfoTextBox>
+
                   <Communication />
                 </CommunicationWrap>
 
@@ -115,12 +122,8 @@ const DetailPage = () => {
         )}
 
         <SideInfoWrapper id="4">
-          {/* <StayInfoWrapper> */}
           <StayInfo spotData={spotData} />
-          {/* </StayInfoWrapper>
-            <RestaurantInfoWrapper> */}
           <RestaurantInfo spotData={spotData} />
-          {/* </RestaurantInfoWrapper> */}
         </SideInfoWrapper>
       </Container>
     </DetailWrap>
@@ -138,7 +141,7 @@ const DetailWrap = styled.div`
 `;
 
 const Container = styled.div`
-  width: 80%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -159,6 +162,7 @@ const DeatilBox = styled.div`
 const DeatilTextBox = styled.div`
   width: 100%;
   gap: 0.3rem;
+  /* margin-bottom: 50px; */
   /* margin-bottom: 2rem; */
   /* border-bottom: solid #d3d3d3 2px; */
 `;
@@ -174,14 +178,25 @@ const DetailText = styled.p`
   font-weight: 900;
   text-align: center;
   font-size: 40px;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
+`;
+
+const DetailTextArr = styled.div`
+  text-align: center;
+  font-size: 15px;
+  margin-top: 15px;
+  color: #6478ff;
+  font-weight: 400;
 `;
 
 const DetailImgBox = styled.div`
   width: 100%;
   justify-content: center;
   display: flex;
-  margin-bottom: 150px;
+  /* margin-bottom: 150px; */
+  margin: 20px 0 100px 0;
+  /* height: 800px; */
+  /* background-color: #6fcfab; */
 `;
 const DetailImg = styled.img`
   width: 90%;
@@ -191,8 +206,9 @@ const SideInfoWrapper = styled.div`
   margin-top: 50px;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  height: 800px;
+  width: 100%;
+  height: 700px;
+  background-color: teal;
 `;
 
 const DetailInformation = styled.div`
@@ -202,28 +218,50 @@ const DetailInformation = styled.div`
   flex-direction: column;
   align-items: center;
   /* margin: 30px 0; */
-  height: 300px;
+  height: 700px;
   margin-top: 30px;
+  /* flex-wrap: wrap; */
+  /* background-color: #76acdc; */
 `;
 
-const DetailInfoText = styled.span`
+const DetailInfoTextBox = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
+  /* flex-direction: row; */
+  /* border-bottom: solid #1f1f20 2px; */
+  border-bottom: solid #d6dcff 1px;
+  margin: 10px 0;
+`;
+
+const DetailInfoText = styled.div`
+  /* display: flex; */
+  /* justify-content: flex-start;
+   */
+
+  /* font-weight: 400; */
+  margin-left: 30px;
+  /* color: #6478ff; */
+  font-size: 25px;
+  font-weight: 800;
+  text-align: left;
+  margin-bottom: 10px;
 `;
 
 const DetailInfo = styled.div`
   width: 90%;
   margin: 10px 0;
+  height: 500px;
+  flex-wrap: wrap;
+  font-size: 17px;
+  font-weight: 400;
 `;
 
 const CommunicationWrap = styled.div`
-  width: 90%;
-  /* margin: margin: 10px 0; */
+  width: 100%;
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin: 30px 0; */
-  height: 300px;
-  margin-top: 30px;
+  /* background-color: #b5a0d2; */
+  height: 600px;
 `;

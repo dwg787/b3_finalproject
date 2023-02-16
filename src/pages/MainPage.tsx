@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
 import SpotRecommendation from '../components/Recommendation/SpotRecommendation';
