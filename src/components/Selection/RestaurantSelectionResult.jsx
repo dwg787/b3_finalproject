@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import RestaurantDetail from '../RestaurantDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
-import Slider from 'react-slick';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { fetchRestaurantData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
@@ -11,7 +9,9 @@ import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import leftArrow from '../../assets/left-arrow.avif';
+import rightArrow from '../../assets/right-arrow.avif';
+// import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 
 const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -21,10 +21,7 @@ const RestaurantSelectionResult = () => {
   const {
     data,
     isLoading,
-    hasNextPage,
-    hasPreviousPage,
     fetchNextPage: fetchRestaurantNextPage,
-    // fetchPreviousPage,
   } = useInfiniteQuery(
     ['restaurant_data', region],
     ({ pageParam = 1 }) => fetchRestaurantData({ region, pageParam }),
@@ -42,22 +39,12 @@ const RestaurantSelectionResult = () => {
     },
   );
 
-  console.log('음식점 데이터', data);
-  console.log('음식점 curPage', restaurantCurPage);
-  console.log('음식점 maxPage', maxPageNo);
-
-  // useEffect(() => {
-  //   fetchNextPage();
-  // }, [curPage]);
   const handleFetchNextPage = () => {
     setRestaurantCurPage(restaurantCurPage + 1);
     if (data) {
       if (restaurantCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
         fetchRestaurantNextPage();
       }
-      // if (hasNextPage) {
-      //   fetchRestaurantNextPage();
-      // }
     }
   };
 
@@ -79,6 +66,7 @@ const RestaurantSelectionResult = () => {
       {isLoading || data === undefined ? (
         <>
           <Loader />
+          {/* <SkeletonSelectionResult /> */}
         </>
       ) : (
         <>
@@ -87,16 +75,15 @@ const RestaurantSelectionResult = () => {
           </ListItemCount>
           <SearchListWrapper>
             <BtnWrapper>
-              <button
-                onClick={() => setRestaurantCurPage(restaurantCurPage - 1)}
-                disabled={
-                  data.pages[restaurantCurPage - 1]?.pageNo - 1 < 1
-                    ? true
-                    : false
-                }
-              >
-                이전
-              </button>
+              {data.pages[restaurantCurPage - 1]?.pageNo - 1 < 1 ? (
+                <></>
+              ) : (
+                <MoveBtnStyle
+                  src={leftArrow}
+                  alt="이전버튼"
+                  onClick={() => setRestaurantCurPage(restaurantCurPage - 1)}
+                />
+              )}
             </BtnWrapper>
             <ResultWrapper>
               {data.pages[restaurantCurPage - 1]?.items.item.map((e) => {
@@ -112,18 +99,17 @@ const RestaurantSelectionResult = () => {
               })}
             </ResultWrapper>
             <BtnWrapper>
-              <button
-                onClick={handleFetchNextPage}
-                disabled={
-                  Math.ceil(
-                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
-                  ) <= restaurantCurPage
-                    ? true
-                    : false
-                }
-              >
-                다음
-              </button>
+              {Math.ceil(
+                data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
+              ) <= restaurantCurPage ? (
+                <></>
+              ) : (
+                <MoveBtnStyle
+                  src={rightArrow}
+                  alt="다음버튼"
+                  onClick={handleFetchNextPage}
+                />
+              )}
             </BtnWrapper>
           </SearchListWrapper>
         </>
@@ -167,6 +153,14 @@ const BtnWrapper = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 30px;
+`;
+
+const MoveBtnStyle = styled.img`
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
 `;
