@@ -24,14 +24,17 @@ const WeeklyTop10Btn = ({ children }: { children: string }) => {
   );
 };
 
-const WeeklyBtn = styled.button<{ isTypeSelected: Boolean }>`
+const WeeklyBtn = styled.div<{ isTypeSelected: Boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 70px;
   height: 35px;
   border: 1px solid #6478ff;
   background-color: ${(props) => (props.isTypeSelected ? '#6478ff' : '#fffff')};
   cursor: pointer;
   margin-left: 30px;
-  color: ${(props) => (props.isTypeSelected ? '#fffff' : '#6478ff')};
+  color: ${(props) => (props.isTypeSelected ? '#ffffff' : '#6478ff')};
   border-radius: 20px;
 `;
 

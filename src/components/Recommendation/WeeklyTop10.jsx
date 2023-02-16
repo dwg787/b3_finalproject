@@ -46,6 +46,7 @@ const WeeklyTopText = styled.p`
   margin-top: 40px;
 `;
 const WeeklyButtonBox = styled.div`
+  display: flex;
   margin-top: 20px;
   margin-left: 40px;
 `;
