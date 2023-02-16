@@ -77,7 +77,7 @@ const Navbar = () => {
     console.log(user);
     setNickName(user.data.properties.nickname);
     setProfileImage(user.data.properties.profile_image);
-    sessionStorage.setItem('id', user.data.properties.nickname);
+    localStorage.setItem('id', user.data.properties.nickname);
   };
   // console.log(nickName, profileImage);
 
