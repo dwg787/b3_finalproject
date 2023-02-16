@@ -10,6 +10,8 @@ import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useRef, useState } from 'react';
+import leftArrow from '../../assets/left-arrow.avif';
+import rightArrow from '../../assets/right-arrow.avif';
 
 const SelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -72,14 +74,15 @@ const SelectionResult = () => {
           </ListItemCount>
           <SearchListWrapper>
             <BtnWrapper>
-              <button
-                onClick={() => setSpotCurPage(spotCurPage - 1)}
-                disabled={
-                  data.pages[spotCurPage - 1]?.pageNo - 1 < 1 ? true : false
-                }
-              >
-                이전
-              </button>
+              {data.pages[spotCurPage - 1]?.pageNo - 1 < 1 ? (
+                <></>
+              ) : (
+                <MoveBtnStyle
+                  src={leftArrow}
+                  alt="이전버튼"
+                  onClick={() => setSpotCurPage(spotCurPage - 1)}
+                />
+              )}
             </BtnWrapper>
             <ResultWrapper>
               {data.pages[spotCurPage - 1]?.items.item.map(
@@ -97,18 +100,17 @@ const SelectionResult = () => {
               )}
             </ResultWrapper>
             <BtnWrapper>
-              <button
-                onClick={handleFetchNextPage}
-                disabled={
-                  Math.ceil(
-                    data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
-                  ) <= spotCurPage
-                    ? true
-                    : false
-                }
-              >
-                다음
-              </button>
+              {Math.ceil(
+                data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
+              ) <= spotCurPage ? (
+                <></>
+              ) : (
+                <MoveBtnStyle
+                  src={rightArrow}
+                  alt="다음버튼"
+                  onClick={handleFetchNextPage}
+                />
+              )}
             </BtnWrapper>
           </SearchListWrapper>
         </>
@@ -151,6 +153,14 @@ const BtnWrapper = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 30px;
+`;
+
+const MoveBtnStyle = styled.img`
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
 `;
