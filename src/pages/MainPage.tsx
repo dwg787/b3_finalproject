@@ -5,6 +5,8 @@ import Menu from '../components/Menu/Menu';
 import RegionSelection from '../components/Selection/RegionSelection';
 import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
+// import StayRecommendation from '../components/Recommendation/StayRecommendation';
+// import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
 import StaySelectionResult from '../components/Selection/StaySelectionResult';
 import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
 import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
@@ -33,7 +35,8 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <MySpot />
-          <WeeklyTop10v2 />
+          <WeeklyTop10 />
+          {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
           {/* <StayRecommendation />
@@ -49,7 +52,8 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <MySpot />
-          <WeeklyTop10v2 />
+          <WeeklyTop10 />
+          {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
           {/* <StayRecommendation />
@@ -68,25 +72,4 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background: linear-gradient(white 40%, #6478ff);
-`;
-const BtnWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-const SelectStayBtnWrapper = styled.div`
-  width: 300px;
-  height: 300px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: row;
-  /* flex-wrap: wrap; */
-  align-items: center;
-  justify-content: center;
-`;
-const MainImg = styled.img`
-  width: 100%;
-  height: 100%;
 `;

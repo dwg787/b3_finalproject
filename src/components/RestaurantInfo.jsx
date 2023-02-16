@@ -1,6 +1,4 @@
-import React from 'react';
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchNearRestaurantData } from '../apis/publicAPI';
 import Loader from './Loader/Loader';

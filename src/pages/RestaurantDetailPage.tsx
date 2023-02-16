@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { fetchRestaurantDetailInfo } from '../apis/publicAPI';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../components/Loader/Loader';
 import KakaoMap from '../components/Map/KakaoMap';

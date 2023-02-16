@@ -9,7 +9,7 @@ interface recCnt {
   [key: string]: string;
   // viewCnt: number;
 }
-type recCntWithViewCnt = Omit<recCnt, 'viewCnt'>;
+// type recCntWithViewCnt = Omit<recCnt, 'viewCnt'>;
 
 export interface recCnts extends Array<recCnt> {}
 
