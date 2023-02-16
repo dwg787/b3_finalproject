@@ -32,13 +32,14 @@ const MenuEachItem = styled.button<{ isSelectedMenu: boolean }>`
   justify-content: center;
   font-size: 15px;
   font-weight: 700;
+  /* text-underline-offset: -10px; */
   cursor: pointer;
   border: none;
   background-color: white;
   ${(props) =>
     props.isSelectedMenu &&
     css`
-      border-bottom: solid 3px #ea2129;
+      border-bottom: solid 3px #6478ff;
       line-height: -10px;
       transform: scaleX(1);
       transition: transform 250ms ease-in-out;
