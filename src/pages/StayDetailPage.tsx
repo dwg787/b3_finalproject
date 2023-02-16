@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { fetchStayDetailInfo } from '../apis/publicAPI';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../components/Loader/Loader';
-import Liked from '../components/Liked/Liked';
 import KakaoMap from '../components/Map/KakaoMap';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
 import { FetchedStayDataType } from '../apis/publicAPI';
