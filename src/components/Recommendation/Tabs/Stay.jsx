@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import InnerPhoto from '../../../assets/slide2.jpeg';
+import TapHeart from '../../../assets/TapHeart.png';
 
 export default function Spot() {
   return (
@@ -11,10 +12,13 @@ export default function Spot() {
           <InnerNmb>1</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>부연설명</p>
+            <LikeBox>
+              <LikeImg src={TapHeart} alt="" />
+              <p>좋아요</p>
+            </LikeBox>
+            <p>가격</p>
           </InnerText>
         </InnerList>
         <InnerList>
@@ -22,10 +26,13 @@ export default function Spot() {
           <InnerNmb>2</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>부연설명</p>
+            <LikeBox>
+              <LikeImg src={TapHeart} alt="" />
+              <p>좋아요</p>
+            </LikeBox>
+            <p>가격</p>
           </InnerText>
         </InnerList>
         <InnerList>
@@ -33,10 +40,13 @@ export default function Spot() {
           <InnerNmb>3</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>부연설명</p>
+            <LikeBox>
+              <LikeImg src={TapHeart} alt="" />
+              <p>좋아요</p>
+            </LikeBox>
+            <p>가격</p>
           </InnerText>
         </InnerList>
       </InnerBox1>
@@ -46,10 +56,13 @@ export default function Spot() {
           <InnerNmb>4</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>부연설명</p>
+            <LikeBox>
+              <LikeImg src={TapHeart} alt="" />
+              <p>좋아요</p>
+            </LikeBox>
+            <p>가격</p>
           </InnerText>
         </InnerList>
         <InnerList>
@@ -57,10 +70,13 @@ export default function Spot() {
           <InnerNmb>5</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>부연설명</p>
+            <LikeBox>
+              <LikeImg src={TapHeart} alt="" />
+              <p>좋아요</p>
+            </LikeBox>
+            <p>가격</p>
           </InnerText>
         </InnerList>
         <InnerList>
@@ -68,10 +84,13 @@ export default function Spot() {
           <InnerNmb>6</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>부연설명</p>
+            <LikeBox>
+              <LikeImg src={TapHeart} alt="" />
+              <p>좋아요</p>
+            </LikeBox>
+            <p>가격</p>
           </InnerText>
         </InnerList>
       </InnerBox2>
@@ -146,4 +165,15 @@ const InnerImg = styled.img`
 
 const InnerText = styled.div`
   position: absolute;
+`;
+
+const LikeBox = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+`;
+
+const LikeImg = styled.img`
+  width: 20px;
+  height: 20px;
 `;

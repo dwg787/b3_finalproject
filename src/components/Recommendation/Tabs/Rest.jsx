@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import InnerPhoto from '../../../assets/slider3.jpeg';
+import TapHeart from '../../../assets/TapHeart.png';
 
 export default function Rest() {
   return (
@@ -11,10 +12,12 @@ export default function Rest() {
           <InnerNmb>1</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>장소설명 간략</p>
+            <LikeBox>
+              <LikeImg src={TapHeart} alt="" />
+              <p>좋아요</p>
+            </LikeBox>
           </InnerText>
         </InnerList>
         <InnerList>
@@ -22,10 +25,9 @@ export default function Rest() {
           <InnerNmb>2</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>장소설명 간략</p>
+            <p>좋아요</p>
           </InnerText>
         </InnerList>
         <InnerList>
@@ -33,10 +35,9 @@ export default function Rest() {
           <InnerNmb>3</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>장소설명 간략</p>
+            <p>좋아요</p>
           </InnerText>
         </InnerList>
       </InnerBox1>
@@ -46,10 +47,9 @@ export default function Rest() {
           <InnerNmb>4</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>장소설명 간략</p>
+            <p>좋아요</p>
           </InnerText>
         </InnerList>
         <InnerList>
@@ -57,10 +57,9 @@ export default function Rest() {
           <InnerNmb>5</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>장소설명 간략</p>
+            <p>좋아요</p>
           </InnerText>
         </InnerList>
         <InnerList>
@@ -68,10 +67,9 @@ export default function Rest() {
           <InnerNmb>6</InnerNmb>
 
           <InnerText>
-            <p>ㅎㅇ</p>
-            <p>ㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇ</p>
-            <p>ㅎㅇㅎㅇㅎㅇㅎㅇ</p>
+            <p>타이틀</p>
+            <p>장소설명 간략</p>
+            <p>좋아요</p>
           </InnerText>
         </InnerList>
       </InnerBox2>
@@ -134,7 +132,7 @@ const InnerList = styled.div`
   align-items: center;
   position: relative;
   border: 1px solid #6478ff;
-  box-shadow: 5px 5px gray;
+  box-shadow: 5px 5px #d1d1d1;
   border-radius: 16px;
 `;
 
@@ -146,4 +144,15 @@ const InnerImg = styled.img`
 
 const InnerText = styled.div`
   position: absolute;
+`;
+
+const LikeBox = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+`;
+
+const LikeImg = styled.img`
+  width: 20px;
+  height: 20px;
 `;
