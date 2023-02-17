@@ -153,9 +153,7 @@ const LoginPage = ({ showModal, setShowModal }) => {
         <Naver />
       </Otherlogins>
       <FooterText>
-        {/* 로그인 또는 회원가입 시 이용약관 및 개인정보 정책에<br></br>
-        동의한 것으로 간주합니다. */}
-        아이디/비밀번호를 잊어버렸나요?
+        회원가입 시 이용약관 정책에 동의한 것으로 간주합니다.
       </FooterText>
     </MainWrap>
   );
@@ -171,17 +169,22 @@ const MainWrap = styled.div`
 const LoginText = styled.div`
   font-size: 27.62px;
   color: #6478ff;
-  font-weight: bold;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27.6248px;
+  /* line-height: 31px; */
 `;
 
 const LoginContent = styled.div`
   /* margin-top: 20px;
   margin-bottom: 25px; */
   margin: 20px 0 25px 0;
-
   color: #6d6d6d;
-  font-weight: 600;
+  font-style: normal;
+  font-weight: 500;
   font-size: 16px;
+  /* line-height: 17px; */
+  //
 `;
 
 const InputWrap = styled.div`
@@ -190,49 +193,68 @@ const InputWrap = styled.div`
 `;
 
 const EmailInput = styled.input`
-  width: 365px;
-  height: 56px;
-  border-radius: 10px;
-  border: 1px solid #8a8a8a;
+  width: 364.9px;
+  height: 55.12px;
+  border: 0.878971px solid #8a8a8a;
+  border-radius: 12.5567px;
   padding: 15px;
   margin-bottom: -8px;
   &::placeholder {
-    font-size: 18.7px;
-    color: #b8b8b8;
+    /* font-size: 18.7px;
+    color: #b8b8b8; */
+    //
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16.4874px;
+    /* line-height: 19px; */
   }
 `;
 
 const PwInput = styled.input`
-  width: 365px;
-  height: 56px;
-  border-radius: 10px;
-  border: 1px solid #8a8a8a;
+  width: 364.9px;
+  height: 55.12px;
+  border: 0.878971px solid #8a8a8a;
+  border-radius: 12.5567px;
   padding: 15px;
   margin-bottom: 17px;
   &::placeholder {
-    font-size: 18.7px;
-    color: #b8b8b8;
+    /* font-size: 18.7px;
+    color: #b8b8b8; */
+    //
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16.4874px;
+    /* line-height: 19px; */
   }
 `;
 
 const LoginBtn = styled.button`
-  background-color: #6478ff;
+  background: #6478ff;
+  border-radius: 12.5567px;
   color: #ffff;
-  width: 365px;
-  height: 55px;
+  width: 364.9px;
+  height: 55.12px;
   font-size: 19px;
-  border-radius: 10px;
+
   border: none;
   margin-bottom: 30px;
   cursor: pointer;
 `;
 
 const GoSignUp = styled.div`
-  font-size: 14px;
+  /* font-size: 14px;
   color: #9a9a9a;
+  text-decoration: underline; */
   cursor: pointer;
-  text-decoration: underline;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  /* line-height: 24px; */
+  letter-spacing: -0.35px;
+  text-decoration-line: underline;
+  color: #9a9a9a;
   /* border-bottom: 1px solid #9a9a9a; */
   /* width: 166px; */
 `;
@@ -263,8 +285,11 @@ const TextDiv = styled.div`
 
   //
   display: flex;
-  flex-basis: 100%;
+  /* flex-basis: 100%; */
   align-items: center;
+  // =============================
+
+  height: 18px;
 
   ::before {
     content: '';
@@ -294,13 +319,26 @@ const Otherlogins = styled.div`
 `;
 
 const FooterText = styled.div`
-  margin-top: 30px;
-  margin-bottom: 30px;
+  /* margin-top: 30px;
+  margin-bottom: 30px; */
   display: flex;
   justify-content: center;
   color: #9a9a9a;
   font-size: 14px;
   text-decoration: underline;
+
+  //===============================
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  /* line-height: 33px; */
+  text-align: center;
+  letter-spacing: -0.479859px;
+  text-decoration-line: underline;
+
+  color: #9a9a9a;
 `;
 
 const Error = styled.div`

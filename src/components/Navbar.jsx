@@ -343,10 +343,10 @@ const Modal = styled.div`
   /* 25%; */
   height: 662px;
   /* 60%; */
-  border-radius: 15px;
+  border-radius: 18.8351px;
   display: flex;
   flex-direction: column;
-  box-shadow: 3px 3px 12px 3px #555555;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.25);
 `;
 const ModalHeader = styled.div`
   display: flex;
