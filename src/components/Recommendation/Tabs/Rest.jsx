@@ -2,48 +2,51 @@ import React from 'react';
 import styled from 'styled-components';
 import InnerPhoto from '../../../assets/slider3.jpeg';
 import TapHeart from '../../../assets/TapHeart.png';
+import dombae from '../../../assets/dombae.png';
+import manmi from '../../../assets/manmi.png';
+import koji from '../../../assets/koji.png';
 
 export default function Rest() {
   return (
     <WarpDiv>
       <InnerBox1>
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={dombae} />
           <InnerNmb>1</InnerNmb>
           <InnerText>
-            <InnerTextH3>경주 계림</InnerTextH3>
-            <InnerTextp>김알지의 탄생 설화가 깃든 숲</InnerTextp>
+            <InnerTextH3>돔베돈</InnerTextH3>
+            <InnerTextp>미슐랭가이드에 소개된 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>9,812</p>
+              <p>3,012</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={manmi} />
           <InnerNmb>2</InnerNmb>
           <InnerText>
-            <InnerTextH3>동궁과 월지</InnerTextH3>
-            <InnerTextp>신라 조경예술의 극치를 보여준다.</InnerTextp>
+            <InnerTextH3>만미가</InnerTextH3>
+            <InnerTextp>저렴한 바닷장어 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>8,181</p>
+              <p>2,881</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={koji} />
           <InnerNmb>3</InnerNmb>
           <InnerText>
-            <InnerTextH3>금성산성</InnerTextH3>
-            <InnerTextp>고려시대 이후 입보용으로 사용된 성</InnerTextp>
+            <InnerTextH3>스시 코우지</InnerTextH3>
+            <InnerTextp>코우지셰프 스시야</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>7,522</p>
+              <p>2,224</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
