@@ -257,56 +257,58 @@ const SignUpPage = () => {
             <PersonInfo>개인정보 처리방침</PersonInfo>
             <CheckBoxBolder>
               <CheckBoxWrap>
-                <CheckBoxInput
+                <CheckBoxInput1
                   onClick={isCheckBoxClicked}
                   type="checkbox"
                   name="all"
                   onChange={checkAll}
                   checked={checkList.length === 3 ? true : false}
-                ></CheckBoxInput>
+                ></CheckBoxInput1>
                 <CheckBoxTextBold>
                   본인은 아래의 모든 개인정보 처리방침에 모두 동의합니다.
                 </CheckBoxTextBold>
               </CheckBoxWrap>
               <CheckBoxWrap>
-                <CheckBoxInput
+                <CheckBoxInput2
                   onClick={isCheckBoxClicked}
                   type="checkbox"
                   name="terms"
                   onChange={check}
                   checked={checkList.includes('terms') ? true : false}
-                ></CheckBoxInput>
+                ></CheckBoxInput2>
                 <CheckBoxText>
                   본인은 본 서비스 약관에 동의하며 18세 이상임을 확인합니다.
-                  (필수)
+                  <div>(필수)</div>
                 </CheckBoxText>
               </CheckBoxWrap>
               <CheckBoxWrap>
-                <CheckBoxInput
+                <CheckBoxInput3
                   onClick={isCheckBoxClicked}
                   type="checkbox"
                   name="collect"
                   onChange={check}
                   checked={checkList.includes('collect') ? true : false}
-                ></CheckBoxInput>
+                ></CheckBoxInput3>
                 <CheckBoxText>
                   본인은 개인정보 처리방침에 따라 본인의 개인 정보를 사용하는
-                  것에 동의합니다. (필수)
+                  것에 동의합니다. <div>(필수)</div>
                 </CheckBoxText>
               </CheckBoxWrap>
               <CheckBoxWrap>
-                <CheckBoxInput
+                <CheckBoxInput4
                   onClick={isCheckBoxClicked}
                   type="checkbox"
                   name="another"
                   onChange={check}
                   checked={checkList.includes('another') ? true : false}
-                ></CheckBoxInput>
+                ></CheckBoxInput4>
                 <CheckBoxText>
                   본인은 개인정보 처리방침에 따라 대한민국 또는 해외에 있는 제
                   3자에 본인의 개인정보
                 </CheckBoxText>
-                <CheckBoxText>를 제공하는 것에 동의합니다. (필수)</CheckBoxText>
+                <CheckBoxText>
+                  를 제공하는 것에 동의합니다. <div>(필수)</div>
+                </CheckBoxText>
               </CheckBoxWrap>
             </CheckBoxBolder>
             {/* <div>
@@ -374,7 +376,7 @@ const ReservationBottom = styled.div`
 
 const TestDiv = styled.div`
   width: 100%;
-  height: 1700px;
+  height: 2000px;
 `;
 
 const SIgnWrap = styled.div`
@@ -385,15 +387,17 @@ const SIgnWrap = styled.div`
 `;
 
 const SignUpContainer = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 100%;
-  left: 50%;
-  width: 80%;
-  height: 1500px;
+  left: 50%; */
+  width: 65%;
+  height: 1800px;
+
+  margin: auto;
 
   padding: 40px;
 
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(158, 171, 255, 0.61);
   background: rgb(255, 255, 255);
@@ -542,16 +546,52 @@ const CheckBoxBolder = styled.div`
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 18px;
   padding: 60px;
-  width: 70%;
+  width: 80%;
 `;
 
-const CheckBoxInput = styled.input`
+const CheckBoxInput1 = styled.input`
   position: absolute;
-  left: 400px;
+  left: 300px;
   width: 37px;
   height: 37px;
   box-sizing: border-box;
-
+  margin-top: 20px;
+  border: 1.5px solid #d6dcff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  accent-color: #6478ff;
+`;
+const CheckBoxInput2 = styled.input`
+  position: absolute;
+  left: 300px;
+  width: 37px;
+  height: 37px;
+  box-sizing: border-box;
+  margin-top: 40px;
+  border: 1.5px solid #d6dcff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  accent-color: #6478ff;
+`;
+const CheckBoxInput3 = styled.input`
+  position: absolute;
+  left: 300px;
+  width: 37px;
+  height: 37px;
+  box-sizing: border-box;
+  margin-top: 40px;
+  border: 1.5px solid #d6dcff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  accent-color: #6478ff;
+`;
+const CheckBoxInput4 = styled.input`
+  position: absolute;
+  left: 300px;
+  width: 37px;
+  height: 37px;
+  box-sizing: border-box;
+  margin-top: -20px;
   border: 1.5px solid #d6dcff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
   border-radius: 8px;
@@ -567,9 +607,10 @@ const CheckBoxTextBold = styled.div`
 `;
 
 const CheckBoxText = styled.div`
+  display: flex;
   font-weight: 500;
   font-size: 22.3735px;
   line-height: 21px;
   color: #4d4d4d;
-  margin-top: 20px;
+  margin-top: 40px;
 `;
