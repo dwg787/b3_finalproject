@@ -48,7 +48,7 @@ export default function Search() {
   // ================================================================================================================================
   const fetchSpotSearchData = async () => {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`
+      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
     );
     return setTotalApi(res.data.response.body.items.item);
   };
@@ -62,14 +62,12 @@ export default function Search() {
       <ContainerDiv>
         <WrapDiv>
           <InputBox>
-            <SearchTitleH1>어떤걸 찾는가?</SearchTitleH1>
+            <SearchTitleH1>검색하기</SearchTitleH1>
             <SearchInput
-              placeholder='여기에 입력하면 무엇이던지 찾을수있지!'
+              placeholder="원하시는 장소를 검색하세요!"
               onChange={searchItemHandler}
             ></SearchInput>
-            <RecommendH4>
-              인기검색어 : 살려주세요, 정신나갈거같아, 취업할수있을까?
-            </RecommendH4>
+            <RecommendH4>인기검색어 : 낙산사, 동대문, 강화문</RecommendH4>
           </InputBox>
           <ListBoxInfinite>
             {results.map((e) => {
@@ -94,8 +92,12 @@ export default function Search() {
 }
 
 const ContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  padding-bottom: 380px;
 `;
 
 const WrapDiv = styled.div`
@@ -131,6 +133,7 @@ const RecommendH4 = styled.h4``;
 
 const ListBoxInfinite = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
