@@ -40,16 +40,16 @@ export default SpotDetail;
 
 const SpotEachItemWrapper = styled.div`
   width: 20%;
-  height: 320px;
+  height: 350px;
   margin: 20px 20px 20px 20px;
   border-radius: 10px;
-  box-shadow: 3px 3px #d1d1d1;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 `;
 
 const SpotImgWrapper = styled.div`
   width: 100%;
-  /* height: 100%; */
+  height: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,6 +60,7 @@ const SpotImgWrapper = styled.div`
 
 const SpotEachItemImg = styled.img`
   width: 300px;
+  height: 300px;
   aspect-ratio: 1.2;
   background-color: white;
   border-top-left-radius: 13px;
@@ -73,20 +74,9 @@ const SpotEachItemImg = styled.img`
   }
 `;
 
-const SpotTitle = styled.div``;
-
-const MyChildImg = styled.img`
-  width: 280px;
-  height: 250px;
-`;
-
 const MyCildTextBox = styled.div`
   background-color: #fff;
-  height: 100px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* margin-left: 20px;
-  margin-top: 20px; */
+  height: 130px;
 `;
 
 const MyChildTexth3 = styled.h3`
@@ -94,18 +84,22 @@ const MyChildTexth3 = styled.h3`
   font-weight: bold;
   margin-bottom: 4px;
   color: #333333;
+  padding-top: 15px;
+  padding-left: 10px;
 `;
 
 const MyChildTextp = styled.p`
+  font-size: 14px;
   color: #7f7f7f;
-  margin-top: 5px;
+  margin-top: 4px;
+  margin-left: 10px;
 `;
 
 const LikeBox = styled.div`
   display: flex;
   gap: 5px;
-  margin-top: 10px;
-  margin-right: 10px;
+  margin-top: 20px;
+  margin-left: 10px;
   align-items: center;
 `;
 
