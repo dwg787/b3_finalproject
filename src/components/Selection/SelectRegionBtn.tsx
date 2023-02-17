@@ -43,9 +43,11 @@ const CustomBtn = styled.button<{ isSelectedRegion: boolean }>`
   width: 70px;
   height: 30px;
   background-color: ${(props) =>
-    props.isSelectedRegion ? '#f19936' : '#000000'};
-  color: white;
+    props.isSelectedRegion ? '#6478FF' : '#EBEEFF'};
+  color: ${(props) => (props.isSelectedRegion ? '#FFFFFF' : '#606060')};
   border: none;
   border-radius: 10px;
+  box-shadow: 1px 1px #c8c8c8;
+  font-weight: 800;
   cursor: pointer;
 `;

@@ -23,7 +23,7 @@ export default function WeeklyTop10() {
           return <WeeklyTop10Btn key={e.id}>{e.type}</WeeklyTop10Btn>;
         })}
       </WeeklyButtonBox>
-      <div>{tabContArr[selectedWeeklyTypeId - 81]}</div>
+      <>{tabContArr[selectedWeeklyTypeId - 81]}</>
     </Container>
   );
 }
