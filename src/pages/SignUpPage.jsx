@@ -39,6 +39,14 @@ const SignUpPage = () => {
   const pwRef = useRef(null);
   const pwConfirmRef = useRef(null);
 
+  //약관동의 로직
+  const [checkList, setCheckList] = useState([]);
+  const [buttonColor, setButtonColor] = useState(false);
+  const [checkBoxActive, setCheckBoxActive] = useState(false);
+  const isCheckBoxClicked = () => {
+    setCheckBoxActive(!checkBoxActive);
+  };
+
   // 회원가입 완료
 
   const signup = async (e) => {
@@ -54,6 +62,7 @@ const SignUpPage = () => {
             setId('');
             setNickName('');
             setPw('');
+            setPwConfirm('');
             localStorage.setItem('id', nickName);
             localStorage.setItem('email', data.user.email);
             addDoc(collection(db, 'users'), {
@@ -77,6 +86,7 @@ const SignUpPage = () => {
   //* id (이메일)
   const onChangeId = (e) => {
     const currentId = e.target.value;
+
     setId(currentId);
     const idRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     if (!idRegex.test(currentId)) {
@@ -91,6 +101,7 @@ const SignUpPage = () => {
   //* 닉네임
   const onChangeNickName = (e) => {
     const currentNickName = e.target.value;
+
     setNickName(currentNickName);
 
     if (currentNickName.length < 2 || currentNickName.length > 10) {
@@ -105,6 +116,7 @@ const SignUpPage = () => {
   //* 비밀번호
   const onChangePw = (e) => {
     const currentPw = e.target.value;
+
     setPw(currentPw);
     const pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
     if (!pwRegex.test(currentPw)) {
@@ -118,6 +130,7 @@ const SignUpPage = () => {
   //* 비밀번호 확인
   const onChangePwConfirm = (e) => {
     const currentPwConfirm = e.target.value;
+
     setPwConfirm(currentPwConfirm);
     if (pw === currentPwConfirm) {
       setPwConfirmErrMsg('');
@@ -128,56 +141,36 @@ const SignUpPage = () => {
     }
   };
   //약관동의 만드는법
-  const [allCheck, setAllCheck] = useState(false);
-  const [ageCheck, setAgeCheck] = useState(false);
-  const [useCheck, setUseCheck] = useState(false);
-  const [marketingCheck, setMarketingCheck] = useState(false);
-
-  const allBtnEvent = () => {
-    if (allCheck === false) {
-      setAllCheck(true);
-      setAgeCheck(true);
-      setUseCheck(true);
-      setMarketingCheck(true);
-    } else {
-      setAllCheck(false);
-      setAgeCheck(false);
-      setUseCheck(false);
-      setMarketingCheck(false);
-    }
+  const checkAll = (e) => {
+    e.target.checked
+      ? setCheckList(['terms', 'collect', 'another', 'entrust', 'marketing'])
+      : setCheckList([]);
   };
 
-  const ageBtnEvent = () => {
-    if (ageCheck === false) {
-      setAgeCheck(true);
-    } else {
-      setAgeCheck(false);
-    }
+  const check = (e) => {
+    e.target.checked
+      ? setCheckList([...checkList, e.target.name])
+      : setCheckList(checkList.filter((choice) => choice !== e.target.name));
   };
 
-  const useBtnEvent = () => {
-    if (useCheck === false) {
-      setUseCheck(true);
-    } else {
-      setUseCheck(false);
-    }
-  };
-
-  const marketingBtnEvent = () => {
-    if (marketingCheck === false) {
-      setMarketingCheck(true);
-    } else {
-      setMarketingCheck(false);
-    }
-  };
+  // const handleButtomValid = () => {
+  //   if (!isCheckBoxClicked()) {
+  //     alert('약관에 동의해 주세요!');
+  //   }
+  // };
 
   useEffect(() => {
-    if (ageCheck === true && useCheck === true && marketingCheck === true) {
-      setAllCheck(true);
+    if (
+      checkList.includes('terms') &&
+      checkList.includes('collect') &&
+      checkList.includes('another') &&
+      checkList.includes('entrust')
+    ) {
+      setButtonColor(true);
     } else {
-      setAllCheck(false);
+      setButtonColor(false);
     }
-  }, [ageCheck, useCheck, marketingCheck]);
+  }, [checkList]);
 
   return (
     <SIgnWrap>
@@ -197,7 +190,6 @@ const SignUpPage = () => {
                 ref={idRef}
                 className="user-box"
                 type="text"
-                required=""
               />
               <LoginLabel>이메일</LoginLabel>
               <Error>
@@ -216,7 +208,6 @@ const SignUpPage = () => {
                 maxLength={10}
                 ref={nickNameRef}
                 type="text"
-                required=""
               />
               <LoginLabel>닉네임</LoginLabel>
               <Error>
@@ -231,7 +222,6 @@ const SignUpPage = () => {
                 value={pw}
                 ref={pwRef}
                 type="password"
-                required=""
               />
               <LoginLabel>비밀번호</LoginLabel>
               <Error>
@@ -246,7 +236,6 @@ const SignUpPage = () => {
                 ref={pwConfirmRef}
                 value={pwConfirm}
                 onChange={onChangePwConfirm}
-                required=""
               />
               <LoginLabel>비밀번호확인</LoginLabel>
               <Error>
@@ -258,14 +247,269 @@ const SignUpPage = () => {
               </Error>
             </LoginBox>
             <LoginBox>
-              <LoginInput required="" type="text" />
+              <LoginInput type="text" />
               <LoginLabel>주소</LoginLabel>
             </LoginBox>
-            <LoginBox>
+            <LoginLabelBottom></LoginLabelBottom>
+            {/* <LoginBox>
               <LoginInput required="" type="text" />
               <LoginLabel>휴대폰</LoginLabel>
-            </LoginBox>
-            <form>
+            </LoginBox> */}
+            <div>
+              <input
+                onClick={isCheckBoxClicked}
+                type="checkbox"
+                name="all"
+                onChange={checkAll}
+                checked={checkList.length === 5 ? true : false}
+              ></input>
+              <div>이용약관 전체동의</div>
+            </div>
+            <div>
+              <input
+                onClick={isCheckBoxClicked}
+                type="checkbox"
+                name="terms"
+                onChange={check}
+                checked={checkList.includes('terms') ? true : false}
+              ></input>
+              <div>이용약관 동의 (필수)</div>
+              <div>내용보기</div>
+            </div>
+            <div>
+              <input
+                onClick={isCheckBoxClicked}
+                type="checkbox"
+                name="collect"
+                onChange={check}
+                checked={checkList.includes('collect') ? true : false}
+              ></input>
+              <div>개인정보 수집 및 이용 동의 (필수)</div>
+              <div>내용보기</div>
+            </div>
+            <div>
+              <input
+                onClick={isCheckBoxClicked}
+                type="checkbox"
+                name="another"
+                onChange={check}
+                checked={checkList.includes('another') ? true : false}
+              ></input>
+              <div>개인정보 제 3자 제공 동의 (필수)</div>
+              <div>내용보기</div>
+            </div>
+            <div>
+              <input
+                onClick={isCheckBoxClicked}
+                type="checkbox"
+                name="entrust"
+                onChange={check}
+                checked={checkList.includes('entrust') ? true : false}
+              ></input>
+              <div>개인정보 처리 위착 동의 (필수)</div>
+              <div>내용보기</div>
+            </div>
+            <div>
+              <input
+                onClick={isCheckBoxClicked}
+                type="checkbox"
+                name="marketing"
+                onChange={check}
+                checked={checkList.includes('marketing') ? true : false}
+              ></input>
+              <div>개인정보 수집 및 이용 동의 (선택)</div>
+              <div>내용보기</div>
+            </div>
+
+            <SignUpBtn state={buttonColor} data-text="회원가입">
+              회원가입
+            </SignUpBtn>
+          </SignForm>
+        </SignUpContainer>
+      </TestDiv>
+    </SIgnWrap>
+  );
+};
+export default SignUpPage;
+
+const Error = styled.div`
+  position: absolute;
+  top: 120px;
+  font-size: 12px;
+  padding: 5px;
+
+  .message {
+    &.error {
+      color: red;
+    }
+  }
+`;
+
+const Reservation = styled.div`
+  font-size: 33.39px;
+  font-weight: bold;
+  color: #6478ff;
+  margin: 20px 0 20px 0;
+`;
+
+const ReservationBottom = styled.div`
+  border-bottom: #6478ff 3px solid;
+  width: 98%;
+  margin-top: 20px;
+`;
+
+const TestDiv = styled.div`
+  width: 100%;
+  height: 1700px;
+`;
+
+const SIgnWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+`;
+
+const SignUpContainer = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 98%;
+  height: 1500px;
+
+  padding: 40px;
+
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(158, 171, 255, 0.61);
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+`;
+
+const Login = styled.div`
+  margin: 0 0 30px;
+  padding: 0;
+  font-weight: 700;
+  font-size: 32.43px;
+  line-height: 30.32px;
+  color: rgba(77, 77, 77, 1);
+  text-align: center;
+`;
+
+const SignForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LoginBox = styled.div`
+  position: relative;
+`;
+
+const LoginInput = styled.input`
+  width: 592px;
+  height: 64px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  padding: 20px;
+  border: 1.5px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  outline: none;
+  background: transparent;
+
+  :focus ~ label,
+  :valid ~ label {
+    top: 10px;
+    left: 0;
+
+    color: #5a5a5a;
+    font-weight: 500;
+    font-size: 21.0432px;
+    line-height: 21px;
+  }
+`;
+
+const LoginLabel = styled.label`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 21.0432px;
+  line-height: 21px;
+  color: rgba(90, 90, 90, 1);
+  pointer-events: none;
+  transition: 0.5s;
+`;
+
+const LoginLabelBottom = styled.div`
+  border-bottom: #6478ff 3px solid;
+  width: 98%;
+  margin-top: 40px;
+`;
+
+const SignUpBtn = styled.button`
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* margin-right: 30px;
+  margin-top: 40px; */
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: #ccc;
+  :before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: ${(props) => (props.state ? '#f44016' : '#C8D1E0')};
+    color: #fff;
+    transition: 0.5s;
+    transform-origin: bottom;
+    transform: translatey(-100%) rotatex(90deg);
+  }
+  :hover:before {
+    transform: translatey(0) rotatex(0deg);
+  }
+  :after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: #4bb5cf;
+    color: #fff;
+    transition: 0.5s;
+    transform-origin: top;
+    transform: translatey(0) rotatex(0deg);
+  }
+  :hover:after {
+    transform: translatey(100%) rotatex(90deg);
+  }
+`;
+
+{
+  /* <form>
               <div>
                 <label>약관동의</label>
                 <div>
@@ -313,177 +557,5 @@ const SignUpPage = () => {
                   </div>
                 </div>
               </div>
-            </form>
-            <SignUpBtn data-text="회원가입">회원가입</SignUpBtn>
-          </SignForm>
-        </SignUpContainer>
-      </TestDiv>
-    </SIgnWrap>
-  );
-};
-export default SignUpPage;
-
-const Error = styled.div`
-  position: absolute;
-  top: 40px;
-  font-size: 12px;
-  padding: 5px;
-
-  .message {
-    &.error {
-      color: red;
-    }
-  }
-`;
-
-const Reservation = styled.div`
-  font-size: 33.39px;
-  font-weight: bold;
-  color: #6478ff;
-  margin: 20px 0 20px 0;
-`;
-
-const ReservationBottom = styled.div`
-  border-bottom: #6478ff 3px solid;
-  width: 98%;
-`;
-
-const TestDiv = styled.div`
-  width: 100%;
-  height: 1200px;
-`;
-
-const SIgnWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-`;
-
-const SignUpContainer = styled.div`
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  width: 98%;
-
-  padding: 40px;
-
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(158, 171, 255, 0.61);
-  background: rgb(255, 255, 255);
-  border-radius: 10px;
-`;
-
-const Login = styled.div`
-  margin: 0 0 30px;
-  padding: 0;
-  font-weight: 700;
-  font-size: 32.43px;
-  line-height: 30.32px;
-  color: rgba(77, 77, 77, 1);
-  text-align: center;
-`;
-
-const SignForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const LoginBox = styled.div`
-  position: relative;
-`;
-
-const LoginInput = styled.input`
-  width: 592px;
-  height: 64px;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 30px;
-
-  border: 1.5px solid rgba(158, 171, 255, 0.61);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
-  outline: none;
-  background: transparent;
-
-  :focus ~ label,
-  :valid ~ label {
-    top: -20px;
-    left: 0;
-
-    color: #5a5a5a;
-    font-weight: 500;
-    font-size: 21.0432px;
-    line-height: 21px;
-  }
-`;
-
-const LoginLabel = styled.label`
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  pointer-events: none;
-  transition: 0.5s;
-`;
-
-const SignUpBtn = styled.button`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* margin-right: 30px;
-  margin-top: 40px; */
-  cursor: pointer;
-  transform: translate(-50%, -50%);
-  width: 160px;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 10px;
-  border: none;
-  font-size: 14px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: #ccc;
-  :before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    background: #4bb5cf;
-    color: #fff;
-    transition: 0.5s;
-    transform-origin: bottom;
-    transform: translatey(-100%) rotatex(90deg);
-  }
-  :hover:before {
-    transform: translatey(0) rotatex(0deg);
-  }
-  :after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    background: #4bb5cf;
-    color: #fff;
-    transition: 0.5s;
-    transform-origin: top;
-    transform: translatey(0) rotatex(0deg);
-  }
-  :hover:after {
-    transform: translatey(100%) rotatex(90deg);
-  }
-`;
+            </form> */
+}

@@ -12,12 +12,9 @@ import RestaurantSelectionResult from '../components/Selection/RestaurantSelecti
 import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
 import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
-<<<<<<< HEAD
-=======
 import MySpot from '../components/Recommendation/MySpot';
 import { useEffect } from 'react';
 import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
->>>>>>> 5afa86d9ffbe903de3987e234068f0445a912a58
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);

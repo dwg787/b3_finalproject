@@ -19,7 +19,7 @@ export default function EditModal({
   const navigate = useNavigate();
   const [currentInput, setCurrentInput] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  // 닉네임 또는 깃허브 링크 유효성 검사
+  // 닉네임 또는 이메일 링크 유효성 검사
   const [inputValidation, setInputValidation] = useState(false);
   // 저장 버튼 활성화
   const [buttonValidation, setButtonValidation] = useState(true);
