@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchSpotDetailData, FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
 import Loader from '../components/Loader/Loader';
@@ -17,13 +17,10 @@ import KakaoMap from '../components/Map/KakaoMap';
 
 const DetailPage = () => {
   const param = useParams();
-  const navigate = useNavigate();
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
     () => fetchSpotDetailData({ param }),
   );
-
-  console.log(spotData);
 
   const getRecCnt = async () => {
     if (param.id) {
