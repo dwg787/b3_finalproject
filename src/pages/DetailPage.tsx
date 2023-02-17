@@ -11,7 +11,6 @@ import Liked from '../components/Liked/Liked';
 import StayInfo from '../components/StayInfo';
 import Communication from '../components/Review/Communication';
 import Notification from '../components/Notification/Notification';
-
 import DetailScroll from '../components/Scroll/DetailScroll';
 import MapImoji from '../components/Map/MapImoji';
 import KakaoMap from '../components/Map/KakaoMap';

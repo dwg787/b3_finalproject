@@ -22,10 +22,6 @@ const ReservationPage = () => {
     () => fetchStayDetailInfo({ param }),
   );
 
-  const navigate = useNavigate();
-
-  console.log(stayDetailData);
-
   return (
     <MainWrap>
       <Reservation>예약하기</Reservation>

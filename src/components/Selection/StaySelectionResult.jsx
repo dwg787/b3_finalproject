@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import StayDetail from '../StayDetail';
 import noimg from '../../assets/noimg.avif';
-import { useInfiniteQuery } from 'react-query';
+import { useQuery, useInfiniteQuery } from 'react-query';
 import { fetchStayData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState, useRef } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
@@ -49,10 +47,8 @@ const StaySelectionResult = () => {
 
   useEffect(() => {
     if (data) {
-      console.log('두값 비교 if밖', maxPageNo.current, data.pages.length);
       if (maxPageNo.current < data.pages.length) {
         maxPageNo.current = data.pages.length;
-        console.log('두값 비교 if안', maxPageNo.current, data.pages.length);
       }
     }
   }, [stayCurPage]);
@@ -142,6 +138,7 @@ const SearchListWrapper = styled.div`
 
 const ResultWrapper = styled.div`
   width: 70%;
+  height: 500px;
   display: flex;
   flex-direction: row;
   justify-content: center;

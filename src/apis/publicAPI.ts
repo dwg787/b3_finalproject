@@ -13,7 +13,7 @@ interface recCnt {
 
 export interface recCnts extends Array<recCnt> {}
 
-//메인페이지 api
+//메인페이지 지역별 필터를 위한 관광지 api
 export const fetchSpotData = async ({
   region,
   pageParam,
@@ -30,7 +30,7 @@ export const fetchSpotData = async ({
   return res.data.response.body;
 };
 
-//숙박 api
+//메인페이지 지역별 필터를 위한 숙박 api
 export const fetchStayData = async ({
   region,
   pageParam,
@@ -47,7 +47,7 @@ export const fetchStayData = async ({
   return res.data.response.body;
 };
 
-//레스토랑 api
+//메인페이지 지역별 필터를 위한 레스토랑 api
 export const fetchRestaurantData = async ({
   region,
   pageParam,
@@ -146,7 +146,7 @@ export const fetchAllSpotData = async () => {
   const res = await axios.get(
     `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
   );
-  console.log('관광지 모든 데이터?', res.data.response.body.items.item);
+  // console.log('관광지 모든 데이터?', res.data.response.body.items.item);
   return res.data.response.body.items.item;
 };
 
@@ -155,7 +155,7 @@ export const fetchAllStayData = async () => {
   const res = await axios.get(
     `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=3500&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=&sigunguCode=&cat1=B02&cat2=B0201&cat3=&_type=json`,
   );
-  console.log('숙박 모든 데이터?', res.data.response.body.items.item);
+  // console.log('숙박 모든 데이터?', res.data.response.body.items.item);
   return res.data.response.body.items.item;
 };
 
@@ -164,6 +164,30 @@ export const fetchAllRestaurantData = async () => {
   const res = await axios.get(
     `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=17300&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=39&areaCode=&sigunguCode=&cat1=A05&cat2=A0502&cat3=&_type=json`,
   );
-  console.log('레스토랑 모든 데이터?', res.data.response.body.items.item);
+  // console.log('레스토랑 모든 데이터?', res.data.response.body.items.item);
+  return res.data.response.body.items.item;
+};
+
+//숙박 상세 소개정보
+export const fetchStayAdditionalInfo1 = async ({
+  param,
+}: {
+  param: Readonly<Params<string>>;
+}) => {
+  const res = await axios.get(
+    `http://apis.data.go.kr/B551011/KorService/detailIntro?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
+  );
+  return res.data.response.body.items.item[0];
+};
+
+//숙박 룸 관련 정보
+export const fetchStayAdditionalInfo2 = async ({
+  param,
+}: {
+  param: Readonly<Params<string>>;
+}) => {
+  const res = await axios.get(
+    `http://apis.data.go.kr/B551011/KorService/detailInfo?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
+  );
   return res.data.response.body.items.item;
 };
