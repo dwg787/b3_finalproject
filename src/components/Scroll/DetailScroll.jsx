@@ -19,12 +19,17 @@ const DetailScroll = () => {
         </StLinkBox>
         <StLinkBox>
           <Link to="3" spy={true} smooth={true}>
-            <StLinkTextBox>여행톡</StLinkTextBox>
+            <StLinkTextBox>지도</StLinkTextBox>
           </Link>
         </StLinkBox>
         <StLinkBox>
           <Link to="4" spy={true} smooth={true}>
-            <StLinkTextBox>추천여행</StLinkTextBox>
+            <StLinkTextBox>여행톡</StLinkTextBox>
+          </Link>
+        </StLinkBox>
+        <StLinkBox>
+          <Link to="5" spy={true} smooth={true}>
+            <StLinkTextBox>추천</StLinkTextBox>
           </Link>
         </StLinkBox>
       </SideDiv>
@@ -35,15 +40,9 @@ const DetailScroll = () => {
 export default DetailScroll;
 
 const MainDiv = styled.div`
-  margin: 1rem 5rem;
-  border-bottom: solid rgb(158, 171, 255, 0.61) 1px;
-  border-top: solid rgb(158, 171, 255, 0.61) 1px;
-`;
-
-const ContentDiv = styled.div`
-  width: 100%;
-
-  /* margin: 2rem 5rem; */
+  margin: 1rem;
+  border-bottom: solid rgb(158, 171, 255, 0.61) 2px;
+  /* border-top: solid rgb(158, 171, 255, 0.61) 1px; */
 `;
 
 const SideDiv = styled.div`
@@ -51,7 +50,7 @@ const SideDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
 `;
 
 const StLinkTextBox = styled.span`
@@ -61,6 +60,7 @@ const StLinkTextBox = styled.span`
   font-weight: 400;
   /* padding: 20px; */
   cursor: pointer;
+  height: 27px;
   /* width: 600px; */
   /* position: absolute; */
 `;

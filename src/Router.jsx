@@ -19,6 +19,7 @@ import {
   StayDetailPage,
   RestaurantDetailPage,
 } from './pages';
+
 import Footer from './components/Footer/Footer';
 
 const Router = () => {

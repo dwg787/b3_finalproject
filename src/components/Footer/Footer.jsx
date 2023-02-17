@@ -32,13 +32,19 @@ export default function Footer() {
 
 const WrapDiv = styled.div`
   width: 100%;
-  height: 300px;
+  height: 200px;
   background-color: #6478ff;
   padding-top: 100px;
   padding-left: 100px;
 `;
 
-const TextBox = styled.div``;
+const TextBox = styled.div`
+  width: 100%;
+  height: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 const Footerh1 = styled.h1`
   color: white;
@@ -49,5 +55,5 @@ const Footerh1 = styled.h1`
 
 const FooterText = styled.p`
   color: white;
-  font-size: 19px;
+  font-size: 14px;
 `;

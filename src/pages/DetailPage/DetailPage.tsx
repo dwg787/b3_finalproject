@@ -125,9 +125,9 @@ const DetailPage = () => {
                 </DetailInformation>
 
                 <CommunicationWrap id="3">
-                  <DetailInfoTextBox>
+                  {/* <DetailInfoTextBox>
                     <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox>
+                  </DetailInfoTextBox> */}
 
                   <Communication />
                 </CommunicationWrap>

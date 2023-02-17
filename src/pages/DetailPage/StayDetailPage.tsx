@@ -33,9 +33,10 @@ import {
   DetailText,
   DetailTextArr,
   DeatilTextBox,
+  DetailInformationMap,
 } from './styles';
 import DetailScroll from '../../components/Scroll/DetailScroll';
-import MapImoji from '../../components/Map/MapImoji';
+// import MapImoji from '../../components/Map/MapImoji';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 
@@ -113,7 +114,9 @@ const StayDetailPage = () => {
             {stayDetailData ? (
               <DeatilBox key={param.id}>
                 {/* <Link to={'/'}>메인으로</Link> */}
+                <DetailScroll />
                 <DeatilTextBox>
+                  {/* <DetailScroll /> */}
                   <DetailText>{stayDetailData.title}</DetailText>
                   <DetailTextArr>
                     {stayDetailData.addr1.split(' ', 2)}
@@ -121,12 +124,11 @@ const StayDetailPage = () => {
                   <DeatilImojiBox>
                     <StayLiked stayDetailData={stayDetailData} />
 
-                    <Link to={`/${param.id}/map`}>
+                    {/* <Link to={`/${param.id}/map`}>
                       <MapImoji />
-                    </Link>
+                    </Link> */}
                   </DeatilImojiBox>
                 </DeatilTextBox>
-                <DetailScroll />
 
                 <DetailImgBox id="1">
                   <DetailImg
@@ -143,16 +145,18 @@ const StayDetailPage = () => {
                   <DetailInfo>
                     {stayDetailData.overview.split('.', 4)}
                   </DetailInfo>
-                  <DetailInfo>
-                    <KakaoMap
-                      mapx={stayDetailData.mapx}
-                      mapy={stayDetailData.mapy}
-                    />
-                  </DetailInfo>
+
                   <DetailInfo>주소 : {stayDetailData.addr1}</DetailInfo>
                 </DetailInformation>
 
-                <CommunicationWrap id="3">
+                <DetailInformationMap id="3">
+                  <KakaoMap
+                    mapx={stayDetailData.mapx}
+                    mapy={stayDetailData.mapy}
+                  />
+                </DetailInformationMap>
+
+                <CommunicationWrap id="4">
                   <DetailInfoTextBox>
                     <DetailInfoText>여행톡</DetailInfoText>
                   </DetailInfoTextBox>

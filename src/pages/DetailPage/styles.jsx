@@ -10,7 +10,7 @@ const DetailWrap = styled.div`
 `;
 
 const Container = styled.div`
-  width: 70%;
+  width: 1836px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -23,17 +23,19 @@ const Container = styled.div`
 
 const DeatilBox = styled.div`
   width: 100%;
+  height: 3178px;
   flex-direction: column;
   display: flex;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 5px 5px 10px 1px gray;
-  padding: 30px;
+  padding: 10px 30px 30px 30px;
+  background: linear-gradient(white 40%, #9eabff);
 `;
 
 const DeatilTextBox = styled.div`
   width: 100%;
-  gap: 0.3rem;
+  /* gap: 0.3rem; */
 `;
 
 const DeatilImojiBox = styled.div`
@@ -48,16 +50,19 @@ const DetailText = styled.p`
   text-align: center;
   font-size: 40px;
   color: #6478ff;
+  /* padding: 20px; */
   /* margin-bottom: 50px; */
+  margin-top: 72px;
 `;
 
 const DetailTextArr = styled.div`
   text-align: center;
   /* font-weight: bold; */
   font-size: 15px;
-  margin-top: 15px;
+  margin-top: 37px;
   color: #333333;
   font-weight: 400;
+  height: 32px;
 `;
 
 const DetailImgBox = styled.div`
@@ -65,7 +70,7 @@ const DetailImgBox = styled.div`
   justify-content: center;
   display: flex;
   /* margin-bottom: 150px; */
-  margin: 20px 0;
+  margin: 32px 0;
   /* height: 800px; */
   /* background-color: #6fcfab; */
 `;
@@ -90,7 +95,7 @@ const DetailInformation = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 700px;
+  height: 400px;
   /* background-color: #76acdc; */
   /* background-color: #ffffff; */
   border-radius: 20px;
@@ -98,6 +103,23 @@ const DetailInformation = styled.div`
   border: 1px solid rgb(158, 171, 255, 0.61);
   padding: 30px;
 
+  margin: 20px 0;
+`;
+
+const DetailInformationMap = styled.div`
+  width: 100%;
+  /* justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; */
+  height: 400px;
+  /* background-color: #76acdc; */
+  /* background-color: #ffffff; */
+  border-radius: 20px;
+  /* box-shadow: 5px 5px 10px 1px gray; */
+  /* border: 1px solid rgb(158, 171, 255, 0.61); */
+  /* padding: 30px; */
+  flex-wrap: wrap;
   margin: 20px 0;
 `;
 
@@ -120,7 +142,7 @@ const DetailInfoText = styled.div`
 `;
 
 const DetailInfo = styled.div`
-  width: 90%;
+  width: 100%;
   margin: 10px 0;
   height: 500px;
   flex-wrap: wrap;
@@ -163,4 +185,5 @@ export {
   DetailTextArr,
   DetailText,
   DeatilTextBox,
+  DetailInformationMap,
 };
