@@ -5,6 +5,9 @@ import TapHeart from '../../../assets/TapHeart.png';
 import dombae from '../../../assets/dombae.png';
 import manmi from '../../../assets/manmi.png';
 import koji from '../../../assets/koji.png';
+import soban from '../../../assets/soban.png';
+import gore from '../../../assets/gore.png';
+import mil from '../../../assets/mil.png';
 
 export default function Rest() {
   return (
@@ -55,42 +58,42 @@ export default function Rest() {
 
       <InnerBox2>
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={soban} />
           <InnerNmb>4</InnerNmb>
           <InnerText>
-            <InnerTextH3>대방진 굴항</InnerTextH3>
-            <InnerTextp>경상남도 사천시 대방동에 있는 인공항구</InnerTextp>
+            <InnerTextH3>갈비명가 소반</InnerTextH3>
+            <InnerTextp>경남창원 소갈비 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>7,117</p>
+              <p>1,617</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={gore} />
           <InnerNmb>5</InnerNmb>
           <InnerText>
-            <InnerTextH3>화개동천</InnerTextH3>
-            <InnerTextp>우리나라에서 처음으로 차나무를 심은 곳</InnerTextp>
+            <InnerTextH3>고래고기원조할매집</InnerTextH3>
+            <InnerTextp>고래마을내 위치한 고래고기전문점</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>5,401</p>
+              <p>924</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={mil} />
           <InnerNmb>6</InnerNmb>
           <InnerText>
-            <InnerTextH3>창경궁</InnerTextH3>
-            <InnerTextp>옛 수강궁터에 창건한 궁</InnerTextp>
+            <InnerTextH3>개금밀면</InnerTextH3>
+            <InnerTextp>진한 국물이 매력적인 밀면맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>4,991</p>
+              <p>741</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
