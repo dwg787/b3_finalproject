@@ -2,6 +2,7 @@ import { doc, updateDoc, setDoc, getDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { auth, db } from '../../apis/firebase';
 import useNotification from '../../hooks/useNotification';
+import HeartButton from './Heart';
 
 export default function StayLiked({
   stayDetailData,
@@ -47,7 +48,7 @@ export default function StayLiked({
   return (
     <div>
       {/* 버튼 이모지 임의 지정 */}
-      <button onClick={addStayLiked} like={like} />
+      <HeartButton onClick={addStayLiked} like={like} />
     </div>
   );
 }
