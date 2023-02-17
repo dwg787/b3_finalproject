@@ -28,18 +28,18 @@ export default function WeeklyTop10() {
   );
 }
 const Container = styled.div`
-  width: 90%;
-  height: 850px;
+  width: 65%;
+  height: 770px;
   display: flex;
   flex-direction: column;
   margin-top: 65px;
   border: 1.5px solid #6478ff;
   border-radius: 50px;
-  box-shadow: 5px 5px #c8c8c8;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
   background-color: white;
 `;
 const WeeklyTopText = styled.p`
-  margin-left: 70px;
+  margin-left: 36px;
   color: #6478ff;
   font-size: 20px;
   font-weight: bold;
@@ -48,7 +48,6 @@ const WeeklyTopText = styled.p`
 const WeeklyButtonBox = styled.div`
   display: flex;
   margin-top: 20px;
-  margin-left: 40px;
 `;
 
 // const WeeklyButton = styled.button`
