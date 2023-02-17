@@ -104,14 +104,14 @@ export default function Rest() {
 }
 
 const WarpDiv = styled.div`
-  width: 91%;
+  width: 90%;
   height: 600px;
-  margin-left: 4.5%;
+  margin-left: 5%;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 20px;
+  gap: 100px;
 `;
 
 const InnerNmb = styled.div`
@@ -138,7 +138,7 @@ const InnerBox1 = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InnerBox2 = styled.div`
@@ -149,11 +149,11 @@ const InnerBox2 = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InnerList = styled.div`
-  width: 560px;
+  width: 540px;
   height: 190px;
   display: flex;
   border: 1px solid #6478ff;
