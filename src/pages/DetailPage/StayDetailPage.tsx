@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
-import { fetchStayDetailInfo } from '../../apis/publicAPI';
+import {
+  fetchStayDetailInfo,
+  fetchStayAdditionalInfo1,
+  fetchStayAdditionalInfo2,
+} from '../../apis/publicAPI';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
@@ -42,6 +46,25 @@ const StayDetailPage = () => {
     () => fetchStayDetailInfo({ param }),
   );
 
+  // const {
+  //   data: stayAdditionalData1,
+  //   isLoading: isLoadingAdditional1,
+  // } = useQuery(['stay_additional1', param], () =>
+  //   fetchStayAdditionalInfo1({ param }),
+  // );
+
+  // const {
+  //   data: stayAdditionalData2,
+  //   isLoading: isLoadingAdditional2,
+  // } = useQuery(['stay_additional2', param], () =>
+  //   fetchStayAdditionalInfo2({ param }),
+  // );
+
+  // if (stayAdditionalData1 && stayAdditionalData2) {
+  //   console.log('숙박 상세 소개', stayAdditionalData1);
+  //   console.log('숙박 룸 정보', stayAdditionalData2);
+  // }
+
   const getStayRecCnt = async () => {
     if (param.id) {
       const data = await getDoc(doc(db, 'stay_recommendation', `${param.id}`));
@@ -79,7 +102,7 @@ const StayDetailPage = () => {
     };
     getFirestoreRecCnt();
   }, [stayDetailData]);
-  // console.log("숙박 상세정보", stayDetailData);
+  console.log('숙박 상세정보', stayDetailData);
   return (
     <DetailWrap>
       <Container>

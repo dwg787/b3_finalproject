@@ -30,7 +30,11 @@ const MainPage = () => {
       <Menu />
       {(selectedMenu === '관광지' ||
         selectedMenu === '음식점' ||
-        selectedMenu === '숙박') && <RegionSelection />}
+        selectedMenu === '숙박') && (
+        <RegionSelectionBtnWrapper>
+          <RegionSelection />
+        </RegionSelectionBtnWrapper>
+      )}
       {selectedMenu === 'HOME' ? (
         <>
           <SliderBanner />
@@ -72,4 +76,13 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background: linear-gradient(white 40%, #6478ff);
+`;
+
+const RegionSelectionBtnWrapper = styled.div`
+  display: flex;
+  padding-top: 30px;
+  /* align-items: center; */
+  justify-content: center;
+  width: 70%;
+  height: 200px;
 `;

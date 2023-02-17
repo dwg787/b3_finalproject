@@ -16,6 +16,12 @@ import rightArrow from '../../assets/right-arrow.avif';
 const SelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
   const [spotCurPage, setSpotCurPage] = useState(1);
+  const [pageDot, setPageDot] = useState(spotCurPage);
+  // const limit = 10;
+  // const cut = (spotCurPage - 1) * limit;
+  let firstNum = spotCurPage - (spotCurPage % 5) + 1;
+  let lastNum = firstNum + 4;
+
   const maxPageNo = useRef(1);
 
   const {
@@ -60,6 +66,8 @@ const SelectionResult = () => {
     maxPageNo.current = 1;
     setSpotCurPage(1);
   }, [region]);
+
+  console.log('현재쪽수', spotCurPage);
 
   return (
     <SearchOverallResultContainer>
@@ -113,6 +121,24 @@ const SelectionResult = () => {
               )}
             </BtnWrapper>
           </SearchListWrapper>
+          <PaginationDotsWrapper>
+            {Array(
+              Math.ceil(data.pages[0]?.totalCount / data.pages[0]?.numOfRows),
+            )
+              .fill('')
+              .slice(firstNum, lastNum + 1)
+              .map((_, i) => {
+                return (
+                  <PaginationDot
+                    key={firstNum + i + 1}
+                    idx={firstNum + i}
+                    onClick={() => setSpotCurPage(i + 1)}
+                  >
+                    {firstNum + i}
+                  </PaginationDot>
+                );
+              })}
+          </PaginationDotsWrapper>
         </>
       )}
     </SearchOverallResultContainer>
@@ -143,6 +169,7 @@ const SearchListWrapper = styled.div`
 
 const ResultWrapper = styled.div`
   width: 70%;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -162,5 +189,23 @@ const BtnWrapper = styled.div`
 const MoveBtnStyle = styled.img`
   width: 50px;
   height: 50px;
+  cursor: pointer;
+`;
+
+const PaginationDotsWrapper = styled.div`
+  margin-top: 30px;
+  width: 500px;
+  height: 10px;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 10px;
+`;
+const PaginationDot = styled.div<{ idx: number }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: ${(props) => (props.idx ? 'red' : '#ffffff')};
   cursor: pointer;
 `;

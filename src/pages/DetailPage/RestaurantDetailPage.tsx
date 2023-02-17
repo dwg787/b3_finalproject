@@ -81,7 +81,7 @@ const RestaurantDetailPage = () => {
     getFirestoreRecCnt();
   }, [restaurantDetailData]);
 
-  //   console.log('식당정보', restaurantDetailData);
+  console.log('식당정보', restaurantDetailData);
   return (
     <DetailWrap>
       <Container>

@@ -18,10 +18,8 @@ const ReservationPage = () => {
   const param = useParams();
   const { data: stayDetailData, isLoading: isLoadingStayDetail } = useQuery(
     ['stay_detail', param],
-    () => fetchStayDetailInfo({ param })
+    () => fetchStayDetailInfo({ param }),
   );
-
-  console.log(stayDetailData);
 
   return (
     <StTicketMainWrap>
@@ -32,7 +30,7 @@ const ReservationPage = () => {
           </div>
           <StTicketInfoImage
             src={stayDetailData.firstimage || noimg}
-            alt='숙박 사진'
+            alt="숙박 사진"
           />
           <div>주소 : {stayDetailData.addr1}</div>
         </StTicketInfo>
