@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import InnerPhoto from '../../../assets/slider3.jpeg';
-import TapHeart from '../../../assets/TapHeart.png';
-import dombae from '../../../assets/dombae.png';
-import manmi from '../../../assets/manmi.png';
-import koji from '../../../assets/koji.png';
-import soban from '../../../assets/soban.png';
-import gore from '../../../assets/gore.png';
-import mil from '../../../assets/mil.png';
+import InnerPhoto from '../../../assets/slider3.avif';
+import TapHeart from '../../../assets/TapHeart.avif';
+import dombae from '../../../assets/dombae.avif';
+import manmi from '../../../assets/manmi.avif';
+import koji from '../../../assets/koji.avif';
+import soban from '../../../assets/soban.avif';
+import gore from '../../../assets/gore.avif';
+import mil from '../../../assets/mil.avif';
 
 export default function Rest() {
   return (

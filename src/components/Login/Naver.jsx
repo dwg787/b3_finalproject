@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import NaverLogo from '../../assets/naver.png';
+import NaverLogo from '../../assets/naver.avif';
 
 const Naver = ({ setGetToken, setUserInfo }) => {
   const [userName, setUserName] = useState('');

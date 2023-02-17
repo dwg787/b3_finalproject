@@ -2,7 +2,7 @@ import { FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
-import TapHeart from '../assets/TapHeart.png';
+import TapHeart from '../assets/TapHeart.avif';
 
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();

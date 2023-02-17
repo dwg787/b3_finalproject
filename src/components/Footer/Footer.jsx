@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import mainlogo from '../../assets/mainlogo.png';
+import mainlogo from '../../assets/mainlogo.avif';
 
 export default function Footer() {
   return (

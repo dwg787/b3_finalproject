@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import { LoginPage } from '../pages';
 import axios from 'axios';
 import QueryString from 'qs';
-import mainlogo from '../assets/mainlogo.png';
-import SearchIcon from '../assets/search.png';
-import Ximg from '../assets/ximg.png';
+import mainlogo from '../assets/mainlogo.avif';
+import SearchIcon from '../assets/search.avif';
+import Ximg from '../assets/ximg.avif';
 import useNotification from '../hooks/useNotification';
 
 const Navbar = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import searchimg from '../../assets/search.png';
+import searchimg from '../../assets/search.avif';
 
 export default function InputBoxButton() {
   return (
