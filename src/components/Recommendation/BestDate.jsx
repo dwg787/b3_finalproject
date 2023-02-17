@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import yeonbuk from '../../assets/yeonbuk.png';
-import buseok from '../../assets/buseok.png';
-import dmz from '../../assets/dmz.png';
-import dongsung from '../../assets/dongsung.png';
-import TapHeart from '../../assets/TapHeart.png';
+import yeonbuk from '../../assets/yeonbuk.avif';
+import buseok from '../../assets/buseok.avif';
+import dmz from '../../assets/dmz.avif';
+import dongsung from '../../assets/dongsung.avif';
+import TapHeart from '../../assets/TapHeart.avif';
 
 export default function MyChild() {
   return (

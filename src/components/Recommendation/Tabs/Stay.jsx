@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import InnerPhoto from '../../../assets/slide2.jpeg';
-import TapHeart from '../../../assets/TapHeart.png';
-import shilla from '../../../assets/shilla.png';
-import choseon from '../../../assets/choseon.png';
-import walker from '../../../assets/walker.png';
-import signiel from '../../../assets/signiel.png';
-import grand from '../../../assets/grand.png';
-import season from '../../../assets/season.png';
+import InnerPhoto from '../../../assets/slide2.avif';
+import TapHeart from '../../../assets/TapHeart.avif';
+import shilla from '../../../assets/shilla.avif';
+import choseon from '../../../assets/choseon.avif';
+import walker from '../../../assets/walker.avif';
+import signiel from '../../../assets/signiel.avif';
+import grand from '../../../assets/grand.avif';
+import season from '../../../assets/season.avif';
 
 export default function Spot() {
   return (

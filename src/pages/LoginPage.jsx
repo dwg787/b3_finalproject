@@ -6,7 +6,7 @@ import KakaoLoginButton from '../components/Login/KakaoLoginButton';
 import KakaoLogoutButton from '../components/Login/KakaoLogoutButton';
 import Naver from '../components/Login/Naver';
 import styled from 'styled-components';
-import Google from '../assets/google.png';
+import Google from '../assets/google.avif';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import useNotification from '../hooks/useNotification';
