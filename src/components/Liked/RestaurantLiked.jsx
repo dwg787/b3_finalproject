@@ -1,5 +1,6 @@
 import { doc, updateDoc, setDoc, getDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react';
+// import { Navigate } from 'react-router-dom';
 import { auth, db } from '../../apis/firebase';
 import useNotification from '../../hooks/useNotification';
 import HeartButton from './Heart';
@@ -17,6 +18,11 @@ export default function RestaurantLiked({
     //유저 아이디 가져오기
     const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'restaurantlike'));
+    // 로그인확인용 -> 이동을 어디로..?
+    // if (!auth.currentUser) {
+    //   alert('로그인이 필요합니다.');
+    //   Navigate('/');
+    // }
 
     // 유저 컬렉션이 존재하는지 확인
     await getDoc(docRef)
