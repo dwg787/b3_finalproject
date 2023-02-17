@@ -143,7 +143,7 @@ const SignUpPage = () => {
   //약관동의 만드는법
   const checkAll = (e) => {
     e.target.checked
-      ? setCheckList(['terms', 'collect', 'another', 'entrust', 'marketing'])
+      ? setCheckList(['terms', 'collect', 'another'])
       : setCheckList([]);
   };
 
@@ -163,8 +163,7 @@ const SignUpPage = () => {
     if (
       checkList.includes('terms') &&
       checkList.includes('collect') &&
-      checkList.includes('another') &&
-      checkList.includes('entrust')
+      checkList.includes('another')
     ) {
       setButtonColor(true);
     } else {
@@ -255,50 +254,62 @@ const SignUpPage = () => {
               <LoginInput required="" type="text" />
               <LoginLabel>휴대폰</LoginLabel>
             </LoginBox> */}
-            <div>
-              <input
-                onClick={isCheckBoxClicked}
-                type="checkbox"
-                name="all"
-                onChange={checkAll}
-                checked={checkList.length === 5 ? true : false}
-              ></input>
-              <div>이용약관 전체동의</div>
-            </div>
-            <div>
-              <input
-                onClick={isCheckBoxClicked}
-                type="checkbox"
-                name="terms"
-                onChange={check}
-                checked={checkList.includes('terms') ? true : false}
-              ></input>
-              <div>이용약관 동의 (필수)</div>
-              <div>내용보기</div>
-            </div>
-            <div>
-              <input
-                onClick={isCheckBoxClicked}
-                type="checkbox"
-                name="collect"
-                onChange={check}
-                checked={checkList.includes('collect') ? true : false}
-              ></input>
-              <div>개인정보 수집 및 이용 동의 (필수)</div>
-              <div>내용보기</div>
-            </div>
-            <div>
-              <input
-                onClick={isCheckBoxClicked}
-                type="checkbox"
-                name="another"
-                onChange={check}
-                checked={checkList.includes('another') ? true : false}
-              ></input>
-              <div>개인정보 제 3자 제공 동의 (필수)</div>
-              <div>내용보기</div>
-            </div>
-            <div>
+            <PersonInfo>개인정보 처리방침</PersonInfo>
+            <CheckBoxBolder>
+              <CheckBoxWrap>
+                <CheckBoxInput
+                  onClick={isCheckBoxClicked}
+                  type="checkbox"
+                  name="all"
+                  onChange={checkAll}
+                  checked={checkList.length === 3 ? true : false}
+                ></CheckBoxInput>
+                <CheckBoxTextBold>
+                  본인은 아래의 모든 개인정보 처리방침에 모두 동의합니다.
+                </CheckBoxTextBold>
+              </CheckBoxWrap>
+              <CheckBoxWrap>
+                <CheckBoxInput
+                  onClick={isCheckBoxClicked}
+                  type="checkbox"
+                  name="terms"
+                  onChange={check}
+                  checked={checkList.includes('terms') ? true : false}
+                ></CheckBoxInput>
+                <CheckBoxText>
+                  본인은 본 서비스 약관에 동의하며 18세 이상임을 확인합니다.
+                  (필수)
+                </CheckBoxText>
+              </CheckBoxWrap>
+              <CheckBoxWrap>
+                <CheckBoxInput
+                  onClick={isCheckBoxClicked}
+                  type="checkbox"
+                  name="collect"
+                  onChange={check}
+                  checked={checkList.includes('collect') ? true : false}
+                ></CheckBoxInput>
+                <CheckBoxText>
+                  본인은 개인정보 처리방침에 따라 본인의 개인 정보를 사용하는
+                  것에 동의합니다. (필수)
+                </CheckBoxText>
+              </CheckBoxWrap>
+              <CheckBoxWrap>
+                <CheckBoxInput
+                  onClick={isCheckBoxClicked}
+                  type="checkbox"
+                  name="another"
+                  onChange={check}
+                  checked={checkList.includes('another') ? true : false}
+                ></CheckBoxInput>
+                <CheckBoxText>
+                  본인은 개인정보 처리방침에 따라 대한민국 또는 해외에 있는 제
+                  3자에 본인의 개인정보
+                </CheckBoxText>
+                <CheckBoxText>를 제공하는 것에 동의합니다. (필수)</CheckBoxText>
+              </CheckBoxWrap>
+            </CheckBoxBolder>
+            {/* <div>
               <input
                 onClick={isCheckBoxClicked}
                 type="checkbox"
@@ -319,7 +330,7 @@ const SignUpPage = () => {
               ></input>
               <div>개인정보 수집 및 이용 동의 (선택)</div>
               <div>내용보기</div>
-            </div>
+            </div> */}
 
             <SignUpBtn state={buttonColor} data-text="회원가입">
               회원가입
@@ -340,7 +351,10 @@ const Error = styled.div`
 
   .message {
     &.error {
-      color: red;
+      color: #f87038;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 15px;
     }
   }
 `;
@@ -374,7 +388,7 @@ const SignUpContainer = styled.div`
   position: absolute;
   top: 100%;
   left: 50%;
-  width: 98%;
+  width: 80%;
   height: 1500px;
 
   padding: 40px;
@@ -450,7 +464,7 @@ const LoginLabel = styled.label`
 const LoginLabelBottom = styled.div`
   border-bottom: #6478ff 3px solid;
   width: 98%;
-  margin-top: 40px;
+  margin-top: 80px;
 `;
 
 const SignUpBtn = styled.button`
@@ -508,54 +522,54 @@ const SignUpBtn = styled.button`
   }
 `;
 
-{
-  /* <form>
-              <div>
-                <label>약관동의</label>
-                <div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="all-check"
-                      checked={allCheck}
-                      onChange={allBtnEvent}
-                    />
-                    <label for="all-check">전체동의</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="check1"
-                      checked={ageCheck}
-                      onChange={ageBtnEvent}
-                    />
-                    <label for="check1">
-                      만 14세 이상입니다 <span>(필수)</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="check2"
-                      checked={useCheck}
-                      onChange={useBtnEvent}
-                    />
-                    <label for="check2">
-                      이용약관 <span>(필수)</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="check3"
-                      checked={marketingCheck}
-                      onChange={marketingBtnEvent}
-                    />
-                    <label for="check3">
-                      마케팅 동의 <span>(선택)</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </form> */
-}
+const PersonInfo = styled.div`
+  font-weight: 700;
+  font-size: 32.4329px;
+  line-height: 30px;
+  margin-top: 80px;
+`;
+
+const CheckBoxWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 120px;
+`;
+
+const CheckBoxBolder = styled.div`
+  box-sizing: border-box;
+  background: #f9f9fa;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 18px;
+  padding: 60px;
+  width: 70%;
+`;
+
+const CheckBoxInput = styled.input`
+  position: absolute;
+  left: 400px;
+  width: 37px;
+  height: 37px;
+  box-sizing: border-box;
+
+  border: 1.5px solid #d6dcff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  accent-color: #6478ff;
+`;
+
+const CheckBoxTextBold = styled.div`
+  font-weight: 700;
+  font-size: 22.3735px;
+  line-height: 21px;
+  color: #4d4d4d;
+  margin-top: 20px;
+`;
+
+const CheckBoxText = styled.div`
+  font-weight: 500;
+  font-size: 22.3735px;
+  line-height: 21px;
+  color: #4d4d4d;
+  margin-top: 20px;
+`;
