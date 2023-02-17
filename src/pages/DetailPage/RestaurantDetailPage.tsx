@@ -7,12 +7,12 @@ import KakaoMap from '../../components/Map/KakaoMap';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
 import { FetchedStayDataType } from '../../apis/publicAPI';
 import { db } from '../../apis/firebase';
-import RestaurantLiked from '../../components/Liked/RestaurantLiked';
-import MapImoji from '../../components/Map/MapImoji';
+// import MapImoji from '../../components/Map/MapImoji';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import noimg from '../../assets/noimg.avif';
+import Liked from '../../components/Liked/Liked';
 
 import {
   DetailWrap,
@@ -104,9 +104,10 @@ const RestaurantDetailPage = () => {
                     {restaurantDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    <RestaurantLiked
+                    <Liked restaurantDetailData={restaurantDetailData} />
+                    {/* <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
-                    />
+                    /> */}
 
                     {/* <Link to={`/${param.id}/map`}>
                       <MapImoji />

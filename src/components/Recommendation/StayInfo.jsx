@@ -1,9 +1,10 @@
 import { useQuery } from 'react-query';
 import { fetchNearStayData } from '../../apis/publicAPI';
 import Loader from '../Loader/Loader';
-
 import noimg from '../../assets/noimg.avif';
-import StayLiked from '../Liked/StayLiked';
+import { Link } from 'react-router-dom';
+import RestaurantLiked from '../Liked/RestaurantLiked';
+
 import {
   Container,
   MyChildTopText,
@@ -16,7 +17,6 @@ import {
   LikeBox,
   GoButton,
 } from './styles';
-import { Link } from 'react-router-dom';
 
 const StayInfo = ({ spotData }) => {
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
@@ -66,7 +66,8 @@ const StayInfo = ({ spotData }) => {
                         <MyChildTexth3>{item.title}</MyChildTexth3>
                         <MyChildTextp> {item.addr1}</MyChildTextp>
                         <LikeBox>
-                          <StayLiked />
+                          <RestaurantLiked />
+
                           <p>00</p>
                         </LikeBox>
                       </MyCildTextBox>

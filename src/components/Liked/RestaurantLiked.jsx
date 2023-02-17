@@ -6,10 +6,18 @@ import useNotification from '../../hooks/useNotification';
 import HeartButton from './Heart';
 
 export default function RestaurantLiked({
+  spotData,
   restaurantDetailData,
+  stayDetailData,
 }: UserProps): React.ReactElement {
   // const uid = auth.currentUser.uid;
   const [like, setLike] = useState(false);
+  const combinedData = {
+    ...spotData,
+    ...restaurantDetailData,
+    ...stayDetailData,
+  };
+
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
@@ -30,19 +38,19 @@ export default function RestaurantLiked({
         // 없으면 새로 생성
         if (!doc.exists()) {
           setDoc(docRef, {
-            restaurant: restaurantDetailData.title,
+            restaurant: combinedData.title,
             uid: uid,
-            img: restaurantDetailData.firstimage,
-            contentid: restaurantDetailData.contentid,
+            img: combinedData.firstimage,
+            contentid: combinedData.contentid,
           });
         }
       })
       .catch((e) => console.log(e));
     await updateDoc(docRef, {
-      restaurant: restaurantDetailData.title,
+      restaurant: combinedData.title,
       uid: uid,
-      img: restaurantDetailData.firstimage,
-      contentid: restaurantDetailData.contentid,
+      img: combinedData.firstimage,
+      contentid: combinedData.contentid,
     }).catch((e) => console.log(e));
     setLike(!like);
     // alert('Like저장');

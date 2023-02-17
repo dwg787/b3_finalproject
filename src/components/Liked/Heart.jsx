@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import heart from '../../assets/heart.png';
 import redheart from '../../assets/redheart.png';

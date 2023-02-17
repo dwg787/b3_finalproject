@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../../apis/firebase';
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
-import Liked from '../../components/Liked/Liked';
 import StayInfo from '../../components/Recommendation/StayInfo';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
@@ -34,6 +33,7 @@ import {
   DetailInfoAdd,
   TabHr,
 } from './styles';
+import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 
 const DetailPage = () => {
   const param = useParams();
@@ -83,8 +83,6 @@ const DetailPage = () => {
     getFirestoreRecCnt();
   }, [spotData]);
 
-  //스크롤 탭
-
   return (
     <DetailWrap>
       <Container>
@@ -102,8 +100,8 @@ const DetailPage = () => {
                   <DetailText>{spotData.title}</DetailText>
                   <DetailTextArr> {spotData.addr1.split(' ', 2)}</DetailTextArr>
                   <DeatilImojiBox>
-                    <Liked spotData={spotData} />
-
+                    {/* <Liked spotData={spotData} /> */}
+                    <RestaurantLiked spotData={spotData} />
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
