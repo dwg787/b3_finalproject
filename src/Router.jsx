@@ -21,6 +21,7 @@ import {
 } from './pages';
 
 import Footer from './components/Footer/Footer';
+import SlotMachine from './components/Slot/SlotMechine';
 
 const Router = () => {
   return (
@@ -42,6 +43,7 @@ const Router = () => {
           <Route path="/purchase" element={<PurchasePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/slot" element={<SlotMachine />} />
         </Routes>
         <Footer />
       </BrowserRouter>
