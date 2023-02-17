@@ -11,6 +11,7 @@ import Loader from '../Loader/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState, useRef } from 'react';
+import StayDetail from '../StayDetail';
 
 const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -97,13 +98,13 @@ const StaySelectionResult = () => {
             <ResultWrapper>
               {data.pages[stayCurPage - 1]?.items.item.map((e) => {
                 return (
-                  <SpotDetail
+                  <StayDetail
                     key={e.contentid}
                     id={e.contentid}
                     img={e.firstimage || noimg}
                   >
                     {e.title}
-                  </SpotDetail>
+                  </StayDetail>
                 );
               })}
             </ResultWrapper>

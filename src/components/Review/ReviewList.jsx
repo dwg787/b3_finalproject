@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 import styled from 'styled-components';
 import { getDate } from '../../common/utils';
+import useNotification from '../../hooks/useNotification';
 
 export default function ReviewList({ review, i, reviews, key }) {
   const [newReview, setNewReview] = useState('');
@@ -20,6 +21,8 @@ export default function ReviewList({ review, i, reviews, key }) {
   const [editValue, setEditValue] = useState(reviews.review);
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
+  const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
+  const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   //삭제
   const handleDelete = async (id, i) => {
@@ -57,6 +60,8 @@ export default function ReviewList({ review, i, reviews, key }) {
       {loginUser?.uid === review?.uid ? (
         <button
           onClick={() => {
+            setAlarmMsg('리뷰 삭제완료!'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+            addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
             handleDelete(review.id, i);
           }}
         >

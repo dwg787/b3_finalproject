@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import Google from '../assets/google.png';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../apis/firebase';
+import useNotification from '../hooks/useNotification';
 
 const LoginPage = ({ showModal, setShowModal }) => {
   const navigate = useNavigate();
@@ -21,6 +22,9 @@ const LoginPage = ({ showModal, setShowModal }) => {
   const [idValid, setIdValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [pwErrMsg, setPwErrMsg] = useState('');
+
+  const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
+  const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   const goSignUp = () => {
     navigate('/signup');
@@ -125,7 +129,15 @@ const LoginPage = ({ showModal, setShowModal }) => {
           />
         </InputWrap>
         <LoginBtn>로그인</LoginBtn>
-        <GoSignUp onClick={goSignUp}>아직 계정을 만들지 않았나요?</GoSignUp>
+        <GoSignUp
+          onClick={() => {
+            setAlarmMsg('로그인 성공!.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+            addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
+            goSignUp();
+          }}
+        >
+          아직 계정을 만들지 않았나요?
+        </GoSignUp>
       </form>
 
       <TextDiv>다른 로그인 방식</TextDiv>

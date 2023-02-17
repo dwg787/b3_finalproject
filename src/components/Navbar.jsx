@@ -9,6 +9,7 @@ import QueryString from 'qs';
 import mainlogo from '../assets/mainlogo.png';
 import SearchIcon from '../assets/search.png';
 import Ximg from '../assets/ximg.png';
+import useNotification from '../hooks/useNotification';
 
 const Navbar = () => {
   const location = useLocation();
@@ -32,6 +33,9 @@ const Navbar = () => {
   // console.log(KAKAO_CODE);
 
   //   getuser 실행
+
+  const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
+  const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   const REST_API_KEY_KAKAO = '06264d97cddc6d0d5ef77a0f28d69af9';
   const REDIRECT_URI_KAKAO = 'http://localhost:3000/';
@@ -200,7 +204,15 @@ const Navbar = () => {
               <NavTextDiv onClick={() => navigate('/my')}>
                 마이페이지
               </NavTextDiv>
-              <LoginButton onClick={LogOutHandler}>Logout</LoginButton>
+              <LoginButton
+                onClick={() => {
+                  setAlarmMsg('로그아웃 되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+                  addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
+                  LogOutHandler();
+                }}
+              >
+                Logout
+              </LoginButton>
             </LoginBox>
           ) : (
             <LoginBox>
