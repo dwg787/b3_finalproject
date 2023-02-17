@@ -102,7 +102,7 @@ const StayDetailPage = () => {
     };
     getFirestoreRecCnt();
   }, [stayDetailData]);
-  // console.log("숙박 상세정보", stayDetailData);
+  console.log('숙박 상세정보', stayDetailData);
   return (
     <DetailWrap>
       <Container>
