@@ -177,8 +177,7 @@ export const fetchStayAdditionalInfo1 = async ({
   const res = await axios.get(
     `http://apis.data.go.kr/B551011/KorService/detailIntro?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
   );
-  console.log('숙박 상세 소개정보', res.data.response.body.items.item);
-  return res.data.response.body.items.item;
+  return res.data.response.body.items.item[0];
 };
 
 //숙박 룸 관련 정보
@@ -190,6 +189,5 @@ export const fetchStayAdditionalInfo2 = async ({
   const res = await axios.get(
     `http://apis.data.go.kr/B551011/KorService/detailInfo?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
   );
-  console.log('숙박 룸 정보', res.data.response.body.items.item);
   return res.data.response.body.items.item;
 };
