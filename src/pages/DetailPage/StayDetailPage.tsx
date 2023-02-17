@@ -7,14 +7,14 @@ import {
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
-import Liked from '../../components/Liked/Liked';
 import KakaoMap from '../../components/Map/KakaoMap';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
 import { FetchedStayDataType } from '../../apis/publicAPI';
 import { db } from '../../apis/firebase';
-import Cart from '../../components/Cart';
-import StayLiked from '../../components/Liked/StayLiked';
-
+import DetailScroll from '../../components/Scroll/DetailScroll';
+import Communication from '../../components/Review/Communication';
+import Notification from '../../components/Notification/Notification';
+import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import noimg from '../../assets/noimg.avif';
 
 import {
@@ -38,10 +38,6 @@ import {
   TabHr,
   RecommendSide,
 } from './styles';
-import DetailScroll from '../../components/Scroll/DetailScroll';
-// import MapImoji from '../../components/Map/MapImoji';
-import Communication from '../../components/Review/Communication';
-import Notification from '../../components/Notification/Notification';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -50,12 +46,14 @@ const StayDetailPage = () => {
     () => fetchStayDetailInfo({ param }),
   );
 
-  // const {
-  //   data: stayAdditionalData1,
-  //   isLoading: isLoadingAdditional1,
-  // } = useQuery(['stay_additional1', param], () =>
-  //   fetchStayAdditionalInfo1({ param }),
-  // );
+  const {
+    data: stayAdditionalData1,
+    isLoading: isLoadingAdditional1,
+  } = useQuery(['stay_additional1', param], () =>
+    fetchStayAdditionalInfo1({ param }),
+  );
+
+  console.log('숙박 상세 소개', stayAdditionalData1);
 
   // const {
   //   data: stayAdditionalData2,
@@ -126,7 +124,7 @@ const StayDetailPage = () => {
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    <StayLiked stayDetailData={stayDetailData} />
+                    <RestaurantLiked stayDetailData={stayDetailData} />
 
                     {/* <Link to={`/${param.id}/map`}>
                       <MapImoji />
