@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import SpotDetail from '../SpotDetail';
+import RestaurantDetail from '../StayDetail';
 import { FetchedStayDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
-import { fetchSpotData } from '../../apis/publicAPI';
+import { fetchRestaurantData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
@@ -11,63 +11,41 @@ import { useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 
-const SpotSelectionResult = () => {
+const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
-  const [spotCurPage, setSpotCurPage] = useState(1);
+  const [restCurPage, setRestCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
   //   const lastNum = useRef(5);
 
   //페이지네이션
-  if (spotCurPage % 5 === 1) {
-    firstNum.current = 5 * Math.floor(spotCurPage / 5) + 1;
-    // lastNum.current = 5 * Math.floor(spotCurPage / 5) + 5;
+  if (restCurPage % 5 === 1) {
+    firstNum.current = 5 * Math.floor(restCurPage / 5) + 1;
   }
-  if (spotCurPage < firstNum.current) {
-    firstNum.current = 5 * (Math.floor(spotCurPage / 5) - 1) + 1;
-    // lastNum.current = 5 * (Math.floor(spotCurPage / 5) - 1) + 5;
+  if (restCurPage < firstNum.current) {
+    firstNum.current = 5 * (Math.floor(restCurPage / 5) - 1) + 1;
   }
 
-  console.log('spotCurPage', spotCurPage);
-  //   console.log('firstNum', firstNum);
-  //   console.log('lastNum', lastNum);
+  console.log('restCurPage', restCurPage);
 
   const { data, isLoading, isPreviousData } = useQuery(
-    ['spot_data', region, spotCurPage],
-    () => fetchSpotData({ region, spotCurPage }),
+    ['rest_data', region, restCurPage],
+    () => fetchRestaurantData({ region, restCurPage }),
     {
       staleTime: 1000 * 60 * 60,
       keepPreviousData: true,
     },
   );
 
-  // console.log('총 페이지 수', Math.ceil(data?.totalCount / data?.numOfRows));
   //   console.log('선택한 페이지에 대한 데이터?', data);
 
   const handleFetchNextPage = () => {
-    setSpotCurPage(spotCurPage + 1);
-    // if (data) {
-    //   if (spotCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
-    //     fetchSpotNextPage();
-    //   }
-    // }
+    setRestCurPage(restCurPage + 1);
   };
-
-  // const handleFetchRandomPage = () => {
-  //   refetch({ refetchPage: (page, index) => page === spotCurPage });
-  // };
-
-  //   useEffect(() => {
-  //     if (data) {
-  //       if (maxPageNo.current < data.pages.length) {
-  //         maxPageNo.current = data.pages.length;
-  //       }
-  //     }
-  //   }, [spotCurPage]);
 
   useEffect(() => {
     maxPageNo.current = 1;
-    setSpotCurPage(1);
+    setRestCurPage(1);
   }, [region]);
 
   return (
@@ -87,26 +65,26 @@ const SpotSelectionResult = () => {
                 <MoveBtnStyle
                   src={leftArrow}
                   alt="이전버튼"
-                  onClick={() => setSpotCurPage(spotCurPage - 1)}
+                  onClick={() => setRestCurPage(restCurPage - 1)}
                 />
               )}
             </BtnWrapper>
             <ResultWrapper>
               {data?.items.item.map((e: FetchedStayDataType) => {
                 return (
-                  <SpotDetail
+                  <RestaurantDetail
                     key={e.contentid}
                     id={e.contentid}
                     img={e.firstimage || noimg}
-                    address={e.addr1}
+                    // address={e.addr1}
                   >
                     {e.title}
-                  </SpotDetail>
+                  </RestaurantDetail>
                 );
               })}
             </ResultWrapper>
             <BtnWrapper>
-              {Math.ceil(data.totalCount / 8) <= spotCurPage ? (
+              {Math.ceil(data.totalCount / 8) <= restCurPage ? (
                 <></>
               ) : (
                 <MoveBtnStyle
@@ -123,7 +101,7 @@ const SpotSelectionResult = () => {
               .slice(firstNum.current, firstNum.current + 5)
               .map((_, i) => {
                 const isSelectedPage =
-                  firstNum.current + i === spotCurPage ? true : false;
+                  firstNum.current + i === restCurPage ? true : false;
 
                 console.log('토탈카운', data.totalCount);
 
@@ -133,7 +111,7 @@ const SpotSelectionResult = () => {
                       key={firstNum.current + i}
                       isSelectedPage={isSelectedPage}
                       onClick={() => {
-                        setSpotCurPage(firstNum.current + i);
+                        setRestCurPage(firstNum.current + i);
                       }}
                     >
                       {firstNum.current + i}
@@ -148,7 +126,7 @@ const SpotSelectionResult = () => {
   );
 };
 
-export default SpotSelectionResult;
+export default RestaurantSelectionResult;
 
 const SearchOverallResultContainer = styled.div`
   width: 100%;

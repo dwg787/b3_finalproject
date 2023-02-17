@@ -2,6 +2,7 @@ import { FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
+import TapHeart from '../assets/TapHeart.png';
 
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
@@ -23,7 +24,14 @@ const SpotDetail = (props: FetchedStayDataType) => {
           />
         </picture>
       </SpotImgWrapper>
-      <SpotTitle>{props.children}</SpotTitle>
+      <MyCildTextBox>
+        <MyChildTexth3>{props.children}</MyChildTexth3>
+        <MyChildTextp>{props.address}</MyChildTextp>
+        <LikeBox>
+          <LikeImg src={TapHeart} alt="" />
+          <p>2348</p>
+        </LikeBox>
+      </MyCildTextBox>
     </SpotEachItemWrapper>
   );
 };
@@ -31,23 +39,33 @@ const SpotDetail = (props: FetchedStayDataType) => {
 export default SpotDetail;
 
 const SpotEachItemWrapper = styled.div`
-  width: 100%;
-  height: 400px;
-  margin: 40px 20px 10px 20px;
+  width: 20%;
+  height: 320px;
+  margin: 20px 20px 20px 20px;
+  border-radius: 10px;
+  box-shadow: 3px 3px #d1d1d1;
+  overflow: hidden;
 `;
 
 const SpotImgWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  border-radius: 5px;
   overflow: hidden;
 `;
 
 const SpotEachItemImg = styled.img`
   width: 300px;
-  height: 400px;
-  aspect-ratio: 1;
+  aspect-ratio: 1.2;
+  background-color: white;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+  overflow: hidden;
+  position: relative;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);
@@ -56,3 +74,42 @@ const SpotEachItemImg = styled.img`
 `;
 
 const SpotTitle = styled.div``;
+
+const MyChildImg = styled.img`
+  width: 280px;
+  height: 250px;
+`;
+
+const MyCildTextBox = styled.div`
+  background-color: #fff;
+  height: 100px;
+  /* display: flex; */
+  /* align-items: center; */
+  /* margin-left: 20px;
+  margin-top: 20px; */
+`;
+
+const MyChildTexth3 = styled.h3`
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #333333;
+`;
+
+const MyChildTextp = styled.p`
+  color: #7f7f7f;
+  margin-top: 5px;
+`;
+
+const LikeBox = styled.div`
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+  margin-right: 10px;
+  align-items: center;
+`;
+
+const LikeImg = styled.img`
+  width: 20px;
+  height: 20px;
+`;
