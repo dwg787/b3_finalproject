@@ -198,14 +198,16 @@ const CommunicationWrap = styled.div`
 `;
 
 const SideInfoWrapper = styled.div`
-  margin-top: 50px;
+  margin-top: 37px;
   display: flex;
   flex-direction: column;
-  width: 1836px;
-  /* width: 70%; */
-  height: 1271px;
-  background-color: #ffffff;
+  /* width: 1836px; */
+`;
+
+const RecommendSide = styled(SideInfoWrapper)`
+  background-color: #f4f1f6;
   border-radius: 20px;
+  height: 1271px;
 `;
 
 export {
@@ -227,4 +229,5 @@ export {
   DeatilTextBox,
   DetailInformationMap,
   TabHr,
+  RecommendSide,
 };

@@ -36,6 +36,7 @@ import {
   DetailInformationMap,
   DetailInfoAdd,
   TabHr,
+  RecommendSide,
 } from './styles';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 // import MapImoji from '../../components/Map/MapImoji';
@@ -177,10 +178,10 @@ const StayDetailPage = () => {
           </>
         )}
 
-        <SideInfoWrapper id="5">
+        <RecommendSide id="5">
           {/* <StayInfo spotData={spotData} />
         <RestaurantInfo spotData={spotData} /> */}
-        </SideInfoWrapper>
+        </RecommendSide>
       </Container>
     </DetailWrap>
   );

@@ -33,6 +33,7 @@ import {
   DetailInfoAdd,
   DetailInformationMap,
   TabHr,
+  RecommendSide,
 } from './styles';
 
 const RestaurantDetailPage = () => {
@@ -162,10 +163,10 @@ const RestaurantDetailPage = () => {
           </>
         )}
 
-        <SideInfoWrapper id="5">
+        <RecommendSide id="5">
           {/* <StayInfo spotData={spotData} />
         <RestaurantInfo spotData={spotData} /> */}
-        </SideInfoWrapper>
+        </RecommendSide>
       </Container>
     </DetailWrap>
   );
