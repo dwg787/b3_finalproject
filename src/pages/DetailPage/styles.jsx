@@ -16,7 +16,7 @@ const DetailWrap = styled.div`
 const Container = styled.div`
   width: 1920px;
   /* width: 80%; */
-  height: 4307px;
+  height: 4486px;
   display: flex;
   flex-direction: column;
   /* gap: 0.3rem; */
@@ -198,7 +198,6 @@ const CommunicationWrap = styled.div`
 `;
 
 const SideInfoWrapper = styled.div`
-  margin-top: 37px;
   display: flex;
   flex-direction: column;
   /* width: 1836px; */

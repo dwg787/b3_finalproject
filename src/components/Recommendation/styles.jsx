@@ -5,7 +5,7 @@ const Container = styled.div`
   height: 617px;
   display: flex;
   flex-direction: column;
-  margin-top: 65px;
+  margin-top: 37px;
   border: 1.5px solid white;
   border-radius: 50px;
   box-shadow: 5px 5px #c8c8c8;

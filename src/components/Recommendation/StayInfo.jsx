@@ -1,10 +1,8 @@
 import { useQuery } from 'react-query';
-import styled from 'styled-components';
 import { fetchNearStayData } from '../../apis/publicAPI';
 import Loader from '../Loader/Loader';
 
 import noimg from '../../assets/noimg.avif';
-import { useNavigate } from 'react-router-dom';
 import StayLiked from '../Liked/StayLiked';
 import {
   Container,
@@ -21,8 +19,6 @@ import {
 import { Link } from 'react-router-dom';
 
 const StayInfo = ({ spotData }) => {
-  const navigate = useNavigate();
-
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
     ['stay_list', spotData],
     () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
@@ -43,8 +39,8 @@ const StayInfo = ({ spotData }) => {
               <>
                 {stayData.slice(0, 4).map((item, i) => {
                   return (
-                    <Link to={`/stay/${item.contentid}`}>
-                      <MyChildList key={i}>
+                    <MyChildList key={i}>
+                      <Link to={`/stay/${item.contentid}`}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
@@ -65,16 +61,16 @@ const StayInfo = ({ spotData }) => {
                             loading="lazy"
                           />
                         </picture>
-                        <MyCildTextBox>
-                          <MyChildTexth3>{item.title}</MyChildTexth3>
-                          <MyChildTextp> {item.addr1}</MyChildTextp>
-                          <LikeBox>
-                            <StayLiked />
-                            <p>00</p>
-                          </LikeBox>
-                        </MyCildTextBox>
-                      </MyChildList>
-                    </Link>
+                      </Link>
+                      <MyCildTextBox>
+                        <MyChildTexth3>{item.title}</MyChildTexth3>
+                        <MyChildTextp> {item.addr1}</MyChildTextp>
+                        <LikeBox>
+                          <StayLiked />
+                          <p>00</p>
+                        </LikeBox>
+                      </MyCildTextBox>
+                    </MyChildList>
                   );
                 })}
               </>

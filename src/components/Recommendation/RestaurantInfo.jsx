@@ -1,9 +1,24 @@
 import { useQuery } from 'react-query';
-import styled from 'styled-components';
+
 import { fetchNearRestaurantData } from '../../apis/publicAPI';
 import Loader from '../Loader/Loader';
 import RestaurantDetail from '../RestaurantDetail';
 import noimg from '../../assets/noimg.avif';
+
+import {
+  Container,
+  MyChildTopText,
+  MyChildListBox,
+  MyChildList,
+  MyChildImg,
+  MyCildTextBox,
+  MyChildTexth3,
+  MyChildTextp,
+  LikeBox,
+  GoButton,
+} from './styles';
+import { Link } from 'react-router-dom';
+import RestaurantLiked from '../Liked/RestaurantLiked';
 
 const RestaurantInfo = ({ spotData }) => {
   const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
@@ -19,79 +34,62 @@ const RestaurantInfo = ({ spotData }) => {
   );
 
   return (
-    <RestaurantInfoWrapper>
-      <div>주변 맛집정보</div>
-      <Stres>
+    <Container>
+      <MyChildTopText>주변 맛집 정보</MyChildTopText>
+      <MyChildListBox>
         {isLoadingRestaurant ? (
           <Loader />
         ) : (
           <>
             {restaurantData ? (
               <>
-                {restaurantData.slice(0, 4).map((item) => {
+                {restaurantData.slice(0, 4).map((item, i) => {
                   return (
-                    <RestaurantDetail
-                      key={item.contentid}
-                      id={item.contentid}
-                      img={item.firstimage || noimg}
-                    >
-                      {item.title}
-                    </RestaurantDetail>
+                    <MyChildList key={i}>
+                      <Link to={`/restaurant/${item.contentid}`}>
+                        <picture>
+                          <source
+                            srcSet={item.firstimage || noimg}
+                            type="image/avif"
+                          ></source>
+                          <source
+                            srcSet={item.firstimage || noimg}
+                            type="image/webp"
+                          ></source>
+                          <source
+                            srcSet={item.firstimage || noimg}
+                            type="image/jpg"
+                          ></source>
+                          <MyChildImg
+                            src={item.firstimage || noimg}
+                            alt="사진"
+                            decoding="async"
+                            loading="lazy"
+                          />
+                        </picture>
+                      </Link>
+                      <MyCildTextBox>
+                        <MyChildTexth3>{item.title}</MyChildTexth3>
+                        <MyChildTextp> {item.addr1}</MyChildTextp>
+                        <LikeBox>
+                          <RestaurantLiked />
+                          <p>00</p>
+                        </LikeBox>
+                      </MyCildTextBox>
+                    </MyChildList>
                   );
                 })}
               </>
             ) : (
               <>
-                <div>주변 맛집정보가 없습니다.</div>
+                <div>주변 숙박정보가 없습니다.</div>
               </>
             )}
           </>
         )}
-      </Stres>
-    </RestaurantInfoWrapper>
+      </MyChildListBox>
+    </Container>
   );
 };
 
 export default RestaurantInfo;
-
-const RestaurantInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 50px;
-`;
-
-const StayImage = styled.img`
-  width: 300px;
-  height: 200px;
-`;
-const Stres = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  margin: 10px;
-  width: 90%;
-`;
-
-const Stdata = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: 10px;
-`;
-
-const SpotEachItemWrapper = styled.div`
-  width: 18%;
-  height: 200px;
-  margin: 10px 10px 10px 10px;
-  /* overflow: hidden;
-  border-radius: 10px; */
-`;
-
-const SpotEachItemImg = styled.img`
-  width: 200px;
-  aspect-ratio: 1;
-  border-radius: 10px;
-  /* &:hover {
-    transform: scale(1.4);
-  } */
-`;
