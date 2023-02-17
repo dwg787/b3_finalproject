@@ -31,7 +31,6 @@ const alarmFadeOut = keyframes`
 const NotificationCard = styled.div`
   width: 300px;
   height: 50px;
-  z-index: 10;
   background-color: rgba(6, 6, 6, 0.5);
   border-radius: 5px;
   margin-top: 30px;
@@ -44,8 +43,11 @@ const NotificationCard = styled.div`
 `;
 
 const NotiContainer = styled.div`
-  position: absolute;
-  right: 500px;
+  /* position: absolute; */
+  position: fixed;
+  right: 830px;
   top: 50px;
+  z-index: 1000;
+
   /* opacity: 0.3; */
 `;

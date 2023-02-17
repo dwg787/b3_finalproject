@@ -6,6 +6,7 @@ import { auth } from '../apis/firebase';
 import { fetchStayDetailInfo } from '../apis/publicAPI';
 import Ticketing from '../components/Reservation/Ticketing';
 import noimg from '../assets/noimg.avif';
+import { useNavigate } from 'react-router-dom';
 
 // 예약페이지 만들기
 // 1. 예약페이지에 클릭한 해당 숙박의 상세내용과 티켓팅 컴퍼넌트를 같이 넣어 띄워주기 =>완료
@@ -22,27 +23,134 @@ const ReservationPage = () => {
   );
 
   return (
-    <StTicketMainWrap>
-      <StTicketMain>
-        <StTicketInfo>
-          <div>
-            <h2>{stayDetailData.title}</h2>
-          </div>
-          <StTicketInfoImage
+    <MainWrap>
+      <Reservation>예약하기</Reservation>
+      <ReservationBottom />
+      <ReservationWrap>
+        <ReservationImgWrap>
+          <ReservationImg src={stayDetailData.firstimage || noimg} />
+        </ReservationImgWrap>
+        <ReservationTitle>{stayDetailData.title}</ReservationTitle>
+        <ReservationAdd>{stayDetailData.addr1}</ReservationAdd>
+        <ReservationWrapBottom />
+
+        <ReservationInfo>
+          <ReservationInfoImg
             src={stayDetailData.firstimage || noimg}
-            alt="숙박 사진"
-          />
-          <div>주소 : {stayDetailData.addr1}</div>
-        </StTicketInfo>
-        <StTicketing>
-          <Ticketing stayDetailData={stayDetailData} />
-        </StTicketing>
-      </StTicketMain>
-    </StTicketMainWrap>
+          ></ReservationInfoImg>
+          <div>
+            <div>객실타입 슈페리어 더블(노오션뷰 / ROOM ONLY)</div>
+            <div>예약자 이름 심대호</div>
+            <div>예약자 이메일 BigHo1@naver.com</div>
+            <div>예약자 휴대폰 번호 010-xxxx-xxxx</div>
+          </div>
+        </ReservationInfo>
+      </ReservationWrap>
+    </MainWrap>
+    // <StTicketMainWrap>
+    //   <StTicketMain>
+    //     <StTicketInfo>
+    //       <div>예약하기</div>
+    //       <div>
+    //         <h2>{stayDetailData.title}</h2>
+    //       </div>
+    //       <StTicketInfoImage
+    //         src={stayDetailData.firstimage || noimg}
+    //         alt="숙박 사진"
+    //       />
+    //       <div>주소 : {stayDetailData.addr1}</div>
+    //     </StTicketInfo>
+    //     <StTicketing>
+    //       <Ticketing stayDetailData={stayDetailData} />
+    //     </StTicketing>
+    //   </StTicketMain>
+    // </StTicketMainWrap>
   );
 };
 
 export default ReservationPage;
+
+const MainWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+`;
+
+const Reservation = styled.div`
+  font-size: 33.39px;
+  font-weight: bold;
+  color: #6478ff;
+  margin: 20px 0 20px 0;
+`;
+
+const ReservationBottom = styled.div`
+  border-bottom: #6478ff 3px solid;
+  width: 98%;
+`;
+
+const ReservationWrap = styled.div`
+  border: 1.5px solid #9eabff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0 0 0;
+  border-radius: 20px;
+`;
+
+const ReservationImgWrap = styled.div`
+  margin-top: 40px;
+`;
+
+const ReservationImg = styled.img`
+  border-radius: 20px;
+  border: 1.5px solid #9eabff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+`;
+
+const ReservationTitle = styled.div`
+  font-size: 59.77px;
+  font-weight: bold;
+  color: #6478ff;
+  margin-top: 60px;
+`;
+
+const ReservationAdd = styled.div`
+  font-size: 27.75px;
+  font-weight: medium;
+  color: #656565;
+  margin-top: 50px;
+`;
+
+const ReservationWrapBottom = styled.div`
+  border-bottom: #6478ff 1px solid;
+  width: 90%;
+  margin: 40px 0 40px 0;
+`;
+
+const ReservationInfo = styled.div`
+  width: 1536px;
+  height: 660px;
+  border: 1.5px solid #9eabff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 20px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ReservationInfoImg = styled.img`
+  width: 1455px;
+  height: 329px;
+  border-radius: 20px;
+  border: 1.5px solid #9eabff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+`;
+
+// ========================================================================================================
 
 const StTicketMainWrap = styled.div`
   display: flex;
@@ -54,14 +162,14 @@ const StTicketMain = styled.div`
   display: flex;
   justify-content: center;
   /* align-items: center; */
-  flex-direction: row;
+  flex-direction: column;
   width: 70%;
   margin: 20px;
 `;
 
 const StTicketInfo = styled.div`
   width: 75%;
-  float: left;
+  /* float: left; */
   background-color: #6b9cc7;
   box-sizing: border-box;
 `;
