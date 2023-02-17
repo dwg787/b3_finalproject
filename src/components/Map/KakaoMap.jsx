@@ -48,4 +48,6 @@ export default KakaoMap;
 const StMap = styled.div`
   width: 100%;
   height: 400px;
+  border-radius: 20px;
+  border: 1px solid rgb(158, 171, 255, 0.61);
 `;
