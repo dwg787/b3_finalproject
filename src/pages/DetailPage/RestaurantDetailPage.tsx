@@ -30,6 +30,9 @@ import {
   DetailText,
   DetailTextArr,
   DeatilTextBox,
+  DetailInfoAdd,
+  DetailInformationMap,
+  TabHr,
 } from './styles';
 
 const RestaurantDetailPage = () => {
@@ -92,6 +95,8 @@ const RestaurantDetailPage = () => {
             {restaurantDetailData ? (
               <DeatilBox key={param.id}>
                 {/* <Link to={'/'}>메인으로</Link> */}
+                <DetailScroll />
+                <TabHr />
                 <DeatilTextBox>
                   <DetailText>{restaurantDetailData.title}</DetailText>
                   <DetailTextArr>
@@ -102,12 +107,11 @@ const RestaurantDetailPage = () => {
                       restaurantDetailData={restaurantDetailData}
                     />
 
-                    <Link to={`/${param.id}/map`}>
+                    {/* <Link to={`/${param.id}/map`}>
                       <MapImoji />
-                    </Link>
+                    </Link> */}
                   </DeatilImojiBox>
                 </DeatilTextBox>
-                <DetailScroll />
 
                 <DetailImgBox id="1">
                   <DetailImg
@@ -124,16 +128,23 @@ const RestaurantDetailPage = () => {
                   <DetailInfo>
                     {restaurantDetailData.overview.split('.', 4)}
                   </DetailInfo>
-                  <DetailInfo>
-                    <KakaoMap
-                      mapx={restaurantDetailData.mapx}
-                      mapy={restaurantDetailData.mapy}
-                    />
-                  </DetailInfo>
-                  <DetailInfo>주소 : {restaurantDetailData.addr1}</DetailInfo>
+
+                  <DetailInfoAdd>
+                    <span style={{ fontWeight: '700', marginRight: '27px' }}>
+                      주소
+                    </span>
+                    {restaurantDetailData.addr1}
+                  </DetailInfoAdd>
                 </DetailInformation>
 
-                <CommunicationWrap id="3">
+                <DetailInformationMap id="3">
+                  <KakaoMap
+                    mapx={restaurantDetailData.mapx}
+                    mapy={restaurantDetailData.mapy}
+                  />
+                </DetailInformationMap>
+
+                <CommunicationWrap id="4">
                   <DetailInfoTextBox>
                     <DetailInfoText>여행톡</DetailInfoText>
                   </DetailInfoTextBox>
@@ -151,10 +162,10 @@ const RestaurantDetailPage = () => {
           </>
         )}
 
-        {/* <SideInfoWrapper id="4">
-        <StayInfo spotData={spotData} />
-        <RestaurantInfo spotData={spotData} />
-      </SideInfoWrapper> */}
+        <SideInfoWrapper id="5">
+          {/* <StayInfo spotData={spotData} />
+        <RestaurantInfo spotData={spotData} /> */}
+        </SideInfoWrapper>
       </Container>
     </DetailWrap>
   );

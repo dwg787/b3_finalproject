@@ -34,6 +34,8 @@ import {
   DetailTextArr,
   DeatilTextBox,
   DetailInformationMap,
+  DetailInfoAdd,
+  TabHr,
 } from './styles';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 // import MapImoji from '../../components/Map/MapImoji';
@@ -115,6 +117,7 @@ const StayDetailPage = () => {
               <DeatilBox key={param.id}>
                 {/* <Link to={'/'}>메인으로</Link> */}
                 <DetailScroll />
+                <TabHr />
                 <DeatilTextBox>
                   {/* <DetailScroll /> */}
                   <DetailText>{stayDetailData.title}</DetailText>
@@ -146,7 +149,7 @@ const StayDetailPage = () => {
                     {stayDetailData.overview.split('.', 4)}
                   </DetailInfo>
 
-                  <DetailInfo>주소 : {stayDetailData.addr1}</DetailInfo>
+                  <DetailInfoAdd>주소 : {stayDetailData.addr1}</DetailInfoAdd>
                 </DetailInformation>
 
                 <DetailInformationMap id="3">
@@ -157,9 +160,9 @@ const StayDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  <DetailInfoTextBox>
+                  {/* <DetailInfoTextBox>
                     <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox>
+                  </DetailInfoTextBox> */}
 
                   <Communication />
                 </CommunicationWrap>
@@ -174,10 +177,10 @@ const StayDetailPage = () => {
           </>
         )}
 
-        {/* <SideInfoWrapper id="4">
-        <StayInfo spotData={spotData} />
-        <RestaurantInfo spotData={spotData} />
-      </SideInfoWrapper> */}
+        <SideInfoWrapper id="5">
+          {/* <StayInfo spotData={spotData} />
+        <RestaurantInfo spotData={spotData} /> */}
+        </SideInfoWrapper>
       </Container>
     </DetailWrap>
   );
