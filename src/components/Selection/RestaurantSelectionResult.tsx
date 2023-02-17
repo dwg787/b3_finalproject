@@ -26,7 +26,7 @@ const RestaurantSelectionResult = () => {
     firstNum.current = 5 * (Math.floor(restCurPage / 5) - 1) + 1;
   }
 
-  console.log('restCurPage', restCurPage);
+  // console.log('restCurPage', restCurPage);
 
   const { data, isLoading, isPreviousData } = useQuery(
     ['rest_data', region, restCurPage],
@@ -103,7 +103,7 @@ const RestaurantSelectionResult = () => {
                 const isSelectedPage =
                   firstNum.current + i === restCurPage ? true : false;
 
-                console.log('토탈카운', data.totalCount);
+                // console.log('토탈카운', data.totalCount);
 
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (

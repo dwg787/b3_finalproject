@@ -125,7 +125,7 @@ const SpotSelectionResult = () => {
                 const isSelectedPage =
                   firstNum.current + i === spotCurPage ? true : false;
 
-                console.log('토탈카운', data.totalCount);
+                // console.log('토탈카운', data.totalCount);
 
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (

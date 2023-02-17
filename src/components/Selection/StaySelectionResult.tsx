@@ -26,7 +26,7 @@ const StaySelectionResult = () => {
     firstNum.current = 5 * (Math.floor(stayCurPage / 5) - 1) + 1;
   }
 
-  console.log('stayCurPage', stayCurPage);
+  // console.log('stayCurPage', stayCurPage);
 
   const { data, isLoading, isPreviousData } = useQuery(
     ['stay_data', region, stayCurPage],
@@ -103,7 +103,7 @@ const StaySelectionResult = () => {
                 const isSelectedPage =
                   firstNum.current + i === stayCurPage ? true : false;
 
-                console.log('토탈카운', data.totalCount);
+                // console.log('토탈카운', data.totalCount);
 
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (
