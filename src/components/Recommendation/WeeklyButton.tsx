@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { WEEKLY_TYPE } from '../../apis/apiCodes';
+import { weeklyTypeState } from '../../recoil/apiDataAtoms';
 
-export default function WeeklyTop10Btn({ children }: { children: string }) {
-  const [weeklyCodeTab, setWeeklyCodeTab] = useState('');
-  const weeklyCode = WEEKLY_TYPE.find((e) => e.type === children)?.id;
-  const weeklyRegion = weeklyCode === weeklyCodeTab ? true : false;
+const WeeklyTop10Btn = ({ children }: { children: string }) => {
+  const [weeklyCodeTab, setWeeklyCodeTab] = useRecoilState(weeklyTypeState);
+  const weeklyCode = WEEKLY_TYPE.find((e) => e.type === children)?.type;
+  const isTypeSelected = weeklyCode === weeklyCodeTab ? true : false;
 
   const handleWeeklySelection = () => {
     if (weeklyCode) setWeeklyCodeTab(weeklyCode);
@@ -16,20 +18,25 @@ export default function WeeklyTop10Btn({ children }: { children: string }) {
       onClick={() => {
         handleWeeklySelection();
       }}
-      weeklyRegion={weeklyRegion}
+      isTypeSelected={isTypeSelected}
     >
       {children}
     </WeeklyBtn>
   );
-}
+};
 
-const WeeklyBtn = styled.button<{ weeklyRegion: Boolean }>`
+const WeeklyBtn = styled.div<{ isTypeSelected: Boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 70px;
   height: 35px;
   border: 1px solid #6478ff;
-  background-color: ${(props) => (props.weeklyRegion ? '#6478ff' : '#fffff')};
+  background-color: ${(props) => (props.isTypeSelected ? '#6478ff' : '#fffff')};
   cursor: pointer;
   margin-left: 30px;
-  color: ${(props) => (props.weeklyRegion ? '#6478ff' : '#fffff')};
+  color: ${(props) => (props.isTypeSelected ? '#ffffff' : '#6478ff')};
   border-radius: 20px;
 `;
+
+export default WeeklyTop10Btn;

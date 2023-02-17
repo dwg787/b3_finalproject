@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore';
 import SpotDetail from '../SpotDetail';
 import { recCnts } from '../../apis/publicAPI';
-import { Link } from 'react-router-dom';
+
 const SpotRecommendation = (propsData: any) => {
   const [recommendList, setRecommendList] = useState<recCnts>();
   const spotRecommendationList = async () => {
@@ -105,9 +105,4 @@ const RecommendListTitle = styled.div`
   color: #6478ff;
   font-size: 20px;
   font-weight: bold;
-`;
-const RecommendListLink = styled(Link)`
-  margin-right: 10px;
-  margin-top: 10px;
-  text-decoration: none;
 `;

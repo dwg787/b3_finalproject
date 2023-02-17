@@ -40,3 +40,8 @@ export const curPageState = atom({
     resCurPage: 1,
   },
 });
+
+export const weeklyTypeState = atom({
+  key: 'weeklyTypeState',
+  default: '관광지',
+});
