@@ -92,9 +92,7 @@ export default function Spot() {
 
           <InnerText>
             <InnerTextH3>포시즌스 서울</InnerTextH3>
-            <InnerTextp>
-              광화문에 위치한 현대적인 감각의 포시즌스 호텔
-            </InnerTextp>
+            <InnerTextp>광화문에 위치한 현대적인 감각의 호텔</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
               <p>3,903</p>
@@ -106,16 +104,15 @@ export default function Spot() {
     </WarpDiv>
   );
 }
-
 const WarpDiv = styled.div`
-  width: 91%;
+  width: 90%;
   height: 600px;
-  margin-left: 4.5%;
+  margin-left: 5%;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 20px;
+  gap: 100px;
 `;
 
 const InnerNmb = styled.div`
@@ -142,7 +139,7 @@ const InnerBox1 = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InnerBox2 = styled.div`
@@ -153,11 +150,11 @@ const InnerBox2 = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InnerList = styled.div`
-  width: 560px;
+  width: 540px;
   height: 190px;
   display: flex;
   border: 1px solid #6478ff;
@@ -177,17 +174,9 @@ const InnerText = styled.div`
   margin-left: 20px;
 `;
 
-const InnerTex = styled.p`
-  color: #333333;
-  font-weight: bold;
-  margin-left: 120px;
-  font-size: 25px;
-`;
-
 const InnerTextH3 = styled.h3`
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 5px;
 `;
 
 const InnerTextp = styled.p`
@@ -200,7 +189,6 @@ const LikeBox = styled.div`
   gap: 5px;
   align-items: center;
   margin-top: 80px;
-  margin-bottom: 10px;
 `;
 
 const LikeImg = styled.img`
@@ -224,4 +212,11 @@ const InnerButton = styled.button`
     background-color: #6478ff;
     color: white;
   }
+`;
+
+const InnerTex = styled.p`
+  color: #333333;
+  font-weight: bold;
+  margin-left: 100px;
+  font-size: 25px;
 `;

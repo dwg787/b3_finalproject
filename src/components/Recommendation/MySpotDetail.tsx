@@ -36,13 +36,13 @@ export default MySpotDetail;
 const SpotEachItemWrapper = styled.div`
   width: 100%;
   height: 420px;
-  margin: 40px 20px 10px 20px;
+  margin: 20px 20px 10px 20px;
   border-radius: 15px;
 `;
 
 const SpotImgWrapper = styled.div`
-  width: 300px;
-  height: 100%;
+  width: 240px;
+  height: 75%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +55,7 @@ const SpotImgWrapper = styled.div`
 
 const SpotEachItemImg = styled.img`
   width: 300px;
-  height: 420px;
+  height: 350px;
   aspect-ratio: 1;
   cursor: pointer;
   &:hover {
@@ -69,23 +69,23 @@ const SpotEachItemImg = styled.img`
 
 const SpotTitle = styled.div`
   position: absolute;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
   color: white;
-  margin-top: 220px;
+  margin-top: 140px;
 `;
 
 const SpotSubText1 = styled.p`
   color: white;
   position: absolute;
-  margin-top: 300px;
-  font-size: 16px;
+  margin-top: 180px;
+  font-size: 14px;
 `;
 
 const SpotSubText2 = styled.p`
   color: white;
   position: absolute;
-  margin-top: 340px;
+  margin-top: 250px;
   font-weight: bold;
 `;
 
@@ -95,10 +95,12 @@ const SpotTopdiv = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  width: 60px;
-  height: 28px;
+  font-size: 14px;
+  font-weight: bold;
+  width: 50px;
+  height: 24px;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 360px;
-  margin-right: 200px;
+  margin-bottom: 270px;
+  margin-right: 170px;
 `;
