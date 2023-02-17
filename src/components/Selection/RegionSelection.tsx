@@ -16,7 +16,7 @@ const RegionSelection = () => {
 export default RegionSelection;
 
 const SelectRegionBtnWrapper = styled.div`
-  width: 60%;
+  width: 100%;
   height: 100px;
   padding-top: 10px;
   background-size: cover;

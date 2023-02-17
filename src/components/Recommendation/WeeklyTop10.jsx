@@ -17,13 +17,13 @@ export default function WeeklyTop10() {
 
   return (
     <Container>
-      <WeeklyTopText>위클리 인기 TOP10</WeeklyTopText>
+      <WeeklyTopText>위클리 인기 TOP 6</WeeklyTopText>
       <WeeklyButtonBox>
         {WEEKLY_TYPE.map((e) => {
           return <WeeklyTop10Btn key={e.id}>{e.type}</WeeklyTop10Btn>;
         })}
       </WeeklyButtonBox>
-      <div>{tabContArr[selectedWeeklyTypeId - 81]}</div>
+      <>{tabContArr[selectedWeeklyTypeId - 81]}</>
     </Container>
   );
 }

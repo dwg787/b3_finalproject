@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchSpotDetailData, FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
 import Loader from '../components/Loader/Loader';
@@ -11,20 +11,16 @@ import Liked from '../components/Liked/Liked';
 import StayInfo from '../components/Stayinfo';
 import Communication from '../components/Review/Communication';
 import Notification from '../components/Notification/Notification';
-
 import DetailScroll from '../components/Scroll/DetailScroll';
 import MapImoji from '../components/Map/MapImoji';
 import KakaoMap from '../components/Map/KakaoMap';
 
 const DetailPage = () => {
   const param = useParams();
-  const navigate = useNavigate();
   const { data: spotData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
     () => fetchSpotDetailData({ param }),
   );
-
-  console.log(spotData);
 
   const getRecCnt = async () => {
     if (param.id) {

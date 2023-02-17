@@ -37,10 +37,11 @@ const SpotEachItemWrapper = styled.div`
   width: 100%;
   height: 420px;
   margin: 40px 20px 10px 20px;
+  border-radius: 15px;
 `;
 
 const SpotImgWrapper = styled.div`
-  width: 100%;
+  width: 300px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -49,6 +50,7 @@ const SpotImgWrapper = styled.div`
   border-radius: 5px;
   overflow: hidden;
   position: relative;
+  border-radius: 15px;
 `;
 
 const SpotEachItemImg = styled.img`
@@ -59,8 +61,10 @@ const SpotEachItemImg = styled.img`
   &:hover {
     transform: scale(1.2);
     transition: all 0.35s;
+    border-radius: 15px;
   }
   filter: brightness(50%);
+  /* border-radius: 15px; */
 `;
 
 const SpotTitle = styled.div`

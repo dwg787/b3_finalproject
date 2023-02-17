@@ -29,7 +29,7 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
 export default RestaurantDetail;
 
 const RestaurantEachItemWrapper = styled.div`
-  width: 30%;
+  width: 20%;
   height: 200px;
   margin: 10px 10px 10px 10px;
 `;

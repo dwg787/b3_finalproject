@@ -7,6 +7,7 @@ import HeartButton from './Heart';
 
 export default function Liked({ spotData }: UserProps): React.ReactElement {
   const [like, setLike] = useState(false);
+
   // const buttonRef = useRef();
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
