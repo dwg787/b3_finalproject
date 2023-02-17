@@ -6,7 +6,9 @@ import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../../apis/firebase';
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
+
 import StayInfo from '../../components/Recommendation/StayInfo';
+
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';

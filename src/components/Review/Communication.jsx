@@ -52,7 +52,7 @@ const Communication = () => {
         review: newReview,
         uid: loginUser?.uid,
         email: loginUser.email,
-        displayName: sessionStorage.getItem('id', auth.currentUser.displayName),
+        displayName: localStorage.getItem('id', auth.currentUser.displayName),
         //loginUser?.displayName
         paramId: params.id,
         date: Date.now(),
