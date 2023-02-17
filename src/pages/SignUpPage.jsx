@@ -247,7 +247,7 @@ const SignUpPage = () => {
             </LoginBox>
             <LoginBox>
               <LoginInput type="text" />
-              <LoginLabel>주소</LoginLabel>
+              <LoginLabel>전화번호</LoginLabel>
             </LoginBox>
             <LoginLabelBottom></LoginLabelBottom>
             {/* <LoginBox>
@@ -278,7 +278,7 @@ const SignUpPage = () => {
                 ></CheckBoxInput2>
                 <CheckBoxText>
                   본인은 본 서비스 약관에 동의하며 18세 이상임을 확인합니다.
-                  <div>(필수)</div>
+                  <CheckBoxText2>(필수)</CheckBoxText2>
                 </CheckBoxText>
               </CheckBoxWrap>
               <CheckBoxWrap>
@@ -291,7 +291,7 @@ const SignUpPage = () => {
                 ></CheckBoxInput3>
                 <CheckBoxText>
                   본인은 개인정보 처리방침에 따라 본인의 개인 정보를 사용하는
-                  것에 동의합니다. <div>(필수)</div>
+                  것에 동의합니다. <CheckBoxText2>(필수)</CheckBoxText2>
                 </CheckBoxText>
               </CheckBoxWrap>
               <CheckBoxWrap>
@@ -307,7 +307,8 @@ const SignUpPage = () => {
                   3자에 본인의 개인정보
                 </CheckBoxText>
                 <CheckBoxText>
-                  를 제공하는 것에 동의합니다. <div>(필수)</div>
+                  를 제공하는 것에 동의합니다.{' '}
+                  <CheckBoxText2>(필수)</CheckBoxText2>
                 </CheckBoxText>
               </CheckBoxWrap>
             </CheckBoxBolder>
@@ -347,7 +348,7 @@ export default SignUpPage;
 
 const Error = styled.div`
   position: absolute;
-  top: 120px;
+  top: 100px;
   font-size: 12px;
   padding: 5px;
 
@@ -355,14 +356,14 @@ const Error = styled.div`
     &.error {
       color: #f87038;
       font-weight: 500;
-      font-size: 18px;
-      line-height: 15px;
+      font-size: 11.7px;
+      line-height: 9.75px;
     }
   }
 `;
 
 const Reservation = styled.div`
-  font-size: 33.39px;
+  font-size: 21.7px;
   font-weight: bold;
   color: #6478ff;
   margin: 20px 0 20px 0;
@@ -370,13 +371,14 @@ const Reservation = styled.div`
 
 const ReservationBottom = styled.div`
   border-bottom: #6478ff 3px solid;
-  width: 98%;
+  width: 65%;
   margin-top: 20px;
 `;
 
 const TestDiv = styled.div`
-  width: 100%;
-  height: 2000px;
+  width: 65%;
+  height: 1650px;
+  margin-top: 40px;
 `;
 
 const SIgnWrap = styled.div`
@@ -391,7 +393,7 @@ const SignUpContainer = styled.div`
   top: 100%;
   left: 50%; */
   width: 65%;
-  height: 1800px;
+  height: 1500px;
 
   margin: auto;
 
@@ -408,8 +410,8 @@ const Login = styled.div`
   margin: 0 0 30px;
   padding: 0;
   font-weight: 700;
-  font-size: 32.43px;
-  line-height: 30.32px;
+  font-size: 21.07px;
+  line-height: 19.7px;
   color: rgba(77, 77, 77, 1);
   text-align: center;
 `;
@@ -426,8 +428,8 @@ const LoginBox = styled.div`
 `;
 
 const LoginInput = styled.input`
-  width: 592px;
-  height: 64px;
+  width: 384.8px;
+  height: 41.6px;
   padding: 10px 0;
   font-size: 16px;
   color: #000000;
@@ -442,13 +444,13 @@ const LoginInput = styled.input`
 
   :focus ~ label,
   :valid ~ label {
-    top: 10px;
+    top: 20px;
     left: 0;
 
     color: #5a5a5a;
     font-weight: 500;
-    font-size: 21.0432px;
-    line-height: 21px;
+    font-size: 13.678px;
+    line-height: 13.65px;
   }
 `;
 
@@ -467,30 +469,32 @@ const LoginLabel = styled.label`
 
 const LoginLabelBottom = styled.div`
   border-bottom: #6478ff 3px solid;
-  width: 98%;
+  width: 65%;
   margin-top: 80px;
 `;
 
 const SignUpBtn = styled.button`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* margin-right: 30px;
-  margin-top: 40px; */
+  margin-right: -30px;
+
+  margin-top: 120px;
   cursor: pointer;
   transform: translate(-50%, -50%);
-  width: 160px;
-  height: 50px;
+  width: 399.1px;
+  height: 57.85px;
   line-height: 50px;
-  border-radius: 10px;
+  background: #6478ff;
+  border: 1px solid #ffffff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 25px;
   border: none;
-  font-size: 14px;
+  font-weight: 500;
+font-size: 24.31px;
+line-height: 22.75px;
+color: #FFFFFF;;
   text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: #ccc;
-  :before {
+  background: ${(props) => (props.state ? '#6478ff;' : '#C8D1E0')};
+
+  /* :before {
     content: attr(data-text);
     position: absolute;
     top: 0;
@@ -501,6 +505,8 @@ const SignUpBtn = styled.button`
     background: ${(props) => (props.state ? '#f44016' : '#C8D1E0')};
     color: #fff;
     transition: 0.5s;
+    line-height: 50px;
+    border-radius: 25px;
     transform-origin: bottom;
     transform: translatey(-100%) rotatex(90deg);
   }
@@ -515,45 +521,52 @@ const SignUpBtn = styled.button`
     width: 100%;
     height: 100%;
     text-align: center;
-    background: #4bb5cf;
-    color: #fff;
+    line-height: 50px;
+    background: #6478ff;
+    border: 1px solid #ffffff;
+    color: white;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+    border-radius: 25px;
     transition: 0.5s;
     transform-origin: top;
     transform: translatey(0) rotatex(0deg);
   }
   :hover:after {
     transform: translatey(100%) rotatex(90deg);
-  }
+  } */
 `;
 
 const PersonInfo = styled.div`
   font-weight: 700;
-  font-size: 32.4329px;
-  line-height: 30px;
-  margin-top: 80px;
+  font-size: 21.08px;
+  line-height: 19.5px;
+  margin-top: 60px;
 `;
 
 const CheckBoxWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 120px;
 `;
 
 const CheckBoxBolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 40px;
   box-sizing: border-box;
   background: #f9f9fa;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 18px;
   padding: 60px;
-  width: 80%;
+  width: 90%;
 `;
 
 const CheckBoxInput1 = styled.input`
   position: absolute;
-  left: 300px;
-  width: 37px;
-  height: 37px;
+  left: 650px;
+  width: 24.05px;
+  height: 24.05px;
   box-sizing: border-box;
   margin-top: 20px;
   border: 1.5px solid #d6dcff;
@@ -563,9 +576,9 @@ const CheckBoxInput1 = styled.input`
 `;
 const CheckBoxInput2 = styled.input`
   position: absolute;
-  left: 300px;
-  width: 37px;
-  height: 37px;
+  left: 650px;
+  width: 24.05px;
+  height: 24.05px;
   box-sizing: border-box;
   margin-top: 40px;
   border: 1.5px solid #d6dcff;
@@ -575,9 +588,9 @@ const CheckBoxInput2 = styled.input`
 `;
 const CheckBoxInput3 = styled.input`
   position: absolute;
-  left: 300px;
-  width: 37px;
-  height: 37px;
+  left: 650px;
+  width: 24.05px;
+  height: 24.05px;
   box-sizing: border-box;
   margin-top: 40px;
   border: 1.5px solid #d6dcff;
@@ -587,9 +600,9 @@ const CheckBoxInput3 = styled.input`
 `;
 const CheckBoxInput4 = styled.input`
   position: absolute;
-  left: 300px;
-  width: 37px;
-  height: 37px;
+  left: 650px;
+  width: 24.05px;
+  height: 24.05px;
   box-sizing: border-box;
   margin-top: -20px;
   border: 1.5px solid #d6dcff;
@@ -599,18 +612,28 @@ const CheckBoxInput4 = styled.input`
 `;
 
 const CheckBoxTextBold = styled.div`
+  display: inline-block;
+  margin-right: 50px;
+  /* white-space: nowrap; */
   font-weight: 700;
-  font-size: 22.3735px;
-  line-height: 21px;
+  font-size: 14.54px;
+  line-height: 13.65px;
   color: #4d4d4d;
   margin-top: 20px;
 `;
 
 const CheckBoxText = styled.div`
+  display: inline-block;
+
+  white-space: nowrap;
   display: flex;
   font-weight: 500;
-  font-size: 22.3735px;
-  line-height: 21px;
+  font-size: 14.54px;
+  line-height: 13.65px;
   color: #4d4d4d;
   margin-top: 40px;
+`;
+
+const CheckBoxText2 = styled.div`
+  color: rgba(248, 112, 56, 1);
 `;
