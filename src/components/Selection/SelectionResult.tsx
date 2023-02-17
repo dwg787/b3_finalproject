@@ -16,11 +16,22 @@ import rightArrow from '../../assets/right-arrow.avif';
 const SelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
   const [spotCurPage, setSpotCurPage] = useState(1);
-  const [pageDot, setPageDot] = useState(spotCurPage);
-  // const limit = 10;
-  // const cut = (spotCurPage - 1) * limit;
-  let firstNum = spotCurPage - (spotCurPage % 5) + 1;
-  let lastNum = firstNum + 4;
+  // const [firstNum, setFirstNum] = useState(1);
+  const firstNum = useRef(1);
+  // const lastNum = useRef(5);
+  // let firstNum = 1;
+  // let lastNum = 5;
+  if (spotCurPage % 5 === 1) {
+    firstNum.current = 5 * Math.floor(spotCurPage / 5) + 1;
+    // lastNum.current = Math.floor(spotCurPage / 5);
+  }
+  if (spotCurPage < firstNum.current) {
+    firstNum.current = 5 * (Math.floor(spotCurPage / 5) - 1) + 1;
+  }
+
+  console.log('spotCurPage', spotCurPage);
+  console.log('firstNum', firstNum);
+  // console.log('lastNum', lastNum);
 
   const maxPageNo = useRef(1);
 
@@ -66,8 +77,6 @@ const SelectionResult = () => {
     maxPageNo.current = 1;
     setSpotCurPage(1);
   }, [region]);
-
-  console.log('현재쪽수', spotCurPage);
 
   return (
     <SearchOverallResultContainer>
@@ -126,15 +135,19 @@ const SelectionResult = () => {
               Math.ceil(data.pages[0]?.totalCount / data.pages[0]?.numOfRows),
             )
               .fill('')
-              .slice(firstNum, lastNum + 1)
+              .slice(firstNum.current, firstNum.current + 5)
               .map((_, i) => {
+                const isSelectedPage =
+                  firstNum.current + i === spotCurPage ? true : false;
                 return (
                   <PaginationDot
-                    key={firstNum + i + 1}
-                    idx={firstNum + i}
-                    onClick={() => setSpotCurPage(i + 1)}
+                    key={firstNum.current + i}
+                    isSelectedPage={isSelectedPage}
+                    onClick={() => {
+                      setSpotCurPage(firstNum.current + i);
+                    }}
                   >
-                    {firstNum + i}
+                    {firstNum.current + i}
                   </PaginationDot>
                 );
               })}
@@ -202,10 +215,13 @@ const PaginationDotsWrapper = styled.div`
   justify-content: center;
   gap: 10px;
 `;
-const PaginationDot = styled.div<{ idx: number }>`
+
+const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: ${(props) => (props.idx ? 'red' : '#ffffff')};
+  background-color: ${(props) =>
+    props.isSelectedPage ? '#6478ff' : '#ffffff'};
+  box-shadow: 1px 1px #d7d7d7;
   cursor: pointer;
 `;
