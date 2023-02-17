@@ -5,9 +5,10 @@ import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../../apis/firebase';
-import RestaurantInfo from '../../components/RestaurantInfo';
-import Liked from '../../components/Liked/Liked';
-import StayInfo from '../../components/StayInfo';
+import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
+
+import StayInfo from '../../components/Recommendation/StayInfo';
+
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';
@@ -30,7 +31,11 @@ import {
   DetailText,
   DetailTextArr,
   DeatilTextBox,
+  DetailInformationMap,
+  DetailInfoAdd,
+  TabHr,
 } from './styles';
+import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 
 const DetailPage = () => {
   const param = useParams();
@@ -80,8 +85,6 @@ const DetailPage = () => {
     getFirestoreRecCnt();
   }, [spotData]);
 
-  //스크롤 탭
-
   return (
     <DetailWrap>
       <Container>
@@ -92,18 +95,20 @@ const DetailPage = () => {
             {spotData ? (
               <DeatilBox key={param.id}>
                 {/* <Link to={'/'}>메인으로</Link> */}
+
+                <DetailScroll />
+                <TabHr />
                 <DeatilTextBox>
                   <DetailText>{spotData.title}</DetailText>
                   <DetailTextArr> {spotData.addr1.split(' ', 2)}</DetailTextArr>
                   <DeatilImojiBox>
-                    <Liked spotData={spotData} />
-
+                    {/* <Liked spotData={spotData} /> */}
+                    <RestaurantLiked spotData={spotData} />
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
                   </DeatilImojiBox>
                 </DeatilTextBox>
-                <DetailScroll />
 
                 <DetailImgBox id="1">
                   <DetailImg
@@ -117,14 +122,16 @@ const DetailPage = () => {
                     <DetailInfoText>상세정보</DetailInfoText>
                   </DetailInfoTextBox> */}
 
-                  <DetailInfo>{spotData.overview.split('.', 4)}</DetailInfo>
-                  <DetailInfo>
-                    <KakaoMap mapx={spotData.mapx} mapy={spotData.mapy} />
-                  </DetailInfo>
-                  <DetailInfo>주소 : {spotData.addr1}</DetailInfo>
+                  <DetailInfo>{spotData.overview.split('<', 1)}</DetailInfo>
+
+                  <DetailInfoAdd>주소 : {spotData.addr1}</DetailInfoAdd>
                 </DetailInformation>
 
-                <CommunicationWrap id="3">
+                <DetailInformationMap id="3">
+                  <KakaoMap mapx={spotData.mapx} mapy={spotData.mapy} />
+                </DetailInformationMap>
+
+                <CommunicationWrap id="4">
                   {/* <DetailInfoTextBox>
                     <DetailInfoText>여행톡</DetailInfoText>
                   </DetailInfoTextBox> */}
@@ -142,7 +149,7 @@ const DetailPage = () => {
           </>
         )}
 
-        <SideInfoWrapper id="4">
+        <SideInfoWrapper id="5">
           <StayInfo spotData={spotData} />
           <RestaurantInfo spotData={spotData} />
         </SideInfoWrapper>

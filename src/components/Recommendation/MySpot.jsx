@@ -4,8 +4,8 @@ import { db } from '../../apis/firebase';
 import { getDocs, collection, orderBy, query } from 'firebase/firestore';
 import MySpotDetail from './MySpotDetail';
 import Slider from 'react-slick';
-import nextImg from '../../assets/next.png';
-import pervImg from '../../assets/prev.png';
+import nextImg from '../../assets/next.avif';
+import pervImg from '../../assets/prev.avif';
 
 const MySpot = (propsData) => {
   const [MySpot, setMySpot] = useState();

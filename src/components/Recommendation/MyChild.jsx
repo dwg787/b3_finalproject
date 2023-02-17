@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import chumsung from '../../assets/chumsung.png';
-import naksan from '../../assets/naksan.png';
-import jinju from '../../assets/jinju.png';
-import yang from '../../assets/yang.png';
-import TapHeart from '../../assets/TapHeart.png';
+import chumsung from '../../assets/chumsung.avif';
+import naksan from '../../assets/naksan.avif';
+import jinju from '../../assets/jinju.avif';
+import yang from '../../assets/yang.avif';
+import TapHeart from '../../assets/TapHeart.avif';
 
 export default function MyChild() {
   return (

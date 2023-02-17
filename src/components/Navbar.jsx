@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import { LoginPage } from '../pages';
 import axios from 'axios';
 import QueryString from 'qs';
-import mainlogo from '../assets/mainlogo.png';
-import SearchIcon from '../assets/search.png';
-import Ximg from '../assets/ximg.png';
+import mainlogo from '../assets/mainlogo.avif';
+import SearchIcon from '../assets/search.avif';
+import Ximg from '../assets/ximg.avif';
 import useNotification from '../hooks/useNotification';
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
-  const localId = sessionStorage.getItem('id');
+  const localId = localStorage.getItem('id');
   // console.log(localId);
 
   const currentUser = auth.currentUser;
@@ -82,7 +82,7 @@ const Navbar = () => {
     console.log(user);
     setNickName(user.data.properties.nickname);
     setProfileImage(user.data.properties.profile_image);
-    sessionStorage.setItem('id', user.data.properties.nickname);
+    localStorage.setItem('id', user.data.properties.nickname);
   };
   // console.log(nickName, profileImage);
 
@@ -126,12 +126,9 @@ const Navbar = () => {
     //     // 로그아웃 실패
     //     alert("로그아웃에 실패했습니다.");
     //   });
-    sessionStorage.removeItem('id');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
     localStorage.removeItem('token_for_kakaotalk');
-    localStorage.removeItem('com.naver.nid.access_token');
-    localStorage.removeItem('com.naver.nid.oauth.state_token');
-    sessionStorage.removeItem('email');
-
     navigate('/');
     window.location.reload();
   };
