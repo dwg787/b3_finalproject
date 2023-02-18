@@ -7,7 +7,7 @@ import { fetchStayData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 
@@ -26,7 +26,7 @@ const StaySelectionResult = () => {
     firstNum.current = 5 * (Math.floor(stayCurPage / 5) - 1) + 1;
   }
 
-  console.log('stayCurPage', stayCurPage);
+  // console.log('숙박 렌더링');
 
   const { data, isLoading, isPreviousData } = useQuery(
     ['stay_data', region, stayCurPage],
@@ -39,9 +39,9 @@ const StaySelectionResult = () => {
 
   //   console.log('선택한 페이지에 대한 데이터?', data);
 
-  const handleFetchNextPage = () => {
+  const handleFetchNextPage = useCallback(() => {
     setStayCurPage(stayCurPage + 1);
-  };
+  }, [stayCurPage]);
 
   useEffect(() => {
     maxPageNo.current = 1;
@@ -76,9 +76,9 @@ const StaySelectionResult = () => {
                     key={e.contentid}
                     id={e.contentid}
                     img={e.firstimage || noimg}
-                    // address={e.addr1}
+                    address={e.addr1}
                   >
-                    {e.title}
+                    {e.title.split(/[\\(\\[]/)[0]}
                   </StayDetail>
                 );
               })}
@@ -96,14 +96,14 @@ const StaySelectionResult = () => {
             </BtnWrapper>
           </SearchListWrapper>
           <PaginationDotsWrapper>
-            {Array(Math.ceil(data.totalCount / 8))
+            {Array(Math.ceil(data.totalCount / 8) + 1)
               .fill('')
               .slice(firstNum.current, firstNum.current + 5)
               .map((_, i) => {
                 const isSelectedPage =
                   firstNum.current + i === stayCurPage ? true : false;
 
-                console.log('토탈카운', data.totalCount);
+                // console.log('토탈카운', data.totalCount);
 
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (
@@ -133,6 +133,9 @@ const SearchOverallResultContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid #6478ff;
+  border-radius: 20px;
+  box-shadow: 3px 3px #d7d7d7;
 `;
 
 const ListItemCount = styled.div`
@@ -174,12 +177,12 @@ const MoveBtnStyle = styled.img`
 `;
 
 const PaginationDotsWrapper = styled.div`
-  margin-top: 50px;
+  margin-top: 10px;
   width: 500px;
-  height: 10px;
+  height: 50px;
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
   gap: 10px;
 `;
