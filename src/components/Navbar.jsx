@@ -118,6 +118,13 @@ const Navbar = () => {
     //   .then(() => {
     //     alert("로그아웃 되었습니다.");
 
+    fetch('https://openapi.naver.com/v1/nid/verify', {
+      headers: {
+        Authorization:
+          'Bearer AAAAPIuf0L+qfDkMABQ3IJ8heq2mlw71DojBj3oc2Z6OxMQESVSrtR0dbvsiQbPbP1/cxva23n7mQShtfK4pchdk/rc=',
+      },
+    });
+
     // 로그아웃 성공
     setShowModal(false);
     navigate('/', { replace: true });
@@ -129,8 +136,11 @@ const Navbar = () => {
     localStorage.removeItem('id');
     localStorage.removeItem('email');
     localStorage.removeItem('token_for_kakaotalk');
+    localStorage.removeItem('com.naver.nid.oauth.state_token');
+    localStorage.removeItem('com.naver.nid.access_token');
+    localStorage.removeItem('__bootpay_track_uuid__');
     navigate('/');
-    window.location.reload();
+    // window.location.reload();
   };
   // const localId = sessionStorage.getItem('id');
   // console.log(localId);
@@ -139,47 +149,20 @@ const Navbar = () => {
     const naverLogin = new naver.LoginWithNaverId({
       clientId: NAVER_CLIENT_ID,
       callbackUrl: NAVER_CALLBACK_URL,
-      // 팝업창으로 로그인을 진행할 것인지?
-      isPopup: false,
-      loginButton: { color: 'green', type: 1, height: 30 },
-      callbackHandle: true,
     });
     naverLogin.init();
 
     naverLogin.getLoginStatus(async function(status) {
       if (status) {
-        const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
         setUserName(username);
         window.localStorage.setItem('id', username);
-        window.sessionStorage.setItem('id', username);
       }
     });
   };
 
   useEffect(() => {
-    let naverUser = setTimeout(() => {
-      initializeNaverLogin();
-      const naverLogin = new naver.LoginWithNaverId({
-        clientId: NAVER_CLIENT_ID,
-        callbackUrl: NAVER_CALLBACK_URL,
-        // 팝업창으로 로그인을 진행할 것인지?
-        isPopup: false,
-        loginButton: { color: 'green', type: 1, height: 30 },
-        callbackHandle: true,
-      });
-      naverLogin.init();
-
-      naverLogin.getLoginStatus(async function(status) {
-        if (status) {
-          const userid = naverLogin.user.getEmail();
-          const username = naverLogin.user.getName();
-          setUserName(username);
-          window.localStorage.setItem('id', username);
-          window.sessionStorage.setItem('id', username);
-        }
-      });
-    }, 500);
+    initializeNaverLogin();
   }, []);
 
   return (

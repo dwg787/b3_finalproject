@@ -215,7 +215,6 @@ const SlotImg1 = styled.img`
 
 const MainSlider = styled(Slider)`
   height: 100%;
-  margin-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
 `;
@@ -229,6 +228,7 @@ const SlotButton = styled.button`
   background-color: white;
   border: 1px solid #6478ff;
   border-radius: 20px;
+  color: #6478ff;
   width: 200px;
   height: 50px;
   margin-bottom: 20px;
