@@ -14,6 +14,7 @@ import { auth, db } from '../../apis/firebase';
 import Loader from '../Loader/Loader';
 import noimg from '../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
+import { combinedAllData } from '../../apis/publicAPI';
 
 const MyRestaurantLiked = () => {
   const [restaurant, setRestaurant] = useState([]);
@@ -40,11 +41,26 @@ const MyRestaurantLiked = () => {
   }
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
-  const delResLiked = async () => {
-    const docRef = doc(db, 'restaurantlike', uid);
-    console.log(docRef);
-    await deleteDoc(docRef);
-  };
+  // const delResLiked = async () => {
+  //   const docRef = doc(db, 'restaurantlike', uid);
+  //   console.log(docRef);
+  //   await deleteDoc(docRef);
+  // };
+
+  // const deleteRestaurantLiked = async () => {
+  //   const uid = auth.currentUser.uid;
+  //   const query = query(
+  //     collection(db, 'restaurantlike'),
+  //     where('uid', '==', uid),
+  //     where('contentid', '==', combinedAllData.contentid),
+  //   );
+  //   const querySnapshot = await getDocs(query);
+  //   await Promise.all(
+  //     querySnapshot.docs.map(async (doc) => {
+  //       await deleteDoc(doc.ref).catch((e) => console.log(e));
+  //     }),
+  //   );
+  // };
 
   return (
     <>
@@ -56,16 +72,16 @@ const MyRestaurantLiked = () => {
               <StTicketCard key={i}>
                 <StTicketCardLeft>
                   <StTicketHeader>
-                    <StCartMenu>음식점</StCartMenu>
+                    {/* <StCartMenu>음식점</StCartMenu> */}
                     <button
-                      onClick={() => {
-                        delResLiked()
-                          .then(() => {
-                            window.alert('Like 삭제 완료');
-                            getRestaurantLiked();
-                          })
-                          .catch((e) => console.log(e));
-                      }}
+                    // onClick={() => {
+                    //   deleteRestaurantLiked()
+                    //     .then(() => {
+                    //       window.alert('Like 삭제 완료');
+                    //       getRestaurantLiked();
+                    //     })
+                    //     .catch((e) => console.log(e));
+                    // }}
                     >
                       삭제
                     </button>
