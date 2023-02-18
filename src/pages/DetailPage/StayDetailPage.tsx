@@ -53,7 +53,7 @@ const StayDetailPage = () => {
     fetchStayAdditionalInfo1({ param }),
   );
 
-  console.log('숙박 상세 소개', stayAdditionalData1);
+  // console.log('숙박 상세 소개', stayAdditionalData1);
 
   // const {
   //   data: stayAdditionalData2,
@@ -155,6 +155,9 @@ const StayDetailPage = () => {
                   <KakaoMap
                     mapx={stayDetailData.mapx}
                     mapy={stayDetailData.mapy}
+                    title={stayDetailData.title}
+                    tel={stayDetailData.tel}
+                    homepage={stayDetailData.homepage}
                   />
                 </DetailInformationMap>
 

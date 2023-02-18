@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const KakaoMap = ({ mapx, mapy }) => {
+const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
   const mapcontainer = useRef(null);
   const { kakao } = window;
 
@@ -22,6 +22,21 @@ const KakaoMap = ({ mapx, mapy }) => {
     });
 
     marker.setMap(map);
+
+    let iwContent = `<div style="padding:5px;">${title}<br>전화:${tel}<br>${homepage}</div>`,
+      iwRemoveable = true;
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+      content: iwContent,
+      removable: iwRemoveable,
+    });
+
+    // 마커에 클릭이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'click', function() {
+      // 마커 위에 인포윈도우를 표시합니다
+      infowindow.open(map, marker);
+    });
 
     // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
     const mapTypeControl = new kakao.maps.MapTypeControl();

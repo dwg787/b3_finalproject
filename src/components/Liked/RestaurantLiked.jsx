@@ -18,7 +18,7 @@ export default function RestaurantLiked({
     ...stayDetailData,
   };
 
-  const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
+  const [alarmMsg, setAlarmMsg] = useState('찜하기 목록에 추가되었습니다!'); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   const addRestaurantLiked = async () => {
@@ -54,7 +54,11 @@ export default function RestaurantLiked({
     }).catch((e) => console.log(e));
     setLike(!like);
     // alert('Like저장');
-    setAlarmMsg('찜하기 목록에 추가되었습니다!'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+    if (like) {
+      setAlarmMsg('찜하기 목록에 추가되었습니다!');
+    } else {
+      setAlarmMsg('찜하기 목록에서 제거되었습니다!'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+    }
     addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
   };
 
