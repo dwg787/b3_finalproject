@@ -20,15 +20,15 @@ const Naver = ({ setGetToken, setUserInfo }) => {
     });
     naverLogin.init();
 
-    naverLogin.getLoginStatus(async function(status) {
-      if (status) {
-        const userid = naverLogin.user.getEmail();
-        const username = naverLogin.user.getName();
-        setUserName(username);
-        window.localStorage.setItem('id', username);
-        window.sessionStorage.setItem('id', username);
-      }
-    });
+    // naverLogin.getLoginStatus(async function(status) {
+    //   if (status) {
+    //     const userid = naverLogin.user.getEmail();
+    //     const username = naverLogin.user.getName();
+    //     setUserName(username);
+    //     window.localStorage.setItem('id', username);
+    //     window.sessionStorage.setItem('id', username);
+    //   }
+    // });
   };
 
   const userAccessToken = () => {
@@ -44,7 +44,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
         const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
         setUserName(username);
-        window.localStorage.setItem('id', username);
+        // window.localStorage.setItem('id', username);
         window.sessionStorage.setItem('id', username);
       }
     });
@@ -69,7 +69,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       {/* 이미지에다 이이디값 을 주거나  클릭 이벤트를하거나 */}
 
       <NaverBtn id="naverIdLogin">
-        {/* <NaverImg src={NaverLogo} onClick={initializeNaverLogin} /> */}
+        <NaverImg src={NaverLogo} onClick={initializeNaverLogin} />
         <NaverText>Naver</NaverText>
       </NaverBtn>
     </>
