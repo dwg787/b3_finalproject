@@ -26,7 +26,7 @@ const StaySelectionResult = () => {
     firstNum.current = 5 * (Math.floor(stayCurPage / 5) - 1) + 1;
   }
 
-  console.log('숙박 렌더링');
+  // console.log('숙박 렌더링');
 
   const { data, isLoading, isPreviousData } = useQuery(
     ['stay_data', region, stayCurPage],

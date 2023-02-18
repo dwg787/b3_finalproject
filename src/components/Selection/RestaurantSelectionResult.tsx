@@ -26,7 +26,7 @@ const RestaurantSelectionResult = () => {
     firstNum.current = 5 * (Math.floor(restCurPage / 5) - 1) + 1;
   }
 
-  console.log('레스토랑 렌더링');
+  // console.log('레스토랑 렌더링');
 
   const { data, isLoading, isPreviousData } = useQuery(
     ['rest_data', region, restCurPage],

@@ -34,9 +34,9 @@ const SpotSelectionResult = () => {
     },
   );
 
-  console.log('firstNum', firstNum.current);
-  console.log('총 페이지 수', Math.ceil(data?.totalCount / 8));
-  console.log('현재 페이지', spotCurPage);
+  // console.log('firstNum', firstNum.current);
+  // console.log('총 페이지 수', Math.ceil(data?.totalCount / 8));
+  // console.log('현재 페이지', spotCurPage);
   //   console.log('선택한 페이지에 대한 데이터?', data);
   //   useEffect(() => {
   //     console.log('firstNum', firstNum.current);

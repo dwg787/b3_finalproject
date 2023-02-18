@@ -21,7 +21,7 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
   //   const img = new Image();
   //   img.src = '../../asset/noimg.png';
   // };
-  console.log('지역 버튼 렌더링?');
+  // console.log('지역 버튼 렌더링?');
 
   return (
     <>
