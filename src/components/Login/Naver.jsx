@@ -15,7 +15,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       callbackUrl: NAVER_CALLBACK_URL,
       // 팝업창으로 로그인을 진행할 것인지?
       isPopup: false,
-      // loginButton: { color: 'green', type: 1, height: 30 },
+      loginButton: { color: 'green', type: 1, height: 35 },
       callbackHandle: true,
     });
     naverLogin.init();
@@ -33,6 +33,21 @@ const Naver = ({ setGetToken, setUserInfo }) => {
 
   const userAccessToken = () => {
     window.location.href.includes('id') && getToken();
+    const naverLogin = new naver.LoginWithNaverId({
+      clientId: NAVER_CLIENT_ID,
+      callbackUrl: NAVER_CALLBACK_URL,
+    });
+    naverLogin.init();
+
+    naverLogin.getLoginStatus(async function(status) {
+      if (status) {
+        const userid = naverLogin.user.getEmail();
+        const username = naverLogin.user.getName();
+        setUserName(username);
+        window.localStorage.setItem('id', username);
+        window.sessionStorage.setItem('id', username);
+      }
+    });
   };
 
   const getToken = () => {
@@ -54,7 +69,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       {/* 이미지에다 이이디값 을 주거나  클릭 이벤트를하거나 */}
 
       <NaverBtn id="naverIdLogin">
-        <NaverImg src={NaverLogo} />
+        {/* <NaverImg src={NaverLogo} onClick={initializeNaverLogin} /> */}
         <NaverText>Naver</NaverText>
       </NaverBtn>
     </>
