@@ -102,7 +102,6 @@ const DetailPage = () => {
                   <DetailText>{spotData.title}</DetailText>
                   <DetailTextArr> {spotData.addr1.split(' ', 2)}</DetailTextArr>
                   <DeatilImojiBox>
-                    {/* <Liked spotData={spotData} /> */}
                     <RestaurantLiked spotData={spotData} />
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />

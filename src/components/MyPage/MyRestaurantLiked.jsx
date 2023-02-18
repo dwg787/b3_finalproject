@@ -28,6 +28,7 @@ const MyRestaurantLiked = () => {
       ...doc.data(),
     }));
     setRestaurant(newData);
+    console.log(newData);
   };
 
   useEffect(() => {
@@ -73,18 +74,6 @@ const MyRestaurantLiked = () => {
                 <StTicketCardLeft>
                   <StTicketHeader>
                     {/* <StCartMenu>음식점</StCartMenu> */}
-                    <button
-                    // onClick={() => {
-                    //   deleteRestaurantLiked()
-                    //     .then(() => {
-                    //       window.alert('Like 삭제 완료');
-                    //       getRestaurantLiked();
-                    //     })
-                    //     .catch((e) => console.log(e));
-                    // }}
-                    >
-                      삭제
-                    </button>
                   </StTicketHeader>
 
                   <StMyTicketImage src={data.img || noimg} alt="사진" />
@@ -114,7 +103,7 @@ const StTicket = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   height: 100%;
   box-sizing: border-box;

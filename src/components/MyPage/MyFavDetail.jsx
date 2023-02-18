@@ -3,6 +3,8 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { auth, db } from '../../apis/firebase';
 import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
+import noimg from '../../assets/noimg.avif';
+import { fetchSpotDetailData } from '../../apis/publicAPI';
 
 const MyFavDetail = ({ title, getLiked }) => {
   const uid = auth.currentUser.uid;
@@ -16,8 +18,6 @@ const MyFavDetail = ({ title, getLiked }) => {
       bookmarks: arrayRemove(title),
     });
   };
-
-  console.log(title);
 
   return (
     <StTicketCard>
@@ -38,41 +38,22 @@ const MyFavDetail = ({ title, getLiked }) => {
           </button>
         </StTicketHeader>
 
-        {/* <StMyTicketImage src={data.img || noimg} alt="사진" /> */}
+        {/* <StMyTicketImage src={img || noimg} alt="사진" /> */}
       </StTicketCardLeft>
-      <StCartTitle>{title}}</StCartTitle>
+      <StCartTitle>{title}</StCartTitle>
     </StTicketCard>
   );
 };
 
 export default MyFavDetail;
 
-const StTicketWrap = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StTicket = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-`;
-
 const StTicketCard = styled.div`
   width: 200px;
   height: 200px;
   margin: 10px;
 
-  /* box-sizing: border-box; */
-  border-radius: 10px;
+  box-sizing: border-box;
+  ㄴㄴㄴㄴborder-radius: 10px;
   /* padding: 10px; */
   /* display: grid; */
   align-items: center;

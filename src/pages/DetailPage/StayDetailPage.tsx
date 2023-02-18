@@ -125,8 +125,8 @@ const StayDetailPage = () => {
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    {/* <RestaurantLiked stayDetailData={stayDetailData} /> */}
-                    <Liked stayDetailData={stayDetailData} />
+                    <RestaurantLiked stayDetailData={stayDetailData} />
+                    {/* <Liked stayDetailData={stayDetailData} /> */}
                     {/* <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link> */}

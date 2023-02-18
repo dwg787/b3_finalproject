@@ -29,10 +29,8 @@ export default function Liked({
     const uid = auth.currentUser.uid;
     const docRef = doc(db, 'bookmarks', uid);
 
-    // 유저 컬렉션이 존재하는지 확인
     await getDoc(docRef)
       .then((doc) => {
-        // 없으면 새로 생성
         if (!doc.exists()) {
           setDoc(docRef, {
             uid: uid,
@@ -43,10 +41,10 @@ export default function Liked({
       .catch((e) => console.log(e));
     await updateDoc(docRef, {
       bookmarks: arrayUnion(combinedData.title),
+      img: arrayUnion(combinedData.firstimage),
     }).catch((e) => console.log(e));
-    // window.alert('like 저장');
-    setLike(!like);
 
+    setLike(!like);
     setAlarmMsg('찜하기 목록에 추가되었습니다!'); //알람관련 코드4 - 들어갈 내용 정하는 부분
     addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
   };

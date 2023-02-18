@@ -25,7 +25,7 @@ export default function RestaurantLiked({
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
   //중복클릭방지
-  // const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
   const [alarmMsg, setAlarmMsg] = useState('');
   const { addNoti } = useNotification(alarmMsg);
@@ -36,16 +36,6 @@ export default function RestaurantLiked({
     ...restaurantDetailData,
     ...stayDetailData,
   };
-
-  //새로고침시 하트색상 변화 방지
-  useEffect(() => {
-    const liked = localStorage.getItem('isLiked');
-    setIsLiked(liked === 'true');
-
-    // const clicked = localStorage.getItem('clickRef');
-    // clickRef.current = clicked === 'true';
-    // setDisabled(clicked === 'true' || liked === 'true');
-  }, [isLiked]);
 
   const addRestaurantLiked = async () => {
     // console.log(restaurantDetailData);
@@ -67,6 +57,7 @@ export default function RestaurantLiked({
               uid: uid,
               img: combinedData.firstimage,
               contentid: combinedData.contentid,
+              date: Date.now(),
             });
           }
         })
@@ -77,53 +68,26 @@ export default function RestaurantLiked({
         uid: uid,
         img: combinedData.firstimage,
         contentid: combinedData.contentid,
+        date: Date.now(),
       }).catch((e) => console.log(e));
-
-      //좋아요버튼 색상관련
-      setIsLiked(!isLiked);
-      localStorage.setItem('isLiked', !isLiked);
-      //좋아요 버튼 활성화 관련
-      // clickRef.current = true;
+      // setIsLiked(true);
+      // 좋아요 버튼 활성화 관련
+      clickRef.current = true;
       // setDisabled(true);
       // localStorage.setItem('clickRef', true);
       setAlarmMsg('찜하기 목록에 추가되었습니다!');
       addNoti();
+    } else {
+      setAlarmMsg('이미 추가된 항목입니다!');
+      addNoti();
     }
-  };
-
-  const removeRestaurantLiked = async () => {
-    const uid = auth.currentUser.uid;
-    const query = query(
-      collection(db, 'restaurantlike'),
-      where('uid', '==', uid),
-      where('contentid', '==', combinedData.contentid),
-    );
-    const querySnapshot = await getDocs(query);
-    await Promise.all(
-      querySnapshot.docs.map(async (doc) => {
-        await deleteDoc(doc.ref).catch((e) => console.log(e));
-      }),
-    );
-
-    setIsLiked(false);
-    localStorage.setItem('isLiked', false);
-
-    // clickRef.current = false;
-    // setDisabled(false);
-    // localStorage.setItem('clickRef', false);
   };
 
   return (
     <div>
-      {isLiked ? (
-        <HeartBtn onClick={removeRestaurantLiked}>
-          <Heart src={redheart} />
-        </HeartBtn>
-      ) : (
-        <HeartBtn onClick={addRestaurantLiked}>
-          <Heart src={heart} />
-        </HeartBtn>
-      )}
+      <HeartBtn onClick={addRestaurantLiked} disabled={disabled}>
+        <Heart src={redheart} />
+      </HeartBtn>
     </div>
   );
 }
