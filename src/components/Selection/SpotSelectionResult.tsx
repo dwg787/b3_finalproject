@@ -7,7 +7,7 @@ import { fetchSpotData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
-import { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 
@@ -16,21 +16,14 @@ const SpotSelectionResult = () => {
   const [spotCurPage, setSpotCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
-  //   const lastNum = useRef(5);
 
   //페이지네이션
   if (spotCurPage % 5 === 1) {
     firstNum.current = 5 * Math.floor(spotCurPage / 5) + 1;
-    // lastNum.current = 5 * Math.floor(spotCurPage / 5) + 5;
   }
   if (spotCurPage < firstNum.current) {
     firstNum.current = 5 * (Math.floor(spotCurPage / 5) - 1) + 1;
-    // lastNum.current = 5 * (Math.floor(spotCurPage / 5) - 1) + 5;
   }
-
-  console.log('spotCurPage', spotCurPage);
-  //   console.log('firstNum', firstNum);
-  //   console.log('lastNum', lastNum);
 
   const { data, isLoading, isPreviousData } = useQuery(
     ['spot_data', region, spotCurPage],
@@ -41,29 +34,19 @@ const SpotSelectionResult = () => {
     },
   );
 
-  // console.log('총 페이지 수', Math.ceil(data?.totalCount / data?.numOfRows));
+  console.log('firstNum', firstNum.current);
+  console.log('총 페이지 수', Math.ceil(data?.totalCount / 8));
+  console.log('현재 페이지', spotCurPage);
   //   console.log('선택한 페이지에 대한 데이터?', data);
-
-  const handleFetchNextPage = () => {
-    setSpotCurPage(spotCurPage + 1);
-    // if (data) {
-    //   if (spotCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
-    //     fetchSpotNextPage();
-    //   }
-    // }
-  };
-
-  // const handleFetchRandomPage = () => {
-  //   refetch({ refetchPage: (page, index) => page === spotCurPage });
-  // };
-
   //   useEffect(() => {
-  //     if (data) {
-  //       if (maxPageNo.current < data.pages.length) {
-  //         maxPageNo.current = data.pages.length;
-  //       }
-  //     }
-  //   }, [spotCurPage]);
+  //     console.log('firstNum', firstNum.current);
+  //     console.log('총 페이지 수', Math.ceil(data?.totalCount / 8));
+  //     console.log('현재 페이지', spotCurPage);
+  //   }, [firstNum.current, spotCurPage, data?.totalCount]);
+
+  const handleFetchNextPage = useCallback(() => {
+    setSpotCurPage(spotCurPage + 1);
+  }, [spotCurPage]);
 
   useEffect(() => {
     maxPageNo.current = 1;
@@ -118,15 +101,12 @@ const SpotSelectionResult = () => {
             </BtnWrapper>
           </SearchListWrapper>
           <PaginationDotsWrapper>
-            {Array(Math.ceil(data.totalCount / 8))
+            {Array(Math.ceil(data.totalCount / 8) + 1)
               .fill('')
               .slice(firstNum.current, firstNum.current + 5)
               .map((_, i) => {
                 const isSelectedPage =
                   firstNum.current + i === spotCurPage ? true : false;
-
-                // console.log('토탈카운', data.totalCount);
-
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (
                     <PaginationDot

@@ -21,6 +21,7 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
   //   const img = new Image();
   //   img.src = '../../asset/noimg.png';
   // };
+  console.log('지역 버튼 렌더링?');
 
   return (
     <>
@@ -37,7 +38,7 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
   );
 };
 
-export default SelectRegionBtn;
+export default React.memo(SelectRegionBtn);
 
 const CustomBtn = styled.button<{ isSelectedRegion: boolean }>`
   width: 70px;

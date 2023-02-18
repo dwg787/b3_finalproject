@@ -7,7 +7,7 @@ import { fetchStayData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 
@@ -26,7 +26,7 @@ const StaySelectionResult = () => {
     firstNum.current = 5 * (Math.floor(stayCurPage / 5) - 1) + 1;
   }
 
-  // console.log('stayCurPage', stayCurPage);
+  console.log('숙박 렌더링');
 
   const { data, isLoading, isPreviousData } = useQuery(
     ['stay_data', region, stayCurPage],
@@ -39,9 +39,9 @@ const StaySelectionResult = () => {
 
   //   console.log('선택한 페이지에 대한 데이터?', data);
 
-  const handleFetchNextPage = () => {
+  const handleFetchNextPage = useCallback(() => {
     setStayCurPage(stayCurPage + 1);
-  };
+  }, [stayCurPage]);
 
   useEffect(() => {
     maxPageNo.current = 1;
@@ -96,7 +96,7 @@ const StaySelectionResult = () => {
             </BtnWrapper>
           </SearchListWrapper>
           <PaginationDotsWrapper>
-            {Array(Math.ceil(data.totalCount / 8))
+            {Array(Math.ceil(data.totalCount / 8) + 1)
               .fill('')
               .slice(firstNum.current, firstNum.current + 5)
               .map((_, i) => {
