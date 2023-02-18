@@ -7,7 +7,7 @@ import { fetchRestaurantData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 
@@ -26,7 +26,7 @@ const RestaurantSelectionResult = () => {
     firstNum.current = 5 * (Math.floor(restCurPage / 5) - 1) + 1;
   }
 
-  console.log('restCurPage', restCurPage);
+  // console.log('레스토랑 렌더링');
 
   const { data, isLoading, isPreviousData } = useQuery(
     ['rest_data', region, restCurPage],
@@ -39,9 +39,9 @@ const RestaurantSelectionResult = () => {
 
   //   console.log('선택한 페이지에 대한 데이터?', data);
 
-  const handleFetchNextPage = () => {
+  const handleFetchNextPage = useCallback(() => {
     setRestCurPage(restCurPage + 1);
-  };
+  }, [restCurPage]);
 
   useEffect(() => {
     maxPageNo.current = 1;
@@ -96,14 +96,14 @@ const RestaurantSelectionResult = () => {
             </BtnWrapper>
           </SearchListWrapper>
           <PaginationDotsWrapper>
-            {Array(Math.ceil(data.totalCount / 8))
+            {Array(Math.ceil(data.totalCount / 8) + 1)
               .fill('')
               .slice(firstNum.current, firstNum.current + 5)
               .map((_, i) => {
                 const isSelectedPage =
                   firstNum.current + i === restCurPage ? true : false;
 
-                console.log('토탈카운', data.totalCount);
+                // console.log('토탈카운', data.totalCount);
 
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (

@@ -20,7 +20,6 @@ import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const selected = sessionStorage.getItem('mainpage_menu_type');
-  if (selected) setSelectedMenu(selected);
 
   useEffect(() => {
     if (selected) setSelectedMenu(selected);
