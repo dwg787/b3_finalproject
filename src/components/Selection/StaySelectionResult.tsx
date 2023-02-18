@@ -76,7 +76,7 @@ const StaySelectionResult = () => {
                     key={e.contentid}
                     id={e.contentid}
                     img={e.firstimage || noimg}
-                    // address={e.addr1}
+                    address={e.addr1}
                   >
                     {e.title}
                   </StayDetail>
