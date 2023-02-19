@@ -5,6 +5,7 @@ import Fuse from 'fuse.js';
 import _ from 'lodash';
 import SpotDetail from '../SpotDetail';
 import noimg from '../../assets/noimg.avif';
+import BlueFooter from '../../components/Footer/BlueFooter';
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음
@@ -90,6 +91,7 @@ export default function Search() {
           </ListBoxInfinite>
         </WrapDiv>
       </ContainerDiv>
+      <BlueFooter />
     </>
   );
 }
@@ -100,7 +102,13 @@ const ContainerDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding-bottom: 440px;
+  background: linear-gradient(
+    180deg,
+    #ffffff -23.88%,
+    rgba(124, 141, 255, 0.69) 39.56%,
+    #ffffff 99.16%
+  );
+  position: relative;
 `;
 
 const WrapDiv = styled.div`

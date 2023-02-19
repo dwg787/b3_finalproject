@@ -69,6 +69,7 @@ const SlotMachine = () => {
     return totalSpots[Math.floor(Math.random() * totalSpots.length)];
   };
 
+  const loling = () => {};
   //v2 기능 구현예정 아마도...?
 
   //   const getRandomRestaurants = () => {
@@ -135,10 +136,28 @@ const SlotMachine = () => {
             }, 200);
             setTimeout(() => {
               setCurrentSpots(getRandomSpot());
+            }, 250);
+            setTimeout(() => {
+              setCurrentSpots(getRandomSpot());
+            }, 300);
+            setTimeout(() => {
+              setCurrentSpots(getRandomSpot());
+            }, 350);
+            setTimeout(() => {
+              setCurrentSpots(getRandomSpot());
             }, 400);
             setTimeout(() => {
               setCurrentSpots(getRandomSpot());
+            }, 450);
+            setTimeout(() => {
+              setCurrentSpots(getRandomSpot());
+            }, 500);
+            setTimeout(() => {
+              setCurrentSpots(getRandomSpot());
             }, 600);
+            setTimeout(() => {
+              setCurrentSpots(getRandomSpot());
+            }, 700);
             setTimeout(() => {
               setCurrentSpots(getRandomSpot());
             }, 800);
@@ -150,10 +169,16 @@ const SlotMachine = () => {
             }, 1200);
             setTimeout(() => {
               setCurrentSpots(getRandomSpot());
-            }, 1400);
+            }, 1500);
             setTimeout(() => {
               setCurrentSpots(getRandomSpot());
-            }, 1600);
+            }, 1800);
+            setTimeout(() => {
+              setCurrentSpots(getRandomSpot());
+            }, 2200);
+            setTimeout(() => {
+              setCurrentSpots(getRandomSpot());
+            }, 2700);
             setCurrentSpots1(getRandomSpot1());
             setCurrentSpots2(getRandomSpot2());
             setCurrentSpots3(getRandomSpot3());
