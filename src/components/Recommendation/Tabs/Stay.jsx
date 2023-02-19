@@ -13,93 +13,107 @@ export default function Spot() {
   return (
     <WarpDiv>
       <InnerBox1>
-        <InnerList>
-          <InnerImg src={shilla} />
-          <InnerNmb>1</InnerNmb>
+        <a href="https://www.shillahotels.com/index.do">
+          <InnerList>
+            <InnerImg src={shilla} />
+            <InnerNmb>1</InnerNmb>
 
-          <InnerText>
-            <InnerTextH3>신라호텔</InnerTextH3>
-            <InnerTextp>공식적으로 상장된 유일무이한 호텔</InnerTextp>
-            <LikeBox>
-              <LikeImg src={TapHeart} alt="" />
-              <p>15,948</p>
-              <InnerTex>580,000</InnerTex>
-            </LikeBox>
-          </InnerText>
-        </InnerList>
+            <InnerText>
+              <InnerTextH3>신라호텔</InnerTextH3>
+              <InnerTextp>공식적으로 상장된 유일무이한 호텔</InnerTextp>
+              <LikeBox>
+                <LikeImg src={TapHeart} alt="" />
+                <p>15,948</p>
+                <InnerTex>580,000</InnerTex>
+              </LikeBox>
+            </InnerText>
+          </InnerList>
+        </a>
 
-        <InnerList>
-          <InnerImg src={choseon} />
-          <InnerNmb>2</InnerNmb>
+        <a href="https://www.josunhotel.com/intro.do">
+          <InnerList>
+            <InnerImg src={choseon} />
+            <InnerNmb>2</InnerNmb>
 
-          <InnerText>
-            <InnerTextH3>조선호텔</InnerTextH3>
-            <InnerTextp>세계적으로 신뢰받는 호텔</InnerTextp>
-            <LikeBox>
-              <LikeImg src={TapHeart} alt="" />
-              <p>13,216</p>
-              <InnerTex>700,000</InnerTex>
-            </LikeBox>
-          </InnerText>
-        </InnerList>
-        <InnerList>
-          <InnerImg src={walker} />
-          <InnerNmb>3</InnerNmb>
+            <InnerText>
+              <InnerTextH3>조선호텔</InnerTextH3>
+              <InnerTextp>세계적으로 신뢰받는 호텔</InnerTextp>
+              <LikeBox>
+                <LikeImg src={TapHeart} alt="" />
+                <p>13,216</p>
+                <InnerTex>700,000</InnerTex>
+              </LikeBox>
+            </InnerText>
+          </InnerList>
+        </a>
 
-          <InnerText>
-            <InnerTextH3>워커힐호텔</InnerTextH3>
-            <InnerTextp>생동감 넘치는 색다른 여행</InnerTextp>
-            <LikeBox>
-              <LikeImg src={TapHeart} alt="" />
-              <p>11,901</p>
-              <InnerTex>460,000</InnerTex>
-            </LikeBox>
-          </InnerText>
-        </InnerList>
+        <a href="https://www.walkerhill.com/">
+          <InnerList>
+            <InnerImg src={walker} />
+            <InnerNmb>3</InnerNmb>
+
+            <InnerText>
+              <InnerTextH3>워커힐호텔</InnerTextH3>
+              <InnerTextp>생동감 넘치는 색다른 여행</InnerTextp>
+              <LikeBox>
+                <LikeImg src={TapHeart} alt="" />
+                <p>11,901</p>
+                <InnerTex>460,000</InnerTex>
+              </LikeBox>
+            </InnerText>
+          </InnerList>
+        </a>
       </InnerBox1>
+
       <InnerBox2>
-        <InnerList>
-          <InnerImg src={signiel} />
-          <InnerNmb>4</InnerNmb>
+        <a href="https://www.lottehotel.com/seoul-signiel/ko.html">
+          <InnerList>
+            <InnerImg src={signiel} />
+            <InnerNmb>4</InnerNmb>
 
-          <InnerText>
-            <InnerTextH3>시그니엘</InnerTextH3>
-            <InnerTextp>한국최고의 호텔</InnerTextp>
-            <LikeBox>
-              <LikeImg src={TapHeart} alt="" />
-              <p>7,423</p>
-              <InnerTex>750,000</InnerTex>
-            </LikeBox>
-          </InnerText>
-        </InnerList>
-        <InnerList>
-          <InnerImg src={grand} />
-          <InnerNmb>5</InnerNmb>
+            <InnerText>
+              <InnerTextH3>시그니엘</InnerTextH3>
+              <InnerTextp>한국최고의 호텔</InnerTextp>
+              <LikeBox>
+                <LikeImg src={TapHeart} alt="" />
+                <p>7,423</p>
+                <InnerTex>750,000</InnerTex>
+              </LikeBox>
+            </InnerText>
+          </InnerList>
+        </a>
+        <a href="https://www.hyatt.com/ko-KR/hotel/south-korea/grand-hyatt-seoul/selrs">
+          <InnerList>
+            <InnerImg src={grand} />
+            <InnerNmb>5</InnerNmb>
 
-          <InnerText>
-            <InnerTextH3>그랜드 하얏트 서울</InnerTextH3>
-            <InnerTextp>남산에 위치한 서울 고급호텔</InnerTextp>
-            <LikeBox>
-              <LikeImg src={TapHeart} alt="" />
-              <p>6,223</p>
-              <InnerTex>667,000</InnerTex>
-            </LikeBox>
-          </InnerText>
-        </InnerList>
-        <InnerList>
-          <InnerImg src={season} />
-          <InnerNmb>6</InnerNmb>
+            <InnerText>
+              <InnerTextH3>그랜드 하얏트 서울</InnerTextH3>
+              <InnerTextp>남산에 위치한 서울 고급호텔</InnerTextp>
+              <LikeBox>
+                <LikeImg src={TapHeart} alt="" />
+                <p>6,223</p>
+                <InnerTex>667,000</InnerTex>
+              </LikeBox>
+            </InnerText>
+          </InnerList>
+        </a>
+        <a href="https://www.fourseasons.com/kr/seoul/?source=ppc|SKO|gaw|acr|RG|Brand-KR-KR&ppc=true&gclid=Cj0KCQiArsefBhCbARIsAP98hXRi_TF4VZMIjwy4HLo0lS7h-WvGXe954XYGWb9HLxSOKMqsV1eIfeUaAnV_EALw_wcB&gclsrc=aw.ds">
+          <InnerList>
+            <InnerImg src={season} />
+            <InnerNmb>6</InnerNmb>
 
-          <InnerText>
-            <InnerTextH3>포시즌스 서울</InnerTextH3>
-            <InnerTextp>광화문에 위치한 현대적인 감각의 호텔</InnerTextp>
-            <LikeBox>
-              <LikeImg src={TapHeart} alt="" />
-              <p>3,903</p>
-              <InnerTex>860,000</InnerTex>
-            </LikeBox>
-          </InnerText>
-        </InnerList>
+            <InnerText>
+              <InnerTextH3>포시즌스 서울</InnerTextH3>
+              <InnerTextp>광화문에 위치한 현대적인 감각의 호텔</InnerTextp>
+              <LikeBox>
+                <LikeImg src={TapHeart} alt="" />
+                <p>3,903</p>
+                <InnerTex>860,000</InnerTex>
+              </LikeBox>
+            </InnerText>
+          </InnerList>
+        </a>
       </InnerBox2>
     </WarpDiv>
   );
