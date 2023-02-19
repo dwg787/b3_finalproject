@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BlackLogo from '../../assets/BlackLogo.avif';
 
-export default function Footer() {
+const BlackFooter = () => {
   return (
     <WrapDiv>
       <TextBox>
@@ -35,7 +35,9 @@ export default function Footer() {
       </TextBox>
     </WrapDiv>
   );
-}
+};
+
+export default BlackFooter;
 
 const WrapDiv = styled.div`
   width: 100%;
