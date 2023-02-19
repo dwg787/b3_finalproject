@@ -1,19 +1,3 @@
-import { useEffect } from 'react';
-import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
-import { useParams, Link } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import Loader from '../../components/Loader/Loader';
-import KakaoMap from '../../components/Map/KakaoMap';
-import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
-import { FetchedStayDataType } from '../../apis/publicAPI';
-import { db } from '../../apis/firebase';
-// import MapImoji from '../../components/Map/MapImoji';
-import DetailScroll from '../../components/Scroll/DetailScroll';
-import Communication from '../../components/Review/Communication';
-import Notification from '../../components/Notification/Notification';
-import noimg from '../../assets/noimg.avif';
-import Liked from '../../components/Liked/Liked';
-
 import {
   DetailWrap,
   Container,
@@ -24,7 +8,6 @@ import {
   DetailInfoText,
   DetailInfoTextBox,
   DetailInformation,
-  SideInfoWrapper,
   DetailImg,
   DetailImgBox,
   DetailText,
@@ -35,6 +18,20 @@ import {
   TabHr,
   RecommendSide,
 } from './styles';
+import { useEffect } from 'react';
+import { useQuery } from 'react-query';
+import { db } from '../../apis/firebase';
+import noimg from '../../assets/noimg.avif';
+import { useParams, Link } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
+import KakaoMap from '../../components/Map/KakaoMap';
+import { FetchedStayDataType } from '../../apis/publicAPI';
+import DetailScroll from '../../components/Scroll/DetailScroll';
+import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
+import Communication from '../../components/Review/Communication';
+import Notification from '../../components/Notification/Notification';
+import RestaurantLiked from '../../components/Liked/RestaurantLiked';
+import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -104,10 +101,10 @@ const RestaurantDetailPage = () => {
                     {restaurantDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    <Liked restaurantDetailData={restaurantDetailData} />
-                    {/* <RestaurantLiked
+                    {/* <Liked restaurantDetailData={restaurantDetailData} /> */}
+                    <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
-                    /> */}
+                    />
 
                     {/* <Link to={`/${param.id}/map`}>
                       <MapImoji />
