@@ -18,12 +18,22 @@ import {
   GoButton,
 } from './styles';
 
-const StayInfo = ({ spotData }) => {
+export default function StayInfo({
+  spotData,
+  restaurantDetailData,
+  stayDetailData,
+}: UserProps): React.ReactElement {
+  const combinedData = {
+    ...spotData,
+    ...restaurantDetailData,
+    ...stayDetailData,
+  };
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
-    ['stay_list', spotData],
-    () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
+    ['stay_list', combinedData],
+    () =>
+      fetchNearStayData({ mapx: combinedData.mapx, mapy: combinedData.mapy }),
     {
-      enabled: !!spotData,
+      enabled: !!combinedData,
     },
   );
 
@@ -66,7 +76,7 @@ const StayInfo = ({ spotData }) => {
                         <MyChildTexth3>{item.title}</MyChildTexth3>
                         <MyChildTextp> {item.addr1}</MyChildTextp>
                         <LikeBox>
-                          <RestaurantLiked />
+                          <RestaurantLiked stayData={stayData} />
 
                           <p>00</p>
                         </LikeBox>
@@ -85,6 +95,4 @@ const StayInfo = ({ spotData }) => {
       </MyChildListBox>
     </Container>
   );
-};
-
-export default StayInfo;
+}

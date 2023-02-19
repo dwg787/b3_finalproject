@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
-
-import { fetchNearRestaurantData } from '../../apis/publicAPI';
+import { fetchNearSpotData } from '../../apis/publicAPI';
 import Loader from '../Loader/Loader';
-import RestaurantDetail from '../RestaurantDetail';
 import noimg from '../../assets/noimg.avif';
+import { Link } from 'react-router-dom';
+import RestaurantLiked from '../Liked/RestaurantLiked';
 
 import {
   Container,
@@ -17,10 +17,8 @@ import {
   LikeBox,
   GoButton,
 } from './styles';
-import { Link } from 'react-router-dom';
-import RestaurantLiked from '../Liked/RestaurantLiked';
 
-export default function RestaurantInfo({
+export default function SpotInfo({
   spotData,
   restaurantDetailData,
   stayDetailData,
@@ -31,10 +29,10 @@ export default function RestaurantInfo({
     ...stayDetailData,
   };
 
-  const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ['restaurant_list', combinedData],
+  const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
+    ['spot_list', combinedData],
     () =>
-      fetchNearRestaurantData({
+      fetchNearSpotData({
         mapx: combinedData.mapx,
         mapy: combinedData.mapy,
       }),
@@ -45,18 +43,18 @@ export default function RestaurantInfo({
 
   return (
     <Container>
-      <MyChildTopText>주변 맛집 정보</MyChildTopText>
+      <MyChildTopText>주변 관광지 정보</MyChildTopText>
       <MyChildListBox>
-        {isLoadingRestaurant ? (
+        {isLoadingSpot ? (
           <Loader />
         ) : (
           <>
-            {restaurantData ? (
+            {spotDetailData ? (
               <>
-                {restaurantData.slice(0, 4).map((item, i) => {
+                {spotDetailData.slice(0, 4).map((item, i) => {
                   return (
                     <MyChildList key={i}>
-                      <Link to={`/restaurant/${item.contentid}`}>
+                      <Link to={`/spot/${item.contentid}`}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
@@ -82,7 +80,7 @@ export default function RestaurantInfo({
                         <MyChildTexth3>{item.title}</MyChildTexth3>
                         <MyChildTextp> {item.addr1}</MyChildTextp>
                         <LikeBox>
-                          <RestaurantLiked restaurantData={restaurantData} />
+                          <RestaurantLiked spotDetailData={spotDetailData} />
                           <p>00</p>
                         </LikeBox>
                       </MyCildTextBox>
@@ -92,7 +90,7 @@ export default function RestaurantInfo({
               </>
             ) : (
               <>
-                <div>주변 숙박정보가 없습니다.</div>
+                <div>주변 관광지 정보가 없습니다.</div>
               </>
             )}
           </>

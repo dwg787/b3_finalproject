@@ -3,29 +3,37 @@ import { useParams } from 'react-router-dom';
 import {
   fetchRestaurantDetailInfo,
   fetchSpotDetailData,
+  fetchStayDetailInfo,
 } from '../apis/publicAPI';
 import KakaoMap from '../components/Map/KakaoMap';
 
 const MapPage = () => {
   const param = useParams();
-  const { data, isLoading } = useQuery(['spot_detail', param], () =>
+
+  const { data: spotData } = useQuery(['spot_detail', param], () =>
     fetchSpotDetailData({ param }),
   );
 
-  // const {
-  //   data: restaurantDetailData,
-  //   isLoading: isLoadingRestaurantDetail,
-  // } = useQuery(['restaurant_detail', param], () =>
-  //   fetchRestaurantDetailInfo({ param }),
-  // );
+  const { data: stayDetailData } = useQuery(['stay_detail', param], () =>
+    fetchStayDetailInfo({ param }),
+  );
 
-  // console.log(restaurantDetailData);
+  const { data: restaurantDetailData } = useQuery(
+    ['restaurant_detail', param],
+    () => fetchRestaurantDetailInfo({ param }),
+  );
+
+  const combinedData = {
+    ...spotData,
+    ...restaurantDetailData,
+    ...stayDetailData,
+  };
 
   return (
     <div>
-      {data && (
+      {combinedData && (
         <div key={param.id}>
-          <KakaoMap mapx={data.mapx} mapy={data.mapy} />
+          <KakaoMap mapx={combinedData.mapx} mapy={combinedData.mapy} />
         </div>
       )}
     </div>

@@ -204,7 +204,7 @@ const SideInfoWrapper = styled.div`
 `;
 
 const RecommendSide = styled(SideInfoWrapper)`
-  background-color: #f4f1f6;
+  /* background-color: #f4f1f6; */
   border-radius: 20px;
   height: 1271px;
 `;

@@ -39,6 +39,10 @@ import {
   RecommendSide,
 } from './styles';
 import Liked from '../../components/Liked/Liked';
+import StayInfo from '../../components/Recommendation/StayInfo';
+import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
+import SpotInfo from '../../components/Recommendation/SpotInfo';
+import MapImoji from '../../components/Map/MapImoji';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -127,9 +131,9 @@ const StayDetailPage = () => {
                   <DeatilImojiBox>
                     <RestaurantLiked stayDetailData={stayDetailData} />
                     {/* <Liked stayDetailData={stayDetailData} /> */}
-                    {/* <Link to={`/${param.id}/map`}>
+                    <Link to={`/${param.id}/map`}>
                       <MapImoji />
-                    </Link> */}
+                    </Link>
                   </DeatilImojiBox>
                 </DeatilTextBox>
 
@@ -177,10 +181,10 @@ const StayDetailPage = () => {
           </>
         )}
 
-        <RecommendSide id="5">
-          {/* <StayInfo spotData={spotData} />
-        <RestaurantInfo spotData={spotData} /> */}
-        </RecommendSide>
+        <SideInfoWrapper id="5">
+          <SpotInfo stayDetailData={stayDetailData} />
+          <RestaurantInfo stayDetailData={stayDetailData} />
+        </SideInfoWrapper>
       </Container>
     </DetailWrap>
   );

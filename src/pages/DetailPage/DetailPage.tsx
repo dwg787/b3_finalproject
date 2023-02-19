@@ -36,6 +36,7 @@ import {
   TabHr,
 } from './styles';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
+import Footer from '../../components/Footer/BlackFooter';
 
 const DetailPage = () => {
   const param = useParams();
