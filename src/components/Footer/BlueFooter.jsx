@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BlueLogo from '../../assets/BlueLogo.avif';
 
-export default function Footer() {
+const BlueFooter = () => {
   return (
     <WrapDiv>
       <TextBox>
@@ -35,7 +35,9 @@ export default function Footer() {
       </TextBox>
     </WrapDiv>
   );
-}
+};
+
+export default BlueFooter;
 
 const WrapDiv = styled.div`
   width: 100%;

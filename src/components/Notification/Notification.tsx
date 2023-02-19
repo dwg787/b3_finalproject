@@ -28,6 +28,15 @@ const alarmFadeOut = keyframes`
   }
 `;
 
+// const slideIn = keyframes`
+//   from{
+//     transform: translateY(-100%);
+//   }
+//   to{
+//     transform: translateY(0%);
+//   }
+// `;
+
 const NotificationCard = styled.div`
   width: 300px;
   height: 50px;

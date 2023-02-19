@@ -4,6 +4,8 @@ import Loader from '../Loader/Loader';
 import noimg from '../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
 import RestaurantLiked from '../Liked/RestaurantLiked';
+import { useRecoilState } from 'recoil';
+import { nearStayState } from '../../recoil/apiDataAtoms';
 
 import {
   Container,
@@ -17,8 +19,10 @@ import {
   LikeBox,
   GoButton,
 } from './styles';
+import { useEffect } from 'react';
 
 const StayInfo = ({ spotData }) => {
+  const [nearStayList, setNearStayList] = useRecoilState(nearStayState);
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
     ['stay_list', spotData],
     () => fetchNearStayData({ mapx: spotData.mapx, mapy: spotData.mapy }),
@@ -26,6 +30,10 @@ const StayInfo = ({ spotData }) => {
       enabled: !!spotData,
     },
   );
+
+  useEffect(() => {
+    setNearStayList(stayData);
+  }, [setNearStayList, stayData]);
 
   return (
     <Container>
