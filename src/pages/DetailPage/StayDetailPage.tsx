@@ -38,6 +38,7 @@ import {
   TabHr,
   RecommendSide,
 } from './styles';
+import Liked from '../../components/Liked/Liked';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -125,7 +126,7 @@ const StayDetailPage = () => {
                   </DetailTextArr>
                   <DeatilImojiBox>
                     <RestaurantLiked stayDetailData={stayDetailData} />
-
+                    {/* <Liked stayDetailData={stayDetailData} /> */}
                     {/* <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link> */}

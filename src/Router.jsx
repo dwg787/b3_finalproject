@@ -22,6 +22,7 @@ import {
 
 import Footer from './components/Footer/Footer';
 import SlotMachine from './components/Slot/SlotMechine';
+import styled from 'styled-components';
 
 const Router = () => {
   return (
@@ -45,7 +46,7 @@ const Router = () => {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/slot" element={<SlotMachine />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </Suspense>
   );

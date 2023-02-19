@@ -16,6 +16,7 @@ import MySpot from '../components/Recommendation/MySpot';
 import { useEffect } from 'react';
 import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
 import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
+import Footer from '../components/Footer/Footer';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -43,6 +44,7 @@ const MainPage = () => {
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
+          <Footer />
           {/* <StayRecommendation />
           <RestaurantRecommendation /> */}
         </>
@@ -61,6 +63,7 @@ const MainPage = () => {
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
+          <Footer />
           {/* <StayRecommendation />
           <RestaurantRecommendation /> */}
         </>
@@ -76,6 +79,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 500px;
   background: linear-gradient(white 40%, #6478ff);
 `;
 
