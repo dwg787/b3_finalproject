@@ -36,7 +36,7 @@ import {
   TabHr,
 } from './styles';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
-// import SideInfoMap from '../../components/Map/SideInfoMap';
+import SideInfoMap from '../../components/Map/SideInfoMap';
 
 const DetailPage = () => {
   const param = useParams();
@@ -128,20 +128,20 @@ const DetailPage = () => {
                 </DetailInformation>
 
                 <DetailInformationMap id="3">
-                  <KakaoMap
-                    mapx={spotData.mapx}
-                    mapy={spotData.mapy}
-                    title={spotData.title}
-                    tel={spotData.tel}
-                    homepage={spotData.homepage}
-                  />
-                  {/* <SideInfoMap
+                  {/* <KakaoMap
                     mapx={spotData.mapx}
                     mapy={spotData.mapy}
                     title={spotData.title}
                     tel={spotData.tel}
                     homepage={spotData.homepage}
                   /> */}
+                  <SideInfoMap
+                    mapx={spotData.mapx}
+                    mapy={spotData.mapy}
+                    title={spotData.title}
+                    tel={spotData.tel}
+                    homepage={spotData.homepage}
+                  />
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
