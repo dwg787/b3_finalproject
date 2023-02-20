@@ -103,6 +103,20 @@ export const fetchSpotDetailData = async ({
   return res.data.response.body.items.item[0];
 };
 
+//상세페이지 주변 관광지 api
+export const fetchNearSpotData = async ({
+  mapx,
+  mapy,
+}: {
+  mapx: string;
+  mapy: string;
+}) => {
+  const res = await axios.get(
+    `https://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
+  );
+  return res.data.response.body.items.item;
+};
+
 //상세페이지 주변 숙박 api
 export const fetchNearStayData = async ({
   mapx,

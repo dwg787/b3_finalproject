@@ -1,11 +1,9 @@
 import { useQuery } from 'react-query';
-import { fetchNearStayData } from '../../apis/publicAPI';
+import { fetchNearSpotData } from '../../apis/publicAPI';
 import Loader from '../Loader/Loader';
 import noimg from '../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
 import RestaurantLiked from '../Liked/RestaurantLiked';
-import { useRecoilState } from 'recoil';
-import { nearStayState } from '../../recoil/apiDataAtoms';
 
 import {
   Container,
@@ -19,9 +17,8 @@ import {
   LikeBox,
   GoButton,
 } from './styles';
-import { useEffect } from 'react';
 
-export default function StayInfo({
+export default function SpotInfo({
   spotData,
   restaurantDetailData,
   stayDetailData,
@@ -31,34 +28,33 @@ export default function StayInfo({
     ...restaurantDetailData,
     ...stayDetailData,
   };
-  const [nearStayList, setNearStayList] = useRecoilState(nearStayState);
-  const { data: stayData, isLoading: isLoadingStay } = useQuery(
-    ['stay_list', combinedData],
+
+  const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
+    ['spot_list', combinedData],
     () =>
-      fetchNearStayData({ mapx: combinedData.mapx, mapy: combinedData.mapy }),
+      fetchNearSpotData({
+        mapx: combinedData.mapx,
+        mapy: combinedData.mapy,
+      }),
     {
       enabled: !!combinedData,
     },
   );
 
-  useEffect(() => {
-    setNearStayList(stayData);
-  }, [setNearStayList, stayData]);
-
   return (
     <Container>
-      <MyChildTopText>주변 숙소 추천</MyChildTopText>
+      <MyChildTopText>주변 관광지 정보</MyChildTopText>
       <MyChildListBox>
-        {isLoadingStay ? (
+        {isLoadingSpot ? (
           <Loader />
         ) : (
           <>
-            {stayData ? (
+            {spotDetailData ? (
               <>
-                {stayData.slice(0, 4).map((item, i) => {
+                {spotDetailData.slice(0, 4).map((item, i) => {
                   return (
                     <MyChildList key={i}>
-                      <Link to={`/stay/${item.contentid}`}>
+                      <Link to={`/spot/${item.contentid}`}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
@@ -84,8 +80,7 @@ export default function StayInfo({
                         <MyChildTexth3>{item.title}</MyChildTexth3>
                         <MyChildTextp> {item.addr1}</MyChildTextp>
                         <LikeBox>
-                          <RestaurantLiked stayData={stayData} />
-
+                          <RestaurantLiked spotDetailData={spotDetailData} />
                           <p>00</p>
                         </LikeBox>
                       </MyCildTextBox>
@@ -95,7 +90,7 @@ export default function StayInfo({
               </>
             ) : (
               <>
-                <div>주변 숙박정보가 없습니다.</div>
+                <div>주변 관광지 정보가 없습니다.</div>
               </>
             )}
           </>

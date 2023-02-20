@@ -68,19 +68,55 @@ const MyRestaurantLiked = () => {
       <StTicketWrap>
         <StTicket>
           {restaurant.map((data, i) => {
-            return (
-              // <Link to={`/restaurant/${data.contentid}`}> </Link>
-              <StTicketCard key={i}>
-                <StTicketCardLeft>
-                  <StTicketHeader>
-                    {/* <StCartMenu>음식점</StCartMenu> */}
-                  </StTicketHeader>
+            switch (data.contenttypeid) {
+              case '39':
+                return (
+                  <Link to={`/restaurant/${data.contentid}`}>
+                    <StTicketCard key={i}>
+                      <StTicketCardLeft>
+                        <StTicketHeader>
+                          <StCartMenu>음식점</StCartMenu>
+                        </StTicketHeader>
 
-                  <StMyTicketImage src={data.img || noimg} alt="사진" />
-                </StTicketCardLeft>
-                <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
-              </StTicketCard>
-            );
+                        <StMyTicketImage src={data.img || noimg} alt="사진" />
+                      </StTicketCardLeft>
+                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+                    </StTicketCard>
+                  </Link>
+                );
+              case '32':
+                return (
+                  <Link to={`/stay/${data.contentid}`}>
+                    <StTicketCard key={i}>
+                      <StTicketCardLeft>
+                        <StTicketHeader>
+                          <StCartMenu>숙박</StCartMenu>
+                        </StTicketHeader>
+
+                        <StMyTicketImage src={data.img || noimg} alt="사진" />
+                      </StTicketCardLeft>
+                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+                    </StTicketCard>
+                  </Link>
+                );
+              case '12':
+                return (
+                  <Link to={`/spot/${data.contentid}`}>
+                    <StTicketCard key={i}>
+                      <StTicketCardLeft>
+                        <StTicketHeader>
+                          <StCartMenu>관광지</StCartMenu>
+                        </StTicketHeader>
+
+                        <StMyTicketImage src={data.img || noimg} alt="사진" />
+                      </StTicketCardLeft>
+                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+                    </StTicketCard>
+                  </Link>
+                );
+              default:
+                return null;
+            }
           })}
         </StTicket>
       </StTicketWrap>
@@ -159,12 +195,27 @@ const StCartTitle = styled.span`
   text-align: center;
 `;
 
-const StCartMenu = styled.span`
-  color: #fafafa;
-  font-weight: 900;
-  z-index: 100;
-  background-color: teal;
-  margin-right: 130px;
+// const StCartMenu = styled.span`
+//   color: #fafafa;
+//   font-weight: 900;
+//   z-index: 100;
+//   background-color: teal;
+//   margin-right: 130px;
+// `;
+
+const StCartMenu = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  width: 50px;
+  height: 24px;
+  border-radius: 30px;
+  background-color: rgba(207, 171, 228, 0.4);
+  margin: 5px;
 `;
 
 const StTicketHeader = styled.div`

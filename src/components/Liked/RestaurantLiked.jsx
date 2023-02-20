@@ -19,6 +19,9 @@ export default function RestaurantLiked({
   spotData,
   restaurantDetailData,
   stayDetailData,
+  stayData,
+  spotDetailData,
+  restaurantData,
 }: UserProps): React.ReactElement {
   //좋아요 클릭 한번만 될수있도록
   const clickRef = useRef(false);
@@ -30,11 +33,14 @@ export default function RestaurantLiked({
   const [alarmMsg, setAlarmMsg] = useState('');
   const { addNoti } = useNotification(alarmMsg);
 
-  //3개의 api데이터를 한번에 사용할수있도록 합침
+  //여래개의 api데이터를 한번에 사용할수있도록 합침
   const combinedData = {
     ...spotData,
     ...restaurantDetailData,
     ...stayDetailData,
+    ...spotDetailData,
+    ...stayData,
+    ...restaurantData,
   };
 
   const addRestaurantLiked = async () => {
@@ -58,6 +64,7 @@ export default function RestaurantLiked({
               img: combinedData.firstimage,
               contentid: combinedData.contentid,
               date: Date.now(),
+              contenttypeid: combinedData.contenttypeid,
             });
           }
         })
@@ -69,6 +76,7 @@ export default function RestaurantLiked({
         img: combinedData.firstimage,
         contentid: combinedData.contentid,
         date: Date.now(),
+        contenttypeid: combinedData.contenttypeid,
       }).catch((e) => console.log(e));
       // setIsLiked(true);
       // 좋아요 버튼 활성화 관련
