@@ -15,6 +15,9 @@ import styled from 'styled-components';
 import { getDate } from '../../common/utils';
 import useNotification from '../../hooks/useNotification';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default function ReviewList({ review, i, reviews, key }) {
   const [newReview, setNewReview] = useState('');
@@ -46,6 +49,56 @@ export default function ReviewList({ review, i, reviews, key }) {
       review: editValue,
     });
   };
+
+  // const settings = {
+  //   slide: <ReviewBoxList />, // slide 해주고 싶은 단위
+  //   infinite: true, //무한 슬라이더로 할지
+  //   speed: 500,
+  //   arrows: true, //화살표 (양옆 버튼) 구현할 것인지
+  //   autoplay: true, //자동 재생 할 것인지
+  //   autoplaySpeed: 5000,
+  //   slidesToShow: 1, // 한번에 몇개 슬라이드 보여줄 것인지
+  //   slidesToScroll: 1,
+  //   centerMode: true,
+  //   variableWidth: true,
+  //   centerPadding: '0px',
+  // };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      >
+        Next
+      </div>
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      >
+        Prev
+      </div>
+    );
+  }
 
   return (
     <CommentBoxWrap>

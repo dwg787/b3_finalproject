@@ -11,6 +11,8 @@ import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
 import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
 import styled from 'styled-components';
 
