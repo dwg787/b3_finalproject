@@ -22,16 +22,12 @@ const MyLikeList = () => {
   const uid = auth.currentUser.uid;
 
   const getRestaurantLiked = async () => {
-    const q = query(
-      collection(db, 'bookmarks'),
-      uid,
-      //   where('bookmarks', 'array-contains', ),
-    );
+    const q = query(collection(db, 'bookmarks'), uid);
     const data = await getDocs(q);
     const newData = data.docs.map((doc) => ({
       ...doc.data(),
     }));
-    // setRestaurant(newData);
+    setRestaurant(newData);
     console.log('파베 북마크 데이터', newData);
   };
 
@@ -44,13 +40,20 @@ const MyLikeList = () => {
   //   }
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
-  //   const delResLiked = async () => {
-  //     const docRef = doc(db, 'bookmarks', uid);
-  //     console.log(docRef);
-  //     await deleteDoc(docRef, {
-  //         bookmarks: arrayRemove()
-  //     });
-  //   };
+  const delResLiked = async (targetId) => {
+    // console.log('삭제버튼 누른 타겟', targetId);
+    if (restaurant) {
+      const docRef = doc(db, 'bookmarks', uid);
+      //   console.log(docRef);
+      const TargetBookmark = restaurant[0].bookmarks.find(
+        (e) => e.contentid === targetId,
+      );
+      await deleteDoc(docRef, {
+        bookmarks: arrayRemove(TargetBookmark),
+      });
+    }
+    getRestaurantLiked();
+  };
 
   //   const deleteRestaurantLiked = async () => {
   //     const uid = auth.currentUser.uid;
@@ -71,68 +74,80 @@ const MyLikeList = () => {
     <>
       <StTicketWrap>
         <StTicket>
-          {restaurant.map((data, i) => {
-            switch (data.contenttypeid) {
-              case '39':
-                return (
-                  <StTicketCard key={i}>
-                    <StTicketCardLeft>
-                      <StTicketHeader>
-                        <StCartMenu>음식점</StCartMenu>
-                      </StTicketHeader>
-                      <StMyTicketImage
-                        src={data.img || noimg}
-                        alt="사진"
-                        onClick={() =>
-                          navigate(`/restaurant/${data.contentid}`)
-                        }
-                      />
-                    </StTicketCardLeft>
-                    <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
-                    <StDeleteBtn>X</StDeleteBtn>
-                  </StTicketCard>
-                );
-              case '32':
-                return (
-                  <StTicketCard key={i}>
-                    <StTicketCardLeft>
-                      <StTicketHeader>
-                        <StCartMenu>숙박</StCartMenu>
-                      </StTicketHeader>
-                      <StMyTicketImage
-                        src={data.img || noimg}
-                        alt="사진"
-                        onClick={() => navigate(`/stay/${data.contentid}`)}
-                      />
-                    </StTicketCardLeft>
-                    <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
-                    <StDeleteBtn>X</StDeleteBtn>
-                  </StTicketCard>
-                );
-              case '12':
-                return (
-                  <>
-                    <StTicketCard key={i}>
+          {restaurant &&
+            restaurant[0]?.bookmarks.map((data) => {
+              //   console.log('jsx에서 받은 데이터', restaurant);
+              switch (data.contenttypeid) {
+                case '39':
+                  return (
+                    <StTicketCard key={data.contentid}>
                       <StTicketCardLeft>
                         <StTicketHeader>
-                          <StCartMenu>관광지</StCartMenu>
+                          <StCartMenu>음식점</StCartMenu>
                         </StTicketHeader>
-
                         <StMyTicketImage
                           src={data.img || noimg}
                           alt="사진"
-                          onClick={() => navigate(`/spot/${data.contentid}`)}
+                          onClick={() =>
+                            navigate(`/restaurant/${data.contentid}`)
+                          }
                         />
                       </StTicketCardLeft>
                       <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
-                      <StDeleteBtn>X</StDeleteBtn>
+                      <StDeleteBtn onClick={() => delResLiked(data.contentid)}>
+                        X
+                      </StDeleteBtn>
                     </StTicketCard>
-                  </>
-                );
-              default:
-                return null;
-            }
-          })}
+                  );
+                case '32':
+                  return (
+                    <StTicketCard key={data.contentid}>
+                      <StTicketCardLeft>
+                        <StTicketHeader>
+                          <StCartMenu>숙박</StCartMenu>
+                        </StTicketHeader>
+                        <StMyTicketImage
+                          src={data.img || noimg}
+                          alt="사진"
+                          onClick={() => navigate(`/stay/${data.contentid}`)}
+                        />
+                      </StTicketCardLeft>
+                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+                      <StDeleteBtn onClick={() => delResLiked(data.contentid)}>
+                        X
+                      </StDeleteBtn>
+                    </StTicketCard>
+                  );
+                case '12':
+                  return (
+                    <>
+                      <StTicketCard key={data.contentid}>
+                        <StTicketCardLeft>
+                          <StTicketHeader>
+                            <StCartMenu>관광지</StCartMenu>
+                          </StTicketHeader>
+
+                          <StMyTicketImage
+                            src={data.img || noimg}
+                            alt="사진"
+                            onClick={() => navigate(`/spot/${data.contentid}`)}
+                          />
+                        </StTicketCardLeft>
+                        <StCartTitle>
+                          {data.restaurant.split('[', 1)}
+                        </StCartTitle>
+                        <StDeleteBtn
+                          onClick={() => delResLiked(data.contentid)}
+                        >
+                          X
+                        </StDeleteBtn>
+                      </StTicketCard>
+                    </>
+                  );
+                default:
+                  return null;
+              }
+            })}
         </StTicket>
       </StTicketWrap>
     </>

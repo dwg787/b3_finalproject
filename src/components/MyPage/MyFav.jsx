@@ -40,7 +40,7 @@ const MyFav = () => {
     //   </StTicket>
     // </StTicketWrap>
     <>
-      <MyRestaurantLiked />
+      {/* <MyRestaurantLiked /> */}
       <MyLikeList />
     </>
   );
