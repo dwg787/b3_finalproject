@@ -4,12 +4,36 @@ import InnerPhoto from '../../../assets/slider3.avif';
 import TapHeart from '../../../assets/TapHeart.avif';
 import dombae from '../../../assets/dombae.avif';
 import manmi from '../../../assets/manmi.avif';
-import koji from '../../../assets/koji.avif';
+import dolsh from '../../../assets/dolsh.avif';
 import soban from '../../../assets/soban.avif';
 import gore from '../../../assets/gore.avif';
 import mil from '../../../assets/mil.avif';
 
 export default function Rest() {
+  const godombae = () => {
+    window.location.href = '/restaurant/135919';
+  };
+
+  const gomanmi = () => {
+    window.location.href = '/restaurant/2841908';
+  };
+
+  const godolsh = () => {
+    window.location.href = '/restaurant/2877683';
+  };
+
+  const gosoban = () => {
+    window.location.href = '/restaurant/2370833';
+  };
+
+  const gogore = () => {
+    window.location.href = '/restaurant/1019409';
+  };
+
+  const gomil = () => {
+    window.location.href = '/restaurant/2784321';
+  };
+
   return (
     <WarpDiv>
       <InnerBox1>
@@ -24,7 +48,7 @@ export default function Rest() {
               <p>3,012</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={godombae}>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
@@ -38,21 +62,21 @@ export default function Rest() {
               <p>2,881</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={gomanmi}>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={koji} />
+          <InnerImg src={dolsh} />
           <InnerNmb>3</InnerNmb>
           <InnerText>
-            <InnerTextH3>스시 코우지</InnerTextH3>
-            <InnerTextp>코우지셰프 스시야</InnerTextp>
+            <InnerTextH3>돌쇠정 본점</InnerTextH3>
+            <InnerTextp>연잎 떡갈비 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
               <p>2,224</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={godolsh}>바로가기</InnerButton>
         </InnerList>
       </InnerBox1>
 
@@ -68,7 +92,7 @@ export default function Rest() {
               <p>1,617</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={gosoban}>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
@@ -82,7 +106,7 @@ export default function Rest() {
               <p>924</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={gogore}>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
@@ -96,7 +120,7 @@ export default function Rest() {
               <p>741</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={gomil}>바로가기</InnerButton>
         </InnerList>
       </InnerBox2>
     </WarpDiv>

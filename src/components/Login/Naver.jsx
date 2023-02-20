@@ -9,13 +9,24 @@ const Naver = ({ setGetToken, setUserInfo }) => {
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
   const NAVER_CALLBACK_URL = 'http://localhost:3000/';
 
+  const handleNaverLogin = () => {
+    if (
+      document &&
+      document?.querySelector('#naverIdLogin')?.firstChild &&
+      window !== undefined
+    ) {
+      const loginBtn = document.getElementById('naverIdLogin')?.firstChild;
+      loginBtn.click();
+    }
+  };
+
   const initializeNaverLogin = () => {
     const naverLogin = new naver.LoginWithNaverId({
       clientId: NAVER_CLIENT_ID,
       callbackUrl: NAVER_CALLBACK_URL,
       // 팝업창으로 로그인을 진행할 것인지?
       isPopup: false,
-      loginButton: { color: 'green', type: 1, height: 35 },
+      loginButton: { color: 'green', type: 1, height: 40 },
       callbackHandle: true,
     });
     naverLogin.init();
@@ -64,17 +75,30 @@ const Naver = ({ setGetToken, setUserInfo }) => {
   }, []);
 
   return (
-    <>
+    <NaverBox>
       {/* 버튼에다 백그라운드 이미지 */}
       {/* 이미지에다 이이디값 을 주거나  클릭 이벤트를하거나 */}
 
-      <NaverBtn id="naverIdLogin">
-        <NaverImg src={NaverLogo} onClick={initializeNaverLogin} />
-        <NaverText>Naver</NaverText>
-      </NaverBtn>
-    </>
+      <NaverBtn id="naverIdLogin"></NaverBtn>
+      <NaverText>Naver</NaverText>
+      {/* <LoginButton
+        image="NaverLogo"
+        ButtonText="네이버"
+        onClick={handleNaverLogin}
+      /> */}
+    </NaverBox>
   );
 };
+
+const NaverBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 30px;
+  margin-right: 30px;
+`;
 
 const NaverBtn = styled.button`
   background-color: transparent;
@@ -90,6 +114,11 @@ const NaverImg = styled.img`
 const NaverText = styled.div`
   color: #8a8a8a;
   font-size: 12px;
+`;
+
+const LoginButton = styled.button`
+  width: 41px;
+  height: 40px;
 `;
 
 export default Naver;

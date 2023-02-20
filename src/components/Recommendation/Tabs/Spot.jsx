@@ -8,8 +8,33 @@ import gumsung from '../../../assets/gumsung.avif';
 import deabang from '../../../assets/deabang.avif';
 import hwagae from '../../../assets/hwagae.avif';
 import chang from '../../../assets/chang.avif';
+import { Link } from 'react-router-dom';
 
 export default function Spot() {
+  const gorim = () => {
+    window.location.href = '/spot/128116';
+  };
+
+  const godong = () => {
+    window.location.href = '/spot/128526';
+  };
+
+  const gogumsung = () => {
+    window.location.href = '/spot/126407';
+  };
+
+  const godeabang = () => {
+    window.location.href = '/spot/126225';
+  };
+
+  const gohwagae = () => {
+    window.location.href = '/spot/2786913';
+  };
+
+  const gochang = () => {
+    window.location.href = '/spot/126511';
+  };
+
   return (
     <WarpDiv>
       <InnerBox1>
@@ -24,7 +49,7 @@ export default function Spot() {
               <p>9,812</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={gorim}>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
@@ -38,7 +63,7 @@ export default function Spot() {
               <p>8,181</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={godong}>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
@@ -52,7 +77,7 @@ export default function Spot() {
               <p>7,522</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={gogumsung}>바로가기</InnerButton>
         </InnerList>
       </InnerBox1>
 
@@ -68,7 +93,7 @@ export default function Spot() {
               <p>7,117</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={godeabang}>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
@@ -82,7 +107,7 @@ export default function Spot() {
               <p>5,401</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={gohwagae}>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
@@ -96,7 +121,7 @@ export default function Spot() {
               <p>4,991</p>
             </LikeBox>
           </InnerText>
-          <InnerButton>바로가기</InnerButton>
+          <InnerButton onClick={gochang}>바로가기</InnerButton>
         </InnerList>
       </InnerBox2>
     </WarpDiv>
