@@ -17,6 +17,7 @@ import {
   DetailInformationMap,
   TabHr,
   RecommendSide,
+  SideInfoWrapper,
 } from './styles';
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
@@ -32,6 +33,10 @@ import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
+import StayInfo from '../../components/Recommendation/StayInfo';
+import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
+import SpotInfo from '../../components/Recommendation/SpotInfo';
+import MapImoji from '../../components/Map/MapImoji';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -106,9 +111,9 @@ const RestaurantDetailPage = () => {
                       restaurantDetailData={restaurantDetailData}
                     />
 
-                    {/* <Link to={`/${param.id}/map`}>
+                    <Link to={`/${param.id}/map`}>
                       <MapImoji />
-                    </Link> */}
+                    </Link>
                   </DeatilImojiBox>
                 </DeatilTextBox>
 
@@ -164,10 +169,10 @@ const RestaurantDetailPage = () => {
           </>
         )}
 
-        <RecommendSide id="5">
-          {/* <StayInfo spotData={spotData} />
-        <RestaurantInfo spotData={spotData} /> */}
-        </RecommendSide>
+        <SideInfoWrapper id="5">
+          <SpotInfo restaurantDetailData={restaurantDetailData} />
+          <StayInfo restaurantDetailData={restaurantDetailData} />
+        </SideInfoWrapper>
       </Container>
     </DetailWrap>
   );
