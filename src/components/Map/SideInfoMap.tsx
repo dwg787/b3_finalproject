@@ -73,10 +73,12 @@ const SideInfoMap = ({
         const stayMarker = new kakao.maps.Marker({
           map: map, // 마커를 표시할 지도
           position: new kakao.maps.LatLng(e.mapy, e.mapx), // 마커를 표시할 위치
-          title: e.title.split(/[\\(\\[]/)[0], // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+          title: e.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
           image: markerImage, // 마커 이미지
         });
-        const stayIWContent = `<div style="padding:5px;">${e.title}<br>전화:${e.tel}</div>`,
+        const stayIWContent = `<div style="padding:5px;">${
+            e.title.split(/[\\(\\[]/)[0]
+          }<br>전화:${e.tel}</div>`,
           iwRemoveable = true;
         const infowindow = new kakao.maps.InfoWindow({
           content: stayIWContent,
