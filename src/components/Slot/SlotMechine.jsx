@@ -98,7 +98,7 @@ const SlotMachine = () => {
   // ================================================================================
   //throttling
 
-  const selectEventControl = _.throttle(() => {});
+  // const selectEventControl = _.throttle(func, [wait=0], [options={}])
 
   return (
     <ContainerDiv>
@@ -194,7 +194,7 @@ const SlotMachine = () => {
         >
           관광지 랜덤뽑기!
         </SlotButton>
-        <button onClick={selectEventControl}>쓰로틀링</button>
+        {/* <button onClick={}>쓰로틀링</button> */}
       </WrapDiv>
     </ContainerDiv>
   );
