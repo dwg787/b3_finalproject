@@ -20,16 +20,26 @@ import {
 import { Link } from 'react-router-dom';
 import RestaurantLiked from '../Liked/RestaurantLiked';
 
-const RestaurantInfo = ({ spotData }) => {
+export default function RestaurantInfo({
+  spotData,
+  restaurantDetailData,
+  stayDetailData,
+}: UserProps): React.ReactElement {
+  const combinedData = {
+    ...spotData,
+    ...restaurantDetailData,
+    ...stayDetailData,
+  };
+
   const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ['restaurant_list', spotData],
+    ['restaurant_list', combinedData],
     () =>
       fetchNearRestaurantData({
-        mapx: spotData.mapx,
-        mapy: spotData.mapy,
+        mapx: combinedData.mapx,
+        mapy: combinedData.mapy,
       }),
     {
-      enabled: !!spotData,
+      enabled: !!combinedData,
     },
   );
 
@@ -72,7 +82,7 @@ const RestaurantInfo = ({ spotData }) => {
                         <MyChildTexth3>{item.title}</MyChildTexth3>
                         <MyChildTextp> {item.addr1}</MyChildTextp>
                         <LikeBox>
-                          <RestaurantLiked />
+                          <RestaurantLiked restaurantData={restaurantData} />
                           <p>00</p>
                         </LikeBox>
                       </MyCildTextBox>
@@ -90,6 +100,4 @@ const RestaurantInfo = ({ spotData }) => {
       </MyChildListBox>
     </Container>
   );
-};
-
-export default RestaurantInfo;
+}
