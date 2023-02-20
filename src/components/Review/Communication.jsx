@@ -25,6 +25,7 @@ const Communication = () => {
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
+  console.log(loginUser);
   // const settings = {
   //   slide: <ReviewBoxList />, // slide 해주고 싶은 단위
   //   infinite: true, //무한 슬라이더로 할지
@@ -37,6 +38,16 @@ const Communication = () => {
   //   centerMode: true,
   //   variableWidth: true,
   //   centerPadding: '0px',
+  // };
+
+  // const settings = {
+  //   dots: false,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   nextArrow: <NextArrow />,
+  //   prevArrow: <PrevArrow />,
   // };
 
   //useparams 를 사용하여 id 값을 파이어베이스로 보낸후
@@ -61,6 +72,8 @@ const Communication = () => {
 
   //리뷰 등록
   const creatReview = async () => {
+    const Kakaologinid = localStorage.getItem('id');
+    const Naverloginid = localStorage.getItem('id');
     const loginUser = auth.currentUser;
 
     if (loginUser) {
@@ -75,10 +88,36 @@ const Communication = () => {
         //파이어스토어 db, reviews 에 저장
       });
       setNewReview('');
+    } else if (Kakaologinid) {
+      const addRev2 = await addDoc(usersCollectionRef, {
+        review: newReview,
+        uid: localStorage.getItem('id'),
+        displayName: localStorage.getItem('id'),
+        //loginUser?.displayName
+        paramId: params.id,
+        date: Date.now(),
+        //파이어스토어 db, reviews 에 저장
+      });
+      setNewReview('');
+    } else if (Naverloginid) {
+      const addRev3 = await addDoc(usersCollectionRef, {
+        review: newReview,
+        uid: localStorage.getItem('id'),
+        displayName: localStorage.getItem('id'),
+        //loginUser?.displayName
+        paramId: params.id,
+        date: Date.now(),
+        //파이어스토어 db, reviews 에 저장
+      });
+      setNewReview('');
     } else {
-      alert('로그인을 하세요');
+      alert('로그인 해주세요');
     }
   };
+  //   } else {
+  //     alert('로그인을 하세요');
+  //   }
+  // };
   return (
     <ReviewContainer>
       {/* <DetailInfoText>여행톡</DetailInfoText> */}
@@ -109,6 +148,7 @@ const Communication = () => {
       </ReviewBox>
 
       <ReviewBoxList>
+        {/* <Slider {...settings}> */}
         {reviews.map((review, i) => {
           if (review.paramId === params.id) {
             return (
@@ -121,6 +161,7 @@ const Communication = () => {
             );
           }
         })}
+        {/* </Slider> */}
       </ReviewBoxList>
     </ReviewContainer>
   );
@@ -134,13 +175,14 @@ const BottomLine = styled.div`
 `;
 
 const ReviewContainer = styled.div`
-  /* width: 1270px; */
-  width: 100%;
+  width: 1710px;
+  height: 800px;
+  /* width: 100%; */
   display: flex;
 
   flex-direction: column;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 `;
 
 const ReviewBox = styled.div`
@@ -157,7 +199,7 @@ const ReviewLabel = styled.label`
   font-size: 16.5327px;
   color: #6478ff;
   margin-bottom: 20px;
-  margin-left: 65px;
+  margin-left: 90px;
 `;
 
 const InputAndBtnWrap = styled.div`
@@ -216,3 +258,25 @@ const ReviewBoxList = styled.div`
 `;
 
 //700 //100// 250 //350// div나눔
+
+function NextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: 'block', background: 'red' }}
+      onClick={onClick}
+    />
+  );
+}
+
+function PrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: 'block', background: 'green' }}
+      onClick={onClick}
+    />
+  );
+}

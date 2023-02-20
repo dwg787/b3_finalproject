@@ -33,9 +33,12 @@ export default function ReviewList({ review, i, reviews, key }) {
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   //삭제
-  const handleDelete = async (id, i) => {
+  const handleDelete = async (id, i, uid) => {
     if (auth.currentUser.uid === reviews[i].uid) {
       const reviewDoc = doc(db, 'reviews', id);
+      await deleteDoc(reviewDoc);
+    } else if (localStorage.getItem('id') === review[i].uid) {
+      const reviewDoc = doc(db, 'reviews', uid);
       await deleteDoc(reviewDoc);
     } else {
       alert('작성자가 다릅니다.');
@@ -64,42 +67,6 @@ export default function ReviewList({ review, i, reviews, key }) {
   //   centerPadding: '0px',
   // };
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-  };
-
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: 'block' }}
-        onClick={onClick}
-      >
-        Next
-      </div>
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: 'block' }}
-        onClick={onClick}
-      >
-        Prev
-      </div>
-    );
-  }
-
   return (
     <CommentBoxWrap>
       <CommentBox key={review.id}>
@@ -110,7 +77,10 @@ export default function ReviewList({ review, i, reviews, key }) {
 
           <ToggleWrap>
             <BtnWrap>
-              {toggle === true && loginUser?.uid === review?.uid ? (
+              {/* && localStorage.getItem('id') === review?.uid? */}
+              {(toggle === true && loginUser?.uid === review?.uid) ||
+              (toggle === true &&
+                localStorage.getItem('id') === review?.uid) ? (
                 <UpdateBtn
                   onClick={() => {
                     handleUpdate(review.id);
@@ -120,7 +90,9 @@ export default function ReviewList({ review, i, reviews, key }) {
                   {editBox === false ? '수정' : '수정완료'}
                 </UpdateBtn>
               ) : null}
-              {toggle === true && loginUser?.uid === review?.uid ? (
+              {(toggle === true && loginUser?.uid === review?.uid) ||
+              (toggle === true &&
+                localStorage.getItem('id') === review?.uid) ? (
                 <DeleteBtn
                   onClick={() => {
                     setAlarmMsg('리뷰 삭제완료!'); //알람관련 코드4 - 들어갈 내용 정하는 부분
@@ -168,6 +140,7 @@ const CommentBox = styled.div`
   justify-content: center;
   gap: 1rem;
   display: flex; */
+  //========================
   width: 618px;
   height: 118px;
   background: #ffffff;
@@ -199,7 +172,6 @@ const Date = styled.div`
 const ToggleWrap = styled.div`
   display: flex;
   margin-left: 241px;
-
   position: relative;
 `;
 
@@ -208,7 +180,6 @@ const BtnWrap = styled.div`
   display: flex;
   align-items: center;
   border-radius: 5px;
-
   position: absolute;
   width: 80px;
   left: 3px;
@@ -223,7 +194,6 @@ const UpdateBtn = styled.button`
 const DeleteBtn = styled.button`
   border-radius: 60px;
   padding: 5px;
-
   border: none;
   background-color: transparent;
 `;
