@@ -72,7 +72,7 @@ const Communication = () => {
 
   //리뷰 등록
   const creatReview = async () => {
-    const Kakaologinid = localStorage.getItem('id');
+    const Kakaologinid = localStorage.getItem('uid');
     const Naverloginid = localStorage.getItem('id');
     const loginUser = auth.currentUser;
 
@@ -91,7 +91,7 @@ const Communication = () => {
     } else if (Kakaologinid) {
       const addRev2 = await addDoc(usersCollectionRef, {
         review: newReview,
-        uid: localStorage.getItem('id'),
+        uid: localStorage.getItem('uid'),
         displayName: localStorage.getItem('id'),
         //loginUser?.displayName
         paramId: params.id,

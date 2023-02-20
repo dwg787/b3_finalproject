@@ -37,9 +37,9 @@ export default function ReviewList({ review, i, reviews, key }) {
     if (auth.currentUser.uid === reviews[i].uid) {
       const reviewDoc = doc(db, 'reviews', id);
       await deleteDoc(reviewDoc);
-    } else if (localStorage.getItem('id') === review[i].uid) {
-      const reviewDoc = doc(db, 'reviews', uid);
-      await deleteDoc(reviewDoc);
+    } else if (localStorage.getItem('uid') === review[i].uid) {
+      const reviewDoc1 = doc(db, 'reviews', id);
+      await deleteDoc(reviewDoc1);
     } else {
       alert('작성자가 다릅니다.');
       //작성가 다르거나 비로그인 유저에게 버튼이 보이지 않는다면 필요없어짐.
@@ -80,7 +80,7 @@ export default function ReviewList({ review, i, reviews, key }) {
               {/* && localStorage.getItem('id') === review?.uid? */}
               {(toggle === true && loginUser?.uid === review?.uid) ||
               (toggle === true &&
-                localStorage.getItem('id') === review?.uid) ? (
+                localStorage.getItem('uid') === review?.uid) ? (
                 <UpdateBtn
                   onClick={() => {
                     handleUpdate(review.id);
@@ -92,7 +92,7 @@ export default function ReviewList({ review, i, reviews, key }) {
               ) : null}
               {(toggle === true && loginUser?.uid === review?.uid) ||
               (toggle === true &&
-                localStorage.getItem('id') === review?.uid) ? (
+                localStorage.getItem('uid') === review?.uid) ? (
                 <DeleteBtn
                   onClick={() => {
                     setAlarmMsg('리뷰 삭제완료!'); //알람관련 코드4 - 들어갈 내용 정하는 부분
