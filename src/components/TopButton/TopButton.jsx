@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import topbutton from '../../assets/topbutton.avif';
 
 export default function TopButton() {
   const [ScrollY, setScrollY] = useState(0); // window 의 pageYOffset값을 저장
@@ -15,23 +16,29 @@ export default function TopButton() {
   }
   useEffect(() => {
     function scrollListener() {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener('scroll', handleScroll);
     } //  window 에서 스크롤을 감시 시작
     scrollListener(); // window 에서 스크롤을 감시
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     }; //  window 에서 스크롤을 감시를 종료
   });
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
   return (
-    <>{ScrollActive ? <TopBtn onClick={scrollToTop}>Top</TopBtn> : null}</>
+    <>
+      {ScrollActive ? (
+        <TopBtn onClick={scrollToTop}>
+          <img src={topbutton} alt="" />
+        </TopBtn>
+      ) : null}
+    </>
   );
 }
 
@@ -46,7 +53,7 @@ const TopBtn = styled.button`
   position: fixed;
   background-color: #333333;
   color: white;
-  left: 94.17%;
+  left: 94.5%;
   top: 84%;
   z-index: 999;
 `;

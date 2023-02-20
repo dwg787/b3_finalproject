@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Chat from "./Chat";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Chat from './Chat';
 
 export default function ChatBotModal() {
   const [modal, setModal] = useState(false);
@@ -26,9 +26,9 @@ const Chatimgbtn = styled.div`
   align-items: center;
   font-size: 30px;
   background-color: #6478ff;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 58px;
+  height: 58px;
+  border-radius: 30px;
   left: 94%;
   top: 90%;
   z-index: 1000;
