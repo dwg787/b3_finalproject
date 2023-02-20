@@ -7,6 +7,7 @@ import { fetchSpotData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
+import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
@@ -25,7 +26,7 @@ const SpotSelectionResult = () => {
     firstNum.current = 5 * (Math.floor(spotCurPage / 5) - 1) + 1;
   }
 
-  const { data, isLoading, isPreviousData } = useQuery(
+  const { data, isFetching, isLoading, isPreviousData } = useQuery(
     ['spot_data', region, spotCurPage],
     () => fetchSpotData({ region, spotCurPage }),
     {
@@ -57,6 +58,7 @@ const SpotSelectionResult = () => {
     <SearchOverallResultContainer>
       {isLoading || data === undefined ? (
         <>
+          {/* <SkeletonSelectionResult /> */}
           <Loader />
         </>
       ) : (
@@ -74,20 +76,24 @@ const SpotSelectionResult = () => {
                 />
               )}
             </BtnWrapper>
-            <ResultWrapper>
-              {data?.items.item.map((e: FetchedStayDataType) => {
-                return (
-                  <SpotDetail
-                    key={e.contentid}
-                    id={e.contentid}
-                    img={e.firstimage || noimg}
-                    address={e.addr1}
-                  >
-                    {e.title.split(/[\\(\\[]/)[0]}
-                  </SpotDetail>
-                );
-              })}
-            </ResultWrapper>
+            {isFetching || isLoading ? (
+              <SkeletonSelectionResult />
+            ) : (
+              <ResultWrapper>
+                {data?.items.item.map((e: FetchedStayDataType) => {
+                  return (
+                    <SpotDetail
+                      key={e.contentid}
+                      id={e.contentid}
+                      img={e.firstimage || noimg}
+                      address={e.addr1}
+                    >
+                      {e.title.split(/[\\(\\[]/)[0]}
+                    </SpotDetail>
+                  );
+                })}
+              </ResultWrapper>
+            )}
             <BtnWrapper>
               {Math.ceil(data.totalCount / 8) <= spotCurPage ? (
                 <></>
@@ -131,10 +137,12 @@ const SpotSelectionResult = () => {
 export default SpotSelectionResult;
 
 const SearchOverallResultContainer = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   border: 1px solid #6478ff;
   border-radius: 20px;
   box-shadow: 3px 3px #d7d7d7;
@@ -154,6 +162,7 @@ const SearchListWrapper = styled.div`
 `;
 
 const ResultWrapper = styled.div`
+  position: relative;
   width: 80%;
   /* height: 500px; */
   display: flex;
