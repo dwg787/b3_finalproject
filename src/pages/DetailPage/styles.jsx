@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const DetailWrap = styled.div`
   width: 100%;
   height: 100%;
-  padding: 10px;
+  /* padding: 10px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,30 +14,30 @@ const DetailWrap = styled.div`
 
 // 풀화면 크기조정
 const Container = styled.div`
-  width: 1920px;
+  width: 1232px;
   /* width: 80%; */
-  height: 4486px;
+  height: 3008.6px;
   display: flex;
   flex-direction: column;
   /* gap: 0.3rem; */
   align-items: center;
   justify-content: center;
-  /* margin-top: 80px; */
+  margin-top: 20px;
   /* background-color: #8eb9dc; */
 `;
 
 //상세페이지 메인 박스1
 const DeatilBox = styled.div`
-  width: 1836px;
+  width: 1232px;
 
   /* width: 70%; */
-  height: 3178px;
+  height: 2131px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   display: flex;
   background-color: #ffffff;
-  border-radius: 20px;
+  border-radius: 13.42px;
   box-shadow: 5px 5px 10px 1px gray;
   /* padding: 10px 30px 30px 30px; */
   background: linear-gradient(white 40%, #9eabff);
@@ -50,30 +50,30 @@ const DeatilTextBox = styled.div`
 `;
 
 const TabHr = styled.hr`
-  border: solid #6478ff 2px;
-  width: 1654px;
+  border: solid #6478ff 1.34px;
+  width: 1109.87px;
 `;
 
 //상세페이지 상단 제목
 const DetailText = styled.p`
   font-weight: bold;
   text-align: center;
-  font-size: 59.77px;
+  font-size: 40.1px;
   color: #6478ff;
-  margin-top: 72px;
-  line-height: 56px;
+  margin-top: 43.62px;
+  line-height: 37.5px;
 `;
 
 //상세페이지 상단 제목 하단 도시
 const DetailTextArr = styled.div`
   text-align: center;
   /* font-weight: bold; */
-  font-size: 33.61px;
-  margin-top: 37px;
+  font-size: 22.55px;
+  margin-top: 24.4px;
   color: #333333;
   font-weight: 400;
   /* height: 32px; */
-  line-height: 32px;
+  line-height: 21.1px;
 `;
 
 //상세페이지 좋아요 이모지
@@ -82,32 +82,51 @@ const DeatilImojiBox = styled.div`
   flex-direction: row;
   text-align: center;
   justify-content: center;
-  line-height: 36px;
-  margin-bottom: 55px;
-  margin-top: 32px;
+  line-height: 19.1px;
+  margin-bottom: 42.52px;
+  margin-top: 21.62px;
 `;
 
 //상세페이지 사진 박스
 const DetailImgBox = styled.div`
-  width: 1708px;
+  width: 1146.11px;
   /* width: 70%; */
-  height: 799px;
+  height: 534.81px;
   justify-content: center;
   display: flex;
-  margin-bottom: 26px;
+  margin-bottom: 17.45px;
   /* margin: 32px 0; */
   /* height: 800px; */
   /* background-color: #6fcfab; */
 `;
 const DetailImg = styled.img`
   width: 100%;
-  border-radius: 20px;
+
+  border-radius: 13.42px;
   border: 1px solid rgb(158, 171, 255, 0.61);
+
+  position: relative;
+`;
+
+const DetailImgBtn = styled.button`
+  position: absolute;
+  font-weight: 500;
+  /* z-index: 100; */
+  text-align: center;
+  background-color: #6478ff;
+  color: #fafafa;
+  width: 412.01px;
+  height: 59.72px;
+  border-radius: 16.78px;
+  margin-top: 432.81px;
+  line-height: 23.5px;
+  flex-wrap: wrap;
+  font-size: 25.1px;
 `;
 
 // 상세정보박스
 const DetailInformation = styled.div`
-  width: 1708px;
+  width: 1145.4px;
   /* width: 70%; */
   /* height: 248px; */
   top: 0;
@@ -116,98 +135,106 @@ const DetailInformation = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #ffffff;
-  border-radius: 20px;
+  border-radius: 13.42px;
   border: 1px solid rgb(158, 171, 255, 0.61);
   box-sizing: border-box;
-  margin-bottom: 26px;
-
-  line-height: 37px;
+  margin-bottom: 17.45px;
+  line-height: 24.8px;
 
   /* background-color: #76acdc; */
 `;
 //상세박스 소개 텍스트
 const DetailInfo = styled.span`
   display: block;
-  width: 1608px;
-
+  width: 1078.34px;
+  line-height: 24.8px;
   flex-wrap: wrap;
-  font-size: 23px;
+  font-size: 15.42px;
   font-weight: normal;
-  padding: 40px 0px 15px 0px;
-  line-height: 37px;
+  padding: 26.82px 0px 10.06px 0px;
 `;
 //상세박스 정보 텍스트
+const DetailInfo2 = styled.div`
+  width: 1078.34px;
+  padding: 0px 0px 27.98px 0px;
+`;
+
 const DetailInfoAdd = styled.div`
-  width: 1608px;
+  width: 1078.34px;
   flex-wrap: wrap;
-  font-size: 23px;
+  font-size: 15.42px;
   font-weight: normal;
   /* background-color: #ccb46b; */
+  padding: 0px 0px 1.84px 0px;
+`;
 
-  padding: 0px 0px 42px 0px;
+const DetailTextBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 1078.34px;
 `;
 
 //지도박스
 const DetailInformationMap = styled.div`
-  width: 1708px;
+  width: 1146.11px;
   /* width: 70%; */
-  height: 706px;
-  border-radius: 20px;
+  height: 473.74px;
+  border-radius: 13.42px;
   flex-wrap: wrap;
-  margin-bottom: 26px;
+  /* margin-bottom: 17.44px; */
   /* background-color: #76acdc; */
 `;
 
-const DetailInfoTextBox = styled.div`
-  width: 100%;
-  display: flex;
-  /* flex-direction: row; */
-  /* border-bottom: solid #1f1f20 2px; */
-  border-bottom: solid rgb(158, 171, 255, 0.61) 1px;
-  margin: 10px 0;
-`;
+// const DetailInfoTextBox = styled.div`
+//   width: 100%;
+//   display: flex;
+//   border-bottom: solid rgb(158, 171, 255, 0.61) 1px;
+//   margin: 10px 0;
+// `;
 
-const DetailInfoText = styled.div`
-  margin-left: 30px;
-  /* height: 100px; */
-  font-size: 25px;
-  font-weight: 800;
-  text-align: left;
-  margin-bottom: 10px;
-`;
+// const DetailInfoText = styled.div`
+//   margin-left: 30px;
 
+//   font-size: 25px;
+//   font-weight: 800;
+//   text-align: left;
+//   margin-bottom: 10px;
+// `;
+
+//댓글
 const CommunicationWrap = styled.div`
-  width: 1708px;
+  width: 1146.11px;
   /* width: 70%; */
-  height: 859px;
+  height: 576.41px;
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* background-color: #b5a0d2; */
-  height: 700px;
+
   background-color: #ffffff;
-  border-radius: 20px;
+  border-radius: 13.42px;
   /* box-shadow: 5px 5px 10px 1px #b099cf;
    */
 
   border: 1px solid rgb(158, 171, 255, 0.61);
   /* padding: 30px; */
 
-  margin: 20px 0;
+  margin: 17.44px 0 42.95px 0;
 `;
 
+//하단 추천 탭
 const SideInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   /* width: 1836px; */
 `;
 
-const RecommendSide = styled(SideInfoWrapper)`
-  /* background-color: #f4f1f6; */
-  border-radius: 20px;
-  height: 1271px;
-`;
+// const RecommendSide = styled(SideInfoWrapper)`
+
+//   border-radius: 20px;
+//   height: 1271px;
+// `;
 
 export {
   DetailWrap,
@@ -216,17 +243,17 @@ export {
   DeatilImojiBox,
   CommunicationWrap,
   DetailInfo,
-  DetailInfoText,
   DetailInfoAdd,
-  DetailInfoTextBox,
+  DetailTextBox,
   DetailInformation,
   SideInfoWrapper,
+  DetailInfo2,
   DetailImg,
   DetailImgBox,
+  DetailImgBtn,
   DetailTextArr,
   DetailText,
   DeatilTextBox,
   DetailInformationMap,
   TabHr,
-  RecommendSide,
 };

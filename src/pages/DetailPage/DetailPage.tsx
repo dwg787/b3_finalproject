@@ -22,8 +22,6 @@ import {
   DeatilImojiBox,
   CommunicationWrap,
   DetailInfo,
-  DetailInfoText,
-  DetailInfoTextBox,
   DetailInformation,
   SideInfoWrapper,
   DetailImg,
@@ -145,11 +143,7 @@ const DetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {/* <DetailInfoTextBox>
-                    <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox> */}
-
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
 
                 <Notification />

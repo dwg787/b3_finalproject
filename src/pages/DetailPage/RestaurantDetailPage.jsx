@@ -5,8 +5,6 @@ import {
   DeatilImojiBox,
   CommunicationWrap,
   DetailInfo,
-  DetailInfoText,
-  DetailInfoTextBox,
   DetailInformation,
   DetailImg,
   DetailImgBox,
@@ -16,7 +14,6 @@ import {
   DetailInfoAdd,
   DetailInformationMap,
   TabHr,
-  RecommendSide,
   SideInfoWrapper,
 } from './styles';
 import { useEffect } from 'react';
@@ -125,10 +122,6 @@ const RestaurantDetailPage = () => {
                 </DetailImgBox>
 
                 <DetailInformation id="2">
-                  {/* <DetailInfoTextBox>
-                  <DetailInfoText>상세정보</DetailInfoText>
-                </DetailInfoTextBox> */}
-
                   <DetailInfo>
                     {restaurantDetailData.overview.split('.', 4)}
                   </DetailInfo>
@@ -152,11 +145,7 @@ const RestaurantDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  <DetailInfoTextBox>
-                    <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox>
-
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
 
                 <Notification />

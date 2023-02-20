@@ -24,8 +24,6 @@ import {
   DeatilImojiBox,
   CommunicationWrap,
   DetailInfo,
-  DetailInfoText,
-  DetailInfoTextBox,
   DetailInformation,
   SideInfoWrapper,
   DetailImg,
@@ -36,7 +34,9 @@ import {
   DetailInformationMap,
   DetailInfoAdd,
   TabHr,
-  RecommendSide,
+  DetailImgBtn,
+  DetailTextBox,
+  DetailInfo2,
 } from './styles';
 import Liked from '../../components/Liked/Liked';
 import StayInfo from '../../components/Recommendation/StayInfo';
@@ -58,7 +58,7 @@ const StayDetailPage = () => {
     fetchStayAdditionalInfo1({ param }),
   );
 
-  // console.log('숙박 상세 소개', stayAdditionalData1);
+  console.log('숙박 상세 소개', stayAdditionalData1);
 
   // const {
   //   data: stayAdditionalData2,
@@ -110,10 +110,11 @@ const StayDetailPage = () => {
     getFirestoreRecCnt();
   }, [stayDetailData]);
   console.log('숙박 상세정보', stayDetailData);
+
   return (
     <DetailWrap>
       <Container>
-        {isLoadingStayDetail ? (
+        {isLoadingStayDetail || isLoadingAdditional1 ? (
           <Loader />
         ) : (
           <>
@@ -142,18 +143,32 @@ const StayDetailPage = () => {
                     src={stayDetailData.firstimage || noimg}
                     alt="사진"
                   />
+                  <DetailImgBtn>예약하기</DetailImgBtn>
                 </DetailImgBox>
 
                 <DetailInformation id="2">
-                  {/* <DetailInfoTextBox>
-                  <DetailInfoText>상세정보</DetailInfoText>
-                </DetailInfoTextBox> */}
-
                   <DetailInfo>
                     {stayDetailData.overview.split('.', 4)}
                   </DetailInfo>
-
-                  <DetailInfoAdd>주소 : {stayDetailData.addr1}</DetailInfoAdd>
+                  <DetailInfo2>
+                    <DetailTextBox>
+                      <DetailInfoAdd>
+                        문의 및 안내 : {stayAdditionalData1.infocenterlodging}
+                      </DetailInfoAdd>
+                      <DetailInfoAdd>
+                        홈페이지 :
+                        {stayAdditionalData1.reservationurl.split('"')[1]}
+                      </DetailInfoAdd>
+                    </DetailTextBox>
+                    <DetailTextBox>
+                      <DetailInfoAdd>
+                        주소 : {stayDetailData.addr1}
+                      </DetailInfoAdd>
+                      <DetailInfoAdd>
+                        주차 : {stayAdditionalData1.parkinglodging}
+                      </DetailInfoAdd>
+                    </DetailTextBox>
+                  </DetailInfo2>
                 </DetailInformation>
 
                 <DetailInformationMap id="3">
@@ -171,7 +186,7 @@ const StayDetailPage = () => {
                     <DetailInfoText>여행톡</DetailInfoText>
                   </DetailInfoTextBox> */}
 
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
 
                 <Notification />
