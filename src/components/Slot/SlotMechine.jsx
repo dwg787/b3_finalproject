@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import noimg from '../../assets/noimg.avif';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import random from '../../assets/random.avif';
+import { getSuggestedQuery } from '@testing-library/react';
+import _ from 'lodash';
 //v1 슬롯머신
 
 const SlotMachine = () => {
@@ -69,7 +71,6 @@ const SlotMachine = () => {
     return totalSpots[Math.floor(Math.random() * totalSpots.length)];
   };
 
-  const loling = () => {};
   //v2 기능 구현예정 아마도...?
 
   //   const getRandomRestaurants = () => {
@@ -94,6 +95,10 @@ const SlotMachine = () => {
     autoplaySpeed: 0, //1000 == 1s
     cssEase: 'ease',
   };
+  // ================================================================================
+  //throttling
+
+  const selectEventControl = _.throttle(() => {});
 
   return (
     <ContainerDiv>
@@ -189,6 +194,7 @@ const SlotMachine = () => {
         >
           관광지 랜덤뽑기!
         </SlotButton>
+        <button onClick={selectEventControl}>쓰로틀링</button>
       </WrapDiv>
     </ContainerDiv>
   );
