@@ -158,8 +158,10 @@ const Navbar = () => {
     naverLogin.getLoginStatus(async function(status) {
       if (status) {
         const username = naverLogin.user.getName();
+        console.log(naverLogin.user.id);
         setUserName(username);
         window.localStorage.setItem('id', username);
+        window.localStorage.setItem('uid', naverLogin.user.id);
       }
     });
   };
