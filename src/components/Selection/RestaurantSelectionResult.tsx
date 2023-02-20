@@ -10,6 +10,7 @@ import Loader from '../Loader/Loader';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
+import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 
 const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -28,7 +29,7 @@ const RestaurantSelectionResult = () => {
 
   // console.log('레스토랑 렌더링');
 
-  const { data, isLoading, isPreviousData } = useQuery(
+  const { data, isFetching, isLoading, isPreviousData } = useQuery(
     ['rest_data', region, restCurPage],
     () => fetchRestaurantData({ region, restCurPage }),
     {
@@ -69,20 +70,24 @@ const RestaurantSelectionResult = () => {
                 />
               )}
             </BtnWrapper>
-            <ResultWrapper>
-              {data?.items.item.map((e: FetchedStayDataType) => {
-                return (
-                  <RestaurantDetail
-                    key={e.contentid}
-                    id={e.contentid}
-                    img={e.firstimage || noimg}
-                    address={e.addr1}
-                  >
-                    {e.title.split(/[\\(\\[]/)[0]}
-                  </RestaurantDetail>
-                );
-              })}
-            </ResultWrapper>
+            {isFetching || isLoading ? (
+              <SkeletonSelectionResult />
+            ) : (
+              <ResultWrapper>
+                {data?.items.item.map((e: FetchedStayDataType) => {
+                  return (
+                    <RestaurantDetail
+                      key={e.contentid}
+                      id={e.contentid}
+                      img={e.firstimage || noimg}
+                      address={e.addr1}
+                    >
+                      {e.title.split(/[\\(\\[]/)[0]}
+                    </RestaurantDetail>
+                  );
+                })}
+              </ResultWrapper>
+            )}
             <BtnWrapper>
               {Math.ceil(data.totalCount / 8) <= restCurPage ? (
                 <></>
