@@ -71,6 +71,8 @@ export default function ReviewList({ review, i, reviews, key }) {
       {loginUser?.uid === review?.uid ? (
         <button
           onClick={() => {
+            setAlarmMsg('리뷰 수정완료!'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+            addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
             handleUpdate(review.id);
             setEditBox(!editBox);
           }}

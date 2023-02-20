@@ -145,6 +145,9 @@ const RestaurantDetailPage = () => {
                   <KakaoMap
                     mapx={restaurantDetailData.mapx}
                     mapy={restaurantDetailData.mapy}
+                    title={restaurantDetailData.title}
+                    tel={restaurantDetailData.tel}
+                    homepage={restaurantDetailData.homepage}
                   />
                 </DetailInformationMap>
 

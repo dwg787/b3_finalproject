@@ -4,6 +4,8 @@ import Loader from '../Loader/Loader';
 import noimg from '../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
 import RestaurantLiked from '../Liked/RestaurantLiked';
+import { useRecoilState } from 'recoil';
+import { nearStayState } from '../../recoil/apiDataAtoms';
 
 import {
   Container,
@@ -17,6 +19,7 @@ import {
   LikeBox,
   GoButton,
 } from './styles';
+import { useEffect } from 'react';
 
 export default function StayInfo({
   spotData,
@@ -28,6 +31,7 @@ export default function StayInfo({
     ...restaurantDetailData,
     ...stayDetailData,
   };
+  const [nearStayList, setNearStayList] = useRecoilState(nearStayState);
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
     ['stay_list', combinedData],
     () =>
@@ -36,6 +40,10 @@ export default function StayInfo({
       enabled: !!combinedData,
     },
   );
+
+  useEffect(() => {
+    setNearStayList(stayData);
+  }, [setNearStayList, stayData]);
 
   return (
     <Container>

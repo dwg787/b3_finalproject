@@ -36,7 +36,7 @@ import {
   TabHr,
 } from './styles';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
-import Footer from '../../components/Footer/BlackFooter';
+import SideInfoMap from '../../components/Map/SideInfoMap';
 
 const DetailPage = () => {
   const param = useParams();
@@ -46,7 +46,7 @@ const DetailPage = () => {
     () => fetchSpotDetailData({ param }),
   );
 
-  // console.log(spotData);
+  // console.log('관광지 데이터', spotData);
 
   const getRecCnt = async () => {
     if (param.id) {
@@ -128,7 +128,20 @@ const DetailPage = () => {
                 </DetailInformation>
 
                 <DetailInformationMap id="3">
-                  <KakaoMap mapx={spotData.mapx} mapy={spotData.mapy} />
+                  {/* <KakaoMap
+                    mapx={spotData.mapx}
+                    mapy={spotData.mapy}
+                    title={spotData.title}
+                    tel={spotData.tel}
+                    homepage={spotData.homepage}
+                  /> */}
+                  <SideInfoMap
+                    mapx={spotData.mapx}
+                    mapy={spotData.mapy}
+                    title={spotData.title}
+                    tel={spotData.tel}
+                    homepage={spotData.homepage}
+                  />
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">

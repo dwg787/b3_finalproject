@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
 import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
 import Footer from '../components/Footer/Footer';
+import BlackFooter from '../components/Footer/BlackFooter';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -49,12 +50,21 @@ const MainPage = () => {
           <RestaurantRecommendation /> */}
         </>
       ) : selectedMenu === '관광지' ? (
-        <SpotSelectionResult />
+        <>
+          <SpotSelectionResult />
+          <BlackFooter />
+        </>
       ) : // <SelectionResult />
       selectedMenu === '숙박' ? (
-        <StaySelectionResult />
+        <>
+          <StaySelectionResult />
+          <BlackFooter />
+        </>
       ) : selectedMenu === '음식점' ? (
-        <RestaurantSelectionResult />
+        <>
+          <RestaurantSelectionResult />
+          <BlackFooter />
+        </>
       ) : (
         <>
           <SliderBanner />
