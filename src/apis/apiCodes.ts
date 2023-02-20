@@ -19,6 +19,7 @@ export const AREA_CODE = [
   { id: '7', area: '울산' },
   { id: '8', area: '세종' },
   { id: '31', area: '경기' },
+  { id: '32', area: '강원' },
   { id: '33', area: '충북' },
   { id: '34', area: '충남' },
   { id: '35', area: '경북' },
