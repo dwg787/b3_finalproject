@@ -102,6 +102,7 @@ const ContainerDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  padding-bottom: 400px;
   background: linear-gradient(
     180deg,
     #ffffff -23.88%,

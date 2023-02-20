@@ -7,6 +7,22 @@ import yang from '../../assets/yang.avif';
 import TapHeart from '../../assets/TapHeart.avif';
 
 export default function MyChild() {
+  const gochumsung = () => {
+    window.location.href = '/spot/126207';
+  };
+
+  const gonaksan = () => {
+    window.location.href = '/spot/125773';
+  };
+
+  const gojinju = () => {
+    window.location.href = '/spot/126833';
+  };
+
+  const goyang = () => {
+    window.location.href = '/spot/2754455';
+  };
+
   return (
     <Container>
       <MyChildTopText>아이와 함께 하기 좋은 관광지</MyChildTopText>
@@ -20,7 +36,7 @@ export default function MyChild() {
               <LikeImg src={TapHeart} alt="" />
               <p>2348</p>
             </LikeBox>
-            <GoButton>바로가기</GoButton>
+            <GoButton onClick={gochumsung}>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
         <MyChildList>
@@ -32,7 +48,7 @@ export default function MyChild() {
               <LikeImg src={TapHeart} alt="" />
               <p>1892</p>
             </LikeBox>
-            <GoButton>바로가기</GoButton>
+            <GoButton onClick={gonaksan}>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
         <MyChildList>
@@ -44,7 +60,7 @@ export default function MyChild() {
               <LikeImg src={TapHeart} alt="" />
               <p>1622</p>
             </LikeBox>
-            <GoButton>바로가기</GoButton>
+            <GoButton onClick={gojinju}>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
         <MyChildList>
@@ -56,7 +72,7 @@ export default function MyChild() {
               <LikeImg src={TapHeart} alt="" />
               <p>972</p>
             </LikeBox>
-            <GoButton>바로가기</GoButton>
+            <GoButton onClick={goyang}>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
       </MyChildListBox>
