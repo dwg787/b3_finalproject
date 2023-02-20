@@ -8,7 +8,8 @@ import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 
@@ -58,8 +59,8 @@ const SpotSelectionResult = () => {
     <SearchOverallResultContainer>
       {isLoading || data === undefined ? (
         <>
-          {/* <SkeletonSelectionResult /> */}
-          <Loader />
+          <SkeletonTestFrame />
+          {/* <Loader /> */}
         </>
       ) : (
         <>
@@ -151,6 +152,7 @@ const SearchOverallResultContainer = styled.div`
 const ListItemCount = styled.div`
   margin-top: 30px;
   margin-left: 30px;
+  color: '#6478ff';
 `;
 
 const SearchListWrapper = styled.div`

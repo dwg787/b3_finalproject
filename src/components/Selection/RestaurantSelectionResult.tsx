@@ -11,6 +11,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
+import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 
 const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -53,7 +54,8 @@ const RestaurantSelectionResult = () => {
     <SearchOverallResultContainer>
       {isLoading || data === undefined ? (
         <>
-          <Loader />
+          <SkeletonTestFrame />
+          {/* <Loader /> */}
         </>
       ) : (
         <>
@@ -146,6 +148,7 @@ const SearchOverallResultContainer = styled.div`
 const ListItemCount = styled.div`
   margin-top: 30px;
   margin-left: 30px;
+  color: '#6478ff';
 `;
 
 const SearchListWrapper = styled.div`

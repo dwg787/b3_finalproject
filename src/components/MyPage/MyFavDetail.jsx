@@ -53,7 +53,7 @@ const StTicketCard = styled.div`
   margin: 10px;
 
   box-sizing: border-box;
-  ㄴㄴㄴㄴborder-radius: 10px;
+  border-radius: 10px;
   /* padding: 10px; */
   /* display: grid; */
   align-items: center;

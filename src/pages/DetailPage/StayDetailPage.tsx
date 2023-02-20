@@ -38,7 +38,6 @@ import {
   TabHr,
   RecommendSide,
 } from './styles';
-import Liked from '../../components/Liked/Liked';
 import StayInfo from '../../components/Recommendation/StayInfo';
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
