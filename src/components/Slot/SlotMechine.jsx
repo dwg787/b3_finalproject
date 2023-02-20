@@ -59,12 +59,12 @@ const SlotMachine = () => {
         lolingCounter += 1;
         setTimeout(() => {
           setCurrentSpots(getRandomSpot());
-          setCurrentSpots1(getRandomSpot1());
-          setCurrentSpots2(getRandomSpot2());
-          setCurrentSpots3(getRandomSpot3());
-          setCurrentSpots4(getRandomSpot4());
-          setCurrentSpots5(getRandomSpot5());
-          setCurrentSpots6(getRandomSpot6());
+          setCurrentSpots1(getRandomSpot());
+          setCurrentSpots2(getRandomSpot());
+          setCurrentSpots3(getRandomSpot());
+          setCurrentSpots4(getRandomSpot());
+          setCurrentSpots5(getRandomSpot());
+          setCurrentSpots6(getRandomSpot());
           addLoling();
         }, lolingDelay);
       }
@@ -116,31 +116,7 @@ const SlotMachine = () => {
   // random 0.501 * 100 == 50.1  <<math.floor = 50
   // tatalSpots에 50번재를 return한다
   const getRandomSpot = () => {
-    return totalSpots[Math.floor(Math.random() * totalSpots?.length)];
-  };
-
-  const getRandomSpot1 = () => {
-    return totalSpots[Math.floor(Math.random() * totalSpots?.length)];
-  };
-
-  const getRandomSpot2 = () => {
-    return totalSpots[Math.floor(Math.random() * totalSpots?.length)];
-  };
-
-  const getRandomSpot3 = () => {
-    return totalSpots[Math.floor(Math.random() * totalSpots?.length)];
-  };
-
-  const getRandomSpot4 = () => {
-    return totalSpots[Math.floor(Math.random() * totalSpots?.length)];
-  };
-
-  const getRandomSpot5 = () => {
-    return totalSpots[Math.floor(Math.random() * totalSpots?.length)];
-  };
-
-  const getRandomSpot6 = () => {
-    return totalSpots[Math.floor(Math.random() * totalSpots?.length)];
+    return totalSpots[Math.floor(Math.random() * totalSpots?.length || 1)];
   };
 
   //v2 기능 구현예정 아마도...?
