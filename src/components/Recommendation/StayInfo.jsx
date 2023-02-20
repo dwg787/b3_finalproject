@@ -83,11 +83,11 @@ export default function StayInfo({
                       <MyCildTextBox>
                         <MyChildTexth3>{item.title}</MyChildTexth3>
                         <MyChildTextp> {item.addr1}</MyChildTextp>
-                        <LikeBox>
+                        {/* <LikeBox>
                           <RestaurantLiked stayData={stayData} />
 
                           <p>00</p>
-                        </LikeBox>
+                        </LikeBox> */}
                       </MyCildTextBox>
                     </MyChildList>
                   );

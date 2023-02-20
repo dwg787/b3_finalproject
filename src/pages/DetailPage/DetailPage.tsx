@@ -22,8 +22,6 @@ import {
   DeatilImojiBox,
   CommunicationWrap,
   DetailInfo,
-  DetailInfoText,
-  DetailInfoTextBox,
   DetailInformation,
   SideInfoWrapper,
   DetailImg,
@@ -37,6 +35,7 @@ import {
 } from './styles';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
+import BlueFooter from '../../components/Footer/BlueFooter';
 
 const DetailPage = () => {
   const param = useParams();
@@ -124,17 +123,13 @@ const DetailPage = () => {
 
                   <DetailInfo>{spotData.overview.split('<', 1)}</DetailInfo>
 
-                  <DetailInfoAdd>주소 : {spotData.addr1}</DetailInfoAdd>
+                  <DetailInfoAdd>
+                    <span style={{ fontWeight: '700' }}>주소 : </span>
+                    {spotData.addr1}
+                  </DetailInfoAdd>
                 </DetailInformation>
 
                 <DetailInformationMap id="3">
-                  {/* <KakaoMap
-                    mapx={spotData.mapx}
-                    mapy={spotData.mapy}
-                    title={spotData.title}
-                    tel={spotData.tel}
-                    homepage={spotData.homepage}
-                  /> */}
                   <SideInfoMap
                     mapx={spotData.mapx}
                     mapy={spotData.mapy}
@@ -145,11 +140,7 @@ const DetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {/* <DetailInfoTextBox>
-                    <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox> */}
-
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
 
                 <Notification />
@@ -161,11 +152,11 @@ const DetailPage = () => {
             )}
           </>
         )}
-
         <SideInfoWrapper id="5">
           <StayInfo spotData={spotData} />
           <RestaurantInfo spotData={spotData} />
-        </SideInfoWrapper>
+        </SideInfoWrapper>{' '}
+        <BlueFooter />
       </Container>
     </DetailWrap>
   );

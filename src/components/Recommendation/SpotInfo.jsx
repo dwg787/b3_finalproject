@@ -43,7 +43,7 @@ export default function SpotInfo({
 
   return (
     <Container>
-      <MyChildTopText>주변 관광지 정보</MyChildTopText>
+      <MyChildTopText>가까운 인기 관광지</MyChildTopText>
       <MyChildListBox>
         {isLoadingSpot ? (
           <Loader />
