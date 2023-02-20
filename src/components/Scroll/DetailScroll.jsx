@@ -72,7 +72,8 @@ const StLinkBox = styled.div`
 
 const StLinkTextBox = styled.span`
   /* background-color: teal; */
-  font-size: 18.92px;
+  /* font-size: 18.92px; */
+  font-size: 0.9854vw;
   font-weight: 400;
   cursor: pointer;
   line-height: 17.7px;

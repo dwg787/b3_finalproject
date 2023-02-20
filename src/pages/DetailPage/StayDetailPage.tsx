@@ -43,6 +43,7 @@ import StayInfo from '../../components/Recommendation/StayInfo';
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
+import BlueFooter from '../../components/Footer/BlueFooter';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -153,19 +154,24 @@ const StayDetailPage = () => {
                   <DetailInfo2>
                     <DetailTextBox>
                       <DetailInfoAdd>
-                        문의 및 안내 : {stayAdditionalData1.infocenterlodging}
+                        <span style={{ fontWeight: '700' }}>
+                          문의 및 안내 :{' '}
+                        </span>{' '}
+                        {stayAdditionalData1.infocenterlodging}
                       </DetailInfoAdd>
                       <DetailInfoAdd>
-                        홈페이지 :
+                        <span style={{ fontWeight: '700' }}>홈페이지 : </span>
                         {stayAdditionalData1.reservationurl.split('"')[1]}
                       </DetailInfoAdd>
                     </DetailTextBox>
                     <DetailTextBox>
                       <DetailInfoAdd>
-                        주소 : {stayDetailData.addr1}
+                        <span style={{ fontWeight: '700' }}>주소 : </span>{' '}
+                        {stayDetailData.addr1}
                       </DetailInfoAdd>
                       <DetailInfoAdd>
-                        주차 : {stayAdditionalData1.parkinglodging}
+                        <span style={{ fontWeight: '700' }}>주차 : </span>{' '}
+                        {stayAdditionalData1.parkinglodging}
                       </DetailInfoAdd>
                     </DetailTextBox>
                   </DetailInfo2>
@@ -203,6 +209,7 @@ const StayDetailPage = () => {
           <SpotInfo stayDetailData={stayDetailData} />
           <RestaurantInfo stayDetailData={stayDetailData} />
         </SideInfoWrapper>
+        <BlueFooter />
       </Container>
     </DetailWrap>
   );

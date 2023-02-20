@@ -1,22 +1,31 @@
 import styled from 'styled-components';
 
-//풀 화면
+// 풀화면
 const DetailWrap = styled.div`
   width: 100%;
   height: 100%;
+  max-width: 1920px;
   /* padding: 10px; */
   display: flex;
   align-items: center;
   justify-content: center;
   /* background-color: #cda8a8; */
-  background: linear-gradient(white 40%, #6478ff);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(124, 141, 255, 1) 69%,
+    rgba(255, 255, 255, 1) 120%
+  );
 `;
 
 // 풀화면 크기조정
 const Container = styled.div`
-  width: 1232px;
-  /* width: 80%; */
-  height: 3008.6px;
+  /* width: 1232px;
+  height: 3008.6px; */
+
+  width: 100%;
+  height: 100%;
+  max-width: 1232px;
   display: flex;
   flex-direction: column;
   /* gap: 0.3rem; */
@@ -28,10 +37,11 @@ const Container = styled.div`
 
 //상세페이지 메인 박스1
 const DeatilBox = styled.div`
-  width: 1232px;
-
+  width: 100%;
+  height: 70.8%;
   /* width: 70%; */
-  height: 2131px;
+  /* height: 2131px; */
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -50,17 +60,18 @@ const DeatilTextBox = styled.div`
 `;
 
 const TabHr = styled.hr`
-  border: solid #6478ff 1.34px;
-  width: 1109.87px;
+  border: solid #6478ff 1.34;
+  width: 90.08%;
 `;
 
 //상세페이지 상단 제목
 const DetailText = styled.p`
   font-weight: bold;
   text-align: center;
-  font-size: 40.1px;
+  /* font-size: 40.1px; */
+  font-size: 2.0885vw;
   color: #6478ff;
-  margin-top: 43.62px;
+  margin-top: 2.76%;
   line-height: 37.5px;
 `;
 
@@ -68,8 +79,8 @@ const DetailText = styled.p`
 const DetailTextArr = styled.div`
   text-align: center;
   /* font-weight: bold; */
-  font-size: 22.55px;
-  margin-top: 24.4px;
+  font-size: 1.1745vw;
+  margin-top: 1.6%;
   color: #333333;
   font-weight: 400;
   /* height: 32px; */
@@ -83,18 +94,19 @@ const DeatilImojiBox = styled.div`
   text-align: center;
   justify-content: center;
   line-height: 19.1px;
-  margin-bottom: 42.52px;
-  margin-top: 21.62px;
+  margin-bottom: 2.01%;
+  margin-top: 1.08%;
 `;
 
 //상세페이지 사진 박스
 const DetailImgBox = styled.div`
-  width: 1146.11px;
+  width: 92.98%
   /* width: 70%; */
+  /* height: 15.02%; */
   height: 534.81px;
   justify-content: center;
   display: flex;
-  margin-bottom: 17.45px;
+  margin-bottom: 1.06%;
   /* margin: 32px 0; */
   /* height: 800px; */
   /* background-color: #6fcfab; */
@@ -126,7 +138,7 @@ const DetailImgBtn = styled.button`
 
 // 상세정보박스
 const DetailInformation = styled.div`
-  width: 1145.4px;
+  width: 92.98%
   /* width: 70%; */
   /* height: 248px; */
   top: 0;
@@ -138,15 +150,15 @@ const DetailInformation = styled.div`
   border-radius: 13.42px;
   border: 1px solid rgb(158, 171, 255, 0.61);
   box-sizing: border-box;
-  margin-bottom: 17.45px;
+  margin-bottom: 1.06%;
   line-height: 24.8px;
-
-  /* background-color: #76acdc; */
 `;
+
 //상세박스 소개 텍스트
 const DetailInfo = styled.span`
   display: block;
-  width: 1078.34px;
+  /* width: 1078.34px; */
+  width: 87.52%;
   line-height: 24.8px;
   flex-wrap: wrap;
   font-size: 15.42px;
@@ -155,14 +167,15 @@ const DetailInfo = styled.span`
 `;
 //상세박스 정보 텍스트
 const DetailInfo2 = styled.div`
-  width: 1078.34px;
+  width: 87.52%;
   padding: 0px 0px 27.98px 0px;
 `;
 
 const DetailInfoAdd = styled.div`
-  width: 1078.34px;
+  width: 87.52%;
   flex-wrap: wrap;
-  font-size: 15.42px;
+  /* font-size: 15.42px; */
+  font-size: 0.8031vw;
   font-weight: normal;
   /* background-color: #ccb46b; */
   padding: 0px 0px 1.84px 0px;
@@ -176,35 +189,20 @@ const DetailTextBox = styled.div`
 
 //지도박스
 const DetailInformationMap = styled.div`
-  width: 1146.11px;
+  width: 92.98%;
   /* width: 70%; */
-  height: 473.74px;
+  /* height: 473.74px; */
+  height: 15.02%;
+
   border-radius: 13.42px;
   flex-wrap: wrap;
   /* margin-bottom: 17.44px; */
   /* background-color: #76acdc; */
 `;
 
-// const DetailInfoTextBox = styled.div`
-//   width: 100%;
-//   display: flex;
-//   border-bottom: solid rgb(158, 171, 255, 0.61) 1px;
-//   margin: 10px 0;
-// `;
-
-// const DetailInfoText = styled.div`
-//   margin-left: 30px;
-
-//   font-size: 25px;
-//   font-weight: 800;
-//   text-align: left;
-//   margin-bottom: 10px;
-// `;
-
 //댓글
 const CommunicationWrap = styled.div`
-  width: 1146.11px;
-  /* width: 70%; */
+  width: 92.98%;
   height: 576.41px;
   justify-content: center;
   display: flex;
@@ -220,21 +218,16 @@ const CommunicationWrap = styled.div`
   border: 1px solid rgb(158, 171, 255, 0.61);
   /* padding: 30px; */
 
-  margin: 17.44px 0 42.95px 0;
+  margin: 1.06% 0 2.3% 0;
 `;
 
-//하단 추천 탭
+//하단 추천 탭å
 const SideInfoWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   /* width: 1836px; */
 `;
-
-// const RecommendSide = styled(SideInfoWrapper)`
-
-//   border-radius: 20px;
-//   height: 1271px;
-// `;
 
 export {
   DetailWrap,

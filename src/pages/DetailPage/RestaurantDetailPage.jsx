@@ -34,6 +34,7 @@ import StayInfo from '../../components/Recommendation/StayInfo';
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
+import BlueFooter from '../../components/Footer/BlueFooter';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -127,9 +128,7 @@ const RestaurantDetailPage = () => {
                   </DetailInfo>
 
                   <DetailInfoAdd>
-                    <span style={{ fontWeight: '700', marginRight: '27px' }}>
-                      주소
-                    </span>
+                    <span style={{ fontWeight: '700' }}>주소 : </span>
                     {restaurantDetailData.addr1}
                   </DetailInfoAdd>
                 </DetailInformation>
@@ -162,6 +161,7 @@ const RestaurantDetailPage = () => {
           <SpotInfo restaurantDetailData={restaurantDetailData} />
           <StayInfo restaurantDetailData={restaurantDetailData} />
         </SideInfoWrapper>
+        <BlueFooter />
       </Container>
     </DetailWrap>
   );
