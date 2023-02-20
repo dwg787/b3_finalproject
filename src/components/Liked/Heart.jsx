@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import heart from '../../assets/heart.png';
-import redheart from '../../assets/redheart.png';
+import heart from '../../assets/heart.avif';
+import redheart from '../../assets/redheart.avif';
 
 const HeartButton = ({ onClick, like }) => {
   return <Heart src={like ? redheart : heart} onClick={onClick} />;

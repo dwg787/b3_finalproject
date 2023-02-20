@@ -7,14 +7,14 @@ import {
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
-import Liked from '../../components/Liked/Liked';
 import KakaoMap from '../../components/Map/KakaoMap';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
 import { FetchedStayDataType } from '../../apis/publicAPI';
 import { db } from '../../apis/firebase';
-import Cart from '../../components/Cart';
-import StayLiked from '../../components/Liked/StayLiked';
-
+import DetailScroll from '../../components/Scroll/DetailScroll';
+import Communication from '../../components/Review/Communication';
+import Notification from '../../components/Notification/Notification';
+import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import noimg from '../../assets/noimg.avif';
 
 import {
@@ -33,11 +33,16 @@ import {
   DetailText,
   DetailTextArr,
   DeatilTextBox,
+  DetailInformationMap,
+  DetailInfoAdd,
+  TabHr,
+  RecommendSide,
 } from './styles';
-import DetailScroll from '../../components/Scroll/DetailScroll';
+import Liked from '../../components/Liked/Liked';
+import StayInfo from '../../components/Recommendation/StayInfo';
+import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
+import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
-import Communication from '../../components/Review/Communication';
-import Notification from '../../components/Notification/Notification';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -46,12 +51,14 @@ const StayDetailPage = () => {
     () => fetchStayDetailInfo({ param }),
   );
 
-  // const {
-  //   data: stayAdditionalData1,
-  //   isLoading: isLoadingAdditional1,
-  // } = useQuery(['stay_additional1', param], () =>
-  //   fetchStayAdditionalInfo1({ param }),
-  // );
+  const {
+    data: stayAdditionalData1,
+    isLoading: isLoadingAdditional1,
+  } = useQuery(['stay_additional1', param], () =>
+    fetchStayAdditionalInfo1({ param }),
+  );
+
+  // console.log('숙박 상세 소개', stayAdditionalData1);
 
   // const {
   //   data: stayAdditionalData2,
@@ -113,20 +120,22 @@ const StayDetailPage = () => {
             {stayDetailData ? (
               <DeatilBox key={param.id}>
                 {/* <Link to={'/'}>메인으로</Link> */}
+                <DetailScroll />
+                <TabHr />
                 <DeatilTextBox>
+                  {/* <DetailScroll /> */}
                   <DetailText>{stayDetailData.title}</DetailText>
                   <DetailTextArr>
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    <StayLiked stayDetailData={stayDetailData} />
-
+                    <RestaurantLiked stayDetailData={stayDetailData} />
+                    {/* <Liked stayDetailData={stayDetailData} /> */}
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
                   </DeatilImojiBox>
                 </DeatilTextBox>
-                <DetailScroll />
 
                 <DetailImgBox id="1">
                   <DetailImg
@@ -143,19 +152,24 @@ const StayDetailPage = () => {
                   <DetailInfo>
                     {stayDetailData.overview.split('.', 4)}
                   </DetailInfo>
-                  <DetailInfo>
-                    <KakaoMap
-                      mapx={stayDetailData.mapx}
-                      mapy={stayDetailData.mapy}
-                    />
-                  </DetailInfo>
-                  <DetailInfo>주소 : {stayDetailData.addr1}</DetailInfo>
+
+                  <DetailInfoAdd>주소 : {stayDetailData.addr1}</DetailInfoAdd>
                 </DetailInformation>
 
-                <CommunicationWrap id="3">
-                  <DetailInfoTextBox>
+                <DetailInformationMap id="3">
+                  <KakaoMap
+                    mapx={stayDetailData.mapx}
+                    mapy={stayDetailData.mapy}
+                    title={stayDetailData.title}
+                    tel={stayDetailData.tel}
+                    homepage={stayDetailData.homepage}
+                  />
+                </DetailInformationMap>
+
+                <CommunicationWrap id="4">
+                  {/* <DetailInfoTextBox>
                     <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox>
+                  </DetailInfoTextBox> */}
 
                   <Communication />
                 </CommunicationWrap>
@@ -170,10 +184,10 @@ const StayDetailPage = () => {
           </>
         )}
 
-        {/* <SideInfoWrapper id="4">
-        <StayInfo spotData={spotData} />
-        <RestaurantInfo spotData={spotData} />
-      </SideInfoWrapper> */}
+        <SideInfoWrapper id="5">
+          <SpotInfo stayDetailData={stayDetailData} />
+          <RestaurantInfo stayDetailData={stayDetailData} />
+        </SideInfoWrapper>
       </Container>
     </DetailWrap>
   );

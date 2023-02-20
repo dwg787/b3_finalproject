@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import InnerPhoto from '../../../assets/slider1.jpeg';
-import TapHeart from '../../../assets/TapHeart.png';
-import gyongrim from '../../../assets/gyongrim.png';
-import donggung from '../../../assets/donggung.png';
-import gumsung from '../../../assets/gumsung.png';
-import deabang from '../../../assets/deabang.png';
-import hwagae from '../../../assets/hwagae.png';
-import chang from '../../../assets/chang.png';
+import InnerPhoto from '../../../assets/slider1.avif';
+import TapHeart from '../../../assets/TapHeart.avif';
+import gyongrim from '../../../assets/gyongrim.avif';
+import donggung from '../../../assets/donggung.avif';
+import gumsung from '../../../assets/gumsung.avif';
+import deabang from '../../../assets/deabang.avif';
+import hwagae from '../../../assets/hwagae.avif';
+import chang from '../../../assets/chang.avif';
 
 export default function Spot() {
   return (
@@ -102,16 +102,15 @@ export default function Spot() {
     </WarpDiv>
   );
 }
-
 const WarpDiv = styled.div`
-  width: 91%;
+  width: 90%;
   height: 600px;
-  margin-left: 4.5%;
+  margin-left: 5%;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 20px;
+  gap: 100px;
 `;
 
 const InnerNmb = styled.div`
@@ -138,7 +137,7 @@ const InnerBox1 = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InnerBox2 = styled.div`
@@ -149,11 +148,11 @@ const InnerBox2 = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InnerList = styled.div`
-  width: 560px;
+  width: 540px;
   height: 190px;
   display: flex;
   border: 1px solid #6478ff;

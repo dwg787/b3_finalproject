@@ -4,8 +4,8 @@ import { db } from '../../apis/firebase';
 import { getDocs, collection, orderBy, query } from 'firebase/firestore';
 import MySpotDetail from './MySpotDetail';
 import Slider from 'react-slick';
-import nextImg from '../../assets/next.png';
-import pervImg from '../../assets/prev.png';
+import nextImg from '../../assets/next.avif';
+import pervImg from '../../assets/prev.avif';
 
 const MySpot = (propsData) => {
   const [MySpot, setMySpot] = useState();
@@ -179,15 +179,15 @@ const MySpot = (propsData) => {
 export default MySpot;
 
 const Container = styled.div`
-  width: 90%;
-  height: 580px;
+  width: 65%;
+  height: 440px;
   display: flex;
   flex-direction: column;
   margin-top: 70px;
   padding-top: 40px;
   border: 1.5px solid #6478ff;
   border-radius: 50px;
-  box-shadow: 5px 5px #c8c8c8;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
   background-color: white;
 `;
 

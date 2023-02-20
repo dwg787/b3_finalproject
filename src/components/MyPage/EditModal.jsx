@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { updateProfile } from 'firebase/auth';
 import { doc } from 'firebase/firestore';
-import { db, auth } from '../../apis/firebase';
+import { auth, db } from '../../apis/firebase';
 import { useFirestoreDocumentMutation } from '@react-query-firebase/firestore';
 import styled from 'styled-components';
 import { updateDoc } from 'firebase/firestore';
@@ -19,7 +19,7 @@ export default function EditModal({
   const navigate = useNavigate();
   const [currentInput, setCurrentInput] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  // 닉네임 또는 깃허브 링크 유효성 검사
+  // 닉네임 또는 이메일 링크 유효성 검사
   const [inputValidation, setInputValidation] = useState(false);
   // 저장 버튼 활성화
   const [buttonValidation, setButtonValidation] = useState(true);
@@ -43,7 +43,7 @@ export default function EditModal({
       }).catch((error) => {
         console.log(error.message);
       });
-      // updateDoc(docRef, { name: currentInput });
+      updateDoc(docRef, { name: currentInput });
       //   sessionStorage.removeItem("id");
       sessionStorage.setItem('id', currentInput);
       updateNickname(currentInput);

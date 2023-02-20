@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
 import RegionSelection from '../components/Selection/RegionSelection';
-import SelectionResult from '../components/Selection/SelectionResult';
+// import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
 // import StayRecommendation from '../components/Recommendation/StayRecommendation';
 // import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
@@ -15,11 +15,13 @@ import BestDate from '../components/Recommendation/BestDate';
 import MySpot from '../components/Recommendation/MySpot';
 import { useEffect } from 'react';
 import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
+import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
+import Footer from '../components/Footer/Footer';
+import BlackFooter from '../components/Footer/BlackFooter';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const selected = sessionStorage.getItem('mainpage_menu_type');
-  if (selected) setSelectedMenu(selected);
 
   useEffect(() => {
     if (selected) setSelectedMenu(selected);
@@ -43,15 +45,26 @@ const MainPage = () => {
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
+          <Footer />
           {/* <StayRecommendation />
           <RestaurantRecommendation /> */}
         </>
       ) : selectedMenu === '관광지' ? (
-        <SelectionResult />
-      ) : selectedMenu === '숙박' ? (
-        <StaySelectionResult />
+        <>
+          <SpotSelectionResult />
+          <BlackFooter />
+        </>
+      ) : // <SelectionResult />
+      selectedMenu === '숙박' ? (
+        <>
+          <StaySelectionResult />
+          <BlackFooter />
+        </>
       ) : selectedMenu === '음식점' ? (
-        <RestaurantSelectionResult />
+        <>
+          <RestaurantSelectionResult />
+          <BlackFooter />
+        </>
       ) : (
         <>
           <SliderBanner />
@@ -60,6 +73,7 @@ const MainPage = () => {
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
           <BestDate />
+          <Footer />
           {/* <StayRecommendation />
           <RestaurantRecommendation /> */}
         </>
@@ -75,6 +89,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 500px;
   background: linear-gradient(white 40%, #6478ff);
 `;
 

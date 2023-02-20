@@ -1,19 +1,3 @@
-import { useEffect } from 'react';
-import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
-import { useParams, Link } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import Loader from '../../components/Loader/Loader';
-import KakaoMap from '../../components/Map/KakaoMap';
-import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
-import { FetchedStayDataType } from '../../apis/publicAPI';
-import { db } from '../../apis/firebase';
-import RestaurantLiked from '../../components/Liked/RestaurantLiked';
-import MapImoji from '../../components/Map/MapImoji';
-import DetailScroll from '../../components/Scroll/DetailScroll';
-import Communication from '../../components/Review/Communication';
-import Notification from '../../components/Notification/Notification';
-import noimg from '../../assets/noimg.avif';
-
 import {
   DetailWrap,
   Container,
@@ -24,13 +8,35 @@ import {
   DetailInfoText,
   DetailInfoTextBox,
   DetailInformation,
-  SideInfoWrapper,
   DetailImg,
   DetailImgBox,
   DetailText,
   DetailTextArr,
   DeatilTextBox,
+  DetailInfoAdd,
+  DetailInformationMap,
+  TabHr,
+  RecommendSide,
+  SideInfoWrapper,
 } from './styles';
+import { useEffect } from 'react';
+import { useQuery } from 'react-query';
+import { db } from '../../apis/firebase';
+import noimg from '../../assets/noimg.avif';
+import { useParams, Link } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
+import KakaoMap from '../../components/Map/KakaoMap';
+import { FetchedStayDataType } from '../../apis/publicAPI';
+import DetailScroll from '../../components/Scroll/DetailScroll';
+import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
+import Communication from '../../components/Review/Communication';
+import Notification from '../../components/Notification/Notification';
+import RestaurantLiked from '../../components/Liked/RestaurantLiked';
+import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
+import StayInfo from '../../components/Recommendation/StayInfo';
+import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
+import SpotInfo from '../../components/Recommendation/SpotInfo';
+import MapImoji from '../../components/Map/MapImoji';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -92,12 +98,15 @@ const RestaurantDetailPage = () => {
             {restaurantDetailData ? (
               <DeatilBox key={param.id}>
                 {/* <Link to={'/'}>메인으로</Link> */}
+                <DetailScroll />
+                <TabHr />
                 <DeatilTextBox>
                   <DetailText>{restaurantDetailData.title}</DetailText>
                   <DetailTextArr>
                     {restaurantDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
+                    {/* <Liked restaurantDetailData={restaurantDetailData} /> */}
                     <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
                     />
@@ -107,7 +116,6 @@ const RestaurantDetailPage = () => {
                     </Link>
                   </DeatilImojiBox>
                 </DeatilTextBox>
-                <DetailScroll />
 
                 <DetailImgBox id="1">
                   <DetailImg
@@ -124,16 +132,26 @@ const RestaurantDetailPage = () => {
                   <DetailInfo>
                     {restaurantDetailData.overview.split('.', 4)}
                   </DetailInfo>
-                  <DetailInfo>
-                    <KakaoMap
-                      mapx={restaurantDetailData.mapx}
-                      mapy={restaurantDetailData.mapy}
-                    />
-                  </DetailInfo>
-                  <DetailInfo>주소 : {restaurantDetailData.addr1}</DetailInfo>
+
+                  <DetailInfoAdd>
+                    <span style={{ fontWeight: '700', marginRight: '27px' }}>
+                      주소
+                    </span>
+                    {restaurantDetailData.addr1}
+                  </DetailInfoAdd>
                 </DetailInformation>
 
-                <CommunicationWrap id="3">
+                <DetailInformationMap id="3">
+                  <KakaoMap
+                    mapx={restaurantDetailData.mapx}
+                    mapy={restaurantDetailData.mapy}
+                    title={restaurantDetailData.title}
+                    tel={restaurantDetailData.tel}
+                    homepage={restaurantDetailData.homepage}
+                  />
+                </DetailInformationMap>
+
+                <CommunicationWrap id="4">
                   <DetailInfoTextBox>
                     <DetailInfoText>여행톡</DetailInfoText>
                   </DetailInfoTextBox>
@@ -151,10 +169,10 @@ const RestaurantDetailPage = () => {
           </>
         )}
 
-        {/* <SideInfoWrapper id="4">
-        <StayInfo spotData={spotData} />
-        <RestaurantInfo spotData={spotData} />
-      </SideInfoWrapper> */}
+        <SideInfoWrapper id="5">
+          <SpotInfo restaurantDetailData={restaurantDetailData} />
+          <StayInfo restaurantDetailData={restaurantDetailData} />
+        </SideInfoWrapper>
       </Container>
     </DetailWrap>
   );

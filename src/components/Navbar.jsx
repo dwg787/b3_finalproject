@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import { LoginPage } from '../pages';
 import axios from 'axios';
 import QueryString from 'qs';
-import mainlogo from '../assets/mainlogo.png';
-import SearchIcon from '../assets/search.png';
-import Ximg from '../assets/ximg.png';
+import mainlogo from '../assets/mainlogo.avif';
+import SearchIcon from '../assets/search.avif';
+import Ximg from '../assets/ximg.avif';
 import useNotification from '../hooks/useNotification';
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
   // const currentUser = auth.currentUser;
-  const localId = sessionStorage.getItem('id');
+  const localId = localStorage.getItem('id');
   // console.log(localId);
 
   const currentUser = auth.currentUser;
@@ -82,7 +82,7 @@ const Navbar = () => {
     console.log(user);
     setNickName(user.data.properties.nickname);
     setProfileImage(user.data.properties.profile_image);
-    sessionStorage.setItem('id', user.data.properties.nickname);
+    localStorage.setItem('id', user.data.properties.nickname);
   };
   // console.log(nickName, profileImage);
 
@@ -118,6 +118,13 @@ const Navbar = () => {
     //   .then(() => {
     //     alert("로그아웃 되었습니다.");
 
+    fetch('https://openapi.naver.com/v1/nid/verify', {
+      headers: {
+        Authorization:
+          'Bearer AAAAPIuf0L+qfDkMABQ3IJ8heq2mlw71DojBj3oc2Z6OxMQESVSrtR0dbvsiQbPbP1/cxva23n7mQShtfK4pchdk/rc=',
+      },
+    });
+
     // 로그아웃 성공
     setShowModal(false);
     navigate('/', { replace: true });
@@ -126,14 +133,14 @@ const Navbar = () => {
     //     // 로그아웃 실패
     //     alert("로그아웃에 실패했습니다.");
     //   });
-    sessionStorage.removeItem('id');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
     localStorage.removeItem('token_for_kakaotalk');
-    localStorage.removeItem('com.naver.nid.access_token');
     localStorage.removeItem('com.naver.nid.oauth.state_token');
-    sessionStorage.removeItem('email');
-
+    localStorage.removeItem('com.naver.nid.access_token');
+    localStorage.removeItem('__bootpay_track_uuid__');
     navigate('/');
-    window.location.reload();
+    // window.location.reload();
   };
   // const localId = sessionStorage.getItem('id');
   // console.log(localId);
@@ -142,47 +149,20 @@ const Navbar = () => {
     const naverLogin = new naver.LoginWithNaverId({
       clientId: NAVER_CLIENT_ID,
       callbackUrl: NAVER_CALLBACK_URL,
-      // 팝업창으로 로그인을 진행할 것인지?
-      isPopup: false,
-      loginButton: { color: 'green', type: 1, height: 30 },
-      callbackHandle: true,
     });
     naverLogin.init();
 
     naverLogin.getLoginStatus(async function(status) {
       if (status) {
-        const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
         setUserName(username);
         window.localStorage.setItem('id', username);
-        window.sessionStorage.setItem('id', username);
       }
     });
   };
 
   useEffect(() => {
-    let naverUser = setTimeout(() => {
-      initializeNaverLogin();
-      const naverLogin = new naver.LoginWithNaverId({
-        clientId: NAVER_CLIENT_ID,
-        callbackUrl: NAVER_CALLBACK_URL,
-        // 팝업창으로 로그인을 진행할 것인지?
-        isPopup: false,
-        loginButton: { color: 'green', type: 1, height: 30 },
-        callbackHandle: true,
-      });
-      naverLogin.init();
-
-      naverLogin.getLoginStatus(async function(status) {
-        if (status) {
-          const userid = naverLogin.user.getEmail();
-          const username = naverLogin.user.getName();
-          setUserName(username);
-          window.localStorage.setItem('id', username);
-          window.sessionStorage.setItem('id', username);
-        }
-      });
-    }, 500);
+    initializeNaverLogin();
   }, []);
 
   return (

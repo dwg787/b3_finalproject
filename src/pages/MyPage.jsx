@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import MyCart from "../components/MyPage/MyCart";
-import MyFav from "../components/MyPage/MyFav";
-import MyInfo from "../components/MyPage/MyInfo";
-import MyTicket from "../components/MyPage/MyTicket";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import MyCart from '../components/MyPage/MyCart';
+import MyFav from '../components/MyPage/MyFav';
+import MyInfo from '../components/MyPage/MyInfo';
+import MyTicket from '../components/MyPage/MyTicket';
 
 const MyPage = () => {
   // 초기 화면에 0번째 탭이 active되길 원한다면 0값을 입력한다.
@@ -14,7 +14,7 @@ const MyPage = () => {
     {
       tabTitle: (
         <li
-          className={activeIndex === 0 ? "is-active" : ""}
+          className={activeIndex === 0 ? 'is-active' : ''}
           onClick={() => tabClickHandler(0)}
         >
           내 정보
@@ -29,23 +29,8 @@ const MyPage = () => {
     {
       tabTitle: (
         <li
-          className={activeIndex === 1 ? "is-active" : ""}
+          className={activeIndex === 1 ? 'is-active' : ''}
           onClick={() => tabClickHandler(1)}
-        >
-          장바구니
-        </li>
-      ),
-      tabCont: (
-        <div>
-          <MyCart />
-        </div>
-      ),
-    },
-    {
-      tabTitle: (
-        <li
-          className={activeIndex === 2 ? "is-active" : ""}
-          onClick={() => tabClickHandler(2)}
         >
           찜하기
         </li>
@@ -53,21 +38,6 @@ const MyPage = () => {
       tabCont: (
         <div>
           <MyFav />
-        </div>
-      ),
-    },
-    {
-      tabTitle: (
-        <li
-          className={activeIndex === 3 ? "is-active" : ""}
-          onClick={() => tabClickHandler(3)}
-        >
-          내 예약 정보
-        </li>
-      ),
-      tabCont: (
-        <div>
-          <MyTicket />
         </div>
       ),
     },
@@ -83,7 +53,7 @@ const MyPage = () => {
         {/* map 함수를 사용해서 각 obj의 탭 Title이 작성되도록  */}
         <StMyList>
           {tabContArr.map((section, i) => {
-            return <div key={i}>{section.tabTitle}</div>;
+            return <StMyListTab key={i}>{section.tabTitle}</StMyListTab>;
           })}
         </StMyList>
         {/* activeIndex의 탭콘트만 보여줌! */}
@@ -126,6 +96,10 @@ const StMyList = styled.ul`
     padding: 15px 10px;
     cursor: pointer;
   } */
+`;
+
+const StMyListTab = styled.div`
+  margin: 10px;
 `;
 
 const StMyPageInfo = styled.div`

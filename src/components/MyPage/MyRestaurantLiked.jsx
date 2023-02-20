@@ -14,6 +14,7 @@ import { auth, db } from '../../apis/firebase';
 import Loader from '../Loader/Loader';
 import noimg from '../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
+import { combinedAllData } from '../../apis/publicAPI';
 
 const MyRestaurantLiked = () => {
   const [restaurant, setRestaurant] = useState([]);
@@ -27,6 +28,7 @@ const MyRestaurantLiked = () => {
       ...doc.data(),
     }));
     setRestaurant(newData);
+    console.log(newData);
   };
 
   useEffect(() => {
@@ -40,42 +42,81 @@ const MyRestaurantLiked = () => {
   }
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
-  const delResLiked = async () => {
-    const docRef = doc(db, 'restaurantlike', uid);
-    console.log(docRef);
-    await deleteDoc(docRef);
-  };
+  // const delResLiked = async () => {
+  //   const docRef = doc(db, 'restaurantlike', uid);
+  //   console.log(docRef);
+  //   await deleteDoc(docRef);
+  // };
+
+  // const deleteRestaurantLiked = async () => {
+  //   const uid = auth.currentUser.uid;
+  //   const query = query(
+  //     collection(db, 'restaurantlike'),
+  //     where('uid', '==', uid),
+  //     where('contentid', '==', combinedAllData.contentid),
+  //   );
+  //   const querySnapshot = await getDocs(query);
+  //   await Promise.all(
+  //     querySnapshot.docs.map(async (doc) => {
+  //       await deleteDoc(doc.ref).catch((e) => console.log(e));
+  //     }),
+  //   );
+  // };
 
   return (
     <>
       <StTicketWrap>
         <StTicket>
           {restaurant.map((data, i) => {
-            return (
-              // <Link to={`/restaurant/${data.contentid}`}> </Link>
-              <StTicketCard key={i}>
-                <StTicketCardLeft>
-                  <StTicketHeader>
-                    <StCartMenu>음식점</StCartMenu>
-                    <button
-                      onClick={() => {
-                        delResLiked()
-                          .then(() => {
-                            window.alert('Like 삭제 완료');
-                            getRestaurantLiked();
-                          })
-                          .catch((e) => console.log(e));
-                      }}
-                    >
-                      삭제
-                    </button>
-                  </StTicketHeader>
+            switch (data.contenttypeid) {
+              case '39':
+                return (
+                  <Link to={`/restaurant/${data.contentid}`}>
+                    <StTicketCard key={i}>
+                      <StTicketCardLeft>
+                        <StTicketHeader>
+                          <StCartMenu>음식점</StCartMenu>
+                        </StTicketHeader>
 
-                  <StMyTicketImage src={data.img || noimg} alt="사진" />
-                </StTicketCardLeft>
-                <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
-              </StTicketCard>
-            );
+                        <StMyTicketImage src={data.img || noimg} alt="사진" />
+                      </StTicketCardLeft>
+                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+                    </StTicketCard>
+                  </Link>
+                );
+              case '32':
+                return (
+                  <Link to={`/stay/${data.contentid}`}>
+                    <StTicketCard key={i}>
+                      <StTicketCardLeft>
+                        <StTicketHeader>
+                          <StCartMenu>숙박</StCartMenu>
+                        </StTicketHeader>
+
+                        <StMyTicketImage src={data.img || noimg} alt="사진" />
+                      </StTicketCardLeft>
+                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+                    </StTicketCard>
+                  </Link>
+                );
+              case '12':
+                return (
+                  <Link to={`/spot/${data.contentid}`}>
+                    <StTicketCard key={i}>
+                      <StTicketCardLeft>
+                        <StTicketHeader>
+                          <StCartMenu>관광지</StCartMenu>
+                        </StTicketHeader>
+
+                        <StMyTicketImage src={data.img || noimg} alt="사진" />
+                      </StTicketCardLeft>
+                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+                    </StTicketCard>
+                  </Link>
+                );
+              default:
+                return null;
+            }
           })}
         </StTicket>
       </StTicketWrap>
@@ -98,7 +139,7 @@ const StTicket = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -154,12 +195,27 @@ const StCartTitle = styled.span`
   text-align: center;
 `;
 
-const StCartMenu = styled.span`
-  color: #fafafa;
-  font-weight: 900;
-  z-index: 100;
-  background-color: teal;
-  margin-right: 130px;
+// const StCartMenu = styled.span`
+//   color: #fafafa;
+//   font-weight: 900;
+//   z-index: 100;
+//   background-color: teal;
+//   margin-right: 130px;
+// `;
+
+const StCartMenu = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  width: 50px;
+  height: 24px;
+  border-radius: 30px;
+  background-color: rgba(207, 171, 228, 0.4);
+  margin: 5px;
 `;
 
 const StTicketHeader = styled.div`

@@ -3,9 +3,9 @@ import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import slide1 from '../assets/slide1.jpeg';
-import mainImg from '../assets/mainImg.png';
-import mainImg2 from '../assets/mainImg2.png';
+import slide1 from '../assets/slide1.avif';
+import mainImg from '../assets/mainImg.avif';
+import mainImg2 from '../assets/mainImg2.avif';
 import InputBoxButton from './InputBoxButton/InputBoxButton';
 // import slide1 from "../assets/slider1.jpeg";
 // import slide2 from "../assets/slide2.jpeg";
@@ -44,8 +44,8 @@ export default function MainSlide() {
 }
 const ContainerDiv = styled.div`
   position: relative;
-  width: 100%;
-  height: 480px;
+  width: 65%;
+  height: 380px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,16 +55,16 @@ const ContainerDiv = styled.div`
 `;
 const WarpDiv = styled.div`
   width: 100%;
-  height: 550px;
+  height: 450px;
 `;
 const MainSlider = styled(Slider)`
   height: 100%;
 `;
 const ImgDiv = styled.div`
   width: 100%;
-  height: 550px;
+  height: 450px;
 `;
 const MainImg = styled.img`
   width: 100%;
-  height: 550px;
+  height: 450px;
 `;

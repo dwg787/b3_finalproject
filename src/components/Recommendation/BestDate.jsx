@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import yeonbuk from '../../assets/yeonbuk.png';
-import buseok from '../../assets/buseok.png';
-import dmz from '../../assets/dmz.png';
-import dongsung from '../../assets/dongsung.png';
-import TapHeart from '../../assets/TapHeart.png';
+import yeonbuk from '../../assets/yeonbuk.avif';
+import buseok from '../../assets/buseok.avif';
+import dmz from '../../assets/dmz.avif';
+import dongsung from '../../assets/dongsung.avif';
+import TapHeart from '../../assets/TapHeart.avif';
 
 export default function MyChild() {
   return (
@@ -63,20 +63,21 @@ export default function MyChild() {
     </Container>
   );
 }
+
 const Container = styled.div`
-  width: 90%;
-  height: 600px;
+  width: 65%;
+  height: 580px;
   display: flex;
   flex-direction: column;
   margin-top: 65px;
   border: 1.5px solid white;
   border-radius: 50px;
-  box-shadow: 5px 5px #c8c8c8;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   background-color: white;
 `;
 
 const MyChildTopText = styled.p`
-  margin-left: 70px;
+  margin-left: 40px;
   color: #6478ff;
   font-size: 20px;
   font-weight: bold;
@@ -85,13 +86,14 @@ const MyChildTopText = styled.p`
 
 const MyChildListBox = styled.div`
   display: flex;
-  justify-content: space-around;
+  gap: 16px;
+  justify-content: center;
   align-items: center;
   margin-top: 40px;
 `;
 
 const MyChildList = styled.div`
-  width: 300px;
+  width: 280px;
   height: 413px;
   background-color: white;
   box-shadow: 5px 5px #d1d1d1;
@@ -102,7 +104,7 @@ const MyChildList = styled.div`
 `;
 
 const MyChildImg = styled.img`
-  width: 300px;
+  width: 280px;
   height: 250px;
 `;
 
@@ -142,7 +144,7 @@ const GoButton = styled.button`
   border-radius: 3px;
   width: 100px;
   height: 30px;
-  margin-left: 160px;
+  margin-left: 140px;
   margin-top: 20px;
   &:hover {
     background-color: #6478ff;

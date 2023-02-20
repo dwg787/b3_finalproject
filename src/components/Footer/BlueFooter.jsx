@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import mainlogo from '../../assets/mainlogo.avif';
+import BlueLogo from '../../assets/BlueLogo.avif';
 
-export default function Footer() {
+const BlueFooter = () => {
   return (
     <WrapDiv>
       <TextBox>
-        <FooterLogo src={mainlogo} alt="" />
+        <FooterLogo src={BlueLogo} alt="" />
         <TopText>
           <FooterText>
             (주)트립픽 | 소유자 : 유영재, 송원석, 김혜진, 심대호, 예재현, 소수현
@@ -35,7 +35,9 @@ export default function Footer() {
       </TextBox>
     </WrapDiv>
   );
-}
+};
+
+export default BlueFooter;
 
 const WrapDiv = styled.div`
   width: 100%;
@@ -44,7 +46,6 @@ const WrapDiv = styled.div`
   padding-top: 100px;
   padding-left: 100px;
   position: absolute;
-  margin-top: 3500px;
 `;
 
 const TextBox = styled.div`
@@ -57,7 +58,7 @@ const TextBox = styled.div`
 `;
 
 const Footerh1 = styled.h1`
-  color: white;
+  color: #6478ff;
   font-size: 60px;
   font-weight: bold;
   margin-bottom: 40px;
@@ -65,7 +66,7 @@ const Footerh1 = styled.h1`
 `;
 
 const FooterText = styled.p`
-  color: white;
+  color: #6478ff;
   font-size: 14px;
 `;
 

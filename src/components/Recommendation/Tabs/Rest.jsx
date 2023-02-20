@@ -1,49 +1,55 @@
 import React from 'react';
 import styled from 'styled-components';
-import InnerPhoto from '../../../assets/slider3.jpeg';
-import TapHeart from '../../../assets/TapHeart.png';
+import InnerPhoto from '../../../assets/slider3.avif';
+import TapHeart from '../../../assets/TapHeart.avif';
+import dombae from '../../../assets/dombae.avif';
+import manmi from '../../../assets/manmi.avif';
+import koji from '../../../assets/koji.avif';
+import soban from '../../../assets/soban.avif';
+import gore from '../../../assets/gore.avif';
+import mil from '../../../assets/mil.avif';
 
 export default function Rest() {
   return (
     <WarpDiv>
       <InnerBox1>
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={dombae} />
           <InnerNmb>1</InnerNmb>
           <InnerText>
-            <InnerTextH3>경주 계림</InnerTextH3>
-            <InnerTextp>김알지의 탄생 설화가 깃든 숲</InnerTextp>
+            <InnerTextH3>돔베돈</InnerTextH3>
+            <InnerTextp>미슐랭가이드에 소개된 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>9,812</p>
+              <p>3,012</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={manmi} />
           <InnerNmb>2</InnerNmb>
           <InnerText>
-            <InnerTextH3>동궁과 월지</InnerTextH3>
-            <InnerTextp>신라 조경예술의 극치를 보여준다.</InnerTextp>
+            <InnerTextH3>만미가</InnerTextH3>
+            <InnerTextp>저렴한 바닷장어 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>8,181</p>
+              <p>2,881</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={koji} />
           <InnerNmb>3</InnerNmb>
           <InnerText>
-            <InnerTextH3>금성산성</InnerTextH3>
-            <InnerTextp>고려시대 이후 입보용으로 사용된 성</InnerTextp>
+            <InnerTextH3>스시 코우지</InnerTextH3>
+            <InnerTextp>코우지셰프 스시야</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>7,522</p>
+              <p>2,224</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
@@ -52,42 +58,42 @@ export default function Rest() {
 
       <InnerBox2>
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={soban} />
           <InnerNmb>4</InnerNmb>
           <InnerText>
-            <InnerTextH3>대방진 굴항</InnerTextH3>
-            <InnerTextp>경상남도 사천시 대방동에 있는 인공항구</InnerTextp>
+            <InnerTextH3>갈비명가 소반</InnerTextH3>
+            <InnerTextp>경남창원 소갈비 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>7,117</p>
+              <p>1,617</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={gore} />
           <InnerNmb>5</InnerNmb>
           <InnerText>
-            <InnerTextH3>화개동천</InnerTextH3>
-            <InnerTextp>우리나라에서 처음으로 차나무를 심은 곳</InnerTextp>
+            <InnerTextH3>고래고기원조할매집</InnerTextH3>
+            <InnerTextp>고래마을내 위치한 고래고기전문점</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>5,401</p>
+              <p>924</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
         </InnerList>
 
         <InnerList>
-          <InnerImg src={InnerPhoto} />
+          <InnerImg src={mil} />
           <InnerNmb>6</InnerNmb>
           <InnerText>
-            <InnerTextH3>창경궁</InnerTextH3>
-            <InnerTextp>옛 수강궁터에 창건한 궁</InnerTextp>
+            <InnerTextH3>개금밀면</InnerTextH3>
+            <InnerTextp>진한 국물이 매력적인 밀면맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>4,991</p>
+              <p>741</p>
             </LikeBox>
           </InnerText>
           <InnerButton>바로가기</InnerButton>
@@ -98,14 +104,14 @@ export default function Rest() {
 }
 
 const WarpDiv = styled.div`
-  width: 91%;
+  width: 90%;
   height: 600px;
-  margin-left: 4.5%;
+  margin-left: 5%;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 20px;
+  gap: 100px;
 `;
 
 const InnerNmb = styled.div`
@@ -132,7 +138,7 @@ const InnerBox1 = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InnerBox2 = styled.div`
@@ -143,11 +149,11 @@ const InnerBox2 = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InnerList = styled.div`
-  width: 560px;
+  width: 540px;
   height: 190px;
   display: flex;
   border: 1px solid #6478ff;
