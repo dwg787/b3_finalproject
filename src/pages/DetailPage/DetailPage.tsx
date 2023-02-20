@@ -16,12 +16,12 @@ import KakaoMap from '../../components/Map/KakaoMap';
 import noimg from '../../assets/noimg.avif';
 import {
   DetailWrap,
+  DetailInfoText,
+  CommunicationWrap,
   Container,
   DeatilBox,
   DeatilImojiBox,
-  CommunicationWrap,
   DetailInfo,
-  DetailInfoText,
   DetailInfoTextBox,
   DetailInformation,
   SideInfoWrapper,
@@ -114,8 +114,8 @@ const DetailPage = () => {
 
                 <DetailInformation id="2">
                   {/* <DetailInfoTextBox>
-                    <DetailInfoText>상세정보</DetailInfoText>
-                  </DetailInfoTextBox> */}
+                      <DetailInfoText>상세정보</DetailInfoText>
+                    </DetailInfoTextBox> */}
 
                   <DetailInfo>{spotData.overview.split('.', 4)}</DetailInfo>
                   <DetailInfo>
@@ -125,9 +125,9 @@ const DetailPage = () => {
                 </DetailInformation>
 
                 <CommunicationWrap id="3">
-                  <DetailInfoTextBox>
-                    <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox>
+                  {/* <DetailInfoTextBox> */}
+                  <DetailInfoText>여행톡</DetailInfoText>
+                  {/* </DetailInfoTextBox> */}
 
                   <Communication />
                 </CommunicationWrap>
@@ -150,5 +150,18 @@ const DetailPage = () => {
     </DetailWrap>
   );
 };
+
+//   return (
+//     <div>
+//       <CommunicationWrap id="3">
+//         {/* <DetailInfoTextBox> */}
+//         <DetailInfoText>여행톡</DetailInfoText>
+//         {/* </DetailInfoTextBox> */}
+
+//         <Communication />
+//       </CommunicationWrap>
+//     </div>
+//   );
+// };
 
 export default DetailPage;

@@ -13,6 +13,7 @@ const Heart = styled.img`
   width: 20px;
   /* margin: 10px; */
   margin-top: 13px;
-  &:hover{
+  &:hover {
     transform: scale(1.1);
+  }
 `;

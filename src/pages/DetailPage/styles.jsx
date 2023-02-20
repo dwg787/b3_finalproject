@@ -101,22 +101,13 @@ const DetailInformation = styled.div`
   margin: 20px 0;
 `;
 
-const DetailInfoTextBox = styled.div`
-  width: 100%;
-  display: flex;
-  /* flex-direction: row; */
-  /* border-bottom: solid #1f1f20 2px; */
-  border-bottom: solid rgb(158, 171, 255, 0.61) 1px;
-  margin: 10px 0;
-`;
+const DetailInfoTextBox = styled.div``;
 
 const DetailInfoText = styled.div`
-  margin-left: 30px;
-  /* height: 100px; */
-  font-size: 25px;
-  font-weight: 800;
-  text-align: left;
-  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 29.271px;
+  color: #6478ff;
+  margin: 40px 0 40px 0;
 `;
 
 const DetailInfo = styled.div`
@@ -129,20 +120,22 @@ const DetailInfo = styled.div`
 `;
 
 const CommunicationWrap = styled.div`
-  width: 100%;
+  box-sizing: border-box;
+  /* width: 100%; */
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* background-color: #b5a0d2; */
-  height: 700px;
+  /* height: 700px; */
   background-color: #ffffff;
   border-radius: 20px;
   /* box-shadow: 5px 5px 10px 1px #b099cf;
    */
 
-  border: 1px solid rgb(158, 171, 255, 0.61);
-  padding: 30px;
+  border: 1.5px solid #9eabff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0, 10);
+  /* padding: 30px; */
 
   margin: 20px 0;
 `;

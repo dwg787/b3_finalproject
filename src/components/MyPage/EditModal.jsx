@@ -1,26 +1,35 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { updateProfile } from "firebase/auth";
-import { doc } from "firebase/firestore";
-import { db } from "../../apis/firebase";
-import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
-import styled from "styled-components";
-import { updateDoc } from "firebase/firestore";
-import { Navigate, useNavigate } from "react-router-dom";
-export default function EditModal({ setModalOpen, setContentInfo, setUserName, setEmail, updateEmail, updateNickname, currentUser }) {
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { updateProfile } from 'firebase/auth';
+import { doc } from 'firebase/firestore';
+import { db, auth } from '../../apis/firebase';
+import { useFirestoreDocumentMutation } from '@react-query-firebase/firestore';
+import styled from 'styled-components';
+import { updateDoc } from 'firebase/firestore';
+import { Navigate, useNavigate } from 'react-router-dom';
+export default function EditModal({
+  setModalOpen,
+  setContentInfo,
+  setUserName,
+  setEmail,
+  updateEmail,
+  updateNickname,
+  currentUser,
+}) {
   const navigate = useNavigate();
-  const [currentInput, setCurrentInput] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [currentInput, setCurrentInput] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   // 닉네임 또는 깃허브 링크 유효성 검사
   const [inputValidation, setInputValidation] = useState(false);
   // 저장 버튼 활성화
   const [buttonValidation, setButtonValidation] = useState(true);
   // mutation 사용 - 닉네임 수정
-  const docRef = doc(db, "users", currentUser);
+  const docRef = doc(db, 'users', currentUser);
   const mutation = useFirestoreDocumentMutation(docRef);
+  console.log(auth.currentUser.displayName);
   // 수정 취소
   const cancelEdit = () => {
-    alert("취소되었습니다.");
+    alert('취소되었습니다.');
     setModalOpen(false);
   };
   // 수정 저장
@@ -29,23 +38,23 @@ export default function EditModal({ setModalOpen, setContentInfo, setUserName, s
     e.preventDefault();
     if (setContentInfo) {
       // 닉네임 수정
-      updateProfile(currentUser, {
+      updateProfile(auth.currentUser, {
         displayName: currentInput,
       }).catch((error) => {
         console.log(error.message);
       });
       // updateDoc(docRef, { name: currentInput });
       //   sessionStorage.removeItem("id");
-      sessionStorage.setItem("id", currentInput);
+      sessionStorage.setItem('id', currentInput);
       updateNickname(currentInput);
-      navigate("/my");
-      alert("수정되었습니다.");
+      navigate('/my');
+      alert('수정되었습니다.');
     } else {
       // 이메일 수정
       //   const emailUpdate = doc(db, "users", id);
       //   updateDoc(emailUpdate, { email: currentInput });
       mutation.mutate({ email: currentInput, userId: currentUser });
-      sessionStorage.setItem("email", currentInput);
+      sessionStorage.setItem('email', currentInput);
       updateEmail(currentInput);
     }
     setModalOpen(false);
@@ -57,10 +66,10 @@ export default function EditModal({ setModalOpen, setContentInfo, setUserName, s
     if (setContentInfo) {
       // 닉네임 입력
       if (input.length < 2 || input.length > 10) {
-        setErrorMessage("2글자 이상, 10글자이하로 적어주세요.");
+        setErrorMessage('2글자 이상, 10글자이하로 적어주세요.');
         setInputValidation(false);
       } else {
-        setErrorMessage("");
+        setErrorMessage('');
         setInputValidation(true);
       }
     } else {
@@ -68,11 +77,11 @@ export default function EditModal({ setModalOpen, setContentInfo, setUserName, s
       let regex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
       const trueOrFalse = regex.test(input);
       if (trueOrFalse === true || input.length === 0) {
-        setErrorMessage("");
+        setErrorMessage('');
         setInputValidation(true);
         // alert("수정되었습니다.");
       } else {
-        setErrorMessage("이메일 형식이 아닙니다.");
+        setErrorMessage('이메일 형식이 아닙니다.');
         setInputValidation(false);
       }
     }
@@ -87,8 +96,14 @@ export default function EditModal({ setModalOpen, setContentInfo, setUserName, s
   return (
     <ModalBackground>
       <ModalContainer>
-        <ModalTopItems>{setContentInfo ? <h3>닉네임 변경</h3> : <h3>이메일 변경</h3>}</ModalTopItems>
-        <MyInfoInput onChange={checkInput} value={currentInput} placeholder={setContentInfo ? setUserName : setEmail} />
+        <ModalTopItems>
+          {setContentInfo ? <h3>닉네임 변경</h3> : <h3>이메일 변경</h3>}
+        </ModalTopItems>
+        <MyInfoInput
+          onChange={checkInput}
+          value={currentInput}
+          placeholder={setContentInfo ? setUserName : setEmail}
+        />
         <ErrorMessage>{errorMessage}</ErrorMessage>
         <ButtonContainer>
           <CancelButton onClick={cancelEdit}>취소</CancelButton>
