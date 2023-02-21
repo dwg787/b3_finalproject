@@ -1,13 +1,11 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import UpdatePassword from './UpdatePassword';
 import { updateProfile } from 'firebase/auth';
 import { db, auth } from '../../apis/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import BlueFooter from '../Footer/BlueFooter';
 
 export default function MyInfo() {
   const navigate = useNavigate();
