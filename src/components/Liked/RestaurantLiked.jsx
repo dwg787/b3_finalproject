@@ -9,6 +9,8 @@ import {
   getDocs,
   where,
   deleteDoc,
+  increment,
+  decrement,
 } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -77,13 +79,15 @@ export default function RestaurantLiked({
                 contentid: combinedData.contentid,
                 date: Date.now(),
                 contenttypeid: combinedData.contenttypeid,
+                addr1: combinedData.addr1,
                 // addedUser: [uid]
                 // uid: uid,
               }),
               contentid: arrayUnion(combinedData.contentid),
             });
             updateDoc(restaurantDocRef, {
-              likeCnt: arrayUnion(`${uid}`),
+              // likeCnt: arrayUnion(`${uid}`),
+              likeCnt: increment(1),
             });
           } else {
             updateDoc(docRef, {
@@ -93,12 +97,14 @@ export default function RestaurantLiked({
                 contentid: combinedData.contentid,
                 date: Date.now(),
                 contenttypeid: combinedData.contenttypeid,
+                addr1: combinedData.addr1,
                 // uid: uid,
               }),
               contentid: arrayUnion(combinedData.contentid),
             });
             updateDoc(restaurantDocRef, {
-              likeCnt: arrayUnion(`${uid}`),
+              // likeCnt: arrayUnion(`${uid}`),
+              likeCnt: increment(1),
             });
           }
         })
