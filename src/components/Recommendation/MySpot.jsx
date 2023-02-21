@@ -33,7 +33,7 @@ const MySpot = (propsData) => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 400,
     slidesToShow: 4.7,
     slidesToScroll: 1,
@@ -52,7 +52,7 @@ const MySpot = (propsData) => {
   return (
     <Container>
       <MySpotTitle>나만 알고 싶은 감성 스팟</MySpotTitle>
-      <div>
+      <BigSliderBox>
         <StyledSlider {...settings}>
           <div>
             <h3>
@@ -172,7 +172,7 @@ const MySpot = (propsData) => {
             </h3>
           </div>
         </StyledSlider>
-      </div>
+      </BigSliderBox>
     </Container>
   );
 };
@@ -180,7 +180,7 @@ export default MySpot;
 
 const Container = styled.div`
   width: 65%;
-  height: 440px;
+  height: 460px;
   display: flex;
   flex-direction: column;
   margin-top: 70px;
@@ -208,23 +208,29 @@ const StyledSlider = styled(Slider)`
 
 const Pre = styled.div`
   width: 20px;
-  height: 20px;
+  height: 30px;
   position: absolute;
   left: 5%;
   z-index: 3;
-  margin-left: 40px;
+  margin-left: 60px;
 `;
 
 const NextTo = styled.div`
   width: 20px;
-  height: 20px;
+  height: 30px;
   position: absolute;
   right: 5%;
   z-index: 3;
-  margin-right: 40px;
+  margin-right: 60px;
 `;
 
 const ArrowImg = styled.img`
   width: 20px;
-  height: 20px;
+  height: 30px;
+`;
+
+const BigSliderBox = styled.div`
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
 `;

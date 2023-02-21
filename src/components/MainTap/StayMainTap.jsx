@@ -82,7 +82,7 @@ const ContainerDiv = styled.div`
   background-color: white;
   position: absolute;
   z-index: 0;
-  margin-top: 1940px;
+  margin-top: 2600px;
 `;
 
 const WrapDiv = styled.div`

@@ -21,6 +21,7 @@ import BlackFooter from '../components/Footer/BlackFooter';
 import SpotMainTap from '../components/MainTap/SpotMainTap';
 import StayMainTap from '../components/MainTap/StayMainTap';
 import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
+import SlotBanner from '../components/Slot/SlotBanner';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -44,6 +45,7 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <MySpot />
+          <SlotBanner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -75,6 +77,7 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <MySpot />
+          <SlotBanner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -97,6 +100,7 @@ const Container = styled.div`
   justify-content: center;
   padding-bottom: 500px;
   background: linear-gradient(white 40%, #8a98f6);
+  position: relative;
 `;
 
 const RegionSelectionBtnWrapper = styled.div`
