@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom';
 
 const StayRecommendation = (propsData: any) => {
   const [recommendList, setRecommendList] = useState<recCnts>();
-
   const stayRecommendationList = async () => {
     const data = await getDocs(
       query(collection(db, 'stay_recommendation'), orderBy('viewCnt', 'desc')),
