@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import BlueFooter from '../components/Footer/BlueFooter';
 import MyCart from '../components/MyPage/MyCart';
 import MyFav from '../components/MyPage/MyFav';
 import MyInfo from '../components/MyPage/MyInfo';
@@ -13,33 +14,23 @@ const MyPage = () => {
   const tabContArr = [
     {
       tabTitle: (
-        <li
-          className={activeIndex === 0 ? 'is-active' : ''}
+        <Tab
+          title="내 정보 관리"
+          isActive={activeIndex === 0}
           onClick={() => tabClickHandler(0)}
-        >
-          내 정보
-        </li>
+        />
       ),
-      tabCont: (
-        <div>
-          <MyInfo />
-        </div>
-      ),
+      tabCont: <MyInfo />,
     },
     {
       tabTitle: (
-        <li
-          className={activeIndex === 1 ? 'is-active' : ''}
+        <Tab
+          title="나의 찜목록"
+          isActive={activeIndex === 1}
           onClick={() => tabClickHandler(1)}
-        >
-          찜하기
-        </li>
+        />
       ),
-      tabCont: (
-        <div>
-          <MyFav />
-        </div>
-      ),
+      tabCont: <MyFav />,
     },
   ];
 
@@ -50,14 +41,21 @@ const MyPage = () => {
   return (
     <StMyPageMain>
       <StMyPageNav>
+        <StMyPageHeader>마이페이지</StMyPageHeader>
+        <TabHr />
         {/* map 함수를 사용해서 각 obj의 탭 Title이 작성되도록  */}
         <StMyList>
           {tabContArr.map((section, i) => {
-            return <StMyListTab key={i}>{section.tabTitle}</StMyListTab>;
+            return (
+              <StMyListTab right key={i}>
+                {section.tabTitle}
+              </StMyListTab>
+            );
           })}
         </StMyList>
         {/* activeIndex의 탭콘트만 보여줌! */}
         <StMyPageInfo>{tabContArr[activeIndex].tabCont}</StMyPageInfo>
+        <BlueFooter />
       </StMyPageNav>
     </StMyPageMain>
   );
@@ -65,52 +63,112 @@ const MyPage = () => {
 
 export default MyPage;
 
+const Tab = (props) => {
+  const { title, isActive, onClick } = props;
+
+  return (
+    <li
+      className={isActive ? 'is-active' : ''}
+      onClick={onClick}
+      style={{
+        color: isActive ? '#6478ff' : '',
+        borderRadius: isActive ? '335.4px' : '',
+        boxShadow: isActive ? '2px 2px 3px gray' : '',
+        width: '150.93px',
+        height: '34.88px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      {title}
+    </li>
+  );
+};
+
+//마이페이지 전체 컨테이너
 const StMyPageMain = styled.div`
   width: 100%;
   display: flex;
   /* height: 100%; */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(124, 141, 255, 1) 69%,
+    rgba(255, 255, 255, 1) 120%
+  );
 `;
 const StMyPageNav = styled.div`
   width: 100%;
   /* height: 800px; */
   display: flex;
   justify-content: center;
-  /* align-items: baseline; */
-
   flex-direction: column;
-  /* border: 1px solid black; */
+  align-items: center;
 `;
 
+//마이페이지 헤더부분
+const StMyPageHeader = styled.div`
+  width: 100%;
+  margin: 19.68px 0 23.32px 0;
+  font-size: 22.4px;
+  line-height: 20.9px;
+  display: flex;
+  justify-content: center;
+  color: #6478ff;
+  font-weight: bold;
+`;
+
+const TabHr = styled.hr`
+  border: solid #6478ff 1.34px;
+  width: 90.08%;
+`;
+
+//마이페이지 탭 부분
 const StMyList = styled.ul`
+  width: 100%;
   list-style: none;
-  background-color: #dcdcdc;
+  /* background-color: #dcdcdc; */
   font-weight: bold;
   display: flex;
   flex-direction: row;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
   list-style: none;
-  margin: 10px;
-  /* .submenu {
-    width: 100% auto;
-    padding: 15px 10px;
-    cursor: pointer;
-  } */
 `;
 
 const StMyListTab = styled.div`
   margin: 10px;
+  /* background-color: #d89090; */
+  margin: 29px 197.1px;
+
+  font-size: 18.91px;
+  line-height: 17.7px;
+  color: #4d4d4d;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 150.93px;
+  height: 34.88px;
+
+  /* margin-right: ${(props) => (props.right ? '394.2px' : '0')}; */
 `;
 
+//마이페이지 내용 부분
 const StMyPageInfo = styled.div`
-  width: 90%;
+  width: 1232px;
+  height: 931.4px;
+
   /* height: 700px; */
   display: flex;
   /* flex-direction: column; */
   /* justify-content: center; */
   /* align-items: center; */
-  border: 1px solid black;
-  background-color: #c7ddf0;
-
+  /* border: 1px solid black; */
+  background-color: #ffffff
+  border-radius: 13.43px;
   flex-wrap: wrap;
+  box-shadow: 5px 5px 10px 1px gray;
 `;
