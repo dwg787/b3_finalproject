@@ -25,7 +25,8 @@ const Communication = () => {
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
-  console.log(loginUser);
+  // console.log(loginUser);
+
   // const settings = {
   //   slide: <ReviewBoxList />, // slide 해주고 싶은 단위
   //   infinite: true, //무한 슬라이더로 할지
@@ -73,7 +74,7 @@ const Communication = () => {
   //리뷰 등록
   const creatReview = async () => {
     const Kakaologinid = localStorage.getItem('uid');
-    const Naverloginid = localStorage.getItem('id');
+    const Naverloginid = localStorage.getItem('uid');
     const loginUser = auth.currentUser;
 
     if (loginUser) {
@@ -89,7 +90,7 @@ const Communication = () => {
       });
       setNewReview('');
     } else if (Kakaologinid) {
-      const addRev2 = await addDoc(usersCollectionRef, {
+      const addRev = await addDoc(usersCollectionRef, {
         review: newReview,
         uid: localStorage.getItem('uid'),
         displayName: localStorage.getItem('id'),
@@ -100,9 +101,9 @@ const Communication = () => {
       });
       setNewReview('');
     } else if (Naverloginid) {
-      const addRev3 = await addDoc(usersCollectionRef, {
+      const addRev = await addDoc(usersCollectionRef, {
         review: newReview,
-        uid: localStorage.getItem('id'),
+        uid: localStorage.getItem('uid'),
         displayName: localStorage.getItem('id'),
         //loginUser?.displayName
         paramId: params.id,
@@ -157,6 +158,7 @@ const Communication = () => {
                 setReviews={setReviews}
                 review={review}
                 i={i}
+                uid={localStorage.getItem('id')}
               />
             );
           }

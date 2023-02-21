@@ -26,20 +26,26 @@ export default function ReviewList({ review, i, reviews, key }) {
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
   const [toggle, setToggle] = useState(false);
-  console.log(toggle);
-  console.log('ed', editBox);
+  // console.log(toggle);
+  // console.log('ed', editBox);
+  console.log(localStorage.getItem('uid'));
 
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
+  const KakaoAndNaverLoginid = localStorage.getItem('uid');
+  const Naverloginid = localStorage.getItem('uid');
+
   //삭제
-  const handleDelete = async (id, i, uid) => {
-    if (auth.currentUser.uid === reviews[i].uid) {
-      const reviewDoc = doc(db, 'reviews', id);
+  const handleDelete = async (id, i) => {
+    console.log(id);
+    if (auth.currentUser?.uid === reviews[i].uid) {
+      const reviewDoc = doc(usersCollectionRef, id);
+      //파이어스토어, 안에있는 컬렉션 'reviews' 의 문서 id
       await deleteDoc(reviewDoc);
-    } else if (localStorage.getItem('uid') === review[i].uid) {
-      const reviewDoc1 = doc(db, 'reviews', id);
-      await deleteDoc(reviewDoc1);
+    } else if (KakaoAndNaverLoginid === reviews[i].uid) {
+      const reviewDoc = doc(usersCollectionRef, id);
+      await deleteDoc(reviewDoc);
     } else {
       alert('작성자가 다릅니다.');
       //작성가 다르거나 비로그인 유저에게 버튼이 보이지 않는다면 필요없어짐.
@@ -53,20 +59,6 @@ export default function ReviewList({ review, i, reviews, key }) {
     });
   };
 
-  // const settings = {
-  //   slide: <ReviewBoxList />, // slide 해주고 싶은 단위
-  //   infinite: true, //무한 슬라이더로 할지
-  //   speed: 500,
-  //   arrows: true, //화살표 (양옆 버튼) 구현할 것인지
-  //   autoplay: true, //자동 재생 할 것인지
-  //   autoplaySpeed: 5000,
-  //   slidesToShow: 1, // 한번에 몇개 슬라이드 보여줄 것인지
-  //   slidesToScroll: 1,
-  //   centerMode: true,
-  //   variableWidth: true,
-  //   centerPadding: '0px',
-  // };
-
   return (
     <CommentBoxWrap>
       <CommentBox key={review.id}>
@@ -77,7 +69,6 @@ export default function ReviewList({ review, i, reviews, key }) {
 
           <ToggleWrap>
             <BtnWrap>
-              {/* && localStorage.getItem('id') === review?.uid? */}
               {(toggle === true && loginUser?.uid === review?.uid) ||
               (toggle === true &&
                 localStorage.getItem('uid') === review?.uid) ? (
@@ -207,7 +198,7 @@ const Toggle = styled(BsThreeDotsVertical)`
   color: #6478ff;
   top: 5px;
   position: absolute;
-  left: 90px;
+  left: 80px;
 `;
 
 const Comment = styled.div`
