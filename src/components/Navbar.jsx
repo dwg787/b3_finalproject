@@ -12,6 +12,7 @@ import Ximg from '../assets/ximg.avif';
 import useNotification from '../hooks/useNotification';
 
 const Navbar = () => {
+  const [userId, setUserId] = useState();
   const location = useLocation();
   const history = useNavigate();
   const REST_API_KEY = '06264d97cddc6d0d5ef77a0f28d69af9';
@@ -79,10 +80,11 @@ const Navbar = () => {
       },
     });
 
-    console.log(user);
+    setUserId(user.data.id);
     setNickName(user.data.properties.nickname);
     setProfileImage(user.data.properties.profile_image);
     localStorage.setItem('id', user.data.properties.nickname);
+    localStorage.setItem('uid', user.data.id);
   };
   // console.log(nickName, profileImage);
 
@@ -134,6 +136,7 @@ const Navbar = () => {
     //     alert("로그아웃에 실패했습니다.");
     //   });
     localStorage.removeItem('id');
+    localStorage.removeItem('uid');
     localStorage.removeItem('email');
     localStorage.removeItem('phoneNumber');
     localStorage.removeItem('token_for_kakaotalk');
@@ -156,8 +159,10 @@ const Navbar = () => {
     naverLogin.getLoginStatus(async function(status) {
       if (status) {
         const username = naverLogin.user.getName();
+        console.log(naverLogin.user.id);
         setUserName(username);
         window.localStorage.setItem('id', username);
+        window.localStorage.setItem('uid', naverLogin.user.id);
       }
     });
   };

@@ -45,7 +45,7 @@ export default function RestaurantInfo({
 
   return (
     <Container>
-      <MyChildTopText>주변 맛집 정보</MyChildTopText>
+      <MyChildTopText>가까운 맛집 추천</MyChildTopText>
       <MyChildListBox>
         {isLoadingRestaurant ? (
           <Loader />

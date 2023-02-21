@@ -44,8 +44,8 @@ export default DetailScroll;
 
 const MainDiv = styled.div`
   width: 100%;
-  height: 103px;
-  padding: 38px 0;
+  height: 69.12px;
+  padding: 24.83px 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -72,10 +72,11 @@ const StLinkBox = styled.div`
 
 const StLinkTextBox = styled.span`
   /* background-color: teal; */
-  font-size: 28.19px;
+  /* font-size: 18.92px; */
+  font-size: 0.9854vw;
   font-weight: 400;
   cursor: pointer;
-  line-height: 27px;
+  line-height: 17.7px;
   font-weight: 700;
   /* margin: 0; */
 `;

@@ -5,8 +5,6 @@ import {
   DeatilImojiBox,
   CommunicationWrap,
   DetailInfo,
-  DetailInfoText,
-  DetailInfoTextBox,
   DetailInformation,
   DetailImg,
   DetailImgBox,
@@ -16,7 +14,6 @@ import {
   DetailInfoAdd,
   DetailInformationMap,
   TabHr,
-  RecommendSide,
   SideInfoWrapper,
 } from './styles';
 import { useEffect } from 'react';
@@ -37,6 +34,7 @@ import StayInfo from '../../components/Recommendation/StayInfo';
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
+import BlueFooter from '../../components/Footer/BlueFooter';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -125,18 +123,12 @@ const RestaurantDetailPage = () => {
                 </DetailImgBox>
 
                 <DetailInformation id="2">
-                  {/* <DetailInfoTextBox>
-                  <DetailInfoText>상세정보</DetailInfoText>
-                </DetailInfoTextBox> */}
-
                   <DetailInfo>
                     {restaurantDetailData.overview.split('.', 4)}
                   </DetailInfo>
 
                   <DetailInfoAdd>
-                    <span style={{ fontWeight: '700', marginRight: '27px' }}>
-                      주소
-                    </span>
+                    <span style={{ fontWeight: '700' }}>주소 : </span>
                     {restaurantDetailData.addr1}
                   </DetailInfoAdd>
                 </DetailInformation>
@@ -152,11 +144,7 @@ const RestaurantDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  <DetailInfoTextBox>
-                    <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox>
-
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
 
                 <Notification />
@@ -173,6 +161,7 @@ const RestaurantDetailPage = () => {
           <SpotInfo restaurantDetailData={restaurantDetailData} />
           <StayInfo restaurantDetailData={restaurantDetailData} />
         </SideInfoWrapper>
+        <BlueFooter />
       </Container>
     </DetailWrap>
   );
