@@ -1,13 +1,9 @@
 import {
   arrayRemove,
-  collection,
-  getDocs,
   getDoc,
-  query,
   updateDoc,
-  where,
   doc,
-  deleteDoc,
+  increment,
 } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -61,7 +57,8 @@ const MyLikeList = () => {
         contentid: arrayRemove(targetId),
       }).then(
         updateDoc(restaurantDocRef, {
-          likeCnt: arrayRemove(`${uid}`),
+          // likeCnt: arrayRemove(`${uid}`),
+          likeCnt: increment(-1),
         }),
       );
     }

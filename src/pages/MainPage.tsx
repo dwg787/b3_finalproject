@@ -18,7 +18,9 @@ import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
 import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
 import Footer from '../components/Footer/Footer';
 import BlackFooter from '../components/Footer/BlackFooter';
-import MainTap from '../components/MainTap/MainTap';
+import SpotMainTap from '../components/MainTap/SpotMainTap';
+import StayMainTap from '../components/MainTap/StayMainTap';
+import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -54,20 +56,20 @@ const MainPage = () => {
         <>
           <SpotSelectionResult />
           <BlackFooter />
-          <MainTap />
+          <SpotMainTap />
         </>
       ) : // <SelectionResult />
       selectedMenu === '숙박' ? (
         <>
           <StaySelectionResult />
           <BlackFooter />
-          <MainTap />
+          <StayMainTap />
         </>
       ) : selectedMenu === '음식점' ? (
         <>
           <RestaurantSelectionResult />
           <BlackFooter />
-          <MainTap />
+          <RestaurantMainTap />
         </>
       ) : (
         <>
