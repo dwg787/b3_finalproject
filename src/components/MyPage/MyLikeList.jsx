@@ -111,6 +111,11 @@ const MyLikeList = () => {
                       <StTicketCardLeft>
                         <StTicketHeader>
                           <StCartMenu>음식점</StCartMenu>
+                          <StDeleteBtn
+                            onClick={() => delResLiked(data.contentid)}
+                          >
+                            X
+                          </StDeleteBtn>
                         </StTicketHeader>
                         <StMyTicketImage
                           src={data.img || noimg}
@@ -121,9 +126,6 @@ const MyLikeList = () => {
                         />
                       </StTicketCardLeft>
                       <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
-                      <StDeleteBtn onClick={() => delResLiked(data.contentid)}>
-                        X
-                      </StDeleteBtn>
                     </StTicketCard>
                   );
                 case '32':

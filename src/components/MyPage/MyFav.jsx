@@ -1,12 +1,6 @@
 import styled from 'styled-components';
-import MyRestaurantLiked from './MyRestaurantLiked';
 import MyLikeList from './MyLikeList';
-import React, { useEffect, useState } from 'react';
-import { auth, db } from '../../apis/firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import MyFavDetail from './MyFavDetail';
-import Loader from '../Loader/Loader';
-import RestaurantLiked from '../Liked/RestaurantLiked';
+
 const MyFav = () => {
   return (
     <Container>
