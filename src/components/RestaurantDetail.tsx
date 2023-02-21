@@ -25,8 +25,6 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
     const fbdata = await getDoc(
       doc(db, 'restaurant_recommendation', `${props.id}`),
     );
-    // console.log('식당안', fbdata.data());
-    // return fbdata.data();
     if (fbdata) {
       setLikeData(fbdata.data());
     }
@@ -35,8 +33,6 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
   useEffect(() => {
     restaurantRecommendationList();
   }, []);
-
-  // console.log('식당디테일 안에서 ', likeData);
 
   return (
     <RestaurantEachItemWrapper>
