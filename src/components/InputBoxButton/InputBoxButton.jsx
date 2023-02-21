@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import searchimg from '../../assets/search.avif';
 
 export default function InputBoxButton() {
   return (
-    <WrapDiv>
-      <SearchText>추천 데이트 핫플레이스</SearchText>
-      <SearchImg src={searchimg}></SearchImg>
-    </WrapDiv>
+    <Link to="/search">
+      <WrapDiv>
+        <SearchText>추천 데이트 핫플레이스</SearchText>
+        <SearchImg src={searchimg}></SearchImg>
+      </WrapDiv>
+    </Link>
   );
 }
 
@@ -20,8 +23,9 @@ const WrapDiv = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   position: absolute;
   z-index: 3;
-  margin-bottom: 330px;
   border-radius: 25px;
+  margin-left: 250px;
+  top: 20px;
 `;
 
 const SearchImg = styled.img`

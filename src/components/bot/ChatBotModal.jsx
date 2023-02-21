@@ -30,7 +30,7 @@ const Chatimgbtn = styled.div`
   width: 58px;
   height: 58px;
 
-  left: 93.68%;
+  left: 94%;
   top: 90%;
   z-index: 1000;
 `;
