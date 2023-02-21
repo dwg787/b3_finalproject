@@ -139,7 +139,7 @@ export default SpotSelectionResult;
 
 const SearchOverallResultContainer = styled.div`
   position: relative;
-  width: 100%;
+  width: 65%;
   display: flex;
   flex-direction: column;
   align-items: center;
