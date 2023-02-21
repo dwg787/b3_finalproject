@@ -28,7 +28,7 @@ const MyLikeList = () => {
     // const newData = data.docs.map((doc) => ({
     //   ...doc.data(),
     // }));
-    console.log('파베 북마크 데이터', myBookmarkData.data());
+    // console.log('파베 북마크 데이터', myBookmarkData.data());
     if (myBookmarkData) {
       setRestaurant(myBookmarkData.data());
     }
@@ -55,7 +55,8 @@ const MyLikeList = () => {
       const TargetBookmark = restaurant.bookmarks.find(
         (e) => e.contentid === targetId,
       );
-      await deleteDoc(docRef, {
+      console.log('타겟 북마크', TargetBookmark);
+      await updateDoc(docRef, {
         bookmarks: arrayRemove(TargetBookmark),
         contentid: arrayRemove(targetId),
       }).then(

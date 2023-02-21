@@ -138,7 +138,6 @@ const StayDetailPage = () => {
                     {/* 혜진님 */}
                     {/* <Liked stayDetailData={stayDetailData} /> */}
                     <RestaurantLiked stayDetailData={stayDetailData} />
-                    {/* <LikedCount stayDetailData={stayDetailData} /> */}
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
