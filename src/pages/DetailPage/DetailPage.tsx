@@ -140,7 +140,7 @@ const DetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {/* <Communication /> */}
+                  <Communication />
                 </CommunicationWrap>
 
                 <Notification />
