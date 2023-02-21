@@ -102,7 +102,7 @@ const MyLikeList = () => {
       <StTicketWrap>
         <StTicket>
           {restaurant &&
-            restaurant?.bookmarks.map((data) => {
+            restaurant?.bookmarks?.map((data) => {
               // console.log('jsx에서 받은 데이터', data);
               switch (data.contenttypeid) {
                 case '39':
