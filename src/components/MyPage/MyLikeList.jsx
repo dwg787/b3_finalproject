@@ -127,6 +127,7 @@ const MyLikeList = () => {
 
                         <StCartTitle>
                           {data.restaurant.split('[', 1)}
+                          {data.addr1}
                         </StCartTitle>
                       </StTicketCardRight>
                     </StTicketCard>

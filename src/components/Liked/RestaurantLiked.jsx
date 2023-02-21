@@ -79,6 +79,7 @@ export default function RestaurantLiked({
                 contentid: combinedData.contentid,
                 date: Date.now(),
                 contenttypeid: combinedData.contenttypeid,
+                addr1: combinedData.addr1,
                 // addedUser: [uid]
                 // uid: uid,
               }),
@@ -96,6 +97,7 @@ export default function RestaurantLiked({
                 contentid: combinedData.contentid,
                 date: Date.now(),
                 contenttypeid: combinedData.contenttypeid,
+                addr1: combinedData.addr1,
                 // uid: uid,
               }),
               contentid: arrayUnion(combinedData.contentid),

@@ -44,43 +44,70 @@ const RestaurantMainTap = () => {
             {rankList ? (
               <>
                 <InnerList>
-                  <InnerImg
-                    src={rankList[0]?.firstimage || noimg}
-                    onClick={() =>
-                      navigate(`/restaurant/${rankList[0]?.contentid}`)
-                    }
-                  />
-                  <InnerMedals src={one} alt="" />
-                  <InnerTextBox>
-                    {rankList[0]?.title}
-                    {rankList[0]?.overview}
-                  </InnerTextBox>
+                  {!rankList[0]?.likeCnt ? (
+                    <>
+                      <InnerImg
+                        src={rankList[0]?.firstimage || noimg}
+                        onClick={() =>
+                          navigate(`/restaurant/${rankList[0]?.contentid}`)
+                        }
+                      />
+                      <InnerMedals src={one} alt="" />
+                      <InnerTextBox>
+                        {rankList[0]?.title}
+                        {rankList[0]?.overview}
+                      </InnerTextBox>
+                    </>
+                  ) : (
+                    <>
+                      <InnerMedals src={one} alt="" />
+                      <InnerTextBox></InnerTextBox>
+                    </>
+                  )}
                 </InnerList>
                 <InnerList>
-                  <InnerImg
-                    src={rankList[1]?.firstimage || noimg}
-                    onClick={() =>
-                      navigate(`/restaurant/${rankList[1]?.contentid}`)
-                    }
-                  />
-                  <InnerMedals src={two} alt="" />
-                  <InnerTextBox>
-                    {rankList[1]?.title}
-                    {rankList[1]?.overview}
-                  </InnerTextBox>
+                  {!rankList[1]?.likeCnt ? (
+                    <>
+                      <InnerImg
+                        src={rankList[1]?.firstimage || noimg}
+                        onClick={() =>
+                          navigate(`/restaurant/${rankList[1]?.contentid}`)
+                        }
+                      />
+                      <InnerMedals src={two} alt="" />
+                      <InnerTextBox>
+                        {rankList[1]?.title}
+                        {rankList[1]?.overview}
+                      </InnerTextBox>
+                    </>
+                  ) : (
+                    <>
+                      <InnerMedals src={two} alt="" />
+                      <InnerTextBox></InnerTextBox>
+                    </>
+                  )}
                 </InnerList>
                 <InnerList>
-                  <InnerImg
-                    src={rankList[2]?.firstimage || noimg}
-                    onClick={() =>
-                      navigate(`/restaurant/${rankList[2]?.contentid}`)
-                    }
-                  />
-                  <InnerMedals src={three} alt="" />
-                  <InnerTextBox>
-                    {rankList[2]?.title}
-                    {rankList[2]?.overview}
-                  </InnerTextBox>
+                  {!rankList[2]?.likeCnt ? (
+                    <>
+                      <InnerImg
+                        src={rankList[2]?.firstimage || noimg}
+                        onClick={() =>
+                          navigate(`/restaurant/${rankList[2]?.contentid}`)
+                        }
+                      />
+                      <InnerMedals src={three} alt="" />
+                      <InnerTextBox>
+                        {rankList[2]?.title}
+                        {rankList[2]?.overview}
+                      </InnerTextBox>
+                    </>
+                  ) : (
+                    <>
+                      <InnerMedals src={three} alt="" />
+                      <InnerTextBox></InnerTextBox>
+                    </>
+                  )}
                 </InnerList>
               </>
             ) : (
@@ -89,16 +116,25 @@ const RestaurantMainTap = () => {
           </InnerDiv>
           <OuterDiv>
             {rankList.slice(3, 7).map((e, i) => {
-              return (
-                <OuterList>
-                  <InnerNmb>{i + 4}</InnerNmb>
-                  <img src={e.firstimage} alt="" />
-                  <OuterTextBox>
-                    <div>{e.title}</div>
-                    <p>{e.overview.slice(0, 20)}</p>
-                  </OuterTextBox>
-                </OuterList>
-              );
+              if (!e.likeCnt) {
+                return (
+                  <OuterList>
+                    <InnerNmb>{i + 4}</InnerNmb>
+                    <img src={e.firstimage} alt="" />
+                    <OuterTextBox>
+                      <div>{e.title}</div>
+                      <p>{e.overview.slice(0, 20)}</p>
+                    </OuterTextBox>
+                  </OuterList>
+                );
+              } else {
+                return (
+                  <OuterList>
+                    <InnerNmb>{i + 4}</InnerNmb>
+                    <OuterTextBox></OuterTextBox>
+                  </OuterList>
+                );
+              }
             })}
           </OuterDiv>
         </WrapDiv>
