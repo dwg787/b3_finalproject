@@ -190,6 +190,8 @@ const InnerNmb = styled.div`
   margin-left: 10px;
   border-radius: 10px;
   color: white;
+  z-index: 3;
+  font-weight: bold;
 `;
 
 const HeartBox = styled.div`
