@@ -189,7 +189,7 @@ const ContainerDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 65%;
-  border: 1px solid #6478ff;
+  border: 10px solid #6478ff;
   border-radius: 30px;
   margin-top: 100px;
   margin-bottom: 100px;

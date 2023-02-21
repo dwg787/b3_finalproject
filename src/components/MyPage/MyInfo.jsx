@@ -94,43 +94,41 @@ export default function MyInfo() {
   }, [inputValidation]);
 
   return (
-    <MyInfoWrap>
-      <MyInfoDiv>
-        <MyInfoContainer>
-          <Privacy>
-            <h2>개인정보 수정</h2>
-          </Privacy>
-          <PrivacyDiv>
-            <PrivacyBox>
-              <PrivacyInput1 placeholder={email} readOnly />
-              <PrivacyLabel1>이메일</PrivacyLabel1>
-            </PrivacyBox>
-            <PrivacyBox>
-              <PrivacyInput2
-                onChange={checkInput}
-                value={currentInput}
-                placeholder={userName}
-              />
-              <PrivacyLabel2>닉네임</PrivacyLabel2>
-              <Error>{errorMessage}</Error>
-            </PrivacyBox>
-            <PrivacyBox>
-              <SignUpBtn
-                state={buttonColor}
-                disabled={buttonValidation}
-                onClick={useSaveEdit}
-              >
-                닉네임 변경
-              </SignUpBtn>
-            </PrivacyBox>
-            <UpdatePassword />
-          </PrivacyDiv>
-        </MyInfoContainer>
-      </MyInfoDiv>
-      <div>
-        <BlueFooter />
-      </div>
-    </MyInfoWrap>
+    // <MyInfoWrap>
+    // <MyInfoDiv>
+    <MyInfoContainer>
+      <Privacy>
+        <h2>개인정보 수정</h2>
+      </Privacy>
+      <PrivacyDiv>
+        <PrivacyBox>
+          <PrivacyInput1 placeholder={email} readOnly />
+          <PrivacyLabel1>이메일</PrivacyLabel1>
+        </PrivacyBox>
+        <PrivacyBox>
+          <PrivacyInput2
+            onChange={checkInput}
+            value={currentInput}
+            placeholder={userName}
+          />
+          <PrivacyLabel2>닉네임</PrivacyLabel2>
+          <Error>{errorMessage}</Error>
+        </PrivacyBox>
+        <PrivacyBox>
+          <SignUpBtn
+            state={buttonColor}
+            disabled={buttonValidation}
+            onClick={useSaveEdit}
+          >
+            닉네임 변경
+          </SignUpBtn>
+        </PrivacyBox>
+        <UpdatePassword />
+      </PrivacyDiv>
+    </MyInfoContainer>
+    // </MyInfoDiv>
+
+    // </MyInfoWrap>
   );
 }
 
@@ -144,60 +142,11 @@ const Error = styled.div`
   line-height: 9.75px;
 `;
 
-const MyInfoWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  width: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(124, 141, 255, 1) 69%,
-    rgba(255, 255, 255, 1) 120%
-  );
-`;
-
-const MyInfoButton = styled.button`
-  font-size: 18.324px;
-  line-height: 16.9px;
-  color: #4d4d4d;
-  font-weight: 700;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  :hover {
-    background: #f0f2ff;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.18);
-    border-radius: 500px;
-    color: #6478ff;
-
-    border: 0.939697px solid #f0f2ff;
-  }
-`;
-
-const MyInfoFavoriteButtonDiv = styled.div`
-  display: flex;
-  margin-top: 20px;
-`;
-
-const FavoriteDiv = styled.div`
-  /* display: flex;
-  justify-content: space-between; */
-  margin-left: 400px;
-`;
-
-const MyInfoDiv = styled.div`
-  width: 100%;
-  height: 1000px;
-  margin-top: 30px;
-`;
-
 const MyInfoContainer = styled.div`
   /* position: absolute;
   top: 100%;
   left: 50%; */
-  width: 65%;
+  /* width: 65%; */
   height: 1000px;
 
   margin: auto;
