@@ -38,7 +38,7 @@ import {
   DetailTextBox,
   DetailInfo2,
 } from './styles';
-import StayInfo from '../../components/Recommendation/StayInfo';
+
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
