@@ -3,9 +3,24 @@ import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
+import { doc, getDoc, DocumentData } from 'firebase/firestore';
+import { db } from '../apis/firebase';
+import { useEffect, useState } from 'react';
 
 const StayDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
+
+  // const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  // const stayRecommendationList = async () => {
+  //   const fbdata = await getDoc(doc(db, 'stay_recommendation', `${props.id}`));
+  //   if (fbdata) {
+  //     setLikeData(fbdata.data());
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   stayRecommendationList();
+  // }, []);
 
   return (
     <StayEachItemWrapper>
@@ -28,7 +43,8 @@ const StayDetail = (props: FetchedStayDataType) => {
         <MyChildTextp>{props.address}</MyChildTextp>
         <LikeBox>
           <LikeImg src={TapHeart} alt="" />
-          <p>2348</p>
+          {/* <LikeText>{likeData ? likeData.likeCnt.length : 0}</LikeText> */}
+          <LikeText>0</LikeText>
         </LikeBox>
       </MyCildTextBox>
     </StayEachItemWrapper>
