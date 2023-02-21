@@ -24,6 +24,9 @@ export default function RestaurantLiked({
   stayData,
   spotDetailData,
   restaurantData,
+  restaurantParamId,
+  spotParamId,
+  stayParamId,
 }: UserProps): React.ReactElement {
   //좋아요 클릭 한번만 될수있도록
   const clickRef = useRef(false);
@@ -51,6 +54,13 @@ export default function RestaurantLiked({
     //유저 아이디 가져오기
     const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'bookmarks'), uid);
+    const restaurantDocRef = doc(
+      db,
+      'restaurant_recommendation',
+      restaurantParamId,
+    );
+
+    console.log('식당 paramid', restaurantParamId);
 
     if (!clickRef.current) {
       clickRef.current = true;
@@ -67,8 +77,13 @@ export default function RestaurantLiked({
                 contentid: combinedData.contentid,
                 date: Date.now(),
                 contenttypeid: combinedData.contenttypeid,
+                // addedUser: [uid]
                 // uid: uid,
               }),
+              contentid: arrayUnion(combinedData.contentid),
+            });
+            updateDoc(restaurantDocRef, {
+              likeCnt: arrayUnion(`${uid}`),
             });
           } else {
             updateDoc(docRef, {
@@ -80,6 +95,10 @@ export default function RestaurantLiked({
                 contenttypeid: combinedData.contenttypeid,
                 // uid: uid,
               }),
+              contentid: arrayUnion(combinedData.contentid),
+            });
+            updateDoc(restaurantDocRef, {
+              likeCnt: arrayUnion(`${uid}`),
             });
           }
         })

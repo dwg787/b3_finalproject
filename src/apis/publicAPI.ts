@@ -1,18 +1,33 @@
 import axios from 'axios';
 import { Params } from 'react-router-dom';
 
-export interface FetchedStayDataType {
+export interface FetchedDataType {
+  [key: string]: string | number | string[];
+}
+
+// export interface FetchedStayDataType {
+//   [key: string]: string;
+//   // viewCnt: number;
+// }
+
+export interface recCnt {
   [key: string]: string;
 }
 
-interface recCnt {
-  [key: string]: string;
-  // viewCnt: number;
-}
-// type recCntWithViewCnt = Omit<recCnt, 'viewCnt'>;
+// interface otherType {
+//   viewCnt: number;
+//   likeCnt: string[];
+// }
+
+export type FetchedStayDataType = Omit<recCnt, 'viewCnt' | 'likeCnt'>;
+// export type FetchedStayDataType = Omit<FetchedDataType, 'viewCnt' | 'likeCnt'>;
 
 export interface recCnts extends Array<recCnt> {}
 
+// export interface FetchedStayDataType extends otherType {
+//   viewCnt: number;
+//   likeCnt: string[];
+// }
 //메인페이지 지역별 필터를 위한 관광지 api
 // export const fetchSpotData = async ({
 //   region,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import StayDetail from '../StayDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType, FetchedDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
 import { fetchStayData } from '../../apis/publicAPI';

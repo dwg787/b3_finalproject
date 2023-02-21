@@ -23,7 +23,7 @@ import noimg from '../../assets/noimg.avif';
 import { useParams, Link } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType, FetchedDataType } from '../../apis/publicAPI';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
 import Communication from '../../components/Review/Communication';
@@ -69,6 +69,7 @@ const RestaurantDetailPage = () => {
       await setDoc(doc(db, 'restaurant_recommendation', param.id), {
         ...restaurantDetailData,
         viewCnt: 1,
+        likeCnt: [],
       });
     }
   };
@@ -85,7 +86,7 @@ const RestaurantDetailPage = () => {
     getFirestoreRecCnt();
   }, [restaurantDetailData]);
 
-  console.log('식당정보', restaurantDetailData);
+  // console.log('식당정보', restaurantDetailData);
   return (
     <DetailWrap>
       <Container>
@@ -107,6 +108,7 @@ const RestaurantDetailPage = () => {
                     {/* <Liked restaurantDetailData={restaurantDetailData} /> */}
                     <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
+                      restaurantParamId={param.id}
                     />
 
                     <Link to={`/${param.id}/map`}>

@@ -50,3 +50,8 @@ export const nearStayState = atom({
   key: 'nearStayState',
   default: [],
 });
+
+export const likeState = atom({
+  key: 'likeState',
+  default: '',
+});

@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType, FetchedDataType } from '../../apis/publicAPI';
 import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import Communication from '../../components/Review/Communication';
@@ -130,7 +130,10 @@ const StayDetailPage = () => {
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    <RestaurantLiked stayDetailData={stayDetailData} />
+                    <RestaurantLiked
+                      stayDetailData={stayDetailData}
+                      stayParamId={param.id}
+                    />
                     {/* <Liked stayDetailData={stayDetailData} /> */}
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />

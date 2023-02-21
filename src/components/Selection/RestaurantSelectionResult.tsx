@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import RestaurantDetail from '../RestaurantDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedDataType, FetchedStayDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
 import { fetchRestaurantData } from '../../apis/publicAPI';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -12,6 +12,17 @@ import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
+import { db } from '../../apis/firebase';
+import {
+  getDocs,
+  query,
+  collection,
+  orderBy,
+  DocumentData,
+  where,
+  getDoc,
+  doc,
+} from 'firebase/firestore';
 
 const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -39,7 +50,30 @@ const RestaurantSelectionResult = () => {
     },
   );
 
-  //   console.log('선택한 페이지에 대한 데이터?', data);
+  // const restaurantRecommendationList = async () => {
+  //   // const fbdata = await getDoc(
+  //   //   doc(db, 'restaurant_recommendation', `${contentid}`),
+  //   // );
+  //   // return fbdata;
+  //   // console.log('단일 데이터', fbdata.data());
+  //   const data = await getDocs(
+  //     query(collection(db, 'restaurant_recommendation')),
+  //   );
+  //   const res = data.docs.map((doc: DocumentData) => {
+  //     console.log('독?', doc.data());
+  //     return {
+  //       ...doc.data(),
+  //     };
+  //   });
+  //   console.log('파베에서 갖고오는 likeCnt 있는 데이터', res);
+  //   setLikeData(res);
+  // };
+
+  // useEffect(() => {
+  //   restaurantRecommendationList();
+  // }, []);
+
+  // console.log('선택한 페이지에 대한 데이터?', data);
 
   const handleFetchNextPage = useCallback(() => {
     setRestCurPage(restCurPage + 1);
@@ -83,6 +117,7 @@ const RestaurantSelectionResult = () => {
                       id={e.contentid}
                       img={e.firstimage || noimg}
                       address={e.addr1}
+                      // like={eachData}
                     >
                       {e.title.split(/[\\(\\[]/)[0]}
                     </RestaurantDetail>

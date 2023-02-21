@@ -39,7 +39,7 @@ const ResultWrapper = styled.div`
 
 const SpotEachItemWrapper = styled.div`
   width: 20%;
-  height: 350px;
+  height: 320px;
   background-color: #f2f2f2;
   border-radius: 10px;
   margin: 20px 20px 20px 20px;

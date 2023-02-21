@@ -33,6 +33,7 @@ const MyLikeList = () => {
 
   useEffect(() => {
     getRestaurantLiked();
+    // getEachItemAllLikesCount();
   }, []);
 
   //   if (isLoading) {
@@ -41,19 +42,40 @@ const MyLikeList = () => {
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
   const delResLiked = async (targetId) => {
-    // console.log('삭제버튼 누른 타겟', targetId);
+    console.log('삭제버튼 누른 타겟', targetId);
     if (restaurant) {
       const docRef = doc(db, 'bookmarks', uid);
-      //   console.log(docRef);
+      const restaurantDocRef = doc(db, 'restaurant_recommendation', targetId);
+      console.log('docRef', docRef);
       const TargetBookmark = restaurant[0].bookmarks.find(
         (e) => e.contentid === targetId,
       );
       await deleteDoc(docRef, {
         bookmarks: arrayRemove(TargetBookmark),
-      });
+        contentid: arrayRemove(targetId),
+      }).then(
+        updateDoc(restaurantDocRef, {
+          likeCnt: arrayRemove(`${uid}`),
+        }),
+      );
     }
     getRestaurantLiked();
   };
+
+  //   한 관광지 or 숙박 or 음식점의 좋아요 총 갯수
+  //   const getEachItemAllLikesCount = async () => {
+  //     const q = query(
+  //       collection(db, 'bookmarks'),
+  //       //   where('contentid', 'array-contains', '1622544'),
+  //     );
+  //     console.log('q값?', q);
+  //     const data = await getDocs(q);
+  //     const allData = data.docs.map((doc) => ({
+  //       ...doc.data(),
+  //     }));
+  //     setRestaurant(allData);
+  //     console.log('전체 유저의 좋아요 데이터', allData);
+  //   };
 
   //   const deleteRestaurantLiked = async () => {
   //     const uid = auth.currentUser.uid;
