@@ -3,9 +3,24 @@ import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
+import { doc, getDoc, DocumentData } from 'firebase/firestore';
+import { db } from '../apis/firebase';
+import { useEffect, useState } from 'react';
 
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
+
+  // const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  // const spotRecommendationList = async () => {
+  //   const fbdata = await getDoc(doc(db, 'spot_recommendation', `${props.id}`));
+  //   if (fbdata) {
+  //     setLikeData(fbdata.data());
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   spotRecommendationList();
+  // }, []);
 
   return (
     <SpotEachItemWrapper>
@@ -29,7 +44,8 @@ const SpotDetail = (props: FetchedStayDataType) => {
         <MyChildTextp>{props.address}</MyChildTextp>
         <LikeBox>
           <LikeImg src={TapHeart} alt="" />
-          <LikeText>2348</LikeText>
+          {/* <LikeText>{likeData ? likeData.likeCnt.length : 0}</LikeText> */}
+          <LikeText>0</LikeText>
         </LikeBox>
       </MyCildTextBox>
     </SpotEachItemWrapper>
@@ -59,7 +75,7 @@ const SpotImgWrapper = styled.div`
 `;
 
 const SpotEachItemImg = styled.img`
-  width: 200px;
+  width: 220px;
   height: 300px;
   aspect-ratio: 1.2;
   background-color: white;

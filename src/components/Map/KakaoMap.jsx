@@ -27,7 +27,7 @@ const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
       iwRemoveable = true;
 
     // 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({
+    let infowindow = new kakao.maps.InfoWindow({
       content: iwContent,
       removable: iwRemoveable,
     });

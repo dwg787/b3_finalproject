@@ -3,9 +3,24 @@ import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
+import { doc, getDoc, DocumentData } from 'firebase/firestore';
+import { db } from '../apis/firebase';
+import { useEffect, useState } from 'react';
 
 const StayDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
+
+  // const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  // const stayRecommendationList = async () => {
+  //   const fbdata = await getDoc(doc(db, 'stay_recommendation', `${props.id}`));
+  //   if (fbdata) {
+  //     setLikeData(fbdata.data());
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   stayRecommendationList();
+  // }, []);
 
   return (
     <StayEachItemWrapper>
@@ -28,7 +43,8 @@ const StayDetail = (props: FetchedStayDataType) => {
         <MyChildTextp>{props.address}</MyChildTextp>
         <LikeBox>
           <LikeImg src={TapHeart} alt="" />
-          <p>2348</p>
+          {/* <LikeText>{likeData ? likeData.likeCnt.length : 0}</LikeText> */}
+          <LikeText>0</LikeText>
         </LikeBox>
       </MyCildTextBox>
     </StayEachItemWrapper>
@@ -39,7 +55,7 @@ export default StayDetail;
 
 const StayEachItemWrapper = styled.div`
   width: 20%;
-  height: 350px;
+  height: 320px;
   margin: 20px 20px 20px 20px;
   border-radius: 10px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
@@ -48,7 +64,7 @@ const StayEachItemWrapper = styled.div`
 
 const StayImgWrapper = styled.div`
   width: 100%;
-  height: 240px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +74,7 @@ const StayImgWrapper = styled.div`
 `;
 
 const StayEachItemImg = styled.img`
-  width: 300px;
+  width: 220px;
   height: 300px;
   aspect-ratio: 1.2;
   background-color: white;
@@ -79,7 +95,7 @@ const MyCildTextBox = styled.div`
 `;
 
 const MyChildTexth3 = styled.h3`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   margin-bottom: 4px;
   color: #333333;
@@ -88,7 +104,7 @@ const MyChildTexth3 = styled.h3`
 `;
 
 const MyChildTextp = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   color: #7f7f7f;
   margin-top: 4px;
   margin-left: 10px;
@@ -103,6 +119,10 @@ const LikeBox = styled.div`
 `;
 
 const LikeImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
+`;
+
+const LikeText = styled.p`
+  font-size: 12px;
 `;

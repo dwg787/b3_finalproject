@@ -18,7 +18,10 @@ import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
 import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
 import Footer from '../components/Footer/Footer';
 import BlackFooter from '../components/Footer/BlackFooter';
-import MainTap from '../components/MainTap/MainTap';
+import SpotMainTap from '../components/MainTap/SpotMainTap';
+import StayMainTap from '../components/MainTap/StayMainTap';
+import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
+import SlotBanner from '../components/Slot/SlotBanner';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -42,6 +45,7 @@ const MainPage = () => {
         <>
           <SliderBanner />
           <MySpot />
+          <SlotBanner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -54,25 +58,26 @@ const MainPage = () => {
         <>
           <SpotSelectionResult />
           <BlackFooter />
-          <MainTap />
+          <SpotMainTap />
         </>
       ) : // <SelectionResult />
       selectedMenu === '숙박' ? (
         <>
           <StaySelectionResult />
           <BlackFooter />
-          <MainTap />
+          <StayMainTap />
         </>
       ) : selectedMenu === '음식점' ? (
         <>
           <RestaurantSelectionResult />
           <BlackFooter />
-          <MainTap />
+          <RestaurantMainTap />
         </>
       ) : (
         <>
           <SliderBanner />
           <MySpot />
+          <SlotBanner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -94,7 +99,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding-bottom: 500px;
-  background: linear-gradient(white 40%, #6478ff);
+  background: linear-gradient(white 40%, #8a98f6);
+  position: relative;
 `;
 
 const RegionSelectionBtnWrapper = styled.div`

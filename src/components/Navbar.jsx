@@ -138,6 +138,7 @@ const Navbar = () => {
     localStorage.removeItem('id');
     localStorage.removeItem('uid');
     localStorage.removeItem('email');
+    localStorage.removeItem('phoneNumber');
     localStorage.removeItem('token_for_kakaotalk');
     localStorage.removeItem('com.naver.nid.oauth.state_token');
     localStorage.removeItem('com.naver.nid.access_token');
@@ -185,7 +186,6 @@ const Navbar = () => {
               <InputBox onClick={() => navigate('/search')}>
                 <SearchIconImg src={SearchIcon} alt="" />
               </InputBox>
-              <NavTextDiv>예약페이지</NavTextDiv>
               <NavTextDiv onClick={() => navigate('/my')}>
                 마이페이지
               </NavTextDiv>
@@ -359,7 +359,7 @@ const SearchIconImg = styled.img`
   width: 30px;
   height: 30px;
   margin-left: 5px;
-  margin-right: 5px;
+  margin-right: 15px;
 `;
 
 const NickNameBtn = styled.button`
