@@ -94,7 +94,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding-bottom: 500px;
-  background: linear-gradient(white 40%, #6478ff);
+  background: linear-gradient(white 40%, #8a98f6);
 `;
 
 const RegionSelectionBtnWrapper = styled.div`
