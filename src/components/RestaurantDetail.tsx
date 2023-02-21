@@ -3,9 +3,41 @@ import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
+import {
+  doc,
+  getDoc,
+  query,
+  collection,
+  orderBy,
+  DocumentData,
+  DocumentSnapshot,
+} from 'firebase/firestore';
+import { db } from '../apis/firebase';
+import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { likeState } from '../recoil/apiDataAtoms';
 
 const RestaurantDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
+  // const [likeData, setLikeData] = useRecoilState(likeState);
+  const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  const restaurantRecommendationList = async () => {
+    const fbdata = await getDoc(
+      doc(db, 'restaurant_recommendation', `${props.id}`),
+    );
+    console.log('식당안', fbdata.data());
+    // return fbdata.data();
+    if (fbdata) {
+      setLikeData(fbdata.data());
+    }
+  };
+
+  useEffect(() => {
+    restaurantRecommendationList();
+  }, []);
+
+  console.log('식당디테일 안에서 ', likeData);
+
   return (
     <RestaurantEachItemWrapper>
       <RestaurantImgWrapper>
@@ -27,7 +59,7 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
         <MyChildTextp>{props.address}</MyChildTextp>
         <LikeBox>
           <LikeImg src={TapHeart} alt="" />
-          <p>2348</p>
+          <p>{likeData ? likeData.likeCnt.length : 0}</p>
         </LikeBox>
       </MyCildTextBox>
     </RestaurantEachItemWrapper>

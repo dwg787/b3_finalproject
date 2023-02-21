@@ -11,14 +11,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
-
+import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
   const [stayCurPage, setStayCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
   //   const lastNum = useRef(5);
-
   //페이지네이션
   if (stayCurPage % 5 === 1) {
     firstNum.current = 5 * Math.floor(stayCurPage / 5) + 1;
@@ -26,9 +25,7 @@ const StaySelectionResult = () => {
   if (stayCurPage < firstNum.current) {
     firstNum.current = 5 * (Math.floor(stayCurPage / 5) - 1) + 1;
   }
-
   // console.log('숙박 렌더링');
-
   const { data, isFetching, isLoading, isPreviousData } = useQuery(
     ['stay_data', region, stayCurPage],
     () => fetchStayData({ region, stayCurPage }),
@@ -37,24 +34,21 @@ const StaySelectionResult = () => {
       keepPreviousData: true,
     },
   );
-
   //   console.log('선택한 페이지에 대한 데이터?', data);
-
   const handleFetchNextPage = useCallback(() => {
     setStayCurPage(stayCurPage + 1);
   }, [stayCurPage]);
-
   useEffect(() => {
     maxPageNo.current = 1;
     setStayCurPage(1);
   }, [region]);
-
   return (
     <WrapDiv>
       <SearchOverallResultContainer>
         {isLoading || data === undefined ? (
           <>
-            <Loader />
+            <SkeletonTestFrame />
+            {/* <Loader /> */}
           </>
         ) : (
           <>
@@ -89,7 +83,6 @@ const StaySelectionResult = () => {
                   })}
                 </ResultWrapper>
               )}
-
               <BtnWrapper>
                 {Math.ceil(data.totalCount / 8) <= stayCurPage ? (
                   <></>
@@ -109,9 +102,7 @@ const StaySelectionResult = () => {
                 .map((_, i) => {
                   const isSelectedPage =
                     firstNum.current + i === stayCurPage ? true : false;
-
                   // console.log('토탈카운', data.totalCount);
-
                   if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                     return (
                       <PaginationDot
@@ -133,7 +124,6 @@ const StaySelectionResult = () => {
     </WrapDiv>
   );
 };
-
 export default StaySelectionResult;
 
 const WrapDiv = styled.div`
@@ -161,6 +151,7 @@ const SearchOverallResultContainer = styled.div`
 const ListItemCount = styled.div`
   margin-top: 30px;
   margin-left: 30px;
+  color: '#6478ff';
 `;
 
 const SearchListWrapper = styled.div`

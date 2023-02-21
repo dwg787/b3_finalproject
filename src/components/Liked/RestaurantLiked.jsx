@@ -4,6 +4,8 @@ import {
   setDoc,
   getDoc,
   collection,
+  arrayUnion,
+  arrayRemove,
   getDocs,
   where,
   deleteDoc,
@@ -22,6 +24,9 @@ export default function RestaurantLiked({
   stayData,
   spotDetailData,
   restaurantData,
+  restaurantParamId,
+  spotParamId,
+  stayParamId,
 }: UserProps): React.ReactElement {
   //좋아요 클릭 한번만 될수있도록
   const clickRef = useRef(false);
@@ -48,7 +53,14 @@ export default function RestaurantLiked({
 
     //유저 아이디 가져오기
     const uid = auth.currentUser.uid;
-    const docRef = doc(collection(db, 'restaurantlike'));
+    const docRef = doc(collection(db, 'bookmarks'), uid);
+    const restaurantDocRef = doc(
+      db,
+      'restaurant_recommendation',
+      restaurantParamId,
+    );
+
+    console.log('식당 paramid', restaurantParamId);
 
     if (!clickRef.current) {
       clickRef.current = true;
@@ -59,36 +71,49 @@ export default function RestaurantLiked({
           // 없으면 새로 생성
           if (!doc.exists()) {
             setDoc(docRef, {
-              restaurant: combinedData.title,
-              uid: uid,
-              img: combinedData.firstimage,
-              contentid: combinedData.contentid,
-              date: Date.now(),
-              contenttypeid: combinedData.contenttypeid,
+              bookmarks: arrayUnion({
+                restaurant: combinedData.title,
+                img: combinedData.firstimage,
+                contentid: combinedData.contentid,
+                date: Date.now(),
+                contenttypeid: combinedData.contenttypeid,
+                // addedUser: [uid]
+                // uid: uid,
+              }),
+              contentid: arrayUnion(combinedData.contentid),
+            });
+            updateDoc(restaurantDocRef, {
+              likeCnt: arrayUnion(`${uid}`),
+            });
+          } else {
+            updateDoc(docRef, {
+              bookmarks: arrayUnion({
+                restaurant: combinedData.title,
+                img: combinedData.firstimage,
+                contentid: combinedData.contentid,
+                date: Date.now(),
+                contenttypeid: combinedData.contenttypeid,
+                // uid: uid,
+              }),
+              contentid: arrayUnion(combinedData.contentid),
+            });
+            updateDoc(restaurantDocRef, {
+              likeCnt: arrayUnion(`${uid}`),
             });
           }
         })
         .catch((e) => console.log(e));
 
-      await updateDoc(docRef, {
-        restaurant: combinedData.title,
-        uid: uid,
-        img: combinedData.firstimage,
-        contentid: combinedData.contentid,
-        date: Date.now(),
-        contenttypeid: combinedData.contenttypeid,
-      }).catch((e) => console.log(e));
       // setIsLiked(true);
       // 좋아요 버튼 활성화 관련
-      clickRef.current = true;
+      // clickRef.current = true;
       // setDisabled(true);
       // localStorage.setItem('clickRef', true);
       setAlarmMsg('찜하기 목록에 추가되었습니다!');
-      addNoti();
     } else {
       setAlarmMsg('이미 추가된 항목입니다!');
-      addNoti();
     }
+    addNoti();
   };
 
   return (

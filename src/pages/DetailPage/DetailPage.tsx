@@ -1,6 +1,10 @@
 import { useQuery } from 'react-query';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { fetchSpotDetailData, FetchedStayDataType } from '../../apis/publicAPI';
+import {
+  fetchSpotDetailData,
+  FetchedStayDataType,
+  FetchedDataType,
+} from '../../apis/publicAPI';
 import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
@@ -102,7 +106,10 @@ const DetailPage = () => {
                   <DetailText>{spotData.title}</DetailText>
                   <DetailTextArr> {spotData.addr1.split(' ', 2)}</DetailTextArr>
                   <DeatilImojiBox>
-                    <RestaurantLiked spotData={spotData} />
+                    <RestaurantLiked
+                      spotData={spotData}
+                      spotParamId={param.id}
+                    />
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
