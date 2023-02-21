@@ -42,6 +42,8 @@ const StaySelectionResult = () => {
     maxPageNo.current = 1;
     setStayCurPage(1);
   }, [region]);
+
+  console.log(data);
   return (
     <WrapDiv>
       <SearchOverallResultContainer>

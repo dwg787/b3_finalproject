@@ -1,19 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import InnerPhoto from '../../../assets/slide2.avif';
 import TapHeart from '../../../assets/TapHeart.avif';
 import shilla from '../../../assets/shilla.avif';
-import choseon from '../../../assets/choseon.avif';
-import walker from '../../../assets/walker.avif';
-import signiel from '../../../assets/signiel.avif';
-import grand from '../../../assets/grand.avif';
-import season from '../../../assets/season.avif';
+import hoong from '../../../assets/hoong.png';
+import okwood from '../../../assets/okwood.png';
+import jeju from '../../../assets/jeju.png';
+import jejusin from '../../../assets/jejusin.png';
+import jimil from '../../../assets/jimil.png';
 
 export default function Spot() {
   return (
     <WarpDiv>
       <InnerBox1>
-        <a href="https://www.shillahotels.com/index.do">
+        <a href="http://localhost:3000/stay/142734">
           <InnerList>
             <InnerImg src={shilla} />
             <InnerNmb>1</InnerNmb>
@@ -30,35 +29,35 @@ export default function Spot() {
           </InnerList>
         </a>
 
-        <a href="https://www.josunhotel.com/intro.do">
+        <a href="http://localhost:3000/stay/2917226">
           <InnerList>
-            <InnerImg src={choseon} />
+            <InnerImg src={hoong} />
             <InnerNmb>2</InnerNmb>
 
             <InnerText>
-              <InnerTextH3>조선호텔</InnerTextH3>
-              <InnerTextp>세계적으로 신뢰받는 호텔</InnerTextp>
+              <InnerTextH3>머큐어 앰배서더 서울 홍대</InnerTextH3>
+              <InnerTextp>홍대입구역 10분거리 호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
                 <p>13,216</p>
-                <InnerTex>700,000</InnerTex>
+                <InnerTex>140,000</InnerTex>
               </LikeBox>
             </InnerText>
           </InnerList>
         </a>
 
-        <a href="https://www.walkerhill.com/">
+        <a href="http://localhost:3000/stay/2008490">
           <InnerList>
-            <InnerImg src={walker} />
+            <InnerImg src={okwood} />
             <InnerNmb>3</InnerNmb>
 
             <InnerText>
-              <InnerTextH3>워커힐호텔</InnerTextH3>
-              <InnerTextp>생동감 넘치는 색다른 여행</InnerTextp>
+              <InnerTextH3>오크우드 프리미어 코엑스</InnerTextH3>
+              <InnerTextp>하루부터 최대1년까지 투숙이가능한호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
                 <p>11,901</p>
-                <InnerTex>460,000</InnerTex>
+                <InnerTex>260,000</InnerTex>
               </LikeBox>
             </InnerText>
           </InnerList>
@@ -66,50 +65,50 @@ export default function Spot() {
       </InnerBox1>
 
       <InnerBox2>
-        <a href="https://www.lottehotel.com/seoul-signiel/ko.html">
+        <a href="http://localhost:3000/stay/2716736">
           <InnerList>
-            <InnerImg src={signiel} />
+            <InnerImg src={jejusin} />
             <InnerNmb>4</InnerNmb>
 
             <InnerText>
-              <InnerTextH3>시그니엘</InnerTextH3>
-              <InnerTextp>한국최고의 호텔</InnerTextp>
+              <InnerTextH3>신라스테이 제주</InnerTextH3>
+              <InnerTextp>제주국제공항 10분거리에 위치한호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
                 <p>7,423</p>
-                <InnerTex>750,000</InnerTex>
+                <InnerTex>450,000</InnerTex>
               </LikeBox>
             </InnerText>
           </InnerList>
         </a>
-        <a href="https://www.hyatt.com/ko-KR/hotel/south-korea/grand-hyatt-seoul/selrs">
+        <a href="http://localhost:3000/stay/2876795">
           <InnerList>
-            <InnerImg src={grand} />
+            <InnerImg src={jeju} />
             <InnerNmb>5</InnerNmb>
 
             <InnerText>
-              <InnerTextH3>그랜드 하얏트 서울</InnerTextH3>
-              <InnerTextp>남산에 위치한 서울 고급호텔</InnerTextp>
+              <InnerTextH3>그랜드 하얏트 제주</InnerTextH3>
+              <InnerTextp>신제주 관광 줌심지에있는 고급호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
                 <p>6,223</p>
-                <InnerTex>667,000</InnerTex>
+                <InnerTex>177,000</InnerTex>
               </LikeBox>
             </InnerText>
           </InnerList>
         </a>
-        <a href="https://www.fourseasons.com/kr/seoul/?source=ppc|SKO|gaw|acr|RG|Brand-KR-KR&ppc=true&gclid=Cj0KCQiArsefBhCbARIsAP98hXRi_TF4VZMIjwy4HLo0lS7h-WvGXe954XYGWb9HLxSOKMqsV1eIfeUaAnV_EALw_wcB&gclsrc=aw.ds">
+        <a href="http://localhost:3000/stay/2706601">
           <InnerList>
-            <InnerImg src={season} />
+            <InnerImg src={jimil} />
             <InnerNmb>6</InnerNmb>
 
             <InnerText>
-              <InnerTextH3>포시즌스 서울</InnerTextH3>
-              <InnerTextp>광화문에 위치한 현대적인 감각의 호텔</InnerTextp>
+              <InnerTextH3>왕의지밀 선조관</InnerTextH3>
+              <InnerTextp>현대식시설의 편리함을 갖춘 한옥호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
                 <p>3,903</p>
-                <InnerTex>860,000</InnerTex>
+                <InnerTex>220,000</InnerTex>
               </LikeBox>
             </InnerText>
           </InnerList>
