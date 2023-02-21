@@ -6,38 +6,69 @@ import three from '../../assets/three.png';
 
 export default function MainTap() {
   return (
-    <WrapDiv>
-      <InnerDiv>
-        <InnerList>
-          <InnerMedals src={one} alt="" />
-          <InnerTextBox></InnerTextBox>
-        </InnerList>
-        <InnerList>
-          <InnerMedals src={two} alt="" />
-          <InnerTextBox></InnerTextBox>
-        </InnerList>
-        <InnerList>
-          <InnerMedals src={three} alt="" />
-          <InnerTextBox></InnerTextBox>
-        </InnerList>
-      </InnerDiv>
-      <OuterDiv>
-        <OuterList>
-          <OuterTextBox></OuterTextBox>
-        </OuterList>
-        <OuterList>
-          <OuterTextBox></OuterTextBox>
-        </OuterList>
-        <OuterList>
-          <OuterTextBox></OuterTextBox>
-        </OuterList>
-        <OuterList>
-          <OuterTextBox></OuterTextBox>
-        </OuterList>
-      </OuterDiv>
-    </WrapDiv>
+    <ContainerDiv>
+      <ColorDiov>
+        <WrapDiv>
+          <InnerDiv>
+            <InnerList>
+              <InnerMedals src={one} alt="" />
+              <InnerTextBox></InnerTextBox>
+            </InnerList>
+            <InnerList>
+              <InnerMedals src={two} alt="" />
+              <InnerTextBox></InnerTextBox>
+            </InnerList>
+            <InnerList>
+              <InnerMedals src={three} alt="" />
+              <InnerTextBox></InnerTextBox>
+            </InnerList>
+          </InnerDiv>
+          <OuterDiv>
+            <OuterList>
+              <InnerNmb>4</InnerNmb>
+              <OuterTextBox></OuterTextBox>
+            </OuterList>
+            <OuterList>
+              <InnerNmb>5</InnerNmb>
+              <OuterTextBox></OuterTextBox>
+            </OuterList>
+            <OuterList>
+              <InnerNmb>6</InnerNmb>
+              <OuterTextBox></OuterTextBox>
+            </OuterList>
+            <OuterList>
+              <InnerNmb>7</InnerNmb>
+              <OuterTextBox></OuterTextBox>
+            </OuterList>
+          </OuterDiv>
+        </WrapDiv>
+      </ColorDiov>
+    </ContainerDiv>
   );
 }
+
+const ColorDiov = styled.div`
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #7f8efc 40%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  display: flex;
+  justify-content: center;
+  padding-bottom: 300px;
+  position: absolute;
+`;
+
+const ContainerDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  z-index: 0;
+  margin-top: 1940px;
+`;
 
 const WrapDiv = styled.div`
   margin-top: 50px;
@@ -49,6 +80,8 @@ const WrapDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
 `;
 
 const InnerDiv = styled.div`
@@ -68,6 +101,7 @@ const InnerList = styled.div`
   height: 300px;
   background-color: gray;
   border-radius: 20px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 `;
 
@@ -100,6 +134,8 @@ const OuterList = styled.div`
   background-color: gray;
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
 const OuterTextBox = styled.div`
@@ -107,4 +143,18 @@ const OuterTextBox = styled.div`
   height: 110px;
   background-color: white;
   margin-top: 170px;
+`;
+
+const InnerNmb = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
+  color: white;
 `;
