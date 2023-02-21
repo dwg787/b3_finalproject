@@ -24,8 +24,9 @@ export default function EditModal({
   // 저장 버튼 활성화
   const [buttonValidation, setButtonValidation] = useState(true);
   // mutation 사용 - 닉네임 수정
-  const docRef = doc(db, 'users', auth.currentUser.uid);
+  const docRef = doc(db, 'users', currentUser);
   const mutation = useFirestoreDocumentMutation(docRef);
+  console.log(auth.currentUser.displayName);
   // 수정 취소
   const cancelEdit = () => {
     alert('취소되었습니다.');
@@ -37,14 +38,14 @@ export default function EditModal({
     e.preventDefault();
     if (setContentInfo) {
       // 닉네임 수정
-      updateProfile(currentUser, {
+      updateProfile(auth.currentUser, {
         displayName: currentInput,
       }).catch((error) => {
         console.log(error.message);
       });
       updateDoc(docRef, { name: currentInput });
       //   sessionStorage.removeItem("id");
-      localStorage.setItem('id', currentInput);
+      sessionStorage.setItem('id', currentInput);
       updateNickname(currentInput);
       navigate('/my');
       alert('수정되었습니다.');
@@ -52,12 +53,8 @@ export default function EditModal({
       // 이메일 수정
       //   const emailUpdate = doc(db, "users", id);
       //   updateDoc(emailUpdate, { email: currentInput });
-      mutation.mutate({
-        email: currentInput,
-        userId: currentUser,
-        name: auth.currentUser.displayName,
-      });
-      localStorage.setItem('email', currentInput);
+      mutation.mutate({ email: currentInput, userId: currentUser });
+      sessionStorage.setItem('email', currentInput);
       updateEmail(currentInput);
     }
     setModalOpen(false);
