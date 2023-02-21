@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import StayDetail from '../StayDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType, FetchedDataType } from '../../apis/publicAPI';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
 import { fetchStayData } from '../../apis/publicAPI';
@@ -11,6 +11,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-arrow.avif';
 import rightArrow from '../../assets/right-arrow.avif';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
+import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 
 const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -53,7 +54,8 @@ const StaySelectionResult = () => {
     <SearchOverallResultContainer>
       {isLoading || data === undefined ? (
         <>
-          <Loader />
+          <SkeletonTestFrame />
+          {/* <Loader /> */}
         </>
       ) : (
         <>
@@ -88,7 +90,6 @@ const StaySelectionResult = () => {
                 })}
               </ResultWrapper>
             )}
-
             <BtnWrapper>
               {Math.ceil(data.totalCount / 8) <= stayCurPage ? (
                 <></>
@@ -147,6 +148,7 @@ const SearchOverallResultContainer = styled.div`
 const ListItemCount = styled.div`
   margin-top: 30px;
   margin-left: 30px;
+  color: '#6478ff';
 `;
 
 const SearchListWrapper = styled.div`

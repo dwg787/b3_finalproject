@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType, FetchedDataType } from '../../apis/publicAPI';
 import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import Communication from '../../components/Review/Communication';
@@ -38,7 +38,6 @@ import {
   DetailTextBox,
   DetailInfo2,
 } from './styles';
-import Liked from '../../components/Liked/Liked';
 import StayInfo from '../../components/Recommendation/StayInfo';
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
@@ -132,6 +131,13 @@ const StayDetailPage = () => {
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
+                    {/* 재현 */}
+                    <RestaurantLiked
+                      stayDetailData={stayDetailData}
+                      stayParamId={param.id}
+                    />
+                    {/* 혜진님 */}
+                    {/* <Liked stayDetailData={stayDetailData} /> */}
                     <RestaurantLiked stayDetailData={stayDetailData} />
                     {/* <LikedCount stayDetailData={stayDetailData} /> */}
                     <Link to={`/${param.id}/map`}>

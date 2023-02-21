@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import MyRestaurantLiked from './MyRestaurantLiked';
+import MyLikeList from './MyLikeList';
 import React, { useEffect, useState } from 'react';
 import { auth, db } from '../../apis/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -41,6 +42,7 @@ const MyFav = () => {
     <container>
       <LikedHeader>나의 찜 목록</LikedHeader>
       <MyRestaurantLiked />
+      <MyLikeList />
     </container>
   );
 };
