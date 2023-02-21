@@ -9,9 +9,7 @@ import Loader from '../Loader/Loader';
 import RestaurantLiked from '../Liked/RestaurantLiked';
 const MyFav = () => {
   return (
-
-    <container>
-
+    <Container>
       <LikedHeader>나의 찜 목록</LikedHeader>
 
       <MyLikeList />
