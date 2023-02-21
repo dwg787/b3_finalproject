@@ -47,6 +47,7 @@ const WrapDiv = styled.div`
   padding-left: 100px;
   position: absolute;
   margin-top: 3500px;
+  z-index: 3;
 `;
 
 const TextBox = styled.div`
