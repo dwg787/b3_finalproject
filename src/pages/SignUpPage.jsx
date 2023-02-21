@@ -9,15 +9,17 @@ import { useNavigate } from 'react-router-dom';
 import { updateProfile } from 'firebase/auth';
 import styled from 'styled-components';
 import '../App.css';
+import BlueFooter from '../components/Footer/BlueFooter';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
 
-  // 초기값 세팅 - 이메일, 닉네임, 비밀번호, 비밀번호 확인
+  // 초기값 세팅 - 이메일, 닉네임, 비밀번호, 비밀번호 확인, 휴대폰
   const [id, setId] = useState('');
   const [nickName, setNickName] = useState('');
   const [pw, setPw] = useState('');
   const [pwConfirm, setPwConfirm] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [error, setError] = useState('');
   const [value, setValue] = useState('');
 
@@ -26,18 +28,21 @@ const SignUpPage = () => {
   const [nickNameErrMsg, setNickNameErrMsg] = useState('');
   const [pwErrMsg, setPwErrMsg] = useState('');
   const [pwConfirmErrMsg, setPwConfirmErrMsg] = useState('');
+  const [phoneErrMsg, setPhoneErrMsh] = useState('');
 
   // 유효성 검사
   const [isId, setIsId] = useState(false);
   const [isPw, setIsPw] = useState(false);
   const [isPwConfirm, setIsPwConfirm] = useState(false);
   const [isNickName, setIsNickName] = useState(false);
+  const [isphoneNumber, setIsPhoneNumber] = useState(false);
 
   // 에러 나면 그곳에 커서 이동되도록
   const idRef = useRef(null);
   const nickNameRef = useRef(null);
   const pwRef = useRef(null);
   const pwConfirmRef = useRef(null);
+  const phoneNumberRef = useRef(null);
 
   //약관동의 로직
   const [checkList, setCheckList] = useState([]);
@@ -63,12 +68,14 @@ const SignUpPage = () => {
             setNickName('');
             setPw('');
             setPwConfirm('');
+            setPhoneNumber('');
             localStorage.setItem('id', nickName);
             localStorage.setItem('email', data.user.email);
-            addDoc(collection(db, 'users'), {
-              email: data.user.email,
-              name: data.user.displayName,
-            });
+            // localStorage.setItem('phoneNumber', data.user.phoneNumber);
+            // addDoc(collection(db, 'users'), {
+            //   email: data.user.email,
+            //   name: data.user.displayName,
+            // });
             navigate('/');
           })
           .catch((error) => {
@@ -104,8 +111,8 @@ const SignUpPage = () => {
 
     setNickName(currentNickName);
 
-    if (currentNickName.length < 2 || currentNickName.length > 10) {
-      setNickNameErrMsg(' 2글자 이상, 10글자 미만으로만 사용할 수 있습니다.');
+    if (currentNickName.length < 2 || currentNickName.length > 7) {
+      setNickNameErrMsg(' 2글자 이상, 7글자 미만으로만 사용할 수 있습니다.');
       setIsNickName(false);
     } else {
       setNickNameErrMsg('');
@@ -140,6 +147,34 @@ const SignUpPage = () => {
       setIsPwConfirm(false);
     }
   };
+
+  // 휴대폰
+  const onChangePhone = (e) => {
+    const currentPhone = e.target.value;
+
+    setPhoneNumber(currentPhone);
+    const phoneRegex = /^[0-9\b -]{0,25}$/;
+    if (!phoneRegex.test(currentPhone)) {
+      setPhoneErrMsh('숫자만 입력해 주세요');
+      setIsPhoneNumber(false);
+    } else {
+      setPhoneErrMsh('');
+      setIsPhoneNumber(true);
+    }
+  };
+  useEffect(() => {
+    if (phoneNumber.length === 10) {
+      setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+    }
+    if (phoneNumber.length === 13) {
+      setPhoneNumber(
+        phoneNumber
+          .replace(/-/g, '')
+          .replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'),
+      );
+    }
+  }, [phoneNumber]);
+
   //약관동의 만드는법
   const checkAll = (e) => {
     e.target.checked
@@ -246,8 +281,20 @@ const SignUpPage = () => {
               </Error>
             </LoginBox>
             <LoginBox>
-              <LoginInput type="text" />
-              <LoginLabel>전화번호</LoginLabel>
+              <LoginInput
+                type="text"
+                ref={phoneNumberRef}
+                value={phoneNumber}
+                onChange={onChangePhone}
+              />
+              <LoginLabel>휴대전화</LoginLabel>
+              <Error>
+                <span
+                  className={`message ${isphoneNumber ? 'success' : 'error'}`}
+                >
+                  {phoneErrMsg}
+                </span>
+              </Error>
             </LoginBox>
             <LoginLabelBottom></LoginLabelBottom>
             {/* <LoginBox>
@@ -334,13 +381,15 @@ const SignUpPage = () => {
               <div>개인정보 수집 및 이용 동의 (선택)</div>
               <div>내용보기</div>
             </div> */}
-
-            <SignUpBtn state={buttonColor} data-text="회원가입">
-              회원가입
-            </SignUpBtn>
+            <LoginBox>
+              <SignUpBtn state={buttonColor}>회원가입</SignUpBtn>
+            </LoginBox>
           </SignForm>
         </SignUpContainer>
       </TestDiv>
+      <FooterDiv>
+        <BlueFooter />
+      </FooterDiv>
     </SIgnWrap>
   );
 };
@@ -372,12 +421,12 @@ const Reservation = styled.div`
 const ReservationBottom = styled.div`
   border-bottom: #6478ff 3px solid;
   width: 65%;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const TestDiv = styled.div`
-  width: 65%;
-  height: 1650px;
+  width: 100%;
+  height: 1450px;
   margin-top: 40px;
 `;
 
@@ -386,6 +435,13 @@ const SIgnWrap = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(124, 141, 255, 1) 69%,
+    rgba(255, 255, 255, 1) 120%
+  );
 `;
 
 const SignUpContainer = styled.div`
@@ -393,7 +449,7 @@ const SignUpContainer = styled.div`
   top: 100%;
   left: 50%; */
   width: 65%;
-  height: 1500px;
+  height: 1450px;
 
   margin: auto;
 
@@ -469,16 +525,16 @@ const LoginLabel = styled.label`
 
 const LoginLabelBottom = styled.div`
   border-bottom: #6478ff 3px solid;
-  width: 65%;
+  width: 90%;
   margin-top: 80px;
 `;
 
 const SignUpBtn = styled.button`
-  margin-right: -30px;
+  
 
-  margin-top: 120px;
+  margin-top: 50px;
   cursor: pointer;
-  transform: translate(-50%, -50%);
+  
   width: 399.1px;
   height: 57.85px;
   line-height: 50px;
@@ -547,6 +603,7 @@ const CheckBoxWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 200px;
 `;
 
 const CheckBoxBolder = styled.div`
@@ -612,7 +669,6 @@ const CheckBoxInput4 = styled.input`
 `;
 
 const CheckBoxTextBold = styled.div`
-  display: inline-block;
   margin-right: 50px;
   /* white-space: nowrap; */
   font-weight: 700;
@@ -624,7 +680,6 @@ const CheckBoxTextBold = styled.div`
 
 const CheckBoxText = styled.div`
   display: inline-block;
-
   white-space: nowrap;
   display: flex;
   font-weight: 500;
@@ -637,3 +692,5 @@ const CheckBoxText = styled.div`
 const CheckBoxText2 = styled.div`
   color: rgba(248, 112, 56, 1);
 `;
+
+const FooterDiv = styled.div``;
