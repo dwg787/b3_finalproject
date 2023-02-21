@@ -120,7 +120,7 @@ const RestaurantMainTap = () => {
                 return (
                   <OuterList>
                     <InnerNmb>{i + 4}</InnerNmb>
-                    <img src={e.firstimage} alt="" />
+                    <OuterImg src={e.firstimage} alt="" />
                     <OuterTextBox>
                       <div>{e.title}</div>
                       <p>{e.overview.slice(0, 20)}</p>
@@ -165,7 +165,7 @@ const ContainerDiv = styled.div`
   background-color: white;
   position: absolute;
   z-index: 0;
-  margin-top: 1940px;
+  margin-top: 2600px;
 `;
 
 const WrapDiv = styled.div`
@@ -242,9 +242,15 @@ const OuterList = styled.div`
   position: relative;
 `;
 
+const OuterImg = styled.img`
+  width: 200px;
+  height: 150px;
+  position: absolute;
+`;
+
 const OuterTextBox = styled.div`
   width: 100%;
-  height: 110px;
+  height: 150px;
   background-color: white;
   margin-top: 170px;
 `;
