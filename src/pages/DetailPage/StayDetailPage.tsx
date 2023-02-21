@@ -44,6 +44,7 @@ import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
 import BlueFooter from '../../components/Footer/BlueFooter';
+import LikedCount from '../../components/Liked/LikedCount';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -132,7 +133,7 @@ const StayDetailPage = () => {
                   </DetailTextArr>
                   <DeatilImojiBox>
                     <RestaurantLiked stayDetailData={stayDetailData} />
-                    {/* <Liked stayDetailData={stayDetailData} /> */}
+                    {/* <LikedCount stayDetailData={stayDetailData} /> */}
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
