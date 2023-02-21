@@ -130,14 +130,11 @@ const StayDetailPage = () => {
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    {/* 재현 */}
                     <RestaurantLiked
                       stayDetailData={stayDetailData}
                       stayParamId={param.id}
                     />
-                    {/* 혜진님 */}
-                    {/* <Liked stayDetailData={stayDetailData} /> */}
-                    <RestaurantLiked stayDetailData={stayDetailData} />
+
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
