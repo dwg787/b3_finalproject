@@ -8,40 +8,12 @@ import MyFavDetail from './MyFavDetail';
 import Loader from '../Loader/Loader';
 import RestaurantLiked from '../Liked/RestaurantLiked';
 const MyFav = () => {
-  // const [bookmarks, setBookmarks] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-
-  // const getLiked = async () => {
-  //   const uid = auth.currentUser.uid;
-
-  //   const q = query(collection(db, 'bookmarks'), where('uid', '==', uid));
-  //   const querySnapshot = await getDocs(q);
-  //   querySnapshot.forEach((doc) => {
-  //     setBookmarks(doc.data().bookmarks);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   getLiked()
-  //     .then(() => setIsLoading(false))
-  //     .catch((e) => console.log(e));
-  // }, []);
-
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
-
   return (
-    // <StTicketWrap>
-    //   <StTicket>
-    //     {bookmarks.map((title, i) => {
-    //       return <MyFavDetail getLiked={getLiked} title={title} key={i} />;
-    //     })}
-    //   </StTicket>
-    // </StTicketWrap>
-    <Container>
+
+    <container>
+
       <LikedHeader>나의 찜 목록</LikedHeader>
-      <MyRestaurantLiked />
+
       <MyLikeList />
     </Container>
   );
