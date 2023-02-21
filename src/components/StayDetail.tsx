@@ -1,4 +1,4 @@
-import { FetchedStayDataType, FetchedDataType } from '../apis/publicAPI';
+import { FetchedStayDataType } from '../apis/publicAPI';
 import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
@@ -39,7 +39,7 @@ export default StayDetail;
 
 const StayEachItemWrapper = styled.div`
   width: 20%;
-  height: 350px;
+  height: 320px;
   margin: 20px 20px 20px 20px;
   border-radius: 10px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
@@ -48,7 +48,7 @@ const StayEachItemWrapper = styled.div`
 
 const StayImgWrapper = styled.div`
   width: 100%;
-  height: 240px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +58,7 @@ const StayImgWrapper = styled.div`
 `;
 
 const StayEachItemImg = styled.img`
-  width: 300px;
+  width: 220px;
   height: 300px;
   aspect-ratio: 1.2;
   background-color: white;
@@ -79,7 +79,7 @@ const MyCildTextBox = styled.div`
 `;
 
 const MyChildTexth3 = styled.h3`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   margin-bottom: 4px;
   color: #333333;
@@ -88,7 +88,7 @@ const MyChildTexth3 = styled.h3`
 `;
 
 const MyChildTextp = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   color: #7f7f7f;
   margin-top: 4px;
   margin-left: 10px;
@@ -103,6 +103,10 @@ const LikeBox = styled.div`
 `;
 
 const LikeImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
+`;
+
+const LikeText = styled.p`
+  font-size: 12px;
 `;

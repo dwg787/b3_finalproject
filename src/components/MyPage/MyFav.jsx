@@ -9,11 +9,13 @@ import Loader from '../Loader/Loader';
 import RestaurantLiked from '../Liked/RestaurantLiked';
 const MyFav = () => {
   return (
+
     <container>
+
       <LikedHeader>나의 찜 목록</LikedHeader>
 
       <MyLikeList />
-    </container>
+    </Container>
   );
 };
 
@@ -31,7 +33,7 @@ const LikedHeader = styled.div`
   color: #4d4d4d;
 `;
 
-const container = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

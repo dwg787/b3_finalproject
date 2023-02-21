@@ -159,15 +159,15 @@ const StMyListTab = styled.div`
 //마이페이지 내용 부분
 const StMyPageInfo = styled.div`
   width: 1232px;
-  height: 931.4px;
+  /* height: 931.4px; */
 
   /* height: 700px; */
-  display: flex;
+  /* display: flex; */
   /* flex-direction: column; */
   /* justify-content: center; */
   /* align-items: center; */
   /* border: 1px solid black; */
-  background-color: #ffffff
+  background-color: #ffffff;
   border-radius: 13.43px;
   flex-wrap: wrap;
   box-shadow: 5px 5px 10px 1px gray;
