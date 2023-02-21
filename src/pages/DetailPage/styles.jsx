@@ -100,7 +100,7 @@ const DeatilImojiBox = styled.div`
 
 //상세페이지 사진 박스
 const DetailImgBox = styled.div`
-  width: 92.98%
+  width: 92.98%;
   /* width: 70%; */
   /* height: 15.02%; */
   height: 534.81px;
@@ -138,7 +138,7 @@ const DetailImgBtn = styled.button`
 
 // 상세정보박스
 const DetailInformation = styled.div`
-  width: 92.98%
+  width: 92.98%;
   /* width: 70%; */
   /* height: 248px; */
   top: 0;
