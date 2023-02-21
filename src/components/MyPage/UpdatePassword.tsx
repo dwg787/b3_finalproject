@@ -25,6 +25,9 @@ const UpdatePassword = () => {
   const [helperPasswordInput, setHelperPasswordInput] = useState(
     initHelperPasswordInput,
   );
+
+  // 버튼 색 활성화
+  const [buttonColor, setButtonColor] = useState(false);
   // 저장 버튼 활성화
   const [buttonValidation, setButtonValidation] = useState(true);
 
@@ -126,44 +129,65 @@ const UpdatePassword = () => {
   useEffect(() => {
     if (check) {
       setButtonValidation(false);
+      setButtonColor(true);
       return;
     }
     setButtonValidation(true);
+    setButtonColor(false);
   }, [check]);
 
   return (
     <div>
-      <input
-        value={passwordInput.password}
-        type="password"
-        name="password"
-        onChange={passwordChangeHandler}
-      />
-      <button onClick={firstPasswordCheck}>비밀번호 확인</button>
-      <input
-        value={passwordInput.updatePassword}
-        type="password"
-        name="updatePassword"
-        onChange={passwordChangeHandler}
-        onBlur={validatePasswordHandler}
-      />
+      <UpdatePwBox>
+        <UpdatePwInput1
+          value={passwordInput.password}
+          type="password"
+          name="password"
+          onChange={passwordChangeHandler}
+        />
 
-      <Error>
-        <span>{helperPasswordInput.updatePassword}</span>
-      </Error>
-      <input
-        value={passwordInput.updatePasswordCheck}
-        type="password"
-        name="updatePasswordCheck"
-        onChange={passwordChangeHandler}
-        onBlur={validatePasswordCheckHandler}
-      />
-      <Error>
-        <span>{helperPasswordInput.updatePasswordCheck}</span>
-      </Error>
-      <button disabled={buttonValidation} onClick={passwordCheckHandler}>
-        비밀번호 변경
-      </button>
+        <UpdatePwLabel1>현재 비밀번호</UpdatePwLabel1>
+      </UpdatePwBox>
+      <UpdatePwBox>
+        <UpdatePwBtn1 onClick={firstPasswordCheck}>비밀번호 확인</UpdatePwBtn1>
+      </UpdatePwBox>
+      <UpdatePwBox>
+        <UpdatePwInput2
+          value={passwordInput.updatePassword}
+          type="password"
+          name="updatePassword"
+          onChange={passwordChangeHandler}
+          onBlur={validatePasswordHandler}
+        />
+        <UpdatePwLabel2>새 비밀번호</UpdatePwLabel2>
+
+        <Error>
+          <span>{helperPasswordInput.updatePassword}</span>
+        </Error>
+      </UpdatePwBox>
+      <UpdatePwBox>
+        <UpdatePwInput2
+          value={passwordInput.updatePasswordCheck}
+          type="password"
+          name="updatePasswordCheck"
+          onChange={passwordChangeHandler}
+          onBlur={validatePasswordCheckHandler}
+        />
+        <UpdatePwLabel2>새 비밀번호 확인</UpdatePwLabel2>
+
+        <Error>
+          <span>{helperPasswordInput.updatePasswordCheck}</span>
+        </Error>
+      </UpdatePwBox>
+      <UpdatePwBox>
+        <UpdatePwBtn2
+          state={buttonColor}
+          disabled={buttonValidation}
+          onClick={passwordCheckHandler}
+        >
+          비밀번호 변경
+        </UpdatePwBtn2>
+      </UpdatePwBox>
     </div>
   );
 };
@@ -171,8 +195,113 @@ const UpdatePassword = () => {
 export default UpdatePassword;
 
 const Error = styled.div`
+  position: absolute;
+  top: 105px;
+  left: 10px;
   color: #f87038;
   font-weight: 500;
-  font-size: 11.7px;
+  font-size: 11px;
   line-height: 9.75px;
+`;
+
+const UpdatePwBox = styled.div`
+  position: relative;
+`;
+
+const UpdatePwInput1 = styled.input`
+  width: 419.9px;
+  height: 44.85px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+  margin-top: 80px;
+  padding: 20px;
+  border: 1.5px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  outline: none;
+  background: transparent;
+`;
+
+const UpdatePwInput2 = styled.input`
+  width: 419.9px;
+  height: 44.85px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  padding: 20px;
+  border: 1.5px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  outline: none;
+  background: transparent;
+`;
+
+const UpdatePwLabel1 = styled.label`
+  position: absolute;
+  top: 50px;
+  left: 0;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 13.678px;
+  line-height: 13.65px;
+  color: #5a5a5a;
+  pointer-events: none;
+  transition: 0.5s;
+`;
+
+const UpdatePwLabel2 = styled.label`
+  position: absolute;
+  top: 20px;
+  left: 0;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 13.678px;
+  line-height: 13.65px;
+  color: #5a5a5a;
+  pointer-events: none;
+  transition: 0.5s;
+`;
+
+const UpdatePwBtn1 = styled.button`
+  cursor: pointer;
+
+  width: 419.9px;
+  height: 44.85px;
+
+  background: #6478ff;
+  border: 1px solid #ffffff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  border: none;
+  font-weight: 500;
+  font-size: 17.3651px;
+  line-height: 16.25px;
+
+  color: #ffffff;
+  text-align: center;
+`;
+
+const UpdatePwBtn2 = styled.button<{ state: boolean }>`
+  margin-top: 20px;
+  cursor: pointer;
+
+  width: 419.9px;
+  height: 44.85px;
+
+  background: #6478ff;
+  border: 1px solid #ffffff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  border: none;
+  font-weight: 500;
+  font-size: 17.3651px;
+  line-height: 16.25px;
+
+  color: #ffffff;
+  text-align: center;
+  background: ${(props) => (props.state ? '#6478ff;' : '#C8D1E0')};
 `;

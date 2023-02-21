@@ -83,7 +83,7 @@ const StMyPageNav = styled.div`
 
 const StMyList = styled.ul`
   list-style: none;
-  background-color: #dcdcdc;
+
   font-weight: bold;
   display: flex;
   flex-direction: row;
@@ -103,14 +103,14 @@ const StMyListTab = styled.div`
 `;
 
 const StMyPageInfo = styled.div`
-  width: 90%;
+  /* width: 90%; */
   /* height: 700px; */
-  display: flex;
+  /* display: flex; */
   /* flex-direction: column; */
   /* justify-content: center; */
   /* align-items: center; */
-  border: 1px solid black;
-  background-color: #c7ddf0;
+  /* border: 1px solid black;
+  background-color: #c7ddf0; */
 
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 `;

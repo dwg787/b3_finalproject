@@ -7,6 +7,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import BlueFooter from '../Footer/BlueFooter';
 
 export default function MyInfo() {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ export default function MyInfo() {
   const [inputValidation, setInputValidation] = useState(false);
   // 저장 버튼 활성화
   const [buttonValidation, setButtonValidation] = useState(true);
+  // 버튼 색 활성화
+  const [buttonColor, setButtonColor] = useState(false);
 
   // 닉네임 입력
   const updateNickname = (item) => {
@@ -49,8 +52,8 @@ export default function MyInfo() {
     const input = e.target.value;
     setCurrentInput(input);
     // 닉네임 입력
-    if (input.length < 2 || input.length > 10) {
-      setErrorMessage('2글자 이상, 10글자이하로 적어주세요.');
+    if (input.length < 2 || input.length > 6) {
+      setErrorMessage('2글자 이상, 6글자이하로 적어주세요.');
       setInputValidation(false);
     } else {
       setErrorMessage('');
@@ -83,35 +86,239 @@ export default function MyInfo() {
   useEffect(() => {
     if (inputValidation) {
       setButtonValidation(false);
+      setButtonColor(true);
       return;
     }
     setButtonValidation(true);
+    setButtonColor(false);
   }, [inputValidation]);
 
   return (
-    <>
-      <div>이메일</div>
-      <input placeholder={email} readOnly></input>
+    <MyInfoWrap>
+      <MyInfoDiv>
+        <MyInfoContainer>
+          <Privacy>
+            <h2>개인정보 수정</h2>
+          </Privacy>
+          <PrivacyDiv>
+            <PrivacyBox>
+              <PrivacyInput1 placeholder={email} readOnly />
+              <PrivacyLabel1>이메일</PrivacyLabel1>
+            </PrivacyBox>
+            <PrivacyBox>
+              <PrivacyInput2
+                onChange={checkInput}
+                value={currentInput}
+                placeholder={userName}
+              />
+              <PrivacyLabel2>닉네임</PrivacyLabel2>
+              <Error>{errorMessage}</Error>
+            </PrivacyBox>
+            <PrivacyBox>
+              <SignUpBtn
+                state={buttonColor}
+                disabled={buttonValidation}
+                onClick={useSaveEdit}
+              >
+                닉네임 변경
+              </SignUpBtn>
+            </PrivacyBox>
+            <UpdatePassword />
+          </PrivacyDiv>
+        </MyInfoContainer>
+      </MyInfoDiv>
       <div>
-        <div>닉네임</div>
-        <input
-          onChange={checkInput}
-          value={currentInput}
-          placeholder={userName}
-        />
-        <Error>{errorMessage}</Error>
-        <button disabled={buttonValidation} onClick={useSaveEdit}>
-          닉네임 변경
-        </button>
+        <BlueFooter />
       </div>
-      <UpdatePassword />
-    </>
+    </MyInfoWrap>
   );
 }
 
 const Error = styled.div`
+  position: absolute;
+  top: 75px;
+  left: 10px;
   color: #f87038;
   font-weight: 500;
-  font-size: 11.7px;
+  font-size: 11px;
   line-height: 9.75px;
+`;
+
+const MyInfoWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(124, 141, 255, 1) 69%,
+    rgba(255, 255, 255, 1) 120%
+  );
+`;
+
+const MyInfoButton = styled.button`
+  font-size: 18.324px;
+  line-height: 16.9px;
+  color: #4d4d4d;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  :hover {
+    background: #f0f2ff;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.18);
+    border-radius: 500px;
+    color: #6478ff;
+
+    border: 0.939697px solid #f0f2ff;
+  }
+`;
+
+const MyInfoFavoriteButtonDiv = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+
+const FavoriteDiv = styled.div`
+  /* display: flex;
+  justify-content: space-between; */
+  margin-left: 400px;
+`;
+
+const MyInfoDiv = styled.div`
+  width: 100%;
+  height: 1000px;
+  margin-top: 30px;
+`;
+
+const MyInfoContainer = styled.div`
+  /* position: absolute;
+  top: 100%;
+  left: 50%; */
+  width: 65%;
+  height: 1000px;
+
+  margin: auto;
+
+  padding: 40px;
+
+  /* transform: translate(-50%, -50%); */
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(158, 171, 255, 0.61);
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+`;
+
+const Privacy = styled.div`
+  margin: 0 0 30px;
+  padding: 0;
+  font-weight: 700;
+  font-size: 21.07px;
+  line-height: 19.7px;
+  color: rgba(77, 77, 77, 1);
+  text-align: center;
+`;
+
+const PrivacyDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PrivacyBox = styled.div`
+  position: relative;
+`;
+
+const PrivacyInput1 = styled.input`
+  width: 419.9px;
+  height: 44.85px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+  margin-top: 40px;
+  padding: 20px;
+  border: 1.5px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  outline: none;
+  background: transparent;
+  ::placeholder {
+    color: #595858;
+    font-weight: 500;
+    font-size: 14.1304px;
+    line-height: 13.65px;
+  }
+`;
+
+const PrivacyInput2 = styled.input`
+  width: 419.9px;
+  height: 44.85px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1.5px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  outline: none;
+  background: transparent;
+  ::placeholder {
+    color: #595858;
+    font-weight: 500;
+    font-size: 14.1304px;
+    line-height: 13.65px;
+  }
+`;
+
+const PrivacyLabel1 = styled.label`
+  position: absolute;
+  top: 10px;
+  left: 0;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 13.678px;
+  line-height: 13.65px;
+  color: #5a5a5a;
+  pointer-events: none;
+  transition: 0.5s;
+`;
+
+const PrivacyLabel2 = styled.label`
+  position: absolute;
+  top: -10px;
+  left: 0;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 13.678px;
+  line-height: 13.65px;
+  color: #5a5a5a;
+  pointer-events: none;
+  transition: 0.5s;
+`;
+
+const SignUpBtn = styled.button`
+  margin-top: 20px;
+  cursor: pointer;
+
+  width: 419.9px;
+  height: 44.85px;
+
+  background: #6478ff;
+  border: 1px solid #ffffff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  border: none;
+  font-weight: 500;
+  font-size: 17.3651px;
+  line-height: 16.25px;
+
+  color: #ffffff;
+  text-align: center;
+  background: ${(props) => (props.state ? '#6478ff;' : '#C8D1E0')};
 `;

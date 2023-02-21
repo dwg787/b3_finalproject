@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { updateProfile } from 'firebase/auth';
 import styled from 'styled-components';
 import '../App.css';
+import BlueFooter from '../components/Footer/BlueFooter';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -380,13 +381,15 @@ const SignUpPage = () => {
               <div>개인정보 수집 및 이용 동의 (선택)</div>
               <div>내용보기</div>
             </div> */}
-
-            <SignUpBtn state={buttonColor} data-text="회원가입">
-              회원가입
-            </SignUpBtn>
+            <LoginBox>
+              <SignUpBtn state={buttonColor}>회원가입</SignUpBtn>
+            </LoginBox>
           </SignForm>
         </SignUpContainer>
       </TestDiv>
+      <FooterDiv>
+        <BlueFooter />
+      </FooterDiv>
     </SIgnWrap>
   );
 };
@@ -418,12 +421,12 @@ const Reservation = styled.div`
 const ReservationBottom = styled.div`
   border-bottom: #6478ff 3px solid;
   width: 65%;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const TestDiv = styled.div`
-  width: 65%;
-  height: 1650px;
+  width: 100%;
+  height: 1450px;
   margin-top: 40px;
 `;
 
@@ -432,6 +435,13 @@ const SIgnWrap = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(124, 141, 255, 1) 69%,
+    rgba(255, 255, 255, 1) 120%
+  );
 `;
 
 const SignUpContainer = styled.div`
@@ -439,7 +449,7 @@ const SignUpContainer = styled.div`
   top: 100%;
   left: 50%; */
   width: 65%;
-  height: 1500px;
+  height: 1450px;
 
   margin: auto;
 
@@ -515,16 +525,16 @@ const LoginLabel = styled.label`
 
 const LoginLabelBottom = styled.div`
   border-bottom: #6478ff 3px solid;
-  width: 65%;
+  width: 90%;
   margin-top: 80px;
 `;
 
 const SignUpBtn = styled.button`
-  margin-right: -30px;
+  
 
-  margin-top: 120px;
+  margin-top: 50px;
   cursor: pointer;
-  transform: translate(-50%, -50%);
+  
   width: 399.1px;
   height: 57.85px;
   line-height: 50px;
@@ -593,6 +603,7 @@ const CheckBoxWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 200px;
 `;
 
 const CheckBoxBolder = styled.div`
@@ -658,7 +669,6 @@ const CheckBoxInput4 = styled.input`
 `;
 
 const CheckBoxTextBold = styled.div`
-  display: inline-block;
   margin-right: 50px;
   /* white-space: nowrap; */
   font-weight: 700;
@@ -670,7 +680,6 @@ const CheckBoxTextBold = styled.div`
 
 const CheckBoxText = styled.div`
   display: inline-block;
-
   white-space: nowrap;
   display: flex;
   font-weight: 500;
@@ -683,3 +692,5 @@ const CheckBoxText = styled.div`
 const CheckBoxText2 = styled.div`
   color: rgba(248, 112, 56, 1);
 `;
+
+const FooterDiv = styled.div``;
