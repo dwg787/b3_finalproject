@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import one from '../../assets/one.png';
 import two from '../../assets/two.png';
 import three from '../../assets/three.png';
+import noimg from '../../assets/noimg.avif';
 
-export default function MainTap() {
+const SpotMainTap = () => {
   return (
     <ContainerDiv>
       <ColorDiov>
@@ -40,12 +41,26 @@ export default function MainTap() {
               <InnerNmb>7</InnerNmb>
               <OuterTextBox></OuterTextBox>
             </OuterList>
+            {/* {rankList.slice(3, 7).map((e, i) => {
+              return (
+                <OuterList>
+                  <InnerNmb>{i + 4}</InnerNmb>
+                  <img src={e.firstimage} alt="" />
+                  <OuterTextBox>
+                    <div>{e.title}</div>
+                    <p>{e.overview.slice(0, 20)}</p>
+                  </OuterTextBox>
+                </OuterList>
+              );
+            })} */}
           </OuterDiv>
         </WrapDiv>
       </ColorDiov>
     </ContainerDiv>
   );
-}
+};
+
+export default SpotMainTap;
 
 const ColorDiov = styled.div`
   width: 100%;
