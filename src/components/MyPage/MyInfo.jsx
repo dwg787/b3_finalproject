@@ -1,156 +1,117 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { db, auth } from "../../apis/firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
-import EditModal from "./EditModal";
-import styled from "styled-components";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import UpdatePassword from './UpdatePassword';
+import { updateProfile } from 'firebase/auth';
+import { db, auth } from '../../apis/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
-const MyInfo = () => {
-  const [email, setEmail] = useState("");
-
-  // True: 닉네임 수정, False: Email 수정
-  const [contentInfo, setContentInfo] = useState("");
-  // 모달창 노출 여부 state
-  const [modalOpen, setModalOpen] = useState(false);
-  // 현재 유저
-  const [currentUser, setCurrentUser] = useState("");
+export default function MyInfo() {
+  const navigate = useNavigate();
   // 닉네임 수정
-  const [userName, setUserName] = useState("");
-
-  // 닉네임 수정 모달 창 열림
-  const openUserNameModal = () => {
-    setModalOpen(true);
-    setContentInfo(true);
-    document.body.style.overflow = "hidden";
-  };
-
-  // 이메일 수정 모달 창 열림
-  const openEmailModal = () => {
-    setModalOpen(true);
-    setContentInfo(false);
-    document.body.style.overflow = "hidden";
-  };
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentInput, setCurrentInput] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  // 현재 유저
+  const [currentUser, setCurrentUser] = useState('');
+  // 닉네임  유효성 검사
+  const [inputValidation, setInputValidation] = useState(false);
+  // 저장 버튼 활성화
+  const [buttonValidation, setButtonValidation] = useState(true);
 
   // 닉네임 입력
   const updateNickname = (item) => {
-    console.log("item", item);
     setUserName(item);
   };
 
-  // 이메일 주소 입력
-  const updateEmail = (item) => {
-    console.log("item", item);
-    setEmail(item);
+  // 수정 저장
+
+  const useSaveEdit = async () => {
+    // 닉네임 수정
+    updateProfile(auth.currentUser, {
+      displayName: currentInput,
+    }).catch((error) => {
+      console.log(error.message);
+    });
+
+    localStorage.setItem('id', currentInput);
+
+    updateNickname(currentInput);
+    navigate('/my');
+    alert('수정되었습니다.');
+  };
+
+  // input 수정
+  const checkInput = (e) => {
+    const input = e.target.value;
+    setCurrentInput(input);
+    // 닉네임 입력
+    if (input.length < 2 || input.length > 10) {
+      setErrorMessage('2글자 이상, 10글자이하로 적어주세요.');
+      setInputValidation(false);
+    } else {
+      setErrorMessage('');
+      setInputValidation(true);
+    }
   };
 
   // 유저 정보 가져오기
   // const getUserInfo = async () => {
-  //   const docRef = doc(db, "users", currentUser);
-  //   const docSnap = await getDoc(docRef);
-  //   if (docSnap.exists()) {
-  //     setEmail(docSnap.data().email);
-  //   }
+  //   const docRef = doc(db, 'users', currentUser);
+  //   await getDoc(docRef);
   // };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(auth.currentUser.uid);
-        setUserName(localStorage.getItem("id", auth.currentUser.displayName));
-        setEmail(localStorage.getItem("email", auth.currentUser.email));
-
+        setUserName(auth.currentUser.displayName);
+        setEmail(auth.currentUser.email);
         // getUserInfo();
-        console.log("로그인 되어있음");
+
+        console.log('로그인 되어있음');
       } else if (!user) {
-        console.log("로그인 안됨");
+        console.log('로그인 안됨');
       }
     });
     if (!currentUser) return;
   }, []);
+
+  useEffect(() => {
+    if (inputValidation) {
+      setButtonValidation(false);
+      return;
+    }
+    setButtonValidation(true);
+  }, [inputValidation]);
+
   return (
-    <MyPageContainer>
-      {/* 닉네임, 이메일 링크 수정 */}
-      <MyInfoContainer>
-        <NickNameContainer>
-          <MyPageTagTitle>닉네임</MyPageTagTitle>
-          <InputCheckContainer>
-            <MyInfoInput>{userName}</MyInfoInput>
-            <MyInfoEditButton onClick={openUserNameModal}>수정</MyInfoEditButton>
-            {modalOpen && <EditModal setModalOpen={setModalOpen} setContentInfo={contentInfo} setUserName={userName} setEmail={email} updateNickname={updateNickname} updateEmail={updateEmail} currentUser={currentUser} />}
-          </InputCheckContainer>
-        </NickNameContainer>
-
-        <div>
-          <MyPageTagTitle>이메일</MyPageTagTitle>
-          <InputCheckContainer>
-            <MyInfoInput>{email}</MyInfoInput>
-            <MyInfoEditButton onClick={openEmailModal}>수정</MyInfoEditButton>
-            {modalOpen && <EditModal setModalOpen={setModalOpen} setContentInfo={contentInfo} setUserName={userName} setEmail={email} updateNickname={updateNickname} updateEmail={updateEmail} currentUser={currentUser} />}
-          </InputCheckContainer>
-        </div>
-      </MyInfoContainer>
-    </MyPageContainer>
+    <>
+      <div>이메일</div>
+      <input placeholder={email} readOnly></input>
+      <div>
+        <div>닉네임</div>
+        <input
+          onChange={checkInput}
+          value={currentInput}
+          placeholder={userName}
+        />
+        <Error>{errorMessage}</Error>
+        <button disabled={buttonValidation} onClick={useSaveEdit}>
+          닉네임 변경
+        </button>
+      </div>
+      <UpdatePassword />
+    </>
   );
-};
+}
 
-export default MyInfo;
-
-const MyPageContainer = styled.div`
-  display: flex;
-  margin: 0 auto;
-  max-width: 1200px;
-  width: 100%;
-`;
-
-const MyInfoContainer = styled.div`
-  padding-top: 65px;
-  flex: 30%;
-  margin: 0 auto;
-  padding-left: 40px;
-  box-sizing: border-box;
-`;
-
-const NickNameContainer = styled.div`
-  margin-bottom: 40px;
-`;
-
-const MyPageTagTitle = styled.div`
-  font-weight: 600;
-`;
-
-const InputCheckContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  height: 63px;
-`;
-
-const MyInfoInput = styled.div`
-  border: none;
-  border-bottom: 1px solid black;
-  min-width: 200px;
-  width: 70%;
-  margin: 20px 10px 20px 0;
-  outline: none;
-  flex: 80%;
-`;
-
-export const MyInfoEditButton = styled.button`
-  border: 1px solid gray;
-  border-radius: 7px;
-  color: gray;
-  background-color: #fff;
-  font-weight: 600;
-  padding: 5px 10px;
-  margin-right: 20px;
-  height: 35px;
-  width: 50px;
-  cursor: pointer;
-  flex: 20%;
-
-  &:hover {
-    background: #e88acf;
-    color: #fff;
-  }
+const Error = styled.div`
+  color: #f87038;
+  font-weight: 500;
+  font-size: 11.7px;
+  line-height: 9.75px;
 `;
