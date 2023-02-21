@@ -122,9 +122,7 @@ export default function ReviewList({ review, i, reviews, key }) {
   );
 }
 
-const CommentBoxWrap = styled.div`
-  flex-wrap: wrap;
-`;
+const CommentBoxWrap = styled.div``;
 
 const CommentBox = styled.div`
   /* width: 100%;
@@ -143,6 +141,7 @@ const CommentBox = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  margin-top: 10px;
 `;
 
 const NameAndDate = styled.div`

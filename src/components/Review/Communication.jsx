@@ -16,6 +16,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
 import styled from 'styled-components';
 import ReviewSlider from './ReviewSlider';
+import { PreviewRCSSlide } from './ReviewSlider';
 
 const Communication = () => {
   const [newReview, setNewReview] = useState('');
@@ -149,8 +150,9 @@ const Communication = () => {
         </InputAndBtnWrap>
       </ReviewBox>
 
-      <ReviewBoxList>
-        {reviews.map((review, i) => {
+      {/* <ReviewBoxList> */}
+      <PreviewRCSSlide reviews={reviews} setReviews={setReviews} />
+      {/* {reviews.map((review, i) => {
           if (review.paramId === params.id) {
             return (
               <ReviewList
@@ -162,8 +164,8 @@ const Communication = () => {
               />
             );
           }
-        })}
-      </ReviewBoxList>
+        })} */}
+      {/* </ReviewBoxList> */}
     </ReviewContainer>
   );
 };
@@ -263,5 +265,3 @@ const ReviewBoxList = styled.div`
   align-items: center;
   justify-content: center; */
 `;
-
-//700 //100// 250 //350// div나눔
