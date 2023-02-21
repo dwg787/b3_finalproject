@@ -2,6 +2,7 @@ import {
   arrayRemove,
   collection,
   getDocs,
+  getDoc,
   query,
   updateDoc,
   where,
@@ -22,13 +23,15 @@ const MyLikeList = () => {
   const uid = auth.currentUser.uid;
 
   const getRestaurantLiked = async () => {
-    const q = query(collection(db, 'bookmarks'), uid);
-    const data = await getDocs(q);
-    const newData = data.docs.map((doc) => ({
-      ...doc.data(),
-    }));
-    setRestaurant(newData);
-    console.log('파베 북마크 데이터', newData);
+    // const q = query(collection(db, 'bookmarks'), uid);
+    const myBookmarkData = await getDoc(doc(db, 'bookmarks', uid));
+    // const newData = data.docs.map((doc) => ({
+    //   ...doc.data(),
+    // }));
+    console.log('파베 북마크 데이터', myBookmarkData.data());
+    if (myBookmarkData) {
+      setRestaurant(myBookmarkData.data());
+    }
   };
 
   useEffect(() => {
@@ -44,10 +47,12 @@ const MyLikeList = () => {
   const delResLiked = async (targetId) => {
     console.log('삭제버튼 누른 타겟', targetId);
     if (restaurant) {
+      console.log('내 북마크 정보', restaurant);
       const docRef = doc(db, 'bookmarks', uid);
+      // console.log('docRef의 인덱스', docRef.data());
       const restaurantDocRef = doc(db, 'restaurant_recommendation', targetId);
-      console.log('docRef', docRef);
-      const TargetBookmark = restaurant[0].bookmarks.find(
+      // console.log('docRef의 id??', docRef.id);
+      const TargetBookmark = restaurant.bookmarks.find(
         (e) => e.contentid === targetId,
       );
       await deleteDoc(docRef, {
@@ -97,8 +102,8 @@ const MyLikeList = () => {
       <StTicketWrap>
         <StTicket>
           {restaurant &&
-            restaurant[0]?.bookmarks.map((data) => {
-              //   console.log('jsx에서 받은 데이터', restaurant);
+            restaurant?.bookmarks?.map((data) => {
+              // console.log('jsx에서 받은 데이터', data);
               switch (data.contenttypeid) {
                 case '39':
                   return (
