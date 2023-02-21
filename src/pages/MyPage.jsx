@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import BlueFooter from '../components/Footer/BlueFooter';
-import MyCart from '../components/MyPage/MyCart';
 import MyFav from '../components/MyPage/MyFav';
 import MyInfo from '../components/MyPage/MyInfo';
-import MyTicket from '../components/MyPage/MyTicket';
 
 const MyPage = () => {
   // 초기 화면에 0번째 탭이 active되길 원한다면 0값을 입력한다.
@@ -139,9 +137,8 @@ const StMyList = styled.ul`
 
 const StMyListTab = styled.div`
   margin: 10px;
-  /* background-color: #d89090; */
   margin: 29px 197.1px;
-
+  cursor: pointer;
   font-size: 18.91px;
   line-height: 17.7px;
   color: #4d4d4d;

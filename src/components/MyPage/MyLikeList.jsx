@@ -111,11 +111,6 @@ const MyLikeList = () => {
                       <StTicketCardLeft>
                         <StTicketHeader>
                           <StCartMenu>음식점</StCartMenu>
-                          <StDeleteBtn
-                            onClick={() => delResLiked(data.contentid)}
-                          >
-                            X
-                          </StDeleteBtn>
                         </StTicketHeader>
                         <StMyTicketImage
                           src={data.img || noimg}
@@ -125,7 +120,17 @@ const MyLikeList = () => {
                           }
                         />
                       </StTicketCardLeft>
-                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
+                      <StTicketCardRight>
+                        <StTicketHeader2
+                          onClick={() => delResLiked(data.contentid)}
+                        >
+                          X
+                        </StTicketHeader2>
+
+                        <StCartTitle>
+                          {data.restaurant.split('[', 1)}
+                        </StCartTitle>
+                      </StTicketCardRight>
                     </StTicketCard>
                   );
                 case '32':
@@ -142,9 +147,9 @@ const MyLikeList = () => {
                         />
                       </StTicketCardLeft>
                       <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
-                      <StDeleteBtn onClick={() => delResLiked(data.contentid)}>
+                      {/* <StDeleteBtn onClick={() => delResLiked(data.contentid)}>
                         X
-                      </StDeleteBtn>
+                      </StDeleteBtn> */}
                     </StTicketCard>
                   );
                 case '12':
@@ -165,11 +170,11 @@ const MyLikeList = () => {
                         <StCartTitle>
                           {data.restaurant.split('[', 1)}
                         </StCartTitle>
-                        <StDeleteBtn
+                        {/* <StDeleteBtn
                           onClick={() => delResLiked(data.contentid)}
                         >
                           X
-                        </StDeleteBtn>
+                        </StDeleteBtn> */}
                       </StTicketCard>
                     </>
                   );
@@ -209,19 +214,12 @@ const StTicket = styled.div`
 const StTicketCard = styled.div`
   width: 480.01px;
   height: 172.54px;
-  /* margin: 10px; */
   margin: 0 27.36px 18.8px 0;
-  /* box-sizing: border-box; */
   border-radius: 11.41px;
-  /* padding: 10px; */
-  /* display: grid; */
   align-items: center;
-  /* flex-direction: column; */
   clear: both;
   display: flex;
-  /* justify-content: center; */
   flex-direction: row;
-  /* background-color: rgba(255, 255, 255, 0.5); */
   background-size: contain;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
 `;
@@ -233,21 +231,25 @@ const StTicketCardLeft = styled.div`
   border-radius: 5px;
 `;
 
+const StTicketCardRight = styled.div`
+  width: 226px;
+  height: 172.54px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  /* flex-direction: column; */
+  display: flex;
+  /* justify-content: center; */
+  position: relative;
+`;
+
 const StMyTicketImage = styled.img`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   border-radius: 11.41px;
   cursor: pointer;
-  /* &:hover {
-    transform: scale(1.1);
-    transition: all 0.35s;
-  } */
-  /* position: relative; */
   display: flex;
-
   box-shadow: 5px 5px 10px grey;
-  /* opacity: 0.7; */
 `;
 
 const StCartTitle = styled.span`
@@ -283,14 +285,12 @@ const StTicketHeader = styled.div`
   z-index: 100;
 `;
 
-const StDeleteBtn = styled.div`
-  top: 5px;
-  right: 5px;
+const StTicketHeader2 = styled.div`
+  display: flex;
+  justify-content: end;
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: #fff;
-  border-radius: 50%;
-  text-align: center;
+  width: 226px;
+  height: 172.54px;
+  padding: 10px;
   cursor: pointer;
 `;
