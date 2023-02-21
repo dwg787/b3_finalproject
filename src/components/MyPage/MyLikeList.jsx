@@ -185,10 +185,12 @@ const StTicketWrap = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 const StTicket = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   flex-direction: row;
@@ -198,27 +200,28 @@ const StTicket = styled.div`
 `;
 
 const StTicketCard = styled.div`
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 10px;
-
+  width: 480.01px;
+  height: 172.54px;
+  /* margin: 10px; */
+  margin: 0 27.36px 18.8px 0;
   /* box-sizing: border-box; */
-  border-radius: 10px;
+  border-radius: 11.41px;
   /* padding: 10px; */
   /* display: grid; */
   align-items: center;
   /* flex-direction: column; */
   clear: both;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  flex-direction: row;
   /* background-color: rgba(255, 255, 255, 0.5); */
   background-size: contain;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
 `;
 
 const StTicketCardLeft = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 254px;
+  height: 172.54px;
   box-sizing: border-box;
   border-radius: 5px;
 `;
@@ -227,34 +230,29 @@ const StMyTicketImage = styled.img`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: 11.41px;
   cursor: pointer;
   /* &:hover {
-      transform: scale(1.1);
-      transition: all 0.35s;
-    } */
-  position: relative;
+    transform: scale(1.1);
+    transition: all 0.35s;
+  } */
+  /* position: relative; */
   display: flex;
 
   box-shadow: 5px 5px 10px grey;
-  opacity: 0.7;
+  /* opacity: 0.7; */
 `;
 
 const StCartTitle = styled.span`
-  position: absolute;
-  color: #fafafa;
+  /* position: absolute; */
+  color: #4d4d4d;
   font-weight: 900;
   z-index: 100;
   text-align: center;
+  font-size: 19.7px;
+  line-height: 18.4px;
+  margin: 22.15px 0 0 30.42px;
 `;
-
-// const StCartMenu = styled.span`
-//   color: #fafafa;
-//   font-weight: 900;
-//   z-index: 100;
-//   background-color: teal;
-//   margin-right: 130px;
-// `;
 
 const StCartMenu = styled.div`
   position: absolute;

@@ -41,7 +41,7 @@ const MyFav = () => {
     // </StTicketWrap>
     <container>
       <LikedHeader>나의 찜 목록</LikedHeader>
-      <MyRestaurantLiked />
+
       <MyLikeList />
     </container>
   );
