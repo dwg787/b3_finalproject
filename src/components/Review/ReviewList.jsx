@@ -108,7 +108,7 @@ export default function ReviewList({ review, i, reviews, key }) {
           {!editBox ? (
             <RealComment>{review?.review}</RealComment>
           ) : (
-            <input
+            <EditInput
               placeholder={review?.review}
               value={editValue}
               onChange={(e) => {
@@ -132,11 +132,14 @@ const CommentBox = styled.div`
   gap: 1rem;
   display: flex; */
   //========================
-  width: 618px;
-  height: 118px;
+  /* width: 481.8px; */
+  width: 30.1125rem;
+  //퍼센트로 해야할듯
+  //공백 포함 71글자까지
+  height: 79.18px;
   background: #ffffff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
-  border-radius: 14px;
+  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.15);
+  border-radius: 9.39433px;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -146,24 +149,38 @@ const NameAndDate = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
+  /* width: 100%; */
+  width: 450px;
+  /* border: 1px solid red; */
 `;
 
 const Name = styled.div`
-  font-size: 21px;
   font-weight: 700;
+  font-size: 14.0915px;
   color: #595959;
+  width: 82px;
+  /* border: 1px solid purple; */
 `;
 
 const Date = styled.div`
   font-weight: 500;
-  font-size: 18px;
+  font-size: 12.0784px;
   color: #979797;
+  width: 300px;
+  /* margin-left: 50px; */
+  /* border: 1px solid aqua; */
 `;
 
 const ToggleWrap = styled.div`
   display: flex;
-  margin-left: 241px;
   position: relative;
+  width: 90px;
+  margin-top: -5px;
+  margin-bottom: 5px;
+
+  /* border: 1px solid blue; */
+  /* margin-left: 241px; */
+  /* position: relative; */
 `;
 
 const BtnWrap = styled.div`
@@ -171,15 +188,20 @@ const BtnWrap = styled.div`
   display: flex;
   align-items: center;
   border-radius: 5px;
-  position: absolute;
+  height: 20.72px;
+  /* border: 1px solid green; */
+  /* position: absolute;
   width: 80px;
-  left: 3px;
+  left: 3px; */
 `;
 const UpdateBtn = styled.button`
   border: none;
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
+  font-weight: 500;
+  font-size: 10.0654px;
+  cursor: pointer;
 `;
 
 const DeleteBtn = styled.button`
@@ -187,29 +209,49 @@ const DeleteBtn = styled.button`
   padding: 5px;
   border: none;
   background-color: transparent;
+  font-weight: 500;
+  font-size: 10.0654px;
+  cursor: pointer;
 `;
 
 const ToggleBtn = styled.button`
+  display: flex;
   border: none;
   background-color: transparent;
+  position: absolute;
+  left: 65px;
+  top: -2px;
+  height: 25px;
+  cursor: pointer;
+  /* border: 1px solid red; */
 `;
 
 const Toggle = styled(BsThreeDotsVertical)`
   color: #6478ff;
-  top: 5px;
+  /* top: 5px;
   position: absolute;
-  left: 80px;
+  left: 80px; */
+  margin-top: 5px;
 `;
 
 const Comment = styled.div`
-  font-weight: 500;
-  font-size: 21px;
-  color: #595959;
-  margin-top: 30px;
+  /* margin-top: 10px; */
+  width: 100%;
+  padding: 5px;
+  height: 400px;
+  margin-left: -5px;
+  /* border: 1px solid red; */
 `;
 
 const RealComment = styled.p`
   font-weight: 500;
-  font-size: 21px;
+  font-size: 14.0915px;
+
+  color: #595959;
+`;
+
+const EditInput = styled.input`
+  font-weight: 500;
+  font-size: 14.0915px;
   color: #595959;
 `;

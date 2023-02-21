@@ -15,6 +15,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
 import styled from 'styled-components';
+import ReviewSlider from './ReviewSlider';
 
 const Communication = () => {
   const [newReview, setNewReview] = useState('');
@@ -149,7 +150,6 @@ const Communication = () => {
       </ReviewBox>
 
       <ReviewBoxList>
-        {/* <Slider {...settings}> */}
         {reviews.map((review, i) => {
           if (review.paramId === params.id) {
             return (
@@ -163,7 +163,6 @@ const Communication = () => {
             );
           }
         })}
-        {/* </Slider> */}
       </ReviewBoxList>
     </ReviewContainer>
   );
@@ -177,47 +176,51 @@ const BottomLine = styled.div`
 `;
 
 const ReviewContainer = styled.div`
-  width: 1710px;
-  height: 800px;
+  width: 1146.11px;
+  height: 576.41px;
   /* width: 100%; */
   display: flex;
-
   flex-direction: column;
   box-sizing: border-box;
-  border: 1px solid red;
+  border: 1.00654px solid #9eabff;
+  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18);
+  border-radius: 13.4205px;
+  /* border: 1px solid red; */
 `;
 
 const ReviewBox = styled.div`
   /* gap: 1rem;
   margin: 10px 0;  */
-
+  /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 `;
 
 const ReviewLabel = styled.label`
   font-weight: 700;
-  font-size: 16.5327px;
+  font-size: 11.4074px;
   color: #6478ff;
-  margin-bottom: 20px;
-  margin-left: 90px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-left: 60px;
 `;
 
 const InputAndBtnWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* border: 1px solid yellow; */
 `;
 
 const ReviewInput = styled.textarea`
-  width: 90%;
-  height: 112px;
+  width: 1026px;
+  height: 75.15px;
   background: #eef1ff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 14px;
   font-weight: 500;
-  font-size: 21px;
+  font-size: 14.0915px;
   color: #595959;
   padding: 20px;
   border: none;
@@ -227,58 +230,38 @@ const ReviewInput = styled.textarea`
   overflow-x: 'hidden';
   &::placeholder {
     font-weight: 500;
-    font-size: 21px;
+    font-size: 14.0915px;
     color: #595959;
   }
 `;
 
 const ReviewButton = styled.button`
-  width: 277px;
-  height: 51px;
+  width: 185.87px;
+  height: 34.22px;
   background: #6478ff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
-  border-radius: 14px;
+  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.15);
+  border-radius: 9.39433px;
   border: none;
   color: #ffffff;
   cursor: pointer;
   font-weight: 500;
-  font-size: 22.7664px;
+  font-size: 15.2768px;
   margin-bottom: 20px;
 `;
 
 const ReviewBoxList = styled.div`
-  border: 1px solid blue;
   display: flex;
-  height: 450px;
+  /* width: 1146.11px; */
+  /* height: 327px; */
+  height: 100%;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
   overflow: hidden;
+  /* border: 1px solid blue; */
   /* display: flex;
   align-items: center;
   justify-content: center; */
 `;
 
 //700 //100// 250 //350// div나눔
-
-function NextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', background: 'red' }}
-      onClick={onClick}
-    />
-  );
-}
-
-function PrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', background: 'green' }}
-      onClick={onClick}
-    />
-  );
-}
