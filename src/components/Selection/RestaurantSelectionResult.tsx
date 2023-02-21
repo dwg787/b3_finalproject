@@ -50,94 +50,108 @@ const RestaurantSelectionResult = () => {
   }, [region]);
 
   return (
-    <SearchOverallResultContainer>
-      {isLoading || data === undefined ? (
-        <>
-          <Loader />
-        </>
-      ) : (
-        <>
-          <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
-          <SearchListWrapper>
-            <BtnWrapper>
-              {data.pageNo - 1 < 1 ? (
-                <></>
+    <WrapDiv>
+      <SearchOverallResultContainer>
+        {isLoading || data === undefined ? (
+          <>
+            <Loader />
+          </>
+        ) : (
+          <>
+            <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
+            <SearchListWrapper>
+              <BtnWrapper>
+                {data.pageNo - 1 < 1 ? (
+                  <></>
+                ) : (
+                  <MoveBtnStyle
+                    src={leftArrow}
+                    alt="이전버튼"
+                    onClick={() => setRestCurPage(restCurPage - 1)}
+                  />
+                )}
+              </BtnWrapper>
+              {isFetching || isLoading ? (
+                <SkeletonSelectionResult />
               ) : (
-                <MoveBtnStyle
-                  src={leftArrow}
-                  alt="이전버튼"
-                  onClick={() => setRestCurPage(restCurPage - 1)}
-                />
+                <ResultWrapper>
+                  {data?.items.item.map((e: FetchedStayDataType) => {
+                    return (
+                      <RestaurantDetail
+                        key={e.contentid}
+                        id={e.contentid}
+                        img={e.firstimage || noimg}
+                        address={e.addr1}
+                      >
+                        {e.title.split(/[\\(\\[]/)[0]}
+                      </RestaurantDetail>
+                    );
+                  })}
+                </ResultWrapper>
               )}
-            </BtnWrapper>
-            {isFetching || isLoading ? (
-              <SkeletonSelectionResult />
-            ) : (
-              <ResultWrapper>
-                {data?.items.item.map((e: FetchedStayDataType) => {
-                  return (
-                    <RestaurantDetail
-                      key={e.contentid}
-                      id={e.contentid}
-                      img={e.firstimage || noimg}
-                      address={e.addr1}
-                    >
-                      {e.title.split(/[\\(\\[]/)[0]}
-                    </RestaurantDetail>
-                  );
+              <BtnWrapper>
+                {Math.ceil(data.totalCount / 8) <= restCurPage ? (
+                  <></>
+                ) : (
+                  <MoveBtnStyle
+                    src={rightArrow}
+                    alt="다음버튼"
+                    onClick={handleFetchNextPage}
+                  />
+                )}
+              </BtnWrapper>
+            </SearchListWrapper>
+            <PaginationDotsWrapper>
+              {Array(Math.ceil(data.totalCount / 8) + 1)
+                .fill('')
+                .slice(firstNum.current, firstNum.current + 5)
+                .map((_, i) => {
+                  const isSelectedPage =
+                    firstNum.current + i === restCurPage ? true : false;
+
+                  // console.log('토탈카운', data.totalCount);
+
+                  if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
+                    return (
+                      <PaginationDot
+                        key={firstNum.current + i}
+                        isSelectedPage={isSelectedPage}
+                        onClick={() => {
+                          setRestCurPage(firstNum.current + i);
+                        }}
+                      >
+                        {firstNum.current + i}
+                      </PaginationDot>
+                    );
+                  }
                 })}
-              </ResultWrapper>
-            )}
-            <BtnWrapper>
-              {Math.ceil(data.totalCount / 8) <= restCurPage ? (
-                <></>
-              ) : (
-                <MoveBtnStyle
-                  src={rightArrow}
-                  alt="다음버튼"
-                  onClick={handleFetchNextPage}
-                />
-              )}
-            </BtnWrapper>
-          </SearchListWrapper>
-          <PaginationDotsWrapper>
-            {Array(Math.ceil(data.totalCount / 8) + 1)
-              .fill('')
-              .slice(firstNum.current, firstNum.current + 5)
-              .map((_, i) => {
-                const isSelectedPage =
-                  firstNum.current + i === restCurPage ? true : false;
-
-                // console.log('토탈카운', data.totalCount);
-
-                if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
-                  return (
-                    <PaginationDot
-                      key={firstNum.current + i}
-                      isSelectedPage={isSelectedPage}
-                      onClick={() => {
-                        setRestCurPage(firstNum.current + i);
-                      }}
-                    >
-                      {firstNum.current + i}
-                    </PaginationDot>
-                  );
-                }
-              })}
-          </PaginationDotsWrapper>
-        </>
-      )}
-    </SearchOverallResultContainer>
+            </PaginationDotsWrapper>
+          </>
+        )}
+      </SearchOverallResultContainer>
+    </WrapDiv>
   );
 };
 
 export default RestaurantSelectionResult;
 
-const SearchOverallResultContainer = styled.div`
+const WrapDiv = styled.div`
   width: 100%;
+  height: 800px;
+  background: linear-gradient(180deg, #ffffff 52.85%, #afb9fb 100%);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 50px;
+`;
+
+const SearchOverallResultContainer = styled.div`
+  position: relative;
+  width: 65%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   border: 1px solid #6478ff;
   border-radius: 20px;
   box-shadow: 3px 3px #d7d7d7;
@@ -157,10 +171,11 @@ const SearchListWrapper = styled.div`
 `;
 
 const ResultWrapper = styled.div`
-  width: 80%;
+  position: relative;
+  width: 85%;
   /* height: 500px; */
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 `;
