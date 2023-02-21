@@ -107,7 +107,7 @@ const HeartBtn = styled.button`
 `;
 
 const Heart = styled.img`
-  width: 20px;
+  width: 27.09px;
   /* margin: 10px; */
   margin-top: 13px;
   &:hover {
