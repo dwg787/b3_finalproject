@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import BlueFooter from '../Footer/BlueFooter';
 
 const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
   const mapcontainer = useRef(null);
@@ -52,17 +53,30 @@ const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
     // console.log("kakaomap로딩완료");
   }, []);
   return (
-    <div>
+    <Container>
       <StMap id="map" ref={mapcontainer}></StMap>
-    </div>
+      {/* <BlueFooter /> */}
+    </Container>
   );
 };
 
 export default KakaoMap;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+`;
 
 const StMap = styled.div`
   width: 100%;
   height: 473.74px;
   border-radius: 13.42px;
   border: 1px solid rgb(158, 171, 255, 0.61);
+  display: flex;
+  justify-content: center;
+  align-content: center;
 `;

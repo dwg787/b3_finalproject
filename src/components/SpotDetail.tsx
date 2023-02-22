@@ -75,7 +75,7 @@ const SpotImgWrapper = styled.div`
 `;
 
 const SpotEachItemImg = styled.img`
-  width: 220px;
+  width: 240px;
   height: 300px;
   aspect-ratio: 1.2;
   background-color: white;

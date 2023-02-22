@@ -15,13 +15,15 @@ export default MyFav;
 const LikedHeader = styled.div`
   font-size: 25.79px;
   line-height: 24.1px;
-  margin: 58.2px 0 59.98px 0;
+  margin-top: 58.2px;
+  margin-bottom: 41.63px;
   font-weight: 900;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
   color: #4d4d4d;
+  box-sizing: border-box;
 `;
 
 const Container = styled.div`
@@ -30,5 +32,6 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 931.4px;
+  height: 808.97px;
+  box-sizing: border-box;
 `;
