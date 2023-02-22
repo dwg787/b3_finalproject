@@ -86,7 +86,7 @@ export default function RestaurantLiked({
               contentid: arrayUnion(combinedData.contentid),
             });
             updateDoc(restaurantDocRef, {
-              // likeCnt: arrayUnion(`${uid}`),
+              // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
               likeCnt: increment(1),
             });
           } else {
@@ -103,7 +103,7 @@ export default function RestaurantLiked({
               contentid: arrayUnion(combinedData.contentid),
             });
             updateDoc(restaurantDocRef, {
-              // likeCnt: arrayUnion(`${uid}`),
+              // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
               likeCnt: increment(1),
             });
           }
