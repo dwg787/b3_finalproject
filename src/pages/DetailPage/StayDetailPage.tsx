@@ -111,6 +111,13 @@ const StayDetailPage = () => {
   }, [stayDetailData]);
   console.log('숙박 상세정보', stayDetailData);
 
+  //예약하기 url뽑기
+  const reservationurl = stayAdditionalData1?.reservationurl ?? '';
+  const urlRegex = /href=["']([^"']*)["']/;
+  const match = reservationurl.match(urlRegex);
+  const url = match ? match[1] : '';
+  // console.log(url);
+
   return (
     <DetailWrap>
       <Container>
@@ -146,7 +153,13 @@ const StayDetailPage = () => {
                     src={stayDetailData.firstimage || noimg}
                     alt="사진"
                   />
-                  <DetailImgBtn>예약하기</DetailImgBtn>
+                  <DetailImgBtn
+                    onClick={() => {
+                      window.open(url);
+                    }}
+                  >
+                    예약하기
+                  </DetailImgBtn>
                 </DetailImgBox>
 
                 <DetailInformation id="2">
@@ -163,7 +176,7 @@ const StayDetailPage = () => {
                       </DetailInfoAdd>
                       <DetailInfoAdd>
                         <span style={{ fontWeight: '700' }}>홈페이지 : </span>
-                        {stayAdditionalData1.reservationurl.split('"')[1]}
+                        {url}
                       </DetailInfoAdd>
                     </DetailTextBox>
                     <DetailTextBox>

@@ -55,7 +55,7 @@ const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
   return (
     <Container>
       <StMap id="map" ref={mapcontainer}></StMap>
-      <BlueFooter />
+      {/* <BlueFooter /> */}
     </Container>
   );
 };
