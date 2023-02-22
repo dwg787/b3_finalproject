@@ -43,7 +43,6 @@ const StaySelectionResult = () => {
     setStayCurPage(1);
   }, [region]);
 
-  console.log(data);
   return (
     <WrapDiv>
       <SearchOverallResultContainer>
