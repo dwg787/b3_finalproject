@@ -4,19 +4,18 @@ import {
   query,
   onSnapshot,
   orderBy,
+  limit,
+  startAfter,
+  getDocs,
 } from 'firebase/firestore';
 
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
 import styled from 'styled-components';
 import ReviewSlider from './ReviewSlider';
-import { PreviewRCSSlide } from './ReviewSlider';
 
 const Communication = () => {
   const [newReview, setNewReview] = useState('');
@@ -27,51 +26,48 @@ const Communication = () => {
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
-  // console.log(loginUser);
-
-  // const settings = {
-  //   slide: <ReviewBoxList />, // slide 해주고 싶은 단위
-  //   infinite: true, //무한 슬라이더로 할지
-  //   speed: 500,
-  //   arrows: true, //화살표 (양옆 버튼) 구현할 것인지
-  //   autoplay: true, //자동 재생 할 것인지
-  //   autoplaySpeed: 5000,
-  //   slidesToShow: 1, // 한번에 몇개 슬라이드 보여줄 것인지
-  //   slidesToScroll: 1,
-  //   centerMode: true,
-  //   variableWidth: true,
-  //   centerPadding: '0px',
-  // };
-
-  // const settings = {
-  //   dots: false,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  //   nextArrow: <NextArrow />,
-  //   prevArrow: <PrevArrow />,
-  // };
+  const [lastReviewDate, setLastReviewDate] = useState(null);
 
   //useparams 를 사용하여 id 값을 파이어베이스로 보낸후
   //파이어베이스에서 데이터를 가져올 때 useparams의 값이 같은 것만
   //map을 돌려서 return 해준다!
 
+  const handleLoadMore = () => {
+    getReviews();
+  };
+
+  const handleMore = () => {
+    setLastReviewDate(null);
+    getReviews();
+  };
+
   // 화면이 처음 렌더링 할때 데이터를 가져옴
+
   useEffect(() => {
-    const getReviews = async () => {
-      const q = query(usersCollectionRef, orderBy('date', 'desc'));
-      const unsubscrible = onSnapshot(q, (querySnapshot) => {
-        const newList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setReviews(newList);
-      });
-      return unsubscrible;
-    };
     getReviews();
   }, []);
+
+  const getReviews = async () => {
+    let q = query(usersCollectionRef, orderBy('date', 'desc'), limit(6));
+    if (lastReviewDate) {
+      q = query(
+        usersCollectionRef,
+        orderBy('date', 'desc'),
+        startAfter(lastReviewDate),
+        limit(6),
+      );
+    }
+    const unsubscrible = onSnapshot(q, (querySnapshot) => {
+      const newList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setReviews(newList);
+      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+      setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
+    });
+    return unsubscrible;
+  };
 
   //리뷰 등록
   const creatReview = async () => {
@@ -150,22 +146,27 @@ const Communication = () => {
         </InputAndBtnWrap>
       </ReviewBox>
 
-      {/* <ReviewBoxList> */}
-      <PreviewRCSSlide reviews={reviews} setReviews={setReviews} />
-      {/* {reviews.map((review, i) => {
+      <ReviewBoxList>
+        <button onClick={handleLoadMore}>⬅️ </button>
+        <button onClick={handleMore}>ㅇㅇㅇ</button>
+
+        {reviews.map((review, i) => {
           if (review.paramId === params.id) {
             return (
-              <ReviewList
-                reviews={reviews}
-                setReviews={setReviews}
-                review={review}
-                i={i}
-                uid={localStorage.getItem('id')}
-              />
+              <>
+                <ReviewList
+                  reviews={reviews}
+                  setReviews={setReviews}
+                  review={review}
+                  i={i}
+                  uid={localStorage.getItem('id')}
+                  handleLoadMore={handleLoadMore}
+                />
+              </>
             );
           }
-        })} */}
-      {/* </ReviewBoxList> */}
+        })}
+      </ReviewBoxList>
     </ReviewContainer>
   );
 };

@@ -9,7 +9,7 @@ import styled from 'styled-components';
 export function PreviewRCSSlide({ reviews, setReviews }) {
   const params = useParams();
   const settings = {
-    dots: false,
+    dots: true,
     // infinite: true,
     // speed: 500,
     // slidesToShow: 6,
@@ -38,7 +38,7 @@ export function PreviewRCSSlide({ reviews, setReviews }) {
                     setReviews={setReviews}
                     review={review}
                     i={i}
-                    uid={localStorage.getItem('id')}
+                    // uid={localStorage.getItem('id')}
                   />
                 </div>
               </>
