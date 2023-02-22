@@ -67,40 +67,6 @@ const MyLikeList = () => {
     getRestaurantLiked();
   };
 
-  //   if (isLoading) {
-  //     return <Loader />;
-  //   }
-
-  //   한 관광지 or 숙박 or 음식점의 좋아요 총 갯수
-  //   const getEachItemAllLikesCount = async () => {
-  //     const q = query(
-  //       collection(db, 'bookmarks'),
-  //       //   where('contentid', 'array-contains', '1622544'),
-  //     );
-  //     console.log('q값?', q);
-  //     const data = await getDocs(q);
-  //     const allData = data.docs.map((doc) => ({
-  //       ...doc.data(),
-  //     }));
-  //     setRestaurant(allData);
-  //     console.log('전체 유저의 좋아요 데이터', allData);
-  //   };
-
-  //   const deleteRestaurantLiked = async () => {
-  //     const uid = auth.currentUser.uid;
-  //     const query = query(
-  //       collection(db, 'restaurantlike'),
-  //       where('uid', '==', uid),
-  //       where('contentid', '==', combinedAllData.contentid),
-  //     );
-  //     const querySnapshot = await getDocs(query);
-  //     await Promise.all(
-  //       querySnapshot.docs.map(async (doc) => {
-  //         await deleteDoc(doc.ref).catch((e) => console.log(e));
-  //       }),
-  //     );
-  //   };
-
   //페이지네이션2
   const handlePageChange = (page) => {
     setPage(page);
