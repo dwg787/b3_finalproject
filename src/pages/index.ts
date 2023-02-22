@@ -1,16 +1,4 @@
 import { lazy } from 'react';
-// import MainPage from './MainPage';
-// import LoginPage from './LoginPage';
-// import PurchasePage from './PurchasePage';
-// import MapPage from './MapPage';
-// import ReservationPage from './ReservationPage';
-// import DetailPage from './DetailPage';
-// import MyPage from './MyPage';
-// import SearchPage from './SearchPage';
-// import SignUpPage from './SignUpPage';
-// import StayDetailPage from './StayDetailPage';
-// import RestaurantDetailPage from './RestaurantDetailPage';
-// import Ticketing from '../components/Reservation/Ticketing';
 
 const MainPage = lazy(() => import('./MainPage'));
 const LoginPage = lazy(() => import('./LoginPage'));
