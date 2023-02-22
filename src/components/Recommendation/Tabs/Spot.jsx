@@ -177,7 +177,7 @@ const InnerBox2 = styled.div`
 `;
 
 const InnerList = styled.div`
-  width: 540px;
+  width: 520px;
   height: 190px;
   display: flex;
   border: 1px solid #6478ff;
@@ -221,7 +221,7 @@ const LikeImg = styled.img`
 
 const InnerButton = styled.button`
   position: absolute;
-  margin-left: 450px;
+  margin-left: 430px;
   border: 1px solid #6478ff;
   border-radius: 10px;
   background-color: white;
