@@ -221,6 +221,7 @@ const InnerMedals = styled.img`
 `;
 
 const InnerTextBox = styled.div`
+  position: absolute;
   width: 100%;
   height: 120px;
   background-color: white;
