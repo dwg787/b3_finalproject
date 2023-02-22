@@ -18,6 +18,7 @@ import { auth, db } from '../../apis/firebase';
 import useNotification from '../../hooks/useNotification';
 import heart from '../../assets/heart.avif';
 import redheart from '../../assets/redheart.avif';
+import { async } from '@firebase/util';
 
 export default function RestaurantLiked({
   spotData,
@@ -30,16 +31,15 @@ export default function RestaurantLiked({
   spotParamId,
   stayParamId,
 }: UserProps): React.ReactElement {
-  //좋아요 클릭 한번만 될수있도록
-  const clickRef = useRef(false);
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
-  //중복클릭방지
-  const [disabled, setDisabled] = useState(false);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
-  const [alarmMsg, setAlarmMsg] = useState('찜하기 목록에 추가되었습니다!');
-  const { addNoti } = useNotification(alarmMsg);
-
+  const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
+  const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
+  const [myBookmark, setMyBookmark] = useState([]);
+  const [fetchedUid, setFetchedUid] = useState('');
+  //중복클릭방지
+  // const [disabled, setDisabled] = useState(false);
   //여래개의 api데이터를 한번에 사용할수있도록 합침
   const combinedData = {
     ...spotData,
@@ -50,8 +50,18 @@ export default function RestaurantLiked({
     ...restaurantData,
   };
 
+  // const fetchBookmarkData = async () => {
+  //   const uid = auth.currentUser.uid;
+  //   const docRef = doc(collection(db, 'bookmarks'), uid);
+  //   const res = await getDoc(docRef);
+  //   console.log('파베 fetch 결과', res.data());
+  // };
+
+  // useEffect(() => {
+  //   fetchBookmarkData();
+  // }, []);
+
   const handleLiked = async () => {
-    //유저 아이디 가져오기
     const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'bookmarks'), uid);
     const restaurantDocRef = doc(
@@ -59,16 +69,30 @@ export default function RestaurantLiked({
       'restaurant_recommendation',
       restaurantParamId,
     );
-    // console.log('식당 paramid', restaurantParamId);
-    console.log('Button clicked');
-    console.log('like 상태', isLiked);
-    console.log('토스트 메시지 상태', alarmMsg);
-    if (!isLiked) {
+
+    if (isLiked) {
       setAlarmMsg('찜하기 추가!');
-      setIsLiked(!isLiked);
+      setIsLiked(false);
+      await getDoc(docRef).then((doc) => {
+        const TargetBookmark = doc
+          .data()
+          .bookmarks.find((e) => e.contentid === restaurantParamId);
+        if (doc.exists()) {
+          updateDoc(docRef, {
+            bookmarks: arrayRemove(TargetBookmark),
+            contentid: arrayRemove(combinedData.contentid),
+          });
+          updateDoc(restaurantDocRef, {
+            // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
+            likeCnt: increment(-1),
+          });
+        }
+      });
+    } else {
+      setAlarmMsg('찜하기 제거!');
+      setIsLiked(true);
       await getDoc(docRef)
         .then((doc) => {
-          // 없으면 새로 생성
           if (!doc.exists()) {
             setDoc(docRef, {
               bookmarks: arrayUnion({
@@ -78,7 +102,6 @@ export default function RestaurantLiked({
                 date: Date.now(),
                 contenttypeid: combinedData.contenttypeid,
                 addr1: combinedData.addr1,
-                // addedUser: [uid]
                 // uid: uid,
               }),
               contentid: arrayUnion(combinedData.contentid),
@@ -107,40 +130,16 @@ export default function RestaurantLiked({
           }
         })
         .catch((e) => console.log(e));
-      // 좋아요 버튼 활성화 관련
-      // clickRef.current = true;
-      // setDisabled(true);
-      // localStorage.setItem('clickRef', true);
-    } else {
-      setAlarmMsg('찜하기 제거!');
-      setIsLiked(!isLiked);
-      updateDoc(docRef, {
-        bookmarks: arrayRemove({
-          restaurant: combinedData.title,
-          img: combinedData.firstimage,
-          contentid: combinedData.contentid,
-          date: Date.now(),
-          contenttypeid: combinedData.contenttypeid,
-          addr1: combinedData.addr1,
-          // uid: uid,
-        }),
-        contentid: arrayRemove(combinedData.contentid),
-      });
-      updateDoc(restaurantDocRef, {
-        // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
-        likeCnt: increment(-1),
-      });
-      // await getDoc(docRef).then((doc)=>{
-      // })
-      // setAlarmMsg('이미 추가된 항목입니다!');
     }
-    addNoti();
+    // console.log('like 상태', isLiked);
+    // console.log('토스트 메시지 상태', alarmMsg);
+    addNoti(); //메시지 창 자체를 띠워주는 함수
   };
 
   return (
     <div>
-      <HeartBtn onClick={handleLiked} disabled={disabled}>
-        <Heart src={redheart} />
+      <HeartBtn onClick={handleLiked}>
+        {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
       </HeartBtn>
     </div>
   );
@@ -148,14 +147,14 @@ export default function RestaurantLiked({
 
 const HeartBtn = styled.button`
   border: none;
-  background-color: #ffffff;
-  ${(props) => (props.disabled ? 'pointer-events: none;' : '')}
+  background-color: #fff;
 `;
 
 const Heart = styled.img`
   width: 27.09px;
   /* margin: 10px; */
   margin-top: 13px;
+  cursor: pointer;
   &:hover {
     transform: scale(1.1);
   }
