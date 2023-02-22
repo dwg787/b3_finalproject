@@ -11,6 +11,7 @@ import {
   deleteDoc,
   increment,
   decrement,
+  query,
 } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -50,16 +51,18 @@ export default function RestaurantLiked({
     ...restaurantData,
   };
 
-  // const fetchBookmarkData = async () => {
-  //   const uid = auth.currentUser.uid;
-  //   const docRef = doc(collection(db, 'bookmarks'), uid);
-  //   const res = await getDoc(docRef);
-  //   console.log('파베 fetch 결과', res.data());
-  // };
+  const fetchBookmarkData = async () => {
+    const uid = auth.currentUser.uid;
+    const docRef = doc(collection(db, 'bookmarks'), uid);
+    const res = await getDoc(docRef);
+    setIsLiked(res.data().contentid.includes(restaurantParamId));
+    // console.log('파베 fetch 결과', res.data().contentid);
+  };
 
-  // useEffect(() => {
-  //   fetchBookmarkData();
-  // }, []);
+  useEffect(() => {
+    fetchBookmarkData();
+    console.log('현재 장소의 like 상태', isLiked);
+  }, []);
 
   const handleLiked = async () => {
     const uid = auth.currentUser.uid;
