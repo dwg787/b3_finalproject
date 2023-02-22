@@ -1,10 +1,6 @@
 import { useQuery } from 'react-query';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import {
-  fetchSpotDetailData,
-  FetchedStayDataType,
-  FetchedDataType,
-} from '../../apis/publicAPI';
+import { fetchSpotDetailData, FetchedStayDataType } from '../../apis/publicAPI';
 import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';

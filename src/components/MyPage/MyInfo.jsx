@@ -39,9 +39,7 @@ export default function MyInfo() {
     });
 
     localStorage.setItem('id', currentInput);
-
     updateNickname(currentInput);
-    navigate('/my');
     alert('수정되었습니다.');
   };
 

@@ -10,6 +10,8 @@ import { updateProfile } from 'firebase/auth';
 import styled from 'styled-components';
 import '../App.css';
 import BlueFooter from '../components/Footer/BlueFooter';
+import MyInfoModal from './MyInfoModal';
+import PrivacyModal from './PrivacyModal';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -52,6 +54,20 @@ const SignUpPage = () => {
     setCheckBoxActive(!checkBoxActive);
   };
 
+  // 모달창 노출
+  //회원정보 모달
+  const [modalOpen, setModalOpen] = useState(false);
+  //개인정보 모달
+  const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
+  //회원정보 모달
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
+  //개인정보 모달
+  const privacyshowModal = () => {
+    setPrivacyModalOpen(true);
+  };
   // 회원가입 완료
 
   const signup = async (e) => {
@@ -324,8 +340,9 @@ const SignUpPage = () => {
                   checked={checkList.includes('terms') ? true : false}
                 ></CheckBoxInput2>
                 <CheckBoxText>
-                  본인은 본 서비스 약관에 동의하며 18세 이상임을 확인합니다.
-                  <CheckBoxText2>(필수)</CheckBoxText2>
+                  본인은 본 서비스 약관에 동의하며 12세 이상임을 확인합니다.
+                  <CheckBoxText2 onClick={showModal}>(필수)</CheckBoxText2>
+                  {modalOpen && <MyInfoModal setModalOpen={setModalOpen} />}
                 </CheckBoxText>
               </CheckBoxWrap>
               <CheckBoxWrap>
@@ -338,7 +355,13 @@ const SignUpPage = () => {
                 ></CheckBoxInput3>
                 <CheckBoxText>
                   본인은 개인정보 처리방침에 따라 본인의 개인 정보를 사용하는
-                  것에 동의합니다. <CheckBoxText2>(필수)</CheckBoxText2>
+                  것에 동의합니다.{' '}
+                  <CheckBoxText2 onClick={privacyshowModal}>
+                    (필수)
+                  </CheckBoxText2>
+                  {privacyModalOpen && (
+                    <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
+                  )}
                 </CheckBoxText>
               </CheckBoxWrap>
               <CheckBoxWrap>
@@ -355,7 +378,12 @@ const SignUpPage = () => {
                 </CheckBoxText>
                 <CheckBoxText>
                   를 제공하는 것에 동의합니다.{' '}
-                  <CheckBoxText2>(필수)</CheckBoxText2>
+                  <CheckBoxText2 onClick={privacyshowModal}>
+                    (필수)
+                  </CheckBoxText2>
+                  {privacyModalOpen && (
+                    <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
+                  )}
                 </CheckBoxText>
               </CheckBoxWrap>
             </CheckBoxBolder>
@@ -691,6 +719,7 @@ const CheckBoxText = styled.div`
 
 const CheckBoxText2 = styled.div`
   color: rgba(248, 112, 56, 1);
+  cursor: pointer;
 `;
 
 const FooterDiv = styled.div``;
