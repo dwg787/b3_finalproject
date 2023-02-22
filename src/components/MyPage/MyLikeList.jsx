@@ -16,6 +16,7 @@ import { combinedAllData } from '../../apis/publicAPI';
 const MyLikeList = () => {
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState([]);
+
   const uid = auth.currentUser.uid;
 
   const getRestaurantLiked = async () => {
@@ -34,10 +35,6 @@ const MyLikeList = () => {
     getRestaurantLiked();
     // getEachItemAllLikesCount();
   }, []);
-
-  //   if (isLoading) {
-  //     return <Loader />;
-  //   }
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
   const delResLiked = async (targetId) => {
@@ -64,6 +61,10 @@ const MyLikeList = () => {
     }
     getRestaurantLiked();
   };
+
+  //   if (isLoading) {
+  //     return <Loader />;
+  //   }
 
   //   한 관광지 or 숙박 or 음식점의 좋아요 총 갯수
   //   const getEachItemAllLikesCount = async () => {
