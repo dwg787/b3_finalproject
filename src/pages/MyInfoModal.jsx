@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 export default function MyInfoModal({ setModalOpen }) {
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  //   const closeModal = () => {
+  //     setModalOpen(false);
+  //   };
 
   return (
     <ModalBackground onClick={() => setModalOpen(false)}>
@@ -733,7 +733,7 @@ const ModalContainer = styled.div`
   left: 0;
   right: 0;
   margin: auto;
-  width: 710px;
+  width: 700px;
   height: 400px;
   z-index: 999;
 
@@ -744,6 +744,15 @@ const ModalContainer = styled.div`
   overflow-x: hidden;
   overflow-wrap: break-word;
   box-shadow: 0 15px 25px rgba(158, 171, 255, 0.61);
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #6478ff; /* 스크롤바의 색상 */
+
+    border-radius: 10px;
+  }
 `;
 
 const MyInfoWrap = styled.div`
