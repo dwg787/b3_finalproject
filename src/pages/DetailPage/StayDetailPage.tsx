@@ -47,7 +47,9 @@ import BlueFooter from '../../components/Footer/BlueFooter';
 
 const StayDetailPage = () => {
   const param = useParams();
-  const [alarmMsg, setAlarmMsg] = useState('');
+  const [alarmMsg, setAlarmMsg] = useState(
+    '예약 페이지가 준비되지 않았습니다.',
+  );
   const { addNoti } = useNotification(alarmMsg);
 
   const { data: stayDetailData, isLoading: isLoadingStayDetail } = useQuery(

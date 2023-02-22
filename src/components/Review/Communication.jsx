@@ -4,17 +4,18 @@ import {
   query,
   onSnapshot,
   orderBy,
+  limit,
+  startAfter,
+  getDocs,
 } from 'firebase/firestore';
 
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
 import styled from 'styled-components';
+import ReviewSlider from './ReviewSlider';
 
 const Communication = () => {
   const [newReview, setNewReview] = useState('');
@@ -25,51 +26,74 @@ const Communication = () => {
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
-  // console.log(loginUser);
-
-  // const settings = {
-  //   slide: <ReviewBoxList />, // slide 해주고 싶은 단위
-  //   infinite: true, //무한 슬라이더로 할지
-  //   speed: 500,
-  //   arrows: true, //화살표 (양옆 버튼) 구현할 것인지
-  //   autoplay: true, //자동 재생 할 것인지
-  //   autoplaySpeed: 5000,
-  //   slidesToShow: 1, // 한번에 몇개 슬라이드 보여줄 것인지
-  //   slidesToScroll: 1,
-  //   centerMode: true,
-  //   variableWidth: true,
-  //   centerPadding: '0px',
-  // };
-
-  // const settings = {
-  //   dots: false,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  //   nextArrow: <NextArrow />,
-  //   prevArrow: <PrevArrow />,
-  // };
+  const [lastReviewDate, setLastReviewDate] = useState(null);
 
   //useparams 를 사용하여 id 값을 파이어베이스로 보낸후
   //파이어베이스에서 데이터를 가져올 때 useparams의 값이 같은 것만
   //map을 돌려서 return 해준다!
 
+  const handleLoadMore = () => {
+    getReviews();
+    setLastReviewDate(null);
+  };
+
+  const handleMore = () => {
+    setLastReviewDate(null);
+    getPlus();
+  };
+
   // 화면이 처음 렌더링 할때 데이터를 가져옴
+
   useEffect(() => {
-    const getReviews = async () => {
-      const q = query(usersCollectionRef, orderBy('date', 'desc'));
-      const unsubscrible = onSnapshot(q, (querySnapshot) => {
-        const newList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setReviews(newList);
-      });
-      return unsubscrible;
-    };
     getReviews();
   }, []);
+
+  const getReviews = async () => {
+    let q = query(usersCollectionRef, orderBy('date', 'desc'), limit(6));
+    if (lastReviewDate) {
+      q = query(
+        usersCollectionRef,
+        orderBy('date', 'desc'),
+        startAfter(lastReviewDate),
+        limit(6),
+      );
+    }
+    const unsubscrible = onSnapshot(q, (querySnapshot) => {
+      const newList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setReviews(newList);
+      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+      setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
+    });
+
+    return unsubscrible;
+  };
+
+  const getPlus = async () => {
+    let q = query(usersCollectionRef, orderBy('date', 'asc'), limit(6));
+    if (lastReviewDate) {
+      q = query(
+        usersCollectionRef,
+        orderBy('date', 'asc'),
+        startAfter(lastReviewDate),
+        limit(6),
+      );
+    }
+    const unsubscrible = onSnapshot(q, (querySnapshot) => {
+      const newList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setReviews(newList);
+      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+      setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
+    });
+    return unsubscrible;
+  };
+
+  // 끝페이지로 갔을때 넘어가는 버튼을 안보여준다 || 다시 처음값을 받아와서 보여준다.
 
   //리뷰 등록
   const creatReview = async () => {
@@ -115,10 +139,7 @@ const Communication = () => {
       alert('로그인 해주세요');
     }
   };
-  //   } else {
-  //     alert('로그인을 하세요');
-  //   }
-  // };
+
   return (
     <ReviewContainer>
       {/* <DetailInfoText>여행톡</DetailInfoText> */}
@@ -149,21 +170,40 @@ const Communication = () => {
       </ReviewBox>
 
       <ReviewBoxList>
-        {/* <Slider {...settings}> */}
+        <button
+          style={{
+            position: 'absolute',
+            left: '30px',
+            top: '150px',
+            border: '1px solid red',
+          }}
+          onClick={handleLoadMore}
+        >
+          ⬅️
+        </button>
+        <button
+          style={{ position: 'absolute', right: '30px', top: '150px' }}
+          onClick={handleMore}
+        >
+          ➡️
+        </button>
+
         {reviews.map((review, i) => {
           if (review.paramId === params.id) {
             return (
-              <ReviewList
-                reviews={reviews}
-                setReviews={setReviews}
-                review={review}
-                i={i}
-                uid={localStorage.getItem('id')}
-              />
+              <>
+                <ReviewList
+                  reviews={reviews}
+                  setReviews={setReviews}
+                  review={review}
+                  i={i}
+                  uid={localStorage.getItem('id')}
+                  handleLoadMore={handleLoadMore}
+                />
+              </>
             );
           }
         })}
-        {/* </Slider> */}
       </ReviewBoxList>
     </ReviewContainer>
   );
@@ -177,47 +217,51 @@ const BottomLine = styled.div`
 `;
 
 const ReviewContainer = styled.div`
-  width: 1710px;
-  height: 800px;
+  width: 1146.11px;
+  height: 576.41px;
   /* width: 100%; */
   display: flex;
-
   flex-direction: column;
   box-sizing: border-box;
-  border: 1px solid red;
+  border: 1.00654px solid #9eabff;
+  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18);
+  border-radius: 13.4205px;
+  /* border: 1px solid red; */
 `;
 
 const ReviewBox = styled.div`
   /* gap: 1rem;
   margin: 10px 0;  */
-
+  /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 `;
 
 const ReviewLabel = styled.label`
   font-weight: 700;
-  font-size: 16.5327px;
+  font-size: 11.4074px;
   color: #6478ff;
-  margin-bottom: 20px;
-  margin-left: 90px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-left: 60px;
 `;
 
 const InputAndBtnWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* border: 1px solid yellow; */
 `;
 
 const ReviewInput = styled.textarea`
-  width: 90%;
-  height: 112px;
+  width: 1026px;
+  height: 75.15px;
   background: #eef1ff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 14px;
   font-weight: 500;
-  font-size: 21px;
+  font-size: 14.0915px;
   color: #595959;
   padding: 20px;
   border: none;
@@ -227,58 +271,38 @@ const ReviewInput = styled.textarea`
   overflow-x: 'hidden';
   &::placeholder {
     font-weight: 500;
-    font-size: 21px;
+    font-size: 14.0915px;
     color: #595959;
   }
 `;
 
 const ReviewButton = styled.button`
-  width: 277px;
-  height: 51px;
+  width: 185.87px;
+  height: 34.22px;
   background: #6478ff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
-  border-radius: 14px;
+  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.15);
+  border-radius: 9.39433px;
   border: none;
   color: #ffffff;
   cursor: pointer;
   font-weight: 500;
-  font-size: 22.7664px;
+  font-size: 15.2768px;
   margin-bottom: 20px;
 `;
 
 const ReviewBoxList = styled.div`
-  border: 1px solid blue;
   display: flex;
-  height: 450px;
+  position: relative;
+
+  /* width: 1146.11px; */
+  /* height: 327px; */
+  height: 100%;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  /* border: 1px solid blue; */
   /* display: flex;
   align-items: center;
   justify-content: center; */
 `;
-
-//700 //100// 250 //350// div나눔
-
-function NextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', background: 'red' }}
-      onClick={onClick}
-    />
-  );
-}
-
-function PrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', background: 'green' }}
-      onClick={onClick}
-    />
-  );
-}
