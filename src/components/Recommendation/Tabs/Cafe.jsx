@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import commingsoon from '../../../assets/commingsoon.png';
 
 export default function Cafe() {
   return (
     <WrapDiv>
-      <CafeText>공사중</CafeText>
+      <CafeText src={commingsoon} alt="" />
     </WrapDiv>
   );
 }
@@ -16,12 +17,11 @@ const WrapDiv = styled.div`
   align-items: center;
 `;
 
-const CafeText = styled.p`
+const CafeText = styled.img`
   width: 600px;
   height: 300px;
-  font-size: 60px;
+  margin-top: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
 `;

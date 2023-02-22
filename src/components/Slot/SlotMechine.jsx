@@ -6,9 +6,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import random from '../../assets/random.avif';
-import { getSuggestedQuery } from '@testing-library/react';
 import _ from 'lodash';
 import sadari from '../../assets/sadari.mp3';
+import BlueFooter from '../Footer/BlueFooter';
+import Randomslot from '../../assets/Randomslot.png';
 //v1 슬롯머신
 
 const SlotMachine = () => {
@@ -131,63 +132,74 @@ const SlotMachine = () => {
   // const buttonClick = () => {}
   // console.log(currentSpots);
   return (
-    <ContainerDiv>
-      <SliderDiv>
-        <MainSlider {...settings}>
-          <ImgDiv>
-            {currentSpots1 && (
-              <SlotImg1 src={currentSpots1.firstimage || noimg} alt="" />
-            )}
-          </ImgDiv>
-          <ImgDiv>
-            {currentSpots2 && (
-              <SlotImg1 src={currentSpots2.firstimage || noimg} alt="" />
-            )}
-          </ImgDiv>
-          <ImgDiv>
-            {currentSpots3 && (
-              <SlotImg1 src={currentSpots3.firstimage || noimg} alt="" />
-            )}
-          </ImgDiv>
-          <ImgDiv>
-            {currentSpots4 && (
-              <SlotImg1 src={currentSpots4.firstimage || noimg} alt="" />
-            )}
-          </ImgDiv>
-          <ImgDiv>
-            {currentSpots5 && (
-              <SlotImg1 src={currentSpots5.firstimage || noimg} alt="" />
-            )}
-          </ImgDiv>
-          <ImgDiv>
-            {currentSpots6 && (
-              <SlotImg1 src={currentSpots6.firstimage || noimg} alt="" />
-            )}
-          </ImgDiv>
-        </MainSlider>
-      </SliderDiv>
-      <WrapDiv>
-        {currentSpots?.firstimage !== '' ? (
-          <ImageBox>
-            <SlotSmallImg src={currentSpots3?.firstimage}></SlotSmallImg>
-            <SlotImg src={currentSpots?.firstimage} alt="" />
-            <SlotSmallImg src={currentSpots6?.firstimage}></SlotSmallImg>
-          </ImageBox>
-        ) : (
-          <ImageBox>
-            <SlotSmallImg src={noimg}></SlotSmallImg>
-            <SlotImg src={noimg} alt="" />
-            <SlotSmallImg src={noimg}></SlotSmallImg>
-          </ImageBox>
-        )}
-        <div>{currentSpots?.title}</div>
-        <SlotButton onClick={lolinghandler}>관광지 랜덤뽑기!</SlotButton>
-      </WrapDiv>
-    </ContainerDiv>
+    <BigContainer>
+      <SlotTitleImg src={Randomslot} alt="" />
+      <ContainerDiv>
+        <SliderDiv>
+          <MainSlider {...settings}>
+            <ImgDiv>
+              {currentSpots1 && (
+                <SlotImg1 src={currentSpots1.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots2 && (
+                <SlotImg1 src={currentSpots2.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots3 && (
+                <SlotImg1 src={currentSpots3.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots4 && (
+                <SlotImg1 src={currentSpots4.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots5 && (
+                <SlotImg1 src={currentSpots5.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots6 && (
+                <SlotImg1 src={currentSpots6.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+          </MainSlider>
+        </SliderDiv>
+        <WrapDiv>
+          {currentSpots?.firstimage !== '' ? (
+            <ImageBox>
+              <SlotSmallImg src={random}></SlotSmallImg>
+              <SlotImg src={currentSpots?.firstimage} alt="" />
+              <SlotSmallImg src={random}></SlotSmallImg>
+            </ImageBox>
+          ) : (
+            <ImageBox>
+              <SlotSmallImg src={random}></SlotSmallImg>
+              <SlotImg src={noimg} alt="" />
+              <SlotSmallImg src={random}></SlotSmallImg>
+            </ImageBox>
+          )}
+          <div>{currentSpots?.title}</div>
+          <SlotButton onClick={lolinghandler}>관광지 랜덤뽑기!</SlotButton>
+        </WrapDiv>
+      </ContainerDiv>
+      <BlueFooter />
+    </BigContainer>
   );
 };
 
 export default SlotMachine;
+const BigContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+`;
 
 const ContainerDiv = styled.div`
   display: flex;
@@ -196,12 +208,10 @@ const ContainerDiv = styled.div`
   align-items: center;
   width: 65%;
   height: 100%;
-
+  border: 1px solid #6478ff;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
-  margin-top: 200px;
   margin-bottom: 100px;
-  margin-left: 20%;
-  background: #636363;
 `;
 
 const WrapDiv = styled.div`
@@ -221,8 +231,6 @@ const SlotSmallImg = styled.img`
   width: 250px;
   height: 250px;
   border-radius: 150px;
-  /* box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff,
-    0 0 30px #ffffff, 0 0 35px #ffffff, 0 0 45px #ffffff, 0 0 50px #ffffff; */
 `;
 
 const ImageBox = styled.div`
@@ -240,14 +248,15 @@ const SlotImg1 = styled.img`
   height: 180px;
   margin-top: 40px;
   border-radius: 100px;
-
-  /* box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ffffff, 0 0 30px #ffffff,
-    0 0 35px #ffffff, 0 0 45px #ffffff, 0 0 50px #ffffff; */
 `;
 
 const SliderDiv = styled.div`
   width: 100%;
   height: 200px;
+`;
+
+const SlotTitleImg = styled.img`
+  margin-bottom: 20px;
 `;
 
 const MainSlider = styled(Slider)``;
@@ -267,4 +276,8 @@ const SlotButton = styled.button`
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
+  &:hover {
+    background-color: #6478ff;
+    color: white;
+  }
 `;
