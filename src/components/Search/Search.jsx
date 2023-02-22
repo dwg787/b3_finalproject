@@ -59,7 +59,7 @@ export default function Search() {
   }, []);
 
   return (
-    <>
+    <BigContainerDiv>
       <ContainerDiv>
         <WrapDiv>
           <SearchTitleBox>
@@ -92,23 +92,32 @@ export default function Search() {
         </WrapDiv>
       </ContainerDiv>
       <BlueFooter />
-    </>
+    </BigContainerDiv>
   );
 }
-
-const ContainerDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const BigContainerDiv = styled.div`
   width: 100%;
   height: 100%;
-  padding-bottom: 400px;
   background: linear-gradient(
     180deg,
     #ffffff -23.88%,
     rgba(124, 141, 255, 0.69) 39.56%,
     #ffffff 99.16%
   );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  height: 100%;
+  padding-bottom: 400px;
+  background: transparent;
   position: relative;
 `;
 
