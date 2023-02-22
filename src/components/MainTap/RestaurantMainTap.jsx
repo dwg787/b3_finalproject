@@ -55,6 +55,10 @@ const RestaurantMainTap = () => {
                     <InnerTextBox>
                       <p>{rankList[0]?.title}</p>
                       <p>{rankList[0]?.overview.slice(0, 20)}...</p>
+                      <HeartBox>
+                        <p>heart</p>
+                        <p>{rankList[0]?.likeCnt}</p>
+                      </HeartBox>
                     </InnerTextBox>
                   </InnerList>
                 ) : (
@@ -75,6 +79,10 @@ const RestaurantMainTap = () => {
                     <InnerTextBox>
                       <p>{rankList[1]?.title}</p>
                       <p>{rankList[1]?.overview.slice(0, 20)}...</p>
+                      <HeartBox>
+                        <p>heart</p>
+                        <p>{rankList[1]?.likeCnt}</p>
+                      </HeartBox>
                     </InnerTextBox>
                   </InnerList>
                 ) : (
@@ -95,6 +103,10 @@ const RestaurantMainTap = () => {
                     <InnerTextBox>
                       <p>{rankList[2]?.title}</p>
                       <p>{rankList[2]?.overview.slice(0, 20)}...</p>
+                      <HeartBox>
+                        <p>heart</p>
+                        <p>{rankList[2]?.likeCnt}</p>
+                      </HeartBox>
                     </InnerTextBox>
                   </InnerList>
                 ) : (
@@ -121,7 +133,7 @@ const RestaurantMainTap = () => {
                         <p>{e.overview.slice(0, 20)}</p>
                         <HeartBox>
                           <p>heart</p>
-                          <p>heartnmb</p>
+                          <p>{e.likeCnt}</p>
                         </HeartBox>
                       </OuterTextBoxInnerBox>
                     </OuterTextBox>
