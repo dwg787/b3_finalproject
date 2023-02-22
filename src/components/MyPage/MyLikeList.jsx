@@ -8,15 +8,19 @@ import {
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { auth, db } from '../../apis/firebase';
-import Loader from '../Loader/Loader';
 import noimg from '../../assets/noimg.avif';
-import { Link, useNavigate } from 'react-router-dom';
-import { combinedAllData } from '../../apis/publicAPI';
+import { useNavigate } from 'react-router-dom';
+import Pagination from 'react-js-pagination';
 
 const MyLikeList = () => {
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState([]);
   const uid = auth.currentUser.uid;
+
+  //페이지네이션
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [items, setItems] = useState(6);
 
   const getRestaurantLiked = async () => {
     // const q = query(collection(db, 'bookmarks'), uid);
@@ -27,6 +31,7 @@ const MyLikeList = () => {
     // console.log('파베 북마크 데이터', myBookmarkData.data());
     if (myBookmarkData) {
       setRestaurant(myBookmarkData.data());
+      setData(myBookmarkData.data());
     }
   };
 
@@ -34,10 +39,6 @@ const MyLikeList = () => {
     getRestaurantLiked();
     // getEachItemAllLikesCount();
   }, []);
-
-  //   if (isLoading) {
-  //     return <Loader />;
-  //   }
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
   const delResLiked = async (targetId) => {
@@ -95,92 +96,126 @@ const MyLikeList = () => {
   //     );
   //   };
 
+  //페이지네이션2
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+  const itemChange = (e) => {
+    setItems(Number(e.target.value));
+  };
+
+  // console.log(items * (page - 1), items * (page - 1) + items);
+
+  useEffect(() => {
+    if (restaurant) {
+      setData(restaurant);
+    }
+  }, [restaurant, items, page]);
+
   return (
     <>
       <StTicketWrap>
         <StTicket>
-          {restaurant &&
-            restaurant?.bookmarks?.map((data) => {
-              // console.log('jsx에서 받은 데이터', data);
-              switch (data.contenttypeid) {
-                case '39':
-                  return (
-                    <StTicketCard key={data.contentid}>
-                      <StTicketCardLeft>
-                        <StTicketHeader>
-                          <StCartMenu>음식점</StCartMenu>
-                        </StTicketHeader>
-                        <StMyTicketImage
-                          src={data.img || noimg}
-                          alt="사진"
-                          onClick={() =>
-                            navigate(`/restaurant/${data.contentid}`)
-                          }
-                        />
-                      </StTicketCardLeft>
-                      <StTicketCardRight>
-                        <StTicketHeader2
-                          onClick={() => delResLiked(data.contentid)}
-                        >
-                          X
-                        </StTicketHeader2>
+          <StLikedBox>
+            {restaurant &&
+              restaurant?.bookmarks
+                ?.slice(items * (page - 1), items * (page - 1) + items)
+                .map((data) => {
+                  console.log('jsx에서 받은 데이터', data);
+                  switch (data.contenttypeid) {
+                    case '39':
+                      return (
+                        <StTicketCard key={data.contentid}>
+                          <StTicketCardLeft>
+                            <StTicketHeader>
+                              <StCartMenu>음식점</StCartMenu>
+                            </StTicketHeader>
+                            <StMyTicketImage
+                              src={data.img || noimg}
+                              alt="사진"
+                              onClick={() =>
+                                navigate(`/restaurant/${data.contentid}`)
+                              }
+                            />
+                          </StTicketCardLeft>
+                          <StTicketCardRight>
+                            <StTicketHeader2
+                              onClick={() => delResLiked(data.contentid)}
+                            >
+                              X
+                            </StTicketHeader2>
 
-                        <StCartTitle>
-                          {data.restaurant.split('[', 1)}
-                          {data.addr1}
-                        </StCartTitle>
-                      </StTicketCardRight>
-                    </StTicketCard>
-                  );
-                case '32':
-                  return (
-                    <StTicketCard key={data.contentid}>
-                      <StTicketCardLeft>
-                        <StTicketHeader>
-                          <StCartMenu>숙박</StCartMenu>
-                        </StTicketHeader>
-                        <StMyTicketImage
-                          src={data.img || noimg}
-                          alt="사진"
-                          onClick={() => navigate(`/stay/${data.contentid}`)}
-                        />
-                      </StTicketCardLeft>
-                      <StCartTitle>{data.restaurant.split('[', 1)}</StCartTitle>
-                      {/* <StDeleteBtn onClick={() => delResLiked(data.contentid)}>
-                        X
-                      </StDeleteBtn> */}
-                    </StTicketCard>
-                  );
-                case '12':
-                  return (
-                    <>
-                      <StTicketCard key={data.contentid}>
-                        <StTicketCardLeft>
-                          <StTicketHeader>
-                            <StCartMenu>관광지</StCartMenu>
-                          </StTicketHeader>
+                            <StCartTitle>
+                              {data.restaurant.split('[', 1)}
+                            </StCartTitle>
+                            <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
+                            {/* 좋아요카운트 */}
+                            {/* <StCartTitleAdd>{data.viewCnt}</StCartTitleAdd> */}
+                          </StTicketCardRight>
+                        </StTicketCard>
+                      );
+                    case '32':
+                      return (
+                        <StTicketCard key={data.contentid}>
+                          <StTicketCardLeft>
+                            <StTicketHeader>
+                              <StCartMenu>숙박</StCartMenu>
+                            </StTicketHeader>
+                            <StMyTicketImage
+                              src={data.img || noimg}
+                              alt="사진"
+                              onClick={() =>
+                                navigate(`/stay/${data.contentid}`)
+                              }
+                            />
+                          </StTicketCardLeft>
+                          <StCartTitle>
+                            {data.restaurant.split('[', 1)}
+                          </StCartTitle>
+                          <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
+                        </StTicketCard>
+                      );
+                    case '12':
+                      return (
+                        <>
+                          <StTicketCard key={data.contentid}>
+                            <StTicketCardLeft>
+                              <StTicketHeader>
+                                <StCartMenu>관광지</StCartMenu>
+                              </StTicketHeader>
 
-                          <StMyTicketImage
-                            src={data.img || noimg}
-                            alt="사진"
-                            onClick={() => navigate(`/spot/${data.contentid}`)}
-                          />
-                        </StTicketCardLeft>
-                        <StCartTitle>
-                          {data.restaurant.split('[', 1)}
-                        </StCartTitle>
-                        {/* <StDeleteBtn
-                          onClick={() => delResLiked(data.contentid)}
-                        >
-                          X
-                        </StDeleteBtn> */}
-                      </StTicketCard>
-                    </>
-                  );
-                default:
-                  return null;
-              }
-            })}
+                              <StMyTicketImage
+                                src={data.img || noimg}
+                                alt="사진"
+                                onClick={() =>
+                                  navigate(`/spot/${data.contentid}`)
+                                }
+                              />
+                            </StTicketCardLeft>
+                            <StCartTitle>
+                              {data.restaurant.split('[', 1)}
+                            </StCartTitle>
+                            <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
+                          </StTicketCard>
+                        </>
+                      );
+                    default:
+                      return null;
+                  }
+                })}
+          </StLikedBox>
+          <PaginationBox>
+            <Pagination
+              activePage={page}
+              itemsCountPerPage={items}
+              totalItemsCount={data?.bookmarks?.length}
+              onChange={handlePageChange}
+              pageRangeDisplayed={5}
+              hideDisabled={true}
+              hideNavigation={true}
+              hideFirstLastPages={true}
+            ></Pagination>
+          </PaginationBox>
         </StTicket>
       </StTicketWrap>
     </>
@@ -210,17 +245,30 @@ const StTicket = styled.div`
   box-sizing: border-box;
 `;
 
+const StLikedBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  height: 555.22px;
+  box-sizing: border-box;
+  padding: 0 108.42px 108.42px 108.42px;
+`;
+
 const StTicketCard = styled.div`
   width: 480.01px;
   height: 172.54px;
-  margin: 0 27.36px 18.8px 0;
+  margin: 0 0 18.8px 0;
   border-radius: 11.41px;
   align-items: center;
   clear: both;
   display: flex;
   flex-direction: row;
   background-size: contain;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15); */
+  box-shadow: 3px 3px 5px grey;
 `;
 
 const StTicketCardLeft = styled.div`
@@ -235,7 +283,7 @@ const StTicketCardRight = styled.div`
   height: 172.54px;
   box-sizing: border-box;
   border-radius: 5px;
-  /* flex-direction: column; */
+  flex-direction: column;
   display: flex;
   /* justify-content: center; */
   position: relative;
@@ -248,7 +296,7 @@ const StMyTicketImage = styled.img`
   border-radius: 11.41px;
   cursor: pointer;
   display: flex;
-  box-shadow: 5px 5px 10px grey;
+  /* box-shadow: 5px 5px 10px grey; */
 `;
 
 const StCartTitle = styled.span`
@@ -256,10 +304,20 @@ const StCartTitle = styled.span`
   color: #4d4d4d;
   font-weight: 900;
   z-index: 100;
-  text-align: center;
+  /* text-align: center; */
   font-size: 19.7px;
   line-height: 18.4px;
-  margin: 22.15px 0 0 30.42px;
+  margin: 22.15px 0 11.21px 30.42px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const StCartTitleAdd = styled(StCartTitle)`
+  /* color: teal; */
+  margin: 0 31.01px 0 30.42px;
+  font-size: 15.44px;
+  line-height: 24.8px;
 `;
 
 const StCartMenu = styled.div`
@@ -292,4 +350,50 @@ const StTicketHeader2 = styled.div`
   height: 172.54px;
   padding: 10px;
   cursor: pointer;
+`;
+
+const PaginationBox = styled.div`
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 41.63px 0 49.15px 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul.pagination li {
+    display: inline-block;
+    width: 9px;
+    height: 20px;
+    /* border: 1px solid #e2e2e2; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 1rem; */
+    font-weight: bold;
+    font-size: 14.34px;
+    margin: 6.6px;
+  }
+  /* ul.pagination li:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+  ul.pagination li:last-child {
+    border-radius: 0 5px 5px 0;
+  } */
+  ul.pagination li a {
+    text-decoration: none;
+    color: #909090;
+    font-size: 1rem;
+  }
+  ul.pagination li.active a {
+    color: #6478ff;
+  }
+  ul.pagination li.active {
+    /* background-color: #337ab7; */
+  }
+  ul.pagination li a:hover,
+  ul.pagination li a.active {
+    color: #6478ff;
+  }
 `;
