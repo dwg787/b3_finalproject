@@ -34,7 +34,7 @@ const RestaurantMainTap = () => {
     fetchRestaurantRankList();
   }, []);
 
-  console.log('음식점 랭킹', rankList);
+  // console.log('음식점 랭킹', rankList);
 
   return (
     <ContainerDiv>

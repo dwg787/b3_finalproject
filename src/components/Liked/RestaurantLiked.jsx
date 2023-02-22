@@ -37,7 +37,7 @@ export default function RestaurantLiked({
   //중복클릭방지
   const [disabled, setDisabled] = useState(false);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
-  const [alarmMsg, setAlarmMsg] = useState('');
+  const [alarmMsg, setAlarmMsg] = useState('찜하기 목록에 추가되었습니다!');
   const { addNoti } = useNotification(alarmMsg);
 
   //여래개의 api데이터를 한번에 사용할수있도록 합침
@@ -50,9 +50,7 @@ export default function RestaurantLiked({
     ...restaurantData,
   };
 
-  const addRestaurantLiked = async () => {
-    // console.log(restaurantDetailData);
-
+  const handleLiked = async () => {
     //유저 아이디 가져오기
     const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'bookmarks'), uid);
@@ -61,13 +59,13 @@ export default function RestaurantLiked({
       'restaurant_recommendation',
       restaurantParamId,
     );
-
-    console.log('식당 paramid', restaurantParamId);
-
-    if (!clickRef.current) {
-      clickRef.current = true;
-      console.log('Button clicked');
-
+    // console.log('식당 paramid', restaurantParamId);
+    console.log('Button clicked');
+    console.log('like 상태', isLiked);
+    console.log('토스트 메시지 상태', alarmMsg);
+    if (!isLiked) {
+      setAlarmMsg('찜하기 추가!');
+      setIsLiked(!isLiked);
       await getDoc(docRef)
         .then((doc) => {
           // 없으면 새로 생성
@@ -109,22 +107,39 @@ export default function RestaurantLiked({
           }
         })
         .catch((e) => console.log(e));
-
-      // setIsLiked(true);
       // 좋아요 버튼 활성화 관련
       // clickRef.current = true;
       // setDisabled(true);
       // localStorage.setItem('clickRef', true);
-      setAlarmMsg('찜하기 목록에 추가되었습니다!');
     } else {
-      setAlarmMsg('이미 추가된 항목입니다!');
+      setAlarmMsg('찜하기 제거!');
+      setIsLiked(!isLiked);
+      updateDoc(docRef, {
+        bookmarks: arrayRemove({
+          restaurant: combinedData.title,
+          img: combinedData.firstimage,
+          contentid: combinedData.contentid,
+          date: Date.now(),
+          contenttypeid: combinedData.contenttypeid,
+          addr1: combinedData.addr1,
+          // uid: uid,
+        }),
+        contentid: arrayRemove(combinedData.contentid),
+      });
+      updateDoc(restaurantDocRef, {
+        // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
+        likeCnt: increment(-1),
+      });
+      // await getDoc(docRef).then((doc)=>{
+      // })
+      // setAlarmMsg('이미 추가된 항목입니다!');
     }
     addNoti();
   };
 
   return (
     <div>
-      <HeartBtn onClick={addRestaurantLiked} disabled={disabled}>
+      <HeartBtn onClick={handleLiked} disabled={disabled}>
         <Heart src={redheart} />
       </HeartBtn>
     </div>
