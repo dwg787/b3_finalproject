@@ -20,6 +20,9 @@ import useNotification from '../../hooks/useNotification';
 import heart from '../../assets/heart.avif';
 import redheart from '../../assets/redheart.avif';
 import { async } from '@firebase/util';
+import { useRecoilValue } from 'recoil';
+import { paramTransfer } from '../../recoil/apiDataAtoms';
+import { useParams } from 'react-router-dom';
 
 export default function RestaurantLiked({
   spotData,
@@ -28,17 +31,16 @@ export default function RestaurantLiked({
   stayData,
   spotDetailData,
   restaurantData,
-  restaurantParamId,
   spotParamId,
   stayParamId,
 }: UserProps): React.ReactElement {
+  const param = useParams();
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
   const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
-  const [myBookmark, setMyBookmark] = useState([]);
-  const [fetchedUid, setFetchedUid] = useState('');
+  // const thisRestaurantId = useRecoilValue(paramTransfer);
   //중복클릭방지
   // const [disabled, setDisabled] = useState(false);
   //여래개의 api데이터를 한번에 사용할수있도록 합침
@@ -51,12 +53,17 @@ export default function RestaurantLiked({
     ...restaurantData,
   };
 
+  console.log('파라미터', param.id);
+
   const fetchBookmarkData = async () => {
     const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'bookmarks'), uid);
     const res = await getDoc(docRef);
-    setIsLiked(res.data().contentid.includes(restaurantParamId));
-    // console.log('파베 fetch 결과', res.data().contentid);
+    setIsLiked(res.data().contentid.includes(param.id));
+    console.log('확인하고 싶은 값', res.data().contentid.includes(param.id));
+    console.log('해당 장소의 like??', isLiked);
+    console.log('이 페이지 식당 id', param.id);
+    // console.log('res', res.data());
   };
 
   useEffect(() => {
@@ -67,11 +74,7 @@ export default function RestaurantLiked({
   const handleLiked = async () => {
     const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'bookmarks'), uid);
-    const restaurantDocRef = doc(
-      db,
-      'restaurant_recommendation',
-      restaurantParamId,
-    );
+    const restaurantDocRef = doc(db, 'restaurant_recommendation', param.id);
 
     if (isLiked) {
       setAlarmMsg('찜하기 추가!');
@@ -79,7 +82,7 @@ export default function RestaurantLiked({
       await getDoc(docRef).then((doc) => {
         const TargetBookmark = doc
           .data()
-          .bookmarks.find((e) => e.contentid === restaurantParamId);
+          .bookmarks.find((e) => e.contentid === param.id);
         // console.log('찜하기 제거 타겟', TargetBookmark);
         // setIsLiked(!!TargetBookmark);
         if (doc.exists()) {

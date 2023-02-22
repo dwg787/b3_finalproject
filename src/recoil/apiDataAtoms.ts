@@ -55,3 +55,8 @@ export const likeState = atom({
   key: 'likeState',
   default: '',
 });
+
+// export const paramTransfer = atom({
+//   key: 'paramTransfer',
+//   default: '',
+// });
