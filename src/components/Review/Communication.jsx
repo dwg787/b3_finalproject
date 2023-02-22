@@ -139,10 +139,7 @@ const Communication = () => {
       alert('로그인 해주세요');
     }
   };
-  //   } else {
-  //     alert('로그인을 하세요');
-  //   }
-  // };
+
   return (
     <ReviewContainer>
       {/* <DetailInfoText>여행톡</DetailInfoText> */}
