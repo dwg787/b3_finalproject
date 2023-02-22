@@ -18,7 +18,7 @@ const WrapDiv = styled.div`
   width: 100px;
   height: 400px;
   position: fixed;
-  top: 30%;
+  top: 18%;
   left: 5%;
   z-index: 4;
   display: flex;
