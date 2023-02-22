@@ -1,21 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   fetchStayDetailInfo,
   fetchStayAdditionalInfo1,
   fetchStayAdditionalInfo2,
 } from '../../apis/publicAPI';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
-import { FetchedStayDataType, FetchedDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../apis/publicAPI';
 import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import noimg from '../../assets/noimg.avif';
+import useNotification from '../../hooks/useNotification';
 
 import {
   DetailWrap,
@@ -46,6 +47,9 @@ import BlueFooter from '../../components/Footer/BlueFooter';
 
 const StayDetailPage = () => {
   const param = useParams();
+  const [alarmMsg, setAlarmMsg] = useState('');
+  const { addNoti } = useNotification(alarmMsg);
+
   const { data: stayDetailData, isLoading: isLoadingStayDetail } = useQuery(
     ['stay_detail', param],
     () => fetchStayDetailInfo({ param }),
@@ -60,6 +64,7 @@ const StayDetailPage = () => {
 
   console.log('숙박 상세 소개', stayAdditionalData1);
 
+  //숙박 상세페이지 추가 구현할때? 사용할 부분
   // const {
   //   data: stayAdditionalData2,
   //   isLoading: isLoadingAdditional2,
@@ -111,12 +116,21 @@ const StayDetailPage = () => {
   }, [stayDetailData]);
   console.log('숙박 상세정보', stayDetailData);
 
-  //예약하기 url뽑기
+  //예약하기 url뽑기(common파일로 정리?필요)
   const reservationurl = stayAdditionalData1?.reservationurl ?? '';
   const urlRegex = /href=["']([^"']*)["']/;
   const match = reservationurl.match(urlRegex);
   const url = match ? match[1] : '';
   // console.log(url);
+
+  const ReservationClick = () => {
+    if (url) {
+      window.open(url);
+    } else {
+      setAlarmMsg('예약 페이지가 준비되지 않았습니다.');
+    }
+    addNoti();
+  };
 
   return (
     <DetailWrap>
@@ -153,11 +167,7 @@ const StayDetailPage = () => {
                     src={stayDetailData.firstimage || noimg}
                     alt="사진"
                   />
-                  <DetailImgBtn
-                    onClick={() => {
-                      window.open(url);
-                    }}
-                  >
+                  <DetailImgBtn onClick={ReservationClick}>
                     예약하기
                   </DetailImgBtn>
                 </DetailImgBox>
