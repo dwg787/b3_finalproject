@@ -77,13 +77,15 @@ export default function RestaurantLiked({
         const TargetBookmark = doc
           .data()
           .bookmarks.find((e) => e.contentid === restaurantParamId);
+        // console.log('찜하기 제거 타겟', TargetBookmark);
+        // setIsLiked(!!TargetBookmark);
         if (doc.exists()) {
           updateDoc(docRef, {
             bookmarks: arrayRemove(TargetBookmark),
             contentid: arrayRemove(combinedData.contentid),
           });
           updateDoc(restaurantDocRef, {
-            // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
+            // likeCnt: arrayRemove(`${uid}`), //좋아요 한 사람 배열에서 제거
             likeCnt: increment(-1),
           });
         }
