@@ -34,7 +34,7 @@ const RestaurantMainTap = () => {
     fetchRestaurantRankList();
   }, []);
 
-  console.log('음식점 랭킹', rankList);
+  // console.log('음식점 랭킹', rankList);
 
   return (
     <ContainerDiv>
@@ -43,72 +43,78 @@ const RestaurantMainTap = () => {
           <InnerDiv>
             {rankList ? (
               <>
-                <InnerList>
-                  {!rankList[0]?.likeCnt ? (
-                    <>
-                      <InnerImg
-                        src={rankList[0]?.firstimage || noimg}
-                        onClick={() =>
-                          navigate(`/restaurant/${rankList[0]?.contentid}`)
-                        }
-                      />
-                      <InnerMedals src={one} alt="" />
-                      <InnerTextBox>
-                        {rankList[0]?.title}
-                        {rankList[0]?.overview}
-                      </InnerTextBox>
-                    </>
-                  ) : (
-                    <>
-                      <InnerMedals src={one} alt="" />
-                      <InnerTextBox></InnerTextBox>
-                    </>
-                  )}
-                </InnerList>
-                <InnerList>
-                  {!rankList[1]?.likeCnt ? (
-                    <>
-                      <InnerImg
-                        src={rankList[1]?.firstimage || noimg}
-                        onClick={() =>
-                          navigate(`/restaurant/${rankList[1]?.contentid}`)
-                        }
-                      />
-                      <InnerMedals src={two} alt="" />
-                      <InnerTextBox>
-                        {rankList[1]?.title}
-                        {rankList[1]?.overview}
-                      </InnerTextBox>
-                    </>
-                  ) : (
-                    <>
-                      <InnerMedals src={two} alt="" />
-                      <InnerTextBox></InnerTextBox>
-                    </>
-                  )}
-                </InnerList>
-                <InnerList>
-                  {!rankList[2]?.likeCnt ? (
-                    <>
-                      <InnerImg
-                        src={rankList[2]?.firstimage || noimg}
-                        onClick={() =>
-                          navigate(`/restaurant/${rankList[2]?.contentid}`)
-                        }
-                      />
-                      <InnerMedals src={three} alt="" />
-                      <InnerTextBox>
-                        {rankList[2]?.title}
-                        {rankList[2]?.overview}
-                      </InnerTextBox>
-                    </>
-                  ) : (
-                    <>
-                      <InnerMedals src={three} alt="" />
-                      <InnerTextBox></InnerTextBox>
-                    </>
-                  )}
-                </InnerList>
+                {rankList[0]?.likeCnt ? (
+                  <InnerList>
+                    <InnerImg
+                      src={rankList[0]?.firstimage || noimg}
+                      onClick={() =>
+                        navigate(`/restaurant/${rankList[0]?.contentid}`)
+                      }
+                    />
+                    <InnerMedals src={one} alt="" />
+                    <InnerTextBox>
+                      <p>{rankList[0]?.title}</p>
+                      <p>{rankList[0]?.overview.slice(0, 20)}...</p>
+                      <HeartBox>
+                        <p>heart</p>
+                        <p>{rankList[0]?.likeCnt}</p>
+                      </HeartBox>
+                    </InnerTextBox>
+                  </InnerList>
+                ) : (
+                  <InnerList>
+                    <InnerMedals src={one} alt="" />
+                    <InnerTextBox></InnerTextBox>
+                  </InnerList>
+                )}
+                {rankList[1]?.likeCnt ? (
+                  <InnerList>
+                    <InnerImg
+                      src={rankList[1]?.firstimage || noimg}
+                      onClick={() =>
+                        navigate(`/restaurant/${rankList[1]?.contentid}`)
+                      }
+                    />
+                    <InnerMedals src={two} alt="" />
+                    <InnerTextBox>
+                      <p>{rankList[1]?.title}</p>
+                      <p>{rankList[1]?.overview.slice(0, 20)}...</p>
+                      <HeartBox>
+                        <p>heart</p>
+                        <p>{rankList[1]?.likeCnt}</p>
+                      </HeartBox>
+                    </InnerTextBox>
+                  </InnerList>
+                ) : (
+                  <InnerList>
+                    <InnerMedals src={two} alt="" />
+                    <InnerTextBox></InnerTextBox>
+                  </InnerList>
+                )}
+                {rankList[2]?.likeCnt ? (
+                  <InnerList>
+                    <InnerImg
+                      src={rankList[2]?.firstimage || noimg}
+                      onClick={() =>
+                        navigate(`/restaurant/${rankList[2]?.contentid}`)
+                      }
+                    />
+                    <InnerMedals src={three} alt="" />
+                    <InnerTextBox>
+                      <p>{rankList[2]?.title}</p>
+                      <p>{rankList[2]?.overview.slice(0, 20)}...</p>
+                      <HeartBox>
+                        <p>heart</p>
+                        <p>{rankList[2]?.likeCnt}</p>
+                      </HeartBox>
+                    </InnerTextBox>
+                  </InnerList>
+                ) : (
+                  <InnerList>
+                    <InnerMedals src={three} alt="" />
+                    <InnerTextBox></InnerTextBox>
+                  </InnerList>
+                )}
               </>
             ) : (
               <></>
@@ -116,14 +122,20 @@ const RestaurantMainTap = () => {
           </InnerDiv>
           <OuterDiv>
             {rankList.slice(3, 7).map((e, i) => {
-              if (!e.likeCnt) {
+              if (e.likeCnt > 0) {
                 return (
                   <OuterList>
                     <InnerNmb>{i + 4}</InnerNmb>
-                    <OuterImg src={e.firstimage} alt="" />
+                    <InnerImg src={e.firstimage} alt="" />
                     <OuterTextBox>
-                      <div>{e.title}</div>
-                      <p>{e.overview.slice(0, 20)}</p>
+                      <OuterTextBoxInnerBox>
+                        <p>{e.title}</p>
+                        <p>{e.overview.slice(0, 20)}</p>
+                        <HeartBox>
+                          <p>heart</p>
+                          <p>{e.likeCnt}</p>
+                        </HeartBox>
+                      </OuterTextBoxInnerBox>
                     </OuterTextBox>
                   </OuterList>
                 );
@@ -195,6 +207,7 @@ const InnerDiv = styled.div`
 `;
 
 const InnerList = styled.div`
+  position: relative;
   width: 22%;
   height: 300px;
   background-color: gray;
@@ -203,18 +216,24 @@ const InnerList = styled.div`
   overflow: hidden;
 `;
 
+const InnerImg = styled.img`
+  width: 230px;
+  height: 180px;
+  position: absolute;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    transition: all 0.35s;
+  }
+`;
+
 const InnerMedals = styled.img`
   width: 60px;
   margin-left: 8px;
 `;
 
-const InnerImg = styled.img`
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-`;
-
 const InnerTextBox = styled.div`
+  position: absolute;
   width: 100%;
   height: 120px;
   background-color: white;
@@ -242,16 +261,11 @@ const OuterList = styled.div`
   position: relative;
 `;
 
-const OuterImg = styled.img`
-  width: 200px;
-  height: 150px;
-  position: absolute;
-`;
-
 const OuterTextBox = styled.div`
   width: 100%;
-  height: 150px;
+  height: 110px;
   background-color: white;
+  position: absolute;
   margin-top: 170px;
 `;
 
@@ -267,4 +281,18 @@ const InnerNmb = styled.div`
   margin-left: 10px;
   border-radius: 10px;
   color: white;
+  z-index: 3;
+  font-weight: bold;
+`;
+
+const HeartBox = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+`;
+
+const OuterTextBoxInnerBox = styled.div`
+  margin-top: 10px;
+  margin-left: 10px;
 `;

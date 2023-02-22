@@ -92,6 +92,7 @@ const DetailPage = () => {
   return (
     <DetailWrap>
       <Container>
+        <Notification />
         {isLoadingSpot ? (
           <Loader />
         ) : (
@@ -149,9 +150,6 @@ const DetailPage = () => {
                 <CommunicationWrap id="4">
                   <Communication />
                 </CommunicationWrap>
-
-                <Notification />
-
                 {/* <div>{e.homepage}</div> */}
               </DeatilBox>
             ) : (
