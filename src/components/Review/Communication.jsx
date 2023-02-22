@@ -34,11 +34,12 @@ const Communication = () => {
 
   const handleLoadMore = () => {
     getReviews();
+    setLastReviewDate(null);
   };
 
   const handleMore = () => {
     setLastReviewDate(null);
-    getReviews();
+    getPlus();
   };
 
   // 화면이 처음 렌더링 할때 데이터를 가져옴
@@ -66,8 +67,33 @@ const Communication = () => {
       const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
       setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
     });
+
     return unsubscrible;
   };
+
+  const getPlus = async () => {
+    let q = query(usersCollectionRef, orderBy('date', 'asc'), limit(6));
+    if (lastReviewDate) {
+      q = query(
+        usersCollectionRef,
+        orderBy('date', 'asc'),
+        startAfter(lastReviewDate),
+        limit(6),
+      );
+    }
+    const unsubscrible = onSnapshot(q, (querySnapshot) => {
+      const newList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setReviews(newList);
+      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+      setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
+    });
+    return unsubscrible;
+  };
+
+  // 끝페이지로 갔을때 넘어가는 버튼을 안보여준다 || 다시 처음값을 받아와서 보여준다.
 
   //리뷰 등록
   const creatReview = async () => {
@@ -147,8 +173,23 @@ const Communication = () => {
       </ReviewBox>
 
       <ReviewBoxList>
-        <button onClick={handleLoadMore}>⬅️ </button>
-        <button onClick={handleMore}>ㅇㅇㅇ</button>
+        <button
+          style={{
+            position: 'absolute',
+            left: '30px',
+            top: '150px',
+            border: '1px solid red',
+          }}
+          onClick={handleLoadMore}
+        >
+          ⬅️
+        </button>
+        <button
+          style={{ position: 'absolute', right: '30px', top: '150px' }}
+          onClick={handleMore}
+        >
+          ➡️
+        </button>
 
         {reviews.map((review, i) => {
           if (review.paramId === params.id) {
@@ -254,13 +295,15 @@ const ReviewButton = styled.button`
 
 const ReviewBoxList = styled.div`
   display: flex;
+  position: relative;
+
   /* width: 1146.11px; */
   /* height: 327px; */
   height: 100%;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* border: 1px solid blue; */
   /* display: flex;
   align-items: center;
