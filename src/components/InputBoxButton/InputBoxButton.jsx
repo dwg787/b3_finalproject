@@ -18,13 +18,13 @@ const WrapDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 800px;
+  width: 62%;
   height: 50px;
   background-color: rgba(255, 255, 255, 0.4);
   position: absolute;
   z-index: 3;
   border-radius: 25px;
-  margin-left: 250px;
+  margin-left: 20%;
   top: 20px;
 `;
 
