@@ -14,7 +14,7 @@ const MySpot = (propsData) => {
       query(collection(db, 'recommendation'), orderBy('viewCnt', 'desc')),
     );
 
-    console.log(MySpot);
+    // console.log(MySpot);
     const res = data.docs.map((doc) => {
       return {
         ...doc.data(),

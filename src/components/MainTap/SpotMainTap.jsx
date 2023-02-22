@@ -4,6 +4,7 @@ import one from '../../assets/one.png';
 import two from '../../assets/two.png';
 import three from '../../assets/three.png';
 import noimg from '../../assets/noimg.avif';
+import soban from '../../assets/soban.avif';
 
 const SpotMainTap = () => {
   return (
@@ -39,7 +40,17 @@ const SpotMainTap = () => {
             </OuterList>
             <OuterList>
               <InnerNmb>7</InnerNmb>
-              <OuterTextBox></OuterTextBox>
+              <InnerImg src={soban} alt="" />
+              <OuterTextBox>
+                <OuterTextBoxInnerBox>
+                  <p>title</p>
+                  <p>contents</p>
+                  <HeartBox>
+                    <p>heart</p>
+                    <p>heartnmb</p>
+                  </HeartBox>
+                </OuterTextBoxInnerBox>
+              </OuterTextBox>
             </OuterList>
             {/* {rankList.slice(3, 7).map((e, i) => {
               return (
@@ -82,7 +93,7 @@ const ContainerDiv = styled.div`
   background-color: white;
   position: absolute;
   z-index: 0;
-  margin-top: 1940px;
+  margin-top: 2600px;
 `;
 
 const WrapDiv = styled.div`
@@ -118,6 +129,12 @@ const InnerList = styled.div`
   border-radius: 20px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+`;
+
+const InnerImg = styled.img`
+  width: 230px;
+  height: 180px;
+  position: absolute;
 `;
 
 const InnerMedals = styled.img`
@@ -157,6 +174,7 @@ const OuterTextBox = styled.div`
   width: 100%;
   height: 110px;
   background-color: white;
+  position: absolute;
   margin-top: 170px;
 `;
 
@@ -172,4 +190,18 @@ const InnerNmb = styled.div`
   margin-left: 10px;
   border-radius: 10px;
   color: white;
+  z-index: 3;
+  font-weight: bold;
+`;
+
+const HeartBox = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+`;
+
+const OuterTextBoxInnerBox = styled.div`
+  margin-top: 10px;
+  margin-left: 10px;
 `;

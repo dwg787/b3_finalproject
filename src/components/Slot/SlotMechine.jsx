@@ -6,9 +6,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import random from '../../assets/random.avif';
-import { getSuggestedQuery } from '@testing-library/react';
 import _ from 'lodash';
 import sadari from '../../assets/sadari.mp3';
+import BlueFooter from '../Footer/BlueFooter';
+import Randomslot from '../../assets/Randomslot.png';
 //v1 슬롯머신
 
 const SlotMachine = () => {
@@ -29,15 +30,14 @@ const SlotMachine = () => {
     dots: false,
     lazyLoad: true, // 필요에 따라 또는 점진적으로 이미지를 로드하거나 구성 요소를 렌더링합니다.
     infinite: true, //무한으로돌것인가?
-    speed: 500, //1000 == 1s 슬라이드가 넘어가는 시간
-    slidesToShow: 4, //몇개를 보여줄것인가
+    speed: 750, //1000 == 1s 슬라이드가 넘어가는 시간
+    slidesToShow: 5, //몇개를 보여줄것인가
     slidesToScroll: 1, // 몇개를 넘길것인가
     autoplay: true, //1000 == 1s 자동으로 넘어가는 시간
-    autoplaySpeed: 500, //1000 == 1s
-    cssEase: 'ease',
+    autoplaySpeed: 750, //1000 == 1s
+    cssEase: 'linear',
+    arrows: false, // 아래 dost 네비게이션 안보이게 하기 (보이고 싶을 때는 true로 변경)
   };
-  // ================================================================================
-  //throttling
 
   let audio = new Audio(sadari);
   const start = () => {
@@ -132,109 +132,138 @@ const SlotMachine = () => {
   // const buttonClick = () => {}
   // console.log(currentSpots);
   return (
-    <ContainerDiv>
-      <MainSlider {...settings}>
-        <ImgDiv>
-          {currentSpots1 && (
-            <SlotImg1 src={currentSpots1.firstimage || noimg} alt="" />
+    <BigContainer>
+      <SlotTitleImg src={Randomslot} alt="" />
+      <ContainerDiv>
+        <SliderDiv>
+          <MainSlider {...settings}>
+            <ImgDiv>
+              {currentSpots1 && (
+                <SlotImg1 src={currentSpots1.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots2 && (
+                <SlotImg1 src={currentSpots2.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots3 && (
+                <SlotImg1 src={currentSpots3.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots4 && (
+                <SlotImg1 src={currentSpots4.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots5 && (
+                <SlotImg1 src={currentSpots5.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+            <ImgDiv>
+              {currentSpots6 && (
+                <SlotImg1 src={currentSpots6.firstimage || noimg} alt="" />
+              )}
+            </ImgDiv>
+          </MainSlider>
+        </SliderDiv>
+        <WrapDiv>
+          {currentSpots?.firstimage !== '' ? (
+            <ImageBox>
+              <SlotSmallImg src={random}></SlotSmallImg>
+              <SlotImg src={currentSpots?.firstimage} alt="" />
+              <SlotSmallImg src={random}></SlotSmallImg>
+            </ImageBox>
+          ) : (
+            <ImageBox>
+              <SlotSmallImg src={random}></SlotSmallImg>
+              <SlotImg src={noimg} alt="" />
+              <SlotSmallImg src={random}></SlotSmallImg>
+            </ImageBox>
           )}
-        </ImgDiv>
-        <ImgDiv>
-          {currentSpots2 && (
-            <SlotImg1 src={currentSpots2.firstimage || noimg} alt="" />
-          )}
-        </ImgDiv>
-        <ImgDiv>
-          {currentSpots3 && (
-            <SlotImg1 src={currentSpots3.firstimage || noimg} alt="" />
-          )}
-        </ImgDiv>
-        <ImgDiv>
-          {currentSpots4 && (
-            <SlotImg1 src={currentSpots4.firstimage || noimg} alt="" />
-          )}
-        </ImgDiv>
-        <ImgDiv>
-          {currentSpots5 && (
-            <SlotImg1 src={currentSpots5.firstimage || noimg} alt="" />
-          )}
-        </ImgDiv>
-        <ImgDiv>
-          {currentSpots6 && (
-            <SlotImg1 src={currentSpots6.firstimage || noimg} alt="" />
-          )}
-        </ImgDiv>
-      </MainSlider>
-      <WrapDiv>
-        {currentSpots?.firstimage !== '' ? (
-          <ImageBox>
-            <SlotImg src={currentSpots?.firstimage} alt="" />
-          </ImageBox>
-        ) : (
-          <ImageBox>
-            <SlotImg src={noimg} alt="" />
-          </ImageBox>
-        )}
-        <div>{currentSpots?.title}</div>
-        <SlotButton onClick={lolinghandler}>관광지 랜덤뽑기!</SlotButton>
-      </WrapDiv>
-    </ContainerDiv>
+          <div>{currentSpots?.title}</div>
+          <SlotButton onClick={lolinghandler}>관광지 랜덤뽑기!</SlotButton>
+        </WrapDiv>
+      </ContainerDiv>
+      <BlueFooter />
+    </BigContainer>
   );
 };
 
 export default SlotMachine;
+const BigContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+`;
 
 const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 65%;
-  border: 10px solid #6478ff;
+  height: 100%;
+  border: 1px solid #6478ff;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
-  margin-top: 100px;
   margin-bottom: 100px;
-  margin-left: 20%;
 `;
 
 const WrapDiv = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid #6478ff;
   width: 100%;
+  margin-top: 20px;
 `;
 
 const SlotImg = styled.img`
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
+`;
+
+const SlotSmallImg = styled.img`
+  width: 250px;
+  height: 250px;
+  border-radius: 150px;
 `;
 
 const ImageBox = styled.div`
   width: 90%;
+  gap: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #6478ff;
+
   margin: 20px 10px 20px 10px;
 `;
 
 const SlotImg1 = styled.img`
-  border: 1px solid #6478ff;
-  margin-top: 10px;
-  width: 200px;
+  width: 180px;
+  height: 180px;
+  margin-top: 40px;
+  border-radius: 100px;
+`;
+
+const SliderDiv = styled.div`
+  width: 100%;
   height: 200px;
 `;
 
-const MainSlider = styled(Slider)`
-  height: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
+const SlotTitleImg = styled.img`
+  margin-bottom: 20px;
 `;
+
+const MainSlider = styled(Slider)``;
 
 const ImgDiv = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 600px;
+  height: 300px;
 `;
 
 const SlotButton = styled.button`
@@ -247,4 +276,8 @@ const SlotButton = styled.button`
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
+  &:hover {
+    background-color: #6478ff;
+    color: white;
+  }
 `;
