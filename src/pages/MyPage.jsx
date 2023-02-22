@@ -156,9 +156,7 @@ const StMyListTab = styled.div`
 //마이페이지 내용 부분
 const StMyPageInfo = styled.div`
   width: 1232px;
-  /* height: 931.4px; */
 
-  /* height: 700px; */
   /* display: flex; */
   /* flex-direction: column; */
   /* justify-content: center; */
