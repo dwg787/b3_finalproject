@@ -52,7 +52,7 @@ const MyLikeList = () => {
       const TargetBookmark = restaurant.bookmarks.find(
         (e) => e.contentid === targetId,
       );
-      console.log('타겟 북마크', TargetBookmark);
+      // console.log('타겟 북마크', TargetBookmark);
       await updateDoc(docRef, {
         bookmarks: arrayRemove(TargetBookmark),
         contentid: arrayRemove(targetId),

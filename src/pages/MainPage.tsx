@@ -57,21 +57,21 @@ const MainPage = () => {
       ) : selectedMenu === '관광지' ? (
         <>
           <SpotSelectionResult />
-          <BlackFooter />
           <SpotMainTap />
+          <BlackFooter />
         </>
       ) : // <SelectionResult />
       selectedMenu === '숙박' ? (
         <>
           <StaySelectionResult />
-          <BlackFooter />
           <StayMainTap />
+          <BlackFooter />
         </>
       ) : selectedMenu === '음식점' ? (
         <>
           <RestaurantSelectionResult />
-          <BlackFooter />
           <RestaurantMainTap />
+          <BlackFooter />
         </>
       ) : (
         <>
