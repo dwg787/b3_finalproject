@@ -128,7 +128,7 @@ const MyLikeList = () => {
                         <StTicketCard key={data.contentid}>
                           <StTicketCardLeft>
                             <StTicketHeader>
-                              <StCartMenu>음식점</StCartMenu>
+                              <StCartMenu>맛집</StCartMenu>
                             </StTicketHeader>
                             <StMyTicketImage
                               src={data.img || noimg}
@@ -181,7 +181,7 @@ const MyLikeList = () => {
                           <StTicketCard key={data.contentid}>
                             <StTicketCardLeft>
                               <StTicketHeader>
-                                <StCartMenu>관광지</StCartMenu>
+                                <StCartMenu>관광</StCartMenu>
                               </StTicketHeader>
 
                               <StMyTicketImage
@@ -276,6 +276,7 @@ const StTicketCardLeft = styled.div`
   height: 172.54px;
   box-sizing: border-box;
   border-radius: 5px;
+  position: relative;
 `;
 
 const StTicketCardRight = styled.div`
@@ -326,20 +327,24 @@ const StCartMenu = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 14px;
-  font-weight: bold;
-  width: 50px;
-  height: 24px;
-  border-radius: 30px;
-  background-color: rgba(207, 171, 228, 0.4);
-  margin: 5px;
+  font-size: 15.75px;
+  line-height: 14.1px;
+  font-weight: 500;
+  width: 62px;
+  height: 33.54px;
+  border-radius: 239.36px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 17.89px 18.58px 0 0;
 `;
 
 const StTicketHeader = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: right;
   position: absolute;
-  z-index: 100;
+  /* z-index: 100; */
+  width: 254px;
+  height: 172.54px;
 `;
 
 const StTicketHeader2 = styled.div`
