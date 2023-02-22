@@ -127,8 +127,8 @@ const MyLikeList = () => {
 
                         <StCartTitle>
                           {data.restaurant.split('[', 1)}
-                          {data.addr1}
                         </StCartTitle>
+                        <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
                       </StTicketCardRight>
                     </StTicketCard>
                   );
@@ -220,7 +220,8 @@ const StTicketCard = styled.div`
   display: flex;
   flex-direction: row;
   background-size: contain;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15); */
+  box-shadow: 3px 3px 5px grey;
 `;
 
 const StTicketCardLeft = styled.div`
@@ -235,7 +236,7 @@ const StTicketCardRight = styled.div`
   height: 172.54px;
   box-sizing: border-box;
   border-radius: 5px;
-  /* flex-direction: column; */
+  flex-direction: column;
   display: flex;
   /* justify-content: center; */
   position: relative;
@@ -248,7 +249,7 @@ const StMyTicketImage = styled.img`
   border-radius: 11.41px;
   cursor: pointer;
   display: flex;
-  box-shadow: 5px 5px 10px grey;
+  /* box-shadow: 5px 5px 10px grey; */
 `;
 
 const StCartTitle = styled.span`
@@ -256,10 +257,20 @@ const StCartTitle = styled.span`
   color: #4d4d4d;
   font-weight: 900;
   z-index: 100;
-  text-align: center;
+  /* text-align: center; */
   font-size: 19.7px;
   line-height: 18.4px;
-  margin: 22.15px 0 0 30.42px;
+  margin: 22.15px 0 11.21px 30.42px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const StCartTitleAdd = styled(StCartTitle)`
+  /* color: teal; */
+  margin: 0 31.01px 0 30.42px;
+  font-size: 15.44px;
+  line-height: 24.8px;
 `;
 
 const StCartMenu = styled.div`
