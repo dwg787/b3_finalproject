@@ -10,17 +10,17 @@ import { useEffect, useState } from 'react';
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
 
-  // const [likeData, setLikeData] = useState<DocumentData | undefined>();
-  // const spotRecommendationList = async () => {
-  //   const fbdata = await getDoc(doc(db, 'spot_recommendation', `${props.id}`));
-  //   if (fbdata) {
-  //     setLikeData(fbdata.data());
-  //   }
-  // };
+  const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  const spotRecommendationList = async () => {
+    const fbdata = await getDoc(doc(db, 'spot_recommendation', `${props.id}`));
+    if (fbdata) {
+      setLikeData(fbdata.data());
+    }
+  };
 
-  // useEffect(() => {
-  //   spotRecommendationList();
-  // }, []);
+  useEffect(() => {
+    spotRecommendationList();
+  }, []);
 
   return (
     <SpotEachItemWrapper>
@@ -45,7 +45,8 @@ const SpotDetail = (props: FetchedStayDataType) => {
         <LikeBox>
           <LikeImg src={TapHeart} alt="" />
           {/* <LikeText>{likeData ? likeData.likeCnt.length : 0}</LikeText> */}
-          <LikeText>0</LikeText>
+          {/* <LikeText>0</LikeText> */}
+          <LikeText>{likeData !== undefined ? likeData.likeCnt : 0}</LikeText>
         </LikeBox>
       </MyCildTextBox>
     </SpotEachItemWrapper>

@@ -17,6 +17,8 @@ import LikeRed from '../../assets/LikeRed.avif';
 const MyLikeList = () => {
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState([]);
+
+  // const uid = auth.currentUser.uid;
   const uid = sessionStorage.getItem('uid');
 
   //페이지네이션
@@ -39,9 +41,9 @@ const MyLikeList = () => {
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
   const delResLiked = async (targetId) => {
-    console.log('삭제버튼 누른 타겟', targetId);
+    // console.log('삭제버튼 누른 타겟', targetId);
     if (restaurant) {
-      console.log('내 북마크 정보', restaurant);
+      // console.log('내 북마크 정보', restaurant);
       const docRef = doc(db, 'bookmarks', uid);
       // console.log('docRef의 인덱스', docRef.data());
       const restaurantDocRef = doc(db, 'restaurant_recommendation', targetId);
@@ -88,7 +90,7 @@ const MyLikeList = () => {
               restaurant?.bookmarks
                 ?.slice(items * (page - 1), items * (page - 1) + items)
                 .map((data) => {
-                  console.log('jsx에서 받은 데이터', data);
+                  // console.log('jsx에서 받은 데이터', data);
                   switch (data.contenttypeid) {
                     case '39':
                       return (

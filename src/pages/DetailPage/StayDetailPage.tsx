@@ -14,7 +14,8 @@ import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
-import RestaurantLiked from '../../components/Liked/RestaurantLiked';
+// import RestaurantLiked from '../../components/Liked/RestaurantLiked';
+import StayLiked from '../../components/Liked/StayLiked';
 import noimg from '../../assets/noimg.avif';
 import useNotification from '../../hooks/useNotification';
 
@@ -64,7 +65,7 @@ const StayDetailPage = () => {
     fetchStayAdditionalInfo1({ param }),
   );
 
-  console.log('숙박 상세 소개', stayAdditionalData1);
+  // console.log('숙박 상세 소개', stayAdditionalData1);
 
   //숙박 상세페이지 추가 구현할때? 사용할 부분
   // const {
@@ -101,6 +102,8 @@ const StayDetailPage = () => {
       await setDoc(doc(db, 'stay_recommendation', param.id), {
         ...stayDetailData,
         viewCnt: 1,
+        likeCnt: 0,
+        // likeCnt: [],
       });
     }
   };
@@ -116,7 +119,7 @@ const StayDetailPage = () => {
     };
     getFirestoreRecCnt();
   }, [stayDetailData]);
-  console.log('숙박 상세정보', stayDetailData);
+  // console.log('숙박 상세정보', stayDetailData);
 
   //예약하기 url뽑기(common파일로 정리?필요)
   const reservationurl = stayAdditionalData1?.reservationurl ?? '';
@@ -153,10 +156,7 @@ const StayDetailPage = () => {
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    <RestaurantLiked
-                      stayDetailData={stayDetailData}
-                      stayParamId={param.id}
-                    />
+                    <StayLiked stayDetailData={stayDetailData} />
 
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
