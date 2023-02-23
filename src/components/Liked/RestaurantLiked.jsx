@@ -142,7 +142,9 @@ export default function RestaurantLiked({
   return (
     <div>
       {isLoading ? (
-        <></>
+        <HeartBtn onClick={handleLiked} disabled={true}>
+          {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+        </HeartBtn>
       ) : (
         <HeartBtn onClick={handleLiked}>
           {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
