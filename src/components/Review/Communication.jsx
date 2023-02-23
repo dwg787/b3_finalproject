@@ -63,7 +63,7 @@ const Communication = () => {
         id: doc.id,
         ...doc.data(),
       }));
-      setReviews(newList);
+      setReviews(() => [...newList]);
       const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
       setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
     });
@@ -72,11 +72,11 @@ const Communication = () => {
   };
 
   const getPlus = async () => {
-    let q = query(usersCollectionRef, orderBy('date', 'asc'), limit(6));
+    let q = query(usersCollectionRef, orderBy('date'), limit(6));
     if (lastReviewDate) {
       q = query(
         usersCollectionRef,
-        orderBy('date', 'asc'),
+        orderBy('date'),
         startAfter(lastReviewDate),
         limit(6),
       );
@@ -86,7 +86,7 @@ const Communication = () => {
         id: doc.id,
         ...doc.data(),
       }));
-      setReviews(newList);
+      setReviews([...newList]);
       const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
       setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
     });
@@ -175,7 +175,6 @@ const Communication = () => {
             position: 'absolute',
             left: '30px',
             top: '150px',
-            border: '1px solid red',
           }}
           onClick={handleLoadMore}
         >
