@@ -129,7 +129,7 @@ export default function Chat() {
     {
       id: '26',
       message:
-        '문제점 <{previousValue}>가 개발팀으로 전달되었습니다! 빠른시일내로 조치드리겠습니다! 감사합니다!',
+        '문제점 <${previousValue}>가 개발팀으로 전달되었습니다! 빠른시일내로 조치드리겠습니다! 감사합니다!',
       trigger: '12',
     },
     {
