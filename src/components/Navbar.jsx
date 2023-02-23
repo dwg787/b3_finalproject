@@ -85,6 +85,7 @@ const Navbar = () => {
     setProfileImage(user.data.properties.profile_image);
     localStorage.setItem('id', user.data.properties.nickname);
     localStorage.setItem('uid', user.data.id);
+    sessionStorage.setItem('uid', user.data.id);
   };
   // console.log(nickName, profileImage);
 
@@ -164,6 +165,7 @@ const Navbar = () => {
         setUserName(username);
         window.localStorage.setItem('id', username);
         window.localStorage.setItem('uid', naverLogin.user.id);
+        window.sessionStorage.setItem('uid', naverLogin.user.id);
       }
     });
   };

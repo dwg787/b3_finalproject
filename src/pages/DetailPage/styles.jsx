@@ -169,6 +169,10 @@ const DetailInfo = styled.span`
 const DetailInfo2 = styled.div`
   width: 87.52%;
   padding: 0px 0px 27.98px 0px;
+  flex-wrap: wrap;
+  /* font-size: 15.42px; */
+  font-size: 0.8031vw;
+  font-weight: normal;
 `;
 
 const DetailInfoAdd = styled.div`

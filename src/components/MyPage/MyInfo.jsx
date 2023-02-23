@@ -58,14 +58,17 @@ export default function MyInfo() {
   };
 
   const handleDeleteAccount = async () => {
-    console.log('회원탈퇴 완료');
-    if (auth.currentUser) {
-      await deleteUser(auth.currentUser)
-        .then(() => alert('성공적으로 탈퇴하였습니다!'))
-        .catch((error) => console.log(error));
-      localStorage.removeItem('id');
-      localStorage.removeItem('email');
-      navigate('/', { replace: true });
+    const confirmDelete = window.confirm('정말 탈퇴하시겠습니까?');
+    if (confirmDelete) {
+      console.log('회원탈퇴 완료');
+      if (auth.currentUser) {
+        await deleteUser(auth.currentUser)
+          .then(() => alert('성공적으로 탈퇴하였습니다!'))
+          .catch((error) => console.log(error));
+        localStorage.removeItem('id');
+        localStorage.removeItem('email');
+        navigate('/', { replace: true });
+      }
     }
   };
 

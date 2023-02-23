@@ -4,18 +4,19 @@ import {
   query,
   onSnapshot,
   orderBy,
-  limit,
-  startAfter,
-  getDocs,
 } from 'firebase/firestore';
 
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
 import styled from 'styled-components';
 import ReviewSlider from './ReviewSlider';
+import Pagination from 'react-js-pagination';
 
 const Communication = () => {
   const [newReview, setNewReview] = useState('');
@@ -26,82 +27,42 @@ const Communication = () => {
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
-  const [lastReviewDate, setLastReviewDate] = useState(null);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [totalReviewCount, setTotalReviewCount] = useState(0);
   //useparams 를 사용하여 id 값을 파이어베이스로 보낸후
   //파이어베이스에서 데이터를 가져올 때 useparams의 값이 같은 것만
   //map을 돌려서 return 해준다!
 
-  const handleLoadMore = () => {
-    getReviews();
-    setLastReviewDate(null);
-  };
-
-  const handleMore = () => {
-    setLastReviewDate(null);
-    getPlus();
-  };
-
   // 화면이 처음 렌더링 할때 데이터를 가져옴
-
   useEffect(() => {
+    const getReviews = async () => {
+      const q = query(usersCollectionRef, orderBy('date', 'desc'));
+      const unsubscrible = onSnapshot(q, (querySnapshot) => {
+        const newList = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        const filteredList = newList.filter(
+          (review) => review.paramId === params.id,
+        );
+        setReviews(filteredList);
+        setTotalReviewCount(filteredList.length);
+      });
+      return unsubscrible;
+    };
     getReviews();
   }, []);
 
-  const getReviews = async () => {
-    let q = query(usersCollectionRef, orderBy('date', 'desc'), limit(6));
-    if (lastReviewDate) {
-      q = query(
-        usersCollectionRef,
-        orderBy('date', 'desc'),
-        startAfter(lastReviewDate),
-        limit(6),
-      );
-    }
-    const unsubscrible = onSnapshot(q, (querySnapshot) => {
-      const newList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setReviews(newList);
-      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
-      setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
-    });
-
-    return unsubscrible;
-  };
-
-  const getPlus = async () => {
-    let q = query(usersCollectionRef, orderBy('date', 'asc'), limit(6));
-    if (lastReviewDate) {
-      q = query(
-        usersCollectionRef,
-        orderBy('date', 'asc'),
-        startAfter(lastReviewDate),
-        limit(6),
-      );
-    }
-    const unsubscrible = onSnapshot(q, (querySnapshot) => {
-      const newList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setReviews(newList);
-      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
-      setLastReviewDate(lastDoc.data().date); // 마지막 리뷰의 날짜를 저장
-    });
-    return unsubscrible;
-  };
-
-  // 끝페이지로 갔을때 넘어가는 버튼을 안보여준다 || 다시 처음값을 받아와서 보여준다.
-
-  //리뷰 등록
-  const creatReview = async () => {
+  const creatReview = async (event) => {
     const Kakaologinid = localStorage.getItem('uid');
     const Naverloginid = localStorage.getItem('uid');
     const loginUser = auth.currentUser;
-
-    if (loginUser) {
+    const inputValue = event.target.value;
+    if (!newReview || newReview.length === 0) {
+      // 추가된 부분: newReview 값이 비어있을 때
+      alert('리뷰를 입력해주세요.');
+    } else if (loginUser) {
       const addRev = await addDoc(usersCollectionRef, {
         review: newReview,
         uid: loginUser?.uid,
@@ -140,76 +101,149 @@ const Communication = () => {
     }
   };
 
+  // const creatReview = async (event) => {
+  //   const Kakaologinid = localStorage.getItem('uid');
+  //   const Naverloginid = localStorage.getItem('uid');
+  //   const loginUser = auth.currentUser;
+  //   // const inputValue = event.target.value;
+
+  //   if (loginUser || Kakaologinid || Naverloginid) {
+  //     if (!newReview || newReview.length == 0) {
+  //       alert('댓글을 적어 주세요');
+  //     } else {
+  //       const addRev = await addDoc(usersCollectionRef, {
+  //         review: newReview,
+  //         uid: loginUser?.uid || localStorage.getItem('uid'),
+  //         email: loginUser?.email,
+  //         displayName: localStorage.getItem('id', loginUser?.displayName),
+  //         paramId: params.id,
+  //         date: Date.now(),
+  //       });
+  //       setNewReview('');
+  //       setAlarmMsg('리뷰가 등록되었습니다.');
+  //       addNoti();
+  //     }
+  //   } else {
+  //     alert('로그인 해주세요');
+  //   }
+  // };
+
   return (
-    <ReviewContainer>
-      {/* <DetailInfoText>여행톡</DetailInfoText> */}
-      <ReviewBox>
-        <ReviewLabel htmlFor="review">후기작성</ReviewLabel>
-        <InputAndBtnWrap>
-          <ReviewInput
-            type="text"
-            id="review"
-            value={newReview}
-            placeholder="리뷰를 입력하세요."
-            onChange={(event) => {
-              setNewReview(event.target.value);
-            }}
-          />
+    <ReviewContainerWrap>
+      <ReviewContainer>
+        {/* <DetailInfoText>여행톡</DetailInfoText> */}
+        <ReviewBox>
+          <ReviewLabel for="review">후기작성</ReviewLabel>
+          <InputAndBtnWrap>
+            <ReviewInput
+              type="text"
+              id="review"
+              value={newReview}
+              placeholder="리뷰를 입력하세요."
+              onChange={(event) => {
+                setNewReview(event.target.value);
+              }}
+            />
 
-          <ReviewButton
-            onClick={() => {
-              setAlarmMsg('리뷰가 등록되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
-              addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
-              creatReview();
-            }}
-          >
-            등록
-          </ReviewButton>
-          <BottomLine />
-        </InputAndBtnWrap>
-      </ReviewBox>
+            <ReviewButton
+              onClick={(event) => {
+                // setAlarmMsg('리뷰가 등록되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+                // addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
+                creatReview(event);
+              }}
+            >
+              등록
+            </ReviewButton>
+            <BottomLine />
+          </InputAndBtnWrap>
+        </ReviewBox>
 
-      <ReviewBoxList>
-        <button
-          style={{
-            position: 'absolute',
-            left: '30px',
-            top: '150px',
-            border: '1px solid red',
-          }}
-          onClick={handleLoadMore}
-        >
-          ⬅️
-        </button>
-        <button
-          style={{ position: 'absolute', right: '30px', top: '150px' }}
-          onClick={handleMore}
-        >
-          ➡️
-        </button>
-
-        {reviews.map((review, i) => {
-          if (review.paramId === params.id) {
-            return (
-              <>
-                <ReviewList
-                  reviews={reviews}
-                  setReviews={setReviews}
-                  review={review}
-                  i={i}
-                  uid={localStorage.getItem('id')}
-                  handleLoadMore={handleLoadMore}
-                />
-              </>
-            );
-          }
-        })}
-      </ReviewBoxList>
-    </ReviewContainer>
+        <ReviewBoxList>
+          {/* {restaurant &&
+              restaurant?.bookmarks
+                ?.slice(items * (page - 1), items * (page - 1) + items) */}
+          {reviews
+            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+            .map((review, i) => {
+              if (review.paramId === params.id) {
+                return (
+                  <ReviewList
+                    reviews={reviews}
+                    setReviews={setReviews}
+                    review={review}
+                    i={i}
+                  />
+                );
+              }
+            })}
+        </ReviewBoxList>
+      </ReviewContainer>
+      <PaginationBox>
+        <Pagination
+          activePage={currentPage}
+          itemsCountPerPage={itemsPerPage}
+          totalItemsCount={totalReviewCount}
+          pageRangeDisplayed={5}
+          onChange={setCurrentPage}
+          hideDisabled={true}
+          hideNavigation={true}
+          hideFirstLastPages={true}
+        />
+      </PaginationBox>
+    </ReviewContainerWrap>
   );
 };
 
 export default Communication;
+
+const ReviewContainerWrap = styled.div`
+  border: 1.00654px solid #9eabff;
+  width: 1146.11px;
+  height: 576.41px;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* border: 1.00654px solid #9eabff; */
+  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18);
+  border-radius: 13.4205px;
+  /* border: 1px solid red; */
+`;
+
+const PaginationBox = styled.div`
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 41.63px 0 49.15px 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul.pagination li {
+    display: inline-block;
+    width: 9px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14.34px;
+    margin: 6.6px;
+  }
+  ul.pagination li a {
+    text-decoration: none;
+    color: #909090;
+    font-size: 1rem;
+  }
+  ul.pagination li.active a {
+    color: #6478ff;
+  }
+  ul.pagination li a:hover,
+  ul.pagination li a.active {
+    color: #6478ff;
+  }
+`;
 
 const BottomLine = styled.div`
   width: 95%;
@@ -223,8 +257,8 @@ const ReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  border: 1.00654px solid #9eabff;
-  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18);
+  /* border: 1.00654px solid #9eabff; */
+  /* box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18); */
   border-radius: 13.4205px;
   /* border: 1px solid red; */
 `;
@@ -292,15 +326,13 @@ const ReviewButton = styled.button`
 
 const ReviewBoxList = styled.div`
   display: flex;
-  position: relative;
-
   /* width: 1146.11px; */
   /* height: 327px; */
   height: 100%;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  /* overflow: hidden; */
+  overflow: hidden;
   /* border: 1px solid blue; */
   /* display: flex;
   align-items: center;

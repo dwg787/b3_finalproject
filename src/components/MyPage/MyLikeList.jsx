@@ -304,7 +304,7 @@ const StCartTitle = styled.span`
   /* text-align: center; */
   font-size: 19.7px;
   line-height: 18.4px;
-  margin: 22.15px 0 11.21px 30.42px;
+  margin: 22.15px 31.01px 11.21px 30.42px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -328,7 +328,7 @@ const StCartMenu = styled.div`
   width: 62px;
   height: 33.54px;
   border-radius: 239.36px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(77, 77, 77, 0.56);
   margin: 17.89px 18.58px 0 0;
 `;
 

@@ -32,6 +32,7 @@ import {
   DetailInformationMap,
   DetailInfoAdd,
   TabHr,
+  DetailInfo2,
 } from './styles';
 // import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import SpotLiked from '../../components/Liked/SpotLiked';
@@ -127,10 +128,10 @@ const DetailPage = () => {
 
                   <DetailInfo>{spotData.overview.split('<', 1)}</DetailInfo>
 
-                  <DetailInfoAdd>
+                  <DetailInfo2>
                     <span style={{ fontWeight: '700' }}>주소 : </span>
                     {spotData.addr1}
-                  </DetailInfoAdd>
+                  </DetailInfo2>
                 </DetailInformation>
 
                 <DetailInformationMap id="3">
