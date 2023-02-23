@@ -7,6 +7,7 @@ import one from '../../assets/one.png';
 import two from '../../assets/two.png';
 import three from '../../assets/three.png';
 import noimg from '../../assets/noimg.avif';
+import redheart from '../../assets/redheart.avif';
 
 const RestaurantMainTap = () => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const RestaurantMainTap = () => {
                       <p>{rankList[0]?.title}</p>
                       <p>{rankList[0]?.overview.slice(0, 20)}...</p>
                       <HeartBox>
-                        <p>heart</p>
+                        <HeartImg src={redheart} />
                         <p>{rankList[0]?.likeCnt}</p>
                       </HeartBox>
                     </InnerTextBox>
@@ -80,7 +81,7 @@ const RestaurantMainTap = () => {
                       <p>{rankList[1]?.title}</p>
                       <p>{rankList[1]?.overview.slice(0, 20)}...</p>
                       <HeartBox>
-                        <p>heart</p>
+                        <HeartImg src={redheart} />
                         <p>{rankList[1]?.likeCnt}</p>
                       </HeartBox>
                     </InnerTextBox>
@@ -104,7 +105,7 @@ const RestaurantMainTap = () => {
                       <p>{rankList[2]?.title}</p>
                       <p>{rankList[2]?.overview.slice(0, 20)}...</p>
                       <HeartBox>
-                        <p>heart</p>
+                        <HeartImg src={redheart} />
                         <p>{rankList[2]?.likeCnt}</p>
                       </HeartBox>
                     </InnerTextBox>
@@ -132,7 +133,7 @@ const RestaurantMainTap = () => {
                         <p>{e.title}</p>
                         <p>{e.overview.slice(0, 20)}</p>
                         <HeartBox>
-                          <p>heart</p>
+                          <HeartImg src={redheart} />
                           <p>{e.likeCnt}</p>
                         </HeartBox>
                       </OuterTextBoxInnerBox>
@@ -296,4 +297,9 @@ const HeartBox = styled.div`
 const OuterTextBoxInnerBox = styled.div`
   margin-top: 10px;
   margin-left: 10px;
+`;
+
+const HeartImg = styled.img`
+  width: 24px;
+  height: 24px;
 `;
