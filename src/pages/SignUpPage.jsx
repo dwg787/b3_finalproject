@@ -69,15 +69,6 @@ const SignUpPage = () => {
     setPrivacyModalOpen(true);
   };
 
-  const [authObj, setAuthObj] = useState({
-    displayName: '',
-    name: '',
-    email: '',
-    password: '',
-  });
-  const [dpNameCheck, setDpNameCheck] = useState(false);
-  const [checkError, setCheckError] = useState('');
-
   // 회원가입 완료
 
   const signup = async (e) => {
@@ -135,9 +126,6 @@ const SignUpPage = () => {
   //* 닉네임
   const onChangeNickName = (e) => {
     const currentNickName = e.target.value;
-    const {
-      target: { name, value },
-    } = e;
 
     setNickName(currentNickName);
 
