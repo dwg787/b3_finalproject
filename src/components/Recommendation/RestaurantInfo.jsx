@@ -81,10 +81,10 @@ export default function RestaurantInfo({
                       <MyCildTextBox>
                         <MyChildTexth3>{item.title}</MyChildTexth3>
                         <MyChildTextp> {item.addr1}</MyChildTextp>
-                        <LikeBox>
+                        {/* <LikeBox>
                           <RestaurantLiked restaurantData={restaurantData} />
                           <p>00</p>
-                        </LikeBox>
+                        </LikeBox> */}
                       </MyCildTextBox>
                     </MyChildList>
                   );
