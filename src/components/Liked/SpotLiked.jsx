@@ -24,14 +24,14 @@ import { useRecoilValue } from 'recoil';
 import { paramTransfer } from '../../recoil/apiDataAtoms';
 import { useParams } from 'react-router-dom';
 
-export default function RestaurantLiked({
+const SpotLiked = ({
   spotData,
   restaurantDetailData,
   stayDetailData,
   stayData,
   spotDetailData,
   restaurantData,
-}: UserProps): React.ReactElement {
+}: UserProps): React.ReactElement => {
   const param = useParams();
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
@@ -42,12 +42,12 @@ export default function RestaurantLiked({
   const uid = sessionStorage.getItem('uid');
 
   const combinedData = {
-    // ...spotData,
-    ...restaurantDetailData,
-    // ...stayDetailData,
-    // ...spotDetailData,
-    // ...stayData,
-    ...restaurantData,
+    ...spotData,
+    //   ...restaurantDetailData,
+    //   ...stayDetailData,
+    //   ...stayData,
+    ...spotDetailData,
+    //   ...restaurantData,
   };
 
   const fetchBookmarkData = async () => {
@@ -75,9 +75,7 @@ export default function RestaurantLiked({
   const handleLiked = async () => {
     // const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'bookmarks'), uid);
-    // const spotDocRef = doc(db, 'spot_recommendation', param.id);
-    // const stayDocRef = doc(db, 'stay_recommendation', param.id);
-    const restaurantDocRef = doc(db, 'restaurant_recommendation', param.id);
+    const spotDocRef = doc(db, 'spot_recommendation', param.id);
 
     if (isLiked) {
       setAlarmMsg('찜하기 추가!');
@@ -91,7 +89,7 @@ export default function RestaurantLiked({
             bookmarks: arrayRemove(TargetBookmark),
             contentid: arrayRemove(combinedData.contentid),
           });
-          updateDoc(restaurantDocRef, {
+          updateDoc(spotDocRef, {
             // likeCnt: arrayRemove(`${uid}`), //좋아요 한 사람 배열에서 제거
             likeCnt: increment(-1),
           });
@@ -115,7 +113,7 @@ export default function RestaurantLiked({
               }),
               contentid: arrayUnion(combinedData.contentid),
             });
-            updateDoc(restaurantDocRef, {
+            updateDoc(spotDocRef, {
               // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
               likeCnt: increment(1),
             });
@@ -132,7 +130,7 @@ export default function RestaurantLiked({
               }),
               contentid: arrayUnion(combinedData.contentid),
             });
-            updateDoc(restaurantDocRef, {
+            updateDoc(spotDocRef, {
               // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
               likeCnt: increment(1),
             });
@@ -166,7 +164,9 @@ export default function RestaurantLiked({
       )}
     </div>
   );
-}
+};
+
+export default SpotLiked;
 
 const HeartBtn = styled.button`
   border: none;

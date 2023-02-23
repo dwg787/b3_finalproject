@@ -32,8 +32,10 @@ import {
   DetailInformationMap,
   DetailInfoAdd,
   TabHr,
+  DetailInfo2,
 } from './styles';
-import RestaurantLiked from '../../components/Liked/RestaurantLiked';
+// import RestaurantLiked from '../../components/Liked/RestaurantLiked';
+import SpotLiked from '../../components/Liked/SpotLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
 import BlueFooter from '../../components/Footer/BlueFooter';
 
@@ -49,7 +51,7 @@ const DetailPage = () => {
 
   const getRecCnt = async () => {
     if (param.id) {
-      const data = await getDoc(doc(db, 'recommendation', `${param.id}`));
+      const data = await getDoc(doc(db, 'spot_recommendation', `${param.id}`));
       return data.data();
     } else {
       return;
@@ -58,7 +60,7 @@ const DetailPage = () => {
 
   const updateRecCnt = async () => {
     if (param.id) {
-      await updateDoc(doc(db, 'recommendation', param.id), {
+      await updateDoc(doc(db, 'spot_recommendation', param.id), {
         viewCnt: increment(1),
       });
     }
@@ -66,9 +68,11 @@ const DetailPage = () => {
 
   const saveNewRecCnt = async (spotData: FetchedStayDataType) => {
     if (param.id) {
-      await setDoc(doc(db, 'recommendation', param.id), {
+      await setDoc(doc(db, 'spot_recommendation', param.id), {
         ...spotData,
         viewCnt: 1,
+        likeCnt: 0,
+        // likeCnt: [],
       });
     }
   };
@@ -103,10 +107,7 @@ const DetailPage = () => {
                   <DetailText>{spotData.title}</DetailText>
                   <DetailTextArr> {spotData.addr1.split(' ', 2)}</DetailTextArr>
                   <DeatilImojiBox>
-                    <RestaurantLiked
-                      spotData={spotData}
-                      spotParamId={param.id}
-                    />
+                    <SpotLiked spotData={spotData} />
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
@@ -127,10 +128,10 @@ const DetailPage = () => {
 
                   <DetailInfo>{spotData.overview.split('<', 1)}</DetailInfo>
 
-                  <DetailInfoAdd>
+                  <DetailInfo2>
                     <span style={{ fontWeight: '700' }}>주소 : </span>
                     {spotData.addr1}
-                  </DetailInfoAdd>
+                  </DetailInfo2>
                 </DetailInformation>
 
                 <DetailInformationMap id="3">

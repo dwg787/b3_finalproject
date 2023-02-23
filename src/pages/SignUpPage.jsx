@@ -68,6 +68,7 @@ const SignUpPage = () => {
   const privacyshowModal = () => {
     setPrivacyModalOpen(true);
   };
+
   // 회원가입 완료
 
   const signup = async (e) => {

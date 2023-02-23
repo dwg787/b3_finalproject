@@ -18,7 +18,8 @@ const MyLikeList = () => {
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState([]);
 
-  const uid = auth.currentUser.uid;
+  // const uid = auth.currentUser.uid;
+  const uid = sessionStorage.getItem('uid');
 
   //페이지네이션
   const [data, setData] = useState([]);
@@ -40,9 +41,9 @@ const MyLikeList = () => {
 
   // 파이어베이스에 저장한 배열의 타이틀을 삭제해보자
   const delResLiked = async (targetId) => {
-    console.log('삭제버튼 누른 타겟', targetId);
+    // console.log('삭제버튼 누른 타겟', targetId);
     if (restaurant) {
-      console.log('내 북마크 정보', restaurant);
+      // console.log('내 북마크 정보', restaurant);
       const docRef = doc(db, 'bookmarks', uid);
       // console.log('docRef의 인덱스', docRef.data());
       const restaurantDocRef = doc(db, 'restaurant_recommendation', targetId);
@@ -89,7 +90,7 @@ const MyLikeList = () => {
               restaurant?.bookmarks
                 ?.slice(items * (page - 1), items * (page - 1) + items)
                 .map((data) => {
-                  console.log('jsx에서 받은 데이터', data);
+                  // console.log('jsx에서 받은 데이터', data);
                   switch (data.contenttypeid) {
                     case '39':
                       return (
@@ -303,7 +304,7 @@ const StCartTitle = styled.span`
   /* text-align: center; */
   font-size: 19.7px;
   line-height: 18.4px;
-  margin: 22.15px 0 11.21px 30.42px;
+  margin: 22.15px 31.01px 11.21px 30.42px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -327,7 +328,7 @@ const StCartMenu = styled.div`
   width: 62px;
   height: 33.54px;
   border-radius: 239.36px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(77, 77, 77, 0.56);
   margin: 17.89px 18.58px 0 0;
 `;
 

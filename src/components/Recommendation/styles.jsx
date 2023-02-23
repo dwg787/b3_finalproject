@@ -55,6 +55,10 @@ const MyChildTexth3 = styled.h3`
   margin-bottom: 9.19px;
   color: #333333;
   line-height: 18.4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 24.89px;
 `;
 
 const MyChildTextp = styled.p`
@@ -62,6 +66,10 @@ const MyChildTextp = styled.p`
   /* margin-top: 5px; */
   line-height: 19.4px;
   font-size: 14.58px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 24.89px;
 `;
 
 const LikeBox = styled.div`

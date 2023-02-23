@@ -10,17 +10,17 @@ import { useEffect, useState } from 'react';
 const StayDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
 
-  // const [likeData, setLikeData] = useState<DocumentData | undefined>();
-  // const stayRecommendationList = async () => {
-  //   const fbdata = await getDoc(doc(db, 'stay_recommendation', `${props.id}`));
-  //   if (fbdata) {
-  //     setLikeData(fbdata.data());
-  //   }
-  // };
+  const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  const stayRecommendationList = async () => {
+    const fbdata = await getDoc(doc(db, 'stay_recommendation', `${props.id}`));
+    if (fbdata) {
+      setLikeData(fbdata.data());
+    }
+  };
 
-  // useEffect(() => {
-  //   stayRecommendationList();
-  // }, []);
+  useEffect(() => {
+    stayRecommendationList();
+  }, []);
 
   return (
     <StayEachItemWrapper>
@@ -44,7 +44,8 @@ const StayDetail = (props: FetchedStayDataType) => {
         <LikeBox>
           <LikeImg src={TapHeart} alt="" />
           {/* <LikeText>{likeData ? likeData.likeCnt.length : 0}</LikeText> */}
-          <LikeText>0</LikeText>
+          {/* <LikeText>0</LikeText> */}
+          <LikeText>{likeData !== undefined ? likeData.likeCnt : 0}</LikeText>
         </LikeBox>
       </MyCildTextBox>
     </StayEachItemWrapper>

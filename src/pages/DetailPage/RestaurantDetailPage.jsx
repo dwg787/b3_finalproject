@@ -15,6 +15,7 @@ import {
   DetailInformationMap,
   TabHr,
   SideInfoWrapper,
+  DetailInfo2,
 } from './styles';
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
@@ -133,10 +134,10 @@ const RestaurantDetailPage = () => {
                     {restaurantDetailData.overview.split('.', 4)}
                   </DetailInfo>
 
-                  <DetailInfoAdd>
+                  <DetailInfo2>
                     <span style={{ fontWeight: '700' }}>주소 : </span>
                     {restaurantDetailData.addr1}
-                  </DetailInfoAdd>
+                  </DetailInfo2>
                 </DetailInformation>
 
                 <DetailInformationMap id="3">

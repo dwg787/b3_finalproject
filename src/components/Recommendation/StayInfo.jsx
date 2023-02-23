@@ -57,8 +57,8 @@ export default function StayInfo({
               <>
                 {stayData.slice(0, 4).map((item, i) => {
                   return (
-                    <MyChildList key={i}>
-                      <Link to={`/stay/${item.contentid}`}>
+                    <Link to={`/stay/${item.contentid}`}>
+                      <MyChildList key={i}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
@@ -79,17 +79,18 @@ export default function StayInfo({
                             loading="lazy"
                           />
                         </picture>
-                      </Link>
-                      <MyCildTextBox>
-                        <MyChildTexth3>{item.title}</MyChildTexth3>
-                        <MyChildTextp> {item.addr1}</MyChildTextp>
-                        {/* <LikeBox>
+
+                        <MyCildTextBox>
+                          <MyChildTexth3>{item.title}</MyChildTexth3>
+                          <MyChildTextp> {item.addr1}</MyChildTextp>
+                          {/* <LikeBox>
                           <RestaurantLiked stayData={stayData} />
 
                           <p>00</p>
                         </LikeBox> */}
-                      </MyCildTextBox>
-                    </MyChildList>
+                        </MyCildTextBox>
+                      </MyChildList>
+                    </Link>
                   );
                 })}
               </>
