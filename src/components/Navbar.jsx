@@ -46,7 +46,7 @@ const Navbar = () => {
   const [profileImage, setProfileImage] = useState();
   const [accessToken, setAccessToken] = useState();
   const [userName, setUserName] = useState('');
-  console.log(userName);
+  console.log('Navbar', userName);
   const { naver } = window;
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
   const NAVER_CALLBACK_URL = 'http://localhost:3000/';
