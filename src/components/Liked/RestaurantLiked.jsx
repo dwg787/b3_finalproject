@@ -63,12 +63,16 @@ export default function RestaurantLiked({
     const bookmarkData = async () => {
       setIsLoading(true);
       const res = await fetchBookmarkData();
-      const confirmval = res.contentid.includes(param.id);
+      const confirmval = res?.contentid.includes(param.id);
       setIsLiked(confirmval);
       setIsLoading(false);
     };
     bookmarkData();
+    // if (!isLoading) {
+    // }
   }, []);
+
+  // console.log('로딩상태', isLoading);
 
   const handleLiked = async () => {
     const uid = auth.currentUser.uid;
@@ -144,6 +148,9 @@ export default function RestaurantLiked({
       {isLoading ? (
         <></>
       ) : (
+        // <HeartBtn onClick={handleLiked} disabled={true}>
+        //   {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+        // </HeartBtn>
         <HeartBtn onClick={handleLiked}>
           {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
         </HeartBtn>

@@ -26,12 +26,7 @@ const MyLikeList = () => {
   const [items, setItems] = useState(6);
 
   const getRestaurantLiked = async () => {
-    // const q = query(collection(db, 'bookmarks'), uid);
     const myBookmarkData = await getDoc(doc(db, 'bookmarks', uid));
-    // const newData = data.docs.map((doc) => ({
-    //   ...doc.data(),
-    // }));
-    // console.log('파베 북마크 데이터', myBookmarkData.data());
     if (myBookmarkData) {
       setRestaurant(myBookmarkData.data());
       setData(myBookmarkData.data());
