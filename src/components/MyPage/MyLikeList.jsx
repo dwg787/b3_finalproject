@@ -17,8 +17,7 @@ import LikeRed from '../../assets/LikeRed.avif';
 const MyLikeList = () => {
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState([]);
-
-  const uid = auth.currentUser.uid;
+  const uid = sessionStorage.getItem('uid');
 
   //페이지네이션
   const [data, setData] = useState([]);
