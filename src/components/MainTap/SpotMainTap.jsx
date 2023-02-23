@@ -1,69 +1,155 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { getDocs, query, collection, orderBy } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../../apis/firebase';
 import styled from 'styled-components';
 import one from '../../assets/one.png';
 import two from '../../assets/two.png';
 import three from '../../assets/three.png';
 import noimg from '../../assets/noimg.avif';
-import soban from '../../assets/soban.avif';
+import redheart from '../../assets/redheart.avif';
 
 const SpotMainTap = () => {
+  const navigate = useNavigate();
+  const [rankList, setRankList] = useState([]);
+  const spotRankList = async () => {
+    const data = await getDocs(
+      query(collection(db, 'spot_recommendation'), orderBy('likeCnt', 'desc')),
+    );
+    const res = data.docs.map((doc) => {
+      return {
+        ...doc.data(),
+      };
+    });
+    return res;
+  };
+
+  useEffect(() => {
+    const fetchSpotRankList = async () => {
+      const res = await spotRankList();
+      setRankList(res);
+    };
+    fetchSpotRankList();
+  }, []);
+
   return (
     <ContainerDiv>
       <ColorDiov>
         <WrapDiv>
           <InnerDiv>
-            <InnerList>
-              <InnerMedals src={one} alt="" />
-              <InnerTextBox></InnerTextBox>
-            </InnerList>
-            <InnerList>
-              <InnerMedals src={two} alt="" />
-              <InnerTextBox></InnerTextBox>
-            </InnerList>
-            <InnerList>
-              <InnerMedals src={three} alt="" />
-              <InnerTextBox></InnerTextBox>
-            </InnerList>
+            {rankList ? (
+              <>
+                {rankList[0]?.likeCnt ? (
+                  <InnerList>
+                    <InnerImg
+                      src={rankList[0]?.firstimage || noimg}
+                      onClick={() =>
+                        navigate(`/spot/${rankList[0]?.contentid}`)
+                      }
+                    />
+                    <InnerMedals src={one} alt="" />
+                    <InnerTextBox>
+                      <MedalText>{rankList[0]?.title}</MedalText>
+                      <MedalSubText>
+                        {rankList[0]?.overview.slice(0, 20)}...
+                      </MedalSubText>
+                      <MedalHeartBox>
+                        <HeartImg src={redheart} />
+                        <p>{rankList[0]?.likeCnt}</p>
+                      </MedalHeartBox>
+                    </InnerTextBox>
+                  </InnerList>
+                ) : (
+                  <InnerList>
+                    <InnerMedals src={one} alt="" />
+                    <InnerTextBox></InnerTextBox>
+                  </InnerList>
+                )}
+                {rankList[1]?.likeCnt ? (
+                  <InnerList>
+                    <InnerImg
+                      src={rankList[1]?.firstimage || noimg}
+                      onClick={() =>
+                        navigate(`/spot/${rankList[1]?.contentid}`)
+                      }
+                    />
+                    <InnerMedals src={two} alt="" />
+                    <InnerTextBox>
+                      <MedalText>{rankList[1]?.title}</MedalText>
+                      <MedalSubText>
+                        {rankList[1]?.overview.slice(0, 20)}...
+                      </MedalSubText>
+                      <MedalHeartBox>
+                        <HeartImg src={redheart} />
+                        <p>{rankList[1]?.likeCnt}</p>
+                      </MedalHeartBox>
+                    </InnerTextBox>
+                  </InnerList>
+                ) : (
+                  <InnerList>
+                    <InnerMedals src={two} alt="" />
+                    <InnerTextBox></InnerTextBox>
+                  </InnerList>
+                )}
+                {rankList[2]?.likeCnt ? (
+                  <InnerList>
+                    <InnerImg
+                      src={rankList[2]?.firstimage || noimg}
+                      onClick={() =>
+                        navigate(`/spot/${rankList[2]?.contentid}`)
+                      }
+                    />
+                    <InnerMedals src={three} alt="" />
+                    <InnerTextBox>
+                      <MedalText>{rankList[2]?.title}</MedalText>
+                      <MedalSubText>
+                        {rankList[2]?.overview.slice(0, 20)}...
+                      </MedalSubText>
+                      <MedalHeartBox>
+                        <HeartImg src={redheart} />
+                        <p>{rankList[2]?.likeCnt}</p>
+                      </MedalHeartBox>
+                    </InnerTextBox>
+                  </InnerList>
+                ) : (
+                  <InnerList>
+                    <InnerMedals src={three} alt="" />
+                    <InnerTextBox></InnerTextBox>
+                  </InnerList>
+                )}
+              </>
+            ) : (
+              <></>
+            )}
           </InnerDiv>
           <OuterDiv>
-            <OuterList>
-              <InnerNmb>4</InnerNmb>
-              <OuterTextBox></OuterTextBox>
-            </OuterList>
-            <OuterList>
-              <InnerNmb>5</InnerNmb>
-              <OuterTextBox></OuterTextBox>
-            </OuterList>
-            <OuterList>
-              <InnerNmb>6</InnerNmb>
-              <OuterTextBox></OuterTextBox>
-            </OuterList>
-            <OuterList>
-              <InnerNmb>7</InnerNmb>
-              <InnerImg src={soban} alt="" />
-              <OuterTextBox>
-                <OuterTextBoxInnerBox>
-                  <p>title</p>
-                  <p>contents</p>
-                  <HeartBox>
-                    <p>heart</p>
-                    <p>heartnmb</p>
-                  </HeartBox>
-                </OuterTextBoxInnerBox>
-              </OuterTextBox>
-            </OuterList>
-            {/* {rankList.slice(3, 7).map((e, i) => {
-              return (
-                <OuterList>
-                  <InnerNmb>{i + 4}</InnerNmb>
-                  <img src={e.firstimage} alt="" />
-                  <OuterTextBox>
-                    <div>{e.title}</div>
-                    <p>{e.overview.slice(0, 20)}</p>
-                  </OuterTextBox>
-                </OuterList>
-              );
-            })} */}
+            {rankList.slice(3, 7).map((e, i) => {
+              if (e.likeCnt > 0) {
+                return (
+                  <OuterList>
+                    <InnerNmb>{i + 4}</InnerNmb>
+                    <InnerImg src={e.firstimage} alt="" />
+                    <OuterTextBox>
+                      <OuterTextBoxInnerBox>
+                        <MedalText>{e.title}</MedalText>
+                        <MedalSubText>{e.overview.slice(0, 20)}</MedalSubText>
+                        <HeartBox>
+                          <HeartImg src={redheart} />
+                          <p>{e.likeCnt}</p>
+                        </HeartBox>
+                      </OuterTextBoxInnerBox>
+                    </OuterTextBox>
+                  </OuterList>
+                );
+              } else {
+                return (
+                  <OuterList>
+                    <InnerNmb>{i + 4}</InnerNmb>
+                    <OuterTextBox></OuterTextBox>
+                  </OuterList>
+                );
+              }
+            })}
           </OuterDiv>
         </WrapDiv>
       </ColorDiov>
@@ -123,6 +209,7 @@ const InnerDiv = styled.div`
 `;
 
 const InnerList = styled.div`
+  position: relative;
   width: 22%;
   height: 300px;
   background-color: gray;
@@ -132,21 +219,30 @@ const InnerList = styled.div`
 `;
 
 const InnerImg = styled.img`
-  width: 230px;
+  width: 250px;
   height: 180px;
   position: absolute;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    transition: all 0.35s;
+  }
 `;
 
 const InnerMedals = styled.img`
   width: 60px;
   margin-left: 8px;
+  position: absolute;
 `;
 
 const InnerTextBox = styled.div`
+  position: absolute;
   width: 100%;
   height: 120px;
   background-color: white;
-  margin-top: 120px;
+  margin-top: 180px;
+  padding-top: 10px;
+  padding-left: 10px;
 `;
 
 const OuterDiv = styled.div`
@@ -194,14 +290,37 @@ const InnerNmb = styled.div`
   font-weight: bold;
 `;
 
+const MedalHeartBox = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+`;
+
 const HeartBox = styled.div`
   display: flex;
   /* justify-content: center; */
   align-items: center;
   gap: 10px;
+  margin-top: 20px;
 `;
 
 const OuterTextBoxInnerBox = styled.div`
   margin-top: 10px;
   margin-left: 10px;
+`;
+
+const HeartImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+const MedalText = styled.h1`
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+const MedalSubText = styled.p`
+  font-size: 14px;
 `;
