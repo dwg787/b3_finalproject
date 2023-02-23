@@ -54,12 +54,14 @@ const RestaurantMainTap = () => {
                     />
                     <InnerMedals src={one} alt="" />
                     <InnerTextBox>
-                      <p>{rankList[0]?.title}</p>
-                      <p>{rankList[0]?.overview.slice(0, 20)}...</p>
-                      <HeartBox>
+                      <MedalText>{rankList[0]?.title}</MedalText>
+                      <MedalSubText>
+                        {rankList[0]?.overview.slice(0, 20)}...
+                      </MedalSubText>
+                      <MedalHeartBox>
                         <HeartImg src={redheart} />
                         <p>{rankList[0]?.likeCnt}</p>
-                      </HeartBox>
+                      </MedalHeartBox>
                     </InnerTextBox>
                   </InnerList>
                 ) : (
@@ -78,12 +80,14 @@ const RestaurantMainTap = () => {
                     />
                     <InnerMedals src={two} alt="" />
                     <InnerTextBox>
-                      <p>{rankList[1]?.title}</p>
-                      <p>{rankList[1]?.overview.slice(0, 20)}...</p>
-                      <HeartBox>
+                      <MedalText>{rankList[1]?.title}</MedalText>
+                      <MedalSubText>
+                        {rankList[1]?.overview.slice(0, 20)}...
+                      </MedalSubText>
+                      <MedalHeartBox>
                         <HeartImg src={redheart} />
                         <p>{rankList[1]?.likeCnt}</p>
-                      </HeartBox>
+                      </MedalHeartBox>
                     </InnerTextBox>
                   </InnerList>
                 ) : (
@@ -102,12 +106,14 @@ const RestaurantMainTap = () => {
                     />
                     <InnerMedals src={three} alt="" />
                     <InnerTextBox>
-                      <p>{rankList[2]?.title}</p>
-                      <p>{rankList[2]?.overview.slice(0, 20)}...</p>
-                      <HeartBox>
+                      <MedalText>{rankList[2]?.title}</MedalText>
+                      <MedalSubText>
+                        {rankList[2]?.overview.slice(0, 20)}...
+                      </MedalSubText>
+                      <MedalHeartBox>
                         <HeartImg src={redheart} />
                         <p>{rankList[2]?.likeCnt}</p>
-                      </HeartBox>
+                      </MedalHeartBox>
                     </InnerTextBox>
                   </InnerList>
                 ) : (
@@ -130,8 +136,8 @@ const RestaurantMainTap = () => {
                     <InnerImg src={e.firstimage} alt="" />
                     <OuterTextBox>
                       <OuterTextBoxInnerBox>
-                        <p>{e.title}</p>
-                        <p>{e.overview.slice(0, 20)}</p>
+                        <MedalText>{e.title}</MedalText>
+                        <MedalSubText>{e.overview.slice(0, 20)}</MedalSubText>
                         <HeartBox>
                           <HeartImg src={redheart} />
                           <p>{e.likeCnt}</p>
@@ -240,6 +246,8 @@ const InnerTextBox = styled.div`
   height: 120px;
   background-color: white;
   margin-top: 180px;
+  padding-top: 10px;
+  padding-left: 10px;
 `;
 
 const OuterDiv = styled.div`
@@ -287,11 +295,20 @@ const InnerNmb = styled.div`
   font-weight: bold;
 `;
 
+const MedalHeartBox = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+`;
+
 const HeartBox = styled.div`
   display: flex;
   /* justify-content: center; */
   align-items: center;
   gap: 10px;
+  margin-top: 20px;
 `;
 
 const OuterTextBoxInnerBox = styled.div`
@@ -302,4 +319,13 @@ const OuterTextBoxInnerBox = styled.div`
 const HeartImg = styled.img`
   width: 24px;
   height: 24px;
+`;
+
+const MedalText = styled.h1`
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+const MedalSubText = styled.p`
+  font-size: 14px;
 `;
