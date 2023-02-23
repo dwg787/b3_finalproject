@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import UpdatePassword from './UpdatePassword';
 import { updateProfile } from 'firebase/auth';
 import { db, auth } from '../../apis/firebase';
-
+import { deleteUser } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -54,6 +54,18 @@ export default function MyInfo() {
     } else {
       setErrorMessage('');
       setInputValidation(true);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    console.log('회원탈퇴 완료');
+    if (auth.currentUser) {
+      await deleteUser(auth.currentUser)
+        .then(() => alert('성공적으로 탈퇴하였습니다!'))
+        .catch((error) => console.log(error));
+      localStorage.removeItem('id');
+      localStorage.removeItem('email');
+      navigate('/', { replace: true });
     }
   };
 
@@ -120,6 +132,9 @@ export default function MyInfo() {
           </SignUpBtn>
         </PrivacyBox>
         <UpdatePassword />
+        <SignUpDeleteBtn onClick={handleDeleteAccount}>
+          회원탈퇴
+        </SignUpDeleteBtn>
       </PrivacyDiv>
     </MyInfoContainer>
     // </MyInfoDiv>
@@ -266,4 +281,23 @@ const SignUpBtn = styled.button`
   color: #ffffff;
   text-align: center;
   background: ${(props) => (props.state ? '#6478ff;' : '#C8D1E0')};
+`;
+
+const SignUpDeleteBtn = styled.button`
+  margin-top: 20px;
+  cursor: pointer;
+
+  width: 419.9px;
+  height: 44.85px;
+
+  background: #f35f5f;
+  border: 1px solid #ffffff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
+  border-radius: 17px;
+  border: none;
+  font-weight: 500;
+  font-size: 17.3651px;
+  line-height: 16.25px;
+  color: #ffffff;
+  text-align: center;
 `;
