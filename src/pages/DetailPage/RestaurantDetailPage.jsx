@@ -72,7 +72,8 @@ const RestaurantDetailPage = () => {
       await setDoc(doc(db, 'restaurant_recommendation', param.id), {
         ...restaurantDetailData,
         viewCnt: 1,
-        likeCnt: [],
+        likeCnt: 0,
+        // likeCnt: [],
       });
     }
   };
