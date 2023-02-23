@@ -79,10 +79,10 @@ export default function SpotInfo({
                       <MyCildTextBox>
                         <MyChildTexth3>{item.title}</MyChildTexth3>
                         <MyChildTextp> {item.addr1}</MyChildTextp>
-                        <LikeBox>
+                        {/* <LikeBox>
                           <RestaurantLiked spotDetailData={spotDetailData} />
                           <p>00</p>
-                        </LikeBox>
+                        </LikeBox> */}
                       </MyCildTextBox>
                     </MyChildList>
                   );
