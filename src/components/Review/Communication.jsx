@@ -177,19 +177,19 @@ const Communication = () => {
               }
             })}
         </ReviewBoxList>
+        <PaginationBox>
+          <Pagination
+            activePage={currentPage}
+            itemsCountPerPage={itemsPerPage}
+            totalItemsCount={totalReviewCount}
+            pageRangeDisplayed={5}
+            onChange={setCurrentPage}
+            hideDisabled={true}
+            hideNavigation={true}
+            hideFirstLastPages={true}
+          />
+        </PaginationBox>
       </ReviewContainer>
-      <PaginationBox>
-        <Pagination
-          activePage={currentPage}
-          itemsCountPerPage={itemsPerPage}
-          totalItemsCount={totalReviewCount}
-          pageRangeDisplayed={5}
-          onChange={setCurrentPage}
-          hideDisabled={true}
-          hideNavigation={true}
-          hideFirstLastPages={true}
-        />
-      </PaginationBox>
     </ReviewContainerWrap>
   );
 };
@@ -199,7 +199,6 @@ export default Communication;
 const ReviewContainerWrap = styled.div`
   border: 1.00654px solid #9eabff;
   width: 1146.11px;
-  height: 576.41px;
   /* width: 100%; */
   display: flex;
   flex-direction: column;
@@ -214,7 +213,8 @@ const PaginationBox = styled.div`
   .pagination {
     display: flex;
     justify-content: center;
-    margin: 41.63px 0 49.15px 0;
+
+    height: 30px;
   }
   ul {
     list-style: none;
@@ -326,12 +326,13 @@ const ReviewButton = styled.button`
 
 const ReviewBoxList = styled.div`
   display: flex;
+
   /* width: 1146.11px; */
   /* height: 327px; */
   height: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   overflow: hidden;
   /* border: 1px solid blue; */
   /* display: flex;
