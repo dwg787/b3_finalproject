@@ -87,6 +87,7 @@ const SignUpPage = () => {
             setPhoneNumber('');
             localStorage.setItem('id', nickName);
             localStorage.setItem('email', data.user.email);
+            sessionStorage.setItem('uid', data.user.uid);
             // localStorage.setItem('phoneNumber', data.user.phoneNumber);
             addDoc(collection(db, 'users'), {
               email: data.user.email,
