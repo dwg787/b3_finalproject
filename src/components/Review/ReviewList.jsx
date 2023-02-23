@@ -28,7 +28,7 @@ export default function ReviewList({ review, i, reviews, key }) {
   const [toggle, setToggle] = useState(false);
   // console.log(toggle);
   // console.log('ed', editBox);
-  console.log(localStorage.getItem('uid'));
+  // console.log(localStorage.getItem('uid'));
 
   const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
