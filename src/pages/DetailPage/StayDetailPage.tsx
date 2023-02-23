@@ -219,7 +219,7 @@ const StayDetailPage = () => {
                     <DetailInfoText>여행톡</DetailInfoText>
                   </DetailInfoTextBox> */}
 
-                  {/* <Communication /> */}
+                  <Communication />
                 </CommunicationWrap>
 
                 <Notification />
