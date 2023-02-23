@@ -148,6 +148,7 @@ const StTicket = styled.div`
 `;
 
 const StTicketCard = styled.div`
+  overflow: hidden;
   width: 480.01px;
   height: 172.54px;
   /* margin: 10px; */

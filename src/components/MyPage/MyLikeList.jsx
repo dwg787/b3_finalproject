@@ -11,6 +11,8 @@ import { auth, db } from '../../apis/firebase';
 import noimg from '../../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 import Pagination from 'react-js-pagination';
+import DeleteImg from '../../assets/DeleteImg.avif';
+import LikeRed from '../../assets/LikeRed.avif';
 
 const MyLikeList = () => {
   const navigate = useNavigate();
@@ -97,23 +99,28 @@ const MyLikeList = () => {
                     case '39':
                       return (
                         <StTicketCard key={data.contentid}>
-                          <StTicketCardLeft>
+                          <StTicketCardLeft
+                            onClick={() =>
+                              navigate(`/restaurant/${data.contentid}`)
+                            }
+                          >
                             <StTicketHeader>
                               <StCartMenu>맛집</StCartMenu>
                             </StTicketHeader>
                             <StMyTicketImage
                               src={data.img || noimg}
                               alt="사진"
-                              onClick={() =>
-                                navigate(`/restaurant/${data.contentid}`)
-                              }
+                              // onClick={() =>
+                              //   navigate(`/restaurant/${data.contentid}`)
+                              // }
                             />
                           </StTicketCardLeft>
                           <StTicketCardRight>
-                            <StTicketHeader2
-                              onClick={() => delResLiked(data.contentid)}
-                            >
-                              X
+                            <StTicketHeader2>
+                              <DelBtn
+                                src={DeleteImg}
+                                onClick={() => delResLiked(data.contentid)}
+                              />
                             </StTicketHeader2>
 
                             <StCartTitle>
@@ -128,29 +135,44 @@ const MyLikeList = () => {
                     case '32':
                       return (
                         <StTicketCard key={data.contentid}>
-                          <StTicketCardLeft>
+                          <StTicketCardLeft
+                            onClick={() => navigate(`/stay/${data.contentid}`)}
+                          >
                             <StTicketHeader>
                               <StCartMenu>숙박</StCartMenu>
                             </StTicketHeader>
                             <StMyTicketImage
                               src={data.img || noimg}
                               alt="사진"
-                              onClick={() =>
-                                navigate(`/stay/${data.contentid}`)
-                              }
                             />
                           </StTicketCardLeft>
-                          <StCartTitle>
-                            {data.restaurant.split('[', 1)}
-                          </StCartTitle>
-                          <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
+
+                          <StTicketCardRight>
+                            <StTicketHeader2>
+                              <DelBtn
+                                src={DeleteImg}
+                                onClick={() => delResLiked(data.contentid)}
+                              />
+                            </StTicketHeader2>
+
+                            <StCartTitle>
+                              {data.restaurant.split('[', 1)}
+                            </StCartTitle>
+                            <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
+                            {/* 좋아요카운트 */}
+                            {/* <StCartTitleAdd>{data.viewCnt}</StCartTitleAdd> */}
+                          </StTicketCardRight>
                         </StTicketCard>
                       );
                     case '12':
                       return (
                         <>
                           <StTicketCard key={data.contentid}>
-                            <StTicketCardLeft>
+                            <StTicketCardLeft
+                              onClick={() =>
+                                navigate(`/spot/${data.contentid}`)
+                              }
+                            >
                               <StTicketHeader>
                                 <StCartMenu>관광</StCartMenu>
                               </StTicketHeader>
@@ -158,15 +180,23 @@ const MyLikeList = () => {
                               <StMyTicketImage
                                 src={data.img || noimg}
                                 alt="사진"
-                                onClick={() =>
-                                  navigate(`/spot/${data.contentid}`)
-                                }
                               />
                             </StTicketCardLeft>
-                            <StCartTitle>
-                              {data.restaurant.split('[', 1)}
-                            </StCartTitle>
-                            <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
+                            <StTicketCardRight>
+                              <StTicketHeader2>
+                                <DelBtn
+                                  src={DeleteImg}
+                                  onClick={() => delResLiked(data.contentid)}
+                                />
+                              </StTicketHeader2>
+
+                              <StCartTitle>
+                                {data.restaurant.split('[', 1)}
+                              </StCartTitle>
+                              <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
+                              {/* 좋아요카운트 */}
+                              {/* <StCartTitleAdd>{data.viewCnt}</StCartTitleAdd> */}
+                            </StTicketCardRight>
                           </StTicketCard>
                         </>
                       );
@@ -238,7 +268,6 @@ const StTicketCard = styled.div`
   display: flex;
   flex-direction: row;
   background-size: contain;
-  /* box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15); */
   box-shadow: 3px 3px 5px grey;
 `;
 
@@ -247,7 +276,8 @@ const StTicketCardLeft = styled.div`
   height: 172.54px;
   box-sizing: border-box;
   border-radius: 5px;
-  position: relative;
+  /* position: relative; */
+  cursor: pointer;
 `;
 
 const StTicketCardRight = styled.div`
@@ -257,7 +287,6 @@ const StTicketCardRight = styled.div`
   border-radius: 5px;
   flex-direction: column;
   display: flex;
-  /* justify-content: center; */
   position: relative;
 `;
 
@@ -286,7 +315,6 @@ const StCartTitle = styled.span`
 `;
 
 const StCartTitleAdd = styled(StCartTitle)`
-  /* color: teal; */
   margin: 0 31.01px 0 30.42px;
   font-size: 15.44px;
   line-height: 24.8px;
@@ -310,10 +338,8 @@ const StCartMenu = styled.div`
 
 const StTicketHeader = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   justify-content: right;
   position: absolute;
-  /* z-index: 100; */
   width: 254px;
   height: 172.54px;
 `;
@@ -325,7 +351,15 @@ const StTicketHeader2 = styled.div`
   width: 226px;
   height: 172.54px;
   padding: 10px;
+`;
+
+const DelBtn = styled.img`
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 `;
 
 const PaginationBox = styled.div`
@@ -342,21 +376,14 @@ const PaginationBox = styled.div`
     display: inline-block;
     width: 9px;
     height: 20px;
-    /* border: 1px solid #e2e2e2; */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* font-size: 1rem; */
     font-weight: bold;
     font-size: 14.34px;
     margin: 6.6px;
   }
-  /* ul.pagination li:first-child {
-    border-radius: 5px 0 0 5px;
-  }
-  ul.pagination li:last-child {
-    border-radius: 0 5px 5px 0;
-  } */
+
   ul.pagination li a {
     text-decoration: none;
     color: #909090;
@@ -365,9 +392,7 @@ const PaginationBox = styled.div`
   ul.pagination li.active a {
     color: #6478ff;
   }
-  ul.pagination li.active {
-    /* background-color: #337ab7; */
-  }
+
   ul.pagination li a:hover,
   ul.pagination li a.active {
     color: #6478ff;
