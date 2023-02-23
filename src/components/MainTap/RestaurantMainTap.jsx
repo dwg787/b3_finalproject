@@ -217,7 +217,7 @@ const InnerList = styled.div`
 `;
 
 const InnerImg = styled.img`
-  width: 230px;
+  width: 250px;
   height: 180px;
   position: absolute;
   cursor: pointer;
@@ -230,6 +230,7 @@ const InnerImg = styled.img`
 const InnerMedals = styled.img`
   width: 60px;
   margin-left: 8px;
+  position: absolute;
 `;
 
 const InnerTextBox = styled.div`
@@ -237,7 +238,7 @@ const InnerTextBox = styled.div`
   width: 100%;
   height: 120px;
   background-color: white;
-  margin-top: 120px;
+  margin-top: 180px;
 `;
 
 const OuterDiv = styled.div`
