@@ -37,13 +37,11 @@ export default function RestaurantLiked({
   const param = useParams();
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
   const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
-  // const thisRestaurantId = useRecoilValue(paramTransfer);
-  //중복클릭방지
-  // const [disabled, setDisabled] = useState(false);
-  //여래개의 api데이터를 한번에 사용할수있도록 합침
+
   const combinedData = {
     ...spotData,
     ...restaurantDetailData,
@@ -53,22 +51,23 @@ export default function RestaurantLiked({
     ...restaurantData,
   };
 
-  console.log('파라미터', param.id);
-
   const fetchBookmarkData = async () => {
-    const uid = auth.currentUser.uid;
+    const uid = sessionStorage.getItem('uid');
     const docRef = doc(collection(db, 'bookmarks'), uid);
     const res = await getDoc(docRef);
-    setIsLiked(res.data().contentid.includes(param.id));
-    console.log('확인하고 싶은 값', res.data().contentid.includes(param.id));
-    console.log('해당 장소의 like??', isLiked);
-    console.log('이 페이지 식당 id', param.id);
-    // console.log('res', res.data());
+    return res.data();
   };
 
   useEffect(() => {
-    fetchBookmarkData();
-    console.log('현재 장소의 like 상태', isLiked);
+    // let loading = true;
+    const bookmarkData = async () => {
+      setIsLoading(true);
+      const res = await fetchBookmarkData();
+      const confirmval = res.contentid.includes(param.id);
+      setIsLiked(confirmval);
+      setIsLoading(false);
+    };
+    bookmarkData();
   }, []);
 
   const handleLiked = async () => {
@@ -83,8 +82,6 @@ export default function RestaurantLiked({
         const TargetBookmark = doc
           .data()
           .bookmarks.find((e) => e.contentid === param.id);
-        // console.log('찜하기 제거 타겟', TargetBookmark);
-        // setIsLiked(!!TargetBookmark);
         if (doc.exists()) {
           updateDoc(docRef, {
             bookmarks: arrayRemove(TargetBookmark),
@@ -139,16 +136,18 @@ export default function RestaurantLiked({
         })
         .catch((e) => console.log(e));
     }
-    // console.log('like 상태', isLiked);
-    // console.log('토스트 메시지 상태', alarmMsg);
     addNoti(); //메시지 창 자체를 띠워주는 함수
   };
 
   return (
     <div>
-      <HeartBtn onClick={handleLiked}>
-        {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
-      </HeartBtn>
+      {isLoading ? (
+        <></>
+      ) : (
+        <HeartBtn onClick={handleLiked}>
+          {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+        </HeartBtn>
+      )}
     </div>
   );
 }
