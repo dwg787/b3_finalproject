@@ -142,7 +142,6 @@ const Communication = () => {
                     setReviews={setReviews}
                     review={review}
                     i={i}
-                    uid={localStorage.getItem('id')}
                   />
                 );
               }
@@ -153,7 +152,7 @@ const Communication = () => {
         <Pagination
           activePage={currentPage}
           itemsCountPerPage={itemsPerPage}
-          totalItemsCount={reviews?.length / 2.5}
+          totalItemsCount={reviews.length}
           pageRangeDisplayed={5}
           onChange={setCurrentPage}
           hideDisabled={true}
