@@ -8,8 +8,8 @@ import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import Loader from '../Loader/Loader';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import leftArrow from '../../assets/left-arrow.avif';
-import rightArrow from '../../assets/right-arrow.avif';
+import leftArrow from '../../assets/left-chevron.avif';
+import rightArrow from '../../assets/right-chevron.avif';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 const StaySelectionResult = () => {
