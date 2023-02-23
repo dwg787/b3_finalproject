@@ -55,8 +55,8 @@ export default function RestaurantInfo({
               <>
                 {restaurantData.slice(0, 4).map((item, i) => {
                   return (
-                    <MyChildList key={i}>
-                      <Link to={`/restaurant/${item.contentid}`}>
+                    <Link to={`/restaurant/${item.contentid}`}>
+                      <MyChildList key={i}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
@@ -77,16 +77,17 @@ export default function RestaurantInfo({
                             loading="lazy"
                           />
                         </picture>
-                      </Link>
-                      <MyCildTextBox>
-                        <MyChildTexth3>{item.title}</MyChildTexth3>
-                        <MyChildTextp> {item.addr1}</MyChildTextp>
-                        {/* <LikeBox>
+
+                        <MyCildTextBox>
+                          <MyChildTexth3>{item.title}</MyChildTexth3>
+                          <MyChildTextp> {item.addr1}</MyChildTextp>
+                          {/* <LikeBox>
                           <RestaurantLiked restaurantData={restaurantData} />
                           <p>00</p>
                         </LikeBox> */}
-                      </MyCildTextBox>
-                    </MyChildList>
+                        </MyCildTextBox>
+                      </MyChildList>
+                    </Link>
                   );
                 })}
               </>

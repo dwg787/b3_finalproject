@@ -53,8 +53,8 @@ export default function SpotInfo({
               <>
                 {spotDetailData.slice(0, 4).map((item, i) => {
                   return (
-                    <MyChildList key={i}>
-                      <Link to={`/spot/${item.contentid}`}>
+                    <Link to={`/spot/${item.contentid}`}>
+                      <MyChildList key={i}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
@@ -75,16 +75,17 @@ export default function SpotInfo({
                             loading="lazy"
                           />
                         </picture>
-                      </Link>
-                      <MyCildTextBox>
-                        <MyChildTexth3>{item.title}</MyChildTexth3>
-                        <MyChildTextp> {item.addr1}</MyChildTextp>
-                        {/* <LikeBox>
+
+                        <MyCildTextBox>
+                          <MyChildTexth3>{item.title}</MyChildTexth3>
+                          <MyChildTextp> {item.addr1}</MyChildTextp>
+                          {/* <LikeBox>
                           <RestaurantLiked spotDetailData={spotDetailData} />
                           <p>00</p>
                         </LikeBox> */}
-                      </MyCildTextBox>
-                    </MyChildList>
+                        </MyCildTextBox>
+                      </MyChildList>{' '}
+                    </Link>
                   );
                 })}
               </>
