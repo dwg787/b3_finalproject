@@ -213,7 +213,7 @@ const PaginationBox = styled.div`
   .pagination {
     display: flex;
     justify-content: center;
-    /* margin: 41.63px 0 49.15px 0; */
+
     height: 30px;
   }
   ul {
