@@ -58,11 +58,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[0].contentid}
-                  id={MySpot[0].contentid}
-                  img={MySpot[0].firstimage}
+                  key={MySpot[0]?.contentid}
+                  id={MySpot[0]?.contentid}
+                  img={MySpot[0]?.firstimage}
                 >
-                  {MySpot[0].title}
+                  {MySpot[0]?.title}
                 </MySpotDetail>
               )}
             </h3>
@@ -71,11 +71,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[1].contentid}
-                  id={MySpot[1].contentid}
-                  img={MySpot[1].firstimage}
+                  key={MySpot[1]?.contentid}
+                  id={MySpot[1]?.contentid}
+                  img={MySpot[1]?.firstimage}
                 >
-                  {MySpot[1].title}
+                  {MySpot[1]?.title}
                 </MySpotDetail>
               )}
             </h3>
@@ -84,11 +84,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[2].contentid}
-                  id={MySpot[2].contentid}
-                  img={MySpot[2].firstimage}
+                  key={MySpot[2]?.contentid}
+                  id={MySpot[2]?.contentid}
+                  img={MySpot[2]?.firstimage}
                 >
-                  {MySpot[2].title}
+                  {MySpot[2]?.title}
                 </MySpotDetail>
               )}
             </h3>
@@ -97,11 +97,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[3].contentid}
-                  id={MySpot[3].contentid}
-                  img={MySpot[3].firstimage}
+                  key={MySpot[3]?.contentid}
+                  id={MySpot[3]?.contentid}
+                  img={MySpot[3]?.firstimage}
                 >
-                  {MySpot[3].title}
+                  {MySpot[3]?.title}
                 </MySpotDetail>
               )}
             </h3>
@@ -110,11 +110,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[4].contentid}
-                  id={MySpot[4].contentid}
-                  img={MySpot[4].firstimage}
+                  key={MySpot[4]?.contentid}
+                  id={MySpot[4]?.contentid}
+                  img={MySpot[4]?.firstimage}
                 >
-                  {MySpot[4].title}
+                  {MySpot[4]?.title}
                 </MySpotDetail>
               )}
             </h3>
@@ -123,11 +123,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[5].contentid}
-                  id={MySpot[5].contentid}
-                  img={MySpot[5].firstimage}
+                  key={MySpot[5]?.contentid}
+                  id={MySpot[5]?.contentid}
+                  img={MySpot[5]?.firstimage}
                 >
-                  {MySpot[5].title}
+                  {MySpot[5]?.title}
                 </MySpotDetail>
               )}
             </h3>
@@ -136,11 +136,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[6].contentid}
-                  id={MySpot[6].contentid}
-                  img={MySpot[6].firstimage}
+                  key={MySpot[6]?.contentid}
+                  id={MySpot[6]?.contentid}
+                  img={MySpot[6]?.firstimage}
                 >
-                  {MySpot[6].title}
+                  {MySpot[6]?.title}
                 </MySpotDetail>
               )}
             </h3>
@@ -149,11 +149,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[7].contentid}
-                  id={MySpot[7].contentid}
-                  img={MySpot[7].firstimage}
+                  key={MySpot[7]?.contentid}
+                  id={MySpot[7]?.contentid}
+                  img={MySpot[7]?.firstimage}
                 >
-                  {MySpot[7].title}
+                  {MySpot[7]?.title}
                 </MySpotDetail>
               )}
             </h3>
@@ -162,11 +162,11 @@ const MySpot = (propsData) => {
             <h3>
               {MySpot && (
                 <MySpotDetail
-                  key={MySpot[8].contentid}
-                  id={MySpot[8].contentid}
-                  img={MySpot[8].firstimage}
+                  key={MySpot[8]?.contentid}
+                  id={MySpot[8]?.contentid}
+                  img={MySpot[8]?.firstimage}
                 >
-                  {MySpot[8].title}
+                  {MySpot[8]?.title}
                 </MySpotDetail>
               )}
             </h3>
