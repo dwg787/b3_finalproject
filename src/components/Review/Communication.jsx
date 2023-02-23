@@ -188,7 +188,6 @@ const PaginationBox = styled.div`
     font-size: 14.34px;
     margin: 6.6px;
   }
-
   ul.pagination li a {
     text-decoration: none;
     color: #909090;
@@ -197,7 +196,6 @@ const PaginationBox = styled.div`
   ul.pagination li.active a {
     color: #6478ff;
   }
-
   ul.pagination li a:hover,
   ul.pagination li a.active {
     color: #6478ff;

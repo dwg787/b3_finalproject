@@ -20,6 +20,9 @@ import useNotification from '../../hooks/useNotification';
 import heart from '../../assets/heart.avif';
 import redheart from '../../assets/redheart.avif';
 import { async } from '@firebase/util';
+import { useRecoilValue } from 'recoil';
+import { paramTransfer } from '../../recoil/apiDataAtoms';
+import { useParams } from 'react-router-dom';
 
 export default function RestaurantLiked({
   spotData,
@@ -28,20 +31,17 @@ export default function RestaurantLiked({
   stayData,
   spotDetailData,
   restaurantData,
-  restaurantParamId,
   spotParamId,
   stayParamId,
 }: UserProps): React.ReactElement {
+  const param = useParams();
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
   const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
-  const [myBookmark, setMyBookmark] = useState([]);
-  const [fetchedUid, setFetchedUid] = useState('');
-  //중복클릭방지
-  // const [disabled, setDisabled] = useState(false);
-  //여래개의 api데이터를 한번에 사용할수있도록 합침
+
   const combinedData = {
     ...spotData,
     ...restaurantDetailData,
@@ -52,26 +52,32 @@ export default function RestaurantLiked({
   };
 
   const fetchBookmarkData = async () => {
-    const uid = auth.currentUser.uid;
+    const uid = sessionStorage.getItem('uid');
     const docRef = doc(collection(db, 'bookmarks'), uid);
     const res = await getDoc(docRef);
-    setIsLiked(res.data().contentid.includes(restaurantParamId));
-    // console.log('파베 fetch 결과', res.data().contentid);
+    return res.data();
   };
 
   useEffect(() => {
-    fetchBookmarkData();
-    console.log('현재 장소의 like 상태', isLiked);
+    // let loading = true;
+    const bookmarkData = async () => {
+      setIsLoading(true);
+      const res = await fetchBookmarkData();
+      const confirmval = res?.contentid.includes(param.id);
+      setIsLiked(confirmval);
+      setIsLoading(false);
+    };
+    bookmarkData();
+    // if (!isLoading) {
+    // }
   }, []);
+
+  // console.log('로딩상태', isLoading);
 
   const handleLiked = async () => {
     const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'bookmarks'), uid);
-    const restaurantDocRef = doc(
-      db,
-      'restaurant_recommendation',
-      restaurantParamId,
-    );
+    const restaurantDocRef = doc(db, 'restaurant_recommendation', param.id);
 
     if (isLiked) {
       setAlarmMsg('찜하기 추가!');
@@ -79,9 +85,7 @@ export default function RestaurantLiked({
       await getDoc(docRef).then((doc) => {
         const TargetBookmark = doc
           .data()
-          .bookmarks.find((e) => e.contentid === restaurantParamId);
-        // console.log('찜하기 제거 타겟', TargetBookmark);
-        // setIsLiked(!!TargetBookmark);
+          .bookmarks.find((e) => e.contentid === param.id);
         if (doc.exists()) {
           updateDoc(docRef, {
             bookmarks: arrayRemove(TargetBookmark),
@@ -136,16 +140,21 @@ export default function RestaurantLiked({
         })
         .catch((e) => console.log(e));
     }
-    // console.log('like 상태', isLiked);
-    // console.log('토스트 메시지 상태', alarmMsg);
     addNoti(); //메시지 창 자체를 띠워주는 함수
   };
 
   return (
     <div>
-      <HeartBtn onClick={handleLiked}>
-        {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
-      </HeartBtn>
+      {isLoading ? (
+        <></>
+      ) : (
+        // <HeartBtn onClick={handleLiked} disabled={true}>
+        //   {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+        // </HeartBtn>
+        <HeartBtn onClick={handleLiked}>
+          {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+        </HeartBtn>
+      )}
     </div>
   );
 }

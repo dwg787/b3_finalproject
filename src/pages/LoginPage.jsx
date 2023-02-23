@@ -73,12 +73,13 @@ const LoginPage = ({ showModal, setShowModal }) => {
         console.log('비번', passwordRef.current.value);
         localStorage.setItem('id', data.user.displayName);
         localStorage.setItem('email', data.user.email);
-        const user_doc = addDoc(collection(db, 'users'), {
-          email: emailRef.current.value,
-          name: data.user.displayName,
-        });
+        sessionStorage.setItem('uid', data.user.uid);
+        // const user_doc = addDoc(collection(db, 'users'), {
+        //   email: emailRef.current.value,
+        //   name: data.user.displayName,
+        // });
 
-        console.log(user_doc.id);
+        // console.log(user_doc.id);
 
         navigate('/');
       })

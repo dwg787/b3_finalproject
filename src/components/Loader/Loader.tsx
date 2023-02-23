@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Loader = () => {
   return (
     <Container>
-      <ScaleLoader color="#f19936" />
+      <ScaleLoader color="#6478ff" />
     </Container>
   );
 };
