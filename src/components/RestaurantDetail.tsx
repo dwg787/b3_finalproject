@@ -47,7 +47,7 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
         <MyChildTextp>{props.address}</MyChildTextp>
         <LikeBox>
           <LikeImg src={TapHeart} alt="" />
-          <LikeText>{likeData ? likeData.likeCnt : 0}</LikeText>
+          <LikeText>{likeData !== undefined ? likeData.likeCnt : 0}</LikeText>
         </LikeBox>
       </MyCildTextBox>
     </RestaurantEachItemWrapper>

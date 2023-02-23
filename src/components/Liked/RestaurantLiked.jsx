@@ -41,6 +41,7 @@ export default function RestaurantLiked({
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
   const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
+  const uid = sessionStorage.getItem('uid');
 
   const combinedData = {
     ...spotData,
@@ -52,7 +53,6 @@ export default function RestaurantLiked({
   };
 
   const fetchBookmarkData = async () => {
-    const uid = sessionStorage.getItem('uid');
     const docRef = doc(collection(db, 'bookmarks'), uid);
     const res = await getDoc(docRef);
     return res.data();
@@ -75,7 +75,7 @@ export default function RestaurantLiked({
   // console.log('로딩상태', isLoading);
 
   const handleLiked = async () => {
-    const uid = auth.currentUser.uid;
+    // const uid = auth.currentUser.uid;
     const docRef = doc(collection(db, 'bookmarks'), uid);
     const restaurantDocRef = doc(db, 'restaurant_recommendation', param.id);
 
@@ -145,15 +145,24 @@ export default function RestaurantLiked({
 
   return (
     <div>
-      {isLoading ? (
-        <></>
+      {uid ? (
+        <>
+          {isLoading ? (
+            <></>
+          ) : (
+            <HeartBtn onClick={handleLiked}>
+              {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+            </HeartBtn>
+          )}
+        </>
       ) : (
-        // <HeartBtn onClick={handleLiked} disabled={true}>
-        //   {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
-        // </HeartBtn>
-        <HeartBtn onClick={handleLiked}>
-          {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
-        </HeartBtn>
+        <>
+          <HeartBtn
+            onClick={() => alert('로그인하셔야 이용하실 수 있는 기능입니다.')}
+          >
+            {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+          </HeartBtn>
+        </>
       )}
     </div>
   );
