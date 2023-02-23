@@ -29,7 +29,7 @@ const Communication = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
-
+  const [totalReviewCount, setTotalReviewCount] = useState(0);
   //useparams 를 사용하여 id 값을 파이어베이스로 보낸후
   //파이어베이스에서 데이터를 가져올 때 useparams의 값이 같은 것만
   //map을 돌려서 return 해준다!
@@ -43,20 +43,26 @@ const Communication = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        setReviews(newList);
+        const filteredList = newList.filter(
+          (review) => review.paramId === params.id,
+        );
+        setReviews(filteredList);
+        setTotalReviewCount(filteredList.length);
       });
       return unsubscrible;
     };
     getReviews();
   }, []);
 
-  //리뷰 등록
-  const creatReview = async () => {
+  const creatReview = async (event) => {
     const Kakaologinid = localStorage.getItem('uid');
     const Naverloginid = localStorage.getItem('uid');
     const loginUser = auth.currentUser;
-
-    if (loginUser) {
+    const inputValue = event.target.value;
+    if (!newReview || newReview.length === 0) {
+      // 추가된 부분: newReview 값이 비어있을 때
+      alert('리뷰를 입력해주세요.');
+    } else if (loginUser) {
       const addRev = await addDoc(usersCollectionRef, {
         review: newReview,
         uid: loginUser?.uid,
@@ -94,12 +100,36 @@ const Communication = () => {
       alert('로그인 해주세요');
     }
   };
+
+  // const creatReview = async (event) => {
+  //   const Kakaologinid = localStorage.getItem('uid');
+  //   const Naverloginid = localStorage.getItem('uid');
+  //   const loginUser = auth.currentUser;
+  //   // const inputValue = event.target.value;
+
+  //   if (loginUser || Kakaologinid || Naverloginid) {
+  //     if (!newReview || newReview.length == 0) {
+  //       alert('댓글을 적어 주세요');
+  //     } else {
+  //       const addRev = await addDoc(usersCollectionRef, {
+  //         review: newReview,
+  //         uid: loginUser?.uid || localStorage.getItem('uid'),
+  //         email: loginUser?.email,
+  //         displayName: localStorage.getItem('id', loginUser?.displayName),
+  //         paramId: params.id,
+  //         date: Date.now(),
+  //       });
+  //       setNewReview('');
+  //       setAlarmMsg('리뷰가 등록되었습니다.');
+  //       addNoti();
+  //     }
   //   } else {
-  //     alert('로그인을 하세요');
+  //     alert('로그인 해주세요');
   //   }
   // };
+
   return (
-    <>
+    <ReviewContainerWrap>
       <ReviewContainer>
         {/* <DetailInfoText>여행톡</DetailInfoText> */}
         <ReviewBox>
@@ -116,10 +146,10 @@ const Communication = () => {
             />
 
             <ReviewButton
-              onClick={() => {
-                setAlarmMsg('리뷰가 등록되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
-                addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
-                creatReview();
+              onClick={(event) => {
+                // setAlarmMsg('리뷰가 등록되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
+                // addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
+                creatReview(event);
               }}
             >
               등록
@@ -152,7 +182,7 @@ const Communication = () => {
         <Pagination
           activePage={currentPage}
           itemsCountPerPage={itemsPerPage}
-          totalItemsCount={reviews.length}
+          totalItemsCount={totalReviewCount}
           pageRangeDisplayed={5}
           onChange={setCurrentPage}
           hideDisabled={true}
@@ -160,11 +190,25 @@ const Communication = () => {
           hideFirstLastPages={true}
         />
       </PaginationBox>
-    </>
+    </ReviewContainerWrap>
   );
 };
 
 export default Communication;
+
+const ReviewContainerWrap = styled.div`
+  border: 1.00654px solid #9eabff;
+  width: 1146.11px;
+  height: 576.41px;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* border: 1.00654px solid #9eabff; */
+  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18);
+  border-radius: 13.4205px;
+  /* border: 1px solid red; */
+`;
 
 const PaginationBox = styled.div`
   .pagination {
@@ -213,8 +257,8 @@ const ReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  border: 1.00654px solid #9eabff;
-  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18);
+  /* border: 1.00654px solid #9eabff; */
+  /* box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18); */
   border-radius: 13.4205px;
   /* border: 1px solid red; */
 `;
