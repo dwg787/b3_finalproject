@@ -74,7 +74,6 @@ const SignUpPage = () => {
     name: '',
     email: '',
     password: '',
-    instagramId: '',
   });
   const [dpNameCheck, setDpNameCheck] = useState(false);
   const [checkError, setCheckError] = useState('');
@@ -136,6 +135,9 @@ const SignUpPage = () => {
   //* 닉네임
   const onChangeNickName = (e) => {
     const currentNickName = e.target.value;
+    const {
+      target: { name, value },
+    } = e;
 
     setNickName(currentNickName);
 
