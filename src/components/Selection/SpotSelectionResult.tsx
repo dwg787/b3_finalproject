@@ -10,8 +10,8 @@ import Loader from '../Loader/Loader';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import leftArrow from '../../assets/left-arrow.avif';
-import rightArrow from '../../assets/right-arrow.avif';
+import leftArrow from '../../assets/left-chevron.avif';
+import rightArrow from '../../assets/right-chevron.avif';
 
 const SpotSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);

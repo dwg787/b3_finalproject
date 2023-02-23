@@ -85,7 +85,8 @@ export default function Kakao() {
       method: 'POST',
     }).then((res) => res.json());
     //로컬스토리지에 넣어주었던 값을 지워준다
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem('token_for_kakaotalk');
     console.log('isLogout', islogout);
   };
 
