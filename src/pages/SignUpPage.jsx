@@ -68,6 +68,17 @@ const SignUpPage = () => {
   const privacyshowModal = () => {
     setPrivacyModalOpen(true);
   };
+
+  const [authObj, setAuthObj] = useState({
+    displayName: '',
+    name: '',
+    email: '',
+    password: '',
+    instagramId: '',
+  });
+  const [dpNameCheck, setDpNameCheck] = useState(false);
+  const [checkError, setCheckError] = useState('');
+
   // 회원가입 완료
 
   const signup = async (e) => {
