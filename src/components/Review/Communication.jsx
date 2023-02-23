@@ -144,7 +144,7 @@ const Communication = () => {
     <ReviewContainer>
       {/* <DetailInfoText>여행톡</DetailInfoText> */}
       <ReviewBox>
-        <ReviewLabel for="review">후기작성</ReviewLabel>
+        <ReviewLabel htmlFor="review">후기작성</ReviewLabel>
         <InputAndBtnWrap>
           <ReviewInput
             type="text"
