@@ -89,13 +89,13 @@ export default function MainSlide() {
 }
 const ContainerDiv = styled.div`
   position: relative;
-  width: 65%;
+  width: 66.5%;
   height: 380px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
-  background-color: gray;
+  /* background-color: gray; */
   margin-top: 40px;
 `;
 const WarpDiv = styled.div`
