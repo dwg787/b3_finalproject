@@ -305,12 +305,6 @@ const InputBox = styled.div`
   cursor: pointer;
 `;
 
-// const ProfileImg = styled.img`
-//   width: 45px;
-//   height: 45px;
-//   border-radius: 100%;
-// `;
-
 const ModalWrapper = styled.div`
   position: fixed;
   top: 0;

@@ -185,7 +185,6 @@ const LoginContent = styled.div`
   font-weight: 500;
   font-size: 16px;
   /* line-height: 17px; */
-  //
 `;
 
 const InputWrap = styled.div`
@@ -203,7 +202,6 @@ const EmailInput = styled.input`
   &::placeholder {
     /* font-size: 18.7px;
     color: #b8b8b8; */
-    //
     font-style: normal;
     font-weight: 500;
     font-size: 16.4874px;
@@ -221,7 +219,6 @@ const PwInput = styled.input`
   &::placeholder {
     /* font-size: 18.7px;
     color: #b8b8b8; */
-    //
     font-style: normal;
     font-weight: 500;
     font-size: 16.4874px;
@@ -284,12 +281,9 @@ const TextDiv = styled.div`
   color: #8a8a8a;
   font-size: 15.13px;
 
-  //
   display: flex;
   /* flex-basis: 100%; */
   align-items: center;
-  // =============================
-
   height: 18px;
 
   ::before {
@@ -328,7 +322,6 @@ const FooterText = styled.div`
   font-size: 14px;
   text-decoration: underline;
 
-  //===============================
   margin-top: 30px;
   margin-bottom: 30px;
   font-style: normal;
