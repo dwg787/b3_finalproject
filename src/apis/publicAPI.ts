@@ -126,10 +126,14 @@ export const fetchNearSpotData = async ({
   mapx: string;
   mapy: string;
 }) => {
-  const res = await axios.get(
-    `https://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
-  );
-  return res.data.response.body.items.item;
+  try {
+    const res = await axios.get(
+      `https://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
+    );
+    return res.data.response.body.items.item;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 //상세페이지 주변 숙박 api
@@ -140,11 +144,15 @@ export const fetchNearStayData = async ({
   mapx: string;
   mapy: string;
 }) => {
-  const res = await axios.get(
-    `https://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
-    // `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=&sigunguCode=&mapX=${mapx}&mapY=${mapy}&radius=5000&cat1=B02&cat2=B0201&cat3=B02010100&_type=json`
-  );
-  return res.data.response.body.items.item;
+  try {
+    const res = await axios.get(
+      `https://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
+      // `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=&sigunguCode=&mapX=${mapx}&mapY=${mapy}&radius=5000&cat1=B02&cat2=B0201&cat3=B02010100&_type=json`
+    );
+    return res.data.response.body.items.item;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 //상세페이지 주변 맛집 api

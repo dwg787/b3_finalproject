@@ -56,7 +56,7 @@ export default function RestaurantInfo({
                 {restaurantData.slice(0, 4).map((item, i) => {
                   return (
                     <Link to={`/restaurant/${item.contentid}`}>
-                      <MyChildList key={i}>
+                      <MyChildList key={item.contentid}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
