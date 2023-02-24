@@ -150,8 +150,6 @@ const ReservationInfoImg = styled.img`
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
 `;
 
-// ========================================================================================================
-
 const StTicketMainWrap = styled.div`
   display: flex;
   justify-content: center;
