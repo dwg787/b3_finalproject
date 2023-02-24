@@ -10,9 +10,9 @@
 
 ---
 
-#### 배포링크 :
+#### 배포링크 : https://b3-finalproject-v33x.vercel.app/
 #### 팀 노션 : https://coherent-petalite-63a.notion.site/S-A-8bda63e869934236961d7009428b284c
-
+#### 시연영상 : https://youtu.be/f-2ipfhSZlg
 ---
 
 #### 팀원 구성
