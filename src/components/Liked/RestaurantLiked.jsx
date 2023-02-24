@@ -6,20 +6,14 @@ import {
   collection,
   arrayUnion,
   arrayRemove,
-  getDocs,
-  where,
-  deleteDoc,
   increment,
-  decrement,
-  query,
 } from 'firebase/firestore';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { auth, db } from '../../apis/firebase';
+import { db } from '../../apis/firebase';
 import useNotification from '../../hooks/useNotification';
 import heart from '../../assets/heart.avif';
 import redheart from '../../assets/redheart.avif';
-import { async } from '@firebase/util';
 import { useRecoilValue } from 'recoil';
 import { paramTransfer } from '../../recoil/apiDataAtoms';
 import { useParams } from 'react-router-dom';

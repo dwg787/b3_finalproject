@@ -131,11 +131,10 @@ const CommentBox = styled.div`
   justify-content: center;
   gap: 1rem;
   display: flex; */
-  //========================
   /* width: 481.8px; */
   width: 30.1125rem;
-  //퍼센트로 해야할듯
-  //공백 포함 71글자까지
+  /* 퍼센트로 해야할듯
+  공백 포함 71글자까지 */
   height: 79.18px;
   background: #ffffff;
   box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.15);
