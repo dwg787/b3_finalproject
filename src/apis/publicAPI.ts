@@ -163,10 +163,14 @@ export const fetchNearRestaurantData = async ({
   mapx: string;
   mapy: string;
 }) => {
-  const res = await axios.get(
-    `http://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=39&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
-  );
-  return res.data.response.body.items.item;
+  try {
+    const res = await axios.get(
+      `http://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=39&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
+    );
+    return res.data.response.body.items.item;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 //맛집 상세내용
