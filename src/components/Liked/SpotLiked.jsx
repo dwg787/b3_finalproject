@@ -13,7 +13,7 @@ import {
   decrement,
   query,
 } from 'firebase/firestore';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import { auth, db } from '../../apis/firebase';
 import useNotification from '../../hooks/useNotification';

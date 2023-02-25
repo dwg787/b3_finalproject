@@ -47,8 +47,6 @@ const DetailPage = () => {
     () => fetchSpotDetailData({ param }),
   );
 
-  // console.log('관광지 데이터', spotData);
-
   const getRecCnt = async () => {
     if (param.id) {
       const data = await getDoc(doc(db, 'spot_recommendation', `${param.id}`));
