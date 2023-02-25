@@ -21,7 +21,7 @@ export default SkeletonSelectionResult;
 
 const SkeletonLoadingAnimation = keyframes`
    0% {
-    transform: translateX(0);
+    transform: translateX(-100%);
   }
   50%,
   100% {
@@ -30,9 +30,10 @@ const SkeletonLoadingAnimation = keyframes`
 `;
 
 const ResultWrapper = styled.div`
-  width: 80%;
+  width: 85%;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 `;
