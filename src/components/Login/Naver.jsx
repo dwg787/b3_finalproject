@@ -30,16 +30,6 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       callbackHandle: true,
     });
     naverLogin.init();
-
-    // naverLogin.getLoginStatus(async function(status) {
-    //   if (status) {
-    //     const userid = naverLogin.user.getEmail();
-    //     const username = naverLogin.user.getName();
-    //     setUserName(username);
-    //     window.localStorage.setItem('id', username);
-    //     window.sessionStorage.setItem('id', username);
-    //   }
-    // });
   };
 
   const userAccessToken = () => {
@@ -81,11 +71,6 @@ const Naver = ({ setGetToken, setUserInfo }) => {
 
       <NaverBtn id="naverIdLogin"></NaverBtn>
       <NaverText>Naver</NaverText>
-      {/* <LoginButton
-        image="NaverLogo"
-        ButtonText="네이버"
-        onClick={handleNaverLogin}
-      /> */}
     </NaverBox>
   );
 };
@@ -103,6 +88,17 @@ const NaverBox = styled.div`
 const NaverBtn = styled.button`
   background-color: transparent;
   border: none;
+  border-radius: 50%;
+  overflow: hidden;
+  a {
+    display: block;
+    width: 41px;
+    height: 41px;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const NaverImg = styled.img`

@@ -114,9 +114,6 @@ export default function Kakao() {
       <button type="button" onClick={cheak}>
         토큰상태확인
       </button>
-      <p></p>
-      <p></p>
-      <p></p>
     </>
   );
 }
