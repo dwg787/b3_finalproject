@@ -57,8 +57,9 @@ const StayLiked = ({
     const bookmarkData = async () => {
       setIsLoading(true);
       const res = await fetchBookmarkData();
-      const confirmval = res?.contentid.includes(param.id);
-      setIsLiked(confirmval);
+      const myBookmark = new Set(res?.contentid);
+      const likeTarget = myBookmark.has(param.id);
+      setIsLiked(likeTarget);
       setIsLoading(false);
     };
     bookmarkData();
