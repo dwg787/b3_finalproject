@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fuse from 'fuse.js';
-import debounce from 'lodash/debounce';
+import _ from 'lodash';
 import SpotDetail from '../SpotDetail';
 import noimg from '../../assets/noimg.avif';
 import BlueFooter from '../../components/Footer/BlueFooter';
@@ -35,7 +35,7 @@ export default function Search() {
   // };
 
   const selectEventControl = (delay) => {
-    return debounce((text) => setQuery(text), delay, {
+    return _.debounce((text) => setQuery(text), delay, {
       leading: false,
       trailing: true,
     });
