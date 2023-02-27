@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import RestaurantLiked from '../Liked/RestaurantLiked';
 import { useRecoilState } from 'recoil';
 import { nearStayState } from '../../recoil/apiDataAtoms';
-
+import { useEffect } from 'react';
 import {
   Container,
   MyChildTopText,
@@ -17,9 +17,7 @@ import {
   MyChildTexth3,
   MyChildTextp,
   LikeBox,
-  GoButton,
 } from './styles';
-import { useEffect } from 'react';
 
 export default function StayInfo({
   spotData,
@@ -85,7 +83,6 @@ export default function StayInfo({
                           <MyChildTextp> {item.addr1}</MyChildTextp>
                           {/* <LikeBox>
                           <RestaurantLiked stayData={stayData} />
-
                           <p>00</p>
                         </LikeBox> */}
                         </MyCildTextBox>

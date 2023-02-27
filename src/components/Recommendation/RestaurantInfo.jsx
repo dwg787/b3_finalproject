@@ -2,7 +2,6 @@ import { useQuery } from 'react-query';
 
 import { fetchNearRestaurantData } from '../../apis/publicAPI';
 import Loader from '../Loader/Loader';
-import RestaurantDetail from '../RestaurantDetail';
 import noimg from '../../assets/noimg.avif';
 
 import {
@@ -15,7 +14,6 @@ import {
   MyChildTexth3,
   MyChildTextp,
   LikeBox,
-  GoButton,
 } from './styles';
 import { Link } from 'react-router-dom';
 import RestaurantLiked from '../Liked/RestaurantLiked';

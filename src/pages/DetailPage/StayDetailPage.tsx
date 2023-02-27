@@ -14,10 +14,13 @@ import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
-// import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import StayLiked from '../../components/Liked/StayLiked';
 import noimg from '../../assets/noimg.avif';
 import useNotification from '../../hooks/useNotification';
+import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
+import SpotInfo from '../../components/Recommendation/SpotInfo';
+import MapImoji from '../../components/Map/MapImoji';
+import BlueFooter from '../../components/Footer/BlueFooter';
 
 import {
   DetailWrap,
@@ -40,11 +43,6 @@ import {
   DetailTextBox,
   DetailInfo2,
 } from './styles';
-
-import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
-import SpotInfo from '../../components/Recommendation/SpotInfo';
-import MapImoji from '../../components/Map/MapImoji';
-import BlueFooter from '../../components/Footer/BlueFooter';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -103,7 +101,6 @@ const StayDetailPage = () => {
         ...stayDetailData,
         viewCnt: 1,
         likeCnt: 0,
-        // likeCnt: [],
       });
     }
   };
@@ -126,7 +123,6 @@ const StayDetailPage = () => {
   const urlRegex = /href=["']([^"']*)["']/;
   const match = reservationurl.match(urlRegex);
   const url = match ? match[1] : '';
-  // console.log(url);
 
   const ReservationClick = () => {
     if (url) {
@@ -146,11 +142,9 @@ const StayDetailPage = () => {
           <>
             {stayDetailData ? (
               <DeatilBox key={param.id}>
-                {/* <Link to={'/'}>메인으로</Link> */}
                 <DetailScroll />
                 <TabHr />
                 <DeatilTextBox>
-                  {/* <DetailScroll /> */}
                   <DetailText>{stayDetailData.title}</DetailText>
                   <DetailTextArr>
                     {stayDetailData.addr1.split(' ', 2)}
@@ -215,10 +209,6 @@ const StayDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {/* <DetailInfoTextBox>
-                    <DetailInfoText>여행톡</DetailInfoText>
-                  </DetailInfoTextBox> */}
-
                   <Communication />
                 </CommunicationWrap>
 

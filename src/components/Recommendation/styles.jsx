@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
-
   height: 414.02px;
   display: flex;
   flex-direction: column;
@@ -63,7 +62,6 @@ const MyChildTexth3 = styled.h3`
 
 const MyChildTextp = styled.p`
   color: #7f7f7f;
-  /* margin-top: 5px; */
   line-height: 19.4px;
   font-size: 14.58px;
   white-space: nowrap;
@@ -75,7 +73,6 @@ const MyChildTextp = styled.p`
 const LikeBox = styled.div`
   display: flex;
   gap: 5px;
-  /* margin-top: 13.54px; */
   align-items: center;
 `;
 

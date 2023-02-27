@@ -1,10 +1,9 @@
 import React from 'react';
-import MyCart from './MyCart';
 import MyFav from './MyFav';
 import MyInfo from './MyInfo';
-import MyTicket from './MyTicket';
 
 const TabContent = (props) => {
+  //마이페이지 탭  나누기
   if (props.clickTab === 0) {
     return (
       <div>
