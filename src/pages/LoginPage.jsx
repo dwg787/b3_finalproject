@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, provider } from '../apis/firebase';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
@@ -7,8 +7,6 @@ import KakaoLogoutButton from '../components/Login/KakaoLogoutButton';
 import Naver from '../components/Login/Naver';
 import styled from 'styled-components';
 import Google from '../assets/google.avif';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../apis/firebase';
 import useNotification from '../hooks/useNotification';
 
 const LoginPage = ({ showModal, setShowModal }) => {
@@ -74,13 +72,6 @@ const LoginPage = ({ showModal, setShowModal }) => {
         localStorage.setItem('id', data.user.displayName);
         localStorage.setItem('email', data.user.email);
         sessionStorage.setItem('uid', data.user.uid);
-        // const user_doc = addDoc(collection(db, 'users'), {
-        //   email: emailRef.current.value,
-        //   name: data.user.displayName,
-        // });
-
-        // console.log(user_doc.id);
-
         navigate('/');
       })
       .catch((error) => {
@@ -96,14 +87,9 @@ const LoginPage = ({ showModal, setShowModal }) => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email);
       localStorage.setItem('id', data.user.displayName);
-      // console.log("data", data);
       navigate('/');
     });
   };
-
-  // useEffect(() => {
-  //   setValue(sessionStorage.getItem("email"));
-  // });
 
   return (
     <MainWrap>
@@ -144,7 +130,6 @@ const LoginPage = ({ showModal, setShowModal }) => {
       <TextDiv>다른 로그인 방식</TextDiv>
 
       <Otherlogins>
-        {/* style={{ display: 'flex', gap: '40px' }} */}
         <KakaoLoginButton />
         <GoogleBtn onClick={handleclick}>
           <GoogleImg src={Google} />
@@ -173,19 +158,14 @@ const LoginText = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: 27.6248px;
-  /* line-height: 31px; */
 `;
 
 const LoginContent = styled.div`
-  /* margin-top: 20px;
-  margin-bottom: 25px; */
   margin: 20px 0 25px 0;
   color: #6d6d6d;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  /* line-height: 17px; */
-  //
 `;
 
 const InputWrap = styled.div`
@@ -201,13 +181,9 @@ const EmailInput = styled.input`
   padding: 15px;
   margin-bottom: -8px;
   &::placeholder {
-    /* font-size: 18.7px;
-    color: #b8b8b8; */
-    //
     font-style: normal;
     font-weight: 500;
     font-size: 16.4874px;
-    /* line-height: 19px; */
   }
 `;
 
@@ -219,13 +195,9 @@ const PwInput = styled.input`
   padding: 15px;
   margin-bottom: 17px;
   &::placeholder {
-    /* font-size: 18.7px;
-    color: #b8b8b8; */
-    //
     font-style: normal;
     font-weight: 500;
     font-size: 16.4874px;
-    /* line-height: 19px; */
   }
 `;
 
@@ -236,28 +208,20 @@ const LoginBtn = styled.button`
   width: 364.9px;
   height: 55.12px;
   font-size: 19px;
-
   border: none;
   margin-bottom: 30px;
   cursor: pointer;
 `;
 
 const GoSignUp = styled.div`
-  /* font-size: 14px;
-  color: #9a9a9a;
-  text-decoration: underline; */
   cursor: pointer;
   margin-bottom: 15px;
-
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  /* line-height: 24px; */
   letter-spacing: -0.35px;
   text-decoration-line: underline;
   color: #9a9a9a;
-  /* border-bottom: 1px solid #9a9a9a; */
-  /* width: 166px; */
 `;
 
 const GoogleBtn = styled.button`
@@ -283,15 +247,9 @@ const TextDiv = styled.div`
   margin-left: 50px;
   color: #8a8a8a;
   font-size: 15.13px;
-
-  //
   display: flex;
-  /* flex-basis: 100%; */
   align-items: center;
-  // =============================
-
   height: 18px;
-
   ::before {
     content: '';
     flex-grow: 1;
@@ -315,30 +273,22 @@ const TextDiv = styled.div`
 const Otherlogins = styled.div`
   display: flex;
   margin: 0 100px 0 100px;
-  /* width: 500px; */
-  /* gap: 10px; */
 `;
 
 const FooterText = styled.div`
-  /* margin-top: 30px;
-  margin-bottom: 30px; */
   display: flex;
   justify-content: center;
   color: #9a9a9a;
   font-size: 14px;
   text-decoration: underline;
-
-  //===============================
   margin-top: 30px;
   margin-bottom: 30px;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  /* line-height: 33px; */
   text-align: center;
   letter-spacing: -0.479859px;
   text-decoration-line: underline;
-
   color: #9a9a9a;
 `;
 
