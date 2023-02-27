@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import TapHeart from '../../../assets/TapHeart.avif';
 import shilla from '../../../assets/shilla.avif';
-import hoong from '../../../assets/hoong.png';
-import okwood from '../../../assets/okwood.png';
-import jeju from '../../../assets/jeju.png';
-import jejusin from '../../../assets/jejusin.png';
-import jimil from '../../../assets/jimil.png';
+import hoong from '../../../assets/hoong.avif';
+import okwood from '../../../assets/okwood.avif';
+import jeju from '../../../assets/jeju.avif';
+import jejusin from '../../../assets/jejusin.avif';
+import jimil from '../../../assets/jimil.avif';
 
 export default function Spot() {
   return (
