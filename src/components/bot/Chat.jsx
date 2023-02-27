@@ -3,6 +3,14 @@ import ChatBot from 'react-simple-chatbot';
 import styled, { ThemeProvider } from 'styled-components';
 
 export default function Chat() {
+  const [test, setTest] = useState();
+  console.log(test, '<<<<<<<<<<');
+  console.log(test?.steps['25'].message);
+
+  const addUserList = (newUser) => {
+    return axios.post('http://localhost:3001/Suggestions', newUser);
+  };
+
   const steps = [
     {
       id: '1',
@@ -128,8 +136,16 @@ export default function Chat() {
     },
     {
       id: '26',
-      message:
-        '문제점 <${previousValue}>가 개발팀으로 전달되었습니다! 빠른시일내로 조치드리겠습니다! 감사합니다!',
+      component: <div>{test?.steps['25'].message}</div>,
+      metadata: {
+        custom: 'test',
+      },
+      message: '건의사항 {previousValue}가 서비스지원팀에 전달되었습니다. :)',
+      trigger: '28',
+    },
+    {
+      id: '28',
+      message: (params) => setTest(params),
       trigger: '12',
     },
     {
