@@ -6,14 +6,13 @@ import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import { useEffect, useState } from 'react';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 const RestaurantDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
   const restaurantRecommendationList = async () => {
-    const fbdata = await getDoc(
-      doc(db, 'restaurant_recommendation', `${props.id}`),
-    );
+    const fbdata = await getDoc(doc(db, 'restaurant_recommendation', props.id));
     if (fbdata) {
       setLikeData(fbdata.data());
     }
