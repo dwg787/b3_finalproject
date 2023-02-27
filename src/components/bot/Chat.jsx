@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { addDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import styled, { ThemeProvider } from 'styled-components';
+import { db } from '../../apis/firebase';
 
 export default function Chat() {
   const [suggestions, setSuggestions] = useState();
@@ -9,34 +11,49 @@ export default function Chat() {
   const [serviceError, setServiceError] = useState();
 
   const addSuggestions = async (message) => {
-    const userSuggestions = {
+    // const userSuggestions = {
+    //   suggestionsMessage: `${message}`,
+    //   userId: localStorage.getItem('id'),
+    // };
+    // console.log(userSuggestions, '<<<<<<<<<<123');      // db.json 에 올릴때로직
+    // return await axios.post(
+    //   'http://localhost:3001/Suggestions',
+    //   userSuggestions,
+    // );
+    return await addDoc(collection(db, 'userSuggestions'), {
       suggestionsMessage: `${message}`,
-      userId: localStorage.getItem('id'),
-    };
-    console.log(userSuggestions, '<<<<<<<<<<123');
-    return await axios.post(
-      'http://localhost:3001/Suggestions',
-      userSuggestions,
-    );
+      userId: localStorage.getItem('uid'),
+      userName: localStorage.getItem('id'),
+    });
   };
 
   const addBug = async (bugmessage) => {
-    const userBug = {
+    // const userBug = {
+    //   bugMessage: `${bugmessage}`,
+    //   userId: localStorage.getItem('id'),                //// db.json 에 올릴때로직
+    // };
+    // return await axios.post('http://localhost:3001/Bug', userBug);
+    return await addDoc(collection(db, 'userBug'), {
       bugMessage: `${bugmessage}`,
-      userId: localStorage.getItem('id'),
-    };
-    return await axios.post('http://localhost:3001/Bug', userBug);
+      userId: localStorage.getItem('uid'),
+      userName: localStorage.getItem('id'),
+    });
   };
 
   const addServiceError = async (serviceMessage) => {
-    const userServiceError = {
-      serviceErrorMessage: `${serviceMessage}`,
-      userId: localStorage.getItem('id'),
-    };
-    return await axios.post(
-      'http://localhost:3001/ServiceError',
-      userServiceError,
-    );
+    // const userServiceError = {
+    //   serviceErrorMessage: `${serviceMessage}`,
+    //   userId: localStorage.getItem('id'),                  ///// db.json 에 올릴때로직
+    // };
+    // return await axios.post(
+    //   'http://localhost:3001/ServiceError',
+    //   userServiceError,
+    // );
+    return await addDoc(collection(db, 'userService'), {
+      serveiceMessage: `${serviceMessage}`,
+      userId: localStorage.getItem('uid'),
+      userName: localStorage.getItem('id'),
+    });
   };
 
   const steps = [
