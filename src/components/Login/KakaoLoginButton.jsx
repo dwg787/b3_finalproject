@@ -11,53 +11,9 @@ export default function KakaoLoginButton() {
   const REST_API_KEY = '06264d97cddc6d0d5ef77a0f28d69af9';
   const REDIRECT_URI = 'http://localhost:3000/';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-  // const CLIENT_SECRET = "jvRkvzZgcAhb2iq42YyYwqCoIY5t1uXS";
-  // const KAKAO_CODE = location.search.split("=")[1];
-  // const [nickName, setNickName] = useState();
-  // const [profileImage, setProfileImage] = useState();
-  // const [accessToken, setAccessToken] = useState();
   const loginHandler = () => {
     window.location.replace(link);
   };
-  // console.log(accessToken);
-  // const getUser = async () => {
-  //   const ACCESS_TOKEN = await fetch("https://kauth.kakao.com/oauth/token", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
-  //     },
-  //     body: QueryString.stringify({
-  //       grant_type: "authorization_code",
-  //       client_id: REST_API_KEY,
-  //       redirect_uri: REDIRECT_URI,
-  //       code: KAKAO_CODE,
-  //       client_secret: CLIENT_SECRET,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .catch((error) => console.log("error:", error));
-
-  //   console.log("ACCESS_TOKEN1", ACCESS_TOKEN);
-  //   setAccessToken(ACCESS_TOKEN.access_token);
-  //   console.log("ACCESS_TOKEN2", ACCESS_TOKEN.access_token);
-  //   localStorage.setItem("token_for_kakaotalk", ACCESS_TOKEN.access_token);
-
-  //   const user = await axios.get("https://kapi.kakao.com/v2/user/me", {
-  //     headers: {
-  //       Authorization: `Bearer ${ACCESS_TOKEN.access_token}`,
-  //     },
-  //   });
-
-  //   console.log(user);
-  //   setNickName(user.data.properties.nickname);
-  //   setProfileImage(user.data.properties.profile_image);
-  //   sessionStorage.setItem("id", user.data.properties.nickname);
-  // };
-  // console.log(nickName, profileImage);
-
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
 
   return (
     <KakaoBtn>

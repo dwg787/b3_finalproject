@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   doc,
   updateDoc,
@@ -6,13 +6,13 @@ import {
   setDoc,
   getDoc,
   collection,
-} from "firebase/firestore";
-import { auth, db } from "../../apis/firebase";
-import styled from "styled-components";
+} from 'firebase/firestore';
+import { auth, db } from '../../apis/firebase';
+import styled from 'styled-components';
 
 const Ticketing = ({ stayDetailData }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [startDate, setStartDate] = useState();
   const [termDate, setTermDate] = useState();
@@ -21,7 +21,7 @@ const Ticketing = ({ stayDetailData }) => {
     //유저 아이디 가져오기
     e.preventDefault();
     const uid = auth.currentUser.uid;
-    const docRef = doc(collection(db, "reservations"));
+    const docRef = doc(collection(db, 'reservations'));
 
     // 유저 컬렉션이 존재하는지 확인
     await getDoc(docRef)
@@ -54,7 +54,7 @@ const Ticketing = ({ stayDetailData }) => {
       contentid: stayDetailData.contentid,
     }).catch((e) => console.log(e));
     alert(
-      `${quantity} 장의 티켓이 ${startDate}~${termDate}로 예약되었습니다 ${name} 님 (${email}) 로 ${stayDetailData.title}예약발송 되셧습니다`
+      `${quantity} 장의 티켓이 ${startDate}~${termDate}로 예약되었습니다 ${name} 님 (${email}) 로 ${stayDetailData.title}예약발송 되셧습니다`,
     );
   };
 
