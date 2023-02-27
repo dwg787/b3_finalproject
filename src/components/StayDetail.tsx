@@ -25,18 +25,16 @@ const StayDetail = (props: FetchedStayDataType) => {
   return (
     <StayEachItemWrapper>
       <StayImgWrapper>
-        <picture>
-          <source srcSet={props.img || noimg} type="image/avif"></source>
-          <source srcSet={props.img || noimg} type="image/webp"></source>
-          <source srcSet={props.img || noimg} type="image/jpg"></source>
-          <StayEachItemImg
-            src={props.img || noimg}
-            alt="사진"
-            decoding="async"
-            loading="lazy"
-            onClick={() => navigate(`/stay/${props.id}`)}
-          />
-        </picture>
+        <source srcSet={props.img || noimg} type="image/avif"></source>
+        <source srcSet={props.img || noimg} type="image/webp"></source>
+        <source srcSet={props.img || noimg} type="image/jpg"></source>
+        <StayEachItemImg
+          src={props.img || noimg}
+          alt="사진"
+          decoding="async"
+          loading="lazy"
+          onClick={() => navigate(`/stay/${props.id}`)}
+        />
       </StayImgWrapper>
       <MyCildTextBox>
         <MyChildTexth3>{props.children}</MyChildTexth3>
@@ -63,7 +61,7 @@ const StayEachItemWrapper = styled.div`
   overflow: hidden;
 `;
 
-const StayImgWrapper = styled.div`
+const StayImgWrapper = styled.picture`
   width: 100%;
   height: 200px;
   display: flex;
