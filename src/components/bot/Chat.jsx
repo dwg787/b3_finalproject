@@ -5,8 +5,10 @@ import styled, { ThemeProvider } from 'styled-components';
 
 export default function Chat() {
   const [suggestions, setSuggestions] = useState();
+  const [bug, setBug] = useState();
+  const [serviceError, setServiceError] = useState();
 
-  const addUserList = async (message) => {
+  const addSuggestions = async (message) => {
     const userSuggestions = {
       suggestionsMessage: `${message}`,
       userId: localStorage.getItem('id'),
@@ -15,6 +17,25 @@ export default function Chat() {
     return await axios.post(
       'http://localhost:3001/Suggestions',
       userSuggestions,
+    );
+  };
+
+  const addBug = async (bugmessage) => {
+    const userBug = {
+      bugMessage: `${bugmessage}`,
+      userId: localStorage.getItem('id'),
+    };
+    return await axios.post('http://localhost:3001/Bug', userBug);
+  };
+
+  const addServiceError = async (serviceMessage) => {
+    const userServiceError = {
+      serviceErrorMessage: `${serviceMessage}`,
+      userId: localStorage.getItem('id'),
+    };
+    return await axios.post(
+      'http://localhost:3001/ServiceError',
+      userServiceError,
     );
   };
 
@@ -67,12 +88,12 @@ export default function Chat() {
     {
       id: '7',
       message: '버그를 하단 텍스트 입력창에 서술해주세요',
-      trigger: '15',
+      trigger: '29',
     },
     {
       id: '8',
       message: '어떤 문제점인지 말해주시겠어요?',
-      trigger: '10',
+      trigger: '32',
     },
     {
       id: '9',
@@ -147,16 +168,63 @@ export default function Chat() {
       metadata: {
         custom: 'suggestions',
       },
-      message: '건의사항 {previousValue}가 전달되었습니다:)',
-
+      message: '건의사항 {previousValue}이가 서비스지원팀으로 전달되었습니다:)',
       trigger: '28',
     },
     {
       id: '28',
       message: (params) => {
-        console.log(params.steps['25'].message);
-        addUserList(params.steps['25'].message);
+        console.log(params);
+        addSuggestions(params.steps['25'].message);
         setSuggestions(params);
+      },
+      trigger: '12',
+    },
+    {
+      id: '29',
+      user: true,
+      trigger: '30',
+    },
+    {
+      id: '30',
+      component: <div>{suggestions?.steps['25'].message}</div>,
+      metadata: {
+        custom: 'suggestions',
+      },
+      message:
+        '버그문의 <{previousValue}>이가 서비스지원팀으로 전달되었습니다:)',
+      trigger: '31',
+    },
+    {
+      id: '31',
+      message: (params) => {
+        console.log(params);
+        addBug(params.steps['29'].message);
+        setBug(params);
+      },
+      trigger: '12',
+    },
+    {
+      id: '32',
+      user: true,
+      trigger: '33',
+    },
+    {
+      id: '33',
+      component: <div>{suggestions?.steps['25'].message}</div>,
+      metadata: {
+        custom: 'suggestions',
+      },
+      message:
+        '서비스에러 <{previousValue}>이가 서비스지원팀으로 전달되었습니다:)',
+      trigger: '34',
+    },
+    {
+      id: '34',
+      message: (params) => {
+        console.log(params);
+        addServiceError(params.steps['32'].message);
+        setServiceError(params);
       },
       trigger: '12',
     },
