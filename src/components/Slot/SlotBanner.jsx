@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import slotbanner from '../../assets/slotbanner.png';
+import slotbanner from '../../assets/slotbanner.avif';
 
 export default function SlotBanner() {
   return (

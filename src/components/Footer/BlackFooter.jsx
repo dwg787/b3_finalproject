@@ -46,7 +46,7 @@ const WrapDiv = styled.div`
   padding-top: 100px;
   padding-left: 100px;
   position: absolute;
-  margin-top: 3500px;
+  margin-top: 4000px;
   z-index: 3;
 `;
 

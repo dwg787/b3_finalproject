@@ -44,15 +44,15 @@ const StaySelectionResult = () => {
   }, [region]);
 
   return (
-    <WrapDiv>
-      <SearchOverallResultContainer>
-        {isLoading || data === undefined ? (
-          <>
-            <SkeletonTestFrame />
-            {/* <Loader /> */}
-          </>
-        ) : (
-          <>
+    <SearchOverallResultContainer>
+      {isLoading || data === undefined ? (
+        <>
+          <SkeletonTestFrame />
+          {/* <Loader /> */}
+        </>
+      ) : (
+        <>
+          <ListContainer>
             <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
             <SearchListWrapper>
               <BtnWrapper>
@@ -96,57 +96,50 @@ const StaySelectionResult = () => {
                 )}
               </BtnWrapper>
             </SearchListWrapper>
-            <PaginationDotsWrapper>
-              {Array(Math.ceil(data.totalCount / 8) + 1)
-                .fill('')
-                .slice(firstNum.current, firstNum.current + 5)
-                .map((_, i) => {
-                  const isSelectedPage =
-                    firstNum.current + i === stayCurPage ? true : false;
-                  // console.log('토탈카운', data.totalCount);
-                  if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
-                    return (
-                      <PaginationDot
-                        key={firstNum.current + i}
-                        isSelectedPage={isSelectedPage}
-                        onClick={() => {
-                          setStayCurPage(firstNum.current + i);
-                        }}
-                      >
-                        {firstNum.current + i}
-                      </PaginationDot>
-                    );
-                  }
-                })}
-            </PaginationDotsWrapper>
-          </>
-        )}
-      </SearchOverallResultContainer>
-    </WrapDiv>
+          </ListContainer>
+          <PaginationDotsWrapper>
+            {Array(Math.ceil(data.totalCount / 8) + 1)
+              .fill('')
+              .slice(firstNum.current, firstNum.current + 5)
+              .map((_, i) => {
+                const isSelectedPage =
+                  firstNum.current + i === stayCurPage ? true : false;
+                // console.log('토탈카운', data.totalCount);
+                if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
+                  return (
+                    <PaginationDot
+                      key={firstNum.current + i}
+                      isSelectedPage={isSelectedPage}
+                      onClick={() => {
+                        setStayCurPage(firstNum.current + i);
+                      }}
+                    >
+                      {firstNum.current + i}
+                    </PaginationDot>
+                  );
+                }
+              })}
+          </PaginationDotsWrapper>
+        </>
+      )}
+    </SearchOverallResultContainer>
   );
 };
 export default StaySelectionResult;
 
-const WrapDiv = styled.div`
-  width: 100%;
-  height: 800px;
-  background: linear-gradient(180deg, #ffffff 52.85%, #afb9fb 100%);
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  padding-bottom: 50px;
-`;
-
 const SearchOverallResultContainer = styled.div`
   position: relative;
   width: 65%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid #6478ff;
+  background: linear-gradient(180deg, #ffffff 52.85%, #afb9fb 100%);
   border-radius: 20px;
   box-shadow: 3px 3px #d7d7d7;
+  padding-bottom: 50px;
 `;
 
 const ListItemCount = styled.div`
@@ -208,4 +201,9 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
   /* color: #878787; */
   font-weight: 800;
   cursor: pointer;
+`;
+
+const ListContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `;
