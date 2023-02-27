@@ -136,11 +136,11 @@ const DetailPage = () => {
 
                 <DetailInformationMap id="3">
                   <SideInfoMap
-                    mapx={spotData.mapx}
-                    mapy={spotData.mapy}
-                    title={spotData.title}
-                    tel={spotData.tel}
-                    homepage={spotData.homepage}
+                    mapx={spotData?.mapx}
+                    mapy={spotData?.mapy}
+                    title={spotData?.title}
+                    tel={spotData?.tel}
+                    homepage={spotData?.homepage}
                   />
                 </DetailInformationMap>
 

@@ -129,8 +129,6 @@ const SlotMachine = () => {
   //     return slot[2][Math.floor(Math.random() * slot[2].length)];
   //   };
 
-  // const buttonClick = () => {}
-  // console.log(currentSpots);
   return (
     <BigContainer>
       <SlotTitleImg src={Randomslot} alt="" />

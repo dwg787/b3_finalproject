@@ -58,7 +58,7 @@ export default function StayInfo({
                 {stayData.slice(0, 4).map((item, i) => {
                   return (
                     <Link to={`/stay/${item.contentid}`}>
-                      <MyChildList key={i}>
+                      <MyChildList key={item.contentid}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
