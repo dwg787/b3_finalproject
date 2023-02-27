@@ -10,12 +10,10 @@ import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import useNotification from '../../hooks/useNotification'; // 알람관련코드1
 import styled from 'styled-components';
-import ReviewSlider from './ReviewSlider';
 import Pagination from 'react-js-pagination';
 
 const Communication = () => {
@@ -30,9 +28,6 @@ const Communication = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [totalReviewCount, setTotalReviewCount] = useState(0);
-  //useparams 를 사용하여 id 값을 파이어베이스로 보낸후
-  //파이어베이스에서 데이터를 가져올 때 useparams의 값이 같은 것만
-  //map을 돌려서 return 해준다!
 
   // 화면이 처음 렌더링 할때 데이터를 가져옴
   useEffect(() => {
@@ -60,7 +55,6 @@ const Communication = () => {
     const loginUser = auth.currentUser;
     const inputValue = event.target.value;
     if (!newReview || newReview.length === 0) {
-      // 추가된 부분: newReview 값이 비어있을 때
       alert('리뷰를 입력해주세요.');
     } else if (loginUser) {
       const addRev = await addDoc(usersCollectionRef, {
@@ -79,10 +73,8 @@ const Communication = () => {
         review: newReview,
         uid: localStorage.getItem('uid'),
         displayName: localStorage.getItem('id'),
-        //loginUser?.displayName
         paramId: params.id,
         date: Date.now(),
-        //파이어스토어 db, reviews 에 저장
       });
       setNewReview('');
     } else if (Naverloginid) {
@@ -90,10 +82,8 @@ const Communication = () => {
         review: newReview,
         uid: localStorage.getItem('uid'),
         displayName: localStorage.getItem('id'),
-        //loginUser?.displayName
         paramId: params.id,
         date: Date.now(),
-        //파이어스토어 db, reviews 에 저장
       });
       setNewReview('');
     } else {
@@ -101,37 +91,9 @@ const Communication = () => {
     }
   };
 
-  // const creatReview = async (event) => {
-  //   const Kakaologinid = localStorage.getItem('uid');
-  //   const Naverloginid = localStorage.getItem('uid');
-  //   const loginUser = auth.currentUser;
-  //   // const inputValue = event.target.value;
-
-  //   if (loginUser || Kakaologinid || Naverloginid) {
-  //     if (!newReview || newReview.length == 0) {
-  //       alert('댓글을 적어 주세요');
-  //     } else {
-  //       const addRev = await addDoc(usersCollectionRef, {
-  //         review: newReview,
-  //         uid: loginUser?.uid || localStorage.getItem('uid'),
-  //         email: loginUser?.email,
-  //         displayName: localStorage.getItem('id', loginUser?.displayName),
-  //         paramId: params.id,
-  //         date: Date.now(),
-  //       });
-  //       setNewReview('');
-  //       setAlarmMsg('리뷰가 등록되었습니다.');
-  //       addNoti();
-  //     }
-  //   } else {
-  //     alert('로그인 해주세요');
-  //   }
-  // };
-
   return (
     <ReviewContainerWrap>
       <ReviewContainer>
-        {/* <DetailInfoText>여행톡</DetailInfoText> */}
         <ReviewBox>
           <ReviewLabel for="review">후기작성</ReviewLabel>
           <InputAndBtnWrap>
@@ -159,13 +121,11 @@ const Communication = () => {
         </ReviewBox>
 
         <ReviewBoxList>
-          {/* {restaurant &&
-              restaurant?.bookmarks
-                ?.slice(items * (page - 1), items * (page - 1) + items) */}
           {reviews
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
             .map((review, i) => {
               if (review.paramId === params.id) {
+                // 상세페이지 params.id와 리뷰의  paramId가 같은것만 보여주기
                 return (
                   <ReviewList
                     reviews={reviews}
@@ -199,14 +159,11 @@ export default Communication;
 const ReviewContainerWrap = styled.div`
   border: 1.00654px solid #9eabff;
   width: 1146.11px;
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  /* border: 1.00654px solid #9eabff; */
   box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18);
   border-radius: 13.4205px;
-  /* border: 1px solid red; */
 `;
 
 const PaginationBox = styled.div`
@@ -253,20 +210,15 @@ const BottomLine = styled.div`
 const ReviewContainer = styled.div`
   width: 1146.11px;
   height: 576.41px;
-  /* width: 100%; */
+
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  /* border: 1.00654px solid #9eabff; */
-  /* box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18); */
+
   border-radius: 13.4205px;
-  /* border: 1px solid red; */
 `;
 
 const ReviewBox = styled.div`
-  /* gap: 1rem;
-  margin: 10px 0;  */
-  /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -285,7 +237,6 @@ const InputAndBtnWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid yellow; */
 `;
 
 const ReviewInput = styled.textarea`
@@ -326,16 +277,9 @@ const ReviewButton = styled.button`
 
 const ReviewBoxList = styled.div`
   display: flex;
-
-  /* width: 1146.11px; */
-  /* height: 327px; */
   height: 100%;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   overflow: hidden;
-  /* border: 1px solid blue; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
 `;

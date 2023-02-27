@@ -41,6 +41,7 @@ export default function MyInfo() {
     localStorage.setItem('id', currentInput);
     updateNickname(currentInput);
     alert('수정되었습니다.');
+    navigate('/my', { replace: true });
   };
 
   // input 수정
@@ -56,7 +57,7 @@ export default function MyInfo() {
       setInputValidation(true);
     }
   };
-
+  // 회원탈퇴
   const handleDeleteAccount = async () => {
     const confirmDelete = window.confirm('정말 탈퇴하시겠습니까?');
     if (confirmDelete) {
@@ -72,19 +73,12 @@ export default function MyInfo() {
     }
   };
 
-  // 유저 정보 가져오기
-  // const getUserInfo = async () => {
-  //   const docRef = doc(db, 'users', currentUser);
-  //   await getDoc(docRef);
-  // };
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(auth.currentUser.uid);
         setUserName(auth.currentUser.displayName);
         setEmail(auth.currentUser.email);
-        // getUserInfo();
 
         console.log('로그인 되어있음');
       } else if (!user) {
@@ -105,8 +99,6 @@ export default function MyInfo() {
   }, [inputValidation]);
 
   return (
-    // <MyInfoWrap>
-    // <MyInfoDiv>
     <MyInfoContainer>
       <Privacy>
         <h2>개인정보 수정</h2>
@@ -140,9 +132,6 @@ export default function MyInfo() {
         </SignUpDeleteBtn>
       </PrivacyDiv>
     </MyInfoContainer>
-    // </MyInfoDiv>
-
-    // </MyInfoWrap>
   );
 }
 
@@ -157,17 +146,12 @@ const Error = styled.div`
 `;
 
 const MyInfoContainer = styled.div`
-  /* position: absolute;
-  top: 100%;
-  left: 50%; */
-  /* width: 65%; */
   height: 1000px;
 
   margin: auto;
 
   padding: 40px;
 
-  /* transform: translate(-50%, -50%); */
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(158, 171, 255, 0.61);
   background: rgb(255, 255, 255);

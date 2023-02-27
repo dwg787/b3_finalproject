@@ -30,8 +30,6 @@ const SideInfoMap = ({
 
   const { kakao } = window;
 
-  // console.log('리코일로 받아온 근처 숙박 리스트', nearStayList);
-
   const options = {
     center: new window.kakao.maps.LatLng(mapy, mapx),
     level: 3,

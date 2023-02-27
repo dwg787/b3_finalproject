@@ -1,15 +1,9 @@
-import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 export default function MyInfoModal({ setModalOpen }) {
-  //   const closeModal = () => {
-  //     setModalOpen(false);
-  //   };
-
   return (
     <ModalBackground onClick={() => setModalOpen(false)}>
       <ModalContainer>
-        {/* <button onClick={closeModal}>x</button> */}
         <MyInfoWrap>
           <MyInfoText>서비스 이용약관</MyInfoText>
           <BoldText>제 1 장 총칙</BoldText>
