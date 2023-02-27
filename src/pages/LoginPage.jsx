@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { auth, provider } from '../apis/firebase';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import KakaoLoginButton from '../components/Login/KakaoLoginButton';
-import KakaoLogoutButton from '../components/Login/KakaoLogoutButton';
 import Naver from '../components/Login/Naver';
 import styled from 'styled-components';
 import Google from '../assets/google.avif';

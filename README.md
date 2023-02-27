@@ -1,46 +1,33 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 프로젝트 개요
 
-## Available Scripts
+![](https://velog.velcdn.com/images/jini9256/post/bcee838d-befd-41b1-8c2f-db0c4fda1b00/image.png)
 
-In the project directory, you can run:
 
-### `npm start`
+### 프로젝트명 : Tripick
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ - 국내를 돌아다니며 여행할수있는 자료를 제공함으로써 국내관광 정보제공 및 반경20km내 숙박및 식음료 데이터를 제공해주는 사이트
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+#### 배포링크 : https://b3-finalproject-v33x.vercel.app/
+#### 팀 노션 : https://coherent-petalite-63a.notion.site/S-A-8bda63e869934236961d7009428b284c
+#### 시연영상 : https://youtu.be/f-2ipfhSZlg
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### 팀원 구성
 
-### `npm run build`
+|**팀원**|**깃허브**|
+|---|---|
+|유영재|[YoungJae0910] (https://github.com/YoungJae0910)|
+|예재현|[dwg787] (https://github.com/dwg787)|
+|심대호|[SimDaeHo] (https://github.com/SimDaeHo)|
+|송원석|[CircleSeok] (https://github.com/CircleSeok)|
+|김혜진|[jini9256] (https://github.com/jini9256)|
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+ 
+ 

@@ -77,7 +77,7 @@ const StayImgWrapper = styled.div`
 const StayEachItemImg = styled.img`
   width: 220px;
   height: 300px;
-  aspect-ratio: 1.2;
+  /* aspect-ratio: 1.2; */
   background-color: white;
   border-top-left-radius: 13px;
   border-top-right-radius: 13px;
