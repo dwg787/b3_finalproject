@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import InnerPhoto from '../../../assets/slider3.avif';
 import TapHeart from '../../../assets/TapHeart.avif';
 import dombae from '../../../assets/dombae.avif';
 import manmi from '../../../assets/manmi.avif';

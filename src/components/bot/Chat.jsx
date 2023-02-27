@@ -5,18 +5,22 @@ import styled, { ThemeProvider } from 'styled-components';
 
 export default function Chat() {
   const [suggestions, setSuggestions] = useState();
-  console.log(suggestions?.steps['25'].message);
+
+  console.log(suggestions, '들어왓나?');
 
   const userSuggestions = {
-    suggestionsMessage: suggestions?.steps['25'].message,
-    userId: sessionStorage.getItem('uid'),
+    suggestionsMessage: `${suggestions?.steps['25'].message}`,
+    userId: localStorage.getItem('id'),
   };
   console.log(userSuggestions, '<<<<<<<<<<');
-
-  const addUserList = () => {
-    return axios.post('http://localhost:3001/Suggestions', userSuggestions);
+  // console.log(suggestions?.steps['25'].message);
+  const addUserList = async () => {
+    console.log(userSuggestions, '<<<<<<<<<<123');
+    return await axios.post(
+      'http://localhost:3001/Suggestions',
+      userSuggestions,
+    );
   };
-
   const steps = [
     {
       id: '1',
@@ -142,22 +146,26 @@ export default function Chat() {
     },
     {
       id: '26',
-      // component: <div>{suggestions?.steps['25'].message}</div>,
+      component: <div>{suggestions?.steps['25'].message}</div>,
       metadata: {
         custom: 'suggestions',
       },
-      message: '건의사항 {previousValue}가 서비스지원팀에 전달되었습니다. :)',
+      message:
+        '건의사항 {previousValue}가 맞나요? 맞다면 아래 보내기버튼을 클릭해주세요! :)',
       trigger: '28',
     },
     {
       id: '28',
-      message: (params) => setSuggestions(params),
+      message: (params) => {
+        console.log(params);
+        setSuggestions(params);
+      },
       trigger: '29',
     },
     {
       id: '29',
-      function: addUserList(),
-      trigger: '12',
+      component: <button onClick={addUserList}>건의사항보내기</button>,
+      end: true,
     },
     {
       id: '27',

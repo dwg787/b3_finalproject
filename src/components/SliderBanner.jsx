@@ -95,21 +95,19 @@ const ContainerDiv = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
-  /* background-color: gray; */
   margin-top: 40px;
 `;
 const WarpDiv = styled.div`
   width: 100%;
   height: 450px;
 `;
-const MainSlider = styled(Slider)`
-  height: 100%;
-`;
+
 const ImgDiv = styled.div`
   width: 100%;
   height: 450px;
   position: relative;
 `;
+
 const MainImg = styled.img`
   width: 100%;
   height: 450px;
