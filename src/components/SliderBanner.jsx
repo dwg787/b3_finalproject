@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import InputBoxButton from './InputBoxButton/InputBoxButton';
-import sliderchange1 from '../assets/sliderchange1.png';
-import sliderchange2 from '../assets/sliderchange2.png';
-import sliderchange3 from '../assets/sliderchange3.png';
+import sliderchange1 from '../assets/sliderchange1.avif';
+import sliderchange2 from '../assets/sliderchange2.avif';
+import sliderchange3 from '../assets/sliderchange3.avif';
 import nextImg from '../assets/next.avif';
 import pervImg from '../assets/prev.avif';
 

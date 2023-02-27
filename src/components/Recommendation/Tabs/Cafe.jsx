@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import commingsoon from '../../../assets/commingsoon.png';
+import commingsoon from '../../../assets/commingsoon.avif';
 
 export default function Cafe() {
   return (

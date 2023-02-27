@@ -3,9 +3,9 @@ import { getDocs, query, collection, orderBy } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../apis/firebase';
 import styled from 'styled-components';
-import one from '../../assets/one.png';
-import two from '../../assets/two.png';
-import three from '../../assets/three.png';
+import one from '../../assets/one.avif';
+import two from '../../assets/two.avif';
+import three from '../../assets/three.avif';
 import noimg from '../../assets/noimg.avif';
 import redheart from '../../assets/redheart.avif';
 
@@ -184,7 +184,7 @@ const ContainerDiv = styled.div`
   background-color: white;
   position: absolute;
   z-index: 0;
-  margin-top: 2600px;
+  margin-top: 3600px;
 `;
 
 const WrapDiv = styled.div`

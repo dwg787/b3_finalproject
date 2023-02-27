@@ -9,7 +9,7 @@ import random from '../../assets/random.avif';
 import _ from 'lodash';
 import sadari from '../../assets/sadari.mp3';
 import BlueFooter from '../Footer/BlueFooter';
-import Randomslot from '../../assets/Randomslot.png';
+import Randomslot from '../../assets/Randomslot.avif';
 //v1 슬롯머신
 
 const SlotMachine = () => {
