@@ -39,7 +39,7 @@ import BlueFooter from '../../components/Footer/BlueFooter';
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
-  const { data: spotData, isLoading: isLoadingSpot } = useQuery(
+  const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
     () => fetchSpotDetailData({ param }),
   );
@@ -61,10 +61,10 @@ const DetailPage = () => {
     }
   };
 
-  const saveNewRecCnt = async (spotData: FetchedStayDataType) => {
+  const saveNewRecCnt = async (spotDetailData: FetchedStayDataType) => {
     if (param.id) {
       await setDoc(doc(db, 'spot_recommendation', param.id), {
-        ...spotData,
+        ...spotDetailData,
         viewCnt: 1,
         likeCnt: 0,
       });
@@ -77,11 +77,11 @@ const DetailPage = () => {
       if (res) {
         updateRecCnt();
       } else {
-        if (spotData) saveNewRecCnt(spotData);
+        if (spotDetailData) saveNewRecCnt(spotDetailData);
       }
     };
     getFirestoreRecCnt();
-  }, [spotData]);
+  }, [spotDetailData]);
 
   return (
     <DetailWrap>
@@ -91,15 +91,18 @@ const DetailPage = () => {
           <Loader />
         ) : (
           <>
-            {spotData ? (
+            {spotDetailData ? (
               <DeatilBox key={param.id}>
                 <DetailScroll />
                 <TabHr />
                 <DeatilTextBox>
-                  <DetailText>{spotData.title}</DetailText>
-                  <DetailTextArr> {spotData.addr1.split(' ', 2)}</DetailTextArr>
+                  <DetailText>{spotDetailData.title}</DetailText>
+                  <DetailTextArr>
+                    {' '}
+                    {spotDetailData.addr1.split(' ', 2)}
+                  </DetailTextArr>
                   <DeatilImojiBox>
-                    <SpotLiked spotData={spotData} />
+                    <SpotLiked spotDetailData={spotDetailData} />
                     <Link to={`/${param.id}/map`}>
                       <MapImoji />
                     </Link>
@@ -108,27 +111,33 @@ const DetailPage = () => {
 
                 <DetailImgBox id="1">
                   <DetailImg
-                    src={spotData.firstimage || noimg}
+                    src={spotDetailData.firstimage || noimg}
                     alt="관광지 사진"
                   />
                 </DetailImgBox>
 
                 <DetailInformation id="2">
-                  <DetailInfo>{spotData.overview.split('<', 1)}</DetailInfo>
+                  {/* <DetailInfoTextBox>
+                    <DetailInfoText>상세정보</DetailInfoText>
+                  </DetailInfoTextBox> */}
+
+                  <DetailInfo>
+                    {spotDetailData.overview.split('<', 1)}
+                  </DetailInfo>
 
                   <DetailInfo2>
                     <span style={{ fontWeight: '700' }}>주소 : </span>
-                    {spotData.addr1}
+                    {spotDetailData.addr1}
                   </DetailInfo2>
                 </DetailInformation>
 
                 <DetailInformationMap id="3">
                   <SideInfoMap
-                    mapx={spotData?.mapx}
-                    mapy={spotData?.mapy}
-                    title={spotData?.title}
-                    tel={spotData?.tel}
-                    homepage={spotData?.homepage}
+                    mapx={spotDetailData?.mapx}
+                    mapy={spotDetailData?.mapy}
+                    title={spotDetailData?.title}
+                    tel={spotDetailData?.tel}
+                    homepage={spotDetailData?.homepage}
                   />
                 </DetailInformationMap>
 
@@ -143,8 +152,8 @@ const DetailPage = () => {
           </>
         )}
         <SideInfoWrapper id="5">
-          <StayInfo spotData={spotData} />
-          <RestaurantInfo spotData={spotData} />
+          <StayInfo spotData={spotDetailData} />
+          <RestaurantInfo spotData={spotDetailData} />
         </SideInfoWrapper>{' '}
         <BlueFooter />
       </Container>

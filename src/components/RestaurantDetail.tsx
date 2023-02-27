@@ -6,12 +6,9 @@ import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { likeState } from '../recoil/apiDataAtoms';
 
 const RestaurantDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
-  // const [likeData, setLikeData] = useRecoilState(likeState);
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
   const restaurantRecommendationList = async () => {
     const fbdata = await getDoc(

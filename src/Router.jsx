@@ -4,6 +4,7 @@ import Loader from './components/Loader/Loader';
 import Navbar from './components/Navbar';
 import ChatBotModal from './components/bot/ChatBotModal';
 import TopButton from './components/TopButton/TopButton';
+import SlotMachine from './components/Slot/SlotMechine';
 
 import {
   MainPage,
@@ -16,9 +17,6 @@ import {
   StayDetailPage,
   RestaurantDetailPage,
 } from './pages';
-
-import Footer from './components/Footer/Footer';
-import SlotMachine from './components/Slot/SlotMechine';
 
 const Router = () => {
   return (
@@ -39,7 +37,6 @@ const Router = () => {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/slot" element={<SlotMachine />} />
         </Routes>
-        {/* <Footer /> */}
       </BrowserRouter>
     </Suspense>
   );
