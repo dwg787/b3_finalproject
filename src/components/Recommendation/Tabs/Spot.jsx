@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import InnerPhoto from '../../../assets/slider1.avif';
 import TapHeart from '../../../assets/TapHeart.avif';
 import gyongrim from '../../../assets/gyongrim.avif';
 import donggung from '../../../assets/donggung.avif';
@@ -8,7 +7,6 @@ import gumsung from '../../../assets/gumsung.avif';
 import deabang from '../../../assets/deabang.avif';
 import hwagae from '../../../assets/hwagae.avif';
 import chang from '../../../assets/chang.avif';
-import { Link } from 'react-router-dom';
 
 export default function Spot() {
   const gorim = () => {

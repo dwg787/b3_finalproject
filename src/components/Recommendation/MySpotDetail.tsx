@@ -16,7 +16,6 @@ const MySpotDetail = (props: FetchedStayDataType) => {
           <SpotEachItemImg
             src={props.img || noimg}
             alt="사진"
-            // onMouseOver={() => {}}
             decoding="async"
             loading="lazy"
             onClick={() => navigate(`/spot/${props.id}`)}

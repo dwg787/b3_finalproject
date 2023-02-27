@@ -31,7 +31,6 @@ const KakaoBtn = styled.button`
 const KakaoLogoButton = styled.img`
   width: 41px;
   height: 41px;
-  /* border-radius: 30px; */
   cursor: pointer;
 `;
 

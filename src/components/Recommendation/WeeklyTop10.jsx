@@ -27,6 +27,7 @@ export default function WeeklyTop10() {
     </Container>
   );
 }
+
 const Container = styled.div`
   width: 65%;
   height: 770px;
@@ -38,6 +39,7 @@ const Container = styled.div`
   box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
   background-color: white;
 `;
+
 const WeeklyTopText = styled.p`
   margin-left: 36px;
   color: #6478ff;
@@ -45,31 +47,8 @@ const WeeklyTopText = styled.p`
   font-weight: bold;
   margin-top: 40px;
 `;
+
 const WeeklyButtonBox = styled.div`
   display: flex;
-  margin-top: 20px;
-`;
-
-// const WeeklyButton = styled.button`
-//   width: 70px;
-//   height: 35px;
-//   border: 1px solid #6478ff;
-//   cursor: pointer;
-//   margin-left: 30px;
-//   border-radius: 20px;
-//   background-color: white;
-// `;
-
-const WeeklyListWrapbox = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-const WeeklyListBox1 = styled.div``;
-const WeeklyListBox2 = styled.div``;
-const WeeklyList = styled.div`
-  width: 600px;
-  height: 200px;
-  background-color: gray;
   margin-top: 20px;
 `;
