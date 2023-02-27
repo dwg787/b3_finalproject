@@ -152,13 +152,13 @@ export default function Chat() {
     {
       id: '28',
       message: (params) => setSuggestions(params),
+      trigger: '29',
+    },
+    {
+      id: '29',
+      function: addUserList(),
       trigger: '12',
     },
-    // {
-    //   id: '29',
-    //   message: () => addUserList(),
-    //   trigger: '12',
-    // },
     {
       id: '27',
       message: '문의전화 010-8089-1884 ',
