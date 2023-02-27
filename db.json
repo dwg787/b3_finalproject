@@ -3,22 +3,8 @@
     {
       "userId": "보초딩코",
       "id": "1fQ4FkK"
-    },
-    {
-      "suggestionsMessage": "undefined",
-      "userId": "영재",
-      "id": "ELnT6-I"
-    },
-    {
-      "suggestionsMessage": "undefined",
-      "userId": "영재",
-      "id": "eRGKErg"
     }
   ],
-  "Bug": [
-    {}
-  ],
-  "ServiceError": [
-    {}
-  ]
+  "Bug": [{}],
+  "ServiceError": [{}]
 }

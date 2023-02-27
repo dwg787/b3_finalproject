@@ -6,21 +6,18 @@ import styled, { ThemeProvider } from 'styled-components';
 export default function Chat() {
   const [suggestions, setSuggestions] = useState();
 
-  console.log(suggestions, '들어왓나?');
-
-  const userSuggestions = {
-    suggestionsMessage: `${suggestions?.steps['25'].message}`,
-    userId: localStorage.getItem('id'),
-  };
-  console.log(userSuggestions, '<<<<<<<<<<');
-  // console.log(suggestions?.steps['25'].message);
-  const addUserList = async () => {
+  const addUserList = async (message) => {
+    const userSuggestions = {
+      suggestionsMessage: `${message}`,
+      userId: localStorage.getItem('id'),
+    };
     console.log(userSuggestions, '<<<<<<<<<<123');
     return await axios.post(
       'http://localhost:3001/Suggestions',
       userSuggestions,
     );
   };
+
   const steps = [
     {
       id: '1',
@@ -150,22 +147,18 @@ export default function Chat() {
       metadata: {
         custom: 'suggestions',
       },
-      message:
-        '건의사항 {previousValue}가 맞나요? 맞다면 아래 보내기버튼을 클릭해주세요! :)',
+      message: '건의사항 {previousValue}가 전달되었습니다:)',
+
       trigger: '28',
     },
     {
       id: '28',
       message: (params) => {
-        console.log(params);
+        console.log(params.steps['25'].message);
+        addUserList(params.steps['25'].message);
         setSuggestions(params);
       },
-      trigger: '29',
-    },
-    {
-      id: '29',
-      component: <button onClick={addUserList}>건의사항보내기</button>,
-      end: true,
+      trigger: '12',
     },
     {
       id: '27',
