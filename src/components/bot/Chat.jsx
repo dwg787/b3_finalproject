@@ -4,12 +4,17 @@ import ChatBot from 'react-simple-chatbot';
 import styled, { ThemeProvider } from 'styled-components';
 
 export default function Chat() {
-  const [test, setTest] = useState();
-  console.log(test, '<<<<<<<<<<');
-  console.log(test?.steps['25'].message);
+  const [suggestions, setSuggestions] = useState();
+  console.log(suggestions?.steps['25'].message);
 
-  const addUserList = (newUser) => {
-    return axios.post('http://localhost:3001/Suggestions', newUser);
+  const userSuggestions = {
+    suggestionsMessage: suggestions?.steps['25'].message,
+    userId: sessionStorage.getItem('uid'),
+  };
+  console.log(userSuggestions, '<<<<<<<<<<');
+
+  const addUserList = () => {
+    return axios.post('http://localhost:3001/Suggestions', userSuggestions);
   };
 
   const steps = [
@@ -137,18 +142,23 @@ export default function Chat() {
     },
     {
       id: '26',
-      component: <div>{test?.steps['25'].message}</div>,
+      // component: <div>{suggestions?.steps['25'].message}</div>,
       metadata: {
-        custom: 'test',
+        custom: 'suggestions',
       },
       message: '건의사항 {previousValue}가 서비스지원팀에 전달되었습니다. :)',
       trigger: '28',
     },
     {
       id: '28',
-      message: (params) => setTest(params),
+      message: (params) => setSuggestions(params),
       trigger: '12',
     },
+    // {
+    //   id: '29',
+    //   message: () => addUserList(),
+    //   trigger: '12',
+    // },
     {
       id: '27',
       message: '문의전화 010-8089-1884 ',
@@ -181,6 +191,7 @@ export default function Chat() {
           />
         </ThemeProvider>
       </Fuckdiv>
+      {/* <button onClick={addUserList}>하이</button> */}
     </>
   );
 }
