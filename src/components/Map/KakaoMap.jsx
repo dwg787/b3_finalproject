@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import BlueFooter from '../Footer/BlueFooter';
 
 const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
   const mapcontainer = useRef(null);
@@ -12,8 +11,6 @@ const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
   };
 
   useEffect(() => {
-    // console.log(mapx, mapy);
-
     const map = new window.kakao.maps.Map(mapcontainer.current, options);
 
     //지도 내 마커 표시
@@ -49,13 +46,10 @@ const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
     // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
     const zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-    // console.log("kakaomap로딩완료");
   }, []);
   return (
     <Container>
       <StMap id="map" ref={mapcontainer}></StMap>
-      {/* <BlueFooter /> */}
     </Container>
   );
 };

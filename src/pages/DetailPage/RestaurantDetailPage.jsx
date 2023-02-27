@@ -32,7 +32,6 @@ import Notification from '../../components/Notification/Notification';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
 import StayInfo from '../../components/Recommendation/StayInfo';
-import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
 import BlueFooter from '../../components/Footer/BlueFooter';
@@ -72,7 +71,6 @@ const RestaurantDetailPage = () => {
         ...restaurantDetailData,
         viewCnt: 1,
         likeCnt: 0,
-        // likeCnt: [],
       });
     }
   };
@@ -100,7 +98,6 @@ const RestaurantDetailPage = () => {
           <>
             {restaurantDetailData ? (
               <DeatilBox key={param.id}>
-                {/* <Link to={'/'}>메인으로</Link> */}
                 <DetailScroll />
                 <TabHr />
                 <DeatilTextBox>
@@ -109,7 +106,6 @@ const RestaurantDetailPage = () => {
                     {restaurantDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
-                    {/* <Liked restaurantDetailData={restaurantDetailData} /> */}
                     <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
                     />
