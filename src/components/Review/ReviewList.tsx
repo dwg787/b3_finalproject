@@ -7,10 +7,25 @@ import { getDate } from '../../common/utils';
 import useNotification from '../../hooks/useNotification';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
-export default function ReviewList({ review, i, reviews, key }) {
+interface Review {
+  id: string;
+  uid: string;
+  displayName: string;
+  date: string;
+  review: string;
+}
+
+interface ReviewListProps {
+  review: Review;
+  i: number;
+  reviews: Review[];
+  id: string;
+}
+
+export default function ReviewList({ review, i, reviews }: ReviewListProps) {
   const [newReview, setNewReview] = useState('');
   const [editBox, setEditBox] = useState(false);
-  const [editValue, setEditValue] = useState(reviews.review);
+  const [editValue, setEditValue] = useState(review.review);
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
   const [toggle, setToggle] = useState(false);
@@ -22,7 +37,7 @@ export default function ReviewList({ review, i, reviews, key }) {
   const Naverloginid = localStorage.getItem('uid');
 
   //삭제
-  const handleDelete = async (id, i) => {
+  const handleDelete = async (id: string, i: number) => {
     console.log(id);
     if (auth.currentUser?.uid === reviews[i].uid) {
       const reviewDoc = doc(usersCollectionRef, id);
@@ -38,7 +53,7 @@ export default function ReviewList({ review, i, reviews, key }) {
   };
 
   //업데이트
-  const handleUpdate = async (id) => {
+  const handleUpdate = async (id: string) => {
     await updateDoc(doc(usersCollectionRef, id), {
       review: editValue,
     });
