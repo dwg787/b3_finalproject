@@ -24,7 +24,7 @@ import noimg from '../../assets/noimg.avif';
 import { useParams, Link } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
-import { FetchedStayDataType, FetchedDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../apis/publicAPI';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
 import Communication from '../../components/Review/Communication';
@@ -36,12 +36,10 @@ import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
 import BlueFooter from '../../components/Footer/BlueFooter';
-// import { useRecoilState } from 'recoil';
-// import { paramTransfer } from '../../recoil/apiDataAtoms';
+import { DetailDataTypes } from '../../types/apiDataTypes';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
-  // const [thisParam, setThisParam] = useRecoilState(paramTransfer);
   const {
     data: restaurantDetailData,
     isLoading: isLoadingRestaurantDetail,
@@ -68,7 +66,7 @@ const RestaurantDetailPage = () => {
     }
   };
 
-  const saveNewRestaurantRecCnt = async (spotData: FetchedStayDataType) => {
+  const saveNewRestaurantRecCnt = async (restaurantDetailData) => {
     if (param.id) {
       await setDoc(doc(db, 'restaurant_recommendation', param.id), {
         ...restaurantDetailData,

@@ -17,7 +17,7 @@ const StaySelectionResult = () => {
   const [stayCurPage, setStayCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
-  //   const lastNum = useRef(5);
+
   //페이지네이션
   if (stayCurPage % 5 === 1) {
     firstNum.current = 5 * Math.floor(stayCurPage / 5) + 1;
@@ -25,7 +25,7 @@ const StaySelectionResult = () => {
   if (stayCurPage < firstNum.current) {
     firstNum.current = 5 * (Math.floor(stayCurPage / 5) - 1) + 1;
   }
-  // console.log('숙박 렌더링');
+
   const { data, isFetching, isLoading, isPreviousData } = useQuery(
     ['stay_data', region, stayCurPage],
     () => fetchStayData({ region, stayCurPage }),
@@ -34,7 +34,7 @@ const StaySelectionResult = () => {
       keepPreviousData: true,
     },
   );
-  //   console.log('선택한 페이지에 대한 데이터?', data);
+
   const handleFetchNextPage = useCallback(() => {
     setStayCurPage(stayCurPage + 1);
   }, [stayCurPage]);

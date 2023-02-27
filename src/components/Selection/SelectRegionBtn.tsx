@@ -14,14 +14,7 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
 
   const handleRegionSelection = () => {
     if (regionCode) setRegion(regionCode);
-    // console.log('누른 지역:', regionCode);
   };
-
-  // const handleImgPreloading = () => {
-  //   const img = new Image();
-  //   img.src = '../../asset/noimg.png';
-  // };
-  // console.log('지역 버튼 렌더링?');
 
   return (
     <>
@@ -29,7 +22,6 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
         onClick={() => {
           handleRegionSelection();
         }}
-        // onMouseOver={handleImgPreloading}
         isSelectedRegion={isSelectedRegion}
       >
         {children}

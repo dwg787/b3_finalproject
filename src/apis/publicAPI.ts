@@ -1,10 +1,6 @@
 import axios from 'axios';
 import { Params } from 'react-router-dom';
 
-export interface FetchedDataType {
-  [key: string]: string | number | string[];
-}
-
 export interface recCnt {
   [key: string]: string;
 }
