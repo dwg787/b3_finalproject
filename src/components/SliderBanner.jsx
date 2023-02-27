@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import InputBoxButton from './InputBoxButton/InputBoxButton';
-import sliderchange1 from '../assets/sliderchange1.png';
-import sliderchange2 from '../assets/sliderchange2.png';
-import sliderchange3 from '../assets/sliderchange3.png';
+import sliderchange1 from '../assets/sliderchange1.avif';
+import sliderchange2 from '../assets/sliderchange2.avif';
+import sliderchange3 from '../assets/sliderchange3.avif';
 import nextImg from '../assets/next.avif';
 import pervImg from '../assets/prev.avif';
 
@@ -95,21 +95,19 @@ const ContainerDiv = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
-  /* background-color: gray; */
   margin-top: 40px;
 `;
 const WarpDiv = styled.div`
   width: 100%;
   height: 450px;
 `;
-const MainSlider = styled(Slider)`
-  height: 100%;
-`;
+
 const ImgDiv = styled.div`
   width: 100%;
   height: 450px;
   position: relative;
 `;
+
 const MainImg = styled.img`
   width: 100%;
   height: 450px;

@@ -25,19 +25,17 @@ const SpotDetail = (props: FetchedStayDataType) => {
   return (
     <SpotEachItemWrapper>
       <SpotImgWrapper>
-        <picture>
-          <source srcSet={props.img || noimg} type="image/avif"></source>
-          <source srcSet={props.img || noimg} type="image/webp"></source>
-          <source srcSet={props.img || noimg} type="image/jpg"></source>
-          <SpotEachItemImg
-            src={props.img || noimg}
-            alt="사진"
-            // onMouseOver={() => {}}
-            decoding="async"
-            loading="lazy"
-            onClick={() => navigate(`/spot/${props.id}`)}
-          />
-        </picture>
+        <source srcSet={props.img || noimg} type="image/avif"></source>
+        <source srcSet={props.img || noimg} type="image/webp"></source>
+        <source srcSet={props.img || noimg} type="image/jpg"></source>
+        <SpotEachItemImg
+          src={props.img || noimg}
+          alt="사진"
+          // onMouseOver={() => {}}
+          decoding="async"
+          loading="lazy"
+          onClick={() => navigate(`/spot/${props.id}`)}
+        />
       </SpotImgWrapper>
       <MyCildTextBox>
         <MyChildTexth3>{props.children}</MyChildTexth3>
@@ -64,7 +62,7 @@ const SpotEachItemWrapper = styled.div`
   overflow: hidden;
 `;
 
-const SpotImgWrapper = styled.div`
+const SpotImgWrapper = styled.picture`
   width: 100%;
   height: 200px;
   display: flex;
