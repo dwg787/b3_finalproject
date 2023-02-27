@@ -19,19 +19,14 @@ const Navbar = () => {
   const REDIRECT_URI = 'http://localhost:3000/';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
-  // const currentUser = auth.currentUser;
+
   const localId = localStorage.getItem('id');
-  // console.log(localId);
 
   const currentUser = auth.currentUser;
-  const userNickName = currentUser?.displayName;
-  // console.log(userNickName);
 
   const [showModal, setShowModal] = useState(false);
 
-  //kakaologin get location
   const KAKAO_CODE = location.search.split('=')[1];
-  // console.log(KAKAO_CODE);
 
   //   getuser 실행
 
@@ -51,7 +46,6 @@ const Navbar = () => {
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
   const NAVER_CALLBACK_URL = 'http://localhost:3000/';
 
-  // console.log(accessToken);
   const getUser = async () => {
     const ACCESS_TOKEN = await fetch('https://kauth.kakao.com/oauth/token', {
       method: 'POST',
@@ -87,7 +81,6 @@ const Navbar = () => {
     localStorage.setItem('uid', user.data.id);
     sessionStorage.setItem('uid', user.data.id);
   };
-  // console.log(nickName, profileImage);
 
   const userAccessToken = () => {
     window.location.href.includes('access_token') && getToken();
@@ -118,8 +111,6 @@ const Navbar = () => {
     }).then((res) => res.json());
 
     console.log('isLogout', islogout);
-    //   .then(() => {
-    //     alert("로그아웃 되었습니다.");
 
     fetch('https://openapi.naver.com/v1/nid/verify', {
       headers: {
@@ -131,11 +122,7 @@ const Navbar = () => {
     // 로그아웃 성공
     setShowModal(false);
     navigate('/', { replace: true });
-    //   })
-    //   .catch((error) => {
-    //     // 로그아웃 실패
-    //     alert("로그아웃에 실패했습니다.");
-    //   });
+
     localStorage.removeItem('id');
     localStorage.removeItem('uid');
     localStorage.removeItem('email');
@@ -146,10 +133,7 @@ const Navbar = () => {
     localStorage.removeItem('com.naver.nid.access_token');
     localStorage.removeItem('__bootpay_track_uuid__');
     navigate('/');
-    // window.location.reload();
   };
-  // const localId = sessionStorage.getItem('id');
-  // console.log(localId);
 
   const initializeNaverLogin = () => {
     const naverLogin = new naver.LoginWithNaverId({
@@ -207,7 +191,7 @@ const Navbar = () => {
               <InputBox onClick={() => navigate('/search')}>
                 <SearchIconImg src={SearchIcon} alt="" />
               </InputBox>
-              {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
+
               <LoginButton onClick={() => setShowModal(true)}>
                 Login
               </LoginButton>

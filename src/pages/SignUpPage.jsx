@@ -1,9 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { auth, db } from '../apis/firebase';
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { updateProfile } from 'firebase/auth';
@@ -89,7 +86,7 @@ const SignUpPage = () => {
             localStorage.setItem('id', nickName);
             localStorage.setItem('email', data.user.email);
             sessionStorage.setItem('uid', data.user.uid);
-            // localStorage.setItem('phoneNumber', data.user.phoneNumber);
+
             addDoc(collection(db, 'users'), {
               email: data.user.email,
               name: data.user.displayName,
@@ -103,10 +100,6 @@ const SignUpPage = () => {
           });
     });
   };
-
-  // useEffect(() => {
-  //   setValue(sessionStorage.getItem("email"));
-  // });
 
   //* id (이메일)
   const onChangeId = (e) => {
@@ -315,10 +308,7 @@ const SignUpPage = () => {
               </Error>
             </LoginBox>
             <LoginLabelBottom></LoginLabelBottom>
-            {/* <LoginBox>
-              <LoginInput required="" type="text" />
-              <LoginLabel>휴대폰</LoginLabel>
-            </LoginBox> */}
+
             <PersonInfo>개인정보 처리방침</PersonInfo>
             <CheckBoxBolder>
               <CheckBoxWrap>
@@ -389,28 +379,7 @@ const SignUpPage = () => {
                 </CheckBoxText>
               </CheckBoxWrap>
             </CheckBoxBolder>
-            {/* <div>
-              <input
-                onClick={isCheckBoxClicked}
-                type="checkbox"
-                name="entrust"
-                onChange={check}
-                checked={checkList.includes('entrust') ? true : false}
-              ></input>
-              <div>개인정보 처리 위착 동의 (필수)</div>
-              <div>내용보기</div>
-            </div>
-            <div>
-              <input
-                onClick={isCheckBoxClicked}
-                type="checkbox"
-                name="marketing"
-                onChange={check}
-                checked={checkList.includes('marketing') ? true : false}
-              ></input>
-              <div>개인정보 수집 및 이용 동의 (선택)</div>
-              <div>내용보기</div>
-            </div> */}
+
             <LoginBox>
               <SignUpBtn state={buttonColor}>회원가입</SignUpBtn>
             </LoginBox>
@@ -475,9 +444,6 @@ const SIgnWrap = styled.div`
 `;
 
 const SignUpContainer = styled.div`
-  /* position: absolute;
-  top: 100%;
-  left: 50%; */
   width: 65%;
   height: 1450px;
 
@@ -485,7 +451,6 @@ const SignUpContainer = styled.div`
 
   padding: 40px;
 
-  /* transform: translate(-50%, -50%); */
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(158, 171, 255, 0.61);
   background: rgb(255, 255, 255);
@@ -560,11 +525,9 @@ const LoginLabelBottom = styled.div`
 `;
 
 const SignUpBtn = styled.button`
-  
-
   margin-top: 50px;
   cursor: pointer;
-  
+
   width: 399.1px;
   height: 57.85px;
   line-height: 50px;
@@ -574,52 +537,11 @@ const SignUpBtn = styled.button`
   border-radius: 25px;
   border: none;
   font-weight: 500;
-font-size: 24.31px;
-line-height: 22.75px;
-color: #FFFFFF;;
+  font-size: 24.31px;
+  line-height: 22.75px;
+  color: #ffffff;
   text-align: center;
   background: ${(props) => (props.state ? '#6478ff;' : '#C8D1E0')};
-
-  /* :before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    background: ${(props) => (props.state ? '#f44016' : '#C8D1E0')};
-    color: #fff;
-    transition: 0.5s;
-    line-height: 50px;
-    border-radius: 25px;
-    transform-origin: bottom;
-    transform: translatey(-100%) rotatex(90deg);
-  }
-  :hover:before {
-    transform: translatey(0) rotatex(0deg);
-  }
-  :after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    line-height: 50px;
-    background: #6478ff;
-    border: 1px solid #ffffff;
-    color: white;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-    border-radius: 25px;
-    transition: 0.5s;
-    transform-origin: top;
-    transform: translatey(0) rotatex(0deg);
-  }
-  :hover:after {
-    transform: translatey(100%) rotatex(90deg);
-  } */
 `;
 
 const PersonInfo = styled.div`
@@ -700,7 +622,7 @@ const CheckBoxInput4 = styled.input`
 
 const CheckBoxTextBold = styled.div`
   margin-right: 50px;
-  /* white-space: nowrap; */
+
   font-weight: 700;
   font-size: 14.54px;
   line-height: 13.65px;
