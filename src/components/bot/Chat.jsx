@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import styled, { ThemeProvider } from 'styled-components';
