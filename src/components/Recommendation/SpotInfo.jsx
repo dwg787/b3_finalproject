@@ -15,7 +15,6 @@ import {
   MyChildTexth3,
   MyChildTextp,
   LikeBox,
-  GoButton,
 } from './styles';
 
 export default function SpotInfo({

@@ -4,16 +4,13 @@ import Loader from './components/Loader/Loader';
 import Navbar from './components/Navbar';
 import ChatBotModal from './components/bot/ChatBotModal';
 import TopButton from './components/TopButton/TopButton';
-// import Ticketing from './components/Reservation/Ticketing';
 
 import {
   MainPage,
   LoginPage,
-  ReservationPage,
   MyPage,
   DetailPage,
   MapPage,
-  PurchasePage,
   SignUpPage,
   SearchPage,
   StayDetailPage,
@@ -22,7 +19,6 @@ import {
 
 import Footer from './components/Footer/Footer';
 import SlotMachine from './components/Slot/SlotMechine';
-import styled from 'styled-components';
 
 const Router = () => {
   return (
@@ -39,9 +35,6 @@ const Router = () => {
           <Route path="/:id/map" element={<MapPage />} />
           <Route path="/stay/:id" element={<StayDetailPage />} />
           <Route path="/restaurant/:id" element={<RestaurantDetailPage />} />
-          {/* <Route path="/stay/:id/reservation" element={<ReservationPage />} /> */}
-          <Route path="/reservation" element={<ReservationPage />} />
-          <Route path="/purchase" element={<PurchasePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/slot" element={<SlotMachine />} />

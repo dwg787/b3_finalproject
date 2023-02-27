@@ -6,9 +6,7 @@ import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../../apis/firebase';
 import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
-
 import StayInfo from '../../components/Recommendation/StayInfo';
-
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';
@@ -34,7 +32,6 @@ import {
   TabHr,
   DetailInfo2,
 } from './styles';
-// import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import SpotLiked from '../../components/Liked/SpotLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
 import BlueFooter from '../../components/Footer/BlueFooter';
@@ -46,8 +43,6 @@ const DetailPage = () => {
     ['spot_detail', param],
     () => fetchSpotDetailData({ param }),
   );
-
-  // console.log('관광지 데이터', spotData);
 
   const getRecCnt = async () => {
     if (param.id) {
@@ -72,7 +67,6 @@ const DetailPage = () => {
         ...spotData,
         viewCnt: 1,
         likeCnt: 0,
-        // likeCnt: [],
       });
     }
   };
@@ -99,8 +93,6 @@ const DetailPage = () => {
           <>
             {spotData ? (
               <DeatilBox key={param.id}>
-                {/* <Link to={'/'}>메인으로</Link> */}
-
                 <DetailScroll />
                 <TabHr />
                 <DeatilTextBox>
@@ -122,10 +114,6 @@ const DetailPage = () => {
                 </DetailImgBox>
 
                 <DetailInformation id="2">
-                  {/* <DetailInfoTextBox>
-                    <DetailInfoText>상세정보</DetailInfoText>
-                  </DetailInfoTextBox> */}
-
                   <DetailInfo>{spotData.overview.split('<', 1)}</DetailInfo>
 
                   <DetailInfo2>
