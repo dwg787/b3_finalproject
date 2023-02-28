@@ -8,28 +8,32 @@ import styled from 'styled-components';
 import Google from '../assets/google.avif';
 import useNotification from '../hooks/useNotification';
 
-const LoginPage = ({ showModal, setShowModal }) => {
+interface LoginPageProps {
+  showModal: boolean;
+  setShowModal: (show: boolean) => void;
+}
+
+const LoginPage: React.FC<LoginPageProps> = ({ showModal, setShowModal }) => {
   const navigate = useNavigate();
-  const [value, setValue] = useState('');
-  const emailRef = useRef('');
-  const passwordRef = useRef('');
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-  const [error, setError] = useState('');
-  const [idValid, setIdValid] = useState(false);
-  const [pwValid, setPwValid] = useState(false);
-  const [pwErrMsg, setPwErrMsg] = useState('');
+  const [value, setValue] = useState<string>('');
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const [id, setId] = useState<string>('');
+  const [pw, setPw] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [idValid, setIdValid] = useState<boolean>(false);
+  const [pwValid, setPwValid] = useState<boolean>(false);
+  const [pwErrMsg, setPwErrMsg] = useState<string>('');
 
-  const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
+  const [alarmMsg, setAlarmMsg] = useState<string>(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
-
   const goSignUp = () => {
     navigate('/signup');
     setShowModal(false);
   };
 
   // id(이메일) 유효성 검사
-  const onChangeId = (e) => {
+  const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentId = e.target.value;
     setId(currentId);
     const idRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -41,7 +45,7 @@ const LoginPage = ({ showModal, setShowModal }) => {
   };
 
   // 비밀번호 유효성 검사
-  const onChangePw = (e) => {
+  const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentPw = e.target.value;
     setPw(currentPw);
     const pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
@@ -55,21 +59,21 @@ const LoginPage = ({ showModal, setShowModal }) => {
   };
 
   // 일반 로그인
-  const logIn = async (e) => {
+  const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await signInWithEmailAndPassword(
       auth,
-      emailRef.current.value,
-      passwordRef.current.value,
+      emailRef.current!.value,
+      passwordRef.current!.value,
     )
       .then((data) => {
         alert('login 성공!');
         console.log(data);
         console.log(auth);
-        console.log('이메일', emailRef.current.value);
-        console.log('비번', passwordRef.current.value);
-        localStorage.setItem('id', data.user.displayName);
-        localStorage.setItem('email', data.user.email);
+        console.log('이메일', emailRef.current!.value);
+        console.log('비번', passwordRef.current!.value);
+        localStorage.setItem('id', data.user.displayName!);
+        localStorage.setItem('email', data.user.email!);
         sessionStorage.setItem('uid', data.user.uid);
         navigate('/');
       })
@@ -84,8 +88,8 @@ const LoginPage = ({ showModal, setShowModal }) => {
   // 구글 로그인
   const handleclick = () => {
     signInWithPopup(auth, provider).then((data) => {
-      setValue(data.user.email);
-      localStorage.setItem('id', data.user.displayName);
+      setValue(data.user.email!);
+      localStorage.setItem('id', data.user.displayName!);
       navigate('/');
     });
   };
