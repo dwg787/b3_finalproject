@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
 import RegionSelection from '../components/Selection/RegionSelection';
@@ -18,11 +18,17 @@ import SpotMainTap from '../components/MainTap/SpotMainTap';
 import StayMainTap from '../components/MainTap/StayMainTap';
 import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
 import SlotBanner from '../components/Slot/SlotBanner';
+import { useMediaQuery } from 'react-responsive';
+import MobileSpotSelectionResult from '../components/Selection/mobile/MobileSpotSelectionResult';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const selected = sessionStorage.getItem('mainpage_menu_type');
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:767px)',
+  });
 
+  console.log('반응형?', isMobile);
   useEffect(() => {
     if (selected) setSelectedMenu(selected);
   }, [selected]);
@@ -52,7 +58,7 @@ const MainPage = () => {
         </>
       ) : selectedMenu === '관광지' ? (
         <>
-          <SpotSelectionResult />
+          {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />}
           <SpotMainTap />
           <BlackFooter />
         </>
