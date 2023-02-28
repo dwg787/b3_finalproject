@@ -23,7 +23,6 @@ const MySpotDetail = (props: FetchedStayDataType) => {
         </picture>
         <SpotTopdiv>관광</SpotTopdiv>
         <SpotTitle>{props.children}</SpotTitle>
-        <SpotSubText1>여긴어때?</SpotSubText1>
       </SpotImgWrapper>
     </SpotEachItemWrapper>
   );
@@ -67,7 +66,7 @@ const SpotEachItemImg = styled.img`
 
 const SpotTitle = styled.div`
   position: absolute;
-  font-size: 22.04px;
+  font-size: 24px;
   font-weight: bold;
   color: white;
   margin-top: 207.16px;
