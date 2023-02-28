@@ -8,10 +8,11 @@ import two from '../../assets/two.avif';
 import three from '../../assets/three.avif';
 import noimg from '../../assets/noimg.avif';
 import redheart from '../../assets/redheart.avif';
+import { RankTypeList } from '../../types/apiDataTypes';
 
 const StayMainTap = () => {
   const navigate = useNavigate();
-  const [rankList, setRankList] = useState([]);
+  const [rankList, setRankList] = useState<RankTypeList>([]);
   const stayRankList = async () => {
     const data = await getDocs(
       query(

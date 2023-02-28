@@ -24,7 +24,7 @@ import noimg from '../../assets/noimg.avif';
 import { useParams, Link } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../types/apiDataTypes';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
 import Communication from '../../components/Review/Communication';
