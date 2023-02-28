@@ -221,15 +221,17 @@ const Navbar = () => {
 export default Navbar;
 
 const Mainlogo = styled.img`
-  width: 100px;
-  height: 30px;
-  margin-top: 10px;
-  margin-left: 40px;
+  width: 76.08px;
+  height: 22.37px;
+  margin-top: 53.89px;
+  margin-left: 42.09px;
 `;
 
 const Nav = styled.div`
+  max-width: 1036px;
   width: 100%;
-  height: 60px;
+  height: 98px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -240,6 +242,7 @@ const NavTextDiv = styled.div`
   color: white;
   margin-right: 10px;
   cursor: pointer;
+  font-size: 10.65px;
 `;
 
 const LoginButton = styled.button`
@@ -248,13 +251,14 @@ const LoginButton = styled.button`
   align-items: center;
   font-weight: bold;
   border: none;
-  font-size: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border-radius: 10px;
-  width: 100px;
+  font-size: 10.65px;
+  padding-left: 11.08px;
+  padding-right: 10.24px;
+  padding-top: 4.93px;
+  padding-bottom: 5.48px;
+  border-radius: 4.1px;
+  width: 51.33px;
+  height: 23.4px;
   background-color: #6478ff;
   border: 1px solid white;
   color: white;
@@ -265,7 +269,8 @@ const LoginButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 40px;
+  margin-right: 46.88px;
+  margin-top: 52px;
 `;
 
 const LoginBox = styled.div`
@@ -337,16 +342,16 @@ const CloseBtn = styled.button`
 const CloseImg = styled.img``;
 
 const SearchIconImg = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 23.74px;
+  height: 23.74px;
   margin-left: 5px;
-  margin-right: 15px;
+  margin-right: 4.71px;
 `;
 
 const NickNameBtn = styled.button`
   border: none;
   background-color: transparent;
-  font-size: 17px;
+  font-size: 10.65px;
   margin-right: 10px;
   color: white;
 `;

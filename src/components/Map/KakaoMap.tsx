@@ -1,7 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
+const KakaoMap = ({
+  mapx,
+  mapy,
+  title,
+  tel,
+  homepage,
+}: {
+  mapx: string;
+  mapy: string;
+  title: string;
+  tel: string;
+  homepage: string;
+}) => {
   const mapcontainer = useRef(null);
   const { kakao } = window;
 
@@ -21,11 +33,11 @@ const KakaoMap = ({ mapx, mapy, title, tel, homepage }) => {
 
     marker.setMap(map);
 
-    let iwContent = `<div style="padding:5px;">${title}<br>전화:${tel}<br>${homepage}</div>`,
+    const iwContent = `<div style="padding:5px;">${title}<br>전화:${tel}<br>${homepage}</div>`,
       iwRemoveable = true;
 
     // 인포윈도우를 생성합니다
-    let infowindow = new kakao.maps.InfoWindow({
+    const infowindow = new kakao.maps.InfoWindow({
       content: iwContent,
       removable: iwRemoveable,
     });

@@ -38,13 +38,14 @@ export default function Footer() {
 }
 
 const WrapDiv = styled.div`
+  max-width: 1006px;
   width: 100%;
   height: 300px;
   background-color: transparent;
   padding-top: 100px;
   padding-left: 100px;
   position: absolute;
-  margin-top: 3500px;
+  margin-top: 2550px;
 `;
 
 const TextBox = styled.div`
@@ -66,16 +67,17 @@ const Footerh1 = styled.h1`
 
 const FooterText = styled.p`
   color: white;
-  font-size: 14px;
+  font-size: 11.19px;
+  margin-bottom: 10px;
 `;
 
 const FooterLogo = styled.img`
-  width: 140px;
-  height: 40px;
-  margin-bottom: 30px;
+  width: 79.55px;
+  height: 23.39px;
+  margin-bottom: 22.32px;
 `;
 
 const TopText = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 8.39px;
 `;
 const BottomText = styled.div``;

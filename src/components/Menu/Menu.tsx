@@ -15,10 +15,12 @@ const Menu = () => {
 export default Menu;
 
 const MenuContainer = styled.div`
+  max-width: 1036.01px;
   width: 100%;
-  height: 50px;
+  height: 52.26px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   background-color: #ffffff;
 `;

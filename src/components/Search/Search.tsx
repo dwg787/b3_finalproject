@@ -2,10 +2,15 @@ import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fuse from 'fuse.js';
-import _ from 'lodash';
+import debounce from 'lodash/debounce';
 import SpotDetail from '../SpotDetail';
 import noimg from '../../assets/noimg.avif';
-import BlueFooter from '../../components/Footer/BlueFooter';
+import BlueFooter from '../Footer/BlueFooter';
+
+interface Result {
+  score: number | undefined;
+  item: { contentid: string; firstimage: string; title: string };
+}
 
 export default function Search() {
   //인풋 Value값을 STATE 로받음
@@ -34,8 +39,8 @@ export default function Search() {
   //   };
   // };
 
-  const selectEventControl = (delay) => {
-    return _.debounce((text) => setQuery(text), delay, {
+  const selectEventControl = (delay: number) => {
+    return debounce((text: string) => setQuery(text), delay, {
       leading: false,
       trailing: true,
     });
@@ -43,8 +48,8 @@ export default function Search() {
 
   const handleSearchText = useCallback(selectEventControl(400), []);
 
-  const searchItemHandler = (e) => {
-    handleSearchText(e.target.value);
+  const searchItemHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleSearchText(e.currentTarget.value);
   };
   // ================================================================================================================================
   const fetchSpotSearchData = async () => {
@@ -74,7 +79,7 @@ export default function Search() {
               ></SearchInput>
               <RecommendH4>인기검색어 : 낙산사, 동대문, 강화문</RecommendH4>
             </InputBox>
-            {results.map((e) => {
+            {results.map((e: any) => {
               if (e.score < 0.34) {
                 // console.log(e);
                 return (
