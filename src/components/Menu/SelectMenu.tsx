@@ -26,13 +26,15 @@ const SelectMenu = ({ children }: { children: string }) => {
 export default SelectMenu;
 
 const MenuEachItem = styled.button<{ isSelectedMenu: boolean }>`
-  width: 50px;
-  height: 20px;
+  width: 46px;
+  height: 45px;
   display: flex;
   justify-content: center;
-  font-size: 15px;
-  font-weight: 700;
-  /* text-underline-offset: -10px; */
+  align-items: center;
+  font-size: 15.21px;
+  font-weight: bold;
+  margin-top: 18px;
+  /* text-underline-offset: 10px; */
   cursor: pointer;
   border: none;
   background-color: white;
@@ -40,7 +42,7 @@ const MenuEachItem = styled.button<{ isSelectedMenu: boolean }>`
     props.isSelectedMenu &&
     css`
       border-bottom: solid 3px #6478ff;
-      line-height: -10px;
+      line-height: 8px;
       transform: scaleX(1);
       transition: transform 250ms ease-in-out;
     `}

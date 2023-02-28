@@ -9,7 +9,6 @@ export default function Chat() {
   const [suggestions, setSuggestions] = useState();
   const [bug, setBug] = useState();
   const [serviceError, setServiceError] = useState();
-
   const addSuggestions = async (message) => {
     // const userSuggestions = {
     //   suggestionsMessage: `${message}`,
@@ -26,7 +25,6 @@ export default function Chat() {
       userName: localStorage.getItem('id'),
     });
   };
-
   const addBug = async (bugmessage) => {
     // const userBug = {
     //   bugMessage: `${bugmessage}`,
@@ -39,7 +37,6 @@ export default function Chat() {
       userName: localStorage.getItem('id'),
     });
   };
-
   const addServiceError = async (serviceMessage) => {
     // const userServiceError = {
     //   serviceErrorMessage: `${serviceMessage}`,
@@ -55,7 +52,6 @@ export default function Chat() {
       userName: localStorage.getItem('id'),
     });
   };
-
   const steps = [
     {
       id: '1',
@@ -251,7 +247,6 @@ export default function Chat() {
       trigger: '18',
     },
   ];
-
   const theme = {
     background: '#FAFAFA',
     fontFamily: 'Helvetica Neue',
@@ -263,7 +258,6 @@ export default function Chat() {
     userBubbleColor: '#fff',
     userFontColor: '#333333',
   };
-
   return (
     <>
       <Fuckdiv>

@@ -36,90 +36,84 @@ export default function Spot() {
   return (
     <WarpDiv>
       <InnerBox1>
-        <InnerList>
+        <InnerList onClick={gorim}>
           <InnerImg src={gyongrim} />
           <InnerNmb>1</InnerNmb>
           <InnerText>
             <InnerTextH3>경주 계림</InnerTextH3>
-            <InnerTextp>김알지의 탄생 설화가 깃든 숲</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>9,812</p>
+              <LikeText>9,812</LikeText>
             </LikeBox>
+            <InnerTextp>김알지의 탄생 설화가 깃든 숲</InnerTextp>
           </InnerText>
-          <InnerButton onClick={gorim}>바로가기</InnerButton>
         </InnerList>
 
-        <InnerList>
+        <InnerList onClick={godong}>
           <InnerImg src={donggung} />
           <InnerNmb>2</InnerNmb>
           <InnerText>
             <InnerTextH3>동궁과 월지</InnerTextH3>
-            <InnerTextp>신라 조경예술의 극치를 보여준다.</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>8,181</p>
+              <LikeText>8,181</LikeText>
             </LikeBox>
+            <InnerTextp>신라 조경예술의 극치를 보여준다.</InnerTextp>
           </InnerText>
-          <InnerButton onClick={godong}>바로가기</InnerButton>
         </InnerList>
 
-        <InnerList>
+        <InnerList onClick={gogumsung}>
           <InnerImg src={gumsung} />
           <InnerNmb>3</InnerNmb>
           <InnerText>
             <InnerTextH3>금성산성</InnerTextH3>
-            <InnerTextp>고려시대 이후 입보용으로 사용된 성</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>7,522</p>
+              <LikeText>7,522</LikeText>
             </LikeBox>
+            <InnerTextp>고려시대 이후 입보용으로 사용된 성</InnerTextp>
           </InnerText>
-          <InnerButton onClick={gogumsung}>바로가기</InnerButton>
         </InnerList>
       </InnerBox1>
 
       <InnerBox2>
-        <InnerList>
+        <InnerList onClick={godeabang}>
           <InnerImg src={deabang} />
           <InnerNmb>4</InnerNmb>
           <InnerText>
             <InnerTextH3>대방진 굴항</InnerTextH3>
-            <InnerTextp>경상남도 사천시 대방동에 있는 인공항구</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>7,117</p>
+              <LikeText>7,117</LikeText>
             </LikeBox>
+            <InnerTextp>경상남도 사천시 대방동에 있는 인공항구</InnerTextp>
           </InnerText>
-          <InnerButton onClick={godeabang}>바로가기</InnerButton>
         </InnerList>
 
-        <InnerList>
+        <InnerList onClick={gohwagae}>
           <InnerImg src={hwagae} />
           <InnerNmb>5</InnerNmb>
           <InnerText>
             <InnerTextH3>화개동천</InnerTextH3>
-            <InnerTextp>우리나라에서 처음으로 차나무를 심은 곳</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>5,401</p>
+              <LikeText>5,401</LikeText>
             </LikeBox>
+            <InnerTextp>우리나라에서 처음으로 차나무를 심은 곳</InnerTextp>
           </InnerText>
-          <InnerButton onClick={gohwagae}>바로가기</InnerButton>
         </InnerList>
 
-        <InnerList>
+        <InnerList onClick={gochang}>
           <InnerImg src={chang} />
           <InnerNmb>6</InnerNmb>
           <InnerText>
             <InnerTextH3>창경궁</InnerTextH3>
-            <InnerTextp>옛 수강궁터에 창건한 궁</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>4,991</p>
+              <LikeText>4,991</LikeText>
             </LikeBox>
+            <InnerTextp>옛 수강궁터에 창건한 궁</InnerTextp>
           </InnerText>
-          <InnerButton onClick={gochang}>바로가기</InnerButton>
         </InnerList>
       </InnerBox2>
     </WarpDiv>
@@ -129,75 +123,73 @@ const WarpDiv = styled.div`
   width: 90%;
   height: 600px;
   margin-left: 5%;
-  margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 87.9px;
 `;
 
 const InnerNmb = styled.div`
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 40.56px;
+  height: 40.56px;
+  background-color: rgba(0, 0, 0, 0.56);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 25px;
-  margin-top: 20px;
   border: none;
-  border-radius: 6px;
+  border-radius: 7.33px;
   font-weight: bold;
+  font-size: 20.67px;
 `;
 
 const InnerBox1 = styled.div`
   width: 600px;
-  height: 600px;
+  height: 463.59px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 20px;
+  gap: 16.74px;
 `;
 
 const InnerBox2 = styled.div`
   width: 600px;
-  height: 600px;
+  height: 463.59px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 20px;
+  gap: 16.74px;
 `;
 
 const InnerList = styled.div`
-  width: 520px;
-  height: 190px;
+  width: 448.93px;
+  height: 143.37px;
   display: flex;
-  border: 1px solid #6478ff;
-  box-shadow: 5px 5px #d1d1d1;
-  border-radius: 16px;
+  box-shadow: 2.26px 2.26px #d1d1d181;
+  border-radius: 7.66px;
+  cursor: pointer;
 `;
 
 const InnerImg = styled.img`
-  width: 200px;
-  height: 145px;
-  margin-top: 20px;
-  margin-left: 25px;
+  width: 156.15px;
+  height: 143.99px;
+  border-radius: 7.33px;
 `;
 
 const InnerText = styled.div`
-  margin-top: 21px;
-  margin-left: 20px;
+  margin-top: 25.23px;
+  margin-left: 27.43px;
 `;
 
 const InnerTextH3 = styled.h3`
-  font-size: 20px;
+  font-size: 18.97px;
   font-weight: bold;
+  color: #4d4d4d;
 `;
 
 const InnerTextp = styled.p`
@@ -209,12 +201,18 @@ const LikeBox = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
-  margin-top: 83px;
+  margin-top: 12.3px;
+  margin-bottom: 11.42px;
 `;
 
 const LikeImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 21.03px;
+  height: 17.52px;
+`;
+
+const LikeText = styled.p`
+  font-size: 15.86px;
+  color: #4d4d4d;
 `;
 
 const InnerButton = styled.button`
