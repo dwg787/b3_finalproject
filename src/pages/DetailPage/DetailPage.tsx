@@ -11,7 +11,6 @@ import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import MapImoji from '../../components/Map/MapImoji';
-import KakaoMap from '../../components/Map/KakaoMap';
 import noimg from '../../assets/noimg.avif';
 import {
   DetailWrap,
@@ -28,7 +27,6 @@ import {
   DetailTextArr,
   DeatilTextBox,
   DetailInformationMap,
-  DetailInfoAdd,
   TabHr,
   DetailInfo2,
 } from './styles';
@@ -117,10 +115,6 @@ const DetailPage = () => {
                 </DetailImgBox>
 
                 <DetailInformation id="2">
-                  {/* <DetailInfoTextBox>
-                    <DetailInfoText>상세정보</DetailInfoText>
-                  </DetailInfoTextBox> */}
-
                   <DetailInfo>
                     {spotDetailData.overview.split('<', 1)}
                   </DetailInfo>
@@ -144,7 +138,6 @@ const DetailPage = () => {
                 <CommunicationWrap id="4">
                   <Communication />
                 </CommunicationWrap>
-                {/* <div>{e.homepage}</div> */}
               </DeatilBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>

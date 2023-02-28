@@ -1,4 +1,8 @@
-export const getDate = (d) => {
+export const getDate = (d: string | number) => {
+  if (typeof d === 'string' && isNaN(Date.parse(d))) {
+    throw new Error('Invalid date');
+  }
+
   const date = new Date(d);
   const year = String(date.getFullYear()).padStart(4, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');

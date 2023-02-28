@@ -1,4 +1,9 @@
+export interface PageDataTypes {
+  [key: string]: any;
+}
+
 export interface DetailDataTypes {
+  // [x: string]: any;
   contentid: string;
   contenttypeid: string;
   title: string;

@@ -17,6 +17,7 @@ import heart from '../../assets/heart.avif';
 import redheart from '../../assets/redheart.avif';
 import { useParams } from 'react-router-dom';
 import { DetailDataTypes } from '../../types/apiDataTypes';
+// import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 // import { useRecoilValue } from 'recoil';
 // import { paramTransfer } from '../../recoil/apiDataAtoms';
 
@@ -140,6 +141,11 @@ export default function RestaurantLiked({
           ) : (
             <HeartBtn onClick={handleLiked}>
               {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+              {/* {isLiked ? (
+                <AiFillHeart fontSize="27.09px" />
+              ) : (
+                <AiOutlineHeart fontSize="27.09px" />
+              )} */}
             </HeartBtn>
           )}
         </>
@@ -149,6 +155,11 @@ export default function RestaurantLiked({
             onClick={() => alert('로그인하셔야 이용하실 수 있는 기능입니다.')}
           >
             {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
+            {/* {isLiked ? (
+              <AiFillHeart fill="red" fontSize="27.09px" />
+            ) : (
+              <AiOutlineHeart fontSize="27.09px" />
+            )} */}
           </HeartBtn>
         </>
       )}

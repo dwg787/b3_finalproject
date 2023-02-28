@@ -35,7 +35,6 @@ import StayInfo from '../../components/Recommendation/StayInfo';
 import SpotInfo from '../../components/Recommendation/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
 import BlueFooter from '../../components/Footer/BlueFooter';
-import { DetailDataTypes } from '../../types/apiDataTypes';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -65,7 +64,9 @@ const RestaurantDetailPage = () => {
     }
   };
 
-  const saveNewRestaurantRecCnt = async (restaurantDetailData) => {
+  const saveNewRestaurantRecCnt = async (
+    restaurantDetailData: FetchedStayDataType,
+  ) => {
     if (param.id) {
       await setDoc(doc(db, 'restaurant_recommendation', param.id), {
         ...restaurantDetailData,
