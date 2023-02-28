@@ -6,7 +6,7 @@ import {
   orderBy,
 } from 'firebase/firestore';
 
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../apis/firebase';
 import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
@@ -16,36 +16,25 @@ import useNotification from '../../hooks/useNotification'; // 알람관련코드
 import styled from 'styled-components';
 import Pagination from 'react-js-pagination';
 
-interface Review {
-  id: string;
-  [key: string]: any;
-}
-type ReviewListProps = {
-  reviews: Review[];
-  setReviews: React.Dispatch<React.SetStateAction<Review[]>>;
-  review: Review;
-  i: number;
-};
-
-const Communication = (): JSX.Element => {
-  const [newReview, setNewReview] = useState<string>('');
-  const [reviews, setReviews] = useState<Review[]>([]);
+const Communication = () => {
+  const [newReview, setNewReview] = useState('');
+  const [reviews, setReviews] = useState([]);
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
-  const params = useParams<{ id: string }>();
-  const [alarmMsg, setAlarmMsg] = useState<string>(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
+  const params = useParams();
+  const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(6);
-  const [totalReviewCount, setTotalReviewCount] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [totalReviewCount, setTotalReviewCount] = useState(0);
 
   // 화면이 처음 렌더링 할때 데이터를 가져옴
   useEffect(() => {
     const getReviews = async () => {
       const q = query(usersCollectionRef, orderBy('date', 'desc'));
       const unsubscrible = onSnapshot(q, (querySnapshot) => {
-        const newList: Review[] = querySnapshot.docs.map((doc) => ({
+        const newList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
@@ -58,37 +47,30 @@ const Communication = (): JSX.Element => {
       return unsubscrible;
     };
     getReviews();
-  }, [params.id, usersCollectionRef]);
+  }, []);
 
-  function ReviewList({ reviews, setReviews, review, i }: ReviewListProps) {
-    // ...
-
-    return <div>ReviewList</div>;
-  }
-
-  const creatReview = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const creatReview = async (event) => {
     const Kakaologinid = localStorage.getItem('uid');
     const Naverloginid = localStorage.getItem('uid');
     const loginUser = auth.currentUser;
-    const inputValue = newReview;
-
-    if (!inputValue || inputValue.length === 0) {
+    const inputValue = event.target.value;
+    if (!newReview || newReview.length === 0) {
       alert('리뷰를 입력해주세요.');
     } else if (loginUser) {
       const addRev = await addDoc(usersCollectionRef, {
-        review: inputValue,
+        review: newReview,
         uid: loginUser?.uid,
         email: loginUser.email,
-        displayName: localStorage.getItem(
-          'id' || loginUser.displayName || null,
-        ),
+        displayName: localStorage.getItem('id', auth.currentUser.displayName),
+        //loginUser?.displayName
         paramId: params.id,
         date: Date.now(),
+        //파이어스토어 db, reviews 에 저장
       });
       setNewReview('');
     } else if (Kakaologinid) {
       const addRev = await addDoc(usersCollectionRef, {
-        review: inputValue,
+        review: newReview,
         uid: localStorage.getItem('uid'),
         displayName: localStorage.getItem('id'),
         paramId: params.id,
@@ -97,7 +79,7 @@ const Communication = (): JSX.Element => {
       setNewReview('');
     } else if (Naverloginid) {
       const addRev = await addDoc(usersCollectionRef, {
-        review: inputValue,
+        review: newReview,
         uid: localStorage.getItem('uid'),
         displayName: localStorage.getItem('id'),
         paramId: params.id,
@@ -116,16 +98,17 @@ const Communication = (): JSX.Element => {
           <ReviewLabel htmlFor="review">후기작성</ReviewLabel>
           <InputAndBtnWrap>
             <ReviewInput
+              type="text"
               id="review"
               value={newReview}
               placeholder="리뷰를 입력하세요."
-              onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
+              onChange={(event) => {
                 setNewReview(event.target.value);
               }}
             />
 
             <ReviewButton
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+              onClick={(event) => {
                 // setAlarmMsg('리뷰가 등록되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분
                 // addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
                 creatReview(event);
@@ -149,11 +132,9 @@ const Communication = (): JSX.Element => {
                     setReviews={setReviews}
                     review={review}
                     i={i}
-                    key={i}
                   />
                 );
               }
-              return null; // 조건을 충족하지 않으면 null 반환
             })}
         </ReviewBoxList>
         <PaginationBox>

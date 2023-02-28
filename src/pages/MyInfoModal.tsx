@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function MyInfoModal({ setModalOpen }) {
+export default function MyInfoModal({ setModalOpen }: any) {
   return (
     <ModalBackground onClick={() => setModalOpen(false)}>
       <ModalContainer>
