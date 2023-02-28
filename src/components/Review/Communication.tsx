@@ -16,26 +16,41 @@ import useNotification from '../../hooks/useNotification'; // 알람관련코드
 import styled from 'styled-components';
 import Pagination from 'react-js-pagination';
 
+interface Review {
+  id: string;
+  review: string;
+  uid: string;
+  email?: string;
+  displayName: string;
+  date: number;
+  paramId: string;
+}
+
 const Communication = () => {
-  const [newReview, setNewReview] = useState('');
-  const [reviews, setReviews] = useState([]);
+  const [newReview, setNewReview] = useState<string>('');
+  const [reviews, setReviews] = useState<Review[]>([]);
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
-  const params = useParams();
-  const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
+  const params = useParams<{ id: string }>();
+  const [alarmMsg, setAlarmMsg] = useState<string>(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
-  const [totalReviewCount, setTotalReviewCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(6);
+  const [totalReviewCount, setTotalReviewCount] = useState<number>(0);
 
   // 화면이 처음 렌더링 할때 데이터를 가져옴
   useEffect(() => {
     const getReviews = async () => {
       const q = query(usersCollectionRef, orderBy('date', 'desc'));
       const unsubscrible = onSnapshot(q, (querySnapshot) => {
-        const newList = querySnapshot.docs.map((doc) => ({
+        const newList: Review[] = querySnapshot.docs.map((doc) => ({
           id: doc.id,
+          review: doc.data().review,
+          uid: doc.data().uid,
+          displayName: doc.data().displayName,
+          date: doc.data().date,
+          paramId: doc.data().paramId,
           ...doc.data(),
         }));
         const filteredList = newList.filter(
@@ -49,11 +64,11 @@ const Communication = () => {
     getReviews();
   }, []);
 
-  const creatReview = async (event) => {
+  const creatReview = async (event: React.MouseEvent<HTMLButtonElement>) => {
     const Kakaologinid = localStorage.getItem('uid');
     const Naverloginid = localStorage.getItem('uid');
     const loginUser = auth.currentUser;
-    const inputValue = event.target.value;
+    const inputValue = event.currentTarget.value;
     if (!newReview || newReview.length === 0) {
       alert('리뷰를 입력해주세요.');
     } else if (loginUser) {
@@ -61,7 +76,7 @@ const Communication = () => {
         review: newReview,
         uid: loginUser?.uid,
         email: loginUser.email,
-        displayName: localStorage.getItem('id', auth.currentUser.displayName),
+        displayName: localStorage.getItem('id'),
         //loginUser?.displayName
         paramId: params.id,
         date: Date.now(),
@@ -95,10 +110,9 @@ const Communication = () => {
     <ReviewContainerWrap>
       <ReviewContainer>
         <ReviewBox>
-          <ReviewLabel for="review">후기작성</ReviewLabel>
+          <ReviewLabel htmlFor="review">후기작성</ReviewLabel>
           <InputAndBtnWrap>
             <ReviewInput
-              type="text"
               id="review"
               value={newReview}
               placeholder="리뷰를 입력하세요."
@@ -128,8 +142,8 @@ const Communication = () => {
                 // 상세페이지 params.id와 리뷰의  paramId가 같은것만 보여주기
                 return (
                   <ReviewList
+                    key={review.id}
                     reviews={reviews}
-                    setReviews={setReviews}
                     review={review}
                     i={i}
                   />
@@ -280,6 +294,8 @@ const ReviewBoxList = styled.div`
   height: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  /* gap: 20px; */
+  align-items: center;
+  border: 1px solid red;
   overflow: hidden;
 `;

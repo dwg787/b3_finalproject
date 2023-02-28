@@ -7,22 +7,44 @@ import { getDate } from '../../common/utils';
 import useNotification from '../../hooks/useNotification';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
-export default function ReviewList({ review, i, reviews, key }) {
-  const [newReview, setNewReview] = useState('');
-  const [editBox, setEditBox] = useState(false);
-  const [editValue, setEditValue] = useState(reviews.review);
+interface Review {
+  id: string;
+  review: string;
+  uid: string;
+  email?: string;
+  displayName: string;
+  date: number;
+  paramId: string;
+}
+
+interface ReviewListProps {
+  review: Review;
+  i: number;
+  reviews: Review[];
+  key: string;
+}
+
+export default function ReviewList({
+  review,
+  i,
+  reviews,
+  key,
+}: ReviewListProps) {
+  const [newReview, setNewReview] = useState<string>('');
+  const [editBox, setEditBox] = useState<boolean>(false);
+  const [editValue, setEditValue] = useState<string>(reviews[i].review);
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState<boolean>(false);
 
-  const [alarmMsg, setAlarmMsg] = useState(''); // 알람관련코드2 - 어떤 메시지 띄울지 내용 넣는 state
+  const [alarmMsg, setAlarmMsg] = useState<string>('');
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   const KakaoAndNaverLoginid = localStorage.getItem('uid');
   const Naverloginid = localStorage.getItem('uid');
 
   //삭제
-  const handleDelete = async (id, i) => {
+  const handleDelete = async (id: string, i: number) => {
     console.log(id);
     if (auth.currentUser?.uid === reviews[i].uid) {
       const reviewDoc = doc(usersCollectionRef, id);
@@ -38,7 +60,7 @@ export default function ReviewList({ review, i, reviews, key }) {
   };
 
   //업데이트
-  const handleUpdate = async (id) => {
+  const handleUpdate = async (id: string) => {
     await updateDoc(doc(usersCollectionRef, id), {
       review: editValue,
     });
@@ -109,17 +131,22 @@ export default function ReviewList({ review, i, reviews, key }) {
 
 const CommentBoxWrap = styled.div`
   flex-wrap: wrap;
+  border: 1px solid black;
+  margin: 0 32.72px 0 32.72px;
 `;
 
 const CommentBox = styled.div`
-  width: 30.1125rem;
-  height: 79.18px;
+  width: 30.1125rem; //405.1
+  height: 79.18px; // 66.58
   background: #ffffff;
   box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.15);
-  border-radius: 9.39433px;
+  border-radius: 7.89898px;
   display: flex;
   flex-direction: column;
   padding: 20px;
+  border: 1px solid blue;
+
+  /* margin: 0 32.72px 0 32.72px; */
 `;
 
 const NameAndDate = styled.div`
