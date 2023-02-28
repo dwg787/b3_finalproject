@@ -9,10 +9,9 @@ export default function ChatBotModal() {
   const modalEvents = () => {
     setModal((prev) => !prev);
   };
-
   return (
     <>
-      <Chatimgbtn onClick={modalEvents} tooggle={modal}>
+      <Chatimgbtn onClick={modalEvents}>
         <img src={chatbot} alt="" />
       </Chatimgbtn>
       {modal === true ? <Chat /> : null}
