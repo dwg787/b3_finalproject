@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { fetchSpotDetailData, FetchedStayDataType } from '../../apis/publicAPI';
+import { fetchSpotDetailData } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../types/apiDataTypes';
 import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
@@ -11,7 +12,6 @@ import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import MapImoji from '../../components/Map/MapImoji';
-import KakaoMap from '../../components/Map/KakaoMap';
 import noimg from '../../assets/noimg.avif';
 import {
   DetailWrap,
@@ -28,7 +28,6 @@ import {
   DetailTextArr,
   DeatilTextBox,
   DetailInformationMap,
-  DetailInfoAdd,
   TabHr,
   DetailInfo2,
 } from './styles';
@@ -117,10 +116,6 @@ const DetailPage = () => {
                 </DetailImgBox>
 
                 <DetailInformation id="2">
-                  {/* <DetailInfoTextBox>
-                    <DetailInfoText>상세정보</DetailInfoText>
-                  </DetailInfoTextBox> */}
-
                   <DetailInfo>
                     {spotDetailData.overview.split('<', 1)}
                   </DetailInfo>
@@ -144,7 +139,6 @@ const DetailPage = () => {
                 <CommunicationWrap id="4">
                   <Communication />
                 </CommunicationWrap>
-                {/* <div>{e.homepage}</div> */}
               </DeatilBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>

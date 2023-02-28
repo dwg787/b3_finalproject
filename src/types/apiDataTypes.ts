@@ -1,4 +1,23 @@
+export interface recCnt {
+  [key: string]: string;
+}
+
+export type FetchedStayDataType = Omit<recCnt, 'viewCnt' | 'likeCnt'>;
+
+export interface recCnts extends Array<recCnt> {}
+
+export interface PageDataTypes {
+  [key: string]: any;
+}
+
+export interface EachRankType {
+  [key: string]: any;
+}
+
+export interface RankTypeList extends Array<EachRankType> {}
+
 export interface DetailDataTypes {
+  // [x: string]: any;
   contentid: string;
   contenttypeid: string;
   title: string;

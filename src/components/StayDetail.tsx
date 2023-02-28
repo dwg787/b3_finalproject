@@ -1,4 +1,4 @@
-import { FetchedStayDataType } from '../apis/publicAPI';
+import { FetchedStayDataType } from '../types/apiDataTypes';
 import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
@@ -41,8 +41,6 @@ const StayDetail = (props: FetchedStayDataType) => {
         <MyChildTextp>{props.address}</MyChildTextp>
         <LikeBox>
           <LikeImg src={TapHeart} alt="" />
-          {/* <LikeText>{likeData ? likeData.likeCnt.length : 0}</LikeText> */}
-          {/* <LikeText>0</LikeText> */}
           <LikeText>{likeData !== undefined ? likeData.likeCnt : 0}</LikeText>
         </LikeBox>
       </MyCildTextBox>

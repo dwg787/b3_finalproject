@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../types/apiDataTypes';
 import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import Communication from '../../components/Review/Communication';

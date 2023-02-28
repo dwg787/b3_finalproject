@@ -7,24 +7,25 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function MyInfo() {
+export default function MyInfo(): JSX.Element {
   const navigate = useNavigate();
+
   // 닉네임 수정
-  const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [currentInput, setCurrentInput] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [userName, setUserName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [currentInput, setCurrentInput] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   // 현재 유저
-  const [currentUser, setCurrentUser] = useState('');
-  // 닉네임  유효성 검사
-  const [inputValidation, setInputValidation] = useState(false);
+  const [currentUser, setCurrentUser] = useState<string>('');
+  // 닉네임 유효성 검사
+  const [inputValidation, setInputValidation] = useState<boolean>(false);
   // 저장 버튼 활성화
-  const [buttonValidation, setButtonValidation] = useState(true);
+  const [buttonValidation, setButtonValidation] = useState<boolean>(true);
   // 버튼 색 활성화
-  const [buttonColor, setButtonColor] = useState(false);
+  const [buttonColor, setButtonColor] = useState<boolean>(false);
 
   // 닉네임 입력
-  const updateNickname = (item) => {
+  const updateNickname = (item: string) => {
     setUserName(item);
   };
 
@@ -32,20 +33,20 @@ export default function MyInfo() {
 
   const useSaveEdit = async () => {
     // 닉네임 수정
-    updateProfile(auth.currentUser, {
-      displayName: currentInput,
-    }).catch((error) => {
-      console.log(error.message);
-    });
-
-    localStorage.setItem('id', currentInput);
-    updateNickname(currentInput);
-    alert('수정되었습니다.');
-    navigate('/my', { replace: true });
+    if (!auth.currentUser) return;
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: currentInput,
+      });
+      localStorage.setItem('id', currentInput);
+      updateNickname(currentInput);
+      alert('수정되었습니다.');
+      navigate('/my', { replace: true });
+    } catch (error) {}
   };
 
   // input 수정
-  const checkInput = (e) => {
+  const checkInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setCurrentInput(input);
     // 닉네임 입력
@@ -76,9 +77,9 @@ export default function MyInfo() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setCurrentUser(auth.currentUser.uid);
-        setUserName(auth.currentUser.displayName);
-        setEmail(auth.currentUser.email);
+        setCurrentUser(auth.currentUser!.uid);
+        setUserName(auth.currentUser!.displayName ?? '');
+        setEmail(auth.currentUser!.email ?? '');
 
         console.log('로그인 되어있음');
       } else if (!user) {
@@ -249,7 +250,7 @@ const PrivacyLabel2 = styled.label`
   transition: 0.5s;
 `;
 
-const SignUpBtn = styled.button`
+const SignUpBtn = styled.button<{ state: boolean }>`
   margin-top: 20px;
   cursor: pointer;
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getDocs, query, collection, orderBy } from 'firebase/firestore';
+import { getDocs, query, collection, orderBy, limit } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../apis/firebase';
 import styled from 'styled-components';
@@ -8,13 +8,18 @@ import two from '../../assets/two.avif';
 import three from '../../assets/three.avif';
 import noimg from '../../assets/noimg.avif';
 import redheart from '../../assets/redheart.avif';
+import { RankTypeList } from '../../types/apiDataTypes';
 
 const SpotMainTap = () => {
   const navigate = useNavigate();
-  const [rankList, setRankList] = useState([]);
+  const [rankList, setRankList] = useState<RankTypeList>([]);
   const spotRankList = async () => {
     const data = await getDocs(
-      query(collection(db, 'spot_recommendation'), orderBy('likeCnt', 'desc')),
+      query(
+        collection(db, 'spot_recommendation'),
+        orderBy('likeCnt', 'desc'),
+        limit(7),
+      ),
     );
     const res = data.docs.map((doc) => {
       return {
@@ -128,7 +133,11 @@ const SpotMainTap = () => {
                 return (
                   <OuterList>
                     <InnerNmb>{i + 4}</InnerNmb>
-                    <InnerImg src={e.firstimage} alt="" />
+                    <InnerImg
+                      src={e.firstimage}
+                      alt=""
+                      onClick={() => navigate(`/spot/${e.contentid}`)}
+                    />
                     <OuterTextBox>
                       <OuterTextBoxInnerBox>
                         <MedalText>{e.title}</MedalText>

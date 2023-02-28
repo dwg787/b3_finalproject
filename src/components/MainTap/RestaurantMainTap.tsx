@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getDocs, query, collection, orderBy } from 'firebase/firestore';
+import { getDocs, query, collection, orderBy, limit } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../apis/firebase';
 import styled from 'styled-components';
@@ -8,15 +8,17 @@ import two from '../../assets/two.avif';
 import three from '../../assets/three.avif';
 import noimg from '../../assets/noimg.avif';
 import redheart from '../../assets/redheart.avif';
+import { RankTypeList } from '../../types/apiDataTypes';
 
 const RestaurantMainTap = () => {
   const navigate = useNavigate();
-  const [rankList, setRankList] = useState([]);
+  const [rankList, setRankList] = useState<RankTypeList>([]);
   const restaurantRankList = async () => {
     const data = await getDocs(
       query(
         collection(db, 'restaurant_recommendation'),
         orderBy('likeCnt', 'desc'),
+        limit(7),
       ),
     );
     const res = data.docs.map((doc) => {
@@ -133,7 +135,11 @@ const RestaurantMainTap = () => {
                 return (
                   <OuterList>
                     <InnerNmb>{i + 4}</InnerNmb>
-                    <InnerImg src={e.firstimage} alt="" />
+                    <InnerImg
+                      src={e.firstimage}
+                      alt=""
+                      onClick={() => navigate(`/restaurant/${e.contentid}`)}
+                    />
                     <OuterTextBox>
                       <OuterTextBoxInnerBox>
                         <MedalText>{e.title}</MedalText>

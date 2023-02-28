@@ -3,27 +3,35 @@ import { PaginationBox } from './styles';
 import Pagination from 'react-js-pagination';
 
 const PaginationList = ({
-  restaurant,
+  place,
   data,
   items,
   page,
   setPage,
   setItems,
   setData,
+}: {
+  place: any;
+  data?: any;
+  items: number;
+  page: number;
+  setPage: (page: number) => void;
+  setItems: (items: number) => void;
+  setData: (data: any) => void;
 }) => {
   //페이지네이션
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setPage(page);
   };
-  const itemChange = (e) => {
+  const itemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems(Number(e.target.value));
   };
 
   useEffect(() => {
-    if (restaurant) {
-      setData(restaurant);
+    if (place) {
+      setData(place);
     }
-  }, [restaurant, items, page]);
+  }, [place, items, page]);
 
   return (
     <>
