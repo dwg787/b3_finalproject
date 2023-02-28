@@ -19,16 +19,19 @@ import {
   LikeBox,
 } from './styles';
 
-export default function StayInfo({
-  spotData,
-  restaurantDetailData,
-  stayDetailData,
-}: UserProps): React.ReactElement {
+type StayInfoProps = {
+  restaurantDetailData?: DetailDataTypes,
+  spotData?: DetailDataTypes,
+};
+
+const StayInfo: React.FunctionComponent<StayInfoProps> = (props) => {
+  const { restaurantDetailData, spotData } = props;
+
   const combinedData = {
-    ...spotData,
     ...restaurantDetailData,
-    ...stayDetailData,
+    ...spotData,
   };
+
   const [nearStayList, setNearStayList] = useRecoilState(nearStayState);
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
     ['stay_list', combinedData],
@@ -101,4 +104,6 @@ export default function StayInfo({
       </MyChildListBox>
     </Container>
   );
-}
+};
+
+export default StayInfo;
