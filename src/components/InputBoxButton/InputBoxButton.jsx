@@ -18,25 +18,27 @@ const WrapDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 62%;
-  height: 50px;
+  max-width: 643.76px;
+  width: 100%;
+  height: 34px;
   background-color: rgba(255, 255, 255, 0.4);
   position: absolute;
   z-index: 3;
-  border-radius: 25px;
-  margin-left: 20%;
-  top: 20px;
+  border-radius: 377.73px;
+  margin-left: 195.88px;
+  top: 44.25px;
 `;
 
 const SearchImg = styled.img`
-  width: 50px;
+  width: 20.51px;
+  height: 20.51px;
   float: right;
-  margin-right: 30px;
+  margin-right: 19.97px;
 `;
 
 const SearchText = styled.p`
   color: white;
-  margin-left: 30px;
+  margin-left: 23.2px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 13.41px;
 `;

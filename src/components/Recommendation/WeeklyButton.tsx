@@ -31,11 +31,11 @@ const WeeklyBtn = styled.div<{ isTypeSelected: Boolean }>`
   align-items: center;
   width: 70px;
   height: 35px;
-  border: 1px solid #6478ff;
-  background-color: ${(props) => (props.isTypeSelected ? '#6478ff' : '#fffff')};
+  border: 1px solid #bababa;
+  background-color: ${(props) => (props.isTypeSelected ? '#D6DCFF' : '#fffff')};
   cursor: pointer;
-  margin-left: 30px;
-  color: ${(props) => (props.isTypeSelected ? '#ffffff' : '#6478ff')};
+  margin-left: 5.23px;
+  color: ${(props) => (props.isTypeSelected ? '#6478ff' : '#4D4D4D')};
   border-radius: 20px;
 `;
 

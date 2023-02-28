@@ -27,52 +27,48 @@ export default function MyChild() {
     <Container>
       <MyChildTopText>베스트 데이트 코스</MyChildTopText>
       <MyChildListBox>
-        <MyChildList>
+        <MyChildList onClick={goyeonbuk}>
           <MyChildImg src={yeonbuk} alt="" />
           <MyCildTextBox>
             <MyChildTexth3>연북정</MyChildTexth3>
             <MyChildTextp>제주 제주시 조천읍 조천리 2690번지</MyChildTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>972</p>
+              <LikeText>972</LikeText>
             </LikeBox>
-            <GoButton onClick={goyeonbuk}>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
-        <MyChildList>
+        <MyChildList onClick={gobuseok}>
           <MyChildImg src={buseok} alt="" />
           <MyCildTextBox>
             <MyChildTexth3>부석사</MyChildTexth3>
             <MyChildTextp>경상북도 영주시 부석면 부석사로</MyChildTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>788</p>
+              <LikeText>788</LikeText>
             </LikeBox>
-            <GoButton onClick={gobuseok}>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
-        <MyChildList>
+        <MyChildList onClick={godmz}>
           <MyChildImg src={dmz} alt="" />
           <MyCildTextBox>
             <MyChildTexth3>DMZ생태평화공원</MyChildTexth3>
             <MyChildTextp>강원도 철원군 481-1</MyChildTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>451</p>
+              <LikeText>451</LikeText>
             </LikeBox>
-            <GoButton onClick={godmz}>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
-        <MyChildList>
+        <MyChildList onClick={godongsung}>
           <MyChildImg src={dongsung} alt="" />
           <MyCildTextBox>
             <MyChildTexth3>전주전동성당</MyChildTexth3>
             <MyChildTextp>전라북도 전주시 완산구 태조로 51</MyChildTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>329</p>
+              <LikeText>329</LikeText>
             </LikeBox>
-            <GoButton onClick={godongsung}>바로가기</GoButton>
           </MyCildTextBox>
         </MyChildList>
       </MyChildListBox>
@@ -81,64 +77,68 @@ export default function MyChild() {
 }
 
 const Container = styled.div`
-  width: 65%;
-  height: 580px;
+  max-width: 1036px;
+  width: 100%;
+  height: 368.36px;
   display: flex;
   flex-direction: column;
-  margin-top: 65px;
-  border: 1.5px solid white;
-  border-radius: 50px;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 14.65px;
+  border-radius: 11.29px;
+  box-shadow: 2.26px 2.26px rgba(0, 0, 0, 0.18);
   background-color: white;
 `;
 
 const MyChildTopText = styled.p`
-  margin-left: 40px;
+  margin-left: 24.49px;
   color: #6478ff;
   font-size: 20px;
   font-weight: bold;
-  margin-top: 40px;
+  margin-top: 22.31px;
 `;
 
 const MyChildListBox = styled.div`
+  max-width: 986.39px;
+  width: 100%;
   display: flex;
-  gap: 16px;
+  gap: 14.65px;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 22.43px;
+  margin-left: 24.49px;
 `;
 
 const MyChildList = styled.div`
-  width: 280px;
-  height: 413px;
+  width: 235.45px;
+  height: 281.5px;
   background-color: white;
-  box-shadow: 5px 5px #d1d1d1;
-  border: 1px solid #6478ff;
+  box-shadow: 2.26px 2.26px #d1d1d181;
   border-radius: 13px;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 `;
 
 const MyChildImg = styled.img`
-  width: 280px;
-  height: 250px;
+  width: 252.4px;
+  height: 179.56px;
 `;
 
 const MyCildTextBox = styled.div`
-  margin-left: 20px;
-  margin-top: 20px;
+  margin-left: 23.02px;
+  margin-top: 19.27px;
 `;
 
 const MyChildTexth3 = styled.h3`
-  font-size: 18px;
+  font-size: 17.18px;
   font-weight: bold;
-  margin-bottom: 4px;
+  margin-bottom: 7.3px;
   color: #333333;
 `;
 
 const MyChildTextp = styled.p`
   color: #7f7f7f;
   margin-top: 5px;
+  font-size: 12.72px;
 `;
 
 const LikeBox = styled.div`
@@ -149,8 +149,13 @@ const LikeBox = styled.div`
 `;
 
 const LikeImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 21.03px;
+  height: 17.52px;
+`;
+
+const LikeText = styled.p`
+  font-size: 15.86px;
+  color: #4d4d4d;
 `;
 
 const GoButton = styled.button`

@@ -89,13 +89,14 @@ export default function MainSlide() {
 }
 const ContainerDiv = styled.div`
   position: relative;
-  width: 66.5%;
-  height: 380px;
+  max-width: 1036.07px;
+  width: 100%;
+  height: 395px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
-  margin-top: 40px;
+  margin-top: 36.99px;
 `;
 const WarpDiv = styled.div`
   width: 100%;
@@ -116,22 +117,22 @@ const MainImg = styled.img`
 
 const Texth2 = styled.h2`
   color: white;
-  font-size: 28px;
+  font-size: 26.09px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 16.01px;
 `;
 
 const Textp = styled.p`
   color: white;
-  font-size: 18px;
+  font-size: 14.03px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 4.3px;
 `;
 
 const TextBox = styled.div`
   position: absolute;
-  margin-top: 290px;
-  margin-left: 125px;
+  margin-top: 301.18px;
+  margin-left: 101.45px;
 `;
 
 const StyledSlider = styled(Slider)`
