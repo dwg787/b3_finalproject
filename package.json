@@ -75,6 +75,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-js-pagination": "^3.0.4",
     "slick-carousel": "^1.8.1"
   }
 }

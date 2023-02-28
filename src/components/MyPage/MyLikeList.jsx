@@ -28,6 +28,17 @@ import {
 } from './styles';
 
 const MyLikeList = () => {
+  // interface Bookmark {
+  //   contentid: number;
+  //   contenttypeid: number;
+  //   img: string;
+  //   addr1: string;
+  //   restaurant: string;
+  // }
+  // interface Restaurant {
+  //   bookmarks: Bookmark[];
+  // }
+
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState([]);
   const uid = sessionStorage.getItem('uid');
@@ -38,10 +49,14 @@ const MyLikeList = () => {
   const [items, setItems] = useState(6);
 
   const getRestaurantLiked = async () => {
-    const myBookmarkData = await getDoc(doc(db, 'bookmarks', uid));
-    if (myBookmarkData) {
-      setRestaurant(myBookmarkData.data());
-      setData(myBookmarkData.data());
+    try {
+      const myBookmarkData = await getDoc(doc(db, 'bookmarks', uid));
+      if (myBookmarkData) {
+        setRestaurant(myBookmarkData.data());
+        setData(myBookmarkData.data());
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -50,7 +65,7 @@ const MyLikeList = () => {
   }, []);
 
   // 파이어베이스에 저장한 배열 삭제
-  const delResLiked = async (targetId) => {
+  const delResLiked = async (targetId: number) => {
     if (restaurant) {
       const docRef = doc(db, 'bookmarks', uid);
       const restaurantDocRef = doc(db, 'restaurant_recommendation', targetId);
