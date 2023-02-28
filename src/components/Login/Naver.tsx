@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NaverLogo from '../../assets/naver.avif';
 
-const Naver = ({ setGetToken, setUserInfo }) => {
+const Naver = () => {
   const [userName, setUserName] = useState('');
   console.log(userName);
-  const { naver } = window;
+  const { naver }: any = window;
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
   const NAVER_CALLBACK_URL = 'http://localhost:3000/';
 
@@ -15,8 +15,9 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       document?.querySelector('#naverIdLogin')?.firstChild &&
       window !== undefined
     ) {
-      const loginBtn = document.getElementById('naverIdLogin')?.firstChild;
-      loginBtn.click();
+      const loginBtn = document.getElementById('naverIdLogin')
+        ?.firstChild as HTMLButtonElement;
+      loginBtn?.click();
     }
   };
 
@@ -40,12 +41,11 @@ const Naver = ({ setGetToken, setUserInfo }) => {
     });
     naverLogin.init();
 
-    naverLogin.getLoginStatus(async function(status) {
+    naverLogin.getLoginStatus(async function(status: string) {
       if (status) {
         const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
         setUserName(username);
-        // window.localStorage.setItem('id', username);
         window.sessionStorage.setItem('id', username);
       }
     });
@@ -53,10 +53,6 @@ const Naver = ({ setGetToken, setUserInfo }) => {
 
   const getToken = () => {
     const token = window.location.href.split('=')[1].split('&')[0];
-
-    // 이후 로컬 스토리지 또는 state에 저장하여 사용하자!
-    // sessionStorage.setItem("id", token.user.userid);
-    // setGetToken(token);
   };
 
   useEffect(() => {
@@ -66,9 +62,6 @@ const Naver = ({ setGetToken, setUserInfo }) => {
 
   return (
     <NaverBox>
-      {/* 버튼에다 백그라운드 이미지 */}
-      {/* 이미지에다 이이디값 을 주거나  클릭 이벤트를하거나 */}
-
       <NaverBtn id="naverIdLogin"></NaverBtn>
       <NaverText>Naver</NaverText>
     </NaverBox>
@@ -99,12 +92,6 @@ const NaverBtn = styled.button`
     width: 100%;
     height: 100%;
   }
-`;
-
-const NaverImg = styled.img`
-  width: 41px;
-  height: 41px;
-  cursor: pointer;
 `;
 
 const NaverText = styled.div`

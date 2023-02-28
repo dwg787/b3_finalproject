@@ -19,12 +19,11 @@ export default function Spot() {
 
             <InnerText>
               <InnerTextH3>신라호텔</InnerTextH3>
-              <InnerTextp>공식적으로 상장된 유일무이한 호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
-                <p>15,948</p>
-                <InnerTex>580,000</InnerTex>
+                <LikeText>15,948</LikeText>
               </LikeBox>
+              <InnerTextp>서울</InnerTextp>
             </InnerText>
           </InnerList>
         </a>
@@ -36,12 +35,11 @@ export default function Spot() {
 
             <InnerText>
               <InnerTextH3>머큐어 앰배서더 서울 홍대</InnerTextH3>
-              <InnerTextp>홍대입구역 10분거리 호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
-                <p>13,216</p>
-                <InnerTex>140,000</InnerTex>
+                <LikeText>13,216</LikeText>
               </LikeBox>
+              <InnerTextp>서울</InnerTextp>
             </InnerText>
           </InnerList>
         </a>
@@ -53,12 +51,11 @@ export default function Spot() {
 
             <InnerText>
               <InnerTextH3>오크우드 프리미어 코엑스</InnerTextH3>
-              <InnerTextp>하루부터 최대1년까지 투숙이가능한호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
-                <p>11,901</p>
-                <InnerTex>260,000</InnerTex>
+                <LikeText>11,901</LikeText>
               </LikeBox>
+              <InnerTextp>서울</InnerTextp>
             </InnerText>
           </InnerList>
         </a>
@@ -72,12 +69,11 @@ export default function Spot() {
 
             <InnerText>
               <InnerTextH3>신라스테이 제주</InnerTextH3>
-              <InnerTextp>제주국제공항 10분거리에 위치한호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
-                <p>7,423</p>
-                <InnerTex>450,000</InnerTex>
+                <LikeText>7,423</LikeText>
               </LikeBox>
+              <InnerTextp>제주</InnerTextp>
             </InnerText>
           </InnerList>
         </a>
@@ -88,12 +84,11 @@ export default function Spot() {
 
             <InnerText>
               <InnerTextH3>그랜드 하얏트 제주</InnerTextH3>
-              <InnerTextp>신제주 관광 줌심지에있는 고급호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
-                <p>6,223</p>
-                <InnerTex>177,000</InnerTex>
+                <LikeText>6,223</LikeText>
               </LikeBox>
+              <InnerTextp>제주</InnerTextp>
             </InnerText>
           </InnerList>
         </a>
@@ -104,11 +99,9 @@ export default function Spot() {
 
             <InnerText>
               <InnerTextH3>왕의지밀 선조관</InnerTextH3>
-              <InnerTextp>현대식시설의 편리함을 갖춘 한옥호텔</InnerTextp>
               <LikeBox>
                 <LikeImg src={TapHeart} alt="" />
-                <p>3,903</p>
-                <InnerTex>220,000</InnerTex>
+                <LikeText>3,903</LikeText>
               </LikeBox>
             </InnerText>
           </InnerList>
@@ -121,75 +114,73 @@ const WarpDiv = styled.div`
   width: 90%;
   height: 600px;
   margin-left: 5%;
-  margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 87.9px;
 `;
 
 const InnerNmb = styled.div`
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 40.56px;
+  height: 40.56px;
+  background-color: rgba(0, 0, 0, 0.56);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 25px;
-  margin-top: 20px;
   border: none;
-  border-radius: 6px;
+  border-radius: 7.33px;
   font-weight: bold;
+  font-size: 20.67px;
 `;
 
 const InnerBox1 = styled.div`
   width: 600px;
-  height: 600px;
+  height: 463.59px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 20px;
+  gap: 16.74px;
 `;
 
 const InnerBox2 = styled.div`
   width: 600px;
-  height: 600px;
+  height: 463.59px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 20px;
+  gap: 16.74px;
 `;
 
 const InnerList = styled.div`
-  width: 540px;
-  height: 190px;
+  width: 448.93px;
+  height: 143.37px;
   display: flex;
-  border: 1px solid #6478ff;
-  box-shadow: 5px 5px #d1d1d1;
-  border-radius: 16px;
+  box-shadow: 2.26px 2.26px #d1d1d181;
+  border-radius: 7.66px;
+  cursor: pointer;
 `;
 
 const InnerImg = styled.img`
-  width: 200px;
-  height: 145px;
-  margin-top: 20px;
-  margin-left: 25px;
+  width: 156.15px;
+  height: 143.99px;
+  border-radius: 7.33px;
 `;
 
 const InnerText = styled.div`
-  margin-top: 21px;
-  margin-left: 20px;
+  margin-top: 25.23px;
+  margin-left: 27.43px;
 `;
 
 const InnerTextH3 = styled.h3`
-  font-size: 20px;
+  font-size: 18.97px;
   font-weight: bold;
+  color: #4d4d4d;
 `;
 
 const InnerTextp = styled.p`
@@ -201,17 +192,22 @@ const LikeBox = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 12.3px;
+  margin-bottom: 11.42px;
 `;
 
 const LikeImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 21.03px;
+  height: 17.52px;
+`;
+const LikeText = styled.p`
+  font-size: 15.86px;
+  color: #4d4d4d;
 `;
 
 const InnerButton = styled.button`
   position: absolute;
-  margin-left: 450px;
+  margin-left: 430px;
   border: 1px solid #6478ff;
   border-radius: 10px;
   background-color: white;
@@ -225,11 +221,4 @@ const InnerButton = styled.button`
     background-color: #6478ff;
     color: white;
   }
-`;
-
-const InnerTex = styled.p`
-  color: #333333;
-  font-weight: bold;
-  margin-left: 100px;
-  font-size: 25px;
 `;

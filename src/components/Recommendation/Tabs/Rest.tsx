@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import InnerPhoto from '../../../assets/slider3.avif';
 import TapHeart from '../../../assets/TapHeart.avif';
 import dombae from '../../../assets/dombae.avif';
 import manmi from '../../../assets/manmi.avif';
@@ -37,90 +36,84 @@ export default function Rest() {
   return (
     <WarpDiv>
       <InnerBox1>
-        <InnerList>
+        <InnerList onClick={godombae}>
           <InnerImg src={dombae} />
           <InnerNmb>1</InnerNmb>
           <InnerText>
             <InnerTextH3>돔베돈</InnerTextH3>
-            <InnerTextp>미슐랭가이드에 소개된 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>3,012</p>
+              <LikeText>3,012</LikeText>
             </LikeBox>
+            <InnerTextp>미슐랭가이드에 소개된 맛집</InnerTextp>
           </InnerText>
-          <InnerButton onClick={godombae}>바로가기</InnerButton>
         </InnerList>
 
-        <InnerList>
+        <InnerList onClick={gomanmi}>
           <InnerImg src={manmi} />
           <InnerNmb>2</InnerNmb>
           <InnerText>
             <InnerTextH3>만미가</InnerTextH3>
-            <InnerTextp>저렴한 바닷장어 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>2,881</p>
+              <LikeText>2,881</LikeText>
             </LikeBox>
+            <InnerTextp>저렴한 바닷장어 맛집</InnerTextp>
           </InnerText>
-          <InnerButton onClick={gomanmi}>바로가기</InnerButton>
         </InnerList>
 
-        <InnerList>
+        <InnerList onClick={godolsh}>
           <InnerImg src={dolsh} />
           <InnerNmb>3</InnerNmb>
           <InnerText>
             <InnerTextH3>돌쇠정 본점</InnerTextH3>
-            <InnerTextp>연잎 떡갈비 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>2,224</p>
+              <LikeText>2,224</LikeText>
             </LikeBox>
+            <InnerTextp>연잎 떡갈비 맛집</InnerTextp>
           </InnerText>
-          <InnerButton onClick={godolsh}>바로가기</InnerButton>
         </InnerList>
       </InnerBox1>
 
       <InnerBox2>
-        <InnerList>
+        <InnerList onClick={gosoban}>
           <InnerImg src={soban} />
           <InnerNmb>4</InnerNmb>
           <InnerText>
             <InnerTextH3>갈비명가 소반</InnerTextH3>
-            <InnerTextp>경남창원 소갈비 맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>1,617</p>
+              <LikeText>1,617</LikeText>
             </LikeBox>
+            <InnerTextp>경남창원 소갈비 맛집</InnerTextp>
           </InnerText>
-          <InnerButton onClick={gosoban}>바로가기</InnerButton>
         </InnerList>
 
-        <InnerList>
+        <InnerList onClick={gogore}>
           <InnerImg src={gore} />
           <InnerNmb>5</InnerNmb>
           <InnerText>
             <InnerTextH3>고래고기원조할매집</InnerTextH3>
-            <InnerTextp>고래마을내 위치한 고래고기전문점</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>924</p>
+              <LikeText>924</LikeText>
             </LikeBox>
+            <InnerTextp>고래마을내 위치한 고래고기전문점</InnerTextp>
           </InnerText>
-          <InnerButton onClick={gogore}>바로가기</InnerButton>
         </InnerList>
 
-        <InnerList>
+        <InnerList onClick={gomil}>
           <InnerImg src={mil} />
           <InnerNmb>6</InnerNmb>
           <InnerText>
             <InnerTextH3>개금밀면</InnerTextH3>
-            <InnerTextp>진한 국물이 매력적인 밀면맛집</InnerTextp>
             <LikeBox>
               <LikeImg src={TapHeart} alt="" />
-              <p>741</p>
+              <LikeText>741</LikeText>
             </LikeBox>
+            <InnerTextp>진한 국물이 매력적인 밀면맛집</InnerTextp>
           </InnerText>
-          <InnerButton onClick={gomil}>바로가기</InnerButton>
         </InnerList>
       </InnerBox2>
     </WarpDiv>
@@ -131,75 +124,73 @@ const WarpDiv = styled.div`
   width: 90%;
   height: 600px;
   margin-left: 5%;
-  margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 87.9px;
 `;
 
 const InnerNmb = styled.div`
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 40.56px;
+  height: 40.56px;
+  background-color: rgba(0, 0, 0, 0.56);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 25px;
-  margin-top: 20px;
   border: none;
-  border-radius: 6px;
+  border-radius: 7.33px;
   font-weight: bold;
+  font-size: 20.67px;
 `;
 
 const InnerBox1 = styled.div`
   width: 600px;
-  height: 600px;
+  height: 463.59px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 20px;
+  gap: 16.74px;
 `;
 
 const InnerBox2 = styled.div`
   width: 600px;
-  height: 600px;
+  height: 463.59px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 20px;
+  gap: 16.74px;
 `;
 
 const InnerList = styled.div`
-  width: 540px;
-  height: 190px;
+  width: 448.93px;
+  height: 143.37px;
   display: flex;
-  border: 1px solid #6478ff;
-  box-shadow: 5px 5px #d1d1d1;
-  border-radius: 16px;
+  box-shadow: 2.26px 2.26px #d1d1d181;
+  border-radius: 7.66px;
+  cursor: pointer;
 `;
 
 const InnerImg = styled.img`
-  width: 200px;
-  height: 145px;
-  margin-top: 20px;
-  margin-left: 25px;
+  width: 156.15px;
+  height: 143.99px;
+  border-radius: 7.33px;
 `;
 
 const InnerText = styled.div`
-  margin-top: 21px;
-  margin-left: 20px;
+  margin-top: 25.23px;
+  margin-left: 27.43px;
 `;
 
 const InnerTextH3 = styled.h3`
-  font-size: 20px;
+  font-size: 18.97px;
   font-weight: bold;
+  color: #4d4d4d;
 `;
 
 const InnerTextp = styled.p`
@@ -211,17 +202,22 @@ const LikeBox = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
-  margin-top: 83px;
+  margin-top: 12.3px;
+  margin-bottom: 11.42px;
 `;
 
 const LikeImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 21.03px;
+  height: 17.52px;
+`;
+const LikeText = styled.p`
+  font-size: 15.86px;
+  color: #4d4d4d;
 `;
 
 const InnerButton = styled.button`
   position: absolute;
-  margin-left: 450px;
+  margin-left: 430px;
   border: 1px solid #6478ff;
   border-radius: 10px;
   background-color: white;

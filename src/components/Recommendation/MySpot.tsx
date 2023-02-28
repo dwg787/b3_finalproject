@@ -6,9 +6,10 @@ import MySpotDetail from './MySpotDetail';
 import Slider from 'react-slick';
 import nextImg from '../../assets/next.avif';
 import pervImg from '../../assets/prev.avif';
+import { DetailDataTypes } from '../../types/apiDataTypes';
 
-const MySpot = (propsData) => {
-  const [MySpot, setMySpot] = useState();
+const MySpot = (propsData: any) => {
+  const [MySpot, setMySpot] = useState<any>();
   const MySpotList = async () => {
     const data = await getDocs(
       query(collection(db, 'spot_recommendation'), orderBy('viewCnt', 'desc')),
@@ -35,7 +36,7 @@ const MySpot = (propsData) => {
     dots: false,
     infinite: false,
     speed: 400,
-    slidesToShow: 4.7,
+    slidesToShow: 3.5,
     slidesToScroll: 1,
     nextArrow: (
       <NextTo>
@@ -55,7 +56,7 @@ const MySpot = (propsData) => {
       <div>
         <StyledSlider {...settings}>
           {MySpot &&
-            MySpot.map((e) => {
+            MySpot.map((e: DetailDataTypes) => {
               return (
                 <div>
                   <h3>
@@ -72,19 +73,6 @@ const MySpot = (propsData) => {
                 </div>
               );
             })}
-          {/* <div>
-            <h3>
-              {MySpot && (
-                <MySpotDetail
-                  key={MySpot[1]?.contentid}
-                  id={MySpot[1]?.contentid}
-                  img={MySpot[1]?.firstimage}
-                >
-                  {MySpot[1]?.title}
-                </MySpotDetail>
-              )}
-            </h3>
-          </div> */}
         </StyledSlider>
       </div>
     </Container>
@@ -93,22 +81,23 @@ const MySpot = (propsData) => {
 export default MySpot;
 
 const Container = styled.div`
-  width: 65%;
-  height: 440px;
+  max-width: 1036px;
+  width: 100%;
+  height: 426.96px;
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
-  padding-top: 40px;
-  border: 1.5px solid #6478ff;
-  border-radius: 50px;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 19.98px;
+  padding-top: 20px;
+  border-radius: 11.2px;
+  box-shadow: 2.26px 2.26px rgba(0, 0, 0, 0.2);
   background-color: white;
 `;
 
 const MySpotTitle = styled.div`
-  margin-left: 70px;
+  padding-top: 10px;
+  margin-left: 21.21px;
   color: #6478ff;
-  font-size: 20px;
+  font-size: 17.88px;
   font-weight: bold;
 `;
 
@@ -126,7 +115,7 @@ const Pre = styled.div`
   position: absolute;
   left: 5%;
   z-index: 3;
-  margin-left: 40px;
+  margin-left: 50px;
 `;
 
 const NextTo = styled.div`
@@ -135,10 +124,10 @@ const NextTo = styled.div`
   position: absolute;
   right: 5%;
   z-index: 3;
-  margin-right: 40px;
+  margin-right: 50px;
 `;
 
 const ArrowImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 30px;
 `;

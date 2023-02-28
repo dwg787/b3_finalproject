@@ -17,7 +17,7 @@ export default function KakaoLoginButton() {
 
   return (
     <KakaoBtn>
-      <KakaoLogoButton src={kakao} type="button" onClick={loginHandler} />
+      <KakaoLogoButton src={kakao} onClick={loginHandler} />
       <KakaoText>Kakao</KakaoText>
     </KakaoBtn>
   );
@@ -31,7 +31,6 @@ const KakaoBtn = styled.button`
 const KakaoLogoButton = styled.img`
   width: 41px;
   height: 41px;
-  /* border-radius: 30px; */
   cursor: pointer;
 `;
 
