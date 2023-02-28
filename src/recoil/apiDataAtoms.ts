@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { recCnts } from '../apis/publicAPI';
+import { recCnts } from '../types/apiDataTypes';
 
 //숙박 선택
 export const staySelectionState = atom({

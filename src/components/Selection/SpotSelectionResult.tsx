@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import SpotDetail from '../SpotDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../types/apiDataTypes';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
 import { fetchSpotData } from '../../apis/publicAPI';
