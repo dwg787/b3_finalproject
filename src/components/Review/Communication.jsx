@@ -95,7 +95,7 @@ const Communication = () => {
     <ReviewContainerWrap>
       <ReviewContainer>
         <ReviewBox>
-          <ReviewLabel for="review">후기작성</ReviewLabel>
+          <ReviewLabel htmlFor="review">후기작성</ReviewLabel>
           <InputAndBtnWrap>
             <ReviewInput
               type="text"
