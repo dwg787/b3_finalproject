@@ -1,14 +1,6 @@
 import axios from 'axios';
 import { Params } from 'react-router-dom';
 
-export interface recCnt {
-  [key: string]: string;
-}
-
-export type FetchedStayDataType = Omit<recCnt, 'viewCnt' | 'likeCnt'>;
-
-export interface recCnts extends Array<recCnt> {}
-
 //메인페이지 지역별 필터를 위한 관광지 api
 export const fetchSpotData = async ({
   region,

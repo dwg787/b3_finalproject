@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import { DetailDataTypes, PageDataTypes } from '../../../types/apiDataTypes';
 import noimg from '../../../assets/noimg.avif';
 import { useInfiniteQuery } from 'react-query';
-import {
-  FetchedStayDataType,
-  fetchMobileSpotData,
-} from '../../../apis/publicAPI';
+import { fetchMobileSpotData } from '../../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../../recoil/apiDataAtoms';
 import Loader from '../../Loader/Loader';
@@ -36,7 +33,7 @@ const MobileSpotSelectionResult = () => {
     },
   );
 
-  console.log('데이터', data);
+  //   console.log('데이터', data);
 
   const handleFetchNextPage = () => {
     if (hasNextPage) {
@@ -58,7 +55,7 @@ const MobileSpotSelectionResult = () => {
           <SearchListWrapper>
             <ResultWrapper>
               {data.pages.map((page: PageDataTypes, idx) => {
-                console.log('페이지 정보', page);
+                // console.log('페이지 정보', page);
                 return (
                   <EachPage key={idx}>
                     {page.items.item.map(
@@ -68,7 +65,7 @@ const MobileSpotSelectionResult = () => {
                         title: string;
                         addr1: string;
                       }) => {
-                        console.log('응?', e);
+                        // console.log('응?', e);
                         return (
                           //   <></>
                           <MobileSpotDetail
