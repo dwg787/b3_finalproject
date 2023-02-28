@@ -144,7 +144,6 @@ const CommentBox = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border: 1px solid blue;
 
   /* margin: 0 32.72px 0 32.72px; */
 `;
