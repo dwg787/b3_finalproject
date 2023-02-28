@@ -1,4 +1,4 @@
-import { FetchedStayDataType } from '../apis/publicAPI';
+import { FetchedStayDataType } from '../types/apiDataTypes';
 import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';

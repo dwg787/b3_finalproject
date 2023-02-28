@@ -3,7 +3,7 @@ import { PaginationBox } from './styles';
 import Pagination from 'react-js-pagination';
 
 const PaginationList = ({
-  restaurant,
+  place,
   data,
   items,
   page,
@@ -11,7 +11,7 @@ const PaginationList = ({
   setItems,
   setData,
 }: {
-  restaurant: any;
+  place: any;
   data?: any;
   items: number;
   page: number;
@@ -28,10 +28,10 @@ const PaginationList = ({
   };
 
   useEffect(() => {
-    if (restaurant) {
-      setData(restaurant);
+    if (place) {
+      setData(place);
     }
-  }, [restaurant, items, page]);
+  }, [place, items, page]);
 
   return (
     <>
