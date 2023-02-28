@@ -296,6 +296,6 @@ const ReviewBoxList = styled.div`
   justify-content: center;
   /* gap: 20px; */
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   overflow: hidden;
 `;
