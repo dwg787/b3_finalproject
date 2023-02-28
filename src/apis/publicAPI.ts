@@ -23,6 +23,20 @@ export const fetchSpotData = async ({
   return res.data.response.body;
 };
 
+//모바일 반응형 메인페이지 지역별 필터를 위한 관광지 api
+export const fetchMobileSpotData = async ({
+  region,
+  pageParam,
+}: {
+  region: string;
+  pageParam: number;
+}) => {
+  const res = await axios.get(
+    `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=8&pageNo=${pageParam}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${region}&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
+  );
+  return res.data.response.body;
+};
+
 //메인페이지 지역별 필터를 위한 숙박 api
 export const fetchStayData = async ({
   region,

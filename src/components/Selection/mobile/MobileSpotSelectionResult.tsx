@@ -1,30 +1,30 @@
 import styled from 'styled-components';
-import { DetailDataTypes } from '../../../types/apiDataTypes';
-import SpotDetail from '../../SpotDetail';
+import { DetailDataTypes, PageDataTypes } from '../../../types/apiDataTypes';
 import noimg from '../../../assets/noimg.avif';
 import { useInfiniteQuery } from 'react-query';
-import { fetchSpotData } from '../../../apis/publicAPI';
+import {
+  FetchedStayDataType,
+  fetchMobileSpotData,
+} from '../../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../../recoil/apiDataAtoms';
 import Loader from '../../Loader/Loader';
-import { useLayoutEffect, useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import rightArrow from '../../assets/right-arrow.avif';
 import MobileSpotDetail from './MobileSpotDetail';
 
 const MobileSpotSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
   const [spotCurPage, setSpotCurPage] = useState(1);
-  const maxPageNo = useRef(1);
-
-  console.log('spotCurPage', spotCurPage);
 
   const {
     data,
     isLoading,
+    hasNextPage,
     fetchNextPage: fetchSpotNextPage,
   } = useInfiniteQuery(
     ['mobile_spot_data', region],
-    () => fetchSpotData({ region, spotCurPage }),
+    ({ pageParam = 1 }) => fetchMobileSpotData({ region, pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
         return lastPage?.pageNo ===
@@ -39,26 +39,10 @@ const MobileSpotSelectionResult = () => {
   console.log('데이터', data);
 
   const handleFetchNextPage = () => {
-    setSpotCurPage(() => spotCurPage + 1);
-    if (data) {
-      if (spotCurPage >= data?.pages[maxPageNo.current - 1]?.pageNo) {
-        fetchSpotNextPage();
-      }
+    if (hasNextPage) {
+      fetchSpotNextPage();
     }
   };
-
-  useEffect(() => {
-    if (data) {
-      if (maxPageNo.current < data.pages.length) {
-        maxPageNo.current = data.pages.length;
-      }
-    }
-  }, [spotCurPage]);
-
-  useLayoutEffect(() => {
-    maxPageNo.current = 1;
-    setSpotCurPage(1);
-  }, [region]);
 
   return (
     <SearchOverallResultContainer>
@@ -69,23 +53,37 @@ const MobileSpotSelectionResult = () => {
       ) : (
         <ListContainer>
           <ListItemCount>
-            총 {data.pages[spotCurPage - 1]?.totalCount} 개의 결과
+            총 {data.pages[0]?.totalCount} 개의 결과
           </ListItemCount>
           <SearchListWrapper>
             <ResultWrapper>
-              {data.pages[spotCurPage - 1]?.items.item.map(
-                (e: DetailDataTypes) => {
-                  return (
-                    <MobileSpotDetail
-                      key={e.contentid}
-                      id={e.contentid}
-                      img={e.firstimage || noimg}
-                    >
-                      {e.title}
-                    </MobileSpotDetail>
-                  );
-                },
-              )}
+              {data.pages.map((page: PageDataTypes, idx) => {
+                console.log('페이지 정보', page);
+                return (
+                  <EachPage key={idx}>
+                    {page.items.item.map(
+                      (e: {
+                        contentid: string;
+                        firstimage: string;
+                        title: string;
+                        addr1: string;
+                      }) => {
+                        console.log('응?', e);
+                        return (
+                          //   <></>
+                          <MobileSpotDetail
+                            key={e.contentid}
+                            contentid={e.contentid}
+                            firstimg={e.firstimage || noimg}
+                            title={e.title}
+                            address={e.addr1}
+                          />
+                        );
+                      },
+                    )}
+                  </EachPage>
+                );
+              })}
               <BtnWrapper>
                 {Math.ceil(
                   data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
@@ -187,3 +185,10 @@ const ListContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+const ResultWrapper2 = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const EachPage = styled.div``;

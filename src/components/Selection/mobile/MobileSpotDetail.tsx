@@ -1,18 +1,37 @@
-import { FetchedStayDataType } from '../../../apis/publicAPI';
+import { PageDataTypes } from '../../../types/apiDataTypes';
 import styled from 'styled-components';
 import noimg from '../../../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
 import TapHeart from '../../../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../../../apis/firebase';
-import { useEffect, useState } from 'react';
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useEffect,
+  useState,
+} from 'react';
 
-const MobileSpotDetail = (props: FetchedStayDataType) => {
+const MobileSpotDetail = ({
+  contentid,
+  firstimg,
+  title,
+  address,
+}: {
+  contentid: string;
+  firstimg: string;
+  title: string;
+  address: string;
+}) => {
   const navigate = useNavigate();
+
+  //   console.log('프롭스', props);
 
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
   const spotRecommendationList = async () => {
-    const fbdata = await getDoc(doc(db, 'spot_recommendation', `${props.id}`));
+    const fbdata = await getDoc(doc(db, 'spot_recommendation', contentid));
     if (fbdata) {
       setLikeData(fbdata.data());
     }
@@ -22,16 +41,14 @@ const MobileSpotDetail = (props: FetchedStayDataType) => {
     spotRecommendationList();
   }, []);
 
-  //   console.log('모바일 반응 props:', props);
-
   return (
     <StTicketCard>
-      <StTicketCardLeft onClick={() => navigate(`/spot/${props.contentid}`)}>
-        <StMyTicketImage src={props.img || noimg} alt="사진" />
+      <StTicketCardLeft onClick={() => navigate(`/spot/${contentid}`)}>
+        <StMyTicketImage src={firstimg || noimg} alt="사진" />
       </StTicketCardLeft>
       <StTicketCardRight>
-        <StCartTitle>{props.children.split('[', 1)}</StCartTitle>
-        <StCartTitleAdd>{props.addr1}</StCartTitleAdd>
+        <StCartTitle>{title.split('[', 1)}</StCartTitle>
+        {/* <StCartTitleAdd>{props.addr1}</StCartTitleAdd> */}
         {/* 좋아요카운트 */}
         <>
           <LikeImg src={TapHeart} alt="" />
