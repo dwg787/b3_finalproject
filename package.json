@@ -13,11 +13,7 @@
     "@types/node": "^16.18.12",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-<<<<<<< HEAD
-    "@types/react-js-pagination": "^3.0.4",
-=======
     "@types/react-responsive": "^8.0.5",
->>>>>>> 7de1ea832548db1c6813cf613ec7daca9aa4c15a
     "@types/react-router-dom": "^5.3.3",
     "@types/react-slick": "^0.23.10",
     "@types/react-toggle": "^4.0.3",
