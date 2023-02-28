@@ -4,6 +4,7 @@ import {
   updateDoc,
   doc,
   increment,
+  DocumentData,
 } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { db } from '../../apis/firebase';
@@ -28,32 +29,23 @@ import {
 } from './styles';
 
 const MyLikeList = () => {
-  // interface Bookmark {
-  //   contentid: number;
-  //   contenttypeid: number;
-  //   img: string;
-  //   addr1: string;
-  //   restaurant: string;
-  // }
-  // interface Restaurant {
-  //   bookmarks: Bookmark[];
-  // }
-
   const navigate = useNavigate();
-  const [restaurant, setRestaurant] = useState([]);
+  const [restaurant, setRestaurant] = useState<DocumentData | undefined>([]);
   const uid = sessionStorage.getItem('uid');
 
   //페이지네이션
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<DocumentData | undefined>([]);
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(6);
 
   const getRestaurantLiked = async () => {
     try {
-      const myBookmarkData = await getDoc(doc(db, 'bookmarks', uid));
-      if (myBookmarkData) {
-        setRestaurant(myBookmarkData.data());
-        setData(myBookmarkData.data());
+      if (uid) {
+        const myBookmarkData = await getDoc(doc(db, 'bookmarks', uid));
+        if (myBookmarkData) {
+          setRestaurant(myBookmarkData.data());
+          setData(myBookmarkData.data());
+        }
       }
     } catch (error) {
       console.log(error);
@@ -65,22 +57,65 @@ const MyLikeList = () => {
   }, []);
 
   // 파이어베이스에 저장한 배열 삭제
-  const delResLiked = async (targetId: number) => {
-    if (restaurant) {
+  const delResLiked = async (targetId: string) => {
+    if (restaurant && uid) {
       const docRef = doc(db, 'bookmarks', uid);
       const restaurantDocRef = doc(db, 'restaurant_recommendation', targetId);
+
       const TargetBookmark = restaurant.bookmarks.find(
-        (e) => e.contentid === targetId,
+        (e: { contentid: string }) => e.contentid === targetId,
       );
 
       await updateDoc(docRef, {
         bookmarks: arrayRemove(TargetBookmark),
         contentid: arrayRemove(targetId),
-      }).then(
-        updateDoc(restaurantDocRef, {
-          likeCnt: increment(-1),
-        }),
+      });
+
+      await updateDoc(restaurantDocRef, {
+        likeCnt: increment(-1),
+      });
+    }
+    getRestaurantLiked();
+  };
+
+  const delSpotLiked = async (targetId: string) => {
+    if (restaurant && uid) {
+      const docRef = doc(db, 'bookmarks', uid);
+      const spotDocRef = doc(db, 'spot_recommendation', targetId);
+
+      const TargetBookmark = restaurant.bookmarks.find(
+        (e: { contentid: string }) => e.contentid === targetId,
       );
+
+      await updateDoc(docRef, {
+        bookmarks: arrayRemove(TargetBookmark),
+        contentid: arrayRemove(targetId),
+      });
+
+      await updateDoc(spotDocRef, {
+        likeCnt: increment(-1),
+      });
+    }
+    getRestaurantLiked();
+  };
+
+  const delStayLiked = async (targetId: string) => {
+    if (restaurant && uid) {
+      const docRef = doc(db, 'bookmarks', uid);
+      const stayDocRef = doc(db, 'stay_recommendation', targetId);
+
+      const TargetBookmark = restaurant.bookmarks.find(
+        (e: { contentid: string }) => e.contentid === targetId,
+      );
+
+      await updateDoc(docRef, {
+        bookmarks: arrayRemove(TargetBookmark),
+        contentid: arrayRemove(targetId),
+      });
+
+      await updateDoc(stayDocRef, {
+        likeCnt: increment(-1),
+      });
     }
     getRestaurantLiked();
   };
@@ -93,7 +128,7 @@ const MyLikeList = () => {
             {restaurant &&
               restaurant?.bookmarks
                 ?.slice(items * (page - 1), items * (page - 1) + items)
-                .map((data) => {
+                .map((data: any) => {
                   switch (data.contenttypeid) {
                     case '39':
                       return (
@@ -147,7 +182,7 @@ const MyLikeList = () => {
                             <StTicketHeader2>
                               <DelBtn
                                 src={DeleteImg}
-                                onClick={() => delResLiked(data.contentid)}
+                                onClick={() => delStayLiked(data.contentid)}
                               />
                             </StTicketHeader2>
 
@@ -182,7 +217,7 @@ const MyLikeList = () => {
                               <StTicketHeader2>
                                 <DelBtn
                                   src={DeleteImg}
-                                  onClick={() => delResLiked(data.contentid)}
+                                  onClick={() => delSpotLiked(data.contentid)}
                                 />
                               </StTicketHeader2>
 

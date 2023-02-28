@@ -36,7 +36,7 @@ const MobileSpotSelectionResult = () => {
     },
   );
 
-  console.log('데이터', data);
+  //   console.log('데이터', data);
 
   const handleFetchNextPage = () => {
     if (hasNextPage) {
@@ -58,7 +58,7 @@ const MobileSpotSelectionResult = () => {
           <SearchListWrapper>
             <ResultWrapper>
               {data.pages.map((page: PageDataTypes, idx) => {
-                console.log('페이지 정보', page);
+                // console.log('페이지 정보', page);
                 return (
                   <EachPage key={idx}>
                     {page.items.item.map(
@@ -68,7 +68,7 @@ const MobileSpotSelectionResult = () => {
                         title: string;
                         addr1: string;
                       }) => {
-                        console.log('응?', e);
+                        // console.log('응?', e);
                         return (
                           //   <></>
                           <MobileSpotDetail
