@@ -6,9 +6,10 @@ import MySpotDetail from './MySpotDetail';
 import Slider from 'react-slick';
 import nextImg from '../../assets/next.avif';
 import pervImg from '../../assets/prev.avif';
+import { DetailDataTypes } from '../../types/apiDataTypes';
 
-const MySpot = (propsData) => {
-  const [MySpot, setMySpot] = useState();
+const MySpot = (propsData: any) => {
+  const [MySpot, setMySpot] = useState<any>();
   const MySpotList = async () => {
     const data = await getDocs(
       query(collection(db, 'spot_recommendation'), orderBy('viewCnt', 'desc')),
@@ -55,7 +56,7 @@ const MySpot = (propsData) => {
       <div>
         <StyledSlider {...settings}>
           {MySpot &&
-            MySpot.map((e) => {
+            MySpot.map((e: DetailDataTypes) => {
               return (
                 <div>
                   <h3>

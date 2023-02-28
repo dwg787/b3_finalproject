@@ -12,8 +12,9 @@ import WeeklyTop10Btn from './WeeklyButton';
 export default function WeeklyTop10() {
   const WeeklyTypeId = useRecoilValue(weeklyTypeState);
   const tabContArr = [<Spot />, <Stay />, <Rest />, <Cafe />];
-  const selectedWeeklyTypeId = WEEKLY_TYPE.find((e) => e.type === WeeklyTypeId)
-    ?.id;
+  const selectedWeeklyTypeId: any | undefined = WEEKLY_TYPE.find(
+    (e) => e.type === WeeklyTypeId,
+  )?.id;
 
   return (
     <Container>

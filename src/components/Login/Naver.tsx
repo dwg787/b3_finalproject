@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NaverLogo from '../../assets/naver.avif';
 
-const Naver = ({ setGetToken, setUserInfo }) => {
+const Naver = () => {
   const [userName, setUserName] = useState('');
   console.log(userName);
-  const { naver } = window;
+  const { naver }: any = window;
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
   const NAVER_CALLBACK_URL = 'http://localhost:3000/';
 
@@ -15,8 +15,9 @@ const Naver = ({ setGetToken, setUserInfo }) => {
       document?.querySelector('#naverIdLogin')?.firstChild &&
       window !== undefined
     ) {
-      const loginBtn = document.getElementById('naverIdLogin')?.firstChild;
-      loginBtn.click();
+      const loginBtn = document.getElementById('naverIdLogin')
+        ?.firstChild as HTMLButtonElement;
+      loginBtn?.click();
     }
   };
 
@@ -40,7 +41,7 @@ const Naver = ({ setGetToken, setUserInfo }) => {
     });
     naverLogin.init();
 
-    naverLogin.getLoginStatus(async function(status) {
+    naverLogin.getLoginStatus(async function(status: string) {
       if (status) {
         const userid = naverLogin.user.getEmail();
         const username = naverLogin.user.getName();
