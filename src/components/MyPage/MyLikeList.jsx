@@ -65,7 +65,7 @@ const MyLikeList = () => {
   }, []);
 
   // 파이어베이스에 저장한 배열 삭제
-  const delResLiked = async (targetId: number) => {
+  const delResLiked = async (targetId) => {
     if (restaurant) {
       const docRef = doc(db, 'bookmarks', uid);
       const restaurantDocRef = doc(db, 'restaurant_recommendation', targetId);
@@ -93,7 +93,7 @@ const MyLikeList = () => {
             {restaurant &&
               restaurant?.bookmarks
                 ?.slice(items * (page - 1), items * (page - 1) + items)
-                .map((data) => {
+                .map((data, i) => {
                   switch (data.contenttypeid) {
                     case '39':
                       return (
