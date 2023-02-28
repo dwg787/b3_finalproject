@@ -6,7 +6,7 @@ import {
   increment,
   DocumentData,
 } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { db } from '../../apis/firebase';
 import noimg from '../../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +30,7 @@ import {
 
 const MyLikeList = () => {
   const navigate = useNavigate();
-  const [restaurant, setRestaurant] = useState<DocumentData | undefined>([]);
+  const [place, setPlace] = useState<DocumentData | undefined>([]);
   const uid = sessionStorage.getItem('uid');
 
   //페이지네이션
@@ -38,12 +38,12 @@ const MyLikeList = () => {
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(6);
 
-  const getRestaurantLiked = async () => {
+  const getMyBookmarkList = async () => {
     try {
       if (uid) {
         const myBookmarkData = await getDoc(doc(db, 'bookmarks', uid));
         if (myBookmarkData) {
-          setRestaurant(myBookmarkData.data());
+          setPlace(myBookmarkData.data());
           setData(myBookmarkData.data());
         }
       }
@@ -52,17 +52,13 @@ const MyLikeList = () => {
     }
   };
 
-  useEffect(() => {
-    getRestaurantLiked();
-  }, []);
-
   // 파이어베이스에 저장한 배열 삭제
   const delResLiked = async (targetId: string) => {
-    if (restaurant && uid) {
+    if (place && uid) {
       const docRef = doc(db, 'bookmarks', uid);
       const restaurantDocRef = doc(db, 'restaurant_recommendation', targetId);
 
-      const TargetBookmark = restaurant.bookmarks.find(
+      const TargetBookmark = place.bookmarks.find(
         (e: { contentid: string }) => e.contentid === targetId,
       );
 
@@ -75,15 +71,14 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
-    getRestaurantLiked();
   };
 
   const delSpotLiked = async (targetId: string) => {
-    if (restaurant && uid) {
+    if (place && uid) {
       const docRef = doc(db, 'bookmarks', uid);
       const spotDocRef = doc(db, 'spot_recommendation', targetId);
 
-      const TargetBookmark = restaurant.bookmarks.find(
+      const TargetBookmark = place.bookmarks.find(
         (e: { contentid: string }) => e.contentid === targetId,
       );
 
@@ -96,15 +91,14 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
-    getRestaurantLiked();
   };
 
   const delStayLiked = async (targetId: string) => {
-    if (restaurant && uid) {
+    if (place && uid) {
       const docRef = doc(db, 'bookmarks', uid);
       const stayDocRef = doc(db, 'stay_recommendation', targetId);
 
-      const TargetBookmark = restaurant.bookmarks.find(
+      const TargetBookmark = place.bookmarks.find(
         (e: { contentid: string }) => e.contentid === targetId,
       );
 
@@ -117,16 +111,19 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
-    getRestaurantLiked();
   };
+
+  useEffect(() => {
+    getMyBookmarkList();
+  }, [delResLiked, delSpotLiked, delStayLiked]);
 
   return (
     <>
       <StTicketWrap>
         <StTicket>
           <StLikedBox>
-            {restaurant &&
-              restaurant?.bookmarks
+            {place &&
+              place?.bookmarks
                 ?.slice(items * (page - 1), items * (page - 1) + items)
                 .map((data: any) => {
                   switch (data.contenttypeid) {
@@ -155,7 +152,7 @@ const MyLikeList = () => {
                             </StTicketHeader2>
 
                             <StCartTitle>
-                              {data.restaurant.split('[', 1)}
+                              {data.place?.split('[', 1)}
                             </StCartTitle>
                             <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
                             {/* 좋아요카운트 */}
@@ -187,7 +184,7 @@ const MyLikeList = () => {
                             </StTicketHeader2>
 
                             <StCartTitle>
-                              {data.restaurant.split('[', 1)}
+                              {data.place?.split('[', 1)}
                             </StCartTitle>
                             <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
                             {/* 좋아요카운트 */}
@@ -222,7 +219,7 @@ const MyLikeList = () => {
                               </StTicketHeader2>
 
                               <StCartTitle>
-                                {data.restaurant.split('[', 1)}
+                                {data.place?.split('[', 1)}
                               </StCartTitle>
                               <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
                               {/* 좋아요카운트 */}
@@ -237,7 +234,7 @@ const MyLikeList = () => {
                 })}
           </StLikedBox>
           <PaginationList
-            restaurant={restaurant}
+            place={place}
             data={data}
             page={page}
             items={items}
