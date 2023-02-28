@@ -10,6 +10,8 @@ import BlueFooter from '../components/Footer/BlueFooter';
 import MyInfoModal from './MyInfoModal';
 import PrivacyModal from './PrivacyModal';
 
+type CheckList = ('terms' | 'collect' | 'another')[];
+
 const SignUpPage = () => {
   const navigate = useNavigate();
 
@@ -44,9 +46,9 @@ const SignUpPage = () => {
   const phoneNumberRef = useRef(null);
 
   //약관동의 로직
-  const [checkList, setCheckList] = useState([]);
-  const [buttonColor, setButtonColor] = useState(false);
-  const [checkBoxActive, setCheckBoxActive] = useState(false);
+  const [checkList, setCheckList] = useState<CheckList>([]);
+  const [buttonColor, setButtonColor] = useState<boolean>(false);
+  const [checkBoxActive, setCheckBoxActive] = useState<boolean>(false);
   const isCheckBoxClicked = () => {
     setCheckBoxActive(!checkBoxActive);
   };
@@ -68,7 +70,7 @@ const SignUpPage = () => {
 
   // 회원가입 완료
 
-  const signup = async (e) => {
+  const signup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createUserWithEmailAndPassword(auth, id, pw).then((data) => {
       if (auth.currentUser)
@@ -84,7 +86,7 @@ const SignUpPage = () => {
             setPwConfirm('');
             setPhoneNumber('');
             localStorage.setItem('id', nickName);
-            localStorage.setItem('email', data.user.email);
+            localStorage.setItem('email', data.user?.email ?? '');
             sessionStorage.setItem('uid', data.user.uid);
 
             addDoc(collection(db, 'users'), {
@@ -102,7 +104,7 @@ const SignUpPage = () => {
   };
 
   //* id (이메일)
-  const onChangeId = (e) => {
+  const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentId = e.target.value;
 
     setId(currentId);
@@ -117,7 +119,7 @@ const SignUpPage = () => {
   };
 
   //* 닉네임
-  const onChangeNickName = (e) => {
+  const onChangeNickName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentNickName = e.target.value;
 
     setNickName(currentNickName);
@@ -132,7 +134,7 @@ const SignUpPage = () => {
   };
 
   //* 비밀번호
-  const onChangePw = (e) => {
+  const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentPw = e.target.value;
 
     setPw(currentPw);
@@ -146,7 +148,7 @@ const SignUpPage = () => {
   };
 
   //* 비밀번호 확인
-  const onChangePwConfirm = (e) => {
+  const onChangePwConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentPwConfirm = e.target.value;
 
     setPwConfirm(currentPwConfirm);
@@ -160,7 +162,7 @@ const SignUpPage = () => {
   };
 
   // 휴대폰
-  const onChangePhone = (e) => {
+  const onChangePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentPhone = e.target.value;
 
     setPhoneNumber(currentPhone);
@@ -187,15 +189,15 @@ const SignUpPage = () => {
   }, [phoneNumber]);
 
   //약관동의 만드는법
-  const checkAll = (e) => {
+  const checkAll = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked
       ? setCheckList(['terms', 'collect', 'another'])
       : setCheckList([]);
   };
 
-  const check = (e) => {
+  const check = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked
-      ? setCheckList([...checkList, e.target.name])
+      ? setCheckList([...checkList, e.target.name as CheckList[number]])
       : setCheckList(checkList.filter((choice) => choice !== e.target.name));
   };
 
@@ -524,7 +526,7 @@ const LoginLabelBottom = styled.div`
   margin-top: 80px;
 `;
 
-const SignUpBtn = styled.button`
+const SignUpBtn = styled.button<{ state: boolean }>`
   margin-top: 50px;
   cursor: pointer;
 
