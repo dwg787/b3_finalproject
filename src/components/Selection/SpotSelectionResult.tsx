@@ -6,7 +6,6 @@ import { useQuery } from 'react-query';
 import { fetchSpotData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
-import Loader from '../Loader/Loader';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 import { useCallback, useEffect, useRef, useState } from 'react';
