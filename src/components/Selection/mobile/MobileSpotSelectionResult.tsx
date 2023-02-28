@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import { DetailDataTypes, PageDataTypes } from '../../../types/apiDataTypes';
 import noimg from '../../../assets/noimg.avif';
 import { useInfiniteQuery } from 'react-query';
-import {
-  FetchedStayDataType,
-  fetchMobileSpotData,
-} from '../../../apis/publicAPI';
+import { fetchMobileSpotData } from '../../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../../recoil/apiDataAtoms';
 import Loader from '../../Loader/Loader';

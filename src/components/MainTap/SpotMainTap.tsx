@@ -8,14 +8,15 @@ import two from '../../assets/two.avif';
 import three from '../../assets/three.avif';
 import noimg from '../../assets/noimg.avif';
 import redheart from '../../assets/redheart.avif';
+import { RankTypeList } from '../../types/apiDataTypes';
 
-const RestaurantMainTap = () => {
+const SpotMainTap = () => {
   const navigate = useNavigate();
-  const [rankList, setRankList] = useState([]);
-  const restaurantRankList = async () => {
+  const [rankList, setRankList] = useState<RankTypeList>([]);
+  const spotRankList = async () => {
     const data = await getDocs(
       query(
-        collection(db, 'restaurant_recommendation'),
+        collection(db, 'spot_recommendation'),
         orderBy('likeCnt', 'desc'),
         limit(7),
       ),
@@ -29,14 +30,12 @@ const RestaurantMainTap = () => {
   };
 
   useEffect(() => {
-    const fetchRestaurantRankList = async () => {
-      const res = await restaurantRankList();
+    const fetchSpotRankList = async () => {
+      const res = await spotRankList();
       setRankList(res);
     };
-    fetchRestaurantRankList();
+    fetchSpotRankList();
   }, []);
-
-  // console.log('음식점 랭킹', rankList);
 
   return (
     <ContainerDiv>
@@ -50,7 +49,7 @@ const RestaurantMainTap = () => {
                     <InnerImg
                       src={rankList[0]?.firstimage || noimg}
                       onClick={() =>
-                        navigate(`/restaurant/${rankList[0]?.contentid}`)
+                        navigate(`/spot/${rankList[0]?.contentid}`)
                       }
                     />
                     <InnerMedals src={one} alt="" />
@@ -76,7 +75,7 @@ const RestaurantMainTap = () => {
                     <InnerImg
                       src={rankList[1]?.firstimage || noimg}
                       onClick={() =>
-                        navigate(`/restaurant/${rankList[1]?.contentid}`)
+                        navigate(`/spot/${rankList[1]?.contentid}`)
                       }
                     />
                     <InnerMedals src={two} alt="" />
@@ -102,7 +101,7 @@ const RestaurantMainTap = () => {
                     <InnerImg
                       src={rankList[2]?.firstimage || noimg}
                       onClick={() =>
-                        navigate(`/restaurant/${rankList[2]?.contentid}`)
+                        navigate(`/spot/${rankList[2]?.contentid}`)
                       }
                     />
                     <InnerMedals src={three} alt="" />
@@ -137,7 +136,7 @@ const RestaurantMainTap = () => {
                     <InnerImg
                       src={e.firstimage}
                       alt=""
-                      onClick={() => navigate(`/restaurant/${e.contentid}`)}
+                      onClick={() => navigate(`/spot/${e.contentid}`)}
                     />
                     <OuterTextBox>
                       <OuterTextBoxInnerBox>
@@ -167,7 +166,7 @@ const RestaurantMainTap = () => {
   );
 };
 
-export default RestaurantMainTap;
+export default SpotMainTap;
 
 const ColorDiov = styled.div`
   width: 100%;
