@@ -18,10 +18,11 @@ import {
   MyChildTextp,
   LikeBox,
 } from './styles';
+import { DetailDataTypes } from '../../types/apiDataTypes';
 
 type StayInfoProps = {
-  restaurantDetailData?: DetailDataTypes,
-  spotData?: DetailDataTypes,
+  restaurantDetailData?: DetailDataTypes;
+  spotData?: DetailDataTypes;
 };
 
 const StayInfo: React.FunctionComponent<StayInfoProps> = (props) => {
@@ -56,7 +57,7 @@ const StayInfo: React.FunctionComponent<StayInfoProps> = (props) => {
           <>
             {stayData ? (
               <>
-                {stayData.slice(0, 4).map((item, i) => {
+                {stayData.slice(0, 4).map((item: any, i: number) => {
                   return (
                     <Link to={`/stay/${item.contentid}`}>
                       <MyChildList key={item.contentid}>
