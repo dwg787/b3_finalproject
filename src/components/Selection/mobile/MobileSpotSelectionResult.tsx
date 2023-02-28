@@ -106,15 +106,23 @@ const MobileSpotSelectionResult = () => {
 export default MobileSpotSelectionResult;
 
 const SearchOverallResultContainer = styled.div`
-  width: 768px;
+  position: relative;
+  width: 65%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  border: 1px solid #6478ff;
+  background: linear-gradient(180deg, #ffffff 52.85%, #afb9fb 100%);
+  border-radius: 20px;
+  box-shadow: 3px 3px #d7d7d7;
+  padding-bottom: 50px;
 `;
 
 const ListItemCount = styled.div`
-  margin-top: 30px;
-  margin-left: 30px;
+  /* margin-top: 30px;
+  margin-left: 30px; */
 `;
 
 const SearchListWrapper = styled.div`
@@ -126,6 +134,7 @@ const SearchListWrapper = styled.div`
 `;
 
 const ResultWrapper = styled.div`
+  margin-top: 50px;
   width: 100%;
   height: 800px;
   display: flex;
