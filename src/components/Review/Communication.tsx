@@ -114,8 +114,9 @@ const Communication = () => {
           <InputAndBtnWrap>
             <ReviewInput
               id="review"
+              maxLength={64}
               value={newReview}
-              placeholder="리뷰를 입력하세요."
+              placeholder="리뷰를 입력하세요. 최대 64 글자"
               onChange={(event) => {
                 setNewReview(event.target.value);
               }}
