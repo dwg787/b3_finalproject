@@ -40,204 +40,194 @@ const RestaurantMainTap = () => {
   // console.log('음식점 랭킹', rankList);
 
   return (
-    <ContainerDiv>
-      <ColorDiov>
-        <WrapDiv>
-          <InnerDiv>
-            {rankList ? (
-              <>
-                {rankList[0]?.likeCnt ? (
-                  <InnerList>
-                    <InnerImg
-                      src={rankList[0]?.firstimage || noimg}
-                      onClick={() =>
-                        navigate(`/restaurant/${rankList[0]?.contentid}`)
-                      }
-                    />
-                    <InnerMedals src={one} alt="" />
-                    <InnerTextBox>
-                      <MedalText>
-                        {rankList[0]?.title.split(/[\\(\\[]/)[0]}
-                      </MedalText>
-                      <MedalSubText>
-                        {rankList[0]?.overview.slice(0, 20)}...
-                      </MedalSubText>
-                      <MedalHeartBox>
-                        <HeartImg src={redheart} />
-                        <p>{rankList[0]?.likeCnt}</p>
-                      </MedalHeartBox>
-                    </InnerTextBox>
-                  </InnerList>
-                ) : (
-                  <InnerList>
-                    <InnerMedals src={one} alt="" />
-                    <InnerTextBox></InnerTextBox>
-                  </InnerList>
-                )}
-                {rankList[1]?.likeCnt ? (
-                  <InnerList>
-                    <InnerImg
-                      src={rankList[1]?.firstimage || noimg}
-                      onClick={() =>
-                        navigate(`/restaurant/${rankList[1]?.contentid}`)
-                      }
-                    />
-                    <InnerMedals src={two} alt="" />
-                    <InnerTextBox>
-                      <MedalText>
-                        {rankList[1]?.title.split(/[\\(\\[]/)[0]}
-                      </MedalText>
-                      <MedalSubText>
-                        {rankList[1]?.overview.slice(0, 20)}...
-                      </MedalSubText>
-                      <MedalHeartBox>
-                        <HeartImg src={redheart} />
-                        <p>{rankList[1]?.likeCnt}</p>
-                      </MedalHeartBox>
-                    </InnerTextBox>
-                  </InnerList>
-                ) : (
-                  <InnerList>
-                    <InnerMedals src={two} alt="" />
-                    <InnerTextBox></InnerTextBox>
-                  </InnerList>
-                )}
-                {rankList[2]?.likeCnt ? (
-                  <InnerList>
-                    <InnerImg
-                      src={rankList[2]?.firstimage || noimg}
-                      onClick={() =>
-                        navigate(`/restaurant/${rankList[2]?.contentid}`)
-                      }
-                    />
-                    <InnerMedals src={three} alt="" />
-                    <InnerTextBox>
-                      <MedalText>
-                        {rankList[2]?.title.split(/[\\(\\[]/)[0]}
-                      </MedalText>
-                      <MedalSubText>
-                        {rankList[2]?.overview.slice(0, 20)}...
-                      </MedalSubText>
-                      <MedalHeartBox>
-                        <HeartImg src={redheart} />
-                        <p>{rankList[2]?.likeCnt}</p>
-                      </MedalHeartBox>
-                    </InnerTextBox>
-                  </InnerList>
-                ) : (
-                  <InnerList>
-                    <InnerMedals src={three} alt="" />
-                    <InnerTextBox></InnerTextBox>
-                  </InnerList>
-                )}
-              </>
+    <WrapDiv>
+      <InnerDiv>
+        {rankList ? (
+          <>
+            {rankList[0]?.likeCnt ? (
+              <InnerList>
+                <InnerImg
+                  src={rankList[0]?.firstimage || noimg}
+                  onClick={() =>
+                    navigate(`/restaurant/${rankList[0]?.contentid}`)
+                  }
+                />
+                <MedalHeartBox>
+                  <HeartImg src={redheart} />
+                  <HeartText>{rankList[0]?.likeCnt}</HeartText>
+                </MedalHeartBox>
+                <InnerMedals src={one} alt="" />
+                <InnerTextBox>
+                  <MedalText>
+                    {rankList[0]?.title.split(/[\\(\\[]/)[0]}
+                  </MedalText>
+                  <MedalSubText>
+                    {rankList[0]?.overview.slice(0, 20)}...
+                  </MedalSubText>
+                </InnerTextBox>
+              </InnerList>
             ) : (
-              <></>
+              <InnerList>
+                <InnerMedals src={one} alt="" />
+                <InnerTextBox></InnerTextBox>
+              </InnerList>
             )}
-          </InnerDiv>
-          <OuterDiv>
-            {rankList.slice(3, 7).map((e, i) => {
-              if (e.likeCnt > 0) {
-                return (
-                  <OuterList>
-                    <InnerNmb>{i + 4}</InnerNmb>
-                    <InnerImg
-                      src={e.firstimage}
-                      alt=""
-                      onClick={() => navigate(`/restaurant/${e.contentid}`)}
-                    />
-                    <OuterTextBox>
-                      <OuterTextBoxInnerBox>
-                        <MedalText>{e.title.split(/[\\(\\[]/)[0]}</MedalText>
-                        <MedalSubText>{e.overview.slice(0, 20)}</MedalSubText>
-                        <HeartBox>
-                          <HeartImg src={redheart} />
-                          <p>{e.likeCnt}</p>
-                        </HeartBox>
-                      </OuterTextBoxInnerBox>
-                    </OuterTextBox>
-                  </OuterList>
-                );
-              } else {
-                return (
-                  <OuterList>
-                    <InnerNmb>{i + 4}</InnerNmb>
-                    <OuterTextBox></OuterTextBox>
-                  </OuterList>
-                );
-              }
-            })}
-          </OuterDiv>
-        </WrapDiv>
-      </ColorDiov>
-    </ContainerDiv>
+            {rankList[1]?.likeCnt ? (
+              <InnerList>
+                <InnerImg
+                  src={rankList[1]?.firstimage || noimg}
+                  onClick={() =>
+                    navigate(`/restaurant/${rankList[1]?.contentid}`)
+                  }
+                />
+                <MedalHeartBox>
+                  <HeartImg src={redheart} />
+                  <HeartText>{rankList[1]?.likeCnt}</HeartText>
+                </MedalHeartBox>
+                <InnerMedals src={two} alt="" />
+                <InnerTextBox>
+                  <MedalText>
+                    {rankList[1]?.title.split(/[\\(\\[]/)[0]}
+                  </MedalText>
+                  <MedalSubText>
+                    {rankList[1]?.overview.slice(0, 20)}...
+                  </MedalSubText>
+                </InnerTextBox>
+              </InnerList>
+            ) : (
+              <InnerList>
+                <InnerMedals src={two} alt="" />
+                <InnerTextBox></InnerTextBox>
+              </InnerList>
+            )}
+            {rankList[2]?.likeCnt ? (
+              <InnerList>
+                <InnerImg
+                  src={rankList[2]?.firstimage || noimg}
+                  onClick={() =>
+                    navigate(`/restaurant/${rankList[2]?.contentid}`)
+                  }
+                />
+                <MedalHeartBox>
+                  <HeartImg src={redheart} />
+                  <HeartText>{rankList[2]?.likeCnt}</HeartText>
+                </MedalHeartBox>
+                <InnerMedals src={three} alt="" />
+                <InnerTextBox>
+                  <MedalText>
+                    {rankList[2]?.title.split(/[\\(\\[]/)[0]}
+                  </MedalText>
+                  <MedalSubText>
+                    {rankList[2]?.overview.slice(0, 20)}...
+                  </MedalSubText>
+                </InnerTextBox>
+              </InnerList>
+            ) : (
+              <InnerList>
+                <InnerMedals src={three} alt="" />
+                <InnerTextBox></InnerTextBox>
+              </InnerList>
+            )}
+          </>
+        ) : (
+          <></>
+        )}
+      </InnerDiv>
+      <OuterDiv>
+        {rankList.slice(3, 7).map((e, i) => {
+          if (e.likeCnt > 0) {
+            return (
+              <OuterList>
+                <InnerNmb>{i + 4}</InnerNmb>
+                <OuterImg
+                  src={e.firstimage}
+                  alt=""
+                  onClick={() => navigate(`/restaurant/${e.contentid}`)}
+                />
+                <OuterMedalHeartBox>
+                  <OuterHeartImg src={redheart} />
+                  <OuterHeartText>{e.likeCnt}</OuterHeartText>
+                </OuterMedalHeartBox>
+                <OuterTextBox>
+                  <OuterMedalText>
+                    {e.title.split(/[\\(\\[]/)[0]}
+                  </OuterMedalText>
+                  <OuterMedalSubText>
+                    {e.overview.slice(0, 20)}
+                  </OuterMedalSubText>
+                </OuterTextBox>
+              </OuterList>
+            );
+          } else {
+            return (
+              <OuterList>
+                <InnerNmb>{i + 4}</InnerNmb>
+                <OuterTextBox></OuterTextBox>
+              </OuterList>
+            );
+          }
+        })}
+      </OuterDiv>
+    </WrapDiv>
   );
 };
 
 export default RestaurantMainTap;
 
-const ColorDiov = styled.div`
+const WrapDiv = styled.div`
+  max-width: 1036px;
   width: 100%;
-  height: 100%;
+  height: 725px;
   background: linear-gradient(
     180deg,
-    #7f8efc 40%,
-    rgba(255, 255, 255, 0.2) 100%
+    #8796ff 0%,
+    rgba(255, 255, 255, 0.04) 100%
   );
-  display: flex;
-  justify-content: center;
-  padding-bottom: 300px;
-  position: absolute;
-`;
-
-const ContainerDiv = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  position: absolute;
-  z-index: 0;
-  margin-top: 3600px;
-`;
-
-const WrapDiv = styled.div`
-  margin-top: 50px;
-  width: 65%;
-  height: 880px;
-  background-color: transparent;
-  border: 1px solid #6478ff;
-  border-radius: 20px;
+  border-radius: 11px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
-  position: absolute;
+  box-shadow: 2.16px 2.16px 5.4px rgba(0, 0, 0, 0.18);
+  z-index: 3;
 `;
 
 const InnerDiv = styled.div`
-  width: 90%;
-  height: 350px;
-  margin-top: 80px;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.4);
+  width: 904px;
+  height: 360px;
+  margin-top: 61px;
+  border-radius: 11px;
+  background: #d6dcff;
+  box-shadow: 2.16px 2.16px 2.16px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  gap: 19px;
 `;
 
 const InnerList = styled.div`
   position: relative;
-  width: 22%;
-  height: 300px;
+  width: 261px;
+  height: 298px;
   background-color: gray;
-  border-radius: 20px;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 2.15833px 2.15833px 5.39583px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 `;
 
 const InnerImg = styled.img`
-  width: 250px;
-  height: 180px;
+  width: 261px;
+  height: 200px;
+  position: absolute;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    transition: all 0.35s;
+  }
+`;
+
+const OuterImg = styled.img`
+  width: 214px;
+  height: 200px;
   position: absolute;
   cursor: pointer;
   &:hover {
@@ -255,40 +245,40 @@ const InnerMedals = styled.img`
 const InnerTextBox = styled.div`
   position: absolute;
   width: 100%;
-  height: 120px;
+  height: 120.04px;
   background-color: white;
-  margin-top: 180px;
-  padding-top: 10px;
-  padding-left: 10px;
+  margin-top: 178.06px;
 `;
 
 const OuterDiv = styled.div`
-  width: 90%;
+  width: 100%;
   height: 320px;
   background-color: transparent;
-  margin-top: 50px;
+  margin-top: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 17px;
 `;
 
 const OuterList = styled.div`
-  width: 20%;
-  height: 280px;
+  width: 214px;
+  height: 245px;
   background-color: gray;
-  border-radius: 20px;
+  border-radius: 7px;
   overflow: hidden;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   position: relative;
+  margin-bottom: 50px;
 `;
 
 const OuterTextBox = styled.div`
-  width: 100%;
-  height: 110px;
+  width: 214.93px;
+  height: 106.8px;
   background-color: white;
   position: absolute;
-  margin-top: 170px;
+  margin-top: 146.24px;
+  text-align: center;
 `;
 
 const InnerNmb = styled.div`
@@ -307,12 +297,51 @@ const InnerNmb = styled.div`
   font-weight: bold;
 `;
 
+const OuterMedalHeartBox = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+  margin-top: 113.65px;
+  margin-left: 141.12px;
+  position: absolute;
+`;
+
+const OuterHeartImg = styled.img`
+  width: 22.24px;
+  height: 18.57px;
+`;
+
+const OuterHeartText = styled.p`
+  font-size: 20.51px;
+  margin-left: px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 17px;
+`;
+
+const MedalText = styled.h1`
+  margin-top: 21px;
+  /* margin-left: 60px; */
+  font-size: 21px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const MedalSubText = styled.p`
+  margin-top: 17.27px;
+  margin-left: 27.79px;
+  font-size: 12.7px;
+`;
+
 const MedalHeartBox = styled.div`
   display: flex;
   /* justify-content: center; */
   align-items: center;
   gap: 10px;
-  margin-top: 30px;
+  margin-top: 137.33px;
+  margin-left: 172.15px;
+  position: absolute;
 `;
 
 const HeartBox = styled.div`
@@ -323,21 +352,27 @@ const HeartBox = styled.div`
   margin-top: 20px;
 `;
 
-const OuterTextBoxInnerBox = styled.div`
-  margin-top: 10px;
-  margin-left: 10px;
-`;
-
 const HeartImg = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 27.13px;
+  height: 22.59px;
 `;
 
-const MedalText = styled.h1`
-  font-size: 18px;
+const HeartText = styled.p`
+  font-size: 20.51px;
+  margin-left: 7.73px;
+  color: #d6dcff;
   font-weight: bold;
 `;
 
-const MedalSubText = styled.p`
-  font-size: 14px;
+const OuterMedalText = styled.h1`
+  margin-top: 21px;
+  /* margin-left: 60px; */
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const OuterMedalSubText = styled.p`
+  margin-top: 13px;
+  font-size: 11px;
 `;
