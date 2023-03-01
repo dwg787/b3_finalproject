@@ -172,12 +172,14 @@ export default Communication;
 
 const ReviewContainerWrap = styled.div`
   border: 1.00654px solid #9eabff;
-  width: 1146.11px;
+  width: 964px;
+  height: 504px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   box-sizing: border-box;
-  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.18);
-  border-radius: 13.4205px;
+  box-shadow: 2.25685px 2.25685px 5.64213px rgba(0, 0, 0, 0.18);
+  border-radius: 11.2843px;
 `;
 
 const PaginationBox = styled.div`
@@ -198,14 +200,16 @@ const PaginationBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    font-size: 14.34px;
+    font-weight: 700;
+    font-size: 9.95006px;
     margin: 6.6px;
   }
   ul.pagination li a {
     text-decoration: none;
     color: #909090;
-    font-size: 1rem;
+    font-weight: 700;
+    font-size: 9.95006px;
+    margin-bottom: 10px;
   }
   ul.pagination li.active a {
     color: #6478ff;
@@ -222,14 +226,11 @@ const BottomLine = styled.div`
 `;
 
 const ReviewContainer = styled.div`
-  width: 1146.11px;
-  height: 576.41px;
-
+  width: 964px;
+  height: 504px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-
-  border-radius: 13.4205px;
 `;
 
 const ReviewBox = styled.div`
@@ -240,11 +241,11 @@ const ReviewBox = styled.div`
 
 const ReviewLabel = styled.label`
   font-weight: 700;
-  font-size: 11.4074px;
+  font-size: 9.59162px;
   color: #6478ff;
-  margin-top: 50px;
-  margin-bottom: 10px;
-  margin-left: 60px;
+  margin-top: 48.52px;
+  margin-bottom: 15px;
+  margin-left: 50px;
 `;
 
 const InputAndBtnWrap = styled.div`
@@ -253,31 +254,33 @@ const InputAndBtnWrap = styled.div`
   align-items: center;
 `;
 
-const ReviewInput = styled.textarea`
-  width: 1026px;
-  height: 75.15px;
+const ReviewInput = styled.input`
+  width: 862.68px;
+  height: 63.19px;
   background: #eef1ff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 14px;
   font-weight: 500;
-  font-size: 14.0915px;
+  font-size: 11.8485px;
   color: #595959;
-  padding: 20px;
+  /* padding: 20px; */
+  padding: 0 20px 10px 20px;
   border: none;
+  margin-top: -10px;
   margin-bottom: 20px;
   resize: none;
   overflow-y: scroll;
   overflow-x: 'hidden';
   &::placeholder {
     font-weight: 500;
-    font-size: 14.0915px;
+    font-size: 11.8485px;
     color: #595959;
   }
 `;
 
 const ReviewButton = styled.button`
-  width: 185.87px;
-  height: 34.22px;
+  width: 156.29px;
+  height: 28.77px;
   background: #6478ff;
   box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.15);
   border-radius: 9.39433px;
@@ -285,7 +288,7 @@ const ReviewButton = styled.button`
   color: #ffffff;
   cursor: pointer;
   font-weight: 500;
-  font-size: 15.2768px;
+  font-size: 12.8451px;
   margin-bottom: 20px;
 `;
 
