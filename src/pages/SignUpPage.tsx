@@ -222,7 +222,7 @@ const SignUpPage = () => {
   return (
     <SIgnWrap>
       <Reservation>회원가입</Reservation>
-
+      <ReservationBottom></ReservationBottom>
       <TestDiv>
         <SignUpContainer>
           <Login>
@@ -434,7 +434,7 @@ const Reservation = styled.div`
 
 const TestDiv = styled.div`
   width: 100%;
-  height: 1197px;
+  height: 1097px;
   margin-top: 20.45px;
 `;
 
@@ -454,7 +454,7 @@ const SIgnWrap = styled.div`
 
 const SignUpContainer = styled.div`
   width: 1036px;
-  height: 1197px;
+  height: 1097px;
 
   margin: auto;
 
@@ -464,6 +464,13 @@ const SignUpContainer = styled.div`
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 0px 0px 11px 11px;
+`;
+
+const ReservationBottom = styled.div`
+  border: solid #6478ff 1.13px;
+  width: 1036px;
+
+  margin-top: 20.45px;
 `;
 
 const Login = styled.div`
@@ -493,7 +500,7 @@ const LoginInput = styled.input`
   padding: 10px 0;
   font-size: 16px;
   color: #000000;
-  margin-bottom: 30px;
+
   margin-top: 46px;
   padding: 10px;
   background: #ffffff;
