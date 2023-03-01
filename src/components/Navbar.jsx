@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../apis/firebase';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { LoginPage } from '../pages';
+import LoginPage from '../pages/LoginPage';
 import axios from 'axios';
 import QueryString from 'qs';
 import mainlogo from '../assets/mainlogo.avif';

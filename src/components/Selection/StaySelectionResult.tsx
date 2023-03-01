@@ -11,12 +11,16 @@ import leftArrow from '../../assets/left-chevron.avif';
 import rightArrow from '../../assets/right-chevron.avif';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
+import { AREA_CODE } from '../../apis/apiCodes';
+
 const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
+  const regionText = AREA_CODE.find((e) => e.id === region)?.area;
   const [stayCurPage, setStayCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
 
+  console.log('region 값 확인', AREA_CODE, region, regionText);
   //페이지네이션
   if (stayCurPage % 5 === 1) {
     firstNum.current = 5 * Math.floor(stayCurPage / 5) + 1;
@@ -52,7 +56,7 @@ const StaySelectionResult = () => {
       ) : (
         <>
           <ListContainer>
-            <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
+            <ListItemCount>{regionText || '전체'}</ListItemCount>
             <SearchListWrapper>
               <BtnWrapper>
                 {data.pageNo - 1 < 1 ? (
@@ -145,7 +149,9 @@ const SearchOverallResultContainer = styled.div`
 
 const ListItemCount = styled.div`
   margin-top: 30px;
-  margin-left: 30px;
+  margin-left: 59px;
+  font-size: 15px;
+  margin-bottom: 20px;
   color: '#6478ff';
 `;
 
@@ -185,7 +191,7 @@ const MoveBtnStyle = styled.img`
 `;
 
 const PaginationDotsWrapper = styled.div`
-  margin-top: 10px;
+  margin-top: 30px;
   width: 500px;
   height: 50px;
   display: flex;
