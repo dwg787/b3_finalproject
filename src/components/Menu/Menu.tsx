@@ -23,5 +23,5 @@ const MenuContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  gap: 200px;
+  gap: 180px;
 `;
