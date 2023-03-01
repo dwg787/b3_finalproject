@@ -199,16 +199,19 @@ const BtnWrap = styled.div`
 `;
 const UpdateBtn = styled.button`
   border: none;
+  /* width: 45px; */
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
   font-weight: 500;
   font-size: 10.0654px;
+
   cursor: pointer;
 `;
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
+  /* width: 45px; */
   padding: 5px;
   border: none;
   background-color: transparent;

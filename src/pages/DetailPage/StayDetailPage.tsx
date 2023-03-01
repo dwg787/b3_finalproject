@@ -221,7 +221,7 @@ const StayDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {/* <Communication /> */}
+                  <Communication />
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <SpotInfo stayDetailData={stayDetailData} />
