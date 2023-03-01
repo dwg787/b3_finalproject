@@ -318,7 +318,7 @@ const MedalText = styled.h1`
 
 const MedalSubText = styled.p`
   margin-top: 17.27px;
-  margin-left: 27.79px;
+  /* margin-left: 27.79px; */
   font-size: 12.7px;
 `;
 
