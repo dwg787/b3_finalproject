@@ -110,8 +110,7 @@ export default SideInfoMap;
 
 const StMap = styled.div`
   width: 100%;
-  height: 473.74px;
-  /* height: 13.42%; */
-  border-radius: 13.42px;
+  height: 100%;
+  border-radius: 11.28px;
   border: 1px solid rgb(158, 171, 255, 0.61);
 `;

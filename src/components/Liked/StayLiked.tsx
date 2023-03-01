@@ -162,12 +162,13 @@ export default StayLiked;
 
 const HeartBtn = styled.button`
   border: none;
-  background-color: #fff;
+  background-color: transparent;
 `;
 
 const Heart = styled.img`
-  width: 27.09px;
-  margin-top: 13px;
+  width: 22.78px;
+  height: 18.98px;
+  margin-right: 6px;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
