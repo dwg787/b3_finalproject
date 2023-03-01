@@ -296,9 +296,10 @@ const ReviewBoxList = styled.div`
   display: flex;
   height: 100%;
   flex-wrap: wrap;
-  justify-content: center;
+  /* justify-content: center; */
   /* gap: 20px; */
-  align-items: center;
+  /* align-items: center; */
   /* border: 1px solid red; */
+  margin-left: 10px;
   overflow: hidden;
 `;
