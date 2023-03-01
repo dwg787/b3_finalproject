@@ -21,8 +21,6 @@ const RestaurantSelectionResult = () => {
   const firstNum = useRef(1);
   //   const lastNum = useRef(5);
 
-  console.log('region 값 확인', AREA_CODE, region, regionText);
-
   //페이지네이션
   if (restCurPage % 5 === 1) {
     firstNum.current = 5 * Math.floor(restCurPage / 5) + 1;
