@@ -16,6 +16,7 @@ import {
   SearchPage,
   StayDetailPage,
   RestaurantDetailPage,
+  ErrorPage,
 } from './pages';
 
 const Router = () => {
@@ -36,6 +37,7 @@ const Router = () => {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/slot" element={<SlotMachine />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </Suspense>
