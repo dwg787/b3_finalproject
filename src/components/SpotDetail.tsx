@@ -114,7 +114,7 @@ const LikeBox = styled.div`
   display: flex;
   gap: 5px;
   margin-top: 10.83px;
-  margin-left: 142.95px;
+  margin-left: 152.95px;
   align-items: center;
 `;
 
