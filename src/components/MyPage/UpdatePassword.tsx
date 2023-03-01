@@ -196,12 +196,12 @@ export default UpdatePassword;
 
 const Error = styled.div`
   position: absolute;
-  top: 105px;
+  top: 85px;
   left: 10px;
   color: #f87038;
   font-weight: 500;
-  font-size: 11px;
-  line-height: 9.75px;
+  font-size: 10px;
+  line-height: 8px;
 `;
 
 const UpdatePwBox = styled.div`
@@ -209,45 +209,45 @@ const UpdatePwBox = styled.div`
 `;
 
 const UpdatePwInput1 = styled.input`
-  width: 419.9px;
-  height: 44.85px;
-  padding: 10px 0;
+  width: 380px;
+  height: 36px;
+
   font-size: 16px;
   color: #000000;
-  margin-bottom: 30px;
-  margin-top: 80px;
-  padding: 20px;
-  border: 1.5px solid rgba(158, 171, 255, 0.61);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
+  margin-bottom: 26px;
+  margin-top: 65px;
+  padding: 10px;
+  border: 1px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
   outline: none;
   background: transparent;
 `;
 
 const UpdatePwInput2 = styled.input`
-  width: 419.9px;
-  height: 44.85px;
-  padding: 10px 0;
+  width: 380px;
+  height: 36px;
+
   font-size: 16px;
   color: #000000;
-  margin-bottom: 30px;
-  margin-top: 50px;
-  padding: 20px;
-  border: 1.5px solid rgba(158, 171, 255, 0.61);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
+  margin-bottom: 26px;
+  margin-top: 38px;
+  padding: 10px;
+  border: 1px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
   outline: none;
   background: transparent;
 `;
 
 const UpdatePwLabel1 = styled.label`
   position: absolute;
-  top: 50px;
+  top: 45px;
   left: 0;
-  padding: 10px 0;
+
   font-weight: 500;
-  font-size: 13.678px;
-  line-height: 13.65px;
+  font-size: 12px;
+  line-height: 12px;
   color: #5a5a5a;
   pointer-events: none;
   transition: 0.5s;
@@ -257,10 +257,10 @@ const UpdatePwLabel2 = styled.label`
   position: absolute;
   top: 20px;
   left: 0;
-  padding: 10px 0;
+
   font-weight: 500;
-  font-size: 13.678px;
-  line-height: 13.65px;
+  font-size: 12px;
+  line-height: 12px;
   color: #5a5a5a;
   pointer-events: none;
   transition: 0.5s;
@@ -269,37 +269,37 @@ const UpdatePwLabel2 = styled.label`
 const UpdatePwBtn1 = styled.button`
   cursor: pointer;
 
-  width: 419.9px;
-  height: 44.85px;
+  width: 380px;
+  height: 38px;
 
   background: #6478ff;
-  border: 1px solid #ffffff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
+
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
   border: none;
   font-weight: 500;
-  font-size: 17.3651px;
-  line-height: 16.25px;
+  font-size: 15px;
+  line-height: 14px;
 
   color: #ffffff;
   text-align: center;
 `;
 
 const UpdatePwBtn2 = styled.button<{ state: boolean }>`
-  margin-top: 20px;
+  margin-top: 26px;
   cursor: pointer;
 
-  width: 419.9px;
-  height: 44.85px;
+  width: 380px;
+  height: 38px;
 
   background: #6478ff;
-  border: 1px solid #ffffff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
+
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
   border: none;
   font-weight: 500;
-  font-size: 17.3651px;
-  line-height: 16.25px;
+  font-size: 15px;
+  line-height: 14px;
 
   color: #ffffff;
   text-align: center;
