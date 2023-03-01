@@ -4,12 +4,13 @@ import styled from 'styled-components';
 
 const StTicketWrap = styled.div`
   width: 100%;
-  height: 100%;
+  height: 680px;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 `;
 
 const StTicket = styled.div`
@@ -19,47 +20,51 @@ const StTicket = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100%;
-  height: 100%;
+  /* height: 680px; */
   box-sizing: border-box;
+  /* position: relative; */
 `;
 
 const StLikedBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  /* position: relative; */
+  grid-template-columns: repeat(2, 403px);
+  grid-template-rows: repeat(3, 144px);
   justify-items: center;
   align-items: center;
+  column-gap: 46px;
+  row-gap: 16px;
   width: 100%;
-  height: 555.22px;
+  height: 464px;
   box-sizing: border-box;
-  padding: 0 108.42px 108.42px 108.42px;
+  padding: 0 92px 97px 92px;
 `;
 
 const StTicketCard = styled.div`
-  width: 480.01px;
-  height: 172.54px;
-  margin: 0 0 18.8px 0;
-  border-radius: 11.41px;
+  width: 403px;
+  height: 144px;
+  margin: 0 0 16px 0;
+  border-radius: 9px;
   align-items: center;
   clear: both;
   display: flex;
   flex-direction: row;
   background-size: contain;
-  box-shadow: 3px 3px 5px grey;
+  box-shadow: 1px 1px 3px #d1d1d1;
 `;
 
 const StTicketCardLeft = styled.div`
-  width: 254px;
-  height: 172.54px;
+  width: 214px;
+  height: 144px;
   box-sizing: border-box;
   border-radius: 5px;
-  /* position: relative; */
+  position: relative;
   cursor: pointer;
 `;
 
 const StTicketCardRight = styled.div`
-  width: 226px;
-  height: 172.54px;
+  width: 189px;
+  height: 144px;
   box-sizing: border-box;
   border-radius: 5px;
   flex-direction: column;
@@ -80,18 +85,18 @@ const StCartTitle = styled.span`
   color: #4d4d4d;
   font-weight: 900;
   z-index: 100;
-  font-size: 19.7px;
-  line-height: 18.4px;
-  margin: 22.15px 31.01px 11.21px 30.42px;
+  font-size: 16.57px;
+  line-height: 15.5px;
+  margin: 18px 39.24px 10px 24.7px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
 const StCartTitleAdd = styled(StCartTitle)`
-  margin: 0 31.01px 0 30.42px;
-  font-size: 15.44px;
-  line-height: 24.8px;
+  margin: 0 25.3px 0 30.42px;
+  font-size: 12.98px;
+  line-height: 20.9px;
 `;
 
 const StCartMenu = styled.div`
@@ -100,45 +105,47 @@ const StCartMenu = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 15.75px;
-  line-height: 14.1px;
+  font-size: 13.25px;
+  line-height: 11.9px;
   font-weight: 500;
-  width: 62px;
-  height: 33.54px;
-  border-radius: 239.36px;
+  width: 52.1px;
+  height: 27.79px;
+  border-radius: 201.28px;
   background-color: rgba(77, 77, 77, 0.56);
-  margin: 17.89px 18.58px 0 0;
+  margin: 14.89px 16.62px 0 0;
 `;
 
 const StTicketHeader = styled.div`
   display: flex;
   justify-content: right;
   position: absolute;
-  width: 254px;
-  height: 172.54px;
+  width: 214px;
+  /* height: 144px; */
 `;
 
 const StTicketHeader2 = styled.div`
   display: flex;
   justify-content: end;
   position: absolute;
-  width: 226px;
-  height: 172.54px;
-  padding: 10px;
+  width: 189px;
+  padding: 13.09px 14.29px 0 0;
 `;
 
 const DelBtn = styled.img`
   width: 24px;
   height: 24px;
+  /* margin: 13.09px 14.29px 0 0; */
   cursor: pointer;
 `;
 
 //PaginationList
 const PaginationBox = styled.div`
+  /* position: absolute; */
+
   .pagination {
     display: flex;
     justify-content: center;
-    margin: 41.63px 0 49.15px 0;
+    margin: 38px 0 44px 0;
   }
   ul {
     list-style: none;
@@ -146,20 +153,21 @@ const PaginationBox = styled.div`
   }
   ul.pagination li {
     display: inline-block;
-    width: 9px;
-    height: 20px;
+    width: 7px;
+    height: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    font-size: 14.34px;
-    margin: 6.6px;
+    font-size: 12px;
+    margin: 5.5px;
+    line-height: 16px;
   }
 
   ul.pagination li a {
     text-decoration: none;
     color: #909090;
-    font-size: 1rem;
+    font-size: 12px;
   }
   ul.pagination li.active a {
     color: #6478ff;
@@ -172,27 +180,26 @@ const PaginationBox = styled.div`
 `;
 
 //MyFav
-
-const LikedHeader = styled.div`
-  font-size: 25.79px;
-  line-height: 24.1px;
-  margin-top: 58.2px;
-  margin-bottom: 41.63px;
-  font-weight: 900;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #4d4d4d;
-  box-sizing: border-box;
-`;
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 808.97px;
+  height: 680px;
+  box-sizing: border-box;
+`;
+
+const LikedHeader = styled.div`
+  font-size: 21.68px;
+  line-height: 20.3px;
+  margin-top: 47px;
+  margin-bottom: 51px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4d4d4d;
   box-sizing: border-box;
 `;
 

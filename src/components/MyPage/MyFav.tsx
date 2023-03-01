@@ -4,7 +4,7 @@ import { Container, LikedHeader } from './styles';
 const MyFav = () => {
   return (
     <Container>
-      <LikedHeader>나의 찜 목록</LikedHeader>
+      {/* <LikedHeader>나의 찜 목록</LikedHeader> */}
       <MyLikeList />
     </Container>
   );

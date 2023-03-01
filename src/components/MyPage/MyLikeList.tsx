@@ -26,6 +26,7 @@ import {
   StTicketHeader,
   StTicketHeader2,
   DelBtn,
+  LikedHeader,
 } from './styles';
 
 const MyLikeList = () => {
@@ -120,6 +121,7 @@ const MyLikeList = () => {
   return (
     <>
       <StTicketWrap>
+        <LikedHeader>나의 찜 목록</LikedHeader>
         <StTicket>
           <StLikedBox>
             {place &&
@@ -152,7 +154,7 @@ const MyLikeList = () => {
                             </StTicketHeader2>
 
                             <StCartTitle>
-                              {data.place?.split('[', 1)}
+                              {data.restaurant?.split('[', 1)}
                             </StCartTitle>
                             <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
                             {/* 좋아요카운트 */}
@@ -184,7 +186,7 @@ const MyLikeList = () => {
                             </StTicketHeader2>
 
                             <StCartTitle>
-                              {data.place?.split('[', 1)}
+                              {data.restaurant?.split('[', 1)}
                             </StCartTitle>
                             <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
                             {/* 좋아요카운트 */}
@@ -219,7 +221,7 @@ const MyLikeList = () => {
                               </StTicketHeader2>
 
                               <StCartTitle>
-                                {data.place?.split('[', 1)}
+                                {data.restaurant?.split('[', 1)}
                               </StCartTitle>
                               <StCartTitleAdd>{data.addr1}</StCartTitleAdd>
                               {/* 좋아요카운트 */}
