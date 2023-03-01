@@ -202,6 +202,7 @@ const PaginationDotsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  z-index: 10;
 `;
 
 const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
