@@ -264,7 +264,6 @@ const ReviewInput = styled.input`
   font-weight: 500;
   font-size: 11.8485px;
   color: #595959;
-  /* padding: 20px; */
   padding: 0 20px 10px 20px;
   border: none;
   margin-top: -10px;
