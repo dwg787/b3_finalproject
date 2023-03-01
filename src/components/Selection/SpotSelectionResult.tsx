@@ -15,10 +15,12 @@ import { AREA_CODE } from '../../apis/apiCodes';
 
 const SpotSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
-  const regionText = AREA_CODE.find((e) => e.id === region).area;
+  const regionText = AREA_CODE.find((e) => e.id === region)?.area;
   const [spotCurPage, setSpotCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
+
+  console.log('region 값 확인', AREA_CODE, region, regionText);
 
   //페이지네이션
   if (spotCurPage % 5 === 1) {
@@ -56,7 +58,7 @@ const SpotSelectionResult = () => {
       ) : (
         <>
           <ListContainer>
-            <ListItemCount>{regionText}</ListItemCount>
+            <ListItemCount>{regionText || '전체'}</ListItemCount>
             <SearchListWrapper>
               <BtnWrapper>
                 {data.pageNo - 1 < 1 ? (
