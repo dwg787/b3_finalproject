@@ -331,13 +331,13 @@ const SignUpPage = () => {
                 </CheckBoxTextBold>
               </CheckBoxWrap>
               <CheckBoxWrap>
-                <CheckBoxInput2
+                <CheckBoxInput1
                   onClick={isCheckBoxClicked}
                   type="checkbox"
                   name="terms"
                   onChange={check}
                   checked={checkList.includes('terms') ? true : false}
-                ></CheckBoxInput2>
+                ></CheckBoxInput1>
                 <CheckBoxText>
                   본인은 본 서비스 약관에 동의하며 12세 이상임을 확인합니다.
                   <CheckBoxText2 onClick={showModal}>(필수)</CheckBoxText2>
@@ -345,16 +345,16 @@ const SignUpPage = () => {
                 </CheckBoxText>
               </CheckBoxWrap>
               <CheckBoxWrap>
-                <CheckBoxInput3
+                <CheckBoxInput1
                   onClick={isCheckBoxClicked}
                   type="checkbox"
                   name="collect"
                   onChange={check}
                   checked={checkList.includes('collect') ? true : false}
-                ></CheckBoxInput3>
+                ></CheckBoxInput1>
                 <CheckBoxText>
                   본인은 개인정보 처리방침에 따라 본인의 개인 정보를 사용하는
-                  것에 동의합니다.{' '}
+                  것에 동의합니다.
                   <CheckBoxText2 onClick={privacyshowModal}>
                     (필수)
                   </CheckBoxText2>
@@ -371,19 +371,27 @@ const SignUpPage = () => {
                   onChange={check}
                   checked={checkList.includes('another') ? true : false}
                 ></CheckBoxInput4>
-                <CheckBoxText>
-                  본인은 개인정보 처리방침에 따라 대한민국 또는 해외에 있는 제
-                  3자에 본인의 개인정보
-                </CheckBoxText>
                 <CheckBoxText1>
-                  를 제공하는 것에 동의합니다.{' '}
-                  <CheckBoxText2 onClick={privacyshowModal}>
-                    (필수)
-                  </CheckBoxText2>
-                  {privacyModalOpen && (
-                    <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
-                  )}
+                  <p>
+                    본인은 개인정보 처리방침에 따라 대한민국 또는 해외에 있는 제
+                    3자에 본인의 개인정보 를
+                  </p>
+                  <CheckBoxBotoomText>
+                    제공하는 것에 동의합니다.
+                    <CheckBoxText2 onClick={privacyshowModal}>
+                      (필수)
+                    </CheckBoxText2>
+                  </CheckBoxBotoomText>
                 </CheckBoxText1>
+                {/* <CheckBoxText2 onClick={privacyshowModal}>(필수)</CheckBoxText2> */}
+                {privacyModalOpen && (
+                  <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
+                )}
+
+                {/* <CheckBoxText2 onClick={privacyshowModal}>(필수)</CheckBoxText2>
+                {privacyModalOpen && (
+                  <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
+                )} */}
               </CheckBoxWrap>
             </CheckBoxBolder>
 
@@ -561,9 +569,10 @@ const PersonInfo = styled.div`
 
 const CheckBoxWrap = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 100px;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  /* margin-left: 100px; */
 `;
 
 const CheckBoxBolder = styled.div`
@@ -580,21 +589,21 @@ const CheckBoxBolder = styled.div`
 `;
 
 const CheckBoxInput1 = styled.input`
-  position: absolute;
-  bottom: -10px;
-  left: 690px;
-  width: 20px;
+  /* position: absolute; */
+  /* bottom: -10px; */
+  /* left: 690px; */
+  /* width: 20px;
   height: 20px;
   box-sizing: border-box;
   margin-top: 20px;
   border: 1px solid #acacac;
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
-  accent-color: #6478ff;
+  accent-color: #6478ff; */
 `;
 const CheckBoxInput2 = styled.input`
-  position: absolute;
-  left: 690px;
+  /* position: absolute; */
+  /* left: 690px;
   bottom: -42px;
   width: 20px;
   height: 20px;
@@ -603,11 +612,11 @@ const CheckBoxInput2 = styled.input`
   border: 1px solid #acacac;
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
-  accent-color: #6478ff;
+  accent-color: #6478ff; */
 `;
 const CheckBoxInput3 = styled.input`
-  position: absolute;
-  left: 690px;
+  /* position: absolute; */
+  /* left: 690px;
   bottom: -74px;
   width: 20px;
   height: 20px;
@@ -616,11 +625,11 @@ const CheckBoxInput3 = styled.input`
   border: 1px solid #acacac;
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
-  accent-color: #6478ff;
+  accent-color: #6478ff; */
 `;
 const CheckBoxInput4 = styled.input`
-  position: absolute;
-  left: 690px;
+  /* position: absolute; */
+  /* left: 690px;
   bottom: -106px;
   width: 20px;
   height: 20px;
@@ -629,43 +638,39 @@ const CheckBoxInput4 = styled.input`
   border: 1px solid #acacac;
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
-  accent-color: #6478ff;
+  accent-color: #6478ff; */
+  margin-bottom: 20px;
 `;
 
 const CheckBoxTextBold = styled.div`
-  font-weight: 700;
+  /* font-weight: 700;
   font-size: 13px;
   line-height: 12px;
   color: rgba(77, 77, 77, 1);
-  margin-top: 35px;
+  margin-top: 35px; */
+  margin-top: 2px;
 `;
 
 const CheckBoxText = styled.div`
-  display: inline-block;
-  white-space: nowrap;
+  /* display: inline-block; */
+  /* white-space: nowrap; */
   display: flex;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 12px;
-  color: #4d4d4d;
-  margin-top: 20px;
+  /* font-weight: 500; */
+  /* font-size: 13px; */
+  /* line-height: 12px; */
+  /* color: #4d4d4d; */
+  margin-top: 2px;
 `;
 
-const CheckBoxText1 = styled.div`
-  display: inline-block;
-  white-space: nowrap;
-  display: flex;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 12px;
-  color: #4d4d4d;
-  margin-top: 20px;
-  margin-bottom: 35px;
-`;
+const CheckBoxText1 = styled.div``;
 
 const CheckBoxText2 = styled.div`
   color: rgba(248, 112, 56, 1);
   cursor: pointer;
+`;
+
+const CheckBoxBotoomText = styled.div`
+  display: flex;
 `;
 
 const FooterDiv = styled.div``;
