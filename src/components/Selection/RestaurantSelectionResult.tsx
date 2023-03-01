@@ -7,8 +7,8 @@ import { fetchRestaurantData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import leftArrow from '../../assets/left-chevron.avif';
-import rightArrow from '../../assets/right-chevron.avif';
+import leftbtn from '../../assets/leftbtn.png';
+import rightbtn from '../../assets/rightbtn.png';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 
@@ -60,7 +60,7 @@ const RestaurantSelectionResult = () => {
                   <></>
                 ) : (
                   <MoveBtnStyle
-                    src={leftArrow}
+                    src={leftbtn}
                     alt="이전버튼"
                     onClick={() => setRestCurPage(restCurPage - 1)}
                   />
@@ -90,7 +90,7 @@ const RestaurantSelectionResult = () => {
                   <></>
                 ) : (
                   <MoveBtnStyle
-                    src={rightArrow}
+                    src={rightbtn}
                     alt="다음버튼"
                     onClick={handleFetchNextPage}
                   />
@@ -130,17 +130,19 @@ export default RestaurantSelectionResult;
 
 const SearchOverallResultContainer = styled.div`
   position: relative;
-  width: 65%;
-  height: 100%;
+  max-width: 1036px;
+  width: 100%;
+  height: 632px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #6478ff;
-  background: linear-gradient(180deg, #ffffff 52.85%, #afb9fb 100%);
-  border-radius: 20px;
-  box-shadow: 3px 3px #d7d7d7;
+  /* border: 1px solid #6478ff; */
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 11px;
+  box-shadow: 2.16px 2.16px 5.4px rgba(0, 0, 0, 0.18);
   padding-bottom: 50px;
+  margin-top: 36px;
 `;
 
 const ListItemCount = styled.div`
@@ -159,12 +161,13 @@ const SearchListWrapper = styled.div`
 
 const ResultWrapper = styled.div`
   position: relative;
-  width: 85%;
+  width: 94%;
   /* height: 500px; */
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 14px;
 `;
 
 const BtnWrapper = styled.div`
@@ -173,13 +176,13 @@ const BtnWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 10px;
   height: 30px;
 `;
 
 const MoveBtnStyle = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 18px;
+  height: 45px;
   cursor: pointer;
 `;
 
@@ -202,6 +205,7 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
   /* color: #878787; */
   font-weight: 800;
   cursor: pointer;
+  font-size: 10.11px;
 `;
 
 const ListContainer = styled.div`
