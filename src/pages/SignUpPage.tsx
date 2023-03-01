@@ -384,15 +384,10 @@ const SignUpPage = () => {
                     </CheckBoxText2>
                   </CheckBoxBotoomText>
                 </CheckBoxText1>
-                {/* <CheckBoxText2 onClick={privacyshowModal}>(필수)</CheckBoxText2> */}
+
                 {privacyModalOpen && (
                   <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
                 )}
-
-                {/* <CheckBoxText2 onClick={privacyshowModal}>(필수)</CheckBoxText2>
-                {privacyModalOpen && (
-                  <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
-                )} */}
               </CheckBoxWrap1>
             </CheckBoxBolder>
 
@@ -579,9 +574,7 @@ const CheckBoxWrap = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
-  /* margin-left: 100px; */
-  /* margin-bottom: 7px; */
+
   margin-top: 7px;
 `;
 
@@ -589,8 +582,7 @@ const CheckBoxWrap1 = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
-  /* margin-left: 100px; */
+
   margin-bottom: 35.6px;
 `;
 
@@ -622,7 +614,7 @@ const CheckBoxInput2 = styled.input`
   height: 20px;
   box-sizing: border-box;
   margin-left: 84px;
-  /* margin-top: 30px; */
+
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   accent-color: #6478ff;
@@ -632,7 +624,7 @@ const CheckBoxInput3 = styled.input`
   height: 20px;
   box-sizing: border-box;
   margin-left: 84px;
-  /* margin-top: 30px; */
+
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   accent-color: #6478ff;
@@ -684,5 +676,3 @@ const CheckBoxBotoomText = styled.div`
   display: flex;
   margin-top: 10px;
 `;
-
-const FooterDiv = styled.div``;
