@@ -311,9 +311,9 @@ const ModalWrapper = styled.div`
 const Modal = styled.div`
   background-color: #ffff;
   width: 395.69px;
-  /* 25%; */
+
   height: 526px;
-  /* 60%; */
+
   border-radius: 18.8351px;
   display: flex;
   flex-direction: column;
