@@ -130,20 +130,23 @@ export default function ReviewList({
 }
 
 const CommentBoxWrap = styled.div`
-  flex-wrap: wrap;
-  border: 1px solid black;
+  /* flex-wrap: wrap; */
+  /* border: 1px solid black; */
   margin: 0 32.72px 0 32.72px;
 `;
 
 const CommentBox = styled.div`
-  width: 30.1125rem; //405.1
-  height: 79.18px; // 66.58
+  width: 405.1px;
+  height: 66.58px;
   background: #ffffff;
-  box-shadow: 2.6841px 2.6841px 6.71024px rgba(0, 0, 0, 0.15);
+  box-shadow: 2.25685px 2.25685px 5.64213px rgba(0, 0, 0, 0.15);
   border-radius: 7.89898px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  &:hover {
+    border: 1px solid #6478ff;
+  }
+  /* padding: 20px; */
 
   /* margin: 0 32.72px 0 32.72px; */
 `;
@@ -151,20 +154,24 @@ const CommentBox = styled.div`
 const NameAndDate = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 10px;
-  width: 450px;
+  margin-top: 15px;
+  margin-left: 19.18px;
+  margin-bottom: 0.95px;
+
+  /* gap: 10px; */
+  /* width: 450px; */
 `;
 
 const Name = styled.div`
   font-weight: 700;
-  font-size: 14.0915px;
+  font-size: 11.8485px;
   color: #595959;
-  width: 82px;
+  width: 60px;
 `;
 
 const Date = styled.div`
   font-weight: 500;
-  font-size: 12.0784px;
+  font-size: 10.1558px;
   color: #979797;
   width: 300px;
 `;
@@ -173,8 +180,12 @@ const ToggleWrap = styled.div`
   display: flex;
   position: relative;
   width: 90px;
+  margin-right: 10px;
   margin-top: -5px;
-  margin-bottom: 5px;
+  /* margin-top: -5px;
+  margin-bottom: 5px; */
+
+  /* border: 1px solid purple; */
 `;
 
 const BtnWrap = styled.div`
@@ -183,6 +194,8 @@ const BtnWrap = styled.div`
   align-items: center;
   border-radius: 5px;
   height: 20.72px;
+
+  /* border: 1px solid red; */
 `;
 const UpdateBtn = styled.button`
   border: none;
@@ -221,15 +234,18 @@ const Toggle = styled(BsThreeDotsVertical)`
 `;
 
 const Comment = styled.div`
-  width: 100%;
+  /* width: 100%;
   padding: 5px;
   height: 400px;
-  margin-left: -5px;
+  margin-left: -5px; */
+
+  margin-top: 0.95px;
+  margin-left: 19.18px;
 `;
 
 const RealComment = styled.p`
   font-weight: 500;
-  font-size: 14.0915px;
+  font-size: 11.8485px;
   color: #595959;
 `;
 
