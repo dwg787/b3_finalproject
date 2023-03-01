@@ -174,8 +174,8 @@ const DetailInformationMap = styled.div`
 
 //댓글
 const CommunicationWrap = styled.div`
-  width: 92.98%;
-  height: 576.41px;
+  width: 964px;
+  height: 504px;
   justify-content: center;
   display: flex;
   flex-direction: column;
