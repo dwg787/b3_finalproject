@@ -20,6 +20,7 @@ import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
 import SlotBanner from '../components/Slot/SlotBanner';
 import { useMediaQuery } from 'react-responsive';
 import MobileSpotSelectionResult from '../components/Selection/mobile/MobileSpotSelectionResult';
+import EventBenner from '../components/Slot/EventBenner';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -48,6 +49,7 @@ const MainPage = () => {
           <SliderBanner />
           <MySpot />
           <SlotBanner />
+          <EventBenner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -80,6 +82,7 @@ const MainPage = () => {
           <SliderBanner />
           <MySpot />
           <SlotBanner />
+          <EventBenner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
