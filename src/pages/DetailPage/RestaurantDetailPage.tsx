@@ -147,7 +147,7 @@ const RestaurantDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {/* <Communication /> */}
+                  <Communication />
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <SpotInfo restaurantDetailData={restaurantDetailData} />
