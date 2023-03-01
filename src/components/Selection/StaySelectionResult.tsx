@@ -20,7 +20,6 @@ const StaySelectionResult = () => {
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
 
-  console.log('region 값 확인', AREA_CODE, region, regionText);
   //페이지네이션
   if (stayCurPage % 5 === 1) {
     firstNum.current = 5 * Math.floor(stayCurPage / 5) + 1;
@@ -201,6 +200,7 @@ const PaginationDotsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  z-index: 10;
 `;
 
 const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
