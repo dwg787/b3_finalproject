@@ -48,6 +48,10 @@ const SpotMainTap = () => {
                   src={rankList[0]?.firstimage || noimg}
                   onClick={() => navigate(`/spot/${rankList[0]?.contentid}`)}
                 />
+                <MedalHeartBox>
+                  <HeartImg src={redheart} />
+                  <HeartText>{rankList[0]?.likeCnt}</HeartText>
+                </MedalHeartBox>
                 <InnerMedals src={one} alt="" />
                 <InnerTextBox>
                   <MedalText>
@@ -56,10 +60,6 @@ const SpotMainTap = () => {
                   <MedalSubText>
                     {rankList[0]?.overview.slice(0, 20)}...
                   </MedalSubText>
-                  <MedalHeartBox>
-                    <HeartImg src={redheart} />
-                    <p>{rankList[0]?.likeCnt}</p>
-                  </MedalHeartBox>
                 </InnerTextBox>
               </InnerList>
             ) : (
@@ -74,6 +74,10 @@ const SpotMainTap = () => {
                   src={rankList[1]?.firstimage || noimg}
                   onClick={() => navigate(`/spot/${rankList[1]?.contentid}`)}
                 />
+                <MedalHeartBox>
+                  <HeartImg src={redheart} />
+                  <HeartText>{rankList[1]?.likeCnt}</HeartText>
+                </MedalHeartBox>
                 <InnerMedals src={two} alt="" />
                 <InnerTextBox>
                   <MedalText>
@@ -82,10 +86,6 @@ const SpotMainTap = () => {
                   <MedalSubText>
                     {rankList[1]?.overview.slice(0, 20)}...
                   </MedalSubText>
-                  <MedalHeartBox>
-                    <HeartImg src={redheart} />
-                    <p>{rankList[1]?.likeCnt}</p>
-                  </MedalHeartBox>
                 </InnerTextBox>
               </InnerList>
             ) : (
@@ -100,6 +100,10 @@ const SpotMainTap = () => {
                   src={rankList[2]?.firstimage || noimg}
                   onClick={() => navigate(`/spot/${rankList[2]?.contentid}`)}
                 />
+                <MedalHeartBox>
+                  <HeartImg src={redheart} />
+                  <HeartText>{rankList[2]?.likeCnt}</HeartText>
+                </MedalHeartBox>
                 <InnerMedals src={three} alt="" />
                 <InnerTextBox>
                   <MedalText>
@@ -108,10 +112,6 @@ const SpotMainTap = () => {
                   <MedalSubText>
                     {rankList[2]?.overview.slice(0, 20)}...
                   </MedalSubText>
-                  <MedalHeartBox>
-                    <HeartImg src={redheart} />
-                    <p>{rankList[2]?.likeCnt}</p>
-                  </MedalHeartBox>
                 </InnerTextBox>
               </InnerList>
             ) : (

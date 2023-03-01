@@ -26,7 +26,7 @@ const SelectMenu = ({ children }: { children: string }) => {
 export default SelectMenu;
 
 const MenuEachItem = styled.button<{ isSelectedMenu: boolean }>`
-  width: 46px;
+  width: 80px;
   height: 45px;
   display: flex;
   justify-content: center;
