@@ -73,24 +73,24 @@ const NaverBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 5px;
-  margin-left: 30px;
-  margin-right: 30px;
+  gap: 4px;
 `;
 
 const NaverBtn = styled.button`
   background-color: transparent;
   border: none;
-  border-radius: 50%;
+
   overflow: hidden;
+
   a {
     display: block;
-    width: 41px;
-    height: 41px;
+    width: 32.72px;
+    height: 32.72px;
   }
   img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
   }
 `;
 
