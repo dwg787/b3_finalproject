@@ -4,36 +4,41 @@ import styled from 'styled-components';
 const StMyPageMain = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-bottom: 110px; */
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 0%,
-    rgba(124, 141, 255, 1) 69%,
-    rgba(255, 255, 255, 1) 120%
+    rgba(162, 174, 255, 1) 69%,
+    rgba(162, 174, 255, 1) 100%
   );
 `;
 const StMyPageNav = styled.div`
-  width: 100%;
+  /* width: 100%; */
+  max-width: 1036px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
 //마이페이지 헤더부분
 const StMyPageHeader = styled.div`
   width: 100%;
-  margin: 19.68px 0 23.32px 0;
-  font-size: 22.4px;
-  line-height: 20.9px;
+  height: 55px;
+  font-size: 18.83px;
+  line-height: 17.6px;
   display: flex;
   justify-content: center;
+  align-items: center;
   color: #6478ff;
   font-weight: bold;
 `;
 
 const TabHr = styled.hr`
-  border: solid #6478ff 1.34px;
-  width: 90.08%;
+  border: solid #6478ff 1.13px;
+  width: 1036px;
 `;
 
 //마이페이지 탭 부분
@@ -49,27 +54,26 @@ const StMyList = styled.ul`
 `;
 
 const StMyListTab = styled.div`
-  margin: 10px;
-  margin: 29px 197.1px;
+  margin: 14px 155px 19px 155px;
   cursor: pointer;
-  font-size: 18.91px;
-  line-height: 17.7px;
+  font-size: 16px;
+  line-height: 14.9px;
   color: #4d4d4d;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150.93px;
-  height: 34.88px;
+  width: 126px;
+  height: 29px;
 `;
 
 //마이페이지 내용 부분
 const StMyPageInfo = styled.div`
-  width: 1232px;
+  width: 1036px;
   background-color: #ffffff;
-  border-radius: 13.43px;
+  border-radius: 11px;
   flex-wrap: wrap;
-  box-shadow: 5px 5px 10px 1px gray;
+  box-shadow: 2px 2px 2px #d1d1d1;
 `;
 
 export {

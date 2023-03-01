@@ -8,7 +8,6 @@ const DetailWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 110.91px;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 0%,
@@ -54,7 +53,7 @@ const DeatilTextBox = styled.div`
 `;
 
 const TabHr = styled.hr`
-  border: solid #6478ff 1.13;
+  border: solid #6478ff 1.13px;
   width: 933.21px;
 `;
 

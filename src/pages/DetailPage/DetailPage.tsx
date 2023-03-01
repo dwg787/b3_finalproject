@@ -94,6 +94,7 @@ const DetailPage = () => {
               <DeatilBox key={param.id}>
                 <DetailScroll />
                 <TabHr />
+
                 <DeatilTextBox>
                   <DetailText>{spotDetailData.title}</DetailText>
                   <DetailTextArr>
