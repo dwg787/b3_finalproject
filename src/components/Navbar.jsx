@@ -311,7 +311,9 @@ const ModalWrapper = styled.div`
 const Modal = styled.div`
   background-color: #ffff;
   width: 395.69px;
-  height: 600px;
+  height: 590px;
+  /* width: 395.69px;
+  height: 526px; */
   box-shadow: 4.76737px 4.76737px 7.94562px rgba(0, 0, 0, 0.25);
   border-radius: 14.9657px;
   display: flex;
@@ -321,7 +323,7 @@ const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 186%;
+
   height: 10%;
   padding: 10px;
 `;

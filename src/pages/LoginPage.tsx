@@ -129,16 +129,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ showModal, setShowModal }) => {
           아직 계정을 만들지 않았나요?
         </GoSignUp>
       </form>
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-
-          justifyContent: 'center',
-        }}
-      >
-        <TextDiv>다른 로그인 방식</TextDiv>
-      </div>
+      <OtherLoginTextWrap>
+        <OtherLoginText>다른 로그인 방식</OtherLoginText>
+      </OtherLoginTextWrap>
 
       <Otherlogins>
         <KakaoLoginButton />
@@ -155,6 +148,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ showModal, setShowModal }) => {
     </MainWrap>
   );
 };
+
+const OtherLoginTextWrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -10px;
+`;
 
 const MainWrap = styled.div`
   display: flex;
@@ -179,6 +179,7 @@ const LoginContent = styled.div`
 
 const InputWrap = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
 `;
 
@@ -249,11 +250,10 @@ const GoogleText = styled.div`
   font-size: 12px;
 `;
 
-const TextDiv = styled.div`
+const OtherLoginText = styled.div`
   margin-top: 20px;
   margin-bottom: 25px;
   width: 90%;
-  /* margin-left: 40px; */
   color: #8a8a8a;
   font-weight: 400;
   font-size: 13px;
@@ -263,7 +263,7 @@ const TextDiv = styled.div`
   ::before {
     content: '';
     flex-grow: 1;
-    margin: 0px 30px;
+    margin: 5px 30px;
     background: #8a8a8a;
     height: 1px;
     font-size: 0px;
@@ -272,7 +272,7 @@ const TextDiv = styled.div`
   ::after {
     content: '';
     flex-grow: 1;
-    margin: 0px 30px;
+    margin: 5px 30px;
     background: #8a8a8a;
     height: 1px;
     font-size: 0px;
@@ -282,7 +282,10 @@ const TextDiv = styled.div`
 
 const Otherlogins = styled.div`
   display: flex;
-  margin: 0 55px 0 55px;
+  justify-content: center;
+  gap: 40px;
+
+  /* margin: 0 55px 0 55px; */
 `;
 
 const FooterText = styled.div`
