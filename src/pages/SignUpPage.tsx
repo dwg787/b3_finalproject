@@ -581,7 +581,7 @@ const CheckBoxBolder = styled.div`
 
 const CheckBoxInput1 = styled.input`
   position: absolute;
-  bottom: -55px;
+  bottom: -10px;
   left: 690px;
   width: 20px;
   height: 20px;
@@ -595,7 +595,7 @@ const CheckBoxInput1 = styled.input`
 const CheckBoxInput2 = styled.input`
   position: absolute;
   left: 690px;
-  bottom: -88px;
+  bottom: -42px;
   width: 20px;
   height: 20px;
   box-sizing: border-box;
@@ -608,7 +608,7 @@ const CheckBoxInput2 = styled.input`
 const CheckBoxInput3 = styled.input`
   position: absolute;
   left: 690px;
-  bottom: -121px;
+  bottom: -74px;
   width: 20px;
   height: 20px;
   box-sizing: border-box;
@@ -621,7 +621,7 @@ const CheckBoxInput3 = styled.input`
 const CheckBoxInput4 = styled.input`
   position: absolute;
   left: 690px;
-  bottom: -154px;
+  bottom: -106px;
   width: 20px;
   height: 20px;
   box-sizing: border-box;
