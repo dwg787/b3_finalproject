@@ -84,9 +84,8 @@ const DeatilImojiBox = styled.div`
   text-align: center;
   justify-content: center;
   line-height: 19.1px;
-  margin-bottom: 36.75px
+  margin-bottom: 36.75px;
   margin-top: 18.67px;
-  
 `;
 
 //상세페이지 사진 박스
@@ -147,12 +146,11 @@ const DetailInfo = styled.span`
 `;
 //상세박스 정보 텍스트
 const DetailInfo2 = styled.div`
-
-width: 907.25px;
+  width: 907.25px;
   margin: 0px 28.77px 23.57px 27.65px;
   flex-wrap: wrap;
   line-height: 20.9px;
-  font-size: 12.98px
+  font-size: 12.98px;
   font-weight: medium;
 `;
 
