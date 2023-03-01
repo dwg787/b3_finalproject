@@ -22,8 +22,4 @@ const SelectRegionBtnWrapper = styled.div`
   width: 100%;
   height: 100px;
   background-size: cover;
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; */
-  gap: 8px;
 `;
