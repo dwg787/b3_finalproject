@@ -116,6 +116,7 @@ export default function ReviewList({
             <RealComment>{review?.review}</RealComment>
           ) : (
             <EditInput
+              maxLength={64}
               placeholder={review?.review}
               value={editValue}
               onChange={(e) => {
@@ -205,7 +206,7 @@ const UpdateBtn = styled.button`
   border-right: 1px solid white;
   font-weight: 500;
   font-size: 10.0654px;
-
+  color: #595959;
   cursor: pointer;
 `;
 
@@ -217,6 +218,7 @@ const DeleteBtn = styled.button`
   background-color: transparent;
   font-weight: 500;
   font-size: 10.0654px;
+  color: #595959;
   cursor: pointer;
 `;
 
