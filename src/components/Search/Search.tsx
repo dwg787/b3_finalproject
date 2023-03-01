@@ -5,7 +5,8 @@ import Fuse from 'fuse.js';
 import debounce from 'lodash/debounce';
 import SpotDetail from '../SpotDetail';
 import noimg from '../../assets/noimg.avif';
-import BlueFooter from '../Footer/BlueFooter';
+import Footer from '../Footer/Footer';
+import search from '../../assets/dotbogi.png';
 
 interface Result {
   score: number | undefined;
@@ -73,6 +74,7 @@ export default function Search() {
 
           <ListBoxInfinite>
             <InputBox>
+              <SearchImg src={search} alt="" />
               <SearchInput
                 placeholder="원하시는 장소를 검색하세요!"
                 onChange={searchItemHandler}
@@ -95,8 +97,8 @@ export default function Search() {
             })}
           </ListBoxInfinite>
         </WrapDiv>
+        <Footer />
       </ContainerDiv>
-      <BlueFooter />
     </BigContainerDiv>
   );
 }
@@ -105,23 +107,26 @@ const BigContainerDiv = styled.div`
   height: 100%;
   background: linear-gradient(
     180deg,
-    #ffffff -23.88%,
-    rgba(124, 141, 255, 0.69) 39.56%,
-    #ffffff 99.16%
+    rgba(255, 255, 255, 0.69) -3.7%,
+    #7c8dff 99.16%
   );
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+`;
+
+const SearchImg = styled.img`
+  position: absolute;
+  z-index: 100;
+  margin-top: 30px;
+  margin-left: 590px;
 `;
 
 const ContainerDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65%;
+  flex-direction: column;
+  width: 100%;
   height: 100%;
-  padding-bottom: 400px;
   background: transparent;
   position: relative;
 `;
@@ -132,7 +137,7 @@ const WrapDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 16.55px;
 `;
 
 const InputBox = styled.div`
@@ -145,46 +150,54 @@ const InputBox = styled.div`
 `;
 
 const SearchTitleH1 = styled.h1`
-  font-size: 30px;
+  font-size: 19px;
   color: #6478ff;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 19.45px;
 `;
 
 const SearchTitleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 1036px;
   width: 100%;
   border-bottom: 1px solid #6478ff;
+  position: relative;
 `;
 
 const SearchInput = styled.input`
-  width: 700px;
-  height: 120px;
+  width: 644px;
+  height: 34px;
   border-radius: 25px;
-  text-indent: 50px;
+  text-indent: 23px;
   margin-top: 50px;
   border: 1px solid #d9d9d9;
-  box-shadow: 5px 5px #d9d9d9be;
+  box-shadow: 1.62121px 1.62121px 1.62121px rgba(0, 0, 0, 0.15);
   transition: all ease-in-out 0.15s;
   &:focus {
     outline: 1px solid #666666;
-    box-shadow: 5px 5px #d9d9d9be;
+    box-shadow: 1.62121px 1.62121px 1.62121px rgba(0, 0, 0, 0.15);
   }
 `;
 
 const RecommendH4 = styled.h4`
   margin-top: 10px;
-  color: #666666;
+  color: #818181;
+  font-size: 12px;
 `;
 
 const ListBoxInfinite = styled.div`
+  max-width: 1036px;
   width: 100%;
+  min-height: 600px;
   height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
+  border-radius: 0px 0px 11px 11px;
 `;
