@@ -83,10 +83,11 @@ const NaverBtn = styled.button`
   border: none;
   border-radius: 50%;
   overflow: hidden;
+
   a {
     display: block;
-    width: 41px;
-    height: 41px;
+    width: 32.72px;
+    height: 32.72px;
   }
   img {
     width: 100%;

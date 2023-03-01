@@ -129,8 +129,16 @@ const LoginPage: React.FC<LoginPageProps> = ({ showModal, setShowModal }) => {
           아직 계정을 만들지 않았나요?
         </GoSignUp>
       </form>
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
 
-      <TextDiv>다른 로그인 방식</TextDiv>
+          justifyContent: 'center',
+        }}
+      >
+        <TextDiv>다른 로그인 방식</TextDiv>
+      </div>
 
       <Otherlogins>
         <KakaoLoginButton />
@@ -156,19 +164,17 @@ const MainWrap = styled.div`
 `;
 
 const LoginText = styled.div`
-  font-size: 27.62px;
   color: #6478ff;
-  font-style: normal;
   font-weight: 700;
-  font-size: 27.6248px;
+  font-size: 22px;
 `;
 
 const LoginContent = styled.div`
-  margin: 20px 0 25px 0;
+  margin: 13px 0 28px 0;
   color: #6d6d6d;
-  font-style: normal;
+  padding: 0 40px 0 40px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 const InputWrap = styled.div`
@@ -177,12 +183,12 @@ const InputWrap = styled.div`
 `;
 
 const EmailInput = styled.input`
-  width: 364.9px;
-  height: 55.12px;
+  width: 304px;
+  height: 45px;
   border: 0.878971px solid #8a8a8a;
   border-radius: 12.5567px;
   padding: 15px;
-  margin-bottom: -8px;
+  margin-bottom: -13px;
   &::placeholder {
     font-style: normal;
     font-weight: 500;
@@ -191,8 +197,8 @@ const EmailInput = styled.input`
 `;
 
 const PwInput = styled.input`
-  width: 364.9px;
-  height: 55.12px;
+  width: 304px;
+  height: 45px;
   border: 0.878971px solid #8a8a8a;
   border-radius: 12.5567px;
   padding: 15px;
@@ -208,9 +214,10 @@ const LoginBtn = styled.button`
   background: #6478ff;
   border-radius: 12.5567px;
   color: #ffff;
-  width: 364.9px;
-  height: 55.12px;
-  font-size: 19px;
+  width: 304px;
+  height: 45px;
+  font-weight: 500;
+  font-size: 15px;
   border: none;
   margin-bottom: 30px;
   cursor: pointer;
@@ -219,9 +226,8 @@ const LoginBtn = styled.button`
 const GoSignUp = styled.div`
   cursor: pointer;
   margin-bottom: 15px;
-  font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: -0.35px;
   text-decoration-line: underline;
   color: #9a9a9a;
@@ -233,8 +239,8 @@ const GoogleBtn = styled.button`
 `;
 
 const GoogleImg = styled.img`
-  width: 41px;
-  height: 41px;
+  width: 32.72px;
+  height: 32.72px;
   cursor: pointer;
 `;
 
@@ -246,12 +252,13 @@ const GoogleText = styled.div`
 const TextDiv = styled.div`
   margin-top: 20px;
   margin-bottom: 25px;
-  width: 80%;
-  margin-left: 50px;
+  width: 90%;
+  /* margin-left: 40px; */
   color: #8a8a8a;
-  font-size: 15.13px;
+  font-weight: 400;
+  font-size: 13px;
   display: flex;
-  align-items: center;
+
   height: 18px;
   ::before {
     content: '';
@@ -275,14 +282,14 @@ const TextDiv = styled.div`
 
 const Otherlogins = styled.div`
   display: flex;
-  margin: 0 100px 0 100px;
+  margin: 0 55px 0 55px;
 `;
 
 const FooterText = styled.div`
   display: flex;
   justify-content: center;
   color: #9a9a9a;
-  font-size: 14px;
+
   text-decoration: underline;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -290,7 +297,7 @@ const FooterText = styled.div`
   font-weight: 500;
   font-size: 14px;
   text-align: center;
-  letter-spacing: -0.479859px;
+
   text-decoration-line: underline;
   color: #9a9a9a;
 `;
