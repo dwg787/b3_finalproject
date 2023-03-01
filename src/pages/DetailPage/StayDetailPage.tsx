@@ -17,10 +17,9 @@ import Notification from '../../components/Notification/Notification';
 import StayLiked from '../../components/Liked/StayLiked';
 import noimg from '../../assets/noimg.avif';
 import useNotification from '../../hooks/useNotification';
-import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
-import SpotInfo from '../../components/Recommendation/SpotInfo';
+import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
+import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
-import BlueFooter from '../../components/Footer/BlueFooter';
 
 import {
   DetailWrap,
@@ -43,6 +42,7 @@ import {
   DetailTextBox,
   DetailInfo2,
 } from './styles';
+import DetailFooter from '../../components/Footer/DetailFooter';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -136,6 +136,7 @@ const StayDetailPage = () => {
   return (
     <DetailWrap>
       <Container>
+        <Notification />
         {isLoadingStayDetail || isLoadingAdditional1 ? (
           <Loader />
         ) : (
@@ -151,10 +152,7 @@ const StayDetailPage = () => {
                   </DetailTextArr>
                   <DeatilImojiBox>
                     <StayLiked stayDetailData={stayDetailData} />
-
-                    <Link to={`/${param.id}/map`}>
-                      <MapImoji />
-                    </Link>
+                    <p>00</p>
                   </DeatilImojiBox>
                 </DeatilTextBox>
 
@@ -170,28 +168,42 @@ const StayDetailPage = () => {
 
                 <DetailInformation id="2">
                   <DetailInfo>
-                    {stayDetailData.overview.split('.', 4)}
+                    {stayDetailData.overview.split('<', 1)}
                   </DetailInfo>
                   <DetailInfo2>
                     <DetailTextBox>
                       <DetailInfoAdd>
-                        <span style={{ fontWeight: '700' }}>
-                          문의 및 안내 :{' '}
+                        <span
+                          style={{ fontWeight: '900', marginRight: '15.5px' }}
+                        >
+                          문의 및 안내{' '}
                         </span>{' '}
                         {stayAdditionalData1.infocenterlodging}
                       </DetailInfoAdd>
                       <DetailInfoAdd>
-                        <span style={{ fontWeight: '700' }}>홈페이지 : </span>
+                        <span
+                          style={{ fontWeight: '900', marginRight: '15.5px' }}
+                        >
+                          홈페이지{' '}
+                        </span>
                         {url}
                       </DetailInfoAdd>
                     </DetailTextBox>
                     <DetailTextBox>
                       <DetailInfoAdd>
-                        <span style={{ fontWeight: '700' }}>주소 : </span>{' '}
+                        <span
+                          style={{ fontWeight: '900', marginRight: '15.5px' }}
+                        >
+                          주소{' '}
+                        </span>{' '}
                         {stayDetailData.addr1}
                       </DetailInfoAdd>
                       <DetailInfoAdd>
-                        <span style={{ fontWeight: '700' }}>주차 : </span>{' '}
+                        <span
+                          style={{ fontWeight: '900', marginRight: '15.5px' }}
+                        >
+                          주차{' '}
+                        </span>{' '}
                         {stayAdditionalData1.parkinglodging}
                       </DetailInfoAdd>
                     </DetailTextBox>
@@ -209,12 +221,12 @@ const StayDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
-
-                <Notification />
-
-                {/* <div>{e.homepage}</div> */}
+                <SideInfoWrapper id="5">
+                  <SpotInfo stayDetailData={stayDetailData} />
+                  <RestaurantInfo stayDetailData={stayDetailData} />
+                </SideInfoWrapper>
               </DeatilBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>
@@ -222,11 +234,7 @@ const StayDetailPage = () => {
           </>
         )}
 
-        <SideInfoWrapper id="5">
-          <SpotInfo stayDetailData={stayDetailData} />
-          <RestaurantInfo stayDetailData={stayDetailData} />
-        </SideInfoWrapper>
-        <BlueFooter />
+        <DetailFooter />
       </Container>
     </DetailWrap>
   );

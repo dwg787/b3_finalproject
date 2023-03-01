@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query';
-
-import { fetchNearRestaurantData } from '../../apis/publicAPI';
-import Loader from '../Loader/Loader';
-import noimg from '../../assets/noimg.avif';
+import { fetchNearSpotData } from '../../../apis/publicAPI';
+import Loader from '../../Loader/Loader';
+import noimg from '../../../assets/noimg.avif';
+import { Link } from 'react-router-dom';
+import RestaurantLiked from '../../Liked/RestaurantLiked';
 
 import {
   Container,
@@ -15,26 +16,25 @@ import {
   MyChildTextp,
   LikeBox,
 } from './styles';
-import { Link } from 'react-router-dom';
-import { DetailDataTypes } from '../../types/apiDataTypes';
+import { DetailDataTypes } from '../../../types/apiDataTypes';
 
-interface Props {
-  spotData?: DetailDataTypes;
+type InfoProps = {
+  restaurantDetailData?: DetailDataTypes;
   stayDetailData?: DetailDataTypes;
-}
+};
 
-const RestaurantInfo: React.FunctionComponent<Props> = (props) => {
-  const { spotData, stayDetailData } = props;
+const SpotInfo: React.FunctionComponent<InfoProps> = (props) => {
+  const { restaurantDetailData, stayDetailData } = props;
 
   const combinedData = {
-    ...spotData,
+    ...restaurantDetailData,
     ...stayDetailData,
   };
 
-  const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ['restaurant_list', combinedData],
+  const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
+    ['spot_list', combinedData],
     () =>
-      fetchNearRestaurantData({
+      fetchNearSpotData({
         mapx: combinedData.mapx,
         mapy: combinedData.mapy,
       }),
@@ -45,18 +45,18 @@ const RestaurantInfo: React.FunctionComponent<Props> = (props) => {
 
   return (
     <Container>
-      <MyChildTopText>가까운 맛집 추천</MyChildTopText>
+      <MyChildTopText>가까운 인기 관광지</MyChildTopText>
       <MyChildListBox>
-        {isLoadingRestaurant ? (
+        {isLoadingSpot ? (
           <Loader />
         ) : (
           <>
-            {restaurantData ? (
+            {spotDetailData ? (
               <>
-                {restaurantData.slice(0, 4).map((item: any, i: number) => {
+                {spotDetailData.slice(0, 4).map((item: any, i: number) => {
                   return (
-                    <Link to={`/restaurant/${item.contentid}`}>
-                      <MyChildList key={item.contentid}>
+                    <Link to={`/spot/${item.contentid}`}>
+                      <MyChildList key={i}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
@@ -82,18 +82,18 @@ const RestaurantInfo: React.FunctionComponent<Props> = (props) => {
                           <MyChildTexth3>{item.title}</MyChildTexth3>
                           <MyChildTextp> {item.addr1}</MyChildTextp>
                           {/* <LikeBox>
-                          <RestaurantLiked restaurantData={restaurantData} />
+                          <RestaurantLiked spotDetailData={spotDetailData} />
                           <p>00</p>
                         </LikeBox> */}
                         </MyCildTextBox>
-                      </MyChildList>
+                      </MyChildList>{' '}
                     </Link>
                   );
                 })}
               </>
             ) : (
               <>
-                <div>주변 맛집 정보가 없습니다.</div>
+                <div>주변 관광지 정보가 없습니다.</div>
               </>
             )}
           </>
@@ -102,5 +102,4 @@ const RestaurantInfo: React.FunctionComponent<Props> = (props) => {
     </Container>
   );
 };
-
-export default RestaurantInfo;
+export default SpotInfo;

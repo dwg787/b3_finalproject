@@ -60,20 +60,20 @@ const MainPage = () => {
         <>
           {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />}
           <SpotMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : // <SelectionResult />
       selectedMenu === '숙박' ? (
         <>
           <StaySelectionResult />
           <StayMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : selectedMenu === '음식점' ? (
         <>
           <RestaurantSelectionResult />
           <RestaurantMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : (
         <>
@@ -100,16 +100,18 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 500px;
+  /* padding-bottom: 500px; */
   background: linear-gradient(white 5%, #8a98f6);
   position: relative;
+  padding-bottom: 150px;
 `;
 
 const RegionSelectionBtnWrapper = styled.div`
   display: flex;
-  padding-top: 30px;
+  padding-top: 5px;
   /* align-items: center; */
-  justify-content: center;
-  width: 70%;
-  height: 200px;
+  justify-content: space-around;
+  max-width: 1036px;
+  width: 100%;
+  height: 80px;
 `;

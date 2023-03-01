@@ -2,72 +2,78 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
-  height: 414.02px;
+  max-width: 1035.89px;
+  height: 348.12px;
   display: flex;
   flex-direction: column;
-  margin-top: 24.83px;
-  border: 1.5px solid white;
-  border-radius: 13.42px;
-  box-shadow: 5px 5px #c8c8c8;
-  background-color: white;
+  margin-top: 14.88px;
+  /* border: 1.5px solid white; */
+  border-radius: 11.28px;
+  background-color: #ffffff;
 `;
 
 const MyChildTopText = styled.p`
-  margin-left: 41.6px;
+  margin-left: 41.95px;
   color: #6478ff;
-  font-size: 21.25px;
+  font-size: 16.5px;
   font-weight: bold;
-  margin-top: 27.51px;
+  margin-top: 24px;
+  line-height: 15.4px;
 `;
 
 const MyChildListBox = styled.div`
+  max-width: 962.83px;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  gap: 18.62px;
+  justify-content: center;
   align-items: center;
-  margin-top: 31.67px;
+  margin: 26.58px 36.67px 36.67px 36.39px;
+  /* margin: 26.58px 0 36.67px 0; */
 `;
 
 const MyChildList = styled.div`
-  width: 269.75px;
-  height: 291.22px;
-  background-color: white;
-  box-shadow: 5px 5px #d1d1d1;
-  border: 1px solid #6478ff;
-  border-radius: 9.06px;
+  width: 226.81px;
+  height: 244.87px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px #d1d1d1;
+  /* border: 1px solid #6478ff; */
+  border-radius: 7.62px;
   overflow: hidden;
   position: relative;
 `;
 
 const MyChildImg = styled.img`
-  width: 269.75px;
-  height: 172.79px;
+  width: 226.81px;
+  height: 138.22px;
 `;
 
 const MyCildTextBox = styled.div`
-  margin-left: 22.14px;
-  margin-top: 20px;
+  margin-top: 17.51px;
 `;
 
 const MyChildTexth3 = styled.h3`
-  font-size: 19.7px;
-  font-weight: 500;
+  font-size: 16.56px;
+  font-weight: medium;
   margin-bottom: 9.19px;
-  color: #333333;
-  line-height: 18.4px;
+  color: #4d4d4d;
+  line-height: 15.5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-right: 24.89px;
+  margin-left: 20.72px;
 `;
 
 const MyChildTextp = styled.p`
-  color: #7f7f7f;
-  line-height: 19.4px;
-  font-size: 14.58px;
+  color: #878787;
+  line-height: 16.3px;
+  font-size: 12.26px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: 24.89px;
+  margin-right: 20.93px;
+  margin-left: 20.88px;
 `;
 
 const LikeBox = styled.div`

@@ -1,10 +1,12 @@
 import { useQuery } from 'react-query';
-import { fetchNearSpotData } from '../../apis/publicAPI';
-import Loader from '../Loader/Loader';
-import noimg from '../../assets/noimg.avif';
+import { fetchNearStayData } from '../../../apis/publicAPI';
+import Loader from '../../Loader/Loader';
+import noimg from '../../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
-import RestaurantLiked from '../Liked/RestaurantLiked';
-
+import RestaurantLiked from '../../Liked/RestaurantLiked';
+import { useRecoilState } from 'recoil';
+import { nearStayState } from '../../../recoil/apiDataAtoms';
+import { useEffect } from 'react';
 import {
   Container,
   MyChildTopText,
@@ -16,47 +18,49 @@ import {
   MyChildTextp,
   LikeBox,
 } from './styles';
-import { DetailDataTypes } from '../../types/apiDataTypes';
+import { DetailDataTypes } from '../../../types/apiDataTypes';
 
-type InfoProps = {
+type StayInfoProps = {
   restaurantDetailData?: DetailDataTypes;
-  stayDetailData?: DetailDataTypes;
+  spotData?: DetailDataTypes;
 };
 
-const SpotInfo: React.FunctionComponent<InfoProps> = (props) => {
-  const { restaurantDetailData, stayDetailData } = props;
+const StayInfo: React.FunctionComponent<StayInfoProps> = (props) => {
+  const { restaurantDetailData, spotData } = props;
 
   const combinedData = {
     ...restaurantDetailData,
-    ...stayDetailData,
+    ...spotData,
   };
 
-  const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
-    ['spot_list', combinedData],
+  const [nearStayList, setNearStayList] = useRecoilState(nearStayState);
+  const { data: stayData, isLoading: isLoadingStay } = useQuery(
+    ['stay_list', combinedData],
     () =>
-      fetchNearSpotData({
-        mapx: combinedData.mapx,
-        mapy: combinedData.mapy,
-      }),
+      fetchNearStayData({ mapx: combinedData.mapx, mapy: combinedData.mapy }),
     {
       enabled: !!combinedData,
     },
   );
 
+  useEffect(() => {
+    setNearStayList(stayData);
+  }, [setNearStayList, stayData]);
+
   return (
     <Container>
-      <MyChildTopText>가까운 인기 관광지</MyChildTopText>
+      <MyChildTopText>주변 숙소 추천</MyChildTopText>
       <MyChildListBox>
-        {isLoadingSpot ? (
+        {isLoadingStay ? (
           <Loader />
         ) : (
           <>
-            {spotDetailData ? (
+            {stayData ? (
               <>
-                {spotDetailData.slice(0, 4).map((item: any, i: number) => {
+                {stayData.slice(0, 4).map((item: any, i: number) => {
                   return (
-                    <Link to={`/spot/${item.contentid}`}>
-                      <MyChildList key={i}>
+                    <Link to={`/stay/${item.contentid}`}>
+                      <MyChildList key={item.contentid}>
                         <picture>
                           <source
                             srcSet={item.firstimage || noimg}
@@ -82,18 +86,18 @@ const SpotInfo: React.FunctionComponent<InfoProps> = (props) => {
                           <MyChildTexth3>{item.title}</MyChildTexth3>
                           <MyChildTextp> {item.addr1}</MyChildTextp>
                           {/* <LikeBox>
-                          <RestaurantLiked spotDetailData={spotDetailData} />
+                          <RestaurantLiked stayData={stayData} />
                           <p>00</p>
                         </LikeBox> */}
                         </MyCildTextBox>
-                      </MyChildList>{' '}
+                      </MyChildList>
                     </Link>
                   );
                 })}
               </>
             ) : (
               <>
-                <div>주변 관광지 정보가 없습니다.</div>
+                <div>주변 숙박정보가 없습니다.</div>
               </>
             )}
           </>
@@ -102,4 +106,5 @@ const SpotInfo: React.FunctionComponent<InfoProps> = (props) => {
     </Container>
   );
 };
-export default SpotInfo;
+
+export default StayInfo;
