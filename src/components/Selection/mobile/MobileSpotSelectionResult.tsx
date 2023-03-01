@@ -33,8 +33,6 @@ const MobileSpotSelectionResult = () => {
     },
   );
 
-  //   console.log('데이터', data);
-
   const handleFetchNextPage = () => {
     if (hasNextPage) {
       fetchSpotNextPage();
@@ -84,8 +82,8 @@ const MobileSpotSelectionResult = () => {
               <BtnWrapper>
                 {Math.ceil(
                   data.pages[0]?.totalCount / data.pages[0]?.numOfRows,
-                ) <= spotCurPage ? (
-                  <></>
+                ) <= data?.pages.length ? (
+                  <p>마지막 페이지입니다</p>
                 ) : (
                   <LoadMoreBtn onClick={handleFetchNextPage}>
                     더보기

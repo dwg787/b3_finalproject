@@ -155,11 +155,6 @@ export default function RestaurantLiked({
             onClick={() => alert('로그인하셔야 이용하실 수 있는 기능입니다.')}
           >
             {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
-            {/* {isLiked ? (
-              <AiFillHeart fill="red" fontSize="27.09px" />
-            ) : (
-              <AiOutlineHeart fontSize="27.09px" />
-            )} */}
           </HeartBtn>
         </>
       )}
@@ -169,12 +164,13 @@ export default function RestaurantLiked({
 
 const HeartBtn = styled.button`
   border: none;
-  background-color: #fff;
+  background-color: transparent;
 `;
 
 const Heart = styled.img`
-  width: 27.09px;
-  margin-top: 13px;
+  width: 22.78px;
+  height: 18.98px;
+  margin-right: 6px;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);

@@ -20,6 +20,7 @@ import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
 import SlotBanner from '../components/Slot/SlotBanner';
 import { useMediaQuery } from 'react-responsive';
 import MobileSpotSelectionResult from '../components/Selection/mobile/MobileSpotSelectionResult';
+import EventBenner from '../components/Slot/EventBenner';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
@@ -48,6 +49,7 @@ const MainPage = () => {
           <SliderBanner />
           <MySpot />
           <SlotBanner />
+          <EventBenner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -60,26 +62,27 @@ const MainPage = () => {
         <>
           {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />}
           <SpotMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : // <SelectionResult />
       selectedMenu === '숙박' ? (
         <>
           <StaySelectionResult />
           <StayMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : selectedMenu === '음식점' ? (
         <>
           <RestaurantSelectionResult />
           <RestaurantMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : (
         <>
           <SliderBanner />
           <MySpot />
           <SlotBanner />
+          <EventBenner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -100,16 +103,18 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 500px;
+  /* padding-bottom: 500px; */
   background: linear-gradient(white 5%, #8a98f6);
   position: relative;
+  padding-bottom: 150px;
 `;
 
 const RegionSelectionBtnWrapper = styled.div`
   display: flex;
-  padding-top: 30px;
+  padding-top: 5px;
   /* align-items: center; */
-  justify-content: center;
-  width: 70%;
-  height: 200px;
+  justify-content: space-around;
+  max-width: 1036px;
+  width: 100%;
+  height: 80px;
 `;

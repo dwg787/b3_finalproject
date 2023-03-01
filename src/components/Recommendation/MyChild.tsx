@@ -28,6 +28,7 @@ export default function MyChild() {
       <MyChildTopText>아이와 함께 하기 좋은 관광지</MyChildTopText>
       <MyChildListBox>
         <MyChildList onClick={gochumsung}>
+          <MyChildNum>관광</MyChildNum>
           <MyChildImg src={chumsung} alt="" />
           <MyCildTextBox>
             <MyChildTexth3>첨성대</MyChildTexth3>
@@ -39,6 +40,7 @@ export default function MyChild() {
           </MyCildTextBox>
         </MyChildList>
         <MyChildList onClick={gonaksan}>
+          <MyChildNum>관광</MyChildNum>
           <MyChildImg src={naksan} alt="" />
           <MyCildTextBox>
             <MyChildTexth3>낙산사</MyChildTexth3>
@@ -50,6 +52,7 @@ export default function MyChild() {
           </MyCildTextBox>
         </MyChildList>
         <MyChildList onClick={gojinju}>
+          <MyChildNum>관광</MyChildNum>
           <MyChildImg src={jinju} alt="" />
           <MyCildTextBox>
             <MyChildTexth3>진주성</MyChildTexth3>
@@ -61,6 +64,7 @@ export default function MyChild() {
           </MyCildTextBox>
         </MyChildList>
         <MyChildList onClick={goyang}>
+          <MyChildNum>관광</MyChildNum>
           <MyChildImg src={yang} alt="" />
           <MyCildTextBox>
             <MyChildTexth3>언양읍성</MyChildTexth3>
@@ -120,6 +124,21 @@ const MyChildList = styled.div`
 const MyChildImg = styled.img`
   width: 252.4px;
   height: 179.56px;
+`;
+
+const MyChildNum = styled.div`
+  width: 60.98px;
+  height: 33.32px;
+  position: absolute;
+  border-radius: 200px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15.61px;
+  color: white;
+  margin-top: 132.7px;
+  margin-left: 18.85px;
 `;
 
 const MyCildTextBox = styled.div`

@@ -31,10 +31,11 @@ import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
 import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
-import StayInfo from '../../components/Recommendation/StayInfo';
-import SpotInfo from '../../components/Recommendation/SpotInfo';
+import StayInfo from '../../components/Recommendation/Info/StayInfo';
+import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
 import MapImoji from '../../components/Map/MapImoji';
 import BlueFooter from '../../components/Footer/BlueFooter';
+import DetailFooter from '../../components/Footer/DetailFooter';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -93,6 +94,7 @@ const RestaurantDetailPage = () => {
   return (
     <DetailWrap>
       <Container>
+        <Notification />
         {isLoadingRestaurantDetail ? (
           <Loader />
         ) : (
@@ -110,10 +112,7 @@ const RestaurantDetailPage = () => {
                     <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
                     />
-
-                    <Link to={`/${param.id}/map`}>
-                      <MapImoji />
-                    </Link>
+                    <p>00</p>
                   </DeatilImojiBox>
                 </DeatilTextBox>
 
@@ -126,11 +125,13 @@ const RestaurantDetailPage = () => {
 
                 <DetailInformation id="2">
                   <DetailInfo>
-                    {restaurantDetailData.overview.split('.', 4)}
+                    {restaurantDetailData.overview.split('<', 1)}
                   </DetailInfo>
 
                   <DetailInfo2>
-                    <span style={{ fontWeight: '700' }}>주소 : </span>
+                    <span style={{ fontWeight: '900', marginRight: '15.5px' }}>
+                      주소
+                    </span>
                     {restaurantDetailData.addr1}
                   </DetailInfo2>
                 </DetailInformation>
@@ -146,10 +147,12 @@ const RestaurantDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
-
-                <Notification />
+                <SideInfoWrapper id="5">
+                  <SpotInfo restaurantDetailData={restaurantDetailData} />
+                  <StayInfo restaurantDetailData={restaurantDetailData} />
+                </SideInfoWrapper>
 
                 {/* <div>{e.homepage}</div> */}
               </DeatilBox>
@@ -159,11 +162,7 @@ const RestaurantDetailPage = () => {
           </>
         )}
 
-        <SideInfoWrapper id="5">
-          <SpotInfo restaurantDetailData={restaurantDetailData} />
-          <StayInfo restaurantDetailData={restaurantDetailData} />
-        </SideInfoWrapper>
-        <BlueFooter />
+        <DetailFooter />
       </Container>
     </DetailWrap>
   );

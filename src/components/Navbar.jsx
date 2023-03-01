@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../apis/firebase';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { LoginPage } from '../pages';
+import LoginPage from '../pages/LoginPage';
 import axios from 'axios';
 import QueryString from 'qs';
 import mainlogo from '../assets/mainlogo.avif';
@@ -223,14 +223,14 @@ export default Navbar;
 const Mainlogo = styled.img`
   width: 76.08px;
   height: 22.37px;
-  margin-top: 53.89px;
+  margin-top: 5px;
   margin-left: 42.09px;
 `;
 
 const Nav = styled.div`
   max-width: 1036px;
   width: 100%;
-  height: 98px;
+  height: 51px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -270,7 +270,7 @@ const LoginButtonBox = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 46.88px;
-  margin-top: 52px;
+  /* margin-top: 52px; */
 `;
 
 const LoginBox = styled.div`

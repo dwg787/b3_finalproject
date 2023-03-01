@@ -96,7 +96,7 @@ const ContainerDiv = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
-  margin-top: 36.99px;
+  margin-top: 33px;
 `;
 const WarpDiv = styled.div`
   width: 100%;
