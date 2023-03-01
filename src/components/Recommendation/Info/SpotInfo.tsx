@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
-import { fetchNearSpotData } from '../../apis/publicAPI';
-import Loader from '../Loader/Loader';
-import noimg from '../../assets/noimg.avif';
+import { fetchNearSpotData } from '../../../apis/publicAPI';
+import Loader from '../../Loader/Loader';
+import noimg from '../../../assets/noimg.avif';
 import { Link } from 'react-router-dom';
-import RestaurantLiked from '../Liked/RestaurantLiked';
+import RestaurantLiked from '../../Liked/RestaurantLiked';
 
 import {
   Container,
@@ -16,14 +16,17 @@ import {
   MyChildTextp,
   LikeBox,
 } from './styles';
+import { DetailDataTypes } from '../../../types/apiDataTypes';
 
-export default function SpotInfo({
-  spotData,
-  restaurantDetailData,
-  stayDetailData,
-}: UserProps): React.ReactElement {
+type InfoProps = {
+  restaurantDetailData?: DetailDataTypes;
+  stayDetailData?: DetailDataTypes;
+};
+
+const SpotInfo: React.FunctionComponent<InfoProps> = (props) => {
+  const { restaurantDetailData, stayDetailData } = props;
+
   const combinedData = {
-    ...spotData,
     ...restaurantDetailData,
     ...stayDetailData,
   };
@@ -50,7 +53,7 @@ export default function SpotInfo({
           <>
             {spotDetailData ? (
               <>
-                {spotDetailData.slice(0, 4).map((item, i) => {
+                {spotDetailData.slice(0, 4).map((item: any, i: number) => {
                   return (
                     <Link to={`/spot/${item.contentid}`}>
                       <MyChildList key={i}>
@@ -98,4 +101,5 @@ export default function SpotInfo({
       </MyChildListBox>
     </Container>
   );
-}
+};
+export default SpotInfo;

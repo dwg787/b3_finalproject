@@ -32,4 +32,5 @@ const Chatimgbtn = styled.div`
   left: 94%;
   top: 90%;
   z-index: 1000;
+  cursor: pointer;
 `;

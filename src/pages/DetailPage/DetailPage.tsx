@@ -6,8 +6,8 @@ import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../../apis/firebase';
-import RestaurantInfo from '../../components/Recommendation/RestaurantInfo';
-import StayInfo from '../../components/Recommendation/StayInfo';
+import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
+import StayInfo from '../../components/Recommendation/Info/StayInfo';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';
@@ -33,7 +33,7 @@ import {
 } from './styles';
 import SpotLiked from '../../components/Liked/SpotLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
-import BlueFooter from '../../components/Footer/BlueFooter';
+import DetailFooter from '../../components/Footer/DetailFooter';
 
 const DetailPage = () => {
   const param = useParams();
@@ -94,17 +94,15 @@ const DetailPage = () => {
               <DeatilBox key={param.id}>
                 <DetailScroll />
                 <TabHr />
+
                 <DeatilTextBox>
                   <DetailText>{spotDetailData.title}</DetailText>
                   <DetailTextArr>
-                    {' '}
                     {spotDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DeatilImojiBox>
                     <SpotLiked spotDetailData={spotDetailData} />
-                    <Link to={`/${param.id}/map`}>
-                      <MapImoji />
-                    </Link>
+                    <p>00</p>
                   </DeatilImojiBox>
                 </DeatilTextBox>
 
@@ -121,7 +119,9 @@ const DetailPage = () => {
                   </DetailInfo>
 
                   <DetailInfo2>
-                    <span style={{ fontWeight: '700' }}>주소 : </span>
+                    <span style={{ fontWeight: '900', marginRight: '15.5px' }}>
+                      주소
+                    </span>
                     {spotDetailData.addr1}
                   </DetailInfo2>
                 </DetailInformation>
@@ -137,19 +137,20 @@ const DetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
+                <SideInfoWrapper id="5">
+                  <StayInfo spotData={spotDetailData} />
+                  <RestaurantInfo spotData={spotDetailData} />
+                </SideInfoWrapper>
               </DeatilBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>
             )}
           </>
         )}
-        <SideInfoWrapper id="5">
-          <StayInfo spotData={spotDetailData} />
-          <RestaurantInfo spotData={spotDetailData} />
-        </SideInfoWrapper>{' '}
-        <BlueFooter />
+
+        <DetailFooter />
       </Container>
     </DetailWrap>
   );

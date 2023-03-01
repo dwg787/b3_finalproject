@@ -1,9 +1,12 @@
 import { useQuery } from 'react-query';
-
-import { fetchNearRestaurantData } from '../../apis/publicAPI';
-import Loader from '../Loader/Loader';
-import noimg from '../../assets/noimg.avif';
-
+import { fetchNearStayData } from '../../../apis/publicAPI';
+import Loader from '../../Loader/Loader';
+import noimg from '../../../assets/noimg.avif';
+import { Link } from 'react-router-dom';
+import RestaurantLiked from '../../Liked/RestaurantLiked';
+import { useRecoilState } from 'recoil';
+import { nearStayState } from '../../../recoil/apiDataAtoms';
+import { useEffect } from 'react';
 import {
   Container,
   MyChildTopText,
@@ -15,45 +18,48 @@ import {
   MyChildTextp,
   LikeBox,
 } from './styles';
-import { Link } from 'react-router-dom';
-import RestaurantLiked from '../Liked/RestaurantLiked';
+import { DetailDataTypes } from '../../../types/apiDataTypes';
 
-export default function RestaurantInfo({
-  spotData,
-  restaurantDetailData,
-  stayDetailData,
-}: UserProps): React.ReactElement {
+type StayInfoProps = {
+  restaurantDetailData?: DetailDataTypes;
+  spotData?: DetailDataTypes;
+};
+
+const StayInfo: React.FunctionComponent<StayInfoProps> = (props) => {
+  const { restaurantDetailData, spotData } = props;
+
   const combinedData = {
-    ...spotData,
     ...restaurantDetailData,
-    ...stayDetailData,
+    ...spotData,
   };
 
-  const { data: restaurantData, isLoading: isLoadingRestaurant } = useQuery(
-    ['restaurant_list', combinedData],
+  const [nearStayList, setNearStayList] = useRecoilState(nearStayState);
+  const { data: stayData, isLoading: isLoadingStay } = useQuery(
+    ['stay_list', combinedData],
     () =>
-      fetchNearRestaurantData({
-        mapx: combinedData.mapx,
-        mapy: combinedData.mapy,
-      }),
+      fetchNearStayData({ mapx: combinedData.mapx, mapy: combinedData.mapy }),
     {
       enabled: !!combinedData,
     },
   );
 
+  useEffect(() => {
+    setNearStayList(stayData);
+  }, [setNearStayList, stayData]);
+
   return (
     <Container>
-      <MyChildTopText>가까운 맛집 추천</MyChildTopText>
+      <MyChildTopText>주변 숙소 추천</MyChildTopText>
       <MyChildListBox>
-        {isLoadingRestaurant ? (
+        {isLoadingStay ? (
           <Loader />
         ) : (
           <>
-            {restaurantData ? (
+            {stayData ? (
               <>
-                {restaurantData.slice(0, 4).map((item, i) => {
+                {stayData.slice(0, 4).map((item: any, i: number) => {
                   return (
-                    <Link to={`/restaurant/${item.contentid}`}>
+                    <Link to={`/stay/${item.contentid}`}>
                       <MyChildList key={item.contentid}>
                         <picture>
                           <source
@@ -80,7 +86,7 @@ export default function RestaurantInfo({
                           <MyChildTexth3>{item.title}</MyChildTexth3>
                           <MyChildTextp> {item.addr1}</MyChildTextp>
                           {/* <LikeBox>
-                          <RestaurantLiked restaurantData={restaurantData} />
+                          <RestaurantLiked stayData={stayData} />
                           <p>00</p>
                         </LikeBox> */}
                         </MyCildTextBox>
@@ -99,4 +105,6 @@ export default function RestaurantInfo({
       </MyChildListBox>
     </Container>
   );
-}
+};
+
+export default StayInfo;

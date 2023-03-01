@@ -51,17 +51,18 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
 export default RestaurantDetail;
 
 const RestaurantEachItemWrapper = styled.div`
-  width: 20%;
-  height: 320px;
-  margin: 20px 20px 20px 20px;
-  border-radius: 10px;
+  width: 216px;
+  height: 234px;
+  /* margin: 20px 20px 20px 20px; */
+  margin-bottom: 35.66px;
+  border-radius: 7px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 `;
 
 const RestaurantImgWrapper = styled.picture`
   width: 100%;
-  height: 200px;
+  height: 138.94px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,34 +93,35 @@ const MyCildTextBox = styled.div`
 `;
 
 const MyChildTexth3 = styled.h3`
-  font-size: 15px;
+  font-size: 15.84px;
   font-weight: bold;
   margin-bottom: 4px;
   color: #333333;
   padding-top: 15px;
-  padding-left: 10px;
+  padding-left: 19.81px;
 `;
 
 const MyChildTextp = styled.p`
-  font-size: 12px;
+  height: 20px;
+  font-size: 11.72px;
   color: #7f7f7f;
   margin-top: 4px;
-  margin-left: 10px;
+  margin-left: 19.81px;
 `;
 
 const LikeBox = styled.div`
   display: flex;
   gap: 5px;
-  margin-top: 20px;
-  margin-left: 10px;
+  margin-top: 10.83px;
+  margin-left: 142.95px;
   align-items: center;
 `;
 
 const LikeImg = styled.img`
-  width: 15px;
-  height: 15px;
+  width: 20.64px;
+  height: 17.25px;
 `;
 
 const LikeText = styled.p`
-  font-size: 12px;
+  font-size: 15.62px;
 `;
