@@ -157,7 +157,7 @@ const NameAndDate = styled.div`
   margin-top: 15px;
   margin-left: 19.18px;
   margin-bottom: 0.95px;
-  /* border: 1px solid yellow; */
+
   /* gap: 10px; */
   /* width: 450px; */
 `;
@@ -167,7 +167,6 @@ const Name = styled.div`
   font-size: 11.8485px;
   color: #595959;
   width: 60px;
-  /* border: 1px solid red; */
 `;
 
 const Date = styled.div`
