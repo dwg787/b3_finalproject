@@ -40,12 +40,10 @@ const DetailFooter = () => {
 export default DetailFooter;
 
 const WrapDiv = styled.div`
-  width: 995.27px;
-  height: 100%
+  width: 995px;
+  height: 152px
   background-color: transparent;
-  margin: 54.88px 457.37px 110.91px 467.35px;
-
-  /* margin-top: 100px; */
+  margin: 44px 458px 110px 467px;
 `;
 
 const TextBox = styled.div`
@@ -72,4 +70,6 @@ const FooterLogo = styled.img`
 const TopText = styled.div`
   margin-bottom: 15px;
 `;
-const BottomText = styled.div``;
+const BottomText = styled.div`
+  width: 100%;
+`;
