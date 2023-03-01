@@ -138,12 +138,12 @@ export default function MyInfo(): JSX.Element {
 
 const Error = styled.div`
   position: absolute;
-  top: 75px;
+  top: 85px;
   left: 10px;
   color: #f87038;
   font-weight: 500;
-  font-size: 11px;
-  line-height: 9.75px;
+  font-size: 10px;
+  line-height: 8px;
 `;
 
 const MyInfoContainer = styled.div`
@@ -160,11 +160,12 @@ const MyInfoContainer = styled.div`
 `;
 
 const Privacy = styled.div`
-  margin: 0 0 30px;
+  margin-top: 43px;
+
   padding: 0;
   font-weight: 700;
-  font-size: 21.07px;
-  line-height: 19.7px;
+  font-size: 22px;
+  line-height: 20px;
   color: rgba(77, 77, 77, 1);
   text-align: center;
 `;
@@ -181,39 +182,39 @@ const PrivacyBox = styled.div`
 `;
 
 const PrivacyInput1 = styled.input`
-  width: 419.9px;
-  height: 44.85px;
-  padding: 10px 0;
+  width: 380px;
+  height: 36px;
+
   font-size: 16px;
   color: #000000;
   margin-bottom: 30px;
-  margin-top: 40px;
-  padding: 20px;
-  border: 1.5px solid rgba(158, 171, 255, 0.61);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
+  margin-top: 47px;
+  padding: 10px;
+  border: 1px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
   outline: none;
   background: transparent;
   ::placeholder {
     color: #595858;
     font-weight: 500;
-    font-size: 14.1304px;
-    line-height: 13.65px;
+    font-size: 12px;
+    line-height: 12px;
   }
 `;
 
 const PrivacyInput2 = styled.input`
-  width: 419.9px;
-  height: 44.85px;
-  padding: 10px 0;
+  width: 380px;
+  height: 36px;
+
   font-size: 16px;
   color: #000000;
-  margin-bottom: 30px;
-  margin-top: 20px;
-  padding: 20px;
-  border: 1.5px solid rgba(158, 171, 255, 0.61);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
+  margin-bottom: 26px;
+  margin-top: 38px;
+  padding: 10px;
+  border: 1px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
   outline: none;
   background: transparent;
   ::placeholder {
@@ -226,12 +227,12 @@ const PrivacyInput2 = styled.input`
 
 const PrivacyLabel1 = styled.label`
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: 0;
   padding: 10px 0;
   font-weight: 500;
-  font-size: 13.678px;
-  line-height: 13.65px;
+  font-size: 12px;
+  line-height: 12px;
   color: #5a5a5a;
   pointer-events: none;
   transition: 0.5s;
@@ -239,32 +240,32 @@ const PrivacyLabel1 = styled.label`
 
 const PrivacyLabel2 = styled.label`
   position: absolute;
-  top: -10px;
+  top: 20px;
   left: 0;
-  padding: 10px 0;
+
   font-weight: 500;
-  font-size: 13.678px;
-  line-height: 13.65px;
+  font-size: 12px;
+  line-height: 12px;
   color: #5a5a5a;
   pointer-events: none;
   transition: 0.5s;
 `;
 
 const SignUpBtn = styled.button<{ state: boolean }>`
-  margin-top: 20px;
+  margin-top: 26px;
   cursor: pointer;
 
-  width: 419.9px;
-  height: 44.85px;
+  width: 380px;
+  height: 38px;
 
   background: #6478ff;
-  border: 1px solid #ffffff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
+
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
   border: none;
   font-weight: 500;
-  font-size: 17.3651px;
-  line-height: 16.25px;
+  font-size: 15px;
+  line-height: 14px;
 
   color: #ffffff;
   text-align: center;
@@ -272,20 +273,20 @@ const SignUpBtn = styled.button<{ state: boolean }>`
 `;
 
 const SignUpDeleteBtn = styled.button`
-  margin-top: 20px;
+  margin-top: 26px;
   cursor: pointer;
 
-  width: 419.9px;
-  height: 44.85px;
+  width: 380px;
+  height: 38px;
 
   background: #f35f5f;
-  border: 1px solid #ffffff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.18);
-  border-radius: 17px;
+
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
   border: none;
   font-weight: 500;
-  font-size: 17.3651px;
-  line-height: 16.25px;
+  font-size: 15px;
+  line-height: 14px;
   color: #ffffff;
   text-align: center;
 `;
