@@ -18,17 +18,21 @@ import {
   MyChildTextp,
   LikeBox,
 } from './styles';
+import { DetailDataTypes } from '../../types/apiDataTypes';
 
-export default function StayInfo({
-  spotData,
-  restaurantDetailData,
-  stayDetailData,
-}: UserProps): React.ReactElement {
+type StayInfoProps = {
+  restaurantDetailData?: DetailDataTypes;
+  spotData?: DetailDataTypes;
+};
+
+const StayInfo: React.FunctionComponent<StayInfoProps> = (props) => {
+  const { restaurantDetailData, spotData } = props;
+
   const combinedData = {
-    ...spotData,
     ...restaurantDetailData,
-    ...stayDetailData,
+    ...spotData,
   };
+
   const [nearStayList, setNearStayList] = useRecoilState(nearStayState);
   const { data: stayData, isLoading: isLoadingStay } = useQuery(
     ['stay_list', combinedData],
@@ -53,7 +57,7 @@ export default function StayInfo({
           <>
             {stayData ? (
               <>
-                {stayData.slice(0, 4).map((item, i) => {
+                {stayData.slice(0, 4).map((item: any, i: number) => {
                   return (
                     <Link to={`/stay/${item.contentid}`}>
                       <MyChildList key={item.contentid}>
@@ -101,4 +105,6 @@ export default function StayInfo({
       </MyChildListBox>
     </Container>
   );
-}
+};
+
+export default StayInfo;
