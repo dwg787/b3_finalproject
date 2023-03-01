@@ -150,12 +150,14 @@ const SearchOverallResultContainer = styled.div`
   margin-top: 36px;
 `;
 
-const ListItemCount = styled.div`
+const ListItemCount = styled.p`
   margin-top: 30px;
   margin-left: 59px;
-  font-size: 15px;
+  font-size: 17px;
   margin-bottom: 20px;
-  color: '#6478ff';
+  margin-top: 40px;
+  color: #6478ff;
+  font-weight: bold;
 `;
 
 const SearchListWrapper = styled.div`
