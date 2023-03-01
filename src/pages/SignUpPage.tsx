@@ -222,7 +222,7 @@ const SignUpPage = () => {
   return (
     <SIgnWrap>
       <Reservation>회원가입</Reservation>
-
+      <ReservationBottom></ReservationBottom>
       <TestDiv>
         <SignUpContainer>
           <Login>
@@ -384,15 +384,10 @@ const SignUpPage = () => {
                     </CheckBoxText2>
                   </CheckBoxBotoomText>
                 </CheckBoxText1>
-                {/* <CheckBoxText2 onClick={privacyshowModal}>(필수)</CheckBoxText2> */}
+
                 {privacyModalOpen && (
                   <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
                 )}
-
-                {/* <CheckBoxText2 onClick={privacyshowModal}>(필수)</CheckBoxText2>
-                {privacyModalOpen && (
-                  <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
-                )} */}
               </CheckBoxWrap1>
             </CheckBoxBolder>
 
@@ -434,7 +429,7 @@ const Reservation = styled.div`
 
 const TestDiv = styled.div`
   width: 100%;
-  height: 1197px;
+  height: 1097px;
   margin-top: 20.45px;
 `;
 
@@ -454,7 +449,7 @@ const SIgnWrap = styled.div`
 
 const SignUpContainer = styled.div`
   width: 1036px;
-  height: 1197px;
+  height: 1097px;
 
   margin: auto;
 
@@ -464,6 +459,13 @@ const SignUpContainer = styled.div`
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 0px 0px 11px 11px;
+`;
+
+const ReservationBottom = styled.div`
+  border: solid #6478ff 1.13px;
+  width: 1036px;
+
+  margin-top: 20.45px;
 `;
 
 const Login = styled.div`
@@ -493,7 +495,7 @@ const LoginInput = styled.input`
   padding: 10px 0;
   font-size: 16px;
   color: #000000;
-  margin-bottom: 30px;
+
   margin-top: 46px;
   padding: 10px;
   background: #ffffff;
@@ -572,9 +574,7 @@ const CheckBoxWrap = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
-  /* margin-left: 100px; */
-  /* margin-bottom: 7px; */
+
   margin-top: 7px;
 `;
 
@@ -582,8 +582,7 @@ const CheckBoxWrap1 = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
-  /* margin-left: 100px; */
+
   margin-bottom: 35.6px;
 `;
 
@@ -615,7 +614,7 @@ const CheckBoxInput2 = styled.input`
   height: 20px;
   box-sizing: border-box;
   margin-left: 84px;
-  /* margin-top: 30px; */
+
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   accent-color: #6478ff;
@@ -625,7 +624,7 @@ const CheckBoxInput3 = styled.input`
   height: 20px;
   box-sizing: border-box;
   margin-left: 84px;
-  /* margin-top: 30px; */
+
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   accent-color: #6478ff;
@@ -677,5 +676,3 @@ const CheckBoxBotoomText = styled.div`
   display: flex;
   margin-top: 10px;
 `;
-
-const FooterDiv = styled.div``;
