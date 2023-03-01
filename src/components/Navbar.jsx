@@ -311,19 +311,19 @@ const ModalWrapper = styled.div`
 const Modal = styled.div`
   background-color: #ffff;
   width: 395.69px;
-
-  height: 526px;
-
-  border-radius: 18.8351px;
+  height: 590px;
+  /* width: 395.69px;
+  height: 526px; */
+  box-shadow: 4.76737px 4.76737px 7.94562px rgba(0, 0, 0, 0.25);
+  border-radius: 14.9657px;
   display: flex;
   flex-direction: column;
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.25);
 `;
 const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 186%;
+
   height: 10%;
   padding: 10px;
 `;
@@ -334,12 +334,13 @@ const CloseBtn = styled.button`
   right: 770px;
   top: 280px; */
   border: none;
-  font-size: 18px;
-  color: #1f1f1f;
   cursor: pointer;
 `;
 
-const CloseImg = styled.img``;
+const CloseImg = styled.img`
+  width: 23px;
+  height: 23px;
+`;
 
 const SearchIconImg = styled.img`
   width: 23.74px;
