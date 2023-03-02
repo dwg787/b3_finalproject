@@ -127,7 +127,7 @@ const StayDetailPage = () => {
       }
     };
     getFirestoreRecCnt();
-  }, [stayDetailData]);
+  }, [stayDetailData, likeData]);
   // console.log('숙박 상세정보', stayDetailData);
 
   //예약하기 url뽑기(common파일로 정리?필요)
