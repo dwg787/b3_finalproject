@@ -26,7 +26,7 @@ export default SkeletonTestFrame;
 
 const ListItemCount = styled.div`
   margin-top: 30px;
-  margin-left: 30px;
+  margin-left: 59px;
 `;
 
 const SearchListWrapper = styled.div`
@@ -38,11 +38,13 @@ const SearchListWrapper = styled.div`
 `;
 
 const ResultWrapper = styled.div`
-  width: 80%;
+  position: relative;
+  width: 94%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 14px;
 `;
 
 const BtnWrapper = styled.div`
@@ -51,7 +53,7 @@ const BtnWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 10px;
   height: 30px;
 `;
 
@@ -61,7 +63,7 @@ const TotalCountArea = styled.div`
 `;
 
 const PaginationDotsWrapper = styled.div`
-  margin-top: 10px;
+  margin-top: 30px;
   width: 500px;
   height: 50px;
   display: flex;
