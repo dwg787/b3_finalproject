@@ -1,0 +1,28 @@
+{
+  "Suggestions": [
+    {
+      "suggestionsMessage": "제발되게해주세용",
+      "userId": "영재",
+      "id": "0ssf62P"
+    },
+    {
+      "suggestionsMessage": "sdfsdf",
+      "userId": "영재",
+      "id": "aG5DT_t"
+    }
+  ],
+  "Bug": [
+    {
+      "bugMessage": "버그잡아줭",
+      "userId": "영재",
+      "id": "a1MTh4V"
+    }
+  ],
+  "ServiceError": [
+    {
+      "serviceErrorMessage": "서비스가구려요",
+      "userId": "영재",
+      "id": "7WktGrC"
+    }
+  ]
+}

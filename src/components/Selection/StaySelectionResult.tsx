@@ -1,23 +1,25 @@
 import styled from 'styled-components';
 import StayDetail from '../StayDetail';
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../types/apiDataTypes';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
 import { fetchStayData } from '../../apis/publicAPI';
 import { useRecoilValue } from 'recoil';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
-import Loader from '../Loader/Loader';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-chevron.avif';
 import rightArrow from '../../assets/right-chevron.avif';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
+import { AREA_CODE } from '../../apis/apiCodes';
+
 const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
+  const regionText = AREA_CODE.find((e) => e.id === region)?.area;
   const [stayCurPage, setStayCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
-  //   const lastNum = useRef(5);
+
   //페이지네이션
   if (stayCurPage % 5 === 1) {
     firstNum.current = 5 * Math.floor(stayCurPage / 5) + 1;
@@ -25,7 +27,7 @@ const StaySelectionResult = () => {
   if (stayCurPage < firstNum.current) {
     firstNum.current = 5 * (Math.floor(stayCurPage / 5) - 1) + 1;
   }
-  // console.log('숙박 렌더링');
+
   const { data, isFetching, isLoading, isPreviousData } = useQuery(
     ['stay_data', region, stayCurPage],
     () => fetchStayData({ region, stayCurPage }),
@@ -34,7 +36,7 @@ const StaySelectionResult = () => {
       keepPreviousData: true,
     },
   );
-  //   console.log('선택한 페이지에 대한 데이터?', data);
+
   const handleFetchNextPage = useCallback(() => {
     setStayCurPage(stayCurPage + 1);
   }, [stayCurPage]);
@@ -44,16 +46,16 @@ const StaySelectionResult = () => {
   }, [region]);
 
   return (
-    <WrapDiv>
-      <SearchOverallResultContainer>
-        {isLoading || data === undefined ? (
-          <>
-            <SkeletonTestFrame />
-            {/* <Loader /> */}
-          </>
-        ) : (
-          <>
-            <ListItemCount>총 {data.totalCount} 개의 결과</ListItemCount>
+    <SearchOverallResultContainer>
+      {isLoading || data === undefined ? (
+        <>
+          <SkeletonTestFrame />
+          {/* <Loader /> */}
+        </>
+      ) : (
+        <>
+          <ListContainer>
+            <ListItemCount>{regionText || '전체'}</ListItemCount>
             <SearchListWrapper>
               <BtnWrapper>
                 {data.pageNo - 1 < 1 ? (
@@ -96,63 +98,62 @@ const StaySelectionResult = () => {
                 )}
               </BtnWrapper>
             </SearchListWrapper>
-            <PaginationDotsWrapper>
-              {Array(Math.ceil(data.totalCount / 8) + 1)
-                .fill('')
-                .slice(firstNum.current, firstNum.current + 5)
-                .map((_, i) => {
-                  const isSelectedPage =
-                    firstNum.current + i === stayCurPage ? true : false;
-                  // console.log('토탈카운', data.totalCount);
-                  if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
-                    return (
-                      <PaginationDot
-                        key={firstNum.current + i}
-                        isSelectedPage={isSelectedPage}
-                        onClick={() => {
-                          setStayCurPage(firstNum.current + i);
-                        }}
-                      >
-                        {firstNum.current + i}
-                      </PaginationDot>
-                    );
-                  }
-                })}
-            </PaginationDotsWrapper>
-          </>
-        )}
-      </SearchOverallResultContainer>
-    </WrapDiv>
+          </ListContainer>
+          <PaginationDotsWrapper>
+            {Array(Math.ceil(data.totalCount / 8) + 1)
+              .fill('')
+              .slice(firstNum.current, firstNum.current + 5)
+              .map((_, i) => {
+                const isSelectedPage =
+                  firstNum.current + i === stayCurPage ? true : false;
+                // console.log('토탈카운', data.totalCount);
+                if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
+                  return (
+                    <PaginationDot
+                      key={firstNum.current + i}
+                      isSelectedPage={isSelectedPage}
+                      onClick={() => {
+                        setStayCurPage(firstNum.current + i);
+                      }}
+                    >
+                      {firstNum.current + i}
+                    </PaginationDot>
+                  );
+                }
+              })}
+          </PaginationDotsWrapper>
+        </>
+      )}
+    </SearchOverallResultContainer>
   );
 };
 export default StaySelectionResult;
 
-const WrapDiv = styled.div`
-  width: 100%;
-  height: 800px;
-  background: linear-gradient(180deg, #ffffff 52.85%, #afb9fb 100%);
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  padding-bottom: 50px;
-`;
-
 const SearchOverallResultContainer = styled.div`
   position: relative;
-  width: 65%;
+  max-width: 1036px;
+  width: 100%;
+  height: 632px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #6478ff;
-  border-radius: 20px;
-  box-shadow: 3px 3px #d7d7d7;
+  /* border: 1px solid #6478ff; */
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 11px;
+  box-shadow: 2.16px 2.16px 5.4px rgba(0, 0, 0, 0.18);
+  padding-bottom: 50px;
+  margin-top: 36px;
 `;
 
-const ListItemCount = styled.div`
+const ListItemCount = styled.p`
   margin-top: 30px;
-  margin-left: 30px;
-  color: '#6478ff';
+  margin-left: 59px;
+  font-size: 17px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  color: #6478ff;
+  font-weight: bold;
 `;
 
 const SearchListWrapper = styled.div`
@@ -165,12 +166,13 @@ const SearchListWrapper = styled.div`
 
 const ResultWrapper = styled.div`
   position: relative;
-  width: 85%;
+  width: 94%;
   /* height: 500px; */
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 14px;
 `;
 
 const BtnWrapper = styled.div`
@@ -179,18 +181,18 @@ const BtnWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 10px;
   height: 30px;
 `;
 
 const MoveBtnStyle = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 18px;
+  height: 45px;
   cursor: pointer;
 `;
 
 const PaginationDotsWrapper = styled.div`
-  margin-top: 10px;
+  margin-top: 30px;
   width: 500px;
   height: 50px;
   display: flex;
@@ -198,6 +200,7 @@ const PaginationDotsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  z-index: 10;
 `;
 
 const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
@@ -208,4 +211,10 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
   /* color: #878787; */
   font-weight: 800;
   cursor: pointer;
+  font-size: 10.11px;
+`;
+
+const ListContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `;

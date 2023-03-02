@@ -1,14 +1,3 @@
-// 숙박 분류 코드
-// export const STAY_TYPE = {
-//   펜션: 'B02010700',
-//   관광호텔: 'B02010100',
-//   한옥: 'B02011600',
-// };
-
-// interface STAY_CODE_TYPE {
-//     [key:string]:string
-// }
-
 export const AREA_CODE = [
   { id: '1', area: '서울' },
   { id: '2', area: '인천' },

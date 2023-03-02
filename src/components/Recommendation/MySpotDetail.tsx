@@ -1,4 +1,4 @@
-import { FetchedStayDataType } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../types/apiDataTypes';
 import styled from 'styled-components';
 import noimg from '../../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,6 @@ const MySpotDetail = (props: FetchedStayDataType) => {
           <SpotEachItemImg
             src={props.img || noimg}
             alt="사진"
-            // onMouseOver={() => {}}
             decoding="async"
             loading="lazy"
             onClick={() => navigate(`/spot/${props.id}`)}
@@ -24,8 +23,6 @@ const MySpotDetail = (props: FetchedStayDataType) => {
         </picture>
         <SpotTopdiv>관광</SpotTopdiv>
         <SpotTitle>{props.children}</SpotTitle>
-        <SpotSubText1>여긴어때?</SpotSubText1>
-        <SpotSubText2>Click Here!</SpotSubText2>
       </SpotImgWrapper>
     </SpotEachItemWrapper>
   );
@@ -36,21 +33,21 @@ export default MySpotDetail;
 const SpotEachItemWrapper = styled.div`
   width: 100%;
   height: 420px;
-  margin: 20px 20px 10px 20px;
+  margin: 22.02px 20px 10px 20px;
   border-radius: 15px;
 `;
 
 const SpotImgWrapper = styled.div`
-  width: 240px;
-  height: 75%;
+  width: 273.86px;
+  height: 340.49px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border-radius: 5px;
+  border-radius: 7.91px;
   overflow: hidden;
   position: relative;
-  border-radius: 15px;
+  box-shadow: 2.26px 2.26px rgba(0, 0, 0, 0.2);
 `;
 
 const SpotEachItemImg = styled.img`
@@ -69,17 +66,17 @@ const SpotEachItemImg = styled.img`
 
 const SpotTitle = styled.div`
   position: absolute;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   color: white;
-  margin-top: 140px;
+  margin-top: 207.16px;
 `;
 
 const SpotSubText1 = styled.p`
   color: white;
   position: absolute;
-  margin-top: 180px;
-  font-size: 14px;
+  margin-top: 251.68px;
+  font-size: 12.86px;
 `;
 
 const SpotSubText2 = styled.p`
@@ -97,10 +94,10 @@ const SpotTopdiv = styled.div`
   color: white;
   font-size: 14px;
   font-weight: bold;
-  width: 50px;
-  height: 24px;
-  border-radius: 30px;
+  width: 60.98px;
+  height: 33.32px;
+  border-radius: 231.35px;
   background-color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 270px;
-  margin-right: 170px;
+  margin-bottom: 280px;
+  margin-right: 180px;
 `;

@@ -14,14 +14,7 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
 
   const handleRegionSelection = () => {
     if (regionCode) setRegion(regionCode);
-    // console.log('누른 지역:', regionCode);
   };
-
-  // const handleImgPreloading = () => {
-  //   const img = new Image();
-  //   img.src = '../../asset/noimg.png';
-  // };
-  // console.log('지역 버튼 렌더링?');
 
   return (
     <>
@@ -29,7 +22,6 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
         onClick={() => {
           handleRegionSelection();
         }}
-        // onMouseOver={handleImgPreloading}
         isSelectedRegion={isSelectedRegion}
       >
         {children}
@@ -41,14 +33,17 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
 export default React.memo(SelectRegionBtn);
 
 const CustomBtn = styled.button<{ isSelectedRegion: boolean }>`
-  width: 70px;
+  width: 60px;
   height: 30px;
   background-color: ${(props) =>
     props.isSelectedRegion ? '#6478FF' : '#EBEEFF'};
   color: ${(props) => (props.isSelectedRegion ? '#FFFFFF' : '#606060')};
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 1px 1px #c8c8c8;
   font-weight: 800;
+  font-size: 13px;
   cursor: pointer;
+  margin-left: 16px;
+  margin-bottom: 8px;
 `;

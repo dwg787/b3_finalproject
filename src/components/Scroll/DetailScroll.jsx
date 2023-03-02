@@ -32,34 +32,20 @@ const DetailScroll = () => {
         </Link>
       </StLinkBox>
     </MainDiv>
-    // <MainDiv>
-    //   <SideDiv>
-
-    //   </SideDiv>
-    // </MainDiv>
   );
 };
 
 export default DetailScroll;
 
 const MainDiv = styled.div`
-  width: 100%;
-  height: 69.12px;
-  padding: 24.83px 0;
+  width: 933.21px;
+  height: 58.11px;
+  padding: 20.88px 0 22.24px 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
   box-sizing: border-box;
-`;
-
-const SideDiv = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 `;
 
 const StLinkBox = styled.div`
@@ -71,28 +57,8 @@ const StLinkBox = styled.div`
 `;
 
 const StLinkTextBox = styled.span`
-  /* background-color: teal; */
-  /* font-size: 18.92px; */
-  font-size: 0.9854vw;
-  font-weight: 400;
+  font-size: 15.91px;
   cursor: pointer;
-  line-height: 17.7px;
-  font-weight: 700;
-  /* margin: 0; */
+  line-height: 14.9px;
+  font-weight: Bold;
 `;
-
-// const TabOne = styled(StLinkTextBox)`
-//   margin-right: 226px;
-// `;
-
-// const TabTwo = styled(StLinkTextBox)`
-//   margin-right: 226px;
-// `;
-
-// const TabThreeFour = styled(StLinkTextBox)`
-//   margin-right: 252px;
-// `;
-
-// const TabFive = styled(StLinkTextBox)`
-//   margin-right: 258px;
-// `;

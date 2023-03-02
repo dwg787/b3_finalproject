@@ -9,7 +9,7 @@ import random from '../../assets/random.avif';
 import _ from 'lodash';
 import sadari from '../../assets/sadari.mp3';
 import BlueFooter from '../Footer/BlueFooter';
-import Randomslot from '../../assets/Randomslot.png';
+import Randomslot from '../../assets/Randomslot.avif';
 //v1 슬롯머신
 
 const SlotMachine = () => {
@@ -76,12 +76,12 @@ const SlotMachine = () => {
     addLoling();
   };
 
-  const selectEventControl = (delay) => {
-    return _.throttle(() => Loling(), delay, {
-      leading: true,
-      trailing: false,
-    });
-  };
+  // const selectEventControl = (delay) => {
+  //   return _.throttle(() => Loling(), delay, {
+  //     leading: true,
+  //     trailing: false,
+  //   });
+  // };
 
   const lolinghandler = () => {
     // handleSearchText();
@@ -129,8 +129,6 @@ const SlotMachine = () => {
   //     return slot[2][Math.floor(Math.random() * slot[2].length)];
   //   };
 
-  // const buttonClick = () => {}
-  // console.log(currentSpots);
   return (
     <BigContainer>
       <SlotTitleImg src={Randomslot} alt="" />

@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import Menu from '../components/Menu/Menu';
 import RegionSelection from '../components/Selection/RegionSelection';
-// import SelectionResult from '../components/Selection/SelectionResult';
 import SliderBanner from '../components/SliderBanner';
-// import StayRecommendation from '../components/Recommendation/StayRecommendation';
-// import RestaurantRecommendation from '../components/Recommendation/RestaurantRecommendation';
 import StaySelectionResult from '../components/Selection/StaySelectionResult';
 import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
 import WeeklyTop10 from '../components/Recommendation/WeeklyTop10';
@@ -14,7 +11,6 @@ import MyChild from '../components/Recommendation/MyChild';
 import BestDate from '../components/Recommendation/BestDate';
 import MySpot from '../components/Recommendation/MySpot';
 import { useEffect } from 'react';
-import WeeklyTop10v2 from '../components/Recommendation/WeeklyTop10v2';
 import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
 import Footer from '../components/Footer/Footer';
 import BlackFooter from '../components/Footer/BlackFooter';
@@ -22,11 +18,18 @@ import SpotMainTap from '../components/MainTap/SpotMainTap';
 import StayMainTap from '../components/MainTap/StayMainTap';
 import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
 import SlotBanner from '../components/Slot/SlotBanner';
+import { useMediaQuery } from 'react-responsive';
+import MobileSpotSelectionResult from '../components/Selection/mobile/MobileSpotSelectionResult';
+import EventBenner from '../components/Slot/EventBenner';
 
 const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const selected = sessionStorage.getItem('mainpage_menu_type');
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:767px)',
+  });
 
+  console.log('반응형?', isMobile);
   useEffect(() => {
     if (selected) setSelectedMenu(selected);
   }, [selected]);
@@ -46,6 +49,7 @@ const MainPage = () => {
           <SliderBanner />
           <MySpot />
           <SlotBanner />
+          <EventBenner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -56,28 +60,29 @@ const MainPage = () => {
         </>
       ) : selectedMenu === '관광지' ? (
         <>
-          <SpotSelectionResult />
+          {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />}
           <SpotMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : // <SelectionResult />
       selectedMenu === '숙박' ? (
         <>
           <StaySelectionResult />
           <StayMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : selectedMenu === '음식점' ? (
         <>
           <RestaurantSelectionResult />
           <RestaurantMainTap />
-          <BlackFooter />
+          <Footer />
         </>
       ) : (
         <>
           <SliderBanner />
           <MySpot />
           <SlotBanner />
+          <EventBenner />
           <WeeklyTop10 />
           {/* <WeeklyTop10v2 /> */}
           <MyChild />
@@ -98,16 +103,18 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 500px;
-  background: linear-gradient(white 40%, #8a98f6);
+  /* padding-bottom: 500px; */
+  background: linear-gradient(white 5%, #8a98f6);
   position: relative;
+  padding-bottom: 150px;
 `;
 
 const RegionSelectionBtnWrapper = styled.div`
   display: flex;
-  padding-top: 30px;
+  padding-top: 5px;
   /* align-items: center; */
-  justify-content: center;
-  width: 70%;
-  height: 200px;
+  justify-content: space-around;
+  max-width: 1036px;
+  width: 100%;
+  height: 80px;
 `;

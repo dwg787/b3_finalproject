@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import InputBoxButton from './InputBoxButton/InputBoxButton';
-import sliderchange1 from '../assets/sliderchange1.png';
-import sliderchange2 from '../assets/sliderchange2.png';
-import sliderchange3 from '../assets/sliderchange3.png';
+import sliderchange1 from '../assets/sliderchange1.avif';
+import sliderchange2 from '../assets/sliderchange2.avif';
+import sliderchange3 from '../assets/sliderchange3.avif';
 import nextImg from '../assets/next.avif';
 import pervImg from '../assets/prev.avif';
 
@@ -89,27 +89,26 @@ export default function MainSlide() {
 }
 const ContainerDiv = styled.div`
   position: relative;
-  width: 66.5%;
-  height: 380px;
+  max-width: 1036.07px;
+  width: 100%;
+  height: 395px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
-  /* background-color: gray; */
-  margin-top: 40px;
+  margin-top: 33px;
 `;
 const WarpDiv = styled.div`
   width: 100%;
   height: 450px;
 `;
-const MainSlider = styled(Slider)`
-  height: 100%;
-`;
+
 const ImgDiv = styled.div`
   width: 100%;
   height: 450px;
   position: relative;
 `;
+
 const MainImg = styled.img`
   width: 100%;
   height: 450px;
@@ -118,22 +117,22 @@ const MainImg = styled.img`
 
 const Texth2 = styled.h2`
   color: white;
-  font-size: 28px;
+  font-size: 26.09px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 16.01px;
 `;
 
 const Textp = styled.p`
   color: white;
-  font-size: 18px;
+  font-size: 14.03px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 4.3px;
 `;
 
 const TextBox = styled.div`
   position: absolute;
-  margin-top: 290px;
-  margin-left: 125px;
+  margin-top: 301.18px;
+  margin-left: 101.45px;
 `;
 
 const StyledSlider = styled(Slider)`

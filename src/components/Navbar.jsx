@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../apis/firebase';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { LoginPage } from '../pages';
+import LoginPage from '../pages/LoginPage';
 import axios from 'axios';
 import QueryString from 'qs';
 import mainlogo from '../assets/mainlogo.avif';
@@ -19,19 +19,14 @@ const Navbar = () => {
   const REDIRECT_URI = 'http://localhost:3000/';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
-  // const currentUser = auth.currentUser;
+
   const localId = localStorage.getItem('id');
-  // console.log(localId);
 
   const currentUser = auth.currentUser;
-  const userNickName = currentUser?.displayName;
-  // console.log(userNickName);
 
   const [showModal, setShowModal] = useState(false);
 
-  //kakaologin get location
   const KAKAO_CODE = location.search.split('=')[1];
-  // console.log(KAKAO_CODE);
 
   //   getuser 실행
 
@@ -51,7 +46,6 @@ const Navbar = () => {
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
   const NAVER_CALLBACK_URL = 'http://localhost:3000/';
 
-  // console.log(accessToken);
   const getUser = async () => {
     const ACCESS_TOKEN = await fetch('https://kauth.kakao.com/oauth/token', {
       method: 'POST',
@@ -87,7 +81,6 @@ const Navbar = () => {
     localStorage.setItem('uid', user.data.id);
     sessionStorage.setItem('uid', user.data.id);
   };
-  // console.log(nickName, profileImage);
 
   const userAccessToken = () => {
     window.location.href.includes('access_token') && getToken();
@@ -118,8 +111,6 @@ const Navbar = () => {
     }).then((res) => res.json());
 
     console.log('isLogout', islogout);
-    //   .then(() => {
-    //     alert("로그아웃 되었습니다.");
 
     fetch('https://openapi.naver.com/v1/nid/verify', {
       headers: {
@@ -131,11 +122,7 @@ const Navbar = () => {
     // 로그아웃 성공
     setShowModal(false);
     navigate('/', { replace: true });
-    //   })
-    //   .catch((error) => {
-    //     // 로그아웃 실패
-    //     alert("로그아웃에 실패했습니다.");
-    //   });
+
     localStorage.removeItem('id');
     localStorage.removeItem('uid');
     localStorage.removeItem('email');
@@ -146,10 +133,7 @@ const Navbar = () => {
     localStorage.removeItem('com.naver.nid.access_token');
     localStorage.removeItem('__bootpay_track_uuid__');
     navigate('/');
-    // window.location.reload();
   };
-  // const localId = sessionStorage.getItem('id');
-  // console.log(localId);
 
   const initializeNaverLogin = () => {
     const naverLogin = new naver.LoginWithNaverId({
@@ -207,7 +191,7 @@ const Navbar = () => {
               <InputBox onClick={() => navigate('/search')}>
                 <SearchIconImg src={SearchIcon} alt="" />
               </InputBox>
-              {/* <LoginButton onClick={() => navigate("/login")}>Login</LoginButton> */}
+
               <LoginButton onClick={() => setShowModal(true)}>
                 Login
               </LoginButton>
@@ -237,15 +221,17 @@ const Navbar = () => {
 export default Navbar;
 
 const Mainlogo = styled.img`
-  width: 100px;
-  height: 30px;
-  margin-top: 10px;
-  margin-left: 40px;
+  width: 76.08px;
+  height: 22.37px;
+  margin-top: 5px;
+  margin-left: 42.09px;
 `;
 
 const Nav = styled.div`
+  max-width: 1036px;
   width: 100%;
-  height: 60px;
+  height: 51px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -256,6 +242,7 @@ const NavTextDiv = styled.div`
   color: white;
   margin-right: 10px;
   cursor: pointer;
+  font-size: 10.65px;
 `;
 
 const LoginButton = styled.button`
@@ -264,13 +251,14 @@ const LoginButton = styled.button`
   align-items: center;
   font-weight: bold;
   border: none;
-  font-size: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border-radius: 10px;
-  width: 100px;
+  font-size: 10.65px;
+  padding-left: 11.08px;
+  padding-right: 10.24px;
+  padding-top: 4.93px;
+  padding-bottom: 5.48px;
+  border-radius: 4.1px;
+  width: 51.33px;
+  height: 23.4px;
   background-color: #6478ff;
   border: 1px solid white;
   color: white;
@@ -281,7 +269,8 @@ const LoginButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 40px;
+  margin-right: 46.88px;
+  /* margin-top: 52px; */
 `;
 
 const LoginBox = styled.div`
@@ -321,20 +310,20 @@ const ModalWrapper = styled.div`
 
 const Modal = styled.div`
   background-color: #ffff;
-  width: 498px;
-  /* 25%; */
-  height: 662px;
-  /* 60%; */
-  border-radius: 18.8351px;
+  width: 395.69px;
+  height: 590px;
+  /* width: 395.69px;
+  height: 526px; */
+  box-shadow: 4.76737px 4.76737px 7.94562px rgba(0, 0, 0, 0.25);
+  border-radius: 14.9657px;
   display: flex;
   flex-direction: column;
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.25);
 `;
 const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 186%;
+
   height: 10%;
   padding: 10px;
 `;
@@ -345,24 +334,25 @@ const CloseBtn = styled.button`
   right: 770px;
   top: 280px; */
   border: none;
-  font-size: 18px;
-  color: #1f1f1f;
   cursor: pointer;
 `;
 
-const CloseImg = styled.img``;
+const CloseImg = styled.img`
+  width: 23px;
+  height: 23px;
+`;
 
 const SearchIconImg = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 23.74px;
+  height: 23.74px;
   margin-left: 5px;
-  margin-right: 15px;
+  margin-right: 4.71px;
 `;
 
 const NickNameBtn = styled.button`
   border: none;
   background-color: transparent;
-  font-size: 17px;
+  font-size: 10.65px;
   margin-right: 10px;
   color: white;
 `;
