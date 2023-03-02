@@ -134,8 +134,12 @@ const StayMainTap = () => {
                   <OuterHeartText>{e.likeCnt}</OuterHeartText>
                 </OuterMedalHeartBox>
                 <OuterTextBox>
-                  <MedalText>{e.title.split(/[\\(\\[]/)[0]}</MedalText>
-                  <MedalSubText>{e.overview.slice(0, 20)}</MedalSubText>
+                  <OuterMedalText>
+                    {e.title.split(/[\\(\\[]/)[0]}
+                  </OuterMedalText>
+                  <OuterMedalSubText>
+                    {e.overview.slice(0, 20)}
+                  </OuterMedalSubText>
                 </OuterTextBox>
               </OuterList>
             );
