@@ -8,7 +8,14 @@ import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
-import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
+import {
+  getDoc,
+  setDoc,
+  doc,
+  updateDoc,
+  increment,
+  DocumentData,
+} from 'firebase/firestore';
 import { FetchedStayDataType } from '../../types/apiDataTypes';
 import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
@@ -46,6 +53,7 @@ import DetailFooter from '../../components/Footer/DetailFooter';
 
 const StayDetailPage = () => {
   const param = useParams();
+  const [likeData, setLikeData] = useState<DocumentData | undefined>();
   const [alarmMsg, setAlarmMsg] = useState(
     '예약 페이지가 준비되지 않았습니다.',
   );
@@ -81,10 +89,14 @@ const StayDetailPage = () => {
   const getStayRecCnt = async () => {
     if (param.id) {
       const data = await getDoc(doc(db, 'stay_recommendation', `${param.id}`));
-      return data.data();
-    } else {
-      return;
+
+      if (data.exists()) {
+        const stayData = data.data();
+        setLikeData(stayData);
+        return stayData;
+      }
     }
+    return;
   };
 
   const updateStayRecCnt = async () => {
@@ -152,7 +164,7 @@ const StayDetailPage = () => {
                   </DetailTextArr>
                   <DeatilImojiBox>
                     <StayLiked stayDetailData={stayDetailData} />
-                    <p>00</p>
+                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
                   </DeatilImojiBox>
                 </DeatilTextBox>
 

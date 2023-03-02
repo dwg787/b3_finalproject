@@ -3,8 +3,15 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { fetchSpotDetailData } from '../../apis/publicAPI';
 import { FetchedStayDataType } from '../../types/apiDataTypes';
 import Loader from '../../components/Loader/Loader';
-import { useEffect } from 'react';
-import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  increment,
+  DocumentData,
+} from 'firebase/firestore';
 import { db } from '../../apis/firebase';
 import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
 import StayInfo from '../../components/Recommendation/Info/StayInfo';
@@ -38,6 +45,8 @@ import DetailFooter from '../../components/Footer/DetailFooter';
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
+  const [likeData, setLikeData] = useState<DocumentData | undefined>();
+
   const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
     () => fetchSpotDetailData({ param }),
@@ -46,10 +55,14 @@ const DetailPage = () => {
   const getRecCnt = async () => {
     if (param.id) {
       const data = await getDoc(doc(db, 'spot_recommendation', `${param.id}`));
-      return data.data();
-    } else {
-      return;
+
+      if (data.exists()) {
+        const spotData = data.data();
+        setLikeData(spotData);
+        return spotData;
+      }
     }
+    return;
   };
 
   const updateRecCnt = async () => {
@@ -102,7 +115,7 @@ const DetailPage = () => {
                   </DetailTextArr>
                   <DeatilImojiBox>
                     <SpotLiked spotDetailData={spotDetailData} />
-                    <p>00</p>
+                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
                   </DeatilImojiBox>
                 </DeatilTextBox>
 
