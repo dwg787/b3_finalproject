@@ -49,6 +49,7 @@ const RestaurantMainTap = () => {
               if (e?.likeCnt) {
                 return (
                   <InnerList
+                    key={e?.contentid}
                     onClick={() => navigate(`/restaurant/${e?.contentid}`)}
                   >
                     <InnerImg src={e?.firstimage || noimg} />
@@ -85,7 +86,10 @@ const RestaurantMainTap = () => {
         {rankList.slice(3, 7).map((e, i) => {
           if (e.likeCnt > 0) {
             return (
-              <OuterList onClick={() => navigate(`/restaurant/${e.contentid}`)}>
+              <OuterList
+                key={e?.contentid}
+                onClick={() => navigate(`/restaurant/${e.contentid}`)}
+              >
                 <InnerNmb>{i + 4}</InnerNmb>
                 <OuterImg src={e.firstimage} alt="" />
                 <OuterMedalHeartBox>

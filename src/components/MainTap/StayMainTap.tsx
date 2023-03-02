@@ -46,7 +46,10 @@ const StayMainTap = () => {
             {rankList.slice(0, 3)?.map((e, idx) => {
               if (e?.likeCnt) {
                 return (
-                  <InnerList onClick={() => navigate(`/stay/${e?.contentid}`)}>
+                  <InnerList
+                    key={e?.contentid}
+                    onClick={() => navigate(`/stay/${e?.contentid}`)}
+                  >
                     <InnerImg src={e?.firstimage || noimg} />
                     <MedalHeartBox>
                       <HeartImg src={redheart} />
@@ -81,7 +84,10 @@ const StayMainTap = () => {
         {rankList.slice(3, 7).map((e, i) => {
           if (e.likeCnt > 0) {
             return (
-              <OuterList onClick={() => navigate(`/stay/${e.contentid}`)}>
+              <OuterList
+                key={e?.contentid}
+                onClick={() => navigate(`/stay/${e.contentid}`)}
+              >
                 <InnerNmb>{i + 4}</InnerNmb>
                 <InnerImg src={e.firstimage} alt="" />
                 <OuterMedalHeartBox>
