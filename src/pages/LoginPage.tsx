@@ -306,10 +306,13 @@ const FooterText = styled.div`
 `;
 
 const Error = styled.div`
-  color: red;
-  font-size: 13px;
-  margin-bottom: 15px;
-  margin-top: 10px;
+  color: rgba(248, 112, 56, 1);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 8px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-right: 180px;
 `;
 
 export default LoginPage;
