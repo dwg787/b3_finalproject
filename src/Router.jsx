@@ -9,7 +9,6 @@ import SlotMachine from './components/Slot/SlotMechine';
 const MainPage = lazy(() => import('./pages/MainPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const DetailPage = lazy(() => import('./pages/DetailPage/DetailPage'));
-const MapPage = lazy(() => import('./pages/MapPage'));
 const MyPage = lazy(() => import('./pages/MyPage/MyPage'));
 const SearchPage = lazy(() => import('./pages/SearchPage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -31,7 +30,6 @@ const Router = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/my" element={<MyPage />} />
           <Route path="/spot/:id" element={<DetailPage />} />
-          <Route path="/:id/map" element={<MapPage />} />
           <Route path="/stay/:id" element={<StayDetailPage />} />
           <Route path="/restaurant/:id" element={<RestaurantDetailPage />} />
           <Route path="/signup" element={<SignUpPage />} />
