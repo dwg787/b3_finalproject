@@ -82,7 +82,10 @@ const RestaurantSelectionResult = () => {
                         address={e.addr1}
                         // like={eachData}
                       >
-                        {e.title.split(/[\\(\\[]/)[0]}
+                        {/* {e.title.split(/[\\(\\[]/)[0]} */}
+                        {e.title.split(/[\\[\]\\(\\)]/)[0]
+                          ? e.title.split(/[\\[\]\\(\\)]/)[0]
+                          : e.title.split(/[\\[\]\\(\\)]/)[2]}
                       </RestaurantDetail>
                     );
                   })}

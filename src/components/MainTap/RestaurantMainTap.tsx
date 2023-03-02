@@ -13,6 +13,7 @@ import { RankTypeList } from '../../types/apiDataTypes';
 const RestaurantMainTap = () => {
   const navigate = useNavigate();
   const [rankList, setRankList] = useState<RankTypeList>([]);
+  const medalImg = [one, two, three];
   const restaurantRankList = async () => {
     const data = await getDocs(
       query(
@@ -44,97 +45,38 @@ const RestaurantMainTap = () => {
       <InnerDiv>
         {rankList ? (
           <>
-            {rankList[0]?.likeCnt ? (
-              <InnerList
-                onClick={() =>
-                  navigate(`/restaurant/${rankList[0]?.contentid}`)
-                }
-              >
-                <InnerImg src={rankList[0]?.firstimage || noimg} />
-                <MedalHeartBox>
-                  <HeartImg src={redheart} />
-                  <HeartText>{rankList[0]?.likeCnt}</HeartText>
-                </MedalHeartBox>
-                <InnerMedals src={one} alt="" />
-                <InnerTextBox>
-                  <MedalText>
-                    {rankList[0]?.title.split(/[\\(\\[]/)[0]}
-                  </MedalText>
-                  <MedalSubText>
-                    {rankList[0]?.overview.slice(0, 20)}...
-                  </MedalSubText>
-                </InnerTextBox>
-              </InnerList>
-            ) : (
-              <InnerList>
-                <InnerMedals src={one} alt="" />
-                <InnerTextBox></InnerTextBox>
-              </InnerList>
-            )}
-            {rankList[1]?.likeCnt ? (
-              <InnerList
-                onClick={() =>
-                  navigate(`/restaurant/${rankList[1]?.contentid}`)
-                }
-              >
-                <InnerImg
-                  src={rankList[1]?.firstimage || noimg}
-                  onClick={() =>
-                    navigate(`/restaurant/${rankList[1]?.contentid}`)
-                  }
-                />
-                <MedalHeartBox>
-                  <HeartImg src={redheart} />
-                  <HeartText>{rankList[1]?.likeCnt}</HeartText>
-                </MedalHeartBox>
-                <InnerMedals src={two} alt="" />
-                <InnerTextBox>
-                  <MedalText>
-                    {rankList[1]?.title.split(/[\\(\\[]/)[0]}
-                  </MedalText>
-                  <MedalSubText>
-                    {rankList[1]?.overview.slice(0, 20)}...
-                  </MedalSubText>
-                </InnerTextBox>
-              </InnerList>
-            ) : (
-              <InnerList>
-                <InnerMedals src={two} alt="" />
-                <InnerTextBox></InnerTextBox>
-              </InnerList>
-            )}
-            {rankList[2]?.likeCnt ? (
-              <InnerList
-                onClick={() =>
-                  navigate(`/restaurant/${rankList[2]?.contentid}`)
-                }
-              >
-                <InnerImg
-                  src={rankList[2]?.firstimage || noimg}
-                  onClick={() =>
-                    navigate(`/restaurant/${rankList[2]?.contentid}`)
-                  }
-                />
-                <MedalHeartBox>
-                  <HeartImg src={redheart} />
-                  <HeartText>{rankList[2]?.likeCnt}</HeartText>
-                </MedalHeartBox>
-                <InnerMedals src={three} alt="" />
-                <InnerTextBox>
-                  <MedalText>
-                    {rankList[2]?.title.split(/[\\(\\[]/)[0]}
-                  </MedalText>
-                  <MedalSubText>
-                    {rankList[2]?.overview.slice(0, 20)}...
-                  </MedalSubText>
-                </InnerTextBox>
-              </InnerList>
-            ) : (
-              <InnerList>
-                <InnerMedals src={three} alt="" />
-                <InnerTextBox></InnerTextBox>
-              </InnerList>
-            )}
+            {rankList.slice(0, 3)?.map((e, idx) => {
+              if (e?.likeCnt) {
+                return (
+                  <InnerList
+                    key={e?.contentid}
+                    onClick={() => navigate(`/restaurant/${e?.contentid}`)}
+                  >
+                    <InnerImg src={e?.firstimage || noimg} />
+                    <MedalHeartBox>
+                      <HeartImg src={redheart} />
+                      <HeartText>{e?.likeCnt}</HeartText>
+                    </MedalHeartBox>
+                    <InnerMedals src={medalImg[idx]} alt="" />
+                    <InnerTextBox>
+                      <MedalText>
+                        {e?.title.split(/[\\[\]\\(\\)]/)[0]
+                          ? e?.title.split(/[\\[\]\\(\\)]/)[0]
+                          : e?.title.split(/[\\[\]\\(\\)]/)[2]}
+                      </MedalText>
+                      <MedalSubText>{e?.overview.slice(0, 20)}...</MedalSubText>
+                    </InnerTextBox>
+                  </InnerList>
+                );
+              } else {
+                return (
+                  <InnerList>
+                    <InnerMedals src={medalImg[idx]} alt="" />
+                    <InnerTextBox></InnerTextBox>
+                  </InnerList>
+                );
+              }
+            })}
           </>
         ) : (
           <></>
@@ -144,7 +86,10 @@ const RestaurantMainTap = () => {
         {rankList.slice(3, 7).map((e, i) => {
           if (e.likeCnt > 0) {
             return (
-              <OuterList onClick={() => navigate(`/restaurant/${e.contentid}`)}>
+              <OuterList
+                key={e?.contentid}
+                onClick={() => navigate(`/restaurant/${e.contentid}`)}
+              >
                 <InnerNmb>{i + 4}</InnerNmb>
                 <OuterImg src={e.firstimage} alt="" />
                 <OuterMedalHeartBox>
@@ -153,7 +98,9 @@ const RestaurantMainTap = () => {
                 </OuterMedalHeartBox>
                 <OuterTextBox>
                   <OuterMedalText>
-                    {e.title.split(/[\\(\\[]/)[0]}
+                    {e?.title.split(/[\\[\]\\(\\)]/)[0]
+                      ? e?.title.split(/[\\[\]\\(\\)]/)[0]
+                      : e?.title.split(/[\\[\]\\(\\)]/)[2]}
                   </OuterMedalText>
                   <OuterMedalSubText>
                     {e.overview.slice(0, 20)}
