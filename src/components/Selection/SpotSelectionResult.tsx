@@ -81,7 +81,9 @@ const SpotSelectionResult = () => {
                         img={e.firstimage || noimg}
                         address={e.addr1}
                       >
-                        {e.title.split(/[\\(\\[]/)[0]}
+                        {e.title.split(/[\\[\]\\(\\)]/)[0]
+                          ? e.title.split(/[\\[\]\\(\\)]/)[0]
+                          : e.title.split(/[\\[\]\\(\\)]/)[2]}
                       </SpotDetail>
                     );
                   })}
