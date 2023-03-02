@@ -23,7 +23,7 @@ const SpotDetail = (props: FetchedStayDataType) => {
   }, []);
 
   return (
-    <SpotEachItemWrapper>
+    <SpotEachItemWrapper onClick={() => navigate(`/spot/${props.id}`)}>
       <SpotImgWrapper>
         <source srcSet={props.img || noimg} type="image/avif"></source>
         <source srcSet={props.img || noimg} type="image/webp"></source>
@@ -34,7 +34,6 @@ const SpotDetail = (props: FetchedStayDataType) => {
           // onMouseOver={() => {}}
           decoding="async"
           loading="lazy"
-          onClick={() => navigate(`/spot/${props.id}`)}
         />
       </SpotImgWrapper>
       <MyCildTextBox>
@@ -59,6 +58,7 @@ const SpotEachItemWrapper = styled.div`
   border-radius: 7px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const SpotImgWrapper = styled.picture`
@@ -81,7 +81,6 @@ const SpotEachItemImg = styled.img`
   border-top-right-radius: 13px;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   &:hover {
     transform: scale(1.2);
     transition: all 0.35s;
