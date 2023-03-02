@@ -90,6 +90,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ showModal, setShowModal }) => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email!);
       localStorage.setItem('id', data.user.displayName!);
+      sessionStorage.setItem('uid', data.user.uid);
       navigate('/');
     });
   };
