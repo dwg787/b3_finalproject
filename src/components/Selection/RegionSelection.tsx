@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import SelectRegionBtn from './SelectRegionBtn';
 import { AREA_CODE } from '../../apis/apiCodes';
@@ -13,7 +14,7 @@ const RegionSelection = () => {
   );
 };
 
-export default RegionSelection;
+export default React.memo(RegionSelection);
 
 const SelectRegionBtnWrapper = styled.div`
   border-top: 1px solid #6478ff;
