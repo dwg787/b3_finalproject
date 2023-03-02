@@ -23,7 +23,7 @@ const StayDetail = (props: FetchedStayDataType) => {
   }, []);
 
   return (
-    <StayEachItemWrapper>
+    <StayEachItemWrapper onClick={() => navigate(`/stay/${props.id}`)}>
       <StayImgWrapper>
         <source srcSet={props.img || noimg} type="image/avif"></source>
         <source srcSet={props.img || noimg} type="image/webp"></source>
@@ -58,6 +58,7 @@ const StayEachItemWrapper = styled.div`
   border-radius: 7px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const StayImgWrapper = styled.picture`
@@ -80,7 +81,6 @@ const StayEachItemImg = styled.img`
   border-top-right-radius: 13px;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   &:hover {
     transform: scale(1.2);
     transition: all 0.35s;

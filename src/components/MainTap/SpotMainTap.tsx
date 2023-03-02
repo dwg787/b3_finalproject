@@ -43,11 +43,10 @@ const SpotMainTap = () => {
         {rankList ? (
           <>
             {rankList[0]?.likeCnt ? (
-              <InnerList>
-                <InnerImg
-                  src={rankList[0]?.firstimage || noimg}
-                  onClick={() => navigate(`/spot/${rankList[0]?.contentid}`)}
-                />
+              <InnerList
+                onClick={() => navigate(`/spot/${rankList[0]?.contentid}`)}
+              >
+                <InnerImg src={rankList[0]?.firstimage || noimg} />
                 <MedalHeartBox>
                   <HeartImg src={redheart} />
                   <HeartText>{rankList[0]?.likeCnt}</HeartText>
@@ -69,11 +68,10 @@ const SpotMainTap = () => {
               </InnerList>
             )}
             {rankList[1]?.likeCnt ? (
-              <InnerList>
-                <InnerImg
-                  src={rankList[1]?.firstimage || noimg}
-                  onClick={() => navigate(`/spot/${rankList[1]?.contentid}`)}
-                />
+              <InnerList
+                onClick={() => navigate(`/spot/${rankList[1]?.contentid}`)}
+              >
+                <InnerImg src={rankList[1]?.firstimage || noimg} />
                 <MedalHeartBox>
                   <HeartImg src={redheart} />
                   <HeartText>{rankList[1]?.likeCnt}</HeartText>
@@ -95,11 +93,10 @@ const SpotMainTap = () => {
               </InnerList>
             )}
             {rankList[2]?.likeCnt ? (
-              <InnerList>
-                <InnerImg
-                  src={rankList[2]?.firstimage || noimg}
-                  onClick={() => navigate(`/spot/${rankList[2]?.contentid}`)}
-                />
+              <InnerList
+                onClick={() => navigate(`/spot/${rankList[2]?.contentid}`)}
+              >
+                <InnerImg src={rankList[2]?.firstimage || noimg} />
                 <MedalHeartBox>
                   <HeartImg src={redheart} />
                   <HeartText>{rankList[2]?.likeCnt}</HeartText>
@@ -129,13 +126,9 @@ const SpotMainTap = () => {
         {rankList.slice(3, 7).map((e, i) => {
           if (e.likeCnt > 0) {
             return (
-              <OuterList>
+              <OuterList onClick={() => navigate(`/spot/${e.contentid}`)}>
                 <InnerNmb>{i + 4}</InnerNmb>
-                <InnerImg
-                  src={e.firstimage}
-                  alt=""
-                  onClick={() => navigate(`/spot/${e.contentid}`)}
-                />
+                <InnerImg src={e.firstimage} alt="" />
                 <OuterMedalHeartBox>
                   <OuterHeartImg src={redheart} />
                   <OuterHeartText>{e.likeCnt}</OuterHeartText>
@@ -200,6 +193,7 @@ const InnerList = styled.div`
   border-radius: 8px;
   box-shadow: 2.15833px 2.15833px 5.39583px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const InnerImg = styled.img`
@@ -258,6 +252,7 @@ const OuterList = styled.div`
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   position: relative;
   margin-bottom: 50px;
+  cursor: pointer;
 `;
 
 const OuterTextBox = styled.div`
