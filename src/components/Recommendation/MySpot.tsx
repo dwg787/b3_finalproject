@@ -115,7 +115,7 @@ const Pre = styled.div`
   position: absolute;
   left: 5%;
   z-index: 3;
-  margin-left: 50px;
+  /* margin-left: 50px; */
 `;
 
 const NextTo = styled.div`
@@ -124,7 +124,7 @@ const NextTo = styled.div`
   position: absolute;
   right: 5%;
   z-index: 3;
-  margin-right: 50px;
+  /* margin-right: 50px; */
 `;
 
 const ArrowImg = styled.img`
