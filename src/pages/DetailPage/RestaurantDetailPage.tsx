@@ -17,7 +17,7 @@ import {
   SideInfoWrapper,
   DetailInfo2,
 } from './styles';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { db } from '../../apis/firebase';
 import noimg from '../../assets/noimg.avif';
@@ -30,15 +30,21 @@ import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import RestaurantLiked from '../../components/Liked/RestaurantLiked';
-import { getDoc, setDoc, doc, updateDoc, increment } from 'firebase/firestore';
+import {
+  getDoc,
+  setDoc,
+  doc,
+  updateDoc,
+  increment,
+  DocumentData,
+} from 'firebase/firestore';
 import StayInfo from '../../components/Recommendation/Info/StayInfo';
 import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
-import MapImoji from '../../components/Map/MapImoji';
-import BlueFooter from '../../components/Footer/BlueFooter';
 import DetailFooter from '../../components/Footer/DetailFooter';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
+  const [likeData, setLikeData] = useState<DocumentData | undefined>();
   const {
     data: restaurantDetailData,
     isLoading: isLoadingRestaurantDetail,
@@ -51,10 +57,14 @@ const RestaurantDetailPage = () => {
       const data = await getDoc(
         doc(db, 'restaurant_recommendation', `${param.id}`),
       );
-      return data.data();
-    } else {
-      return;
+
+      if (data.exists()) {
+        const restaurantData = data.data();
+        setLikeData(restaurantData);
+        return restaurantData;
+      }
     }
+    return;
   };
 
   const updateRestaurantRecCnt = async () => {
@@ -90,7 +100,7 @@ const RestaurantDetailPage = () => {
   }, [restaurantDetailData]);
 
   // setThisParam(param.id);
-  // console.log('식당정보', restaurantDetailData);
+  console.log('식당정보', restaurantDetailData);
   return (
     <DetailWrap>
       <Container>
@@ -112,7 +122,7 @@ const RestaurantDetailPage = () => {
                     <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
                     />
-                    <p>00</p>
+                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
                   </DeatilImojiBox>
                 </DeatilTextBox>
 
