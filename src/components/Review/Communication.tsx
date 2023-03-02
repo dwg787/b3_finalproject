@@ -277,6 +277,9 @@ const ReviewInput = styled.input`
     font-size: 11.8485px;
     color: #595959;
   }
+  &:focus {
+    outline: 1px solid #6478ff;
+  }
 `;
 
 const ReviewButton = styled.button`
