@@ -23,7 +23,9 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
   }, []);
 
   return (
-    <RestaurantEachItemWrapper>
+    <RestaurantEachItemWrapper
+      onClick={() => navigate(`/restaurant/${props.id}`)}
+    >
       <RestaurantImgWrapper>
         <source srcSet={props.img || noimg} type="image/avif"></source>
         <source srcSet={props.img || noimg} type="image/webp"></source>
@@ -33,7 +35,6 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
           alt="사진"
           decoding="async"
           loading="lazy"
-          onClick={() => navigate(`/restaurant/${props.id}`)}
         />
       </RestaurantImgWrapper>
       <MyCildTextBox>
@@ -58,6 +59,7 @@ const RestaurantEachItemWrapper = styled.div`
   border-radius: 7px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const RestaurantImgWrapper = styled.picture`
@@ -80,7 +82,6 @@ const RestaurantEachItemImg = styled.img`
   border-top-right-radius: 13px;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   &:hover {
     transform: scale(1.2);
     transition: all 0.35s;
