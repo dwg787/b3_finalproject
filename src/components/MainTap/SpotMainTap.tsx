@@ -134,8 +134,12 @@ const SpotMainTap = () => {
                   <OuterHeartText>{e.likeCnt}</OuterHeartText>
                 </OuterMedalHeartBox>
                 <OuterTextBox>
-                  <MedalText>{e.title.split(/[\\(\\[]/)[0]}</MedalText>
-                  <MedalSubText>{e.overview.slice(0, 20)}</MedalSubText>
+                  <OuterMedalText>
+                    {e.title.split(/[\\(\\[]/)[0]}
+                  </OuterMedalText>
+                  <OuterMedalSubText>
+                    {e.overview.slice(0, 20)}
+                  </OuterMedalSubText>
                 </OuterTextBox>
               </OuterList>
             );
@@ -225,6 +229,9 @@ const InnerMedals = styled.img`
 `;
 
 const InnerTextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   width: 100%;
   height: 120.04px;

@@ -76,12 +76,12 @@ const SlotMachine = () => {
     addLoling();
   };
 
-  const selectEventControl = (delay) => {
-    return _.throttle(() => Loling(), delay, {
-      leading: true,
-      trailing: false,
-    });
-  };
+  // const selectEventControl = (delay) => {
+  //   return _.throttle(() => Loling(), delay, {
+  //     leading: true,
+  //     trailing: false,
+  //   });
+  // };
 
   const lolinghandler = () => {
     // handleSearchText();
