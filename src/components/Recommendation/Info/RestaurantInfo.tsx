@@ -15,7 +15,7 @@ import {
   MyChildTextp,
   LikeBox,
 } from './styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DetailDataTypes } from '../../../types/apiDataTypes';
 
 interface Props {
@@ -25,6 +25,7 @@ interface Props {
 
 const RestaurantInfo: React.FunctionComponent<Props> = (props) => {
   const { spotData, stayDetailData } = props;
+  const navigate = useNavigate();
 
   const combinedData = {
     ...spotData,
@@ -55,39 +56,38 @@ const RestaurantInfo: React.FunctionComponent<Props> = (props) => {
               <>
                 {restaurantData.slice(0, 4).map((item: any, i: number) => {
                   return (
-                    <Link to={`/restaurant/${item.contentid}`}>
-                      <MyChildList key={item.contentid}>
-                        <picture>
-                          <source
-                            srcSet={item.firstimage || noimg}
-                            type="image/avif"
-                          ></source>
-                          <source
-                            srcSet={item.firstimage || noimg}
-                            type="image/webp"
-                          ></source>
-                          <source
-                            srcSet={item.firstimage || noimg}
-                            type="image/jpg"
-                          ></source>
-                          <MyChildImg
-                            src={item.firstimage || noimg}
-                            alt="사진"
-                            decoding="async"
-                            loading="lazy"
-                          />
-                        </picture>
+                    <MyChildList
+                      key={item.contentid}
+                      onClick={() => {
+                        navigate(`/restaurant/${item.contentid}`);
+                      }}
+                    >
+                      <picture>
+                        <source
+                          srcSet={item.firstimage || noimg}
+                          type="image/avif"
+                        ></source>
+                        <source
+                          srcSet={item.firstimage || noimg}
+                          type="image/webp"
+                        ></source>
+                        <source
+                          srcSet={item.firstimage || noimg}
+                          type="image/jpg"
+                        ></source>
+                        <MyChildImg
+                          src={item.firstimage || noimg}
+                          alt="사진"
+                          decoding="async"
+                          loading="lazy"
+                        />
+                      </picture>
 
-                        <MyCildTextBox>
-                          <MyChildTexth3>{item.title}</MyChildTexth3>
-                          <MyChildTextp> {item.addr1}</MyChildTextp>
-                          {/* <LikeBox>
-                          <RestaurantLiked restaurantData={restaurantData} />
-                          <p>00</p>
-                        </LikeBox> */}
-                        </MyCildTextBox>
-                      </MyChildList>
-                    </Link>
+                      <MyCildTextBox>
+                        <MyChildTexth3>{item.title}</MyChildTexth3>
+                        <MyChildTextp> {item.addr1}</MyChildTextp>
+                      </MyCildTextBox>
+                    </MyChildList>
                   );
                 })}
               </>
