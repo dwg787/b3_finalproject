@@ -97,7 +97,7 @@ const RestaurantDetailPage = () => {
       }
     };
     getFirestoreRecCnt();
-  }, [restaurantDetailData]);
+  }, [restaurantDetailData, likeData]);
 
   // setThisParam(param.id);
   console.log('식당정보', restaurantDetailData);
