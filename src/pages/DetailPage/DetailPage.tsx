@@ -93,7 +93,7 @@ const DetailPage = () => {
       }
     };
     getFirestoreRecCnt();
-  }, [spotDetailData]);
+  }, [spotDetailData, likeData]);
 
   return (
     <DetailWrap>
