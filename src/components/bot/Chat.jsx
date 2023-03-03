@@ -260,11 +260,12 @@ export default function Chat({ setModal }) {
   };
 
   return (
-    <ModalBackground
-      onClick={() => {
-        setModal(false);
-      }}
-    >
+    <>
+      <ModalBackground
+        onClick={() => {
+          setModal(false);
+        }}
+      ></ModalBackground>
       <Modaldiv>
         <ThemeProvider theme={theme}>
           <ChatBot
@@ -277,7 +278,7 @@ export default function Chat({ setModal }) {
         </ThemeProvider>
       </Modaldiv>
       {/* <button onClick={addUserList}>하이</button> */}
-    </ModalBackground>
+    </>
   );
 }
 
@@ -288,11 +289,11 @@ const Modaldiv = styled.div`
   align-items: center;
   margin-top: 150px;
   left: 80%;
-  top: 14%;
+  top: 13%;
   z-index: 1000;
   @media screen and (max-width: 820px) {
     left: 10%;
-    top: 15%;
+    top: 13%;
   }
 `;
 
@@ -302,6 +303,6 @@ const ModalBackground = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(79, 78, 72, 0.7);
+  background: rgba(48, 48, 48, 0.472);
   z-index: 3;
 `;
