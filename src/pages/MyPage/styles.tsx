@@ -39,7 +39,7 @@ const StMyPageHeader = styled.div`
 const TabHr = styled.hr`
   border: solid #6478ff 1.13px;
   width: 1036px;
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 820px) {
     width: 390px;
   }
 `;
@@ -68,7 +68,7 @@ const StMyListTab = styled.div`
   align-items: center;
   width: 126px;
   height: 29px;
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 820px) {
     margin: 16.81px 40px 19px 40px;
   }
 `;
@@ -77,7 +77,7 @@ const StMyListTab = styled.div`
 const StMyPageInfo = styled.div`
   width: 1036px;
 
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 820px) {
     width: 390px;
   }
 `;
