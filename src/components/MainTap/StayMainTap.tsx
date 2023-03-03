@@ -40,9 +40,12 @@ const StayMainTap = () => {
 
   return (
     <WrapDiv>
-      <InnerDiv>
+      <ListTitleWrapper>
+        <ListItemTitle>추천! 인기 관광지</ListItemTitle>
+      </ListTitleWrapper>
+      <>
         {rankList ? (
-          <>
+          <InnerDiv>
             {rankList.slice(0, 3)?.map((e, idx) => {
               if (e?.likeCnt) {
                 return (
@@ -75,47 +78,47 @@ const StayMainTap = () => {
                 );
               }
             })}
-          </>
+          </InnerDiv>
         ) : (
-          <></>
+          <InnerDiv></InnerDiv>
         )}
-      </InnerDiv>
-      <OuterDiv>
-        {rankList.slice(3, 7).map((e, i) => {
-          if (e.likeCnt > 0) {
-            return (
-              <OuterList
-                key={e?.contentid}
-                onClick={() => navigate(`/stay/${e.contentid}`)}
-              >
-                <InnerNmb>{i + 4}</InnerNmb>
-                <InnerImg src={e.firstimage} alt="" />
-                <OuterMedalHeartBox>
-                  <OuterHeartImg src={redheart} />
-                  <OuterHeartText>{e.likeCnt}</OuterHeartText>
-                </OuterMedalHeartBox>
-                <OuterTextBox>
-                  <OuterMedalText>
-                    {e?.title.split(/[\\[\]\\(\\)]/)[0]
-                      ? e?.title.split(/[\\[\]\\(\\)]/)[0]
-                      : e?.title.split(/[\\[\]\\(\\)]/)[2]}
-                  </OuterMedalText>
-                  <OuterMedalSubText>
-                    {e.overview.slice(0, 20)}
-                  </OuterMedalSubText>
-                </OuterTextBox>
-              </OuterList>
-            );
-          } else {
-            return (
-              <OuterList>
-                <InnerNmb>{i + 4}</InnerNmb>
-                <OuterTextBox></OuterTextBox>
-              </OuterList>
-            );
-          }
-        })}
-      </OuterDiv>
+        <OuterDiv>
+          {rankList.slice(3, 7).map((e, i) => {
+            if (e.likeCnt > 0) {
+              return (
+                <OuterList
+                  key={e?.contentid}
+                  onClick={() => navigate(`/stay/${e.contentid}`)}
+                >
+                  <InnerNmb>{i + 4}</InnerNmb>
+                  <OuterImg src={e.firstimage || noimg} alt="" />
+                  <OuterMedalHeartBox>
+                    <OuterHeartImg src={redheart} />
+                    <OuterHeartText>{e.likeCnt}</OuterHeartText>
+                  </OuterMedalHeartBox>
+                  <OuterTextBox>
+                    <OuterMedalText>
+                      {e?.title.split(/[\\[\]\\(\\)]/)[0]
+                        ? e?.title.split(/[\\[\]\\(\\)]/)[0]
+                        : e?.title.split(/[\\[\]\\(\\)]/)[2]}
+                    </OuterMedalText>
+                    <OuterMedalSubText>
+                      {e.overview.slice(0, 20)}
+                    </OuterMedalSubText>
+                  </OuterTextBox>
+                </OuterList>
+              );
+            } else {
+              return (
+                <OuterList>
+                  <InnerNmb>{i + 4}</InnerNmb>
+                  <OuterTextBox></OuterTextBox>
+                </OuterList>
+              );
+            }
+          })}
+        </OuterDiv>
+      </>
     </WrapDiv>
   );
 };
@@ -125,7 +128,7 @@ export default StayMainTap;
 const WrapDiv = styled.div`
   max-width: 1036px;
   width: 100%;
-  height: 725px;
+  /* height: 725px; */
   background: linear-gradient(
     180deg,
     #8796ff 0%,
@@ -141,8 +144,7 @@ const WrapDiv = styled.div`
 
 const InnerDiv = styled.div`
   width: 904px;
-  height: 360px;
-  margin-top: 61px;
+  margin-top: 18px;
   border-radius: 11px;
   background: #d6dcff;
   box-shadow: 2.16px 2.16px 2.16px rgba(0, 0, 0, 0.25);
@@ -150,6 +152,12 @@ const InnerDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 19px;
+  padding: 19px 57px 19px 57px;
+  @media (max-width: 820px) {
+    width: 340px;
+    padding: 15px;
+    flex-wrap: wrap;
+  }
 `;
 
 const InnerList = styled.div`
@@ -161,6 +169,10 @@ const InnerList = styled.div`
   box-shadow: 2.15833px 2.15833px 5.39583px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   cursor: pointer;
+  @media (max-width: 820px) {
+    width: 310px;
+    height: 183px;
+  }
 `;
 
 const InnerImg = styled.img`
@@ -172,6 +184,10 @@ const InnerImg = styled.img`
     transform: scale(1.2);
     transition: all 0.35s;
   }
+  @media (max-width: 820px) {
+    width: 310px;
+    height: 134px;
+  }
 `;
 
 const OuterImg = styled.img`
@@ -182,6 +198,10 @@ const OuterImg = styled.img`
   &:hover {
     transform: scale(1.2);
     transition: all 0.35s;
+  }
+  @media (max-width: 820px) {
+    width: 164px;
+    height: 112px;
   }
 `;
 
@@ -197,17 +217,27 @@ const InnerTextBox = styled.div`
   height: 120.04px;
   background-color: white;
   margin-top: 178.06px;
+  @media (max-width: 820px) {
+    width: 310px;
+    height: 49px;
+    margin-top: 134px;
+  }
 `;
 
 const OuterDiv = styled.div`
   width: 100%;
-  height: 320px;
+  /* height: 320px; */
   background-color: transparent;
   margin-top: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 17px;
+  @media (max-width: 820px) {
+    margin-top: 15px;
+    gap: 12px;
+    padding-bottom: 25px;
+  }
 `;
 
 const OuterList = styled.div`
@@ -220,6 +250,11 @@ const OuterList = styled.div`
   position: relative;
   margin-bottom: 50px;
   cursor: pointer;
+  @media (max-width: 820px) {
+    width: 164px;
+    height: 150px;
+    margin-bottom: 0px;
+  }
 `;
 
 const OuterTextBox = styled.div`
@@ -229,6 +264,11 @@ const OuterTextBox = styled.div`
   position: absolute;
   margin-top: 146.24px;
   text-align: center;
+  @media (max-width: 820px) {
+    width: 164px;
+    height: 38px;
+    margin-top: 112px;
+  }
 `;
 
 const InnerNmb = styled.div`
@@ -245,6 +285,11 @@ const InnerNmb = styled.div`
   color: white;
   z-index: 3;
   font-weight: bold;
+  @media (max-width: 820px) {
+    margin-top: 0px;
+    margin-left: 0px;
+    border-radius: 5px;
+  }
 `;
 
 const OuterMedalHeartBox = styled.div`
@@ -255,6 +300,10 @@ const OuterMedalHeartBox = styled.div`
   margin-top: 113.65px;
   margin-left: 141.12px;
   position: absolute;
+  @media (max-width: 820px) {
+    margin-top: 82px;
+    margin-left: 102px;
+  }
 `;
 
 const OuterHeartImg = styled.img`
@@ -276,6 +325,9 @@ const MedalText = styled.h1`
   font-size: 21px;
   font-weight: bold;
   text-align: center;
+  @media (max-width: 820px) {
+    margin-top: 15px;
+  }
 `;
 
 const MedalSubText = styled.p`
@@ -292,6 +344,10 @@ const MedalHeartBox = styled.div`
   margin-top: 137.33px;
   margin-left: 172.15px;
   position: absolute;
+  @media (max-width: 820px) {
+    margin-top: 97px;
+    margin-left: 235px;
+  }
 `;
 
 const HeartBox = styled.div`
@@ -320,9 +376,29 @@ const OuterMedalText = styled.h1`
   font-size: 17px;
   font-weight: bold;
   text-align: center;
+  @media (max-width: 820px) {
+    margin-top: 11px;
+  }
 `;
 
 const OuterMedalSubText = styled.p`
   margin-top: 13px;
   font-size: 11px;
+`;
+
+const ListItemTitle = styled.p`
+  margin-top: 30px;
+  margin-left: 59px;
+  font-size: 17px;
+  color: #6478ff;
+  font-weight: bold;
+  @media (max-width: 820px) {
+    margin-top: 16px;
+    margin-left: 24px;
+  }
+`;
+
+const ListTitleWrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `;

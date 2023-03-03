@@ -159,7 +159,7 @@ const SearchOverallResultContainer = styled.div`
   background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
   border-radius: 11px;
   box-shadow: 2.16px 2.16px 5.4px rgba(0, 0, 0, 0.18);
-  padding-bottom: 50px;
+  padding-bottom: 26px;
   margin-top: 36px;
 `;
 
@@ -171,6 +171,10 @@ const ListItemCount = styled.p`
   margin-top: 40px;
   color: #6478ff;
   font-weight: bold;
+  @media (max-width: 820px) {
+    margin-top: 16px;
+    margin-left: 24px;
+  }
 `;
 
 const SearchListWrapper = styled.div`
@@ -200,7 +204,7 @@ const BtnWrapper = styled.div`
   justify-content: center;
   width: 10px;
   height: 30px;
-  @media (max-width: 360px) {
+  @media (max-width: 390px) {
     display: none;
   }
 `;
@@ -212,8 +216,9 @@ const MoveBtnStyle = styled.img`
 `;
 
 const PaginationDotsWrapper = styled.div`
-  margin-top: 30px;
-  width: 500px;
+  margin-top: 20px;
+  /* width: 500px; */
+  width: 100%;
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -231,7 +236,7 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
   /* color: #878787; */
   font-weight: 800;
   cursor: pointer;
-  font-size: 10.11px;
+  font-size: 14.32px;
 `;
 
 const ListContainer = styled.div`
@@ -240,17 +245,20 @@ const ListContainer = styled.div`
 `;
 
 const MobilePrevBtn = styled(GrFormPrevious)`
-  font-size: 14px;
+  font-size: 24px;
   cursor: pointer;
   @media (min-width: 391px) {
     display: none;
+    width: 24px;
+    height: 24px;
   }
 `;
 
 const MobileNextBtn = styled(GrFormNext)`
-  font-size: 14px;
+  font-size: 24px;
   cursor: pointer;
   @media (min-width: 391px) {
     display: none;
+    font-size: 24px;
   }
 `;
