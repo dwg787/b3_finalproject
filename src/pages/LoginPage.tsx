@@ -167,6 +167,11 @@ const LoginText = styled.div`
   color: #6478ff;
   font-weight: 700;
   font-size: 22px;
+  @media screen and (max-width: 390px) {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 29px;
+  }
 `;
 
 const LoginContent = styled.div`
@@ -175,6 +180,9 @@ const LoginContent = styled.div`
   padding: 0 40px 0 40px;
   font-weight: 500;
   font-size: 14px;
+  @media screen and (max-width: 390px) {
+    display: none;
+  }
 `;
 
 const InputWrap = styled.div`
@@ -191,9 +199,19 @@ const EmailInput = styled.input`
   padding: 15px;
   margin-bottom: -13px;
   &::placeholder {
-    font-style: normal;
     font-weight: 500;
     font-size: 16.4874px;
+  }
+  @media screen and (max-width: 390px) {
+    width: 241px;
+    height: 35px;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 8px;
+    &::placeholder {
+      font-weight: 500;
+      font-size: 12px;
+    }
   }
 `;
 
@@ -205,9 +223,19 @@ const PwInput = styled.input`
   padding: 15px;
   margin-bottom: 17px;
   &::placeholder {
-    font-style: normal;
     font-weight: 500;
     font-size: 16.4874px;
+  }
+  @media screen and (max-width: 390px) {
+    width: 241px;
+    height: 35px;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 8px;
+    &::placeholder {
+      font-weight: 500;
+      font-size: 12px;
+    }
   }
 `;
 
@@ -222,6 +250,12 @@ const LoginBtn = styled.button`
   border: none;
   margin-bottom: 30px;
   cursor: pointer;
+  @media screen and (max-width: 390px) {
+    width: 241px;
+    height: 35px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+  }
 `;
 
 const GoSignUp = styled.div`
@@ -232,6 +266,10 @@ const GoSignUp = styled.div`
   letter-spacing: -0.35px;
   text-decoration-line: underline;
   color: #9a9a9a;
+  @media screen and (max-width: 390px) {
+    font-weight: 500;
+    font-size: 10px;
+  }
 `;
 
 const GoogleBtn = styled.button`
@@ -248,6 +286,10 @@ const GoogleImg = styled.img`
 const GoogleText = styled.div`
   color: #8a8a8a;
   font-size: 12px;
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    font-weight: 500;
+  }
 `;
 
 const OtherLoginText = styled.div`
@@ -278,12 +320,16 @@ const OtherLoginText = styled.div`
     font-size: 0px;
     line-height: 0px;
   }
+  @media screen and (max-width: 390px) {
+    font-weight: 400;
+    font-size: 10px;
+  }
 `;
 
 const Otherlogins = styled.div`
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
 
   /* margin: 0 55px 0 55px; */
 `;
@@ -294,15 +340,14 @@ const FooterText = styled.div`
   color: #9a9a9a;
 
   text-decoration: underline;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-style: normal;
+  margin-top: 17px;
   font-weight: 500;
   font-size: 14px;
   text-align: center;
-
-  text-decoration-line: underline;
-  color: #9a9a9a;
+  @media screen and (max-width: 390px) {
+    font-weight: 500;
+    font-size: 10px;
+  }
 `;
 
 const Error = styled.div`

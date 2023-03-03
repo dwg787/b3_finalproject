@@ -257,5 +257,12 @@ const RealComment = styled.p`
 const EditInput = styled.input`
   font-weight: 500;
   font-size: 14.0915px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
   color: #595959;
+
+  border: none;
+  &:focus {
+    outline: 1px solid #6478ff;
+  }
 `;
