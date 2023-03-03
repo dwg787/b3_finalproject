@@ -138,7 +138,7 @@ const SearchOverallResultContainer = styled.div`
   position: relative;
   max-width: 1036px;
   width: 100%;
-  height: 632px;
+  min-height: 632px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -222,4 +222,7 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
 const ListContainer = styled.div`
   width: 100%;
   height: 100%;
+  @media (max-width: 820px) {
+    width: 65%;
+  }
 `;

@@ -5,18 +5,18 @@ import { useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
 
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
-  const spotRecommendationList = async () => {
+  const spotRecommendationList = useCallback(async () => {
     const fbdata = await getDoc(doc(db, 'spot_recommendation', `${props.id}`));
     if (fbdata) {
       setLikeData(fbdata.data());
     }
-  };
+  }, []);
 
   useEffect(() => {
     spotRecommendationList();
