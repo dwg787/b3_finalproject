@@ -1,10 +1,10 @@
 import React from 'react';
 import { collection, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import { db, auth } from '../../apis/firebase';
+import { db, auth } from '../../../apis/firebase';
 import styled from 'styled-components';
-import { getDate } from '../../common/utils';
-import useNotification from '../../hooks/useNotification';
+import { getDate } from '../../../common/utils';
+import useNotification from '../../../hooks/useNotification';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
 interface Review {
@@ -133,23 +133,21 @@ export default function ReviewList({
 const CommentBoxWrap = styled.div`
   /* flex-wrap: wrap; */
   /* border: 1px solid black; */
-  margin: 0 32.72px 0 37px;
+  /* margin: 0 32.72px 0 32.72px; */
+  margin-bottom: 10px;
 `;
 
 const CommentBox = styled.div`
-  width: 405.1px;
-  height: 66.58px;
-
   background: #ffffff;
-  box-shadow: 2.25685px 2.25685px 5.64213px rgba(0, 0, 0, 0.15);
-  border-radius: 7.89898px;
   display: flex;
   flex-direction: column;
+  width: 304px;
+  height: 55px;
+  box-shadow: 1.69289px 1.69289px 4.23224px rgba(0, 0, 0, 0.15);
+  border-radius: 5.92513px;
   &:hover {
     border: 1px solid #6478ff;
   }
-
-  /* margin: 0 32.72px 0 32.72px; */
 `;
 
 const NameAndDate = styled.div`
@@ -164,24 +162,26 @@ const NameAndDate = styled.div`
 `;
 
 const Name = styled.div`
-  font-weight: 700;
-  font-size: 11.8485px;
   color: #595959;
   width: 60px;
+
+  font-weight: 700;
+  font-size: 11px;
 `;
 
 const Date = styled.div`
-  font-weight: 500;
-  font-size: 10.1558px;
   color: #979797;
   width: 300px;
+
+  font-weight: 500;
+  font-size: 9px;
 `;
 
 const ToggleWrap = styled.div`
   display: flex;
   position: relative;
   width: 90px;
-  margin-right: 10px;
+  margin-right: 20px;
   margin-top: -5px;
   /* margin-top: -5px;
   margin-bottom: 5px; */
@@ -195,12 +195,14 @@ const BtnWrap = styled.div`
   align-items: center;
   border-radius: 5px;
   height: 20.72px;
+  position: absolute;
+  right: 0px;
 
   /* border: 1px solid red; */
 `;
 const UpdateBtn = styled.button`
   border: none;
-  /* width: 45px; */
+  width: 32px;
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
@@ -212,7 +214,7 @@ const UpdateBtn = styled.button`
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
-  /* width: 45px; */
+  width: 32px;
   padding: 5px;
   border: none;
   background-color: transparent;
@@ -227,10 +229,13 @@ const ToggleBtn = styled.button`
   border: none;
   background-color: transparent;
   position: absolute;
-  left: 65px;
-  top: -2px;
+
   height: 25px;
   cursor: pointer;
+
+  left: 50px;
+  top: -4px;
+  /* height: 25px; */
 `;
 
 const Toggle = styled(BsThreeDotsVertical)`
@@ -249,9 +254,10 @@ const Comment = styled.div`
 `;
 
 const RealComment = styled.p`
-  font-weight: 500;
-  font-size: 11.8485px;
   color: #595959;
+
+  font-weight: 500;
+  font-size: 10px;
 `;
 
 const EditInput = styled.input`

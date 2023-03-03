@@ -97,6 +97,10 @@ const NaverBtn = styled.button`
 const NaverText = styled.div`
   color: #8a8a8a;
   font-size: 12px;
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    font-weight: 500;
+  }
 `;
 
 const LoginButton = styled.button`

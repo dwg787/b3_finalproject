@@ -2,8 +2,7 @@ import { useQuery } from 'react-query';
 import { fetchNearSpotData } from '../../../apis/publicAPI';
 import Loader from '../../Loader/Loader';
 import noimg from '../../../assets/noimg.avif';
-import { Link, useNavigate } from 'react-router-dom';
-import RestaurantLiked from '../../Liked/RestaurantLiked';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Container,
@@ -14,7 +13,6 @@ import {
   MyCildTextBox,
   MyChildTexth3,
   MyChildTextp,
-  LikeBox,
 } from './styles';
 import { DetailDataTypes } from '../../../types/apiDataTypes';
 
