@@ -116,5 +116,4 @@ const RegionSelectionBtnWrapper = styled.div`
   justify-content: space-around;
   max-width: 1036px;
   width: 100%;
-  height: 80px;
 `;

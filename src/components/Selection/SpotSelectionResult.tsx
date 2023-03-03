@@ -174,8 +174,10 @@ const ResultWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 14px;
+  @media (max-width: 390px) {
+  }
 `;
 
 const BtnWrapper = styled.div`
@@ -186,6 +188,9 @@ const BtnWrapper = styled.div`
   justify-content: center;
   width: 10px;
   height: 30px;
+  @media (max-width: 390px) {
+    display: none;
+  }
 `;
 
 const MoveBtnStyle = styled.img`

@@ -60,6 +60,11 @@ const RestaurantEachItemWrapper = styled.div`
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   cursor: pointer;
+  @media (max-width: 740px) {
+    width: 164px;
+    height: 177px;
+    margin-bottom: 0px;
+  }
 `;
 
 const RestaurantImgWrapper = styled.picture`

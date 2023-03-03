@@ -186,6 +186,9 @@ const BtnWrapper = styled.div`
   justify-content: center;
   width: 10px;
   height: 30px;
+  @media (max-width: 390px) {
+    display: none;
+  }
 `;
 
 const MoveBtnStyle = styled.img`
