@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-const SkeletonSelectionResult = () => {
+const MobileSkeletonSelectionResult = () => {
   return (
     <>
       <ResultWrapper>
@@ -17,7 +17,7 @@ const SkeletonSelectionResult = () => {
   );
 };
 
-export default SkeletonSelectionResult;
+export default MobileSkeletonSelectionResult;
 
 const SkeletonLoadingAnimation = keyframes`
    0% {
@@ -48,11 +48,6 @@ const SpotEachItemWrapper = styled.div`
   border-radius: 7px;
   overflow: hidden;
   position: relative;
-  @media (max-width: 740px) {
-    width: 164px;
-    height: 177px;
-    margin-bottom: 0px;
-  }
   &::before {
     content: '';
     position: absolute;
@@ -62,10 +57,5 @@ const SpotEachItemWrapper = styled.div`
     height: 100%;
     background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
     animation: ${SkeletonLoadingAnimation} 1s infinite linear;
-    @media (max-width: 740px) {
-      width: 164px;
-      height: 177px;
-      margin-bottom: 0px;
-    }
   }
 `;

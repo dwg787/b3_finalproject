@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function PrivacyModal({ setPrivacyModalOpen }) {
+export default function PrivacyModal({ setPrivacyModalOpen }: any) {
   //   const closeModal = () => {
   //     setModalOpen(false);
   //   };

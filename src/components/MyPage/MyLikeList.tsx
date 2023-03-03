@@ -149,7 +149,13 @@ const MyLikeList = () => {
                             <StTicketHeader2>
                               <DelBtn
                                 src={DeleteImg}
-                                onClick={() => delResLiked(data.contentid)}
+                                onClick={() => {
+                                  if (
+                                    window.confirm('정말로 삭제하시겠습니까?')
+                                  ) {
+                                    delSpotLiked(data.contentid);
+                                  }
+                                }}
                               />
                             </StTicketHeader2>
 
@@ -181,7 +187,13 @@ const MyLikeList = () => {
                             <StTicketHeader2>
                               <DelBtn
                                 src={DeleteImg}
-                                onClick={() => delStayLiked(data.contentid)}
+                                onClick={() => {
+                                  if (
+                                    window.confirm('정말로 삭제하시겠습니까?')
+                                  ) {
+                                    delSpotLiked(data.contentid);
+                                  }
+                                }}
                               />
                             </StTicketHeader2>
 
@@ -216,7 +228,13 @@ const MyLikeList = () => {
                               <StTicketHeader2>
                                 <DelBtn
                                   src={DeleteImg}
-                                  onClick={() => delSpotLiked(data.contentid)}
+                                  onClick={() => {
+                                    if (
+                                      window.confirm('정말로 삭제하시겠습니까?')
+                                    ) {
+                                      delSpotLiked(data.contentid);
+                                    }
+                                  }}
                                 />
                               </StTicketHeader2>
 

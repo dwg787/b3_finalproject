@@ -35,7 +35,7 @@ export default function TopButton() {
     <>
       {ScrollActive ? (
         <TopBtn onClick={scrollToTop}>
-          <img src={topbutton} alt="" />
+          <TopImg src={topbutton} alt="" />
         </TopBtn>
       ) : null}
     </>
@@ -46,15 +46,25 @@ const TopBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 34px;
+  width: 30px;
   height: 30px;
   border: none;
-  border-radius: 10px;
+  border-radius: 40px;
   position: fixed;
-  background-color: #333333;
-  color: white;
   left: 94.5%;
   top: 84%;
   z-index: 999;
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    left: 80.5%;
+    font-size: 14px;
+    top: 83.5%;
+  }
+`;
+
+const TopImg = styled.img`
+  @media screen and (max-width: 820px) {
+    width: 38px;
+    height: 38px;
+  }
 `;
