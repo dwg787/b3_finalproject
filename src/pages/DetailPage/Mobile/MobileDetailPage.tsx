@@ -1,0 +1,172 @@
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  increment,
+  DocumentData,
+} from 'firebase/firestore';
+import { useQuery } from 'react-query';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchSpotDetailData } from '../../../apis/publicAPI';
+import { FetchedStayDataType } from '../../../types/apiDataTypes';
+import Loader from '../../../components/Loader/Loader';
+import { useEffect, useState } from 'react';
+import { db } from '../../../apis/firebase';
+
+import Communication from '../../../components/Review/Communication';
+import Notification from '../../../components/Notification/Notification';
+import noimg from '../../../assets/noimg.avif';
+import {
+  DetailWrap,
+  Container,
+  DeatilBox,
+  DeatilImojiBox,
+  CommunicationWrap,
+  DetailInfo,
+  DetailInformation,
+  SideInfoWrapper,
+  DetailImg,
+  DetailImgBox,
+  DetailText,
+  DetailTextArr,
+  DeatilTextBox,
+  DetailInformationMap,
+  TabHr,
+  DetailInfo2,
+} from './styles';
+import SpotLiked from '../../../components/Liked/SpotLiked';
+import SideInfoMap from '../../../components/Map/SideInfoMap';
+import DetailFooter from '../../../components/Footer/DetailFooter';
+import DetailScroll from '../../../components/Scroll/DetailScroll';
+import MobileStayInfo from '../../../components/Recommendation/Info/Mobile/MobileStayInfo';
+import MobileRestaurantInfo from '../../../components/Recommendation/Info/Mobile/MobileRestaurantInfo';
+
+const MobileDetailPage = () => {
+  const param = useParams();
+  const navigate = useNavigate();
+  const [likeData, setLikeData] = useState<DocumentData | undefined>();
+
+  const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
+    ['spot_detail', param],
+    () => fetchSpotDetailData({ param }),
+  );
+
+  const getRecCnt = async () => {
+    if (param.id) {
+      const data = await getDoc(doc(db, 'spot_recommendation', `${param.id}`));
+
+      if (data.exists()) {
+        const spotData = data.data();
+        setLikeData(spotData);
+        return spotData;
+      }
+    }
+    return;
+  };
+
+  const updateRecCnt = async () => {
+    if (param.id) {
+      await updateDoc(doc(db, 'spot_recommendation', param.id), {
+        viewCnt: increment(1),
+      });
+    }
+  };
+
+  const saveNewRecCnt = async (spotDetailData: FetchedStayDataType) => {
+    if (param.id) {
+      await setDoc(doc(db, 'spot_recommendation', param.id), {
+        ...spotDetailData,
+        viewCnt: 1,
+        likeCnt: 0,
+      });
+    }
+  };
+
+  useEffect(() => {
+    const getFirestoreRecCnt = async () => {
+      const res = await getRecCnt();
+      if (res) {
+        updateRecCnt();
+      } else {
+        if (spotDetailData) saveNewRecCnt(spotDetailData);
+      }
+    };
+    getFirestoreRecCnt();
+  }, [spotDetailData]);
+
+  return (
+    <DetailWrap>
+      <Container>
+        <Notification />
+        {isLoadingSpot ? (
+          <Loader />
+        ) : (
+          <>
+            {spotDetailData ? (
+              <DeatilBox key={param.id}>
+                <DetailScroll />
+                <TabHr />
+
+                <DeatilTextBox>
+                  <DetailText>{spotDetailData.title}</DetailText>
+                  <DetailTextArr>
+                    {spotDetailData.addr1.split(' ', 2)}
+                  </DetailTextArr>
+                  <DeatilImojiBox>
+                    <SpotLiked spotDetailData={spotDetailData} />
+                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
+                  </DeatilImojiBox>
+                </DeatilTextBox>
+
+                <DetailImgBox id="1">
+                  <DetailImg
+                    src={spotDetailData.firstimage || noimg}
+                    alt="관광지 사진"
+                  />
+                </DetailImgBox>
+
+                <DetailInformation id="2">
+                  <DetailInfo>
+                    {spotDetailData.overview.split('<', 1)}
+                  </DetailInfo>
+
+                  <DetailInfo2>
+                    <span style={{ fontWeight: '900', marginRight: '4px' }}>
+                      주소
+                    </span>
+                    {spotDetailData.addr1}
+                  </DetailInfo2>
+                </DetailInformation>
+
+                <DetailInformationMap id="3">
+                  <SideInfoMap
+                    mapx={spotDetailData?.mapx}
+                    mapy={spotDetailData?.mapy}
+                    title={spotDetailData?.title}
+                    tel={spotDetailData?.tel}
+                    homepage={spotDetailData?.homepage}
+                  />
+                </DetailInformationMap>
+
+                <CommunicationWrap id="4">
+                  {/* <Communication /> */}
+                </CommunicationWrap>
+                <SideInfoWrapper id="5">
+                  <MobileStayInfo spotData={spotDetailData} />
+                  <MobileRestaurantInfo spotData={spotDetailData} />
+                </SideInfoWrapper>
+              </DeatilBox>
+            ) : (
+              <div>찾으시는 정보가 없습니다</div>
+            )}
+          </>
+        )}
+
+        <DetailFooter />
+      </Container>
+    </DetailWrap>
+  );
+};
+
+export default MobileDetailPage;

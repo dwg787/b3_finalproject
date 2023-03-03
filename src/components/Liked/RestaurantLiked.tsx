@@ -175,4 +175,10 @@ const Heart = styled.img`
   &:hover {
     transform: scale(1.1);
   }
+  @media screen and (max-width: 820px) {
+    width: 14px;
+    height: 11px;
+    margin-right: 1px;
+    padding: 0;
+  }
 `;

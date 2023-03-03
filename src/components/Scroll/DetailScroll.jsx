@@ -46,6 +46,16 @@ const MainDiv = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  @media screen and (max-width: 820px) {
+    width: 390px;
+    height: 40px;
+    padding: 12px 0 17px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
 `;
 
 const StLinkBox = styled.div`
@@ -61,4 +71,10 @@ const StLinkTextBox = styled.span`
   cursor: pointer;
   line-height: 14.9px;
   font-weight: Bold;
+  @media screen and (max-width: 820px) {
+    font-size: 12px;
+    cursor: pointer;
+    line-height: 10.6px;
+    font-weight: Bold;
+  }
 `;

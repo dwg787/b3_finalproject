@@ -41,10 +41,18 @@ import {
 import StayInfo from '../../components/Recommendation/Info/StayInfo';
 import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
 import DetailFooter from '../../components/Footer/DetailFooter';
+import { useMediaQuery } from 'react-responsive';
+import MobileRestaurantDetailPage from './Mobile/MobileRestaurantDetailPage';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:820px)',
+  });
+
+  // console.log('반응형?', isMobile);
+
   const {
     data: restaurantDetailData,
     isLoading: isLoadingRestaurantDetail,
@@ -97,84 +105,92 @@ const RestaurantDetailPage = () => {
       }
     };
     getFirestoreRecCnt();
-  }, [restaurantDetailData, likeData]);
+  }, [restaurantDetailData]);
 
   // setThisParam(param.id);
   console.log('식당정보', restaurantDetailData);
   return (
-    <DetailWrap>
-      <Container>
-        <Notification />
-        {isLoadingRestaurantDetail ? (
-          <Loader />
-        ) : (
-          <>
-            {restaurantDetailData ? (
-              <DeatilBox key={param.id}>
-                <DetailScroll />
-                <TabHr />
-                <DeatilTextBox>
-                  <DetailText>{restaurantDetailData.title}</DetailText>
-                  <DetailTextArr>
-                    {restaurantDetailData.addr1.split(' ', 2)}
-                  </DetailTextArr>
-                  <DeatilImojiBox>
-                    <RestaurantLiked
-                      restaurantDetailData={restaurantDetailData}
-                    />
-                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
-                  </DeatilImojiBox>
-                </DeatilTextBox>
-
-                <DetailImgBox id="1">
-                  <DetailImg
-                    src={restaurantDetailData.firstimage || noimg}
-                    alt="사진"
-                  />
-                </DetailImgBox>
-
-                <DetailInformation id="2">
-                  <DetailInfo>
-                    {restaurantDetailData.overview.split('<', 1)}
-                  </DetailInfo>
-
-                  <DetailInfo2>
-                    <span style={{ fontWeight: '900', marginRight: '15.5px' }}>
-                      주소
-                    </span>
-                    {restaurantDetailData.addr1}
-                  </DetailInfo2>
-                </DetailInformation>
-
-                <DetailInformationMap id="3">
-                  <KakaoMap
-                    mapx={restaurantDetailData.mapx}
-                    mapy={restaurantDetailData.mapy}
-                    title={restaurantDetailData.title}
-                    tel={restaurantDetailData.tel}
-                    homepage={restaurantDetailData.homepage}
-                  />
-                </DetailInformationMap>
-
-                <CommunicationWrap id="4">
-                  <Communication />
-                </CommunicationWrap>
-                <SideInfoWrapper id="5">
-                  <SpotInfo restaurantDetailData={restaurantDetailData} />
-                  <StayInfo restaurantDetailData={restaurantDetailData} />
-                </SideInfoWrapper>
-
-                {/* <div>{e.homepage}</div> */}
-              </DeatilBox>
+    <>
+      {isMobile ? (
+        <MobileRestaurantDetailPage />
+      ) : (
+        <DetailWrap>
+          <Container>
+            <Notification />
+            {isLoadingRestaurantDetail ? (
+              <Loader />
             ) : (
-              <div>찾으시는 정보가 없습니다</div>
-            )}
-          </>
-        )}
+              <>
+                {restaurantDetailData ? (
+                  <DeatilBox key={param.id}>
+                    <DetailScroll />
+                    <TabHr />
+                    <DeatilTextBox>
+                      <DetailText>{restaurantDetailData.title}</DetailText>
+                      <DetailTextArr>
+                        {restaurantDetailData.addr1.split(' ', 2)}
+                      </DetailTextArr>
+                      <DeatilImojiBox>
+                        <RestaurantLiked
+                          restaurantDetailData={restaurantDetailData}
+                        />
+                        <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
+                      </DeatilImojiBox>
+                    </DeatilTextBox>
 
-        <DetailFooter />
-      </Container>
-    </DetailWrap>
+                    <DetailImgBox id="1">
+                      <DetailImg
+                        src={restaurantDetailData.firstimage || noimg}
+                        alt="사진"
+                      />
+                    </DetailImgBox>
+
+                    <DetailInformation id="2">
+                      <DetailInfo>
+                        {restaurantDetailData.overview.split('<', 1)}
+                      </DetailInfo>
+
+                      <DetailInfo2>
+                        <span
+                          style={{ fontWeight: '900', marginRight: '15.5px' }}
+                        >
+                          주소
+                        </span>
+                        {restaurantDetailData.addr1}
+                      </DetailInfo2>
+                    </DetailInformation>
+
+                    <DetailInformationMap id="3">
+                      <KakaoMap
+                        mapx={restaurantDetailData.mapx}
+                        mapy={restaurantDetailData.mapy}
+                        title={restaurantDetailData.title}
+                        tel={restaurantDetailData.tel}
+                        homepage={restaurantDetailData.homepage}
+                      />
+                    </DetailInformationMap>
+
+                    <CommunicationWrap id="4">
+                      <Communication />
+                    </CommunicationWrap>
+                    <SideInfoWrapper id="5">
+                      <SpotInfo restaurantDetailData={restaurantDetailData} />
+                      <StayInfo restaurantDetailData={restaurantDetailData} />
+                    </SideInfoWrapper>
+
+                    {/* <div>{e.homepage}</div> */}
+                  </DeatilBox>
+                ) : (
+                  <div>찾으시는 정보가 없습니다</div>
+                )}
+              </>
+            )}
+
+            <DetailFooter />
+          </Container>
+        </DetailWrap>
+      )}
+    </>
   );
 };
 

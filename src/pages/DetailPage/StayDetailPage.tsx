@@ -50,6 +50,8 @@ import {
   DetailInfo2,
 } from './styles';
 import DetailFooter from '../../components/Footer/DetailFooter';
+import { useMediaQuery } from 'react-responsive';
+import MobileStayDetailPage from './Mobile/MobileStayDetailPage';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -58,6 +60,12 @@ const StayDetailPage = () => {
     '예약 페이지가 준비되지 않았습니다.',
   );
   const { addNoti } = useNotification(alarmMsg);
+
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:820px)',
+  });
+
+  console.log('반응형?', isMobile);
 
   const { data: stayDetailData, isLoading: isLoadingStayDetail } = useQuery(
     ['stay_detail', param],
@@ -127,7 +135,7 @@ const StayDetailPage = () => {
       }
     };
     getFirestoreRecCnt();
-  }, [stayDetailData, likeData]);
+  }, [stayDetailData]);
   // console.log('숙박 상세정보', stayDetailData);
 
   //예약하기 url뽑기(common파일로 정리?필요)
@@ -146,109 +154,127 @@ const StayDetailPage = () => {
   };
 
   return (
-    <DetailWrap>
-      <Container>
-        <Notification />
-        {isLoadingStayDetail || isLoadingAdditional1 ? (
-          <Loader />
-        ) : (
-          <>
-            {stayDetailData ? (
-              <DeatilBox key={param.id}>
-                <DetailScroll />
-                <TabHr />
-                <DeatilTextBox>
-                  <DetailText>{stayDetailData.title}</DetailText>
-                  <DetailTextArr>
-                    {stayDetailData.addr1.split(' ', 2)}
-                  </DetailTextArr>
-                  <DeatilImojiBox>
-                    <StayLiked stayDetailData={stayDetailData} />
-                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
-                  </DeatilImojiBox>
-                </DeatilTextBox>
-
-                <DetailImgBox id="1">
-                  <DetailImg
-                    src={stayDetailData.firstimage || noimg}
-                    alt="사진"
-                  />
-                  <DetailImgBtn onClick={ReservationClick}>
-                    예약하기
-                  </DetailImgBtn>
-                </DetailImgBox>
-
-                <DetailInformation id="2">
-                  <DetailInfo>
-                    {stayDetailData.overview.split('<', 1)}
-                  </DetailInfo>
-                  <DetailInfo2>
-                    <DetailTextBox>
-                      <DetailInfoAdd>
-                        <span
-                          style={{ fontWeight: '900', marginRight: '15.5px' }}
-                        >
-                          문의 및 안내{' '}
-                        </span>{' '}
-                        {stayAdditionalData1.infocenterlodging}
-                      </DetailInfoAdd>
-                      <DetailInfoAdd>
-                        <span
-                          style={{ fontWeight: '900', marginRight: '15.5px' }}
-                        >
-                          홈페이지{' '}
-                        </span>
-                        {url}
-                      </DetailInfoAdd>
-                    </DetailTextBox>
-                    <DetailTextBox>
-                      <DetailInfoAdd>
-                        <span
-                          style={{ fontWeight: '900', marginRight: '15.5px' }}
-                        >
-                          주소{' '}
-                        </span>{' '}
-                        {stayDetailData.addr1}
-                      </DetailInfoAdd>
-                      <DetailInfoAdd>
-                        <span
-                          style={{ fontWeight: '900', marginRight: '15.5px' }}
-                        >
-                          주차{' '}
-                        </span>{' '}
-                        {stayAdditionalData1.parkinglodging}
-                      </DetailInfoAdd>
-                    </DetailTextBox>
-                  </DetailInfo2>
-                </DetailInformation>
-
-                <DetailInformationMap id="3">
-                  <KakaoMap
-                    mapx={stayDetailData.mapx}
-                    mapy={stayDetailData.mapy}
-                    title={stayDetailData.title}
-                    tel={stayDetailData.tel}
-                    homepage={stayDetailData.homepage}
-                  />
-                </DetailInformationMap>
-
-                <CommunicationWrap id="4">
-                  <Communication />
-                </CommunicationWrap>
-                <SideInfoWrapper id="5">
-                  <SpotInfo stayDetailData={stayDetailData} />
-                  <RestaurantInfo stayDetailData={stayDetailData} />
-                </SideInfoWrapper>
-              </DeatilBox>
+    <>
+      {isMobile ? (
+        <MobileStayDetailPage />
+      ) : (
+        <DetailWrap>
+          <Container>
+            <Notification />
+            {isLoadingStayDetail || isLoadingAdditional1 ? (
+              <Loader />
             ) : (
-              <div>찾으시는 정보가 없습니다</div>
-            )}
-          </>
-        )}
+              <>
+                {stayDetailData ? (
+                  <DeatilBox key={param.id}>
+                    <DetailScroll />
+                    <TabHr />
+                    <DeatilTextBox>
+                      <DetailText>{stayDetailData.title}</DetailText>
+                      <DetailTextArr>
+                        {stayDetailData.addr1.split(' ', 2)}
+                      </DetailTextArr>
+                      <DeatilImojiBox>
+                        <StayLiked stayDetailData={stayDetailData} />
+                        <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
+                      </DeatilImojiBox>
+                    </DeatilTextBox>
 
-        <DetailFooter />
-      </Container>
-    </DetailWrap>
+                    <DetailImgBox id="1">
+                      <DetailImg
+                        src={stayDetailData.firstimage || noimg}
+                        alt="사진"
+                      />
+                      <DetailImgBtn onClick={ReservationClick}>
+                        예약하기
+                      </DetailImgBtn>
+                    </DetailImgBox>
+
+                    <DetailInformation id="2">
+                      <DetailInfo>
+                        {stayDetailData.overview.split('<', 1)}
+                      </DetailInfo>
+                      <DetailInfo2>
+                        <DetailTextBox>
+                          <DetailInfoAdd>
+                            <span
+                              style={{
+                                fontWeight: '900',
+                                marginRight: '15.5px',
+                              }}
+                            >
+                              문의 및 안내{' '}
+                            </span>{' '}
+                            {stayAdditionalData1.infocenterlodging}
+                          </DetailInfoAdd>
+                          <DetailInfoAdd>
+                            <span
+                              style={{
+                                fontWeight: '900',
+                                marginRight: '15.5px',
+                              }}
+                            >
+                              홈페이지{' '}
+                            </span>
+                            {url}
+                          </DetailInfoAdd>
+                        </DetailTextBox>
+                        <DetailTextBox>
+                          <DetailInfoAdd>
+                            <span
+                              style={{
+                                fontWeight: '900',
+                                marginRight: '15.5px',
+                              }}
+                            >
+                              주소{' '}
+                            </span>{' '}
+                            {stayDetailData.addr1}
+                          </DetailInfoAdd>
+                          <DetailInfoAdd>
+                            <span
+                              style={{
+                                fontWeight: '900',
+                                marginRight: '15.5px',
+                              }}
+                            >
+                              주차{' '}
+                            </span>{' '}
+                            {stayAdditionalData1.parkinglodging}
+                          </DetailInfoAdd>
+                        </DetailTextBox>
+                      </DetailInfo2>
+                    </DetailInformation>
+
+                    <DetailInformationMap id="3">
+                      <KakaoMap
+                        mapx={stayDetailData.mapx}
+                        mapy={stayDetailData.mapy}
+                        title={stayDetailData.title}
+                        tel={stayDetailData.tel}
+                        homepage={stayDetailData.homepage}
+                      />
+                    </DetailInformationMap>
+
+                    <CommunicationWrap id="4">
+                      <Communication />
+                    </CommunicationWrap>
+                    <SideInfoWrapper id="5">
+                      <SpotInfo stayDetailData={stayDetailData} />
+                      <RestaurantInfo stayDetailData={stayDetailData} />
+                    </SideInfoWrapper>
+                  </DeatilBox>
+                ) : (
+                  <div>찾으시는 정보가 없습니다</div>
+                )}
+              </>
+            )}
+
+            <DetailFooter />
+          </Container>
+        </DetailWrap>
+      )}
+    </>
   );
 };
 

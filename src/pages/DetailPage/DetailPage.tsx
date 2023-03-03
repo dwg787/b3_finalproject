@@ -18,7 +18,6 @@ import StayInfo from '../../components/Recommendation/Info/StayInfo';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';
-import MapImoji from '../../components/Map/MapImoji';
 import noimg from '../../assets/noimg.avif';
 import {
   DetailWrap,
@@ -41,11 +40,19 @@ import {
 import SpotLiked from '../../components/Liked/SpotLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
 import DetailFooter from '../../components/Footer/DetailFooter';
+import { useMediaQuery } from 'react-responsive';
+import MobileDetailPage from './Mobile/MobileDetailPage';
 
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
+
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:820px)',
+  });
+
+  // console.log('반응형?', isMobile);
 
   const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
@@ -93,79 +100,87 @@ const DetailPage = () => {
       }
     };
     getFirestoreRecCnt();
-  }, [spotDetailData, likeData]);
+  }, [spotDetailData]);
 
   return (
-    <DetailWrap>
-      <Container>
-        <Notification />
-        {isLoadingSpot ? (
-          <Loader />
-        ) : (
-          <>
-            {spotDetailData ? (
-              <DeatilBox key={param.id}>
-                <DetailScroll />
-                <TabHr />
-
-                <DeatilTextBox>
-                  <DetailText>{spotDetailData.title}</DetailText>
-                  <DetailTextArr>
-                    {spotDetailData.addr1.split(' ', 2)}
-                  </DetailTextArr>
-                  <DeatilImojiBox>
-                    <SpotLiked spotDetailData={spotDetailData} />
-                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
-                  </DeatilImojiBox>
-                </DeatilTextBox>
-
-                <DetailImgBox id="1">
-                  <DetailImg
-                    src={spotDetailData.firstimage || noimg}
-                    alt="관광지 사진"
-                  />
-                </DetailImgBox>
-
-                <DetailInformation id="2">
-                  <DetailInfo>
-                    {spotDetailData.overview.split('<', 1)}
-                  </DetailInfo>
-
-                  <DetailInfo2>
-                    <span style={{ fontWeight: '900', marginRight: '15.5px' }}>
-                      주소
-                    </span>
-                    {spotDetailData.addr1}
-                  </DetailInfo2>
-                </DetailInformation>
-
-                <DetailInformationMap id="3">
-                  <SideInfoMap
-                    mapx={spotDetailData?.mapx}
-                    mapy={spotDetailData?.mapy}
-                    title={spotDetailData?.title}
-                    tel={spotDetailData?.tel}
-                    homepage={spotDetailData?.homepage}
-                  />
-                </DetailInformationMap>
-
-                <CommunicationWrap id="4">
-                  <Communication />
-                </CommunicationWrap>
-                <SideInfoWrapper id="5">
-                  <StayInfo spotData={spotDetailData} />
-                  <RestaurantInfo spotData={spotDetailData} />
-                </SideInfoWrapper>
-              </DeatilBox>
+    <>
+      {isMobile ? (
+        <MobileDetailPage />
+      ) : (
+        <DetailWrap>
+          <Container>
+            <Notification />
+            {isLoadingSpot ? (
+              <Loader />
             ) : (
-              <div>찾으시는 정보가 없습니다</div>
-            )}
-          </>
-        )}
+              <>
+                {spotDetailData ? (
+                  <DeatilBox key={param.id}>
+                    <DetailScroll />
+                    <TabHr />
 
-        <DetailFooter />
-      </Container>
-    </DetailWrap>
+                    <DeatilTextBox>
+                      <DetailText>{spotDetailData.title}</DetailText>
+                      <DetailTextArr>
+                        {spotDetailData.addr1.split(' ', 2)}
+                      </DetailTextArr>
+                      <DeatilImojiBox>
+                        <SpotLiked spotDetailData={spotDetailData} />
+                        <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
+                      </DeatilImojiBox>
+                    </DeatilTextBox>
+
+                    <DetailImgBox id="1">
+                      <DetailImg
+                        src={spotDetailData.firstimage || noimg}
+                        alt="관광지 사진"
+                      />
+                    </DetailImgBox>
+
+                    <DetailInformation id="2">
+                      <DetailInfo>
+                        {spotDetailData.overview.split('<', 1)}
+                      </DetailInfo>
+
+                      <DetailInfo2>
+                        <span
+                          style={{ fontWeight: '900', marginRight: '15.5px' }}
+                        >
+                          주소
+                        </span>
+                        {spotDetailData.addr1}
+                      </DetailInfo2>
+                    </DetailInformation>
+
+                    <DetailInformationMap id="3">
+                      <SideInfoMap
+                        mapx={spotDetailData?.mapx}
+                        mapy={spotDetailData?.mapy}
+                        title={spotDetailData?.title}
+                        tel={spotDetailData?.tel}
+                        homepage={spotDetailData?.homepage}
+                      />
+                    </DetailInformationMap>
+
+                    <CommunicationWrap id="4">
+                      <Communication />
+                    </CommunicationWrap>
+                    <SideInfoWrapper id="5">
+                      <StayInfo spotData={spotDetailData} />
+                      <RestaurantInfo spotData={spotDetailData} />
+                    </SideInfoWrapper>
+                  </DeatilBox>
+                ) : (
+                  <div>찾으시는 정보가 없습니다</div>
+                )}
+              </>
+            )}
+
+            <DetailFooter />
+          </Container>
+        </DetailWrap>
+      )}
+    </>
   );
 };
 
