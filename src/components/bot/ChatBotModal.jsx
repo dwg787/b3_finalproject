@@ -30,7 +30,7 @@ const Chatimgbtn = styled.div`
   height: 58px;
   left: 94%;
   top: 90%;
-  z-index: 1000;
+  z-index: 500;
   cursor: pointer;
   @media screen and (max-width: 820px) {
     width: 40px;
