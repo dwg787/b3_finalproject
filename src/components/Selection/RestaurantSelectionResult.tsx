@@ -12,6 +12,7 @@ import rightbtn from '../../assets/rightbtn.png';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 import { AREA_CODE } from '../../apis/apiCodes';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const RestaurantSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -105,6 +106,11 @@ const RestaurantSelectionResult = () => {
             </SearchListWrapper>
           </ListContainer>
           <PaginationDotsWrapper>
+            {data.pageNo - 1 < 1 ? (
+              <></>
+            ) : (
+              <MobilePrevBtn onClick={() => setRestCurPage(restCurPage - 1)} />
+            )}
             {Array(Math.ceil(data.totalCount / 8) + 1)
               .fill('')
               .slice(firstNum.current, firstNum.current + 5)
@@ -126,6 +132,11 @@ const RestaurantSelectionResult = () => {
                   );
                 }
               })}
+            {Math.ceil(data.totalCount / 8) <= restCurPage ? (
+              <></>
+            ) : (
+              <MobileNextBtn onClick={handleFetchNextPage} />
+            )}
           </PaginationDotsWrapper>
         </>
       )}
@@ -137,8 +148,9 @@ export default RestaurantSelectionResult;
 const SearchOverallResultContainer = styled.div`
   position: relative;
   max-width: 1036px;
+  min-width: 390px;
   width: 100%;
-  height: 632px;
+  min-height: 632px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -188,6 +200,9 @@ const BtnWrapper = styled.div`
   justify-content: center;
   width: 10px;
   height: 30px;
+  @media (max-width: 390px) {
+    display: none;
+  }
 `;
 
 const MoveBtnStyle = styled.img`
@@ -222,4 +237,20 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
 const ListContainer = styled.div`
   width: 100%;
   height: 100%;
+`;
+
+const MobilePrevBtn = styled(GrFormPrevious)`
+  font-size: 14px;
+  cursor: pointer;
+  @media (min-width: 391px) {
+    display: none;
+  }
+`;
+
+const MobileNextBtn = styled(GrFormNext)`
+  font-size: 14px;
+  cursor: pointer;
+  @media (min-width: 391px) {
+    display: none;
+  }
 `;
