@@ -10,18 +10,14 @@ export default function ChatBotModal() {
     setModal((prev) => !prev);
   };
   return (
-    <Wrapdiv>
+    <>
       <Chatimgbtn onClick={modalEvents}>
         <ChatingImg src={chatbot} alt="" />
       </Chatimgbtn>
-      {modal === true ? <Chat /> : null}
-    </Wrapdiv>
+      {modal === true ? <Chat setModal={setModal} /> : null}
+    </>
   );
 }
-const Wrapdiv = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 
 const Chatimgbtn = styled.div`
   position: fixed;

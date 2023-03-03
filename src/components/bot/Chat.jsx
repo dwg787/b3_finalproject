@@ -5,7 +5,7 @@ import ChatBot from 'react-simple-chatbot';
 import styled, { ThemeProvider } from 'styled-components';
 import { db } from '../../apis/firebase';
 
-export default function Chat() {
+export default function Chat({ setModal }) {
   const [suggestions, setSuggestions] = useState();
   const [bug, setBug] = useState();
   const [serviceError, setServiceError] = useState();
@@ -258,9 +258,14 @@ export default function Chat() {
     userBubbleColor: '#fff',
     userFontColor: '#333333',
   };
+
   return (
-    <>
-      <Fuckdiv>
+    <ModalBackground
+      onClick={() => {
+        setModal(false);
+      }}
+    >
+      <Modaldiv>
         <ThemeProvider theme={theme}>
           <ChatBot
             steps={steps}
@@ -270,13 +275,13 @@ export default function Chat() {
             hideBotAvatar={true}
           />
         </ThemeProvider>
-      </Fuckdiv>
+      </Modaldiv>
       {/* <button onClick={addUserList}>하이</button> */}
-    </>
+    </ModalBackground>
   );
 }
 
-const Fuckdiv = styled.div`
+const Modaldiv = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
@@ -289,4 +294,14 @@ const Fuckdiv = styled.div`
     left: 10%;
     top: 15%;
   }
+`;
+
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(79, 78, 72, 0.7);
+  z-index: 3;
 `;
