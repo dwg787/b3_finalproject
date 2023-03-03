@@ -24,4 +24,8 @@ const MenuContainer = styled.div`
   justify-content: center;
   background-color: #ffffff;
   gap: 180px;
+  @media screen and (max-width: 820px) {
+    justify-content: space-between;
+    gap: 10px;
+  }
 `;
