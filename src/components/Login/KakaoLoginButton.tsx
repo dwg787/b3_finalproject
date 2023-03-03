@@ -37,4 +37,8 @@ const KakaoLogoButton = styled.img`
 const KakaoText = styled.div`
   color: #8a8a8a;
   font-size: 12px;
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    font-weight: 500;
+  }
 `;

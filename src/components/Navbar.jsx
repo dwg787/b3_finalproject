@@ -331,14 +331,21 @@ const ModalWrapper = styled.div`
 
 const Modal = styled.div`
   background-color: #ffff;
-  width: 395.69px;
-  height: 590px;
   /* width: 395.69px;
-  height: 526px; */
+  height: 590px; */
+
+  width: 395.69px;
+  height: 565px;
   box-shadow: 4.76737px 4.76737px 7.94562px rgba(0, 0, 0, 0.25);
   border-radius: 14.9657px;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 390px) {
+    width: 314.31px;
+    height: 450px;
+    box-shadow: 3.78685px 3.78685px 6.31141px rgba(0, 0, 0, 0.25);
+    border-radius: 11.8876px;
+  }
 `;
 const ModalHeader = styled.div`
   display: flex;
@@ -361,6 +368,10 @@ const CloseBtn = styled.button`
 const CloseImg = styled.img`
   width: 23px;
   height: 23px;
+  @media screen and (max-width: 390px) {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 const SearchIconImg = styled.img`
