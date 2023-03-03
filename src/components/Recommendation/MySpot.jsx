@@ -65,11 +65,11 @@ const MySpot = (propsData) => {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
+    arrows: false,
     speed: 400,
     slidesToShow: 3.5,
     slidesToScroll: 1,
-    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1440,

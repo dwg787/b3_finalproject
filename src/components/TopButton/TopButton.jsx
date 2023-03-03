@@ -58,7 +58,7 @@ const TopBtn = styled.button`
   @media screen and (max-width: 820px) {
     left: 80.5%;
     font-size: 14px;
-    top: 85.5%;
+    top: 83.5%;
   }
 `;
 
