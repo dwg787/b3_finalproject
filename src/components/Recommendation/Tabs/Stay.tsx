@@ -118,6 +118,9 @@ const WarpDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 87.9px;
+  @media screen and (max-width: 1036px) {
+    gap: 20px;
+  }
 `;
 
 const InnerNmb = styled.div`
@@ -140,10 +143,15 @@ const InnerBox1 = styled.div`
   height: 463.59px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   position: relative;
   gap: 16.74px;
+  @media screen and (max-width: 820px) {
+    height: 300px;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
 `;
 
 const InnerBox2 = styled.div`
@@ -151,10 +159,16 @@ const InnerBox2 = styled.div`
   height: 463.59px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   position: relative;
   gap: 16.74px;
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
+  @media screen and (max-width: 390px) {
+    display: none;
+  }
 `;
 
 const InnerList = styled.div`
@@ -162,30 +176,49 @@ const InnerList = styled.div`
   height: 143.37px;
   display: flex;
   box-shadow: 2.26px 2.26px #d1d1d181;
-  border-radius: 7.66px;
+  border-radius: 6px;
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    width: 340px;
+    height: 108px;
+    margin-bottom: 5px;
+  }
 `;
 
 const InnerImg = styled.img`
   width: 156.15px;
   height: 143.99px;
-  border-radius: 7.33px;
+  border-radius: 6px;
+  @media screen and (max-width: 820px) {
+    width: 118px;
+    height: 108px;
+  }
 `;
 
 const InnerText = styled.div`
   margin-top: 25.23px;
   margin-left: 27.43px;
+  @media screen and (max-width: 820px) {
+    margin-top: 19px;
+    margin-left: 20px;
+  }
 `;
 
 const InnerTextH3 = styled.h3`
   font-size: 18.97px;
   font-weight: bold;
   color: #4d4d4d;
+  @media screen and (max-width: 820px) {
+    font-size: 15px;
+  }
 `;
 
 const InnerTextp = styled.p`
   color: #7f7f7f;
   margin-top: 5px;
+  @media screen and (max-width: 820px) {
+    font-size: 12px;
+  }
 `;
 
 const LikeBox = styled.div`
@@ -194,12 +227,17 @@ const LikeBox = styled.div`
   align-items: center;
   margin-top: 12.3px;
   margin-bottom: 11.42px;
+  @media screen and (max-width: 820px) {
+    margin-top: 8px;
+    font-size: 5px;
+  }
 `;
 
 const LikeImg = styled.img`
   width: 21.03px;
   height: 17.52px;
 `;
+
 const LikeText = styled.p`
   font-size: 15.86px;
   color: #4d4d4d;

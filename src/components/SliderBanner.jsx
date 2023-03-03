@@ -97,22 +97,35 @@ const ContainerDiv = styled.div`
   align-items: center;
   z-index: 2;
   margin-top: 33px;
+  @media screen and (max-width: 820px) {
+    height: 350px;
+    margin-top: 5px;
+  }
 `;
 const WarpDiv = styled.div`
   width: 100%;
   height: 450px;
+  @media screen and (max-width: 820px) {
+    height: 350px;
+  }
 `;
 
 const ImgDiv = styled.div`
   width: 100%;
   height: 450px;
   position: relative;
+  @media screen and (max-width: 820px) {
+    height: 350px;
+  }
 `;
 
 const MainImg = styled.img`
   width: 100%;
   height: 450px;
   position: absolute;
+  @media screen and (max-width: 820px) {
+    height: 350px;
+  }
 `;
 
 const Texth2 = styled.h2`
@@ -120,6 +133,14 @@ const Texth2 = styled.h2`
   font-size: 26.09px;
   font-weight: bold;
   margin-bottom: 16.01px;
+  @media screen and (max-width: 820px) {
+    font-size: 22px;
+    margin-bottom: 11px;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 18px;
+    margin-bottom: 11px;
+  }
 `;
 
 const Textp = styled.p`
@@ -127,12 +148,28 @@ const Textp = styled.p`
   font-size: 14.03px;
   font-weight: bold;
   margin-bottom: 4.3px;
+  @media screen and (max-width: 820px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+  }
 `;
 
 const TextBox = styled.div`
   position: absolute;
   margin-top: 301.18px;
   margin-left: 101.45px;
+  @media screen and (max-width: 820px) {
+    margin-top: 192px;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  @media screen and (max-width: 390px) {
+    margin-top: 192px;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
 `;
 
 const StyledSlider = styled(Slider)`
@@ -140,6 +177,13 @@ const StyledSlider = styled(Slider)`
   .slick-next::before {
     opacity: 0;
     display: none;
+  }
+  @media screen and (max-width: 1000px) {
+    .slick-prev::before,
+    .slick-next::before {
+      opacity: 0;
+      display: none;
+    }
   }
 `;
 
@@ -150,6 +194,9 @@ const Pre = styled.div`
   left: 5%;
   z-index: 3;
   /* margin-left: 40px; */
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const NextTo = styled.div`
@@ -159,9 +206,15 @@ const NextTo = styled.div`
   right: 5%;
   z-index: 3;
   /* margin-right: 40px; */
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const ArrowImg = styled.img`
   width: 20px;
   height: 40px;
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;

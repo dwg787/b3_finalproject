@@ -25,6 +25,9 @@ const WrapDiv = styled.div`
   align-items: center;
   cursor: pointer;
   border: 2px solid #6e81f9;
+  @media screen and (max-width: 1530px) {
+    display: none;
+  }
 `;
 
 const Flicker = keyframes`
@@ -37,6 +40,7 @@ const Flicker = keyframes`
     100% {
       opacity: 1;
     }
+    
   `;
 
 const EventBannerText = styled.div`
@@ -46,4 +50,7 @@ const EventBannerText = styled.div`
   text-align: justify;
   animation: ${Flicker} 2s ease-in-out infinite;
   margin-bottom: 260px;
+  @media screen and (max-width: 1530px) {
+    display: none;
+  }
 `;

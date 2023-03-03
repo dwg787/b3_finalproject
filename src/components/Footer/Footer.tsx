@@ -44,8 +44,9 @@ const WrapDiv = styled.div`
   background-color: transparent;
   padding-top: 100px;
   padding-left: 100px;
-  @media screen and (max-width: 390px) {
-    display: none;
+  @media screen and (max-width: 820px) {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 `;
 
