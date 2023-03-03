@@ -182,7 +182,8 @@ const SearchInput = styled.input`
   box-shadow: 1.62121px 1.62121px 1.62121px rgba(0, 0, 0, 0.15);
   transition: all ease-in-out 0.15s;
   &:focus {
-    outline: 1px solid #666666;
+    outline: 1px solid #6478ff;
+
     box-shadow: 1.62121px 1.62121px 1.62121px rgba(0, 0, 0, 0.15);
   }
   @media screen and (max-width: 820px) {
