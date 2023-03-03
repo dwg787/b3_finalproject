@@ -144,6 +144,9 @@ const Error = styled.div`
   font-weight: 500;
   font-size: 10px;
   line-height: 8px;
+  @media screen and (max-width: 390px) {
+    top: 45px;
+  }
 `;
 
 const MyInfoContainer = styled.div`
@@ -157,6 +160,10 @@ const MyInfoContainer = styled.div`
   box-shadow: 0 15px 25px rgba(158, 171, 255, 0.61);
   background: rgb(255, 255, 255);
   border-radius: 10px;
+  @media screen and (max-width: 390px) {
+    width: 390px;
+    height: 846px;
+  }
 `;
 
 const Privacy = styled.div`
@@ -168,6 +175,11 @@ const Privacy = styled.div`
   line-height: 20px;
   color: rgba(77, 77, 77, 1);
   text-align: center;
+  @media screen and (max-width: 390px) {
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 27.19px;
+  }
 `;
 
 const PrivacyDiv = styled.div`
@@ -201,6 +213,12 @@ const PrivacyInput1 = styled.input`
     font-size: 12px;
     line-height: 12px;
   }
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 35px;
+    margin-top: 19px;
+    margin-bottom: 31.68px;
+  }
 `;
 
 const PrivacyInput2 = styled.input`
@@ -223,6 +241,12 @@ const PrivacyInput2 = styled.input`
     font-size: 14.1304px;
     line-height: 13.65px;
   }
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 35px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
 `;
 
 const PrivacyLabel1 = styled.label`
@@ -236,6 +260,9 @@ const PrivacyLabel1 = styled.label`
   color: #5a5a5a;
   pointer-events: none;
   transition: 0.5s;
+  @media screen and (max-width: 390px) {
+    top: -5px;
+  }
 `;
 
 const PrivacyLabel2 = styled.label`
@@ -249,6 +276,9 @@ const PrivacyLabel2 = styled.label`
   color: #5a5a5a;
   pointer-events: none;
   transition: 0.5s;
+  @media screen and (max-width: 390px) {
+    top: -15px;
+  }
 `;
 
 const SignUpBtn = styled.button<{ state: boolean }>`
@@ -270,6 +300,11 @@ const SignUpBtn = styled.button<{ state: boolean }>`
   color: #ffffff;
   text-align: center;
   background: ${(props) => (props.state ? '#6478ff;' : '#C8D1E0')};
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 39px;
+    margin-top: 10px;
+  }
 `;
 
 const SignUpDeleteBtn = styled.button`
@@ -289,4 +324,9 @@ const SignUpDeleteBtn = styled.button`
   line-height: 14px;
   color: #ffffff;
   text-align: center;
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 39px;
+    margin-top: 20px;
+  }
 `;
