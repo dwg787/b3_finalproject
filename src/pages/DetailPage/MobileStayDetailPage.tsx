@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import {
   fetchStayDetailInfo,
   fetchStayAdditionalInfo1,
-  fetchStayAdditionalInfo2,
-} from '../../../apis/publicAPI';
-import { useParams, Link } from 'react-router-dom';
+} from '../../apis/publicAPI';
+import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import Loader from '../../../components/Loader/Loader';
-import KakaoMap from '../../../components/Map/KakaoMap';
+import Loader from '../../components/Loader/Loader';
+import KakaoMap from '../../components/Map/KakaoMap';
 import {
   getDoc,
   setDoc,
@@ -16,14 +15,16 @@ import {
   increment,
   DocumentData,
 } from 'firebase/firestore';
-import { FetchedStayDataType } from '../../../types/apiDataTypes';
-import { db } from '../../../apis/firebase';
-import DetailScroll from '../../../components/Scroll/DetailScroll';
-import Communication from '../../../components/Review/Communication';
-import Notification from '../../../components/Notification/Notification';
-import StayLiked from '../../../components/Liked/StayLiked';
-import noimg from '../../../assets/noimg.avif';
-import useNotification from '../../../hooks/useNotification';
+import { FetchedStayDataType } from '../../types/apiDataTypes';
+import { db } from '../../apis/firebase';
+import DetailScroll from '../../components/Scroll/DetailScroll';
+import Communication from '../../components/Review/Communication';
+import Notification from '../../components/Notification/Notification';
+import StayLiked from '../../components/Liked/StayLiked';
+import noimg from '../../assets/noimg.avif';
+import useNotification from '../../hooks/useNotification';
+import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
+import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
 
 import {
   DetailWrap,
@@ -46,9 +47,7 @@ import {
   DetailTextBox,
   DetailInfo2,
 } from './styles';
-import DetailFooter from '../../../components/Footer/DetailFooter';
-import MobileSpotInfo from '../../../components/Recommendation/Info/Mobile/MobileSpotInfo';
-import MobileRestaurantInfo from '../../../components/Recommendation/Info/Mobile/MobileRestaurantInfo';
+import DetailFooter from '../../components/Footer/DetailFooter';
 
 const MobileStayDetailPage = () => {
   const param = useParams();
@@ -209,8 +208,8 @@ const MobileStayDetailPage = () => {
                   {/* <Communication /> */}
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
-                  <MobileSpotInfo stayDetailData={stayDetailData} />
-                  <MobileRestaurantInfo stayDetailData={stayDetailData} />
+                  <SpotInfo stayDetailData={stayDetailData} />
+                  <RestaurantInfo stayDetailData={stayDetailData} />
                 </SideInfoWrapper>
               </DeatilBox>
             ) : (

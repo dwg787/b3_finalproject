@@ -7,9 +7,18 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 14.88px;
-  /* border: 1.5px solid white; */
   border-radius: 11.28px;
   background-color: #ffffff;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+    max-width: 390px;
+    height: 434px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    border-radius: 8.8px;
+    background-color: #ffffff;
+  }
 `;
 
 const MyChildTopText = styled.p`
@@ -19,6 +28,14 @@ const MyChildTopText = styled.p`
   font-weight: bold;
   margin-top: 24px;
   line-height: 15.4px;
+  @media screen and (max-width: 820px) {
+    margin-left: 24px;
+    color: #6478ff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 16px;
+    line-height: 8.1px;
+  }
 `;
 
 const MyChildListBox = styled.div`
@@ -29,7 +46,18 @@ const MyChildListBox = styled.div`
   justify-content: center;
   align-items: center;
   margin: 26.58px 36.67px 36.67px 36.39px;
-  /* margin: 26.58px 0 36.67px 0; */
+  @media screen and (max-width: 820px) {
+    max-width: 340px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 18px 25px 25px 25px;
+    grid-template-columns: 164px 164px;
+    grid-template-rows: 177px 177px;
+    box-sizing: border-box;
+    column-gap: 12px;
+    row-gap: 12px;
+  }
 `;
 
 const MyChildList = styled.div`
@@ -37,19 +65,34 @@ const MyChildList = styled.div`
   height: 244.87px;
   background-color: #ffffff;
   box-shadow: 1px 1px #d1d1d1;
-  /* border: 1px solid #6478ff; */
   border-radius: 7.62px;
   overflow: hidden;
   position: relative;
+  @media screen and (max-width: 820px) {
+    width: 164px;
+    height: 177px;
+    background-color: #ffffff;
+    box-shadow: 1px 1px #d1d1d1;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
 `;
 
 const MyChildImg = styled.img`
   width: 226.81px;
   height: 138.22px;
+  @media screen and (max-width: 820px) {
+    width: 164px;
+    height: 100px;
+  }
 `;
 
 const MyCildTextBox = styled.div`
   margin-top: 17.51px;
+  @media screen and (max-width: 820px) {
+    margin-top: 13px;
+  }
 `;
 
 const MyChildTexth3 = styled.h3`
@@ -63,6 +106,18 @@ const MyChildTexth3 = styled.h3`
   text-overflow: ellipsis;
   margin-right: 24.89px;
   margin-left: 20.72px;
+  @media screen and (max-width: 820px) {
+    font-size: 13px;
+    font-weight: medium;
+    margin-bottom: 6px;
+    color: #4d4d4d;
+    line-height: 11.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 12px;
+    margin-left: 12px;
+  }
 `;
 
 const MyChildTextp = styled.p`
@@ -74,27 +129,15 @@ const MyChildTextp = styled.p`
   text-overflow: ellipsis;
   margin-right: 20.93px;
   margin-left: 20.88px;
-`;
-
-const LikeBox = styled.div`
-  display: flex;
-  gap: 5px;
-  align-items: center;
-`;
-
-const GoButton = styled.button`
-  background-color: white;
-  border: 1px solid #6478ff;
-  color: #6478ff;
-  border-radius: 3px;
-  width: 100px;
-  height: 30px;
-  margin-left: 160px;
-  margin-top: 20px;
-  &:hover {
-    background-color: #6478ff;
-    border: 1px solid #6478ff;
-    color: white;
+  @media screen and (max-width: 820px) {
+    color: #878787;
+    line-height: 11.9x;
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 12px;
+    margin-left: 12px;
   }
 `;
 
@@ -107,6 +150,4 @@ export {
   MyCildTextBox,
   MyChildTexth3,
   MyChildTextp,
-  LikeBox,
-  GoButton,
 };

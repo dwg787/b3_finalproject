@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import {
   fetchStayDetailInfo,
   fetchStayAdditionalInfo1,
-  fetchStayAdditionalInfo2,
 } from '../../apis/publicAPI';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
@@ -26,7 +25,6 @@ import noimg from '../../assets/noimg.avif';
 import useNotification from '../../hooks/useNotification';
 import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
 import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
-import MapImoji from '../../components/Map/MapImoji';
 
 import {
   DetailWrap,
@@ -51,7 +49,7 @@ import {
 } from './styles';
 import DetailFooter from '../../components/Footer/DetailFooter';
 import { useMediaQuery } from 'react-responsive';
-import MobileStayDetailPage from './Mobile/MobileStayDetailPage';
+import MobileStayDetailPage from './MobileStayDetailPage';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -78,21 +76,6 @@ const StayDetailPage = () => {
   } = useQuery(['stay_additional1', param], () =>
     fetchStayAdditionalInfo1({ param }),
   );
-
-  // console.log('숙박 상세 소개', stayAdditionalData1);
-
-  //숙박 상세페이지 추가 구현할때? 사용할 부분
-  // const {
-  //   data: stayAdditionalData2,
-  //   isLoading: isLoadingAdditional2,
-  // } = useQuery(['stay_additional2', param], () =>
-  //   fetchStayAdditionalInfo2({ param }),
-  // );
-
-  // if (stayAdditionalData1 && stayAdditionalData2) {
-  //   console.log('숙박 상세 소개', stayAdditionalData1);
-  //   console.log('숙박 룸 정보', stayAdditionalData2);
-  // }
 
   const getStayRecCnt = async () => {
     if (param.id) {
