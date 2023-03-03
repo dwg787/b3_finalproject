@@ -132,7 +132,7 @@ export default function ReviewList({
 
 const CommentBoxWrap = styled.div`
   /* flex-wrap: wrap; */
-  /* border: 1px solid black; */
+
   /* margin: 0 32.72px 0 32.72px; */
   margin-bottom: 10px;
 `;
