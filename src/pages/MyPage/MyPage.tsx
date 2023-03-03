@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BlueFooter from '../../components/Footer/BlueFooter';
 import DetailFooter from '../../components/Footer/DetailFooter';
+import Footer from '../../components/Footer/Footer';
 import MyFav from '../../components/MyPage/MyFav';
 import MyInfo from '../../components/MyPage/MyInfo';
 import {
@@ -58,7 +59,7 @@ const MyPage = () => {
         </StMyList>
         {/* activeIndex의 탭콘트만 보여줌! */}
         <StMyPageInfo>{tabContArr[activeIndex].tabCont}</StMyPageInfo>
-        <DetailFooter />
+        <Footer />
       </StMyPageNav>
     </StMyPageMain>
   );

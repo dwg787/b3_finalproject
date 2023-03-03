@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 
 const KakaoMap = ({
@@ -59,10 +60,25 @@ const KakaoMap = ({
     const zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
   }, []);
+
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:820px)',
+  });
+
   return (
-    <Container>
-      <StMap id="map" ref={mapcontainer}></StMap>
-    </Container>
+    <>
+      {isMobile ? (
+        <Container>
+          {' '}
+          <StMapMobile id="map" ref={mapcontainer} />
+        </Container>
+      ) : (
+        <Container>
+          {' '}
+          <StMap id="map" ref={mapcontainer} />
+        </Container>
+      )}
+    </>
   );
 };
 
@@ -81,6 +97,16 @@ const StMap = styled.div`
   width: 100%;
   height: 473.74px;
   border-radius: 13.42px;
+  border: 1px solid rgb(158, 171, 255, 0.61);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
+
+const StMapMobile = styled.div`
+  width: 340px;
+  height: 140px;
+  border-radius: 3.97px;
   border: 1px solid rgb(158, 171, 255, 0.61);
   display: flex;
   justify-content: center;

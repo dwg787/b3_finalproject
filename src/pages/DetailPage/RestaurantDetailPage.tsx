@@ -45,6 +45,7 @@ import DetailFooter from '../../components/Footer/DetailFooter';
 const RestaurantDetailPage = () => {
   const param = useParams();
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
+
   const {
     data: restaurantDetailData,
     isLoading: isLoadingRestaurantDetail,
@@ -157,7 +158,7 @@ const RestaurantDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  <Communication />
+                  {/* <Communication /> */}
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <SpotInfo restaurantDetailData={restaurantDetailData} />

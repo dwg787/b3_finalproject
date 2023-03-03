@@ -35,6 +35,9 @@ const SpotEachItemWrapper = styled.div`
   height: 420px;
   margin: 22.02px 20px 10px 20px;
   border-radius: 15px;
+  @media screen and (max-width: 820px) {
+    height: 200px;
+  }
 `;
 
 const SpotImgWrapper = styled.div`
@@ -48,6 +51,10 @@ const SpotImgWrapper = styled.div`
   overflow: hidden;
   position: relative;
   box-shadow: 2.26px 2.26px rgba(0, 0, 0, 0.2);
+  @media screen and (max-width: 820px) {
+    width: 160px;
+    height: 200px;
+  }
 `;
 
 const SpotEachItemImg = styled.img`
@@ -62,6 +69,10 @@ const SpotEachItemImg = styled.img`
   }
   filter: brightness(50%);
   /* border-radius: 15px; */
+  @media screen and (max-width: 820px) {
+    width: 160px;
+    height: 200px;
+  }
 `;
 
 const SpotTitle = styled.div`
@@ -70,6 +81,10 @@ const SpotTitle = styled.div`
   font-weight: bold;
   color: white;
   margin-top: 207.16px;
+  @media screen and (max-width: 820px) {
+    margin-top: 138.82px;
+    font-size: 14.12px;
+  }
 `;
 
 const SpotSubText1 = styled.p`
@@ -100,4 +115,11 @@ const SpotTopdiv = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   margin-bottom: 280px;
   margin-right: 180px;
+  @media screen and (max-width: 820px) {
+    margin-top: 118.82px;
+    margin-right: 105px;
+    width: 36px;
+    height: 20px;
+    font-size: 10px;
+  }
 `;

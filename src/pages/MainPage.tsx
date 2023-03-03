@@ -60,7 +60,8 @@ const MainPage = () => {
         </>
       ) : selectedMenu === '관광지' ? (
         <>
-          {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />}
+          {/* {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />} */}
+          <SpotSelectionResult />
           <SpotMainTap />
           <Footer />
         </>
@@ -112,9 +113,8 @@ const Container = styled.div`
 const RegionSelectionBtnWrapper = styled.div`
   display: flex;
   padding-top: 5px;
-  /* align-items: center; */
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
   max-width: 1036px;
   width: 100%;
-  height: 80px;
 `;

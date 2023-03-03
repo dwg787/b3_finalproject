@@ -11,6 +11,10 @@ const StTicketWrap = styled.div`
   align-items: center;
   flex-wrap: wrap;
   position: relative;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+    /* height: 560px; */
+  }
 `;
 
 const StTicket = styled.div`
@@ -23,6 +27,9 @@ const StTicket = styled.div`
   /* height: 680px; */
   box-sizing: border-box;
   /* position: relative; */
+  @media screen and (max-width: 820px) {
+    width: 100%;
+  }
 `;
 
 const StLikedBox = styled.div`
@@ -38,6 +45,16 @@ const StLikedBox = styled.div`
   height: 464px;
   box-sizing: border-box;
   padding: 0 92px 97px 92px;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+    /* height: 464px; */
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(1, 338px);
+    grid-template-rows: repeat(4, 120px);
+    row-gap: 11px;
+  }
 `;
 
 const StTicketCard = styled.div`
@@ -51,6 +68,18 @@ const StTicketCard = styled.div`
   flex-direction: row;
   background-size: contain;
   box-shadow: 1px 1px 3px #d1d1d1;
+  @media screen and (max-width: 820px) {
+    width: 338px;
+    height: 120px;
+    /* margin: 0 0 16px 0; */
+    border-radius: 8px;
+    align-items: center;
+    clear: both;
+    display: flex;
+    /* flex-direction: row; */
+    background-size: contain;
+    box-shadow: 1px 1px 3px #d1d1d1;
+  }
 `;
 
 const StTicketCardLeft = styled.div`
@@ -60,6 +89,14 @@ const StTicketCardLeft = styled.div`
   border-radius: 5px;
   position: relative;
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    width: 179px;
+    height: 120px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+  }
 `;
 
 const StTicketCardRight = styled.div`
@@ -70,6 +107,15 @@ const StTicketCardRight = styled.div`
   flex-direction: column;
   display: flex;
   position: relative;
+  @media screen and (max-width: 820px) {
+    width: 159px;
+    height: 120px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    flex-direction: column;
+    display: flex;
+    position: relative;
+  }
 `;
 
 const StMyTicketImage = styled.img`
@@ -79,6 +125,14 @@ const StMyTicketImage = styled.img`
   border-radius: 11.41px;
   cursor: pointer;
   display: flex;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+  }
 `;
 
 const StCartTitle = styled.span`
@@ -91,12 +145,28 @@ const StCartTitle = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media screen and (max-width: 820px) {
+    color: #4d4d4d;
+    font-weight: medium;
+    z-index: 100;
+    font-size: 14px;
+    line-height: 13px;
+    margin: 15px 20px 7px 21px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 const StCartTitleAdd = styled(StCartTitle)`
   margin: 0 25.3px 0 30.42px;
   font-size: 12.98px;
   line-height: 20.9px;
+  @media screen and (max-width: 820px) {
+    margin: 0 20px 0 21px;
+    font-size: 11px;
+    line-height: 17.5px;
+  }
 `;
 
 const StCartMenu = styled.div`
@@ -113,6 +183,21 @@ const StCartMenu = styled.div`
   border-radius: 201.28px;
   background-color: rgba(77, 77, 77, 0.56);
   margin: 14.89px 16.62px 0 0;
+  @media screen and (max-width: 820px) {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    line-height: 10px;
+    font-weight: 500;
+    width: 43px;
+    height: 23px;
+    border-radius: 169px;
+    background-color: rgba(77, 77, 77, 0.56);
+    margin: 12px 15px 0 0;
+  }
 `;
 
 const StTicketHeader = styled.div`
@@ -121,6 +206,9 @@ const StTicketHeader = styled.div`
   position: absolute;
   width: 214px;
   /* height: 144px; */
+  @media screen and (max-width: 820px) {
+    width: 179px;
+  }
 `;
 
 const StTicketHeader2 = styled.div`
@@ -129,6 +217,10 @@ const StTicketHeader2 = styled.div`
   position: absolute;
   width: 189px;
   padding: 13.09px 14.29px 0 0;
+  @media screen and (max-width: 820px) {
+    width:159px
+    padding: 8px 9px 0 0;
+  }
 `;
 
 const DelBtn = styled.img`
@@ -136,6 +228,10 @@ const DelBtn = styled.img`
   height: 24px;
   /* margin: 13.09px 14.29px 0 0; */
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 //PaginationList
@@ -146,6 +242,9 @@ const PaginationBox = styled.div`
     display: flex;
     justify-content: center;
     margin: 38px 0 44px 0;
+    @media screen and (max-width: 820px) {
+      margin-top: 50px;
+    }
   }
   ul {
     list-style: none;
@@ -188,6 +287,10 @@ const Container = styled.div`
   width: 100%;
   height: 680px;
   box-sizing: border-box;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+    /* height: 560px; */
+  }
 `;
 
 const LikedHeader = styled.div`
@@ -201,6 +304,9 @@ const LikedHeader = styled.div`
   align-items: center;
   color: #4d4d4d;
   box-sizing: border-box;
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
 `;
 
 export {

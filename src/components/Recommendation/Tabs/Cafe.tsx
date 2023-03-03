@@ -11,6 +11,7 @@ export default function Cafe() {
 }
 
 const WrapDiv = styled.div`
+  max-width: 1036px;
   width: 100%;
   display: flex;
   justify-content: center;

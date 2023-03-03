@@ -351,16 +351,16 @@ const SignUpPage = () => {
                   onChange={check}
                   checked={checkList.includes('collect') ? true : false}
                 ></CheckBoxInput3>
-                <CheckBoxText>
+                <CheckBoxText5>
                   본인은 개인정보 처리방침에 따라 본인의 개인 정보를 사용하는
                   것에 동의합니다.
-                  <CheckBoxText2 onClick={privacyshowModal}>
+                  <CheckBoxText3 onClick={privacyshowModal}>
                     (필수)
-                  </CheckBoxText2>
+                  </CheckBoxText3>
                   {privacyModalOpen && (
                     <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
                   )}
-                </CheckBoxText>
+                </CheckBoxText5>
               </CheckBoxWrap>
               <CheckBoxWrap1>
                 <CheckBoxInput4
@@ -376,11 +376,11 @@ const SignUpPage = () => {
                     3자에 본인의 개인정보
                   </p>
                   <CheckBoxBotoomText>
-                    <p>를 제공하는 것에 동의합니다.</p>
+                    <MyInfoText>를 제공하는 것에 동의합니다.</MyInfoText>
 
-                    <CheckBoxText2 onClick={privacyshowModal}>
+                    <CheckBoxText4 onClick={privacyshowModal}>
                       (필수)
-                    </CheckBoxText2>
+                    </CheckBoxText4>
                   </CheckBoxBotoomText>
                 </CheckBoxText1>
 
@@ -424,12 +424,20 @@ const Reservation = styled.div`
   font-weight: bold;
   color: #6478ff;
   margin-top: 16.55px;
+  @media screen and (max-width: 390px) {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 36px;
+  }
 `;
 
 const TestDiv = styled.div`
   width: 100%;
   height: 1097px;
   margin-top: 20.45px;
+  @media screen and (max-width: 390px) {
+    height: 948px;
+  }
 `;
 
 const SIgnWrap = styled.div`
@@ -458,13 +466,25 @@ const SignUpContainer = styled.div`
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 0px 0px 11px 11px;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 390px) {
+    width: 100%;
+    height: 898px;
+  }
 `;
 
 const ReservationBottom = styled.div`
   border: solid #6478ff 1.13px;
   width: 1036px;
-
   margin-top: 20.45px;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 390px) {
+    width: 390px;
+  }
 `;
 
 const Login = styled.div`
@@ -475,6 +495,12 @@ const Login = styled.div`
   line-height: 19.7px;
   color: rgba(77, 77, 77, 1);
   text-align: center;
+  @media screen and (max-width: 390px) {
+    margin-top: 21px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 17px;
+  }
 `;
 
 const SignForm = styled.form`
@@ -540,6 +566,12 @@ const LoginLabelBottom = styled.div`
   width: 938px;
   height: 1px;
   margin-top: 65.98px;
+  @media screen and (max-width: 820px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 390px) {
+    width: 334px;
+  }
 `;
 
 const SignUpBtn = styled.button<{ state: boolean }>`
@@ -560,6 +592,13 @@ const SignUpBtn = styled.button<{ state: boolean }>`
   color: #ffffff;
   text-align: center;
   background: ${(props) => (props.state ? '#6478ff;' : '#C8D1E0')};
+  @media screen and (max-width: 390px) {
+    margin-top: 22px;
+    width: 334px;
+    height: 39px;
+    font-size: 15px;
+    line-height: 13px;
+  }
 `;
 
 const PersonInfo = styled.div`
@@ -567,6 +606,11 @@ const PersonInfo = styled.div`
   font-size: 22px;
   line-height: 17px;
   margin-top: 39px;
+  @media screen and (max-width: 390px) {
+    font-size: 16px;
+    line-height: 17px;
+    margin-top: 23px;
+  }
 `;
 
 const CheckBoxWrap = styled.div`
@@ -596,6 +640,17 @@ const CheckBoxBolder = styled.div`
   border-radius: 10px;
   width: 663px;
   height: 203px;
+  @media screen and (max-width: 820px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 200px;
+    margin-top: 13px;
+    background: #f9f9fa;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 18px;
+  }
 `;
 
 const CheckBoxInput1 = styled.input`
@@ -607,6 +662,17 @@ const CheckBoxInput1 = styled.input`
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   accent-color: #6478ff;
+
+  @media screen and (max-width: 820px) {
+    margin-left: 40px;
+  }
+
+  @media screen and (max-width: 390px) {
+    width: 17px;
+    height: 17px;
+    margin-left: 10px;
+    margin-top: 65px;
+  }
 `;
 const CheckBoxInput2 = styled.input`
   width: 20px;
@@ -617,6 +683,16 @@ const CheckBoxInput2 = styled.input`
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   accent-color: #6478ff;
+  @media screen and (max-width: 820px) {
+    margin-left: 40px;
+  }
+  @media screen and (max-width: 390px) {
+    width: 17px;
+    height: 17px;
+    margin-left: 10px;
+    margin-top: 10px;
+    box-shadow: none;
+  }
 `;
 const CheckBoxInput3 = styled.input`
   width: 20px;
@@ -627,6 +703,17 @@ const CheckBoxInput3 = styled.input`
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   accent-color: #6478ff;
+  @media screen and (max-width: 820px) {
+    margin-left: 40px;
+  }
+  @media screen and (max-width: 390px) {
+    margin-left: 10px;
+    margin-bottom: 22px;
+    width: 27px;
+    height: 27px;
+
+    box-shadow: none;
+  }
 `;
 const CheckBoxInput4 = styled.input`
   width: 20px;
@@ -637,6 +724,13 @@ const CheckBoxInput4 = styled.input`
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   accent-color: #6478ff;
+  @media screen and (max-width: 820px) {
+    margin-left: 40px;
+  }
+  @media screen and (max-width: 390px) {
+    margin-left: 10px;
+    margin-bottom: 65px;
+  }
 `;
 
 const CheckBoxTextBold = styled.div`
@@ -646,6 +740,15 @@ const CheckBoxTextBold = styled.div`
   color: rgba(77, 77, 77, 1);
   margin-top: 25px;
   margin-left: 14px;
+  @media screen and (max-width: 820px) {
+    font-size: 85%;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    line-height: 21px;
+    margin-top: 60px;
+    margin-left: 0px;
+  }
 `;
 
 const CheckBoxText = styled.div`
@@ -655,6 +758,35 @@ const CheckBoxText = styled.div`
   line-height: 12px;
   color: #4d4d4d;
   margin-left: 14px;
+  @media screen and (max-width: 820px) {
+    font-size: 75%;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    line-height: 11px;
+    margin-left: 0px;
+
+    margin-top: 10px;
+  }
+`;
+
+const CheckBoxText5 = styled.div`
+  display: flex;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  color: #4d4d4d;
+  margin-left: 14px;
+  @media screen and (max-width: 820px) {
+    font-size: 75%;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    line-height: 11px;
+    margin-left: 0px;
+    display: inline-block;
+    width: 500px;
+  }
 `;
 
 const CheckBoxText1 = styled.div`
@@ -664,6 +796,16 @@ const CheckBoxText1 = styled.div`
   color: #4d4d4d;
   margin-top: 19px;
   margin-left: 14px;
+  @media screen and (max-width: 820px) {
+    font-size: 75%;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    line-height: 21px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
 `;
 
 const CheckBoxText2 = styled.div`
@@ -671,7 +813,38 @@ const CheckBoxText2 = styled.div`
   cursor: pointer;
 `;
 
+const CheckBoxText3 = styled.div`
+  color: rgba(248, 112, 56, 1);
+  cursor: pointer;
+  @media screen and (max-width: 390px) {
+    /* position: absolute;
+    top: 854px;
+    right: 250px; */
+  }
+`;
+
+const CheckBoxText4 = styled.div`
+  color: rgba(248, 112, 56, 1);
+  cursor: pointer;
+  @media screen and (max-width: 390px) {
+    /* position: absolute;
+    top: 901px;
+    right: 85px; */
+  }
+`;
+
 const CheckBoxBotoomText = styled.div`
   display: flex;
   margin-top: 10px;
+  @media screen and (max-width: 390px) {
+    margin-top: 0px;
+  }
+`;
+
+const MyInfoText = styled.p`
+  @media screen and (max-width: 390px) {
+    /* position: absolute;
+    top: 901px;
+    right: 110px; */
+  }
 `;

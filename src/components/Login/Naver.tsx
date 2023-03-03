@@ -7,7 +7,8 @@ const Naver = () => {
   console.log(userName);
   const { naver }: any = window;
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
-  const NAVER_CALLBACK_URL = 'https://b3-finalproject.vercel.app/';
+  const NAVER_CALLBACK_URL =
+    'https://b3-finalproject-git-dev-dwg787.vercel.app';
 
   const handleNaverLogin = () => {
     if (
@@ -97,6 +98,10 @@ const NaverBtn = styled.button`
 const NaverText = styled.div`
   color: #8a8a8a;
   font-size: 12px;
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    font-weight: 500;
+  }
 `;
 
 const LoginButton = styled.button`

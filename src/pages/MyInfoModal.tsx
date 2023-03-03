@@ -747,6 +747,10 @@ const ModalContainer = styled.div`
 
     border-radius: 10px;
   }
+  @media screen and (max-width: 390px) {
+    width: 300px;
+    height: 400px;
+  }
 `;
 
 const MyInfoWrap = styled.div`
@@ -764,6 +768,9 @@ const MyInfoText = styled.div`
   background-color: #f9f9f9;
   padding: 24px 30px 28px;
   box-sizing: border-box;
+  @media screen and (max-width: 390px) {
+    font-size: 22px;
+  }
 `;
 const BoldDiv = styled.div`
   font-size: 16px;

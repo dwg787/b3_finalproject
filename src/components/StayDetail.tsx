@@ -5,18 +5,18 @@ import { useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const StayDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
 
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
-  const stayRecommendationList = async () => {
+  const stayRecommendationList = useCallback(async () => {
     const fbdata = await getDoc(doc(db, 'stay_recommendation', `${props.id}`));
     if (fbdata) {
       setLikeData(fbdata.data());
     }
-  };
+  }, []);
 
   useEffect(() => {
     stayRecommendationList();
@@ -59,6 +59,12 @@ const StayEachItemWrapper = styled.div`
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   cursor: pointer;
+  @media (max-width: 820px) {
+    width: 164px;
+    height: 177px;
+    border-radius: 6px;
+    margin-bottom: 0px;
+  }
 `;
 
 const StayImgWrapper = styled.picture`
@@ -70,6 +76,9 @@ const StayImgWrapper = styled.picture`
   justify-content: center;
   position: relative;
   overflow: hidden;
+  @media (max-width: 820px) {
+    height: 100px;
+  }
 `;
 
 const StayEachItemImg = styled.img`
@@ -85,11 +94,20 @@ const StayEachItemImg = styled.img`
     transform: scale(1.2);
     transition: all 0.35s;
   }
+  @media (max-width: 820px) {
+    width: 164px;
+    height: 100px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
 `;
 
 const MyCildTextBox = styled.div`
   background-color: #fff;
   height: 130px;
+  @media (max-width: 820px) {
+    height: 77px;
+  }
 `;
 
 const MyChildTexth3 = styled.h3`
@@ -99,6 +117,11 @@ const MyChildTexth3 = styled.h3`
   color: #333333;
   padding-top: 15px;
   padding-left: 19.81px;
+  @media (max-width: 820px) {
+    font-size: 13px;
+    padding-top: 13px;
+    padding-left: 12px;
+  }
 `;
 
 const MyChildTextp = styled.p`
@@ -107,6 +130,10 @@ const MyChildTextp = styled.p`
   color: #7f7f7f;
   margin-top: 4px;
   margin-left: 19.81px;
+  @media (max-width: 820px) {
+    font-size: 10px;
+    margin-left: 12px;
+  }
 `;
 
 const LikeBox = styled.div`
@@ -115,13 +142,24 @@ const LikeBox = styled.div`
   margin-top: 10.83px;
   margin-left: 142.95px;
   align-items: center;
+  @media (max-width: 820px) {
+    margin-top: 5px;
+    margin-left: 112px;
+  }
 `;
 
 const LikeImg = styled.img`
   width: 20.64px;
   height: 17.25px;
+  @media (max-width: 820px) {
+    width: 17px;
+    height: 16px;
+  }
 `;
 
 const LikeText = styled.p`
   font-size: 15.62px;
+  @media (max-width: 820px) {
+    font-size: 12px;
+  }
 `;

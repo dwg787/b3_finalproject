@@ -25,11 +25,11 @@ const DetailFooter = () => {
           <FooterText>
             (주)트랩픽이 소유/운영/관리하는 웹사이트 및 앱 내의
             상품/판매자/이벤트 정보, 디자인 및 화면의 구성 UI를 포함하여 일체의
-            콘텐츠에 대한 무단 복제, 배포, 방송 또는 전송, 스크래핑 등의 행위는
+            콘텐츠에 대한 무단 복제, 배포, 방송 또는 전송,
           </FooterText>
           <FooterText>
-            저작권법 및 콘텐츠산업 진흥법 등 관련 법령에 의하여 엄격히 금지
-            됩니다.
+            스크래핑 등의 행위는 저작권법 및 콘텐츠산업 진흥법 등 관련 법령에
+            의하여 엄격히 금지 됩니다.
           </FooterText>
         </BottomText>
       </TextBox>
@@ -41,9 +41,15 @@ export default DetailFooter;
 
 const WrapDiv = styled.div`
   width: 995px;
-  height: 152px
+  height: 152px;
   background-color: transparent;
   margin: 44px 458px 110px 467px;
+  @media screen and (max-width: 820px) {
+    width: 338px;
+    height: 134px;
+    background-color: transparent;
+    margin: 45px 25px 65px 25px;
+  }
 `;
 
 const TextBox = styled.div`
@@ -53,23 +59,42 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 67px;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+    margin-top: 67px;
+  }
 `;
 
 const FooterText = styled.p`
-  color: #EFEFEF
+  color: #efefef;
   font-size: 11.19px;
   line-height: 19.5px;
+  @media screen and (max-width: 820px) {
+    font-size: 7px;
+    line-height: 14px;
+  }
 `;
 
 const FooterLogo = styled.img`
   width: 79.55px;
   height: 23.39px;
   margin-bottom: 22.31px;
+  @media screen and (max-width: 820px) {
+    width: 49px;
+    height: 14.4px;
+    margin-bottom: 2.6px;
+  }
 `;
 
 const TopText = styled.div`
   margin-bottom: 15px;
+  @media screen and (max-width: 820px) {
+    margin-bottom: 5px;
+  }
 `;
 const BottomText = styled.div`
   width: 100%;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+  }
 `;
