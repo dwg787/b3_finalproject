@@ -48,7 +48,7 @@ const SpotEachItemWrapper = styled.div`
   border-radius: 7px;
   overflow: hidden;
   position: relative;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     width: 164px;
     height: 177px;
     margin-bottom: 0px;
@@ -62,7 +62,7 @@ const SpotEachItemWrapper = styled.div`
     height: 100%;
     background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
     animation: ${SkeletonLoadingAnimation} 1s infinite linear;
-    @media (max-width: 740px) {
+    @media (max-width: 820px) {
       width: 164px;
       height: 177px;
       margin-bottom: 0px;

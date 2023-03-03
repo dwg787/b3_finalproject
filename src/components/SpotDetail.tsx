@@ -59,7 +59,7 @@ const SpotEachItemWrapper = styled.div`
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   cursor: pointer;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     width: 164px;
     height: 177px;
     border-radius: 6px;
@@ -76,7 +76,7 @@ const SpotImgWrapper = styled.picture`
   justify-content: center;
   position: relative;
   overflow: hidden;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     height: 100px;
   }
 `;
@@ -94,7 +94,7 @@ const SpotEachItemImg = styled.img`
     transform: scale(1.2);
     transition: all 0.35s;
   }
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     width: 164px;
     height: 100px;
     border-top-left-radius: 6px;
@@ -105,7 +105,7 @@ const SpotEachItemImg = styled.img`
 const MyCildTextBox = styled.div`
   background-color: #fff;
   height: 130px;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     height: 77px;
   }
 `;
@@ -117,7 +117,7 @@ const MyChildTexth3 = styled.h3`
   color: #333333;
   padding-top: 15px;
   padding-left: 19.81px;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     font-size: 13px;
     padding-top: 13px;
     padding-left: 12px;
@@ -130,7 +130,7 @@ const MyChildTextp = styled.p`
   color: #7f7f7f;
   margin-top: 4px;
   margin-left: 19.81px;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     font-size: 10px;
     margin-left: 12px;
   }
@@ -142,7 +142,7 @@ const LikeBox = styled.div`
   margin-top: 10.83px;
   margin-left: 152.95px;
   align-items: center;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     margin-top: 5px;
     margin-left: 112px;
   }
@@ -151,7 +151,7 @@ const LikeBox = styled.div`
 const LikeImg = styled.img`
   width: 20.64px;
   height: 17.25px;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     width: 17px;
     height: 16px;
   }
@@ -159,7 +159,7 @@ const LikeImg = styled.img`
 
 const LikeText = styled.p`
   font-size: 15.62px;
-  @media (max-width: 740px) {
+  @media (max-width: 820px) {
     font-size: 12px;
   }
 `;
