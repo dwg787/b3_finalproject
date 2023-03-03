@@ -20,7 +20,7 @@ export default function MainSlide() {
     slidesToScroll: 1, // 몇개를 넘길것인가
     initialSlide: 1, //첫 번째 슬라이드의 인덱스
     autoplay: 1000, //1000 == 1s 자동으로 넘어가는 시간
-    Arrows: false,
+    arrows: false,
     nextArrow: (
       <NextTo>
         <ArrowImg src={nextImg} />
@@ -177,13 +177,6 @@ const StyledSlider = styled(Slider)`
   .slick-next::before {
     opacity: 0;
     display: none;
-  }
-  @media screen and (max-width: 1000px) {
-    .slick-prev::before,
-    .slick-next::before {
-      opacity: 0;
-      display: none;
-    }
   }
 `;
 
