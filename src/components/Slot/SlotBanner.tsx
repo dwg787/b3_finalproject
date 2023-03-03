@@ -25,6 +25,9 @@ const WrapDiv = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  @media screen and (max-width: 1530px) {
+    display: none;
+  }
 `;
 
 const Flicker = keyframes`
@@ -52,4 +55,7 @@ const SlotBannerText = styled.p`
   justify-content: center;
   align-items: center;
   animation: ${Flicker} 2s ease-in-out infinite;
+  @media screen and (max-width: 1530px) {
+    display: none;
+  }
 `;

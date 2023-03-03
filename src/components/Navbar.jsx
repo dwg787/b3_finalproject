@@ -16,7 +16,7 @@ const Navbar = () => {
   const location = useLocation();
   const history = useNavigate();
   const REST_API_KEY = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI = 'http://localhost:3000/';
+  const REDIRECT_URI = 'http://localhost:3000';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const Navbar = () => {
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   const REST_API_KEY_KAKAO = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI_KAKAO = 'http://localhost:3000/';
+  const REDIRECT_URI_KAKAO = 'http://localhost:3000';
   const link_kakao = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY_KAKAO}&redirect_uri=${REDIRECT_URI_KAKAO}&response_type=code`;
   const CLIENT_SECRET = 'jvRkvzZgcAhb2iq42YyYwqCoIY5t1uXS';
   const [nickName, setNickName] = useState();
@@ -44,7 +44,7 @@ const Navbar = () => {
   console.log('Navbar', userName);
   const { naver } = window;
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
-  const NAVER_CALLBACK_URL = 'http://localhost:3000/';
+  const NAVER_CALLBACK_URL = 'http://localhost:3000';
 
   const getUser = async () => {
     const ACCESS_TOKEN = await fetch('https://kauth.kakao.com/oauth/token', {
@@ -225,6 +225,11 @@ const Mainlogo = styled.img`
   height: 22.37px;
   margin-top: 5px;
   margin-left: 42.09px;
+  @media screen and (max-width: 820px) {
+    margin-left: 25px;
+    width: 70.82;
+    height: 20.82;
+  }
 `;
 
 const Nav = styled.div`
@@ -236,13 +241,21 @@ const Nav = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #6478ff;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+  }
 `;
 
 const NavTextDiv = styled.div`
+  width: 54.1px;
   color: white;
   margin-right: 10px;
+  text-align: center;
   cursor: pointer;
   font-size: 10.65px;
+  @media screen and (max-width: 820px) {
+    font-size: 11px;
+  }
 `;
 
 const LoginButton = styled.button`
@@ -264,6 +277,11 @@ const LoginButton = styled.button`
   color: white;
   cursor: pointer;
   margin-left: 10px;
+  @media screen and (max-width: 820px) {
+    width: 48px;
+    height: 22px;
+    padding: 5px 10px 5px 10px;
+  }
 `;
 const LoginButtonBox = styled.div`
   display: flex;
@@ -271,6 +289,9 @@ const LoginButtonBox = styled.div`
   align-items: center;
   margin-right: 46.88px;
   /* margin-top: 52px; */
+  @media screen and (max-width: 820px) {
+    margin-right: 25px;
+  }
 `;
 
 const LoginBox = styled.div`
@@ -310,14 +331,21 @@ const ModalWrapper = styled.div`
 
 const Modal = styled.div`
   background-color: #ffff;
-  width: 395.69px;
-  height: 590px;
   /* width: 395.69px;
-  height: 526px; */
+  height: 590px; */
+
+  width: 395.69px;
+  height: 565px;
   box-shadow: 4.76737px 4.76737px 7.94562px rgba(0, 0, 0, 0.25);
   border-radius: 14.9657px;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 390px) {
+    width: 314.31px;
+    height: 450px;
+    box-shadow: 3.78685px 3.78685px 6.31141px rgba(0, 0, 0, 0.25);
+    border-radius: 11.8876px;
+  }
 `;
 const ModalHeader = styled.div`
   display: flex;
@@ -340,6 +368,10 @@ const CloseBtn = styled.button`
 const CloseImg = styled.img`
   width: 23px;
   height: 23px;
+  @media screen and (max-width: 390px) {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 const SearchIconImg = styled.img`
@@ -347,6 +379,10 @@ const SearchIconImg = styled.img`
   height: 23.74px;
   margin-left: 5px;
   margin-right: 4.71px;
+  @media screen and (max-width: 820px) {
+    width: 16.79px;
+    height: 16.79px;
+  }
 `;
 
 const NickNameBtn = styled.button`
@@ -355,4 +391,7 @@ const NickNameBtn = styled.button`
   font-size: 10.65px;
   margin-right: 10px;
   color: white;
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
 `;

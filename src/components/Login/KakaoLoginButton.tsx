@@ -9,7 +9,7 @@ import kakao from '../../assets/kakao.avif';
 export default function KakaoLoginButton() {
   const location = useLocation();
   const REST_API_KEY = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI = 'http://localhost:3000/';
+  const REDIRECT_URI = 'http://localhost:3000';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const loginHandler = () => {
     window.location.replace(link);
@@ -37,4 +37,8 @@ const KakaoLogoButton = styled.img`
 const KakaoText = styled.div`
   color: #8a8a8a;
   font-size: 12px;
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    font-weight: 500;
+  }
 `;

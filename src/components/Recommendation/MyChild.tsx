@@ -89,6 +89,10 @@ const Container = styled.div`
   border-radius: 11.29px;
   box-shadow: 2.26px 2.26px rgba(0, 0, 0, 0.18);
   background-color: white;
+  @media screen and (max-width: 820px) {
+    margin-top: 4px;
+    height: 474px;
+  }
 `;
 
 const MyChildTopText = styled.p`
@@ -97,6 +101,11 @@ const MyChildTopText = styled.p`
   font-size: 20px;
   font-weight: bold;
   margin-top: 22.31px;
+  @media screen and (max-width: 820px) {
+    font-size: 14px;
+    margin-left: 24px;
+    margin-top: 16px;
+  }
 `;
 
 const MyChildListBox = styled.div`
@@ -108,6 +117,13 @@ const MyChildListBox = styled.div`
   align-items: center;
   margin-top: 22.43px;
   margin-left: 24.49px;
+  @media screen and (max-width: 820px) {
+    height: 474px;
+    margin-top: 1px;
+    margin-left: 1px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
 `;
 
 const MyChildList = styled.div`
@@ -119,11 +135,19 @@ const MyChildList = styled.div`
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    width: 164px;
+    height: 197px;
+  }
 `;
 
 const MyChildImg = styled.img`
   width: 252.4px;
   height: 179.56px;
+  @media screen and (max-width: 820px) {
+    width: 164px;
+    height: 121px;
+  }
 `;
 
 const MyChildNum = styled.div`
@@ -139,11 +163,22 @@ const MyChildNum = styled.div`
   color: white;
   margin-top: 132.7px;
   margin-left: 18.85px;
+  @media screen and (max-width: 820px) {
+    width: 45px;
+    height: 24px;
+    font-size: 12px;
+    margin-top: 88px;
+    margin-left: 13px;
+  }
 `;
 
 const MyCildTextBox = styled.div`
   margin-left: 23.02px;
   margin-top: 19.27px;
+  @media screen and (max-width: 820px) {
+    margin-top: 12px;
+    margin-left: 12px;
+  }
 `;
 
 const MyChildTexth3 = styled.h3`
@@ -151,12 +186,18 @@ const MyChildTexth3 = styled.h3`
   font-weight: bold;
   margin-bottom: 7.3px;
   color: #333333;
+  @media screen and (max-width: 820px) {
+    font-size: 13px;
+    margin-botton: 6px;
+  }
 `;
 
 const MyChildTextp = styled.p`
   color: #7f7f7f;
-  margin-top: 5px;
   font-size: 12.72px;
+  @media screen and (max-width: 820px) {
+    font-size: 10px;
+  }
 `;
 
 const LikeBox = styled.div`
@@ -164,30 +205,24 @@ const LikeBox = styled.div`
   gap: 5px;
   margin-top: 10px;
   align-items: center;
+  @media screen and (max-width: 820px) {
+    margin-top: 5px;
+  }
 `;
 
 const LikeImg = styled.img`
   width: 21.03px;
   height: 17.52px;
+  @media screen and (max-width: 820px) {
+    width: 15px;
+    height: 12px;
+  }
 `;
 
 const LikeText = styled.p`
   font-size: 15.86px;
   color: #4d4d4d;
-`;
-
-const GoButton = styled.button`
-  background-color: white;
-  border: 1px solid #6478ff;
-  color: #6478ff;
-  border-radius: 3px;
-  width: 100px;
-  height: 30px;
-  margin-left: 140px;
-  margin-top: 20px;
-  &:hover {
-    background-color: #6478ff;
-    border: 1px solid #6478ff;
-    color: white;
+  @media screen and (max-width: 820px) {
+    font-size: 12px;
   }
 `;

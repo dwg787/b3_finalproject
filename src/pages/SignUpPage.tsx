@@ -72,6 +72,10 @@ const SignUpPage = () => {
 
   const signup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!checkBoxActive) {
+      alert('약관에 동의해주세요!'); // checkbox가 선택되지 않았다면 알림창 띄우기
+      return;
+    }
     await createUserWithEmailAndPassword(auth, id, pw).then((data) => {
       if (auth.currentUser)
         updateProfile(auth?.currentUser, {
@@ -201,12 +205,6 @@ const SignUpPage = () => {
       : setCheckList(checkList.filter((choice) => choice !== e.target.name));
   };
 
-  // const handleButtomValid = () => {
-  //   if (!isCheckBoxClicked()) {
-  //     alert('약관에 동의해 주세요!');
-  //   }
-  // };
-
   useEffect(() => {
     if (
       checkList.includes('terms') &&
@@ -235,6 +233,7 @@ const SignUpPage = () => {
                 onChange={onChangeId}
                 value={id}
                 ref={idRef}
+                maxLength={25}
                 className="user-box"
                 type="text"
                 placeholder="이메일"
