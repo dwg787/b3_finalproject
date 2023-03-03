@@ -178,6 +178,7 @@ const ReviewContainerWrap = styled.div`
   height: 504px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
   box-shadow: 2.25685px 2.25685px 5.64213px rgba(0, 0, 0, 0.18);
@@ -304,6 +305,6 @@ const ReviewBoxList = styled.div`
   /* gap: 20px; */
   /* align-items: center; */
   /* border: 1px solid red; */
-  margin-left: 10px;
+  margin-left: 5px;
   overflow: hidden;
 `;

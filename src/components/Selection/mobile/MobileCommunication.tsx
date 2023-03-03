@@ -174,20 +174,15 @@ export default Communication;
 
 const ReviewContainerWrap = styled.div`
   border: 1.00654px solid #9eabff;
-  width: 964px;
-  height: 504px;
+  width: 340px;
+  height: 460px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  box-shadow: 2.25685px 2.25685px 5.64213px rgba(0, 0, 0, 0.18);
-  border-radius: 11.2843px;
-  @media screen and (max-width: 390px) {
-    /* width: 340px;
-    height: 444px;
-    box-shadow: 0.795985px 0.795985px 1.98996px rgba(0, 0, 0, 0.18);
-    border-radius: 3.97992px; */
-  }
+  box-shadow: 0.795985px 0.795985px 1.98996px rgba(0, 0, 0, 0.18);
+  border-radius: 3.97992px;
 `;
 
 const PaginationBox = styled.div`
@@ -210,7 +205,8 @@ const PaginationBox = styled.div`
     align-items: center;
     font-weight: 700;
     font-size: 14.3151px;
-    margin: 6.6px;
+    /* margin: 6.6px; */
+    margin: 0 6.6px 0px 6.6px;
   }
   ul.pagination li a {
     text-decoration: none;
@@ -229,14 +225,14 @@ const PaginationBox = styled.div`
 `;
 
 const BottomLine = styled.div`
-  width: 35%;
+  width: 100%;
   border-bottom: 1.5px solid #9eabff;
   /* margin-bottom: -40px; */
 `;
 
 const ReviewContainer = styled.div`
-  width: 964px;
-  height: 504px;
+  width: 340px;
+  height: 460px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -252,7 +248,7 @@ const ReviewLabel = styled.label`
   color: #6478ff;
   margin-top: 48.52px;
   margin-bottom: 15px;
-  margin-left: 50px;
+  margin-left: 20px;
   font-weight: 700;
   font-size: 8px;
 `;
@@ -305,20 +301,8 @@ const ReviewButton = styled.button`
 
 const ReviewBoxList = styled.div`
   display: flex;
-  height: 100%;
-  flex-wrap: wrap;
-  /* justify-content: center; */
-  /* gap: 20px; */
-  /* align-items: center; */
-  /* border: 1px solid red; */
-  margin-left: 10px;
-  overflow: hidden;
-  @media screen and (max-width: 390px) {
-    /* flex-wrap: nowrap;
-    display: flow-root; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
 `;
