@@ -13,9 +13,8 @@ import {
   MyCildTextBox,
   MyChildTexth3,
   MyChildTextp,
-  LikeBox,
 } from './styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { DetailDataTypes } from '../../../types/apiDataTypes';
 
 interface Props {

@@ -1,25 +1,3 @@
-import { useQuery } from 'react-query';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import { fetchSpotDetailData } from '../../apis/publicAPI';
-import { FetchedStayDataType } from '../../types/apiDataTypes';
-import Loader from '../../components/Loader/Loader';
-import { useEffect, useState } from 'react';
-import {
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-  increment,
-  DocumentData,
-} from 'firebase/firestore';
-import { db } from '../../apis/firebase';
-import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
-import StayInfo from '../../components/Recommendation/Info/StayInfo';
-import Communication from '../../components/Review/Communication';
-import Notification from '../../components/Notification/Notification';
-import DetailScroll from '../../components/Scroll/DetailScroll';
-import MapImoji from '../../components/Map/MapImoji';
-import noimg from '../../assets/noimg.avif';
 import {
   DetailWrap,
   Container,
@@ -38,7 +16,31 @@ import {
   TabHr,
   DetailInfo2,
 } from './styles';
+
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  increment,
+  DocumentData,
+} from 'firebase/firestore';
+import { useQuery } from 'react-query';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchSpotDetailData } from '../../apis/publicAPI';
+import { FetchedStayDataType } from '../../types/apiDataTypes';
+import Loader from '../../components/Loader/Loader';
+import { useEffect, useState } from 'react';
+import { db } from '../../apis/firebase';
+import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
+import StayInfo from '../../components/Recommendation/Info/StayInfo';
+import Communication from '../../components/Review/Communication';
+import Notification from '../../components/Notification/Notification';
+import DetailScroll from '../../components/Scroll/DetailScroll';
+import noimg from '../../assets/noimg.avif';
+
 import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
+
 import SpotLiked from '../../components/Liked/SpotLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
 import DetailFooter from '../../components/Footer/DetailFooter';
@@ -155,7 +157,9 @@ const DetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
+
                   {isMobile ? <MobileCommunication /> : <Communication />}
+
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <StayInfo spotData={spotDetailData} />
