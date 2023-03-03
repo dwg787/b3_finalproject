@@ -25,8 +25,14 @@ const WrapDiv = styled.div`
   position: absolute;
   z-index: 3;
   border-radius: 377.73px;
-  margin-left: 195.88px;
+  margin-left: 20%;
   top: 44.25px;
+  @media screen and (max-width: 820px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 390px) {
+    display: none;
+  }
 `;
 
 const SearchImg = styled.img`

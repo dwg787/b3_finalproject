@@ -12,9 +12,9 @@ export default function ChatBotModal() {
   return (
     <>
       <Chatimgbtn onClick={modalEvents}>
-        <img src={chatbot} alt="" />
+        <ChatingImg src={chatbot} alt="" />
       </Chatimgbtn>
-      {modal === true ? <Chat /> : null}
+      {modal === true ? <Chat setModal={setModal} /> : null}
     </>
   );
 }
@@ -28,9 +28,20 @@ const Chatimgbtn = styled.div`
 
   width: 58px;
   height: 58px;
-
   left: 94%;
   top: 90%;
   z-index: 1000;
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    width: 40px;
+    height: 40px;
+    left: 80%;
+  }
+`;
+
+const ChatingImg = styled.img`
+  @media screen and (max-width: 820px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
