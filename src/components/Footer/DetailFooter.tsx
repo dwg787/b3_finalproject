@@ -41,14 +41,14 @@ export default DetailFooter;
 
 const WrapDiv = styled.div`
   width: 995px;
-  height: 152px
+  height: 152px;
   background-color: transparent;
   margin: 44px 458px 110px 467px;
   @media screen and (max-width: 820px) {
- width: 338px;
-  height: 134px
-  background-color: transparent;
-  margin: 45px 25px 65px 25px;
+    width: 338px;
+    height: 134px;
+    background-color: transparent;
+    margin: 45px 25px 65px 25px;
   }
 `;
 
@@ -66,12 +66,12 @@ const TextBox = styled.div`
 `;
 
 const FooterText = styled.p`
-  color: #EFEFEF
+  color: #efefef;
   font-size: 11.19px;
   line-height: 19.5px;
   @media screen and (max-width: 820px) {
     font-size: 7px;
-  line-height: 14px;
+    line-height: 14px;
   }
 `;
 

@@ -166,18 +166,18 @@ const UpdatePassword = () => {
         </Error>
       </UpdatePwBox>
       <UpdatePwBox>
-        <UpdatePwInput2
+        <UpdatePwInput3
           value={passwordInput.updatePasswordCheck}
           type="password"
           name="updatePasswordCheck"
           onChange={passwordChangeHandler}
           onBlur={validatePasswordCheckHandler}
         />
-        <UpdatePwLabel2>새 비밀번호 확인</UpdatePwLabel2>
+        <UpdatePwLabel3>새 비밀번호 확인</UpdatePwLabel3>
 
-        <Error>
+        <Error1>
           <span>{helperPasswordInput.updatePasswordCheck}</span>
-        </Error>
+        </Error1>
       </UpdatePwBox>
       <UpdatePwBox>
         <UpdatePwBtn2
@@ -196,12 +196,25 @@ export default UpdatePassword;
 
 const Error = styled.div`
   position: absolute;
+  top: 90px;
+  left: 10px;
+  color: #f87038;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 8px;
+`;
+
+const Error1 = styled.div`
+  position: absolute;
   top: 85px;
   left: 10px;
   color: #f87038;
   font-weight: 500;
   font-size: 10px;
   line-height: 8px;
+  @media screen and (max-width: 390px) {
+    top: 65px;
+  }
 `;
 
 const UpdatePwBox = styled.div`
@@ -222,6 +235,12 @@ const UpdatePwInput1 = styled.input`
   border-radius: 9px;
   outline: none;
   background: transparent;
+  @media screen and (max-width: 390px) {
+    margin-top: 46.89px;
+    margin-bottom: 20px;
+    width: 340px;
+    height: 35px;
+  }
 `;
 
 const UpdatePwInput2 = styled.input`
@@ -238,6 +257,34 @@ const UpdatePwInput2 = styled.input`
   border-radius: 9px;
   outline: none;
   background: transparent;
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 35px;
+    margin-top: 46.89px;
+    margin-bottom: 31.68px;
+  }
+`;
+
+const UpdatePwInput3 = styled.input`
+  width: 380px;
+  height: 36px;
+
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 26px;
+  margin-top: 38px;
+  padding: 10px;
+  border: 1px solid rgba(158, 171, 255, 0.61);
+  box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
+  border-radius: 9px;
+  outline: none;
+  background: transparent;
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 35px;
+    margin-top: 20px;
+    margin-bottom: 31.68px;
+  }
 `;
 
 const UpdatePwLabel1 = styled.label`
@@ -251,6 +298,9 @@ const UpdatePwLabel1 = styled.label`
   color: #5a5a5a;
   pointer-events: none;
   transition: 0.5s;
+  @media screen and (max-width: 390px) {
+    top: 30px;
+  }
 `;
 
 const UpdatePwLabel2 = styled.label`
@@ -264,8 +314,26 @@ const UpdatePwLabel2 = styled.label`
   color: #5a5a5a;
   pointer-events: none;
   transition: 0.5s;
+  @media screen and (max-width: 390px) {
+    top: 30px;
+  }
 `;
 
+const UpdatePwLabel3 = styled.label`
+  position: absolute;
+  top: 20px;
+  left: 0;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  color: #5a5a5a;
+  pointer-events: none;
+  transition: 0.5s;
+  @media screen and (max-width: 390px) {
+    top: 5px;
+  }
+`;
 const UpdatePwBtn1 = styled.button`
   cursor: pointer;
 
@@ -283,6 +351,10 @@ const UpdatePwBtn1 = styled.button`
 
   color: #ffffff;
   text-align: center;
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 39px;
+  }
 `;
 
 const UpdatePwBtn2 = styled.button<{ state: boolean }>`
@@ -304,4 +376,9 @@ const UpdatePwBtn2 = styled.button<{ state: boolean }>`
   color: #ffffff;
   text-align: center;
   background: ${(props) => (props.state ? '#6478ff;' : '#C8D1E0')};
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 39px;
+    margin-top: 0px;
+  }
 `;
