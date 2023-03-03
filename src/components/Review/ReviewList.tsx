@@ -148,7 +148,6 @@ const CommentBox = styled.div`
   &:hover {
     border: 1px solid #6478ff;
   }
-  /* padding: 20px; */
 
   /* margin: 0 32.72px 0 32.72px; */
 `;
