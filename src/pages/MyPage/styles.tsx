@@ -39,6 +39,9 @@ const StMyPageHeader = styled.div`
 const TabHr = styled.hr`
   border: solid #6478ff 1.13px;
   width: 1036px;
+  @media screen and (max-width: 390px) {
+    width: 390px;
+  }
 `;
 
 //마이페이지 탭 부분
@@ -65,15 +68,18 @@ const StMyListTab = styled.div`
   align-items: center;
   width: 126px;
   height: 29px;
+  @media screen and (max-width: 390px) {
+    margin: 16.81px 40px 19px 40px;
+  }
 `;
 
 //마이페이지 내용 부분
 const StMyPageInfo = styled.div`
   width: 1036px;
-  background-color: #ffffff;
-  border-radius: 11px;
-  flex-wrap: wrap;
-  box-shadow: 2px 2px 2px #d1d1d1;
+
+  @media screen and (max-width: 390px) {
+    width: 390px;
+  }
 `;
 
 export {
