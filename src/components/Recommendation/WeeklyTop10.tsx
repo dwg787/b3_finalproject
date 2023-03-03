@@ -18,7 +18,7 @@ export default function WeeklyTop10() {
 
   return (
     <Container>
-      <WeeklyTopText>위클리 인기 TOP 6</WeeklyTopText>
+      <WeeklyTopText>위클리 인기 TOP</WeeklyTopText>
       <WeeklyButtonBox>
         {WEEKLY_TYPE.map((e) => {
           return <WeeklyTop10Btn key={e.id}>{e.type}</WeeklyTop10Btn>;
@@ -40,6 +40,10 @@ const Container = styled.div`
   border-radius: 11.29px;
   box-shadow: 2.26px 2.26px rgba(0, 0, 0, 0.2);
   background-color: white;
+  @media screen and (max-width: 820px) {
+    height: 503px;
+    margin-top: 4px;
+  }
 `;
 
 const WeeklyTopText = styled.p`
@@ -48,6 +52,11 @@ const WeeklyTopText = styled.p`
   font-size: 17.88px;
   font-weight: bold;
   margin-top: 22.72px;
+  @media screen and (max-width: 820px) {
+    margin-top: 16px;
+    margin-left: 24px;
+    font-size: 14px;
+  }
 `;
 
 const WeeklyButtonBox = styled.div`

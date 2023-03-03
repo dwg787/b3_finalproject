@@ -37,6 +37,11 @@ const WeeklyBtn = styled.div<{ isTypeSelected: Boolean }>`
   margin-left: 5.23px;
   color: ${(props) => (props.isTypeSelected ? '#6478ff' : '#4D4D4D')};
   border-radius: 20px;
+  @media screen and (max-width: 820px) {
+    width: 54px;
+    height: 28px;
+    font-size: 13px;
+  }
 `;
 
 export default WeeklyTop10Btn;

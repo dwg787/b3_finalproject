@@ -8,8 +8,8 @@ import nextImg from '../../assets/next.avif';
 import pervImg from '../../assets/prev.avif';
 import { DetailDataTypes } from '../../types/apiDataTypes';
 
-const MySpot = (propsData: any) => {
-  const [MySpot, setMySpot] = useState<any>();
+const MySpot = (propsData) => {
+  const [MySpot, setMySpot] = useState();
   const MySpotList = async () => {
     const data = await getDocs(
       query(collection(db, 'spot_recommendation'), orderBy('viewCnt', 'desc')),
@@ -32,22 +32,81 @@ const MySpot = (propsData: any) => {
     fetchRecList();
   }, []);
 
+  // const settings = {
+  //   dots: false,
+  //   infinite: false,
+  //   speed: 400,
+  //   slidesToShow: 3.5,
+  //   slidesToScroll: 1,
+  //   initialSlide: 0,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1024,
+  //       setting: {
+  //         dots: false,
+  //         infinite: false,
+  //         speed: 400,
+  //         slidesToShow: 3,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //   ],
+  //   nextArrow: (
+  //     <NextTo>
+  //       <ArrowImg src={nextImg} />
+  //     </NextTo>
+  //   ),
+  //   prevArrow: (
+  //     <Pre>
+  //       <ArrowImg src={pervImg} />
+  //     </Pre>
+  //   ),
+  // };
+
   const settings = {
     dots: false,
     infinite: false,
     speed: 400,
     slidesToShow: 3.5,
     slidesToScroll: 1,
-    nextArrow: (
-      <NextTo>
-        <ArrowImg src={nextImg} />
-      </NextTo>
-    ),
-    prevArrow: (
-      <Pre>
-        <ArrowImg src={pervImg} />
-      </Pre>
-    ),
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 3.5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3.5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 720,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2.1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -56,7 +115,7 @@ const MySpot = (propsData: any) => {
       <div>
         <StyledSlider {...settings}>
           {MySpot &&
-            MySpot.map((e: DetailDataTypes) => {
+            MySpot.map((e) => {
               return (
                 <div>
                   <h3>
@@ -91,6 +150,13 @@ const Container = styled.div`
   border-radius: 11.2px;
   box-shadow: 2.26px 2.26px rgba(0, 0, 0, 0.2);
   background-color: white;
+  @media screen and (max-width: 820px) {
+    margin-top: 1px;
+    max-width: 820px;
+    width: 100%;
+    padding-top: 16px;
+    height: 268px;
+  }
 `;
 
 const MySpotTitle = styled.div`
@@ -99,6 +165,10 @@ const MySpotTitle = styled.div`
   color: #6478ff;
   font-size: 17.88px;
   font-weight: bold;
+  @media screen and (max-width: 820px) {
+    padding-top: 2px;
+    font-size: 14px;
+  }
 `;
 
 const StyledSlider = styled(Slider)`
@@ -116,6 +186,9 @@ const Pre = styled.div`
   left: 5%;
   z-index: 3;
   /* margin-left: 50px; */
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const NextTo = styled.div`
@@ -125,9 +198,15 @@ const NextTo = styled.div`
   right: 5%;
   z-index: 3;
   /* margin-right: 50px; */
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const ArrowImg = styled.img`
   width: 15px;
   height: 30px;
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;

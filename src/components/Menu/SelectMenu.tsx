@@ -46,4 +46,7 @@ const MenuEachItem = styled.button<{ isSelectedMenu: boolean }>`
       transform: scaleX(1);
       transition: transform 250ms ease-in-out;
     `}
+  @media screen and (max-width: 820px) {
+    font-size: 12px;
+  }
 `;

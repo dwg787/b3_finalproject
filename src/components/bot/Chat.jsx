@@ -285,4 +285,8 @@ const Fuckdiv = styled.div`
   left: 80%;
   top: 14%;
   z-index: 1000;
+  @media screen and (max-width: 820px) {
+    margin-top: 200px;
+    left: 10%;
+  }
 `;
