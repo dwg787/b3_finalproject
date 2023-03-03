@@ -132,7 +132,7 @@ export default function ReviewList({
 
 const CommentBoxWrap = styled.div`
   /* flex-wrap: wrap; */
-  /* border: 1px solid black; */
+
   /* margin: 0 32.72px 0 32.72px; */
   margin-bottom: 10px;
 `;
@@ -163,7 +163,7 @@ const NameAndDate = styled.div`
 
 const Name = styled.div`
   color: #595959;
-  width: 60px;
+  width: 40%;
 
   font-weight: 700;
   font-size: 11px;
@@ -196,7 +196,7 @@ const BtnWrap = styled.div`
   border-radius: 5px;
   height: 20.72px;
   position: absolute;
-  right: 0px;
+  right: -10px;
 
   /* border: 1px solid red; */
 `;
