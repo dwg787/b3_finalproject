@@ -233,6 +233,7 @@ const OuterDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 17px;
+  flex-wrap: wrap;
   @media (max-width: 820px) {
     margin-top: 15px;
     gap: 12px;
