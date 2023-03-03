@@ -12,6 +12,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import leftArrow from '../../assets/left-chevron.avif';
 import rightArrow from '../../assets/right-chevron.avif';
 import { AREA_CODE } from '../../apis/apiCodes';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const SpotSelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -103,6 +104,11 @@ const SpotSelectionResult = () => {
             </SearchListWrapper>
           </ListContainer>
           <PaginationDotsWrapper>
+            {data.pageNo - 1 < 1 ? (
+              <></>
+            ) : (
+              <MobilePrevBtn onClick={() => setSpotCurPage(spotCurPage - 1)} />
+            )}
             {Array(Math.ceil(data.totalCount / 8) + 1)
               .fill('')
               .slice(firstNum.current, firstNum.current + 5)
@@ -123,6 +129,11 @@ const SpotSelectionResult = () => {
                   );
                 }
               })}
+            {Math.ceil(data.totalCount / 8) <= spotCurPage ? (
+              <></>
+            ) : (
+              <MobileNextBtn onClick={handleFetchNextPage} />
+            )}
           </PaginationDotsWrapper>
         </>
       )}
@@ -135,6 +146,7 @@ export default SpotSelectionResult;
 const SearchOverallResultContainer = styled.div`
   position: relative;
   max-width: 1036px;
+  min-width: 390px;
   width: 100%;
   min-height: 632px;
   display: flex;
@@ -176,8 +188,6 @@ const ResultWrapper = styled.div`
   align-items: center;
   /* flex-wrap: wrap; */
   gap: 14px;
-  @media (max-width: 390px) {
-  }
 `;
 
 const BtnWrapper = styled.div`
@@ -225,7 +235,20 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
 const ListContainer = styled.div`
   width: 100%;
   height: 100%;
-  @media (max-width: 820px) {
-    width: 65%;
+`;
+
+const MobilePrevBtn = styled(GrFormPrevious)`
+  font-size: 14px;
+  cursor: pointer;
+  @media (min-width: 391px) {
+    display: none;
+  }
+`;
+
+const MobileNextBtn = styled(GrFormNext)`
+  font-size: 14px;
+  cursor: pointer;
+  @media (min-width: 391px) {
+    display: none;
   }
 `;

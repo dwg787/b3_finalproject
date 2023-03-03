@@ -12,6 +12,7 @@ import rightArrow from '../../assets/right-chevron.avif';
 import SkeletonSelectionResult from '../Skeleton/SkeletonSelectionResult';
 import SkeletonTestFrame from '../Skeleton/SkeletonTestFrame';
 import { AREA_CODE } from '../../apis/apiCodes';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const StaySelectionResult = () => {
   const region = useRecoilValue(regionSelectionState);
@@ -103,6 +104,11 @@ const StaySelectionResult = () => {
             </SearchListWrapper>
           </ListContainer>
           <PaginationDotsWrapper>
+            {data.pageNo - 1 < 1 ? (
+              <></>
+            ) : (
+              <MobilePrevBtn onClick={() => setStayCurPage(stayCurPage - 1)} />
+            )}
             {Array(Math.ceil(data.totalCount / 8) + 1)
               .fill('')
               .slice(firstNum.current, firstNum.current + 5)
@@ -124,6 +130,11 @@ const StaySelectionResult = () => {
                   );
                 }
               })}
+            {Math.ceil(data.totalCount / 8) <= stayCurPage ? (
+              <></>
+            ) : (
+              <MobileNextBtn onClick={handleFetchNextPage} />
+            )}
           </PaginationDotsWrapper>
         </>
       )}
@@ -135,6 +146,7 @@ export default StaySelectionResult;
 const SearchOverallResultContainer = styled.div`
   position: relative;
   max-width: 1036px;
+  min-width: 390px;
   width: 100%;
   min-height: 632px;
   display: flex;
@@ -223,7 +235,20 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
 const ListContainer = styled.div`
   width: 100%;
   height: 100%;
-  @media (max-width: 820px) {
-    width: 65%;
+`;
+
+const MobilePrevBtn = styled(GrFormPrevious)`
+  font-size: 14px;
+  cursor: pointer;
+  @media (min-width: 391px) {
+    display: none;
+  }
+`;
+
+const MobileNextBtn = styled(GrFormNext)`
+  font-size: 14px;
+  cursor: pointer;
+  @media (min-width: 391px) {
+    display: none;
   }
 `;

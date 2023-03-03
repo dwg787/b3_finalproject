@@ -23,4 +23,7 @@ const SelectRegionBtnWrapper = styled.div`
   width: 100%;
   min-height: 80px;
   background-size: cover;
+  @media (max-width: 820px) {
+    padding: 17px 5px 0px 5px;
+  }
 `;

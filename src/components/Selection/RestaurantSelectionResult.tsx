@@ -148,6 +148,7 @@ export default RestaurantSelectionResult;
 const SearchOverallResultContainer = styled.div`
   position: relative;
   max-width: 1036px;
+  min-width: 390px;
   width: 100%;
   min-height: 632px;
   display: flex;
@@ -236,12 +237,6 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
 const ListContainer = styled.div`
   width: 100%;
   height: 100%;
-  @media (max-width: 820px) {
-    width: 65%;
-  }
-  @media (max-width: 390px) {
-    width: 100%;
-  }
 `;
 
 const MobilePrevBtn = styled(GrFormPrevious)`
