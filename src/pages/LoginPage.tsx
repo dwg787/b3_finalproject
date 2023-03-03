@@ -359,6 +359,9 @@ const Error = styled.div`
   margin-bottom: 10px;
   margin-top: 15px;
   margin-right: 180px;
+  @media screen and (max-width: 390px) {
+    margin-right: 120px;
+  }
 `;
 
 export default LoginPage;

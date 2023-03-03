@@ -351,7 +351,7 @@ const SignUpPage = () => {
                   onChange={check}
                   checked={checkList.includes('collect') ? true : false}
                 ></CheckBoxInput3>
-                <CheckBoxText>
+                <CheckBoxText5>
                   본인은 개인정보 처리방침에 따라 본인의 개인 정보를 사용하는
                   것에 동의합니다.
                   <CheckBoxText3 onClick={privacyshowModal}>
@@ -360,7 +360,7 @@ const SignUpPage = () => {
                   {privacyModalOpen && (
                     <PrivacyModal setPrivacyModalOpen={setPrivacyModalOpen} />
                   )}
-                </CheckBoxText>
+                </CheckBoxText5>
               </CheckBoxWrap>
               <CheckBoxWrap1>
                 <CheckBoxInput4
@@ -671,7 +671,7 @@ const CheckBoxInput1 = styled.input`
     width: 17px;
     height: 17px;
     margin-left: 10px;
-    margin-top: 40px;
+    margin-top: 65px;
   }
 `;
 const CheckBoxInput2 = styled.input`
@@ -690,6 +690,8 @@ const CheckBoxInput2 = styled.input`
     width: 17px;
     height: 17px;
     margin-left: 10px;
+    margin-top: 10px;
+    box-shadow: none;
   }
 `;
 const CheckBoxInput3 = styled.input`
@@ -707,6 +709,10 @@ const CheckBoxInput3 = styled.input`
   @media screen and (max-width: 390px) {
     margin-left: 10px;
     margin-bottom: 22px;
+    width: 27px;
+    height: 27px;
+
+    box-shadow: none;
   }
 `;
 const CheckBoxInput4 = styled.input`
@@ -723,7 +729,7 @@ const CheckBoxInput4 = styled.input`
   }
   @media screen and (max-width: 390px) {
     margin-left: 10px;
-    margin-bottom: 45px;
+    margin-bottom: 65px;
   }
 `;
 
@@ -740,7 +746,7 @@ const CheckBoxTextBold = styled.div`
   @media screen and (max-width: 390px) {
     font-size: 10px;
     line-height: 21px;
-    margin-top: 35px;
+    margin-top: 60px;
     margin-left: 0px;
   }
 `;
@@ -757,8 +763,29 @@ const CheckBoxText = styled.div`
   }
   @media screen and (max-width: 390px) {
     font-size: 10px;
-    line-height: 21px;
+    line-height: 11px;
     margin-left: 0px;
+
+    margin-top: 10px;
+  }
+`;
+
+const CheckBoxText5 = styled.div`
+  display: flex;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  color: #4d4d4d;
+  margin-left: 14px;
+  @media screen and (max-width: 820px) {
+    font-size: 75%;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 10px;
+    line-height: 11px;
+    margin-left: 0px;
+    display: inline-block;
+    width: 500px;
   }
 `;
 
@@ -790,9 +817,9 @@ const CheckBoxText3 = styled.div`
   color: rgba(248, 112, 56, 1);
   cursor: pointer;
   @media screen and (max-width: 390px) {
-    position: absolute;
+    /* position: absolute;
     top: 854px;
-    right: 250px;
+    right: 250px; */
   }
 `;
 
@@ -800,9 +827,9 @@ const CheckBoxText4 = styled.div`
   color: rgba(248, 112, 56, 1);
   cursor: pointer;
   @media screen and (max-width: 390px) {
-    position: absolute;
+    /* position: absolute;
     top: 901px;
-    right: 85px;
+    right: 85px; */
   }
 `;
 
@@ -816,8 +843,8 @@ const CheckBoxBotoomText = styled.div`
 
 const MyInfoText = styled.p`
   @media screen and (max-width: 390px) {
-    position: absolute;
+    /* position: absolute;
     top: 901px;
-    right: 110px;
+    right: 110px; */
   }
 `;

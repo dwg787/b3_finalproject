@@ -45,10 +45,10 @@ const WrapDiv = styled.div`
   background-color: transparent;
   margin: 44px 458px 110px 467px;
   @media screen and (max-width: 820px) {
- width: 338px;
-  height: 134px
-  background-color: transparent;
-  margin: 45px 25px 65px 25px;
+    width: 338px;
+    height: 134px;
+    background-color: transparent;
+    margin: 45px 25px 65px 25px;
   }
 `;
 
@@ -71,7 +71,7 @@ const FooterText = styled.p`
   line-height: 19.5px;
   @media screen and (max-width: 820px) {
     font-size: 7px;
-  line-height: 14px;
+    line-height: 14px;
   }
 `;
 
