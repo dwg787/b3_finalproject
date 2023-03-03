@@ -1,7 +1,20 @@
-import React from 'react';
+import styled from 'styled-components';
+import ErrorComponent from '../components/Error/ErrorComponent';
 
 const ErrorPage = () => {
-  return <div>에러!</div>;
+  return (
+    <ErrorView>
+      <ErrorComponent />
+    </ErrorView>
+  );
 };
 
 export default ErrorPage;
+
+const ErrorView = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

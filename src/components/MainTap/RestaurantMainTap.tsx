@@ -42,9 +42,9 @@ const RestaurantMainTap = () => {
 
   return (
     <WrapDiv>
-      <InnerDiv>
+      <>
         {rankList ? (
-          <>
+          <InnerDiv>
             {rankList.slice(0, 3)?.map((e, idx) => {
               if (e?.likeCnt) {
                 return (
@@ -77,47 +77,47 @@ const RestaurantMainTap = () => {
                 );
               }
             })}
-          </>
+          </InnerDiv>
         ) : (
-          <></>
+          <InnerDiv></InnerDiv>
         )}
-      </InnerDiv>
-      <OuterDiv>
-        {rankList.slice(3, 7).map((e, i) => {
-          if (e.likeCnt > 0) {
-            return (
-              <OuterList
-                key={e?.contentid}
-                onClick={() => navigate(`/restaurant/${e.contentid}`)}
-              >
-                <InnerNmb>{i + 4}</InnerNmb>
-                <OuterImg src={e.firstimage} alt="" />
-                <OuterMedalHeartBox>
-                  <OuterHeartImg src={redheart} />
-                  <OuterHeartText>{e.likeCnt}</OuterHeartText>
-                </OuterMedalHeartBox>
-                <OuterTextBox>
-                  <OuterMedalText>
-                    {e?.title.split(/[\\[\]\\(\\)]/)[0]
-                      ? e?.title.split(/[\\[\]\\(\\)]/)[0]
-                      : e?.title.split(/[\\[\]\\(\\)]/)[2]}
-                  </OuterMedalText>
-                  <OuterMedalSubText>
-                    {e.overview.slice(0, 20)}
-                  </OuterMedalSubText>
-                </OuterTextBox>
-              </OuterList>
-            );
-          } else {
-            return (
-              <OuterList>
-                <InnerNmb>{i + 4}</InnerNmb>
-                <OuterTextBox></OuterTextBox>
-              </OuterList>
-            );
-          }
-        })}
-      </OuterDiv>
+        <OuterDiv>
+          {rankList.slice(3, 7).map((e, i) => {
+            if (e.likeCnt > 0) {
+              return (
+                <OuterList
+                  key={e?.contentid}
+                  onClick={() => navigate(`/restaurant/${e.contentid}`)}
+                >
+                  <InnerNmb>{i + 4}</InnerNmb>
+                  <OuterImg src={e.firstimage} alt="" />
+                  <OuterMedalHeartBox>
+                    <OuterHeartImg src={redheart} />
+                    <OuterHeartText>{e.likeCnt}</OuterHeartText>
+                  </OuterMedalHeartBox>
+                  <OuterTextBox>
+                    <OuterMedalText>
+                      {e?.title.split(/[\\[\]\\(\\)]/)[0]
+                        ? e?.title.split(/[\\[\]\\(\\)]/)[0]
+                        : e?.title.split(/[\\[\]\\(\\)]/)[2]}
+                    </OuterMedalText>
+                    <OuterMedalSubText>
+                      {e.overview.slice(0, 20)}
+                    </OuterMedalSubText>
+                  </OuterTextBox>
+                </OuterList>
+              );
+            } else {
+              return (
+                <OuterList>
+                  <InnerNmb>{i + 4}</InnerNmb>
+                  <OuterTextBox></OuterTextBox>
+                </OuterList>
+              );
+            }
+          })}
+        </OuterDiv>
+      </>
     </WrapDiv>
   );
 };
@@ -142,8 +142,8 @@ const WrapDiv = styled.div`
 `;
 
 const InnerDiv = styled.div`
-  width: 904px;
-  height: 360px;
+  max-width: 904px;
+  /* height: 360px; */
   margin-top: 61px;
   border-radius: 11px;
   background: #d6dcff;
@@ -152,6 +152,13 @@ const InnerDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 19px;
+  @media (max-width: 1000px) {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    flex-wrap: wrap;
+  }
 `;
 
 const InnerList = styled.div`
