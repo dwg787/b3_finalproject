@@ -31,10 +31,11 @@ import {
   TabHr,
   DetailInfo2,
 } from './styles';
+import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
 import SpotLiked from '../../components/Liked/SpotLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
 import DetailFooter from '../../components/Footer/DetailFooter';
-
+import { useMediaQuery } from 'react-responsive';
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
@@ -42,6 +43,10 @@ const DetailPage = () => {
     ['spot_detail', param],
     () => fetchSpotDetailData({ param }),
   );
+
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:767px)',
+  });
 
   const getRecCnt = async () => {
     if (param.id) {
@@ -137,7 +142,7 @@ const DetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  <Communication />
+                  {isMobile ? <MobileCommunication /> : <Communication />}
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <StayInfo spotData={spotDetailData} />

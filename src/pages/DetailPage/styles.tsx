@@ -189,6 +189,12 @@ const CommunicationWrap = styled.div`
   border-radius: 11.28px;
   border: 1px solid rgb(158, 171, 255, 0.61);
   margin: 15.93px 0 1.12px 0;
+  @media screen and (max-width: 390px) {
+    width: 340px;
+    height: 444px;
+    box-shadow: 0.795985px 0.795985px 1.98996px rgba(0, 0, 0, 0.18);
+    border-radius: 3.97992px;
+  }
 `;
 
 //하단 추천 탭å
