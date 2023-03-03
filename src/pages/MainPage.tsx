@@ -60,7 +60,8 @@ const MainPage = () => {
         </>
       ) : selectedMenu === '관광지' ? (
         <>
-          {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />}
+          {/* {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />} */}
+          <SpotSelectionResult />
           <SpotMainTap />
           <Footer />
         </>
