@@ -4,13 +4,14 @@ import { useRecoilValue } from 'recoil';
 import { nearStayState } from '../../recoil/apiDataAtoms';
 import { MapMarker } from 'react-kakao-maps-sdk';
 
-interface stayPositionObjType {
-  title: string;
-  position: {
-    La: number;
-    Ma: number;
-  };
-}
+//여기가 활성화가 안되서 안되는거같은데 뭐지??
+// interface stayPositionObjType {
+//   title: string;
+//   position: {
+//     La: number;
+//     Ma: number;
+//   };
+// }
 
 const SideInfoMap = ({
   mapx,
@@ -66,7 +67,7 @@ const SideInfoMap = ({
     });
 
     if (nearStayList) {
-      nearStayList.forEach((e: any) => {
+      nearStayList.forEach((e) => {
         // 마커를 생성합니다
         const stayMarker = new kakao.maps.Marker({
           map: map, // 마커를 표시할 지도
