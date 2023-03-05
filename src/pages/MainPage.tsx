@@ -26,7 +26,7 @@ const MainPage = () => {
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
   const selected = sessionStorage.getItem('mainpage_menu_type');
   const isMobile: boolean = useMediaQuery({
-    query: '(max-width:767px)',
+    query: '(max-width:820px)',
   });
 
   console.log('반응형?', isMobile);
@@ -115,6 +115,5 @@ const RegionSelectionBtnWrapper = styled.div`
   padding-top: 5px;
   align-items: center;
   justify-content: center;
-  max-width: 1036px;
   width: 100%;
 `;
