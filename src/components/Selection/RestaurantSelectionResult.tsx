@@ -204,7 +204,7 @@ const BtnWrapper = styled.div`
   justify-content: center;
   width: 10px;
   height: 30px;
-  @media (max-width: 390px) {
+  @media (max-width: 420px) {
     display: none;
   }
 `;
@@ -247,18 +247,15 @@ const ListContainer = styled.div`
 const MobilePrevBtn = styled(GrFormPrevious)`
   font-size: 24px;
   cursor: pointer;
-  @media (min-width: 391px) {
+  @media (min-width: 421px) {
     display: none;
-    width: 24px;
-    height: 24px;
   }
 `;
 
 const MobileNextBtn = styled(GrFormNext)`
   font-size: 24px;
   cursor: pointer;
-  @media (min-width: 391px) {
+  @media (min-width: 421px) {
     display: none;
-    font-size: 24px;
   }
 `;
