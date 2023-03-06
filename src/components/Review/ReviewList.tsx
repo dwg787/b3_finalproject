@@ -36,6 +36,7 @@ export default function ReviewList({
   const loginUser = auth.currentUser;
   const usersCollectionRef = collection(db, 'reviews');
   const [toggle, setToggle] = useState<boolean>(false);
+  const [btnText, setBtnText] = useState<string>('수정');
 
   const [alarmMsg, setAlarmMsg] = useState<string>('');
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
@@ -93,12 +94,11 @@ export default function ReviewList({
                 localStorage.getItem('uid') === review?.uid) ? (
                 <DeleteBtn
                   onClick={() => {
-                    setAlarmMsg('리뷰 삭제완료!'); //알람관련 코드4 - 들어갈 내용 정하는 부분
-                    addNoti(); //알람관련 코드5 - useNotification 커스텀 훅 내의 addNoti 함수 실행
                     handleDelete(review.id, i);
                   }}
                 >
-                  {!editBox ? '삭제' : null}
+                  삭제
+                  {/* {!editBox ? '삭제' : null} */}
                 </DeleteBtn>
               ) : null}
             </BtnWrap>
@@ -218,6 +218,8 @@ const BtnWrap = styled.div`
   align-items: center;
   border-radius: 5px;
   height: 20.72px;
+  position: absolute;
+  right: 10px;
   @media screen and (max-width: 820px) {
     position: absolute;
     right: -10px;
@@ -227,7 +229,7 @@ const BtnWrap = styled.div`
 `;
 const UpdateBtn = styled.button`
   border: none;
-  /* width: 45px; */
+  width: 52px;
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
@@ -235,15 +237,11 @@ const UpdateBtn = styled.button`
   font-size: 10.0654px;
   color: #595959;
   cursor: pointer;
-  @media screen and (max-width: 820px) {
-    width: 32px;
-    padding: 5px;
-  }
 `;
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
-  /* width: 45px; */
+  width: 52px;
   padding: 5px;
   border: none;
   background-color: transparent;
@@ -251,11 +249,6 @@ const DeleteBtn = styled.button`
   font-size: 10.0654px;
   color: #595959;
   cursor: pointer;
-  @media screen and (max-width: 820px) {
-    width: 32px;
-    color: #595959;
-    cursor: pointer;
-  }
 `;
 
 const ToggleBtn = styled.button`

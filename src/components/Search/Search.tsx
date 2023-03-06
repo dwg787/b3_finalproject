@@ -214,5 +214,3 @@ const ListBoxInfinite = styled.div`
   box-shadow: 2.25708px 2.25708px 5.6427px rgba(0, 0, 0, 0.18);
   border-radius: 0px 0px 11px 11px;
 `;
-
-// const listdiv = div``;
