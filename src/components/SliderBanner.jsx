@@ -176,7 +176,7 @@ const StyledSlider = styled(Slider)`
   .slick-prev::before,
   .slick-next::before {
     opacity: 0;
-    display: none;
+    /* display: none; */
   }
 `;
 
@@ -185,7 +185,7 @@ const Pre = styled.div`
   height: 20px;
   position: absolute;
   left: 5%;
-  z-index: 3;
+  z-index: 4;
   /* margin-left: 40px; */
   @media screen and (max-width: 1000px) {
     display: none;
@@ -197,7 +197,7 @@ const NextTo = styled.div`
   height: 20px;
   position: absolute;
   right: 5%;
-  z-index: 3;
+  z-index: 4;
   /* margin-right: 40px; */
   @media screen and (max-width: 1000px) {
     display: none;

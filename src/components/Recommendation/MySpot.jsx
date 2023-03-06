@@ -51,16 +51,16 @@ const MySpot = (propsData) => {
   //       },
   //     },
   //   ],
-  //   nextArrow: (
-  //     <NextTo>
-  //       <ArrowImg src={nextImg} />
-  //     </NextTo>
-  //   ),
-  //   prevArrow: (
-  //     <Pre>
-  //       <ArrowImg src={pervImg} />
-  //     </Pre>
-  //   ),
+  // nextArrow: (
+  //   <NextTo>
+  //     <ArrowImg src={nextImg} />
+  //   </NextTo>
+  // ),
+  // prevArrow: (
+  //   <Pre>
+  //     <ArrowImg src={pervImg} />
+  //   </Pre>
+  // ),
   // };
 
   const settings = {
@@ -70,6 +70,16 @@ const MySpot = (propsData) => {
     speed: 400,
     slidesToShow: 3.5,
     slidesToScroll: 1,
+    nextArrow: (
+      <NextTo>
+        <ArrowImg src={nextImg} />
+      </NextTo>
+    ),
+    prevArrow: (
+      <Pre>
+        <ArrowImg src={pervImg} />
+      </Pre>
+    ),
     responsive: [
       {
         breakpoint: 1440,
@@ -96,7 +106,7 @@ const MySpot = (propsData) => {
         breakpoint: 480,
         settings: {
           slidesToShow: 2.1,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
         },
       },
       {
@@ -175,7 +185,6 @@ const StyledSlider = styled(Slider)`
   .slick-prev::before,
   .slick-next::before {
     opacity: 0;
-    display: none;
   }
 `;
 
