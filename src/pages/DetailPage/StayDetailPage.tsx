@@ -50,6 +50,7 @@ import {
 import DetailFooter from '../../components/Footer/DetailFooter';
 import { useMediaQuery } from 'react-responsive';
 import MobileStayDetailPage from './MobileStayDetailPage';
+import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -240,7 +241,7 @@ const StayDetailPage = () => {
                     </DetailInformationMap>
 
                     <CommunicationWrap id="4">
-                      <Communication />
+                      {isMobile ? <MobileCommunication /> : <Communication />}
                     </CommunicationWrap>
                     <SideInfoWrapper id="5">
                       <SpotInfo stayDetailData={stayDetailData} />
