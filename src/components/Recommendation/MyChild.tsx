@@ -151,24 +151,25 @@ const MyChildImg = styled.img`
 `;
 
 const MyChildNum = styled.div`
-  width: 60.98px;
+  width: 71px;
   height: 33.32px;
   position: absolute;
-  border-radius: 200px;
-  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 9px;
+  background-color: #a0adff;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15.61px;
+  font-size: 18px;
+  font-weight: bold;
   color: white;
-  margin-top: 132.7px;
-  margin-left: 18.85px;
+  margin-top: 20.7px;
+  margin-left: 174px;
   @media screen and (max-width: 820px) {
     width: 45px;
     height: 24px;
     font-size: 12px;
-    margin-top: 88px;
-    margin-left: 13px;
+    margin-top: 20px;
+    margin-left: 125px;
   }
 `;
 
