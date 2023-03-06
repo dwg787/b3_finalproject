@@ -62,11 +62,10 @@ export default function MyInfo(): JSX.Element {
   const handleDeleteAccount = async () => {
     const confirmDelete = window.confirm('정말 탈퇴하시겠습니까?');
     if (confirmDelete) {
-      console.log('회원탈퇴 완료');
       if (auth.currentUser) {
         await deleteUser(auth.currentUser)
           .then(() => alert('성공적으로 탈퇴하였습니다!'))
-          .catch((error) => console.log(error));
+          .catch((error) => alert(error));
         localStorage.removeItem('id');
         localStorage.removeItem('email');
         navigate('/', { replace: true });
@@ -80,10 +79,7 @@ export default function MyInfo(): JSX.Element {
         setCurrentUser(auth.currentUser!.uid);
         setUserName(auth.currentUser!.displayName ?? '');
         setEmail(auth.currentUser!.email ?? '');
-
-        console.log('로그인 되어있음');
       } else if (!user) {
-        console.log('로그인 안됨');
       }
     });
     if (!currentUser) return;

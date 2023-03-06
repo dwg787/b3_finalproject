@@ -7,8 +7,7 @@ const Naver = () => {
   console.log(userName);
   const { naver }: any = window;
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
-  const NAVER_CALLBACK_URL =
-    'https://b3-finalproject-git-dev-dwg787.vercel.app';
+  const NAVER_CALLBACK_URL = 'https://b3-finalproject.vercel.app';
 
   const handleNaverLogin = () => {
     if (

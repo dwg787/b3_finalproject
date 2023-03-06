@@ -16,7 +16,7 @@ const Navbar = () => {
   const location = useLocation();
   const history = useNavigate();
   const REST_API_KEY = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI = 'https://b3-finalproject-git-dev-dwg787.vercel.app';
+  const REDIRECT_URI = 'https://b3-finalproject.vercel.app';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const navigate = useNavigate();
 
@@ -34,19 +34,17 @@ const Navbar = () => {
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   const REST_API_KEY_KAKAO = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI_KAKAO =
-    'https://b3-finalproject-git-dev-dwg787.vercel.app';
+  const REDIRECT_URI_KAKAO = 'https://b3-finalproject.vercel.app';
   const link_kakao = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY_KAKAO}&redirect_uri=${REDIRECT_URI_KAKAO}&response_type=code`;
   const CLIENT_SECRET = 'jvRkvzZgcAhb2iq42YyYwqCoIY5t1uXS';
   const [nickName, setNickName] = useState();
   const [profileImage, setProfileImage] = useState();
   const [accessToken, setAccessToken] = useState();
   const [userName, setUserName] = useState('');
-  console.log('Navbar', userName);
+  // console.log('Navbar', userName);
   const { naver } = window;
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
-  const NAVER_CALLBACK_URL =
-    'https://b3-finalproject-git-dev-dwg787.vercel.app';
+  const NAVER_CALLBACK_URL = 'https://b3-finalproject.vercel.app';
 
   const getUser = async () => {
     const ACCESS_TOKEN = await fetch('https://kauth.kakao.com/oauth/token', {
@@ -65,9 +63,9 @@ const Navbar = () => {
       .then((res) => res.json())
       .catch((error) => console.log('error:', error));
 
-    console.log('ACCESS_TOKEN1', ACCESS_TOKEN);
+    // console.log('ACCESS_TOKEN1', ACCESS_TOKEN);
     setAccessToken(ACCESS_TOKEN.access_token);
-    console.log('ACCESS_TOKEN2', ACCESS_TOKEN.access_token);
+    // console.log('ACCESS_TOKEN2', ACCESS_TOKEN.access_token);
     localStorage.setItem('token_for_kakaotalk', ACCESS_TOKEN.access_token);
 
     const user = await axios.get('https://kapi.kakao.com/v2/user/me', {
@@ -103,7 +101,7 @@ const Navbar = () => {
   const LogOutHandler = async () => {
     await signOut(auth);
     const AccessToken = window.localStorage.getItem('token_for_kakaotalk');
-    console.log(AccessToken);
+    // console.log(AccessToken);
     const islogout = await fetch('https://kapi.kakao.com/v1/user/logout', {
       headers: {
         Authorization: `Bearer ${AccessToken}`,
@@ -112,7 +110,7 @@ const Navbar = () => {
       method: 'POST',
     }).then((res) => res.json());
 
-    console.log('isLogout', islogout);
+    // console.log('isLogout', islogout);
 
     fetch('https://openapi.naver.com/v1/nid/verify', {
       headers: {
@@ -147,7 +145,7 @@ const Navbar = () => {
     naverLogin.getLoginStatus(async function(status) {
       if (status) {
         const username = naverLogin.user.getName();
-        console.log(naverLogin.user.id);
+        // console.log(naverLogin.user.id);
         setUserName(username);
         window.localStorage.setItem('id', username);
         window.localStorage.setItem('uid', naverLogin.user.id);
