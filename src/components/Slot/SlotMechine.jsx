@@ -87,7 +87,7 @@ const SlotMachine = () => {
     // handleSearchText();
     if (isClick) {
       Loling(false);
-      console.log('어려웡');
+      // console.log('어려웡');
       setIsClick(false);
       setTimeout(() => {
         setIsClick(true);
@@ -95,7 +95,7 @@ const SlotMachine = () => {
     }
   };
 
-  console.log('currentSpots', currentSpots);
+  // console.log('currentSpots', currentSpots);
   //   const [totalRestaurants, setTotalRestaurants] = useState([]);
   //   const [totalHotels, setTotalHotels] = useState([]);
 
