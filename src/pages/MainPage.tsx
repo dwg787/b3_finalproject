@@ -29,7 +29,7 @@ const MainPage = () => {
     query: '(max-width:820px)',
   });
 
-  console.log('반응형?', isMobile);
+  // console.log('반응형?', isMobile);
   useEffect(() => {
     if (selected) setSelectedMenu(selected);
   }, [selected]);
