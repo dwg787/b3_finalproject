@@ -134,6 +134,9 @@ const CommentBoxWrap = styled.div`
   /* flex-wrap: wrap; */
   /* border: 1px solid black; */
   margin: 0 32.72px 0 37px;
+  @media screen and (max-width: 820px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const CommentBox = styled.div`
@@ -147,6 +150,12 @@ const CommentBox = styled.div`
   flex-direction: column;
   &:hover {
     border: 1px solid #6478ff;
+  }
+  @media screen and (max-width: 820px) {
+    width: 304px;
+    height: 55px;
+    box-shadow: 1.69289px 1.69289px 4.23224px rgba(0, 0, 0, 0.15);
+    border-radius: 5.92513px;
   }
 
   /* margin: 0 32.72px 0 32.72px; */
@@ -168,6 +177,11 @@ const Name = styled.div`
   font-size: 11.8485px;
   color: #595959;
   width: 35%;
+  @media screen and (max-width: 820px) {
+    width: 40%;
+    font-weight: 700;
+    font-size: 11px;
+  }
 `;
 
 const Date = styled.div`
@@ -175,6 +189,11 @@ const Date = styled.div`
   font-size: 10.1558px;
   color: #979797;
   width: 300px;
+  @media screen and (max-width: 820px) {
+    width: 300px;
+    font-weight: 500;
+    font-size: 9px;
+  }
 `;
 
 const ToggleWrap = styled.div`
@@ -187,6 +206,10 @@ const ToggleWrap = styled.div`
   margin-bottom: 5px; */
 
   /* border: 1px solid purple; */
+  @media screen and (max-width: 820px) {
+    margin-right: 20px;
+    margin-top: -5px;
+  }
 `;
 
 const BtnWrap = styled.div`
@@ -195,6 +218,10 @@ const BtnWrap = styled.div`
   align-items: center;
   border-radius: 5px;
   height: 20.72px;
+  @media screen and (max-width: 820px) {
+    position: absolute;
+    right: -10px;
+  }
 
   /* border: 1px solid red; */
 `;
@@ -208,6 +235,10 @@ const UpdateBtn = styled.button`
   font-size: 10.0654px;
   color: #595959;
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    width: 32px;
+    padding: 5px;
+  }
 `;
 
 const DeleteBtn = styled.button`
@@ -220,6 +251,11 @@ const DeleteBtn = styled.button`
   font-size: 10.0654px;
   color: #595959;
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    width: 32px;
+    color: #595959;
+    cursor: pointer;
+  }
 `;
 
 const ToggleBtn = styled.button`
@@ -227,10 +263,15 @@ const ToggleBtn = styled.button`
   border: none;
   background-color: transparent;
   position: absolute;
-  left: 50px;
+  left: 53px;
   top: -2px;
   height: 25px;
   cursor: pointer;
+  @media screen and (max-width: 820px) {
+    height: 25px;
+    top: -4px;
+    left: 50px;
+  }
 `;
 
 const Toggle = styled(BsThreeDotsVertical)`
@@ -252,6 +293,9 @@ const RealComment = styled.p`
   font-weight: 500;
   font-size: 11.8485px;
   color: #595959;
+  @media screen and (max-width: 820px) {
+    font-size: 10px;
+  }
 `;
 
 const EditInput = styled.input`

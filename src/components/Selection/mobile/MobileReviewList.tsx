@@ -172,7 +172,6 @@ const Name = styled.div`
 const Date = styled.div`
   color: #979797;
   width: 300px;
-
   font-weight: 500;
   font-size: 9px;
 `;
@@ -229,10 +228,8 @@ const ToggleBtn = styled.button`
   border: none;
   background-color: transparent;
   position: absolute;
-
   height: 25px;
   cursor: pointer;
-
   left: 50px;
   top: -4px;
   /* height: 25px; */
