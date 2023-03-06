@@ -68,10 +68,10 @@ const LoginPage: React.FC<LoginPageProps> = ({ showModal, setShowModal }) => {
     )
       .then((data) => {
         alert('login 성공!');
-        console.log(data);
-        console.log(auth);
-        console.log('이메일', emailRef.current!.value);
-        console.log('비번', passwordRef.current!.value);
+        // console.log(data);
+        // console.log(auth);
+        // console.log('이메일', emailRef.current!.value);
+        // console.log('비번', passwordRef.current!.value);
         localStorage.setItem('id', data.user.displayName!);
         localStorage.setItem('email', data.user.email!);
         sessionStorage.setItem('uid', data.user.uid);

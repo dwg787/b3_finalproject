@@ -115,7 +115,6 @@ const StaySelectionResult = () => {
               .map((_, i) => {
                 const isSelectedPage =
                   firstNum.current + i === stayCurPage ? true : false;
-                // console.log('토탈카운', data.totalCount);
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (
                     <PaginationDot
@@ -202,7 +201,7 @@ const BtnWrapper = styled.div`
   justify-content: center;
   width: 10px;
   height: 30px;
-  @media (max-width: 390px) {
+  @media (max-width: 420px) {
     display: none;
   }
 `;
@@ -245,17 +244,15 @@ const ListContainer = styled.div`
 const MobilePrevBtn = styled(GrFormPrevious)`
   font-size: 24px;
   cursor: pointer;
-  @media (min-width: 391px) {
+  @media (min-width: 421px) {
     display: none;
-    font-size: 24px;
   }
 `;
 
 const MobileNextBtn = styled(GrFormNext)`
   font-size: 24px;
   cursor: pointer;
-  @media (min-width: 391px) {
+  @media (min-width: 421px) {
     display: none;
-    font-size: 24px;
   }
 `;

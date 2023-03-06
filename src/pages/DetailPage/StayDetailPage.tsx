@@ -50,6 +50,7 @@ import {
 import DetailFooter from '../../components/Footer/DetailFooter';
 import { useMediaQuery } from 'react-responsive';
 import MobileStayDetailPage from './MobileStayDetailPage';
+import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
 
 const StayDetailPage = () => {
   const param = useParams();
@@ -62,8 +63,6 @@ const StayDetailPage = () => {
   const isMobile: boolean = useMediaQuery({
     query: '(max-width:820px)',
   });
-
-  console.log('반응형?', isMobile);
 
   const { data: stayDetailData, isLoading: isLoadingStayDetail } = useQuery(
     ['stay_detail', param],
@@ -240,7 +239,7 @@ const StayDetailPage = () => {
                     </DetailInformationMap>
 
                     <CommunicationWrap id="4">
-                      <Communication />
+                      {isMobile ? <MobileCommunication /> : <Communication />}
                     </CommunicationWrap>
                     <SideInfoWrapper id="5">
                       <SpotInfo stayDetailData={stayDetailData} />

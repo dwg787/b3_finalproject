@@ -5,7 +5,6 @@ import chatbot from '../../assets/chatbot.png';
 
 export default function ChatBotModal() {
   const [modal, setModal] = useState(false);
-  console.log(modal);
   const modalEvents = () => {
     setModal((prev) => !prev);
   };

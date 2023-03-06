@@ -7,11 +7,9 @@ const RegionSelection = () => {
   return (
     <SelectRegionBtnWrapper>
       {/* <MainImg src={mainImg} alt='이미지' /> */}
-      <>
-        {AREA_CODE.map((e) => {
-          return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
-        })}
-      </>
+      {AREA_CODE.map((e) => {
+        return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
+      })}
     </SelectRegionBtnWrapper>
   );
 };

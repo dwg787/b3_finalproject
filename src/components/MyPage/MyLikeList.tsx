@@ -116,7 +116,7 @@ const MyLikeList = () => {
 
   useEffect(() => {
     getMyBookmarkList();
-  }, [delResLiked, delSpotLiked, delStayLiked]);
+  }, []);
 
   return (
     <>
@@ -153,7 +153,7 @@ const MyLikeList = () => {
                                   if (
                                     window.confirm('정말로 삭제하시겠습니까?')
                                   ) {
-                                    delSpotLiked(data.contentid);
+                                    delResLiked(data.contentid);
                                   }
                                 }}
                               />
@@ -191,7 +191,7 @@ const MyLikeList = () => {
                                   if (
                                     window.confirm('정말로 삭제하시겠습니까?')
                                   ) {
-                                    delSpotLiked(data.contentid);
+                                    delStayLiked(data.contentid);
                                   }
                                 }}
                               />

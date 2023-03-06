@@ -98,7 +98,8 @@ export default function ReviewList({
                     handleDelete(review.id, i);
                   }}
                 >
-                  {!editBox ? '삭제' : null}
+                  삭제
+                  {/* {!editBox ? '삭제' : '삭제'} */}
                 </DeleteBtn>
               ) : null}
             </BtnWrap>
@@ -172,7 +173,6 @@ const Name = styled.div`
 const Date = styled.div`
   color: #979797;
   width: 300px;
-
   font-weight: 500;
   font-size: 9px;
 `;
@@ -181,6 +181,7 @@ const ToggleWrap = styled.div`
   display: flex;
   position: relative;
   width: 90px;
+  /* width: 120px; */
   margin-right: 20px;
   margin-top: -5px;
   /* margin-top: -5px;
@@ -197,29 +198,27 @@ const BtnWrap = styled.div`
   height: 20.72px;
   position: absolute;
   right: -10px;
-
-  /* border: 1px solid red; */
 `;
 const UpdateBtn = styled.button`
   border: none;
-  width: 32px;
+  width: 51px;
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
   font-weight: 500;
-  font-size: 10.0654px;
+  font-size: 10px;
   color: #595959;
   cursor: pointer;
 `;
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
-  width: 32px;
+  width: 51px;
   padding: 5px;
   border: none;
   background-color: transparent;
   font-weight: 500;
-  font-size: 10.0654px;
+  font-size: 10px;
   color: #595959;
   cursor: pointer;
 `;
@@ -229,13 +228,10 @@ const ToggleBtn = styled.button`
   border: none;
   background-color: transparent;
   position: absolute;
-
   height: 25px;
   cursor: pointer;
-
   left: 50px;
   top: -4px;
-  /* height: 25px; */
 `;
 
 const Toggle = styled(BsThreeDotsVertical)`

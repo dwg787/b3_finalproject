@@ -13,7 +13,7 @@ const StTicketWrap = styled.div`
   position: relative;
   @media screen and (max-width: 820px) {
     width: 100%;
-    /* height: 560px; */
+    height: 560px;
   }
 `;
 
@@ -54,6 +54,7 @@ const StLikedBox = styled.div`
     grid-template-columns: repeat(1, 338px);
     grid-template-rows: repeat(4, 120px);
     row-gap: 11px;
+    padding: 20px 26px;
   }
 `;
 
@@ -243,7 +244,7 @@ const PaginationBox = styled.div`
     justify-content: center;
     margin: 38px 0 44px 0;
     @media screen and (max-width: 820px) {
-      margin-top: 50px;
+      margin-top: 66px;
     }
   }
   ul {
@@ -287,9 +288,12 @@ const Container = styled.div`
   width: 100%;
   height: 680px;
   box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 11px;
   @media screen and (max-width: 820px) {
     width: 100%;
-    /* height: 560px; */
+    height: 560px;
+    margin-top: 9px;
   }
 `;
 
