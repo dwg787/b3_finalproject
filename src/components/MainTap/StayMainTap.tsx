@@ -176,8 +176,8 @@ const InnerList = styled.div`
 `;
 
 const InnerImg = styled.img`
-  width: 261px;
-  height: 200px;
+  width: 271px;
+  height: 270px;
   position: absolute;
   cursor: pointer;
   &:hover {
@@ -191,8 +191,8 @@ const InnerImg = styled.img`
 `;
 
 const OuterImg = styled.img`
-  width: 214px;
-  height: 200px;
+  width: 224px;
+  height: 220px;
   position: absolute;
   cursor: pointer;
   &:hover {

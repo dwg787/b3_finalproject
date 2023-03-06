@@ -24,9 +24,9 @@ const Chatimgbtn = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 30px;
-
-  width: 58px;
-  height: 58px;
+  margin-left: 3px;
+  width: 30px;
+  height: 30px;
   left: 94%;
   top: 90%;
   z-index: 500;
@@ -40,7 +40,7 @@ const Chatimgbtn = styled.div`
 
 const ChatingImg = styled.img`
   @media screen and (max-width: 820px) {
-    width: 40px;
-    height: 40px;
+    width: 43px;
+    height: 43px;
   }
 `;

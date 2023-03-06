@@ -47,6 +47,7 @@ const WrapDiv = styled.div`
   @media screen and (max-width: 820px) {
     padding-left: 24px;
     padding-right: 24px;
+    font-size: 11px;
   }
 `;
 
