@@ -141,7 +141,7 @@ const StCartTitle = styled.span`
   font-weight: 900;
   z-index: 100;
   font-size: 16.57px;
-  line-height: 15.5px;
+  /* line-height: 15.5px; */
   margin: 18px 39.24px 10px 24.7px;
   white-space: nowrap;
   overflow: hidden;
@@ -229,6 +229,7 @@ const DelBtn = styled.img`
   height: 24px;
   /* margin: 13.09px 14.29px 0 0; */
   cursor: pointer;
+  position: absolute;
   @media screen and (max-width: 820px) {
     width: 16px;
     height: 16px;
