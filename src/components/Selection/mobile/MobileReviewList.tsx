@@ -197,8 +197,6 @@ const BtnWrap = styled.div`
   height: 20.72px;
   position: absolute;
   right: -10px;
-
-  /* border: 1px solid red; */
 `;
 const UpdateBtn = styled.button`
   border: none;
