@@ -111,7 +111,6 @@ const MobileStayDetailPage = () => {
     };
     getFirestoreRecCnt();
   }, [stayDetailData]);
-  // console.log('숙박 상세정보', stayDetailData);
 
   //예약하기 url뽑기(common파일로 정리?필요)
   const reservationurl = stayAdditionalData1?.reservationurl ?? '';

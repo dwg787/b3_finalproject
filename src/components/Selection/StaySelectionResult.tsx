@@ -115,7 +115,6 @@ const StaySelectionResult = () => {
               .map((_, i) => {
                 const isSelectedPage =
                   firstNum.current + i === stayCurPage ? true : false;
-                // console.log('토탈카운', data.totalCount);
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (
                     <PaginationDot
