@@ -487,7 +487,7 @@ const ReservationBottom = styled.div`
     width: 100%;
   }
   @media screen and (max-width: 390px) {
-    width: 390px;
+    width: 100%;
   }
 `;
 
@@ -712,7 +712,7 @@ const CheckBoxInput3 = styled.input`
   }
   @media screen and (max-width: 390px) {
     margin-left: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 26px;
     width: 20px;
     height: 20px;
 
@@ -771,7 +771,7 @@ const CheckBoxText = styled.div`
     line-height: 11px;
     margin-left: 0px;
 
-    margin-top: 10px;
+    margin-top: 5px;
   }
 `;
 
@@ -787,9 +787,10 @@ const CheckBoxText5 = styled.div`
   }
   @media screen and (max-width: 390px) {
     font-size: 10px;
-    line-height: 11px;
+    line-height: 15px;
     margin-left: 0px;
     display: inline-block;
+    margin-top: 5px;
   }
 `;
 
