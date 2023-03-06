@@ -25,6 +25,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   max-width: 1036px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +40,6 @@ const Container = styled.div`
 //상세페이지 메인 박스1
 const DeatilBox = styled.div`
   width: 100%;
-  /* height: 70.8%; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -70,7 +70,8 @@ const DeatilTextBox = styled.div`
 
 const TabHr = styled.hr`
   border: solid #6478ff 1.13px;
-  width: 933.21px;
+  /* width: 933.21px; */
+  width:90%
   margin: 0;
   @media screen and (max-width: 820px) {
     border: solid #6478ff 1px;
@@ -136,8 +137,10 @@ const DeatilImojiBox = styled.div`
 
 //상세페이지 사진 박스
 const DetailImgBox = styled.div`
-  width: 963.68px;
-  height: 449.68px;
+  /* width: 963.68px; */
+  width: 93%;
+  /* max-height: 18%; */
+  max-height: 449.68px;
   justify-content: center;
   display: flex;
   margin-bottom: 14.67px;
@@ -151,10 +154,13 @@ const DetailImgBox = styled.div`
 const DetailImg = styled.img`
   width: 100%;
   border-radius: 11.28px;
+
+  max-height: 449.68px;
   border: 1px solid rgb(158, 171, 255, 0.61);
   position: relative;
   @media screen and (max-width: 820px) {
     width: 100%;
+    height: 158px;
     border-radius: 4px;
     border: 1px solid rgb(158, 171, 255, 0.61);
   }
@@ -197,7 +203,8 @@ const DetailImgBtn = styled.button`
 
 // 상세정보박스
 const DetailInformation = styled.div`
-  width: 963.68px;
+  /* width: 963.68px; */
+  width: 93%;
   top: 0;
   justify-content: center;
   display: flex;
@@ -222,7 +229,8 @@ const DetailInformation = styled.div`
 //상세박스 소개 텍스트
 const DetailInfo = styled.span`
   display: block;
-  width: 907.25px;
+  /* width: 907.25px; */
+  width: 87.6%;
   line-height: 20.9px;
   flex-wrap: wrap;
   font-size: 12.98px;
@@ -239,7 +247,8 @@ const DetailInfo = styled.span`
 `;
 //상세박스 정보 텍스트
 const DetailInfo2 = styled.div`
-  width: 907.25px;
+  /* width: 907.25px; */
+  width: 87.6%;
   margin: 0px 28.77px 23.57px 27.65px;
   flex-wrap: wrap;
   line-height: 20.9px;
@@ -255,7 +264,8 @@ const DetailInfo2 = styled.div`
 `;
 
 const DetailInfoAdd = styled.div`
-  width: 907.25px;
+  /* width: 907.25px; */
+  width: 87.6%;
   flex-wrap: wrap;
   font-size: 12.98px;
   line-height: 20.9px;
@@ -277,7 +287,8 @@ const DetailInfoAdd = styled.div`
 const DetailTextBox = styled.div`
   display: flex;
   flex-direction: row;
-  width: 907.25px;
+  /* width: 907.25px; */
+  width: 87.6%;
   @media screen and (max-width: 820px) {
     width: 311px;
   }
@@ -285,7 +296,8 @@ const DetailTextBox = styled.div`
 
 //지도박스
 const DetailInformationMap = styled.div`
-  width: 963.68px;
+  /* width: 963.68px; */
+  width: 93%;
   height: 398.33px;
   border-radius: 11.28px;
   flex-wrap: wrap;
@@ -299,7 +311,8 @@ const DetailInformationMap = styled.div`
 
 //댓글
 const CommunicationWrap = styled.div`
-  width: 964px;
+  /* width: 964px; */
+  width: 93%;
   height: 504px;
   justify-content: center;
   display: flex;
