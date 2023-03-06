@@ -72,6 +72,7 @@ const MobileMyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   const delSpotLiked = async (targetId: string) => {
@@ -92,6 +93,7 @@ const MobileMyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   const delStayLiked = async (targetId: string) => {
@@ -112,11 +114,12 @@ const MobileMyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   useEffect(() => {
     getMyBookmarkList();
-  }, [delResLiked, delSpotLiked, delStayLiked]);
+  }, []);
 
   return (
     <>
@@ -153,7 +156,7 @@ const MobileMyLikeList = () => {
                                   if (
                                     window.confirm('정말로 삭제하시겠습니까?')
                                   ) {
-                                    delSpotLiked(data.contentid);
+                                    delResLiked(data.contentid);
                                   }
                                 }}
                               />
@@ -191,7 +194,7 @@ const MobileMyLikeList = () => {
                                   if (
                                     window.confirm('정말로 삭제하시겠습니까?')
                                   ) {
-                                    delSpotLiked(data.contentid);
+                                    delStayLiked(data.contentid);
                                   }
                                 }}
                               />

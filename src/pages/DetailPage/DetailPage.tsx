@@ -157,9 +157,7 @@ const DetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-
                   {isMobile ? <MobileCommunication /> : <Communication />}
-
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <StayInfo spotData={spotDetailData} />

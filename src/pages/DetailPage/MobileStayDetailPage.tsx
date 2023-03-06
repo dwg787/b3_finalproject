@@ -48,6 +48,8 @@ import {
   DetailInfo2,
 } from './styles';
 import DetailFooter from '../../components/Footer/DetailFooter';
+import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
+import { useMediaQuery } from 'react-responsive';
 
 const MobileStayDetailPage = () => {
   const param = useParams();
@@ -99,6 +101,9 @@ const MobileStayDetailPage = () => {
       });
     }
   };
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:820px)',
+  });
 
   useEffect(() => {
     const getFirestoreRecCnt = async () => {
@@ -111,7 +116,6 @@ const MobileStayDetailPage = () => {
     };
     getFirestoreRecCnt();
   }, [stayDetailData]);
-  // console.log('숙박 상세정보', stayDetailData);
 
   //예약하기 url뽑기(common파일로 정리?필요)
   const reservationurl = stayAdditionalData1?.reservationurl ?? '';
@@ -205,7 +209,7 @@ const MobileStayDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {/* <Communication /> */}
+                  <MobileCommunication />
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <SpotInfo stayDetailData={stayDetailData} />
