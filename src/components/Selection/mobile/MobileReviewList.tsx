@@ -202,7 +202,6 @@ const BtnWrap = styled.div`
 const UpdateBtn = styled.button`
   border: none;
   width: 51px;
-
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
@@ -233,7 +232,6 @@ const ToggleBtn = styled.button`
   cursor: pointer;
   left: 50px;
   top: -4px;
-  /* height: 25px; */
 `;
 
 const Toggle = styled(BsThreeDotsVertical)`
