@@ -9,7 +9,7 @@ import kakao from '../../assets/kakao.avif';
 export default function KakaoLoginButton() {
   const location = useLocation();
   const REST_API_KEY = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI = 'https://b3-finalproject-v33x.vercel.app';
+  const REDIRECT_URI = 'https://b3-finalproject.vercel.app';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const loginHandler = () => {
     window.location.replace(link);
