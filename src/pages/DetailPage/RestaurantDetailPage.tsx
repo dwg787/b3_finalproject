@@ -41,6 +41,8 @@ import {
 import StayInfo from '../../components/Recommendation/Info/StayInfo';
 import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
 import DetailFooter from '../../components/Footer/DetailFooter';
+import { useMediaQuery } from 'react-responsive';
+import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
 
 const RestaurantDetailPage = () => {
   const param = useParams();
@@ -87,6 +89,10 @@ const RestaurantDetailPage = () => {
       });
     }
   };
+
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:767px)',
+  });
 
   useEffect(() => {
     const getFirestoreRecCnt = async () => {
@@ -157,7 +163,7 @@ const RestaurantDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {/* <Communication /> */}
+                  {isMobile ? <MobileCommunication /> : <Communication />}
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <SpotInfo restaurantDetailData={restaurantDetailData} />
