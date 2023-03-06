@@ -84,10 +84,8 @@ const SlotMachine = () => {
   // };
 
   const lolinghandler = () => {
-    // handleSearchText();
     if (isClick) {
-      Loling(false);
-      // console.log('어려웡');
+      Loling();
       setIsClick(false);
       setTimeout(() => {
         setIsClick(true);
