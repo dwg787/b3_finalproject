@@ -76,6 +76,10 @@ const SignUpPage = () => {
       alert('약관에 동의해주세요!'); // checkbox가 선택되지 않았다면 알림창 띄우기
       return;
     }
+    if (phoneNumber === '') {
+      alert('휴대폰 번호를 입력해주세요.');
+      return;
+    }
     await createUserWithEmailAndPassword(auth, id, pw).then((data) => {
       if (auth.currentUser)
         updateProfile(auth?.currentUser, {
@@ -83,7 +87,7 @@ const SignUpPage = () => {
         })
           .then(() => {
             alert('회원가입이 완료되었습니다');
-            console.log('data', data);
+
             setId('');
             setNickName('');
             setPw('');
@@ -709,8 +713,8 @@ const CheckBoxInput3 = styled.input`
   @media screen and (max-width: 390px) {
     margin-left: 10px;
     margin-bottom: 22px;
-    width: 27px;
-    height: 27px;
+    width: 20px;
+    height: 20px;
 
     box-shadow: none;
   }
@@ -730,6 +734,7 @@ const CheckBoxInput4 = styled.input`
   @media screen and (max-width: 390px) {
     margin-left: 10px;
     margin-bottom: 65px;
+    box-shadow: none;
   }
 `;
 
@@ -785,7 +790,6 @@ const CheckBoxText5 = styled.div`
     line-height: 11px;
     margin-left: 0px;
     display: inline-block;
-    width: 500px;
   }
 `;
 
