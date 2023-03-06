@@ -210,7 +210,7 @@ const MobileStayDetailPage = () => {
                 </DetailInformationMap>
 
                 <CommunicationWrap id="4">
-                  {isMobile ? <MobileCommunication /> : <Communication />}
+                  <MobileCommunication />
                 </CommunicationWrap>
                 <SideInfoWrapper id="5">
                   <SpotInfo stayDetailData={stayDetailData} />
