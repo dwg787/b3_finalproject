@@ -64,8 +64,6 @@ const StayDetailPage = () => {
     query: '(max-width:820px)',
   });
 
-  console.log('반응형?', isMobile);
-
   const { data: stayDetailData, isLoading: isLoadingStayDetail } = useQuery(
     ['stay_detail', param],
     () => fetchStayDetailInfo({ param }),

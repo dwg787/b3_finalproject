@@ -107,7 +107,6 @@ const RestaurantDetailPage = () => {
   }, [restaurantDetailData]);
 
   // setThisParam(param.id);
-  console.log('식당정보', restaurantDetailData);
   return (
     <DetailWrap>
       <Container>

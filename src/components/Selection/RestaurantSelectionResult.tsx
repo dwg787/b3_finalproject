@@ -20,7 +20,6 @@ const RestaurantSelectionResult = () => {
   const [restCurPage, setRestCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
-  //   const lastNum = useRef(5);
 
   //페이지네이션
   if (restCurPage % 5 === 1) {
@@ -29,7 +28,7 @@ const RestaurantSelectionResult = () => {
   if (restCurPage < firstNum.current) {
     firstNum.current = 5 * (Math.floor(restCurPage / 5) - 1) + 1;
   }
-  // console.log('레스토랑 렌더링');
+
   const { data, isFetching, isLoading, isPreviousData } = useQuery(
     ['rest_data', region, restCurPage],
     () => fetchRestaurantData({ region, restCurPage }),
@@ -117,7 +116,6 @@ const RestaurantSelectionResult = () => {
               .map((_, i) => {
                 const isSelectedPage =
                   firstNum.current + i === restCurPage ? true : false;
-                // console.log('토탈카운', data.totalCount);
                 if (firstNum.current + i <= Math.ceil(data.totalCount / 8)) {
                   return (
                     <PaginationDot
