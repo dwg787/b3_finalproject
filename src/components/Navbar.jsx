@@ -41,7 +41,7 @@ const Navbar = () => {
   const [profileImage, setProfileImage] = useState();
   const [accessToken, setAccessToken] = useState();
   const [userName, setUserName] = useState('');
-  console.log('Navbar', userName);
+  // console.log('Navbar', userName);
   const { naver } = window;
   const NAVER_CLIENT_ID = 'o47rUj6rR0GWdh1UKf95';
   const NAVER_CALLBACK_URL = 'https://b3-finalproject.vercel.app';
@@ -63,9 +63,9 @@ const Navbar = () => {
       .then((res) => res.json())
       .catch((error) => console.log('error:', error));
 
-    console.log('ACCESS_TOKEN1', ACCESS_TOKEN);
+    // console.log('ACCESS_TOKEN1', ACCESS_TOKEN);
     setAccessToken(ACCESS_TOKEN.access_token);
-    console.log('ACCESS_TOKEN2', ACCESS_TOKEN.access_token);
+    // console.log('ACCESS_TOKEN2', ACCESS_TOKEN.access_token);
     localStorage.setItem('token_for_kakaotalk', ACCESS_TOKEN.access_token);
 
     const user = await axios.get('https://kapi.kakao.com/v2/user/me', {
@@ -101,7 +101,7 @@ const Navbar = () => {
   const LogOutHandler = async () => {
     await signOut(auth);
     const AccessToken = window.localStorage.getItem('token_for_kakaotalk');
-    console.log(AccessToken);
+    // console.log(AccessToken);
     const islogout = await fetch('https://kapi.kakao.com/v1/user/logout', {
       headers: {
         Authorization: `Bearer ${AccessToken}`,
@@ -110,7 +110,7 @@ const Navbar = () => {
       method: 'POST',
     }).then((res) => res.json());
 
-    console.log('isLogout', islogout);
+    // console.log('isLogout', islogout);
 
     fetch('https://openapi.naver.com/v1/nid/verify', {
       headers: {
@@ -145,7 +145,7 @@ const Navbar = () => {
     naverLogin.getLoginStatus(async function(status) {
       if (status) {
         const username = naverLogin.user.getName();
-        console.log(naverLogin.user.id);
+        // console.log(naverLogin.user.id);
         setUserName(username);
         window.localStorage.setItem('id', username);
         window.localStorage.setItem('uid', naverLogin.user.id);
