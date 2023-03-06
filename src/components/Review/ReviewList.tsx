@@ -97,7 +97,8 @@ export default function ReviewList({
                     handleDelete(review.id, i);
                   }}
                 >
-                  {!editBox ? '삭제' : null}
+                  삭제
+                  {/* {!editBox ? '삭제' : null} */}
                 </DeleteBtn>
               ) : null}
             </BtnWrap>
@@ -217,6 +218,8 @@ const BtnWrap = styled.div`
   align-items: center;
   border-radius: 5px;
   height: 20.72px;
+  position: absolute;
+  right: 10px;
   @media screen and (max-width: 820px) {
     position: absolute;
     right: -10px;
@@ -226,7 +229,7 @@ const BtnWrap = styled.div`
 `;
 const UpdateBtn = styled.button`
   border: none;
-  /* width: 45px; */
+  width: 52px;
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
@@ -234,15 +237,11 @@ const UpdateBtn = styled.button`
   font-size: 10.0654px;
   color: #595959;
   cursor: pointer;
-  @media screen and (max-width: 820px) {
-    width: 32px;
-    padding: 5px;
-  }
 `;
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
-  /* width: 45px; */
+  width: 52px;
   padding: 5px;
   border: none;
   background-color: transparent;
@@ -250,11 +249,6 @@ const DeleteBtn = styled.button`
   font-size: 10.0654px;
   color: #595959;
   cursor: pointer;
-  @media screen and (max-width: 820px) {
-    width: 32px;
-    color: #595959;
-    cursor: pointer;
-  }
 `;
 
 const ToggleBtn = styled.button`

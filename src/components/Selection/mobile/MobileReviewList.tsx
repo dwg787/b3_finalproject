@@ -98,7 +98,8 @@ export default function ReviewList({
                     handleDelete(review.id, i);
                   }}
                 >
-                  {!editBox ? '삭제' : null}
+                  삭제
+                  {/* {!editBox ? '삭제' : '삭제'} */}
                 </DeleteBtn>
               ) : null}
             </BtnWrap>
@@ -200,7 +201,8 @@ const BtnWrap = styled.div`
 `;
 const UpdateBtn = styled.button`
   border: none;
-  width: 59px;
+  width: 51px;
+
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
@@ -212,7 +214,7 @@ const UpdateBtn = styled.button`
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
-  width: 30px;
+  width: 51px;
   padding: 5px;
   border: none;
   background-color: transparent;
