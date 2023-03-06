@@ -157,7 +157,7 @@ const MyInfoContainer = styled.div`
   background: rgb(255, 255, 255);
   border-radius: 10px;
   @media screen and (max-width: 390px) {
-    width: 390px;
+    width: 370px;
     height: 846px;
   }
 `;
