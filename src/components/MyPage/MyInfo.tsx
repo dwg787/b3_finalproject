@@ -60,6 +60,10 @@ export default function MyInfo(): JSX.Element {
   };
   // 회원탈퇴
   const handleDeleteAccount = async () => {
+    if (sessionStorage.getItem('delete')) {
+      alert('소셜로그인은 회원탈퇴가 불가능합니다!');
+      return;
+    }
     const confirmDelete = window.confirm('정말 탈퇴하시겠습니까?');
     if (confirmDelete) {
       if (auth.currentUser) {
