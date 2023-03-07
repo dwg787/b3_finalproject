@@ -69,7 +69,7 @@ const MySpot = (propsData) => {
     arrows: false,
     speed: 400,
     slidesToShow: 3.5,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
     nextArrow: (
       <NextTo>
         <ArrowImg src={nextImg} />
@@ -85,21 +85,21 @@ const MySpot = (propsData) => {
         breakpoint: 1440,
         settings: {
           slidesToShow: 3.5,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
         },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3.5,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
         },
       },
       {
         breakpoint: 720,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
         },
       },
       {
