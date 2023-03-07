@@ -275,7 +275,7 @@ const Comment = styled.div`
   /* width: 100%;
   padding: 5px;
   height: 400px;
-  margin-left: -5px; */
+   */
 
   margin-top: 5px;
   margin-left: 19.18px;
