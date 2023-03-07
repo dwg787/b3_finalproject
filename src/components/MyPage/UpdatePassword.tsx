@@ -44,9 +44,11 @@ const UpdatePassword = () => {
       alert('소셜로그인은 비밀번호를 바꿀수 없습니다!');
       return;
     }
+
     await reauthenticateWithCredential(user!, credential!)
       .then(() => {
         alert('확인되었습니다.');
+
         setCheck(true);
       })
       .catch((error) => {
@@ -54,6 +56,11 @@ const UpdatePassword = () => {
           alert('비밀번호가 틀립니다!');
         }
       });
+    // 현재 비밀번호 필드 초기화
+    setPasswordInput({
+      ...passwordInput,
+      password: '',
+    });
   };
 
   const checkHelperText = () => {
@@ -83,6 +90,14 @@ const UpdatePassword = () => {
     } else {
       alert('입력한 비밀번호가 다릅니다. 다시 확인 후 입력해 주세요!');
     }
+    // 일정 시간 이후에 비밀번호 필드 초기화
+    setTimeout(() => {
+      setPasswordInput({
+        ...passwordInput,
+        updatePassword: '',
+        updatePasswordCheck: '',
+      });
+    }, 1000);
   };
 
   const passwordChangeHandler = (
