@@ -38,8 +38,6 @@ const RestaurantMainTap = () => {
     fetchRestaurantRankList();
   }, []);
 
-  // console.log('음식점 랭킹', rankList);
-
   return (
     <WrapDiv>
       <ListTitleWrapper>
@@ -193,8 +191,11 @@ const InnerImg = styled.img`
 `;
 
 const OuterImg = styled.img`
-  width: 214px;
+  width: 244px;
   height: 200px;
+  top: -20px;
+  left: -10px;
+  object-fit: cover;
   position: absolute;
   cursor: pointer;
   &:hover {

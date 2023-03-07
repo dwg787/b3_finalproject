@@ -29,8 +29,8 @@ import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
 import {
   DetailWrap,
   Container,
-  DeatilBox,
-  DeatilImojiBox,
+  DetailBox,
+  DetailImojiBox,
   CommunicationWrap,
   DetailInfo,
   DetailInformation,
@@ -39,12 +39,12 @@ import {
   DetailImgBox,
   DetailText,
   DetailTextArr,
-  DeatilTextBox,
+  DetailTextBox,
   DetailInformationMap,
   DetailInfoAdd,
   TabHr,
   DetailImgBtn,
-  DetailTextBox,
+  DetailStayTextBox,
   DetailInfo2,
 } from './styles';
 import DetailFooter from '../../components/Footer/DetailFooter';
@@ -116,7 +116,6 @@ const MobileStayDetailPage = () => {
     };
     getFirestoreRecCnt();
   }, [stayDetailData]);
-  // console.log('숙박 상세정보', stayDetailData);
 
   //예약하기 url뽑기(common파일로 정리?필요)
   const reservationurl = stayAdditionalData1?.reservationurl ?? '';
@@ -142,19 +141,19 @@ const MobileStayDetailPage = () => {
         ) : (
           <>
             {stayDetailData ? (
-              <DeatilBox key={param.id}>
+              <DetailBox key={param.id}>
                 <DetailScroll />
                 <TabHr />
-                <DeatilTextBox>
+                <DetailTextBox>
                   <DetailText>{stayDetailData.title}</DetailText>
                   <DetailTextArr>
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
-                  <DeatilImojiBox>
+                  <DetailImojiBox>
                     <StayLiked stayDetailData={stayDetailData} />
                     <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
-                  </DeatilImojiBox>
-                </DeatilTextBox>
+                  </DetailImojiBox>
+                </DetailTextBox>
 
                 <DetailImgBox id="1">
                   <DetailImg
@@ -168,7 +167,7 @@ const MobileStayDetailPage = () => {
                     {stayDetailData.overview.split('<', 1)}
                   </DetailInfo>
                   <DetailInfo2>
-                    <DetailTextBox>
+                    <DetailStayTextBox>
                       <DetailInfoAdd>
                         <span style={{ fontWeight: '900', marginRight: '4px' }}>
                           문의 및 안내{' '}
@@ -181,8 +180,8 @@ const MobileStayDetailPage = () => {
                         </span>
                         <span> {url}</span>
                       </DetailInfoAdd>
-                    </DetailTextBox>
-                    <DetailTextBox>
+                    </DetailStayTextBox>
+                    <DetailStayTextBox>
                       <DetailInfoAdd>
                         <span style={{ fontWeight: '900', marginRight: '4px' }}>
                           주소
@@ -195,7 +194,7 @@ const MobileStayDetailPage = () => {
                         </span>{' '}
                         {stayAdditionalData1.parkinglodging}
                       </DetailInfoAdd>
-                    </DetailTextBox>
+                    </DetailStayTextBox>
                   </DetailInfo2>
                 </DetailInformation>
 
@@ -216,7 +215,7 @@ const MobileStayDetailPage = () => {
                   <SpotInfo stayDetailData={stayDetailData} />
                   <RestaurantInfo stayDetailData={stayDetailData} />
                 </SideInfoWrapper>
-              </DeatilBox>
+              </DetailBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>
             )}

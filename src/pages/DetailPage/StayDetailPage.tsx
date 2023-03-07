@@ -29,8 +29,8 @@ import SpotInfo from '../../components/Recommendation/Info/SpotInfo';
 import {
   DetailWrap,
   Container,
-  DeatilBox,
-  DeatilImojiBox,
+  DetailBox,
+  DetailImojiBox,
   CommunicationWrap,
   DetailInfo,
   DetailInformation,
@@ -39,12 +39,12 @@ import {
   DetailImgBox,
   DetailText,
   DetailTextArr,
-  DeatilTextBox,
+  DetailTextBox,
   DetailInformationMap,
   DetailInfoAdd,
   TabHr,
   DetailImgBtn,
-  DetailTextBox,
+  DetailStayTextBox,
   DetailInfo2,
 } from './styles';
 import DetailFooter from '../../components/Footer/DetailFooter';
@@ -63,8 +63,6 @@ const StayDetailPage = () => {
   const isMobile: boolean = useMediaQuery({
     query: '(max-width:820px)',
   });
-
-  console.log('반응형?', isMobile);
 
   const { data: stayDetailData, isLoading: isLoadingStayDetail } = useQuery(
     ['stay_detail', param],
@@ -150,19 +148,21 @@ const StayDetailPage = () => {
             ) : (
               <>
                 {stayDetailData ? (
-                  <DeatilBox key={param.id}>
+                  <DetailBox key={param.id}>
                     <DetailScroll />
                     <TabHr />
-                    <DeatilTextBox>
+                    <DetailTextBox>
                       <DetailText>{stayDetailData.title}</DetailText>
                       <DetailTextArr>
                         {stayDetailData.addr1.split(' ', 2)}
                       </DetailTextArr>
-                      <DeatilImojiBox>
+                      <DetailImojiBox>
                         <StayLiked stayDetailData={stayDetailData} />
-                        <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
-                      </DeatilImojiBox>
-                    </DeatilTextBox>
+                        <p style={{ marginTop: '1px' }}>
+                          {likeData !== undefined ? likeData.likeCnt : 0}
+                        </p>
+                      </DetailImojiBox>
+                    </DetailTextBox>
 
                     <DetailImgBox id="1">
                       <DetailImg
@@ -179,7 +179,7 @@ const StayDetailPage = () => {
                         {stayDetailData.overview.split('<', 1)}
                       </DetailInfo>
                       <DetailInfo2>
-                        <DetailTextBox>
+                        <DetailStayTextBox>
                           <DetailInfoAdd>
                             <span
                               style={{
@@ -202,8 +202,8 @@ const StayDetailPage = () => {
                             </span>
                             {url}
                           </DetailInfoAdd>
-                        </DetailTextBox>
-                        <DetailTextBox>
+                        </DetailStayTextBox>
+                        <DetailStayTextBox>
                           <DetailInfoAdd>
                             <span
                               style={{
@@ -226,7 +226,7 @@ const StayDetailPage = () => {
                             </span>{' '}
                             {stayAdditionalData1.parkinglodging}
                           </DetailInfoAdd>
-                        </DetailTextBox>
+                        </DetailStayTextBox>
                       </DetailInfo2>
                     </DetailInformation>
 
@@ -247,7 +247,7 @@ const StayDetailPage = () => {
                       <SpotInfo stayDetailData={stayDetailData} />
                       <RestaurantInfo stayDetailData={stayDetailData} />
                     </SideInfoWrapper>
-                  </DeatilBox>
+                  </DetailBox>
                 ) : (
                   <div>찾으시는 정보가 없습니다</div>
                 )}
