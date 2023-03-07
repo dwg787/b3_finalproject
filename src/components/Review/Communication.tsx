@@ -55,6 +55,8 @@ const Communication = () => {
         }));
         const filteredList = newList.filter(
           (review) => review.paramId === params.id,
+          //newList에서 paramId 가 params.id 값과 일치하는 모든 객체를 찾아서 새로운 배열인 filteredList 에 저장.
+          //filteredList 배열은 newList 배열에서 paramId 속성이 params.id와 일치하는 모든 객체를 포함하는 새로운 배열
         );
         setReviews(filteredList);
         setTotalReviewCount(filteredList.length);
@@ -110,13 +112,13 @@ const Communication = () => {
     <ReviewContainerWrap>
       <ReviewContainer>
         <ReviewBox>
-          <ReviewLabel htmlFor="review">후기작성</ReviewLabel>
+          <ReviewLabel htmlFor="review">여행톡</ReviewLabel>
           <InputAndBtnWrap>
             <ReviewInput
               id="review"
               maxLength={64}
               value={newReview}
-              placeholder="리뷰를 입력하세요. 최대 64 글자"
+              placeholder="댓글을 입력하세요. 최대 64 글자"
               onChange={(event) => {
                 setNewReview(event.target.value);
               }}
@@ -185,12 +187,12 @@ const ReviewContainerWrap = styled.div`
   box-sizing: border-box;
   box-shadow: 2.25685px 2.25685px 5.64213px rgba(0, 0, 0, 0.18);
   border-radius: 11.2843px;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     width: 340px;
     height: 460px;
     box-shadow: 0.795985px 0.795985px 1.98996px rgba(0, 0, 0, 0.18);
     border-radius: 3.97992px;
-  } */
+  }
 `;
 
 const PaginationBox = styled.div`
@@ -235,9 +237,9 @@ const PaginationBox = styled.div`
 const BottomLine = styled.div`
   width: 95%;
   border-bottom: 1.5px solid #9eabff;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     width: 100%;
-  } */
+  }
 `;
 
 const ReviewContainer = styled.div`
@@ -246,10 +248,10 @@ const ReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     width: 340px;
     height: 460px;
-  } */
+  }
 `;
 
 const ReviewBox = styled.div`
@@ -265,10 +267,10 @@ const ReviewLabel = styled.label`
   margin-top: 48.52px;
   margin-bottom: 15px;
   margin-left: 50px;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     margin-left: 20px;
     font-size: 8px;
-  } */
+  }
 `;
 
 const InputAndBtnWrap = styled.form`
@@ -301,7 +303,7 @@ const ReviewInput = styled.input`
   &:focus {
     outline: 1px solid #6478ff;
   }
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     box-shadow: 0.795985px 0.795985px 1.98996px rgba(0, 0, 0, 0.15);
     border-radius: 2.78595px;
     width: 304px;
@@ -313,7 +315,7 @@ const ReviewInput = styled.input`
     &::placeholder {
       font-size: 10px;
     }
-  } */
+  }
 `;
 
 const ReviewButton = styled.button`
@@ -328,13 +330,13 @@ const ReviewButton = styled.button`
   font-weight: 500;
   font-size: 12.8451px;
   margin-bottom: 20px;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     width: 160px;
     height: 39px;
     box-shadow: 2.1118px 2.1118px 5.27949px rgba(0, 0, 0, 0.18);
     border-radius: 9px;
     font-size: 15px;
-  } */
+  }
 `;
 
 const ReviewBoxList = styled.div`
@@ -347,10 +349,10 @@ const ReviewBoxList = styled.div`
   /* border: 1px solid red; */
   margin-left: 5px;
   overflow: hidden;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
     margin: 0;
-  } */
+  }
 `;

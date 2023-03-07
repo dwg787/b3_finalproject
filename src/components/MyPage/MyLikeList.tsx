@@ -72,6 +72,7 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   const delSpotLiked = async (targetId: string) => {
@@ -92,6 +93,7 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   const delStayLiked = async (targetId: string) => {
@@ -112,6 +114,7 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   useEffect(() => {

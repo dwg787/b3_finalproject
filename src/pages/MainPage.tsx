@@ -36,8 +36,8 @@ const MainPage = () => {
   return (
     <Container>
       <Menu />
-      {(selectedMenu === '관광지' ||
-        selectedMenu === '음식점' ||
+      {(selectedMenu === '관광' ||
+        selectedMenu === '맛집' ||
         selectedMenu === '숙박') && (
         <RegionSelectionBtnWrapper>
           <RegionSelection />
@@ -57,7 +57,7 @@ const MainPage = () => {
           {/* <StayRecommendation />
           <RestaurantRecommendation /> */}
         </>
-      ) : selectedMenu === '관광지' ? (
+      ) : selectedMenu === '관광' ? (
         <>
           {/* {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />} */}
           <SpotSelectionResult />
@@ -71,7 +71,7 @@ const MainPage = () => {
           <StayMainTap />
           <Footer />
         </>
-      ) : selectedMenu === '음식점' ? (
+      ) : selectedMenu === '맛집' ? (
         <>
           <RestaurantSelectionResult />
           <RestaurantMainTap />

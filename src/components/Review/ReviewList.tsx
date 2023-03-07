@@ -86,7 +86,7 @@ export default function ReviewList({
                     setEditBox(!editBox);
                   }}
                 >
-                  {editBox === false ? '수정' : '수정완료'}
+                  {editBox === false ? '수정' : '완료'}
                 </UpdateBtn>
               ) : null}
               {(toggle === true && loginUser?.uid === review?.uid) ||
@@ -132,11 +132,10 @@ export default function ReviewList({
 
 const CommentBoxWrap = styled.div`
   /* flex-wrap: wrap; */
-  /* border: 1px solid black; */
   margin: 0 32.72px 0 37px;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     margin-bottom: 10px;
-  } */
+  }
 `;
 
 const CommentBox = styled.div`
@@ -151,12 +150,12 @@ const CommentBox = styled.div`
   &:hover {
     border: 1px solid #6478ff;
   }
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     width: 304px;
     height: 55px;
     box-shadow: 1.69289px 1.69289px 4.23224px rgba(0, 0, 0, 0.15);
     border-radius: 5.92513px;
-  } */
+  }
 
   /* margin: 0 32.72px 0 32.72px; */
 `;
@@ -177,11 +176,11 @@ const Name = styled.div`
   font-size: 11.8485px;
   color: #595959;
   width: 35%;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     width: 40%;
     font-weight: 700;
     font-size: 11px;
-  } */
+  }
 `;
 
 const Date = styled.div`
@@ -189,11 +188,11 @@ const Date = styled.div`
   font-size: 10.1558px;
   color: #979797;
   width: 300px;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     width: 300px;
     font-weight: 500;
     font-size: 9px;
-  } */
+  }
 `;
 
 const ToggleWrap = styled.div`
@@ -206,10 +205,10 @@ const ToggleWrap = styled.div`
   margin-bottom: 5px; */
 
   /* border: 1px solid purple; */
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     margin-right: 20px;
     margin-top: -5px;
-  } */
+  }
 `;
 
 const BtnWrap = styled.div`
@@ -220,16 +219,16 @@ const BtnWrap = styled.div`
   height: 20.72px;
   position: absolute;
   right: 10px;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     position: absolute;
     right: -10px;
-  } */
+  }
 
   /* border: 1px solid red; */
 `;
 const UpdateBtn = styled.button`
   border: none;
-  width: 52px;
+  width: 40px;
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
@@ -241,7 +240,7 @@ const UpdateBtn = styled.button`
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
-  width: 52px;
+  width: 40px;
   padding: 5px;
   border: none;
   background-color: transparent;
@@ -260,11 +259,11 @@ const ToggleBtn = styled.button`
   top: -2px;
   height: 25px;
   cursor: pointer;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     height: 25px;
     top: -4px;
     left: 50px;
-  } */
+  }
 `;
 
 const Toggle = styled(BsThreeDotsVertical)`
@@ -276,9 +275,9 @@ const Comment = styled.div`
   /* width: 100%;
   padding: 5px;
   height: 400px;
-  margin-left: -5px; */
+   */
 
-  margin-top: 0.95px;
+  margin-top: 5px;
   margin-left: 19.18px;
 `;
 
@@ -286,14 +285,14 @@ const RealComment = styled.p`
   font-weight: 500;
   font-size: 11.8485px;
   color: #595959;
-  /* @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     font-size: 10px;
-  } */
+  }
 `;
 
 const EditInput = styled.input`
   font-weight: 500;
-  font-size: 14.0915px;
+  font-size: 11.8485px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 14px;
   color: #595959;

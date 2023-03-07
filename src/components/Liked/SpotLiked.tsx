@@ -8,8 +8,9 @@ import {
   arrayRemove,
   increment,
   DocumentData,
+  onSnapshot,
 } from 'firebase/firestore';
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { db } from '../../apis/firebase';
 import useNotification from '../../hooks/useNotification';
@@ -29,6 +30,8 @@ const SpotLiked = ({
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  //좋아요 클릭시 카운트 변화
+  const [likeCnt, setLikeCnt] = useState(0);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
   const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
@@ -46,6 +49,12 @@ const SpotLiked = ({
     }
   };
 
+  const getLikeCnt = async () => {
+    await onSnapshot(doc(db, 'spot_recommendation', param.id), (doc) => {
+      setLikeCnt(doc.data().likeCnt);
+    });
+  };
+
   useEffect(() => {
     const bookmarkData = async () => {
       setIsLoading(true);
@@ -56,6 +65,7 @@ const SpotLiked = ({
       setIsLoading(false);
     };
     bookmarkData();
+    getLikeCnt();
   }, []);
 
   const handleLiked = async () => {
@@ -63,10 +73,12 @@ const SpotLiked = ({
     if (uid && param.id) {
       const docRef = doc(collection(db, 'bookmarks'), uid);
       const spotDocRef = doc(db, 'spot_recommendation', param.id);
-
       if (isLiked) {
         setAlarmMsg('찜하기 추가!');
         setIsLiked(false);
+        if (likeCnt) {
+          setLikeCnt(likeCnt - 1);
+        }
         await getDoc(docRef).then((doc: DocumentData) => {
           const TargetBookmark = doc
             .data()
@@ -88,6 +100,9 @@ const SpotLiked = ({
       } else {
         setAlarmMsg('찜하기 제거!');
         setIsLiked(true);
+        if (likeCnt) {
+          setLikeCnt(likeCnt + 1);
+        }
         await getDoc(docRef)
           .then((doc) => {
             if (!doc.exists()) {
@@ -129,12 +144,11 @@ const SpotLiked = ({
           .catch((e) => console.log(e));
       }
     }
-
     addNoti(); //메시지 창 자체를 띠워주는 함수
   };
 
   return (
-    <div>
+    <HeartModuleWrapper>
       {uid ? (
         <>
           {isLoading ? (
@@ -154,7 +168,8 @@ const SpotLiked = ({
           </HeartBtn>
         </>
       )}
-    </div>
+      {likeCnt ? <div>{likeCnt}</div> : <div>0</div>}
+    </HeartModuleWrapper>
   );
 };
 
@@ -163,6 +178,9 @@ export default SpotLiked;
 const HeartBtn = styled.button`
   border: none;
   background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 `;
 
 const Heart = styled.img`
@@ -179,4 +197,10 @@ const Heart = styled.img`
     margin-right: 1px;
     padding: 0;
   }
+`;
+
+const HeartModuleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;

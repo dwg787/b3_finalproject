@@ -41,7 +41,7 @@ const RestaurantMainTap = () => {
   return (
     <WrapDiv>
       <ListTitleWrapper>
-        <ListItemTitle>추천! 인기 관광지</ListItemTitle>
+        <ListItemTitle>추천! 인기 맛집</ListItemTitle>
       </ListTitleWrapper>
       <>
         {rankList ? (
@@ -191,8 +191,11 @@ const InnerImg = styled.img`
 `;
 
 const OuterImg = styled.img`
-  width: 214px;
+  width: 244px;
   height: 200px;
+  top: -20px;
+  left: -10px;
+  object-fit: cover;
   position: absolute;
   cursor: pointer;
   &:hover {

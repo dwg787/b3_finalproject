@@ -4,7 +4,7 @@ import useNotification from '../../hooks/useNotification';
 
 const Notification = () => {
   // const [alarmMsg, setAlarmMsg] = useState();
-  const { noti, addNoti } = useNotification('');
+  const { noti } = useNotification('');
 
   return (
     <div>
@@ -28,15 +28,6 @@ const alarmFadeOut = keyframes`
   }
 `;
 
-// const slideIn = keyframes`
-//   from{
-//     transform: translateY(-100%);
-//   }
-//   to{
-//     transform: translateY(0%);
-//   }
-// `;
-
 const NotificationCard = styled.div`
   width: 300px;
   height: 50px;
@@ -48,13 +39,15 @@ const NotificationCard = styled.div`
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  animation: ${alarmFadeOut} 3s ease-out;
+  font-size: 15px;
+  font-weight: 800;
+  animation: ${alarmFadeOut} 2s ease-out;
 `;
 
 const NotiContainer = styled.div`
   /* position: absolute; */
   position: fixed;
-  right: 830px;
+  right: 50px;
   top: 50px;
   z-index: 1000;
 

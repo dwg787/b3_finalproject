@@ -41,7 +41,7 @@ const StayMainTap = () => {
   return (
     <WrapDiv>
       <ListTitleWrapper>
-        <ListItemTitle>추천! 인기 관광지</ListItemTitle>
+        <ListItemTitle>추천! 인기 숙소</ListItemTitle>
       </ListTitleWrapper>
       <>
         {rankList ? (
@@ -176,9 +176,12 @@ const InnerList = styled.div`
 `;
 
 const InnerImg = styled.img`
-  width: 261px;
-  height: 200px;
+  width: 271px;
+  height: 270px;
+  top: -30px;
+  left: -10px;
   position: absolute;
+  object-fit: cover;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);
@@ -191,8 +194,11 @@ const InnerImg = styled.img`
 `;
 
 const OuterImg = styled.img`
-  width: 214px;
+  width: 244px;
   height: 200px;
+  top: -20px;
+  left: -10px;
+  object-fit: cover;
   position: absolute;
   cursor: pointer;
   &:hover {

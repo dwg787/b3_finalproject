@@ -51,8 +51,8 @@ const TopBtn = styled.button`
   border: none;
   border-radius: 40px;
   position: fixed;
-  left: 94.5%;
-  top: 84%;
+  left: 94%;
+  top: 83%;
   z-index: 999;
   cursor: pointer;
   @media screen and (max-width: 820px) {

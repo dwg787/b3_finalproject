@@ -1,8 +1,8 @@
 import {
   DetailWrap,
   Container,
-  DeatilBox,
-  DeatilImojiBox,
+  DetailBox,
+  DetailImojiBox,
   CommunicationWrap,
   DetailInfo,
   DetailInformation,
@@ -10,7 +10,7 @@ import {
   DetailImgBox,
   DetailText,
   DetailTextArr,
-  DeatilTextBox,
+  DetailTextBox,
   DetailInfoAdd,
   DetailInformationMap,
   TabHr,
@@ -21,7 +21,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { db } from '../../apis/firebase';
 import noimg from '../../assets/noimg.avif';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import KakaoMap from '../../components/Map/KakaoMap';
 import { FetchedStayDataType } from '../../types/apiDataTypes';
@@ -47,6 +47,9 @@ import MobileCommunication from '../../components/Selection/mobile/MobileCommuni
 const RestaurantDetailPage = () => {
   const param = useParams();
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width:820px)',
+  });
 
   const {
     data: restaurantDetailData,
@@ -90,10 +93,6 @@ const RestaurantDetailPage = () => {
     }
   };
 
-  const isMobile: boolean = useMediaQuery({
-    query: '(max-width:767px)',
-  });
-
   useEffect(() => {
     const getFirestoreRecCnt = async () => {
       const res = await getRestaurantRecCnt();
@@ -106,7 +105,16 @@ const RestaurantDetailPage = () => {
     getFirestoreRecCnt();
   }, [restaurantDetailData]);
 
-  // setThisParam(param.id);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getRestaurantRecCnt();
+  //     if (data) {
+  //       setLikeData(data);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
   return (
     <DetailWrap>
       <Container>
@@ -116,21 +124,21 @@ const RestaurantDetailPage = () => {
         ) : (
           <>
             {restaurantDetailData ? (
-              <DeatilBox key={param.id}>
+              <DetailBox key={param.id}>
                 <DetailScroll />
                 <TabHr />
-                <DeatilTextBox>
+                <DetailTextBox>
                   <DetailText>{restaurantDetailData.title}</DetailText>
                   <DetailTextArr>
                     {restaurantDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
-                  <DeatilImojiBox>
+                  <DetailImojiBox>
                     <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
                     />
-                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
-                  </DeatilImojiBox>
-                </DeatilTextBox>
+                    {/* <p>{likeData !== undefined ? likeData.likeCnt : 0}</p> */}
+                  </DetailImojiBox>
+                </DetailTextBox>
 
                 <DetailImgBox id="1">
                   <DetailImg
@@ -169,9 +177,7 @@ const RestaurantDetailPage = () => {
                   <SpotInfo restaurantDetailData={restaurantDetailData} />
                   <StayInfo restaurantDetailData={restaurantDetailData} />
                 </SideInfoWrapper>
-
-                {/* <div>{e.homepage}</div> */}
-              </DeatilBox>
+              </DetailBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>
             )}

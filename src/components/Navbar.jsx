@@ -80,6 +80,7 @@ const Navbar = () => {
     localStorage.setItem('id', user.data.properties.nickname);
     localStorage.setItem('uid', user.data.id);
     sessionStorage.setItem('uid', user.data.id);
+    sessionStorage.setItem('delete', '카카오');
   };
 
   const userAccessToken = () => {
@@ -127,6 +128,7 @@ const Navbar = () => {
     localStorage.removeItem('uid');
     localStorage.removeItem('email');
     sessionStorage.removeItem('uid');
+    sessionStorage.removeItem('delete');
     localStorage.removeItem('phoneNumber');
     localStorage.removeItem('token_for_kakaotalk');
     localStorage.removeItem('com.naver.nid.oauth.state_token');
@@ -150,6 +152,7 @@ const Navbar = () => {
         window.localStorage.setItem('id', username);
         window.localStorage.setItem('uid', naverLogin.user.id);
         window.sessionStorage.setItem('uid', naverLogin.user.id);
+        sessionStorage.setItem('delete', '네이버');
       }
     });
   };
@@ -183,7 +186,7 @@ const Navbar = () => {
                   LogOutHandler();
                 }}
               >
-                Logout
+                로그아웃
               </LoginButton>
             </LoginBox>
           ) : (
@@ -193,7 +196,7 @@ const Navbar = () => {
               </InputBox>
 
               <LoginButton onClick={() => setShowModal(true)}>
-                Login
+                로그인
               </LoginButton>
               {showModal && (
                 <ModalWrapper>
@@ -247,12 +250,12 @@ const Nav = styled.div`
 `;
 
 const NavTextDiv = styled.div`
-  width: 54.1px;
+  width: 57.1px;
   color: white;
   margin-right: 10px;
   text-align: center;
   cursor: pointer;
-  font-size: 10.65px;
+  font-size: 13px;
   @media screen and (max-width: 820px) {
     font-size: 11px;
   }
@@ -264,23 +267,24 @@ const LoginButton = styled.button`
   align-items: center;
   font-weight: bold;
   border: none;
-  font-size: 10.65px;
+  font-size: 13px;
   padding-left: 11.08px;
   padding-right: 10.24px;
   padding-top: 4.93px;
   padding-bottom: 5.48px;
   border-radius: 4.1px;
-  width: 51.33px;
-  height: 23.4px;
-  background-color: #6478ff;
+  width: 74px;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.6);
   border: 1px solid white;
-  color: white;
+  color: #6478ff;
   cursor: pointer;
   margin-left: 10px;
   @media screen and (max-width: 820px) {
-    width: 48px;
+    width: 54px;
     height: 22px;
-    padding: 5px 10px 5px 10px;
+    font-size: 9px;
+    padding: 5px 8px 5px 8px;
   }
 `;
 const LoginButtonBox = styled.div`
@@ -375,8 +379,8 @@ const CloseImg = styled.img`
 `;
 
 const SearchIconImg = styled.img`
-  width: 23.74px;
-  height: 23.74px;
+  width: 28px;
+  height: 28px;
   margin-left: 5px;
   margin-right: 4.71px;
   @media screen and (max-width: 820px) {
@@ -388,7 +392,7 @@ const SearchIconImg = styled.img`
 const NickNameBtn = styled.button`
   border: none;
   background-color: transparent;
-  font-size: 10.65px;
+  font-size: 13px;
   margin-right: 10px;
   color: white;
   @media screen and (max-width: 820px) {

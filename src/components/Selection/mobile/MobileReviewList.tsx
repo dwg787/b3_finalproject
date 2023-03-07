@@ -72,7 +72,7 @@ export default function ReviewList({
         <NameAndDate>
           <Name>{review?.displayName}</Name>
 
-          <Date>{getDate(review.date)} 작성</Date>
+          <Date>{getDate(review.date)}</Date>
 
           <ToggleWrap>
             <BtnWrap>
@@ -85,7 +85,7 @@ export default function ReviewList({
                     setEditBox(!editBox);
                   }}
                 >
-                  {editBox === false ? '수정' : '수정완료'}
+                  {editBox === false ? '수정' : '완료'}
                 </UpdateBtn>
               ) : null}
               {(toggle === true && loginUser?.uid === review?.uid) ||
@@ -201,7 +201,7 @@ const BtnWrap = styled.div`
 `;
 const UpdateBtn = styled.button`
   border: none;
-  width: 51px;
+  width: 40px;
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
@@ -213,7 +213,7 @@ const UpdateBtn = styled.button`
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
-  width: 51px;
+  width: 40px;
   padding: 5px;
   border: none;
   background-color: transparent;

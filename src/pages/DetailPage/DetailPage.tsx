@@ -1,8 +1,8 @@
 import {
   DetailWrap,
   Container,
-  DeatilBox,
-  DeatilImojiBox,
+  DetailBox,
+  DetailImojiBox,
   CommunicationWrap,
   DetailInfo,
   DetailInformation,
@@ -11,7 +11,7 @@ import {
   DetailImgBox,
   DetailText,
   DetailTextArr,
-  DeatilTextBox,
+  DetailTextBox,
   DetailInformationMap,
   TabHr,
   DetailInfo2,
@@ -48,7 +48,7 @@ import { useMediaQuery } from 'react-responsive';
 const DetailPage = () => {
   const param = useParams();
   const navigate = useNavigate();
-  const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  // const [likeData, setLikeData] = useState<DocumentData | undefined>();
 
   const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
@@ -65,7 +65,7 @@ const DetailPage = () => {
 
       if (data.exists()) {
         const spotData = data.data();
-        setLikeData(spotData);
+        // setLikeData(spotData);
         return spotData;
       }
     }
@@ -111,20 +111,20 @@ const DetailPage = () => {
         ) : (
           <>
             {spotDetailData ? (
-              <DeatilBox key={param.id}>
+              <DetailBox key={param.id}>
                 <DetailScroll />
                 <TabHr />
 
-                <DeatilTextBox>
+                <DetailTextBox>
                   <DetailText>{spotDetailData.title}</DetailText>
                   <DetailTextArr>
                     {spotDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
-                  <DeatilImojiBox>
+                  <DetailImojiBox>
                     <SpotLiked spotDetailData={spotDetailData} />
-                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
-                  </DeatilImojiBox>
-                </DeatilTextBox>
+                    {/* <p>{likeData !== undefined ? likeData.likeCnt : 0}</p> */}
+                  </DetailImojiBox>
+                </DetailTextBox>
 
                 <DetailImgBox id="1">
                   <DetailImg
@@ -163,7 +163,7 @@ const DetailPage = () => {
                   <StayInfo spotData={spotDetailData} />
                   <RestaurantInfo spotData={spotDetailData} />
                 </SideInfoWrapper>
-              </DeatilBox>
+              </DetailBox>
             ) : (
               <div>찾으시는 정보가 없습니다</div>
             )}

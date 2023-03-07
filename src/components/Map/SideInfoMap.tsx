@@ -48,7 +48,18 @@ const SideInfoMap = ({
     const imageSize = new kakao.maps.Size(24, 35);
     const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-    const iwContent = `<div style="padding:5px;">${title}<br>전화:${tel}<br>${homepage}</div>`,
+    // const iwContent = `<div style="padding:5px;">${title}<br>전화:${tel}<br>${homepage}</div>`,
+    const iwContent = `
+    <div style="padding: 10px;  background-color: #ffffff;  ">
+    <h1 style="margin-bottom: 10px; font-size: 20px;">${
+      title.split(/[\\(\\[]/)[0]
+    }</h1>
+    <hr style="border: none; border-top: 1px solid #6478ff; margin: 5px 0;">
+    <p style="margin-top: 5px;">전화번호: ${tel}</p>
+    <p style="margin-top: 5px;">홈페이지: ${homepage}</p>
+  </div>
+  
+  `,
       iwRemoveable = true;
 
     // 인포윈도우를 생성합니다
@@ -74,9 +85,19 @@ const SideInfoMap = ({
           title: e.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
           image: markerImage, // 마커 이미지
         });
-        const stayIWContent = `<div style="padding:5px;">${
-            e.title.split(/[\\(\\[]/)[0]
-          }<br>전화:${e.tel}</div>`,
+        const stayIWContent = `
+        
+        <div style="padding: 10px;  background-color: #ffffff;  ">
+        <h1 style="margin-bottom: 10px; font-size: 20px;">${
+          e.title.split(/[\\(\\[]/)[0]
+        }</h1>
+        <hr style="border: none; border-top: 1px solid #6478ff; margin: 5px 0;">
+        <p style="margin-top: 5px;">전화번호:${e.tel}</p>
+        
+      </div>
+        
+        
+        `,
           iwRemoveable = true;
         const infowindow = new kakao.maps.InfoWindow({
           content: stayIWContent,
