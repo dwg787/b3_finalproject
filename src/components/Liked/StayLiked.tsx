@@ -180,7 +180,7 @@ const StayLiked = ({
   );
 };
 
-export default StayLiked;
+export default React.memo(StayLiked);
 
 const HeartBtn = styled.button`
   border: none;

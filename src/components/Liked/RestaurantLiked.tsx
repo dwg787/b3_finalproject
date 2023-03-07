@@ -22,11 +22,11 @@ import { DetailDataTypes } from '../../types/apiDataTypes';
 // import { useRecoilValue } from 'recoil';
 // import { paramTransfer } from '../../recoil/apiDataAtoms';
 
-export default function RestaurantLiked({
+const RestaurantLiked = ({
   restaurantDetailData,
 }: {
   restaurantDetailData: DetailDataTypes;
-}): React.ReactElement {
+}): React.ReactElement => {
   const param = useParams();
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
@@ -182,7 +182,9 @@ export default function RestaurantLiked({
       {likeCnt ? <div>{likeCnt}</div> : <div>0</div>}
     </HeartModuleWrapper>
   );
-}
+};
+
+export default React.memo(RestaurantLiked);
 
 const HeartBtn = styled.button`
   border: none;

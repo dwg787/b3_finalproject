@@ -178,7 +178,7 @@ const SpotLiked = ({
   );
 };
 
-export default SpotLiked;
+export default React.memo(SpotLiked);
 
 const HeartBtn = styled.button`
   border: none;
