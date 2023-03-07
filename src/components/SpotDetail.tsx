@@ -117,10 +117,16 @@ const MyChildTexth3 = styled.h3`
   color: #333333;
   padding-top: 15px;
   padding-left: 19.81px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (max-width: 820px) {
     font-size: 13px;
     padding-top: 13px;
     padding-left: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -130,6 +136,9 @@ const MyChildTextp = styled.p`
   color: #7f7f7f;
   margin-top: 4px;
   margin-left: 19.81px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (max-width: 820px) {
     font-size: 10px;
     margin-left: 12px;

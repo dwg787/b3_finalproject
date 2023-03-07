@@ -62,7 +62,6 @@ const MyLikeList = () => {
       const TargetBookmark = place.bookmarks.find(
         (e: { contentid: string }) => e.contentid === targetId,
       );
-      console.log('제거 타겟', TargetBookmark);
 
       await updateDoc(docRef, {
         bookmarks: arrayRemove(TargetBookmark),

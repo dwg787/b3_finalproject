@@ -158,9 +158,7 @@ const StayDetailPage = () => {
                       </DetailTextArr>
                       <DetailImojiBox>
                         <StayLiked stayDetailData={stayDetailData} />
-                        <p style={{ marginTop: '1px' }}>
-                          {likeData !== undefined ? likeData.likeCnt : 0}
-                        </p>
+                        {/* <p>{likeData !== undefined ? likeData.likeCnt : 0}</p> */}
                       </DetailImojiBox>
                     </DetailTextBox>
 

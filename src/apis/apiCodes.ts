@@ -1,4 +1,5 @@
 export const AREA_CODE = [
+  { id: '', area: '전체' },
   { id: '1', area: '서울' },
   { id: '2', area: '인천' },
   { id: '3', area: '대전' },

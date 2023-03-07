@@ -13,9 +13,12 @@ const useNotification = (alarmMsg: string) => {
     setNoti((prev) => {
       return prev.concat(`${alarmMsg}`);
     });
-    setTimeout(() => {
+    let timer = setTimeout(() => {
       setNoti((prev) => prev.slice(1));
-    }, 2000);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
   };
   return { noti, setNoti, addNoti, deleteNoti };
 };

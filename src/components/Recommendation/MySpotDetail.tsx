@@ -81,6 +81,9 @@ const SpotTitle = styled.div`
   font-weight: bold;
   color: white;
   margin-top: 207.16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media screen and (max-width: 820px) {
     margin-top: 138.82px;
     font-size: 14.12px;
