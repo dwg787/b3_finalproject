@@ -39,7 +39,9 @@ const KakaoMap = ({
 
     const iwContent = `
   <div style="padding: 10px; background-color: #ffffff;  ">
-    <h1 style="margin-bottom: 10px; font-size:20px ">${title}</h1>
+    <h1 style="margin-bottom: 10px; font-size:20px ">${
+      title.split(/[\\(\\[]/)[0]
+    }</h1>
     <hr style="border: none; border-top: 1px solid #6478ff; margin: 5px 0;">
     <p style="margin-top: 5px;">전화번호: ${tel}</p>
     <p style="margin-top: 5px;">홈페이지: ${homepage}</p>
