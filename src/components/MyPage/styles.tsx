@@ -292,9 +292,13 @@ const Container = styled.div`
   background: #ffffff;
   border-radius: 11px;
   @media screen and (max-width: 820px) {
-    width: 100%;
+    width: 390px;
     height: 560px;
     margin-top: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 `;
 
