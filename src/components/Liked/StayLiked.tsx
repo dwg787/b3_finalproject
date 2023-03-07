@@ -33,7 +33,7 @@ const StayLiked = ({
   //좋아요 클릭시 카운트 변화
   const [likeCnt, setLikeCnt] = useState(0);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
-  const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
+  const [alarmMsg, setAlarmMsg] = useState('');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
   const uid = sessionStorage.getItem('uid');
 
@@ -62,6 +62,11 @@ const StayLiked = ({
       const myBookmark = new Set(res?.contentid);
       const likeTarget = myBookmark.has(param.id);
       setIsLiked(likeTarget);
+      setAlarmMsg(() =>
+        likeTarget
+          ? '찜하기 목록에서 제거되었습니다.'
+          : '찜하기 목록에 추가되었습니다.',
+      );
       setIsLoading(false);
     };
     bookmarkData();
@@ -75,7 +80,7 @@ const StayLiked = ({
       const stayDocRef = doc(db, 'stay_recommendation', param.id);
 
       if (isLiked) {
-        setAlarmMsg('찜하기 추가!');
+        setAlarmMsg('찜하기 목록에 추가되었습니다.');
         setIsLiked(false);
         if (likeCnt) {
           setLikeCnt(likeCnt - 1);
@@ -99,7 +104,7 @@ const StayLiked = ({
           }
         });
       } else {
-        setAlarmMsg('찜하기 제거!');
+        setAlarmMsg('찜하기 목록에서 제거되었습니다.');
         setIsLiked(true);
         if (likeCnt) {
           setLikeCnt(likeCnt + 1);

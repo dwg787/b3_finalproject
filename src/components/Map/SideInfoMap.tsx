@@ -93,7 +93,6 @@ const SideInfoMap = ({
         }</h1>
         <hr style="border: none; border-top: 1px solid #6478ff; margin: 5px 0;">
         <p style="margin-top: 5px;">전화번호:${e.tel}</p>
-        
       </div>
         
         
