@@ -91,6 +91,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ showModal, setShowModal }) => {
       setValue(data.user.email!);
       localStorage.setItem('id', data.user.displayName!);
       sessionStorage.setItem('uid', data.user.uid);
+      sessionStorage.setItem('delete', '구글');
       navigate('/');
     });
   };

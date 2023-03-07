@@ -19,8 +19,8 @@ const WrapDiv = styled.div`
 `;
 
 const CafeText = styled.img`
-  width: 600px;
-  height: 300px;
+  width: 350px;
+  height: 200px;
   margin-top: 120px;
   display: flex;
   justify-content: center;

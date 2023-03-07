@@ -38,7 +38,7 @@ const Container = styled.div`
 `;
 
 //상세페이지 메인 박스1
-const DeatilBox = styled.div`
+const DetailBox = styled.div`
   width: 100%;
   flex-direction: column;
   justify-content: center;
@@ -61,7 +61,7 @@ const DeatilBox = styled.div`
 `;
 
 //상세페이지 상단부분 박스(제목)
-const DeatilTextBox = styled.div`
+const DetailTextBox = styled.div`
   width: 100%;
   @media screen and (max-width: 820px) {
     width: 100%;
@@ -114,11 +114,12 @@ const DetailTextArr = styled.div`
 `;
 
 //상세페이지 좋아요 이모지 & 좋아요 수 박스
-const DeatilImojiBox = styled.div`
+const DetailImojiBox = styled.div`
   display: flex;
   flex-direction: row;
   text-align: center;
   justify-content: center;
+  align-items: center;
   line-height: 19.1px;
   margin-bottom: 36.75px;
   margin-top: 18.67px;
@@ -284,7 +285,7 @@ const DetailInfoAdd = styled.div`
   }
 `;
 
-const DetailTextBox = styled.div`
+const DetailStayTextBox = styled.div`
   display: flex;
   flex-direction: row;
   /* width: 907.25px; */
@@ -352,12 +353,12 @@ const SideInfoWrapper = styled.div`
 export {
   DetailWrap,
   Container,
-  DeatilBox,
-  DeatilImojiBox,
+  DetailBox,
+  DetailImojiBox,
   CommunicationWrap,
   DetailInfo,
   DetailInfoAdd,
-  DetailTextBox,
+  DetailStayTextBox,
   DetailInformation,
   SideInfoWrapper,
   DetailInfo2,
@@ -366,7 +367,7 @@ export {
   DetailImgBtn,
   DetailTextArr,
   DetailText,
-  DeatilTextBox,
+  DetailTextBox,
   DetailInformationMap,
   TabHr,
 };

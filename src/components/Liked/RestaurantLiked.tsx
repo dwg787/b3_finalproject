@@ -182,6 +182,9 @@ export default function RestaurantLiked({
 const HeartBtn = styled.button`
   border: none;
   background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 `;
 
 const Heart = styled.img`

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { auth, db } from '../apis/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { updateProfile } from 'firebase/auth';
 import styled from 'styled-components';
@@ -68,6 +68,13 @@ const SignUpPage = () => {
     setPrivacyModalOpen(true);
   };
 
+  const isEmailExist = async (email: string): Promise<boolean> => {
+    const querySnapshot = await getDocs(
+      query(collection(db, 'users'), where('email', '==', email)),
+    );
+    return !querySnapshot.empty;
+  };
+
   // 회원가입 완료
 
   const signup = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,9 +84,18 @@ const SignUpPage = () => {
       return;
     }
     if (phoneNumber === '') {
-      alert('휴대폰 번호를 입력해주세요.');
+      alert('휴대폰 번호를 입력해주세요!.');
       return;
     }
+    if (pwConfirm === '') {
+      return;
+    }
+    const emailExists = await isEmailExist(id);
+    if (emailExists) {
+      alert('이미 등록된 이메일입니다.');
+      return;
+    }
+
     await createUserWithEmailAndPassword(auth, id, pw).then((data) => {
       if (auth.currentUser)
         updateProfile(auth?.currentUser, {
@@ -302,6 +318,7 @@ const SignUpPage = () => {
             </LoginBox>
             <LoginBox>
               <LoginInput
+                maxLength={13}
                 type="text"
                 ref={phoneNumberRef}
                 value={phoneNumber}

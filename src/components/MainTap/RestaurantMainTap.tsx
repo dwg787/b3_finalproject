@@ -41,7 +41,7 @@ const RestaurantMainTap = () => {
   return (
     <WrapDiv>
       <ListTitleWrapper>
-        <ListItemTitle>추천! 인기 관광지</ListItemTitle>
+        <ListItemTitle>추천! 인기 맛집</ListItemTitle>
       </ListTitleWrapper>
       <>
         {rankList ? (
