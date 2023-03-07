@@ -30,7 +30,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { fetchSpotDetailData } from '../../apis/publicAPI';
 import { FetchedStayDataType } from '../../types/apiDataTypes';
 import Loader from '../../components/Loader/Loader';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { db } from '../../apis/firebase';
 import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
 import StayInfo from '../../components/Recommendation/Info/StayInfo';

@@ -22,11 +22,11 @@ import { DetailDataTypes } from '../../types/apiDataTypes';
 // import { useRecoilValue } from 'recoil';
 // import { paramTransfer } from '../../recoil/apiDataAtoms';
 
-export default function RestaurantLiked({
+const RestaurantLiked = ({
   restaurantDetailData,
 }: {
   restaurantDetailData: DetailDataTypes;
-}): React.ReactElement {
+}): React.ReactElement => {
   const param = useParams();
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
@@ -34,7 +34,7 @@ export default function RestaurantLiked({
   //좋아요 클릭시 카운트 변화
   const [likeCnt, setLikeCnt] = useState(0);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
-  const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
+  const [alarmMsg, setAlarmMsg] = useState('');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
   const uid = sessionStorage.getItem('uid');
 
@@ -63,6 +63,11 @@ export default function RestaurantLiked({
       const myBookmark = new Set(res?.contentid);
       const likeTarget = myBookmark.has(param.id);
       setIsLiked(likeTarget);
+      setAlarmMsg(() =>
+        likeTarget
+          ? '찜하기 목록에서 제거되었습니다.'
+          : '찜하기 목록에 추가되었습니다.',
+      );
       setIsLoading(false);
     };
     bookmarkData();
@@ -75,7 +80,7 @@ export default function RestaurantLiked({
       const restaurantDocRef = doc(db, 'restaurant_recommendation', param.id);
       const docRef = doc(collection(db, 'bookmarks'), uid);
       if (isLiked) {
-        setAlarmMsg('찜하기 추가!');
+        setAlarmMsg('찜하기 목록에 추가되었습니다.');
         setIsLiked(false);
         if (likeCnt) {
           setLikeCnt(likeCnt - 1);
@@ -99,7 +104,7 @@ export default function RestaurantLiked({
           }
         });
       } else {
-        setAlarmMsg('찜하기 제거!');
+        setAlarmMsg('찜하기 목록에서 제거되었습니다.');
         setIsLiked(true);
         if (likeCnt) {
           setLikeCnt(likeCnt + 1);
@@ -177,7 +182,9 @@ export default function RestaurantLiked({
       {likeCnt ? <div>{likeCnt}</div> : <div>0</div>}
     </HeartModuleWrapper>
   );
-}
+};
+
+export default React.memo(RestaurantLiked);
 
 const HeartBtn = styled.button`
   border: none;

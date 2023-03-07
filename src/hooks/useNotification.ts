@@ -1,13 +1,8 @@
-import { SetStateAction, useState, useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { alarmState } from '../recoil/apiDataAtoms';
 
 const useNotification = (alarmMsg: string) => {
   const [noti, setNoti] = useRecoilState(alarmState);
-
-  const deleteNoti = () => {
-    setNoti((prev) => prev.slice(1));
-  };
 
   const addNoti = () => {
     setNoti((prev) => {
@@ -20,7 +15,7 @@ const useNotification = (alarmMsg: string) => {
       clearTimeout(timer);
     };
   };
-  return { noti, setNoti, addNoti, deleteNoti };
+  return { noti, setNoti, addNoti };
 };
 
 export default useNotification;

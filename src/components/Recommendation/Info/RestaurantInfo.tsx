@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { fetchNearRestaurantData } from '../../../apis/publicAPI';
 import Loader from '../../Loader/Loader';
 import noimg from '../../../assets/noimg.avif';
-
+import React from 'react';
 import {
   Container,
   MyChildTopText,
@@ -102,4 +102,4 @@ const RestaurantInfo: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-export default RestaurantInfo;
+export default React.memo(RestaurantInfo);
