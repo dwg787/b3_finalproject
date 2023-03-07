@@ -40,6 +40,10 @@ const UpdatePassword = () => {
       email!,
       passwordInput.password,
     );
+    if (sessionStorage.getItem('delete')) {
+      alert('소셜로그인은 비밀번호를 바꿀수 없습니다!');
+      return;
+    }
     await reauthenticateWithCredential(user!, credential!)
       .then(() => {
         alert('확인되었습니다.');

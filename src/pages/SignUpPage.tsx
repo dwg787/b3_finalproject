@@ -77,9 +77,13 @@ const SignUpPage = () => {
       return;
     }
     if (phoneNumber === '') {
-      alert('휴대폰 번호를 입력해주세요.');
+      alert('휴대폰 번호를 입력해주세요!.');
       return;
     }
+    if (pwConfirm === '') {
+      return;
+    }
+
     await createUserWithEmailAndPassword(auth, id, pw).then((data) => {
       if (auth.currentUser)
         updateProfile(auth?.currentUser, {
@@ -302,6 +306,7 @@ const SignUpPage = () => {
             </LoginBox>
             <LoginBox>
               <LoginInput
+                maxLength={13}
                 type="text"
                 ref={phoneNumberRef}
                 value={phoneNumber}

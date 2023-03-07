@@ -62,6 +62,7 @@ const MyLikeList = () => {
       const TargetBookmark = place.bookmarks.find(
         (e: { contentid: string }) => e.contentid === targetId,
       );
+      console.log('제거 타겟', TargetBookmark);
 
       await updateDoc(docRef, {
         bookmarks: arrayRemove(TargetBookmark),
@@ -72,6 +73,7 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   const delSpotLiked = async (targetId: string) => {
@@ -92,6 +94,7 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   const delStayLiked = async (targetId: string) => {
@@ -112,11 +115,12 @@ const MyLikeList = () => {
         likeCnt: increment(-1),
       });
     }
+    getMyBookmarkList();
   };
 
   useEffect(() => {
     getMyBookmarkList();
-  }, [delResLiked, delSpotLiked, delStayLiked]);
+  }, []);
 
   return (
     <>
@@ -153,7 +157,7 @@ const MyLikeList = () => {
                                   if (
                                     window.confirm('정말로 삭제하시겠습니까?')
                                   ) {
-                                    delSpotLiked(data.contentid);
+                                    delResLiked(data.contentid);
                                   }
                                 }}
                               />
@@ -191,7 +195,7 @@ const MyLikeList = () => {
                                   if (
                                     window.confirm('정말로 삭제하시겠습니까?')
                                   ) {
-                                    delSpotLiked(data.contentid);
+                                    delStayLiked(data.contentid);
                                   }
                                 }}
                               />

@@ -110,13 +110,13 @@ const Communication = () => {
     <ReviewContainerWrap>
       <ReviewContainer>
         <ReviewBox>
-          <ReviewLabel htmlFor="review">후기작성</ReviewLabel>
+          <ReviewLabel htmlFor="review">여행톡</ReviewLabel>
           <InputAndBtnWrap>
             <ReviewInput
               id="review"
               maxLength={64}
               value={newReview}
-              placeholder="리뷰를 입력하세요. 최대 64 글자"
+              placeholder="댓글을 입력하세요. 최대 64 글자"
               onChange={(event) => {
                 setNewReview(event.target.value);
               }}

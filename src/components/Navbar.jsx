@@ -128,6 +128,7 @@ const Navbar = () => {
     localStorage.removeItem('uid');
     localStorage.removeItem('email');
     sessionStorage.removeItem('uid');
+    sessionStorage.removeItem('delete');
     localStorage.removeItem('phoneNumber');
     localStorage.removeItem('token_for_kakaotalk');
     localStorage.removeItem('com.naver.nid.oauth.state_token');
