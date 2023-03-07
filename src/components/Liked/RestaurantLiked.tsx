@@ -8,6 +8,7 @@ import {
   arrayRemove,
   increment,
   DocumentData,
+  onSnapshot,
 } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -30,6 +31,8 @@ export default function RestaurantLiked({
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  //좋아요 클릭시 카운트 변화
+  const [likeCnt, setLikeCnt] = useState(0);
   //좋아요 클릭시 팝업창으로 알람뜨게해줌
   const [alarmMsg, setAlarmMsg] = useState('찜하기 추가!');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
@@ -47,6 +50,12 @@ export default function RestaurantLiked({
     }
   };
 
+  const getLikeCnt = async () => {
+    await onSnapshot(doc(db, 'restaurant_recommendation', param.id), (doc) => {
+      setLikeCnt(doc.data().likeCnt);
+    });
+  };
+
   useEffect(() => {
     const bookmarkData = async () => {
       setIsLoading(true);
@@ -57,6 +66,7 @@ export default function RestaurantLiked({
       setIsLoading(false);
     };
     bookmarkData();
+    getLikeCnt();
   }, []);
 
   const handleLiked = async () => {
@@ -67,6 +77,9 @@ export default function RestaurantLiked({
       if (isLiked) {
         setAlarmMsg('찜하기 추가!');
         setIsLiked(false);
+        if (likeCnt) {
+          setLikeCnt(likeCnt - 1);
+        }
         await getDoc(docRef).then((doc: DocumentData) => {
           const TargetBookmark = doc
             .data()
@@ -88,6 +101,9 @@ export default function RestaurantLiked({
       } else {
         setAlarmMsg('찜하기 제거!');
         setIsLiked(true);
+        if (likeCnt) {
+          setLikeCnt(likeCnt + 1);
+        }
         await getDoc(docRef)
           .then((doc) => {
             if (!doc.exists()) {
@@ -133,7 +149,7 @@ export default function RestaurantLiked({
   };
 
   return (
-    <div>
+    <HeartModuleWrapper>
       {uid ? (
         <>
           {isLoading ? (
@@ -158,7 +174,8 @@ export default function RestaurantLiked({
           </HeartBtn>
         </>
       )}
-    </div>
+      {likeCnt ? <div>{likeCnt}</div> : <div>0</div>}
+    </HeartModuleWrapper>
   );
 }
 
@@ -181,4 +198,10 @@ const Heart = styled.img`
     margin-right: 1px;
     padding: 0;
   }
+`;
+
+const HeartModuleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;

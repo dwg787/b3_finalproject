@@ -128,7 +128,7 @@ const RestaurantDetailPage = () => {
                     <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
                     />
-                    <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
+                    {/* <p>{likeData !== undefined ? likeData.likeCnt : 0}</p> */}
                   </DeatilImojiBox>
                 </DeatilTextBox>
 

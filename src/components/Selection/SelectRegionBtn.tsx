@@ -14,6 +14,9 @@ const SelectRegionBtn = ({ children }: { children: string }) => {
 
   const handleRegionSelection = () => {
     if (regionCode) setRegion(regionCode);
+    else {
+      setRegion('');
+    }
   };
 
   return (

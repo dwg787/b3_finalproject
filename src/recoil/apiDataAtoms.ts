@@ -43,7 +43,7 @@ export const alarmState = atom({
 
 export const weeklyTypeState = atom({
   key: 'weeklyTypeState',
-  default: '관광지',
+  default: '관광',
 });
 
 export const nearStayState = atom({
