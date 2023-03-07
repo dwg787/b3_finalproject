@@ -79,8 +79,12 @@ const StMyListTab = styled.div`
 //마이페이지 내용 부분
 const StMyPageInfo = styled.div`
   width: 1036px;
+
   @media screen and (max-width: 820px) {
     width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   @media screen and (max-width: 390px) {
     width: 100%;
