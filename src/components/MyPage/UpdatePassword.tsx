@@ -25,6 +25,7 @@ const UpdatePassword = () => {
   const [helperPasswordInput, setHelperPasswordInput] = useState(
     initHelperPasswordInput,
   );
+  const [showPasswordFields, setShowPasswordFields] = useState(false); // 추가된 코드
 
   // 버튼 색 활성화
   const [buttonColor, setButtonColor] = useState(false);
@@ -50,6 +51,7 @@ const UpdatePassword = () => {
         alert('확인되었습니다.');
 
         setCheck(true);
+        setShowPasswordFields(true); // 버튼들 보이게 하기
       })
       .catch((error) => {
         if (error.message.includes('wrong-password')) {
@@ -157,56 +159,64 @@ const UpdatePassword = () => {
 
   return (
     <div>
-      <UpdatePwBox>
-        <UpdatePwInput1
-          value={passwordInput.password}
-          type="password"
-          name="password"
-          onChange={passwordChangeHandler}
-        />
+      {showPasswordFields ? (
+        <>
+          <UpdatePwBox>
+            <UpdatePwInput2
+              value={passwordInput.updatePassword}
+              type="password"
+              name="updatePassword"
+              onChange={passwordChangeHandler}
+              onBlur={validatePasswordHandler}
+            />
+            <UpdatePwLabel2>새 비밀번호</UpdatePwLabel2>
 
-        <UpdatePwLabel1>현재 비밀번호</UpdatePwLabel1>
-      </UpdatePwBox>
-      <UpdatePwBox>
-        <UpdatePwBtn1 onClick={firstPasswordCheck}>비밀번호 확인</UpdatePwBtn1>
-      </UpdatePwBox>
-      <UpdatePwBox>
-        <UpdatePwInput2
-          value={passwordInput.updatePassword}
-          type="password"
-          name="updatePassword"
-          onChange={passwordChangeHandler}
-          onBlur={validatePasswordHandler}
-        />
-        <UpdatePwLabel2>새 비밀번호</UpdatePwLabel2>
+            <Error>
+              <span>{helperPasswordInput.updatePassword}</span>
+            </Error>
+          </UpdatePwBox>
+          <UpdatePwBox>
+            <UpdatePwInput3
+              value={passwordInput.updatePasswordCheck}
+              type="password"
+              name="updatePasswordCheck"
+              onChange={passwordChangeHandler}
+              onBlur={validatePasswordCheckHandler}
+            />
+            <UpdatePwLabel3>새 비밀번호 확인</UpdatePwLabel3>
 
-        <Error>
-          <span>{helperPasswordInput.updatePassword}</span>
-        </Error>
-      </UpdatePwBox>
-      <UpdatePwBox>
-        <UpdatePwInput3
-          value={passwordInput.updatePasswordCheck}
-          type="password"
-          name="updatePasswordCheck"
-          onChange={passwordChangeHandler}
-          onBlur={validatePasswordCheckHandler}
-        />
-        <UpdatePwLabel3>새 비밀번호 확인</UpdatePwLabel3>
-
-        <Error1>
-          <span>{helperPasswordInput.updatePasswordCheck}</span>
-        </Error1>
-      </UpdatePwBox>
-      <UpdatePwBox>
-        <UpdatePwBtn2
-          state={buttonColor}
-          disabled={buttonValidation}
-          onClick={passwordCheckHandler}
-        >
-          비밀번호 변경
-        </UpdatePwBtn2>
-      </UpdatePwBox>
+            <Error1>
+              <span>{helperPasswordInput.updatePasswordCheck}</span>
+            </Error1>
+          </UpdatePwBox>
+          <UpdatePwBox>
+            <UpdatePwBtn2
+              state={buttonColor}
+              disabled={buttonValidation}
+              onClick={passwordCheckHandler}
+            >
+              비밀번호 변경
+            </UpdatePwBtn2>
+          </UpdatePwBox>
+        </>
+      ) : (
+        <>
+          <UpdatePwBox>
+            <UpdatePwInput1
+              value={passwordInput.password}
+              type="password"
+              name="password"
+              onChange={passwordChangeHandler}
+            />
+            <UpdatePwLabel1>현재 비밀번호</UpdatePwLabel1>
+          </UpdatePwBox>
+          <UpdatePwBox>
+            <UpdatePwBtn1 onClick={firstPasswordCheck}>
+              비밀번호 확인
+            </UpdatePwBtn1>
+          </UpdatePwBox>
+        </>
+      )}
     </div>
   );
 };
@@ -255,7 +265,7 @@ const UpdatePwInput1 = styled.input`
   outline: none;
   background: transparent;
   @media screen and (max-width: 390px) {
-    margin-top: 46.89px;
+    margin-top: 63px;
     margin-bottom: 20px;
     width: 340px;
     height: 35px;
@@ -269,7 +279,7 @@ const UpdatePwInput2 = styled.input`
   font-size: 16px;
   color: #000000;
   margin-bottom: 26px;
-  margin-top: 38px;
+  margin-top: 65px;
   padding: 10px;
   border: 1px solid rgba(158, 171, 255, 0.61);
   box-shadow: 2.25827px 2.25827px 5.64568px rgba(0, 0, 0, 0.18);
@@ -318,13 +328,13 @@ const UpdatePwLabel1 = styled.label`
   pointer-events: none;
   transition: 0.5s;
   @media screen and (max-width: 390px) {
-    top: 30px;
+    top: 45px;
   }
 `;
 
 const UpdatePwLabel2 = styled.label`
   position: absolute;
-  top: 20px;
+  top: 45px;
   left: 0;
 
   font-weight: 500;
@@ -355,7 +365,7 @@ const UpdatePwLabel3 = styled.label`
 `;
 const UpdatePwBtn1 = styled.button`
   cursor: pointer;
-
+  margin-top: 26px;
   width: 380px;
   height: 38px;
 
