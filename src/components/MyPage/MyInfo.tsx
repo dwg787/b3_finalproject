@@ -150,7 +150,7 @@ const Error = styled.div`
 `;
 
 const MyInfoContainer = styled.div`
-  height: 1000px;
+  height: 800px;
 
   margin: auto;
 
@@ -162,7 +162,7 @@ const MyInfoContainer = styled.div`
   border-radius: 10px;
   @media screen and (max-width: 390px) {
     width: 370px;
-    height: 846px;
+    height: 750px;
   }
 `;
 
@@ -216,7 +216,7 @@ const PrivacyInput1 = styled.input`
   @media screen and (max-width: 390px) {
     width: 340px;
     height: 35px;
-    margin-top: 19px;
+    margin-top: 38px;
     margin-bottom: 31.68px;
   }
 `;
@@ -244,7 +244,7 @@ const PrivacyInput2 = styled.input`
   @media screen and (max-width: 390px) {
     width: 340px;
     height: 35px;
-    margin-top: 0px;
+    margin-top: 30px;
     margin-bottom: 20px;
   }
 `;
@@ -261,7 +261,7 @@ const PrivacyLabel1 = styled.label`
   pointer-events: none;
   transition: 0.5s;
   @media screen and (max-width: 390px) {
-    top: -5px;
+    top: 10px;
   }
 `;
 
@@ -277,7 +277,7 @@ const PrivacyLabel2 = styled.label`
   pointer-events: none;
   transition: 0.5s;
   @media screen and (max-width: 390px) {
-    top: -15px;
+    top: 10px;
   }
 `;
 
@@ -327,6 +327,5 @@ const SignUpDeleteBtn = styled.button`
   @media screen and (max-width: 390px) {
     width: 340px;
     height: 39px;
-    margin-top: 20px;
   }
 `;
