@@ -55,6 +55,8 @@ const Communication = () => {
         }));
         const filteredList = newList.filter(
           (review) => review.paramId === params.id,
+          //newList에서 paramId 가 params.id 값과 일치하는 모든 객체를 찾아서 새로운 배열인 filteredList 에 저장.
+          //filteredList 배열은 newList 배열에서 paramId 속성이 params.id와 일치하는 모든 객체를 포함하는 새로운 배열
         );
         setReviews(filteredList);
         setTotalReviewCount(filteredList.length);
