@@ -136,9 +136,7 @@ const RestaurantDetailPage = () => {
                     <RestaurantLiked
                       restaurantDetailData={restaurantDetailData}
                     />
-                    <p style={{ marginTop: '1px' }}>
-                      {likeData !== undefined ? likeData.likeCnt : 0}
-                    </p>
+                    {/* <p>{likeData !== undefined ? likeData.likeCnt : 0}</p> */}
                   </DetailImojiBox>
                 </DetailTextBox>
 
