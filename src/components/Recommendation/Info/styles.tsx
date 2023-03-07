@@ -27,14 +27,13 @@ const MyChildTopText = styled.p`
   font-size: 16.5px;
   font-weight: bold;
   margin-top: 24px;
-  line-height: 15.4px;
+
   @media screen and (max-width: 820px) {
     margin-left: 24px;
     color: #6478ff;
     font-size: 14px;
     font-weight: bold;
     margin-top: 16px;
-    line-height: 8.1px;
   }
 `;
 
@@ -68,6 +67,7 @@ const MyChildList = styled.div`
   border-radius: 7.62px;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
   @media screen and (max-width: 820px) {
     width: 164px;
     height: 177px;
@@ -76,6 +76,7 @@ const MyChildList = styled.div`
     border-radius: 6px;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
   }
 `;
 
@@ -100,7 +101,6 @@ const MyChildTexth3 = styled.h3`
   font-weight: medium;
   margin-bottom: 9.19px;
   color: #4d4d4d;
-  line-height: 15.5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -111,7 +111,6 @@ const MyChildTexth3 = styled.h3`
     font-weight: medium;
     margin-bottom: 6px;
     color: #4d4d4d;
-    line-height: 11.2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -122,8 +121,7 @@ const MyChildTexth3 = styled.h3`
 
 const MyChildTextp = styled.p`
   color: #878787;
-  line-height: 16.3px;
-  font-size: 12.26px;
+  font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -131,7 +129,6 @@ const MyChildTextp = styled.p`
   margin-left: 20.88px;
   @media screen and (max-width: 820px) {
     color: #878787;
-    line-height: 11.9x;
     font-size: 10px;
     white-space: nowrap;
     overflow: hidden;
