@@ -86,7 +86,7 @@ export default function ReviewList({
                     setEditBox(!editBox);
                   }}
                 >
-                  {editBox === false ? '수정' : '수정완료'}
+                  {editBox === false ? '수정' : '완료'}
                 </UpdateBtn>
               ) : null}
               {(toggle === true && loginUser?.uid === review?.uid) ||
@@ -132,7 +132,6 @@ export default function ReviewList({
 
 const CommentBoxWrap = styled.div`
   /* flex-wrap: wrap; */
-  /* border: 1px solid black; */
   margin: 0 32.72px 0 37px;
   /* @media screen and (max-width: 820px) {
     margin-bottom: 10px;
@@ -229,7 +228,7 @@ const BtnWrap = styled.div`
 `;
 const UpdateBtn = styled.button`
   border: none;
-  width: 52px;
+  width: 40px;
   padding: 5px;
   background-color: transparent;
   border-right: 1px solid white;
@@ -241,7 +240,7 @@ const UpdateBtn = styled.button`
 
 const DeleteBtn = styled.button`
   border-radius: 60px;
-  width: 52px;
+  width: 40px;
   padding: 5px;
   border: none;
   background-color: transparent;
@@ -278,7 +277,7 @@ const Comment = styled.div`
   height: 400px;
   margin-left: -5px; */
 
-  margin-top: 0.95px;
+  margin-top: 5px;
   margin-left: 19.18px;
 `;
 
@@ -293,7 +292,7 @@ const RealComment = styled.p`
 
 const EditInput = styled.input`
   font-weight: 500;
-  font-size: 14.0915px;
+  font-size: 11.8485px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 14px;
   color: #595959;

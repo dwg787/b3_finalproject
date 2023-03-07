@@ -306,6 +306,7 @@ const SignUpPage = () => {
             </LoginBox>
             <LoginBox>
               <LoginInput
+                maxLength={13}
                 type="text"
                 ref={phoneNumberRef}
                 value={phoneNumber}

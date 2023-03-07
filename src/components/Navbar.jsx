@@ -186,7 +186,7 @@ const Navbar = () => {
                   LogOutHandler();
                 }}
               >
-                Logout
+                로그아웃
               </LoginButton>
             </LoginBox>
           ) : (
@@ -196,7 +196,7 @@ const Navbar = () => {
               </InputBox>
 
               <LoginButton onClick={() => setShowModal(true)}>
-                Login
+                로그인
               </LoginButton>
               {showModal && (
                 <ModalWrapper>
@@ -281,9 +281,10 @@ const LoginButton = styled.button`
   cursor: pointer;
   margin-left: 10px;
   @media screen and (max-width: 820px) {
-    width: 48px;
+    width: 54px;
     height: 22px;
-    padding: 5px 10px 5px 10px;
+    font-size: 9px;
+    padding: 5px 8px 5px 8px;
   }
 `;
 const LoginButtonBox = styled.div`
