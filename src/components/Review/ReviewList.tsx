@@ -98,7 +98,7 @@ export default function ReviewList({
                   }}
                 >
                   삭제
-                  {/* {!editBox ? '삭제' : null} */}
+                  {/* {!editBox ? '삭제' : '취소'} */}
                 </DeleteBtn>
               ) : null}
             </BtnWrap>
@@ -291,10 +291,13 @@ const RealComment = styled.p`
 `;
 
 const EditInput = styled.input`
+  width: 276px;
+  height: 18px;
   font-weight: 500;
   font-size: 11.8485px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
-  border-radius: 14px;
+  background: #ececec;
+  box-shadow: 1.69289px 1.69289px 4.23224px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
   color: #595959;
 
   border: none;
