@@ -1,3 +1,4 @@
+import React from 'react';
 import { MENU_TYPE } from '../../apis/apiCodes';
 import styled, { css } from 'styled-components';
 import { useRecoilState } from 'recoil';
@@ -23,7 +24,7 @@ const SelectMenu = ({ children }: { children: string }) => {
   );
 };
 
-export default SelectMenu;
+export default React.memo(SelectMenu);
 
 const MenuEachItem = styled.button<{ isSelectedMenu: boolean }>`
   width: 200px;

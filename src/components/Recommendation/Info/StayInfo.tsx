@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useRecoilState } from 'recoil';
 import { nearStayState } from '../../../recoil/apiDataAtoms';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Container,
   MyChildTopText,
@@ -105,4 +105,4 @@ const StayInfo: React.FunctionComponent<StayInfoProps> = (props) => {
   );
 };
 
-export default StayInfo;
+export default React.memo(StayInfo);
