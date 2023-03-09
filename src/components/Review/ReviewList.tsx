@@ -47,6 +47,8 @@ export default function ReviewList({
   //삭제
   const handleDelete = async (id: string, i: number) => {
     console.log(id);
+    // id는 댓글이 저장된 Firestore 데이터베이스 내부의 문서 id
+    // i는 댓글 목록에서 몇 번째 댓글.
     if (auth.currentUser?.uid === reviews[i].uid) {
       const reviewDoc = doc(usersCollectionRef, id);
       //파이어스토어, 안에있는 컬렉션 'reviews' 의 문서 id
