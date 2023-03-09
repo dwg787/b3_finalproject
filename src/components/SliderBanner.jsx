@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
@@ -11,6 +11,19 @@ import nextImg from '../assets/next.avif';
 import pervImg from '../assets/prev.avif';
 
 export default function MainSlide() {
+  const ImgPreload = () => {
+    let img1 = new Image();
+    let img2 = new Image();
+    let img3 = new Image();
+    img1.src = sliderchange1;
+    img2.src = sliderchange2;
+    img3.src = sliderchange3;
+  };
+
+  useLayoutEffect(() => {
+    ImgPreload();
+  }, []);
+
   const settings = {
     dots: false,
     lazyLoad: true, // 필요에 따라 또는 점진적으로 이미지를 로드하거나 구성 요소를 렌더링합니다.
