@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { db } from '../../apis/firebase';
-import { getDocs, collection, orderBy, query } from 'firebase/firestore';
+import { getDocs, collection, orderBy, query, limit } from 'firebase/firestore';
 import MySpotDetail from './MySpotDetail';
 import Slider from 'react-slick';
 import nextImg from '../../assets/next.avif';
@@ -12,7 +12,11 @@ const MySpot = (propsData) => {
   const [MySpot, setMySpot] = useState();
   const MySpotList = async () => {
     const data = await getDocs(
-      query(collection(db, 'spot_recommendation'), orderBy('viewCnt', 'desc')),
+      query(
+        collection(db, 'spot_recommendation'),
+        orderBy('viewCnt', 'desc'),
+        limit(10),
+      ),
     );
 
     // console.log(MySpot);
@@ -125,7 +129,7 @@ const MySpot = (propsData) => {
       <div>
         <StyledSlider {...settings}>
           {MySpot &&
-            MySpot.map((e) => {
+            MySpot.slice(0, 10).map((e) => {
               return (
                 <div>
                   <h3>
