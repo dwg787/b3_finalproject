@@ -26,10 +26,10 @@ export const STAY_TYPE = [
 ];
 
 export const MENU_TYPE = [
-  { id: '0', type: 'HOME' },
-  { id: '12', type: '관광' },
-  { id: '32', type: '숙박' },
-  { id: '39', type: '맛집' },
+  { id: '0', type: 'HOME', sort: 'home' },
+  { id: '12', type: '관광', sort: 'spot' },
+  { id: '32', type: '숙박', sort: 'stay' },
+  { id: '39', type: '맛집', sort: 'restaurant' },
 ];
 
 export const WEEKLY_TYPE = [
