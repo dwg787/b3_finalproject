@@ -22,6 +22,7 @@ const WrapDiv = styled.div`
   width: 100%;
   height: 34px;
   background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid white;
   position: absolute;
   z-index: 3;
   border-radius: 377.73px;
@@ -36,8 +37,8 @@ const WrapDiv = styled.div`
 `;
 
 const SearchImg = styled.img`
-  width: 20.51px;
-  height: 20.51px;
+  width: 24.51px;
+  height: 24.51px;
   float: right;
   margin-right: 19.97px;
 `;
