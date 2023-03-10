@@ -169,7 +169,6 @@ const NameAndDate = styled.div`
   margin-left: 19.18px;
   margin-bottom: 0.95px;
 
-  /* gap: 10px; */
   /* width: 450px; */
 `;
 
