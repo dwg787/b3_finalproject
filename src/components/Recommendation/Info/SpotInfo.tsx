@@ -3,7 +3,7 @@ import { fetchNearSpotData } from '../../../apis/publicAPI';
 import Loader from '../../Loader/Loader';
 import noimg from '../../../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
-
+import React from 'react';
 import {
   Container,
   MyChildTopText,
@@ -100,4 +100,4 @@ const SpotInfo: React.FunctionComponent<InfoProps> = (props) => {
     </Container>
   );
 };
-export default SpotInfo;
+export default React.memo(SpotInfo);
