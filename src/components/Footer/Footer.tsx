@@ -42,8 +42,8 @@ const WrapDiv = styled.div`
   width: 100%;
   height: 300px;
   background-color: transparent;
-  padding-top: 100px;
-  padding-left: 100px;
+  padding-top: 47.66px;
+  padding-left: 24.14px;
   @media screen and (max-width: 820px) {
     padding-left: 24px;
     padding-right: 24px;

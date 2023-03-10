@@ -32,6 +32,7 @@ const WeeklyBtn = styled.div<{ isTypeSelected: Boolean }>`
   width: 70px;
   height: 35px;
   border: 1px solid #bababa;
+  font-weight: bold;
   background-color: ${(props) => (props.isTypeSelected ? '#D6DCFF' : '#fffff')};
   cursor: pointer;
   margin-left: 5.23px;
