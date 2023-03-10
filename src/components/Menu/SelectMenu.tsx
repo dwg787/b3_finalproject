@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { MENU_TYPE } from '../../apis/apiCodes';
 import styled, { css } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { menuSelectionState } from '../../recoil/apiDataAtoms';
 
 const SelectMenu = ({ children }: { children: string }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  let queryString = location.search.split('=')[1] || 'home';
   const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
-  const value = MENU_TYPE.find((e) => e.type === children)?.type;
-  let curType = sessionStorage.getItem('mainpage_menu_type');
-  const isSelectedMenu = value === curType ? true : false;
+  const value = MENU_TYPE.find((e) => e.type === children)?.sort;
+  const isSelectedMenu = value === queryString ? true : false;
 
   const handleMainPageUI = () => {
     if (value) {
       setSelectedMenu(value);
-      sessionStorage.setItem('mainpage_menu_type', value);
+      switch (value) {
+        case 'home':
+          navigate('/');
+          break;
+        case 'spot':
+          navigate('/list?sort=spot');
+          break;
+        case 'stay':
+          navigate('/list?sort=stay');
+          break;
+        case 'restaurant':
+          navigate('/list?sort=restaurant');
+          break;
+        default:
+      }
     }
   };
 

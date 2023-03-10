@@ -49,4 +49,8 @@ const CustomBtn = styled.button<{ isSelectedRegion: boolean }>`
   cursor: pointer;
   margin-left: 16px;
   margin-bottom: 8px;
+  @media (max-width: 420px) {
+    width: 58px;
+    height: 29px;
+  }
 `;
