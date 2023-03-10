@@ -6,15 +6,54 @@ import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import { useEffect, useState, useCallback } from 'react';
+import Resizer from 'react-image-file-resizer';
 
 const StayDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
-
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  const [stayImg, setStayImg] = useState('');
+  const resizeFile = (file: File) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        440,
+        600,
+        'WEBP',
+        100,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        'base64',
+      );
+    });
+
   const stayRecommendationList = useCallback(async () => {
     const fbdata = await getDoc(doc(db, 'stay_recommendation', `${props.id}`));
     if (fbdata) {
       setLikeData(fbdata.data());
+      const imgResponse = await fetch(
+        `/api${fbdata.data().firstimage.split('kr')[1]}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Request-Method': 'GET',
+            'Access-Control-Request-Headers': 'Content-Type',
+          },
+        },
+      );
+      const data = await imgResponse.blob();
+      const ext = imgResponse?.url.split('.').pop();
+      const filename = imgResponse?.url
+        .split('/')
+        .pop()
+        .split('.')[0];
+      const metadata = { type: `image/${ext}` };
+      const imgFile = new File([data], filename!, metadata);
+      const resizedImg = await resizeFile(imgFile);
+      setStayImg(resizedImg as string);
     }
   }, []);
 
@@ -26,25 +65,25 @@ const StayDetail = (props: FetchedStayDataType) => {
     <StayEachItemWrapper onClick={() => navigate(`/stay/${props.id}`)}>
       <StayImgWrapper>
         <source
-          srcSet={props.img || noimg}
+          srcSet={stayImg || props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={props.img || noimg}
+          srcSet={stayImg || props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={props.img || noimg}
+          srcSet={stayImg || props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <StayEachItemImg
-          src={props.img || noimg}
+          src={stayImg || props.img || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"

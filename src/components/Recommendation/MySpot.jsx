@@ -6,7 +6,6 @@ import MySpotDetail from './MySpotDetail';
 import Slider from 'react-slick';
 import nextImg from '../../assets/next.avif';
 import pervImg from '../../assets/prev.avif';
-import { DetailDataTypes } from '../../types/apiDataTypes';
 
 const MySpot = (propsData) => {
   const [MySpot, setMySpot] = useState();
@@ -19,18 +18,20 @@ const MySpot = (propsData) => {
       ),
     );
 
-    // console.log(MySpot);
-    const res = data.docs.map((doc) => {
-      return {
-        ...doc.data(),
-      };
-    });
-    return res;
+    if (data) {
+      const res = data.docs.map((doc) => {
+        return {
+          ...doc.data(),
+        };
+      });
+      return res;
+    }
   };
 
   useEffect(() => {
     const fetchRecList = async () => {
       const res = await MySpotList();
+      console.log('나만 알고싶은', res);
       setMySpot(res);
     };
     fetchRecList();

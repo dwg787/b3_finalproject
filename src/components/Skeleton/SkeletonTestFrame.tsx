@@ -36,6 +36,13 @@ export default SkeletonTestFrame;
 const ListItemCount = styled.div`
   margin-top: 30px;
   margin-left: 59px;
+  height: 17px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  @media (max-width: 820px) {
+    margin-top: 16px;
+    margin-left: 24px;
+  }
 `;
 
 const SearchListWrapper = styled.div`
