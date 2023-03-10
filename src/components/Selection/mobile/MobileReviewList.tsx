@@ -257,11 +257,15 @@ const RealComment = styled.p`
 `;
 
 const EditInput = styled.input`
+  margin-top: 5px;
   font-weight: 500;
-  font-size: 14.0915px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
-  border-radius: 14px;
+  font-size: 10px;
+  background: #ececec;
+  box-shadow: 1.69289px 1.69289px 4.23224px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
   color: #595959;
+  width: 276px;
+  height: 18px;
 
   border: none;
   &:focus {

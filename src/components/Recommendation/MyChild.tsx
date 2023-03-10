@@ -175,7 +175,7 @@ const MyChildNum = styled.div`
 
 const MyCildTextBox = styled.div`
   margin-left: 23.02px;
-  margin-top: 19.27px;
+  margin-top: 15.27px;
   @media screen and (max-width: 820px) {
     margin-top: 12px;
     margin-left: 12px;

@@ -10,9 +10,24 @@ const MySpotDetail = (props: FetchedStayDataType) => {
     <SpotEachItemWrapper>
       <SpotImgWrapper>
         <picture>
-          <source srcSet={props.img || noimg} type="image/avif"></source>
-          <source srcSet={props.img || noimg} type="image/webp"></source>
-          <source srcSet={props.img || noimg} type="image/jpg"></source>
+          <source
+            srcSet={props.img || noimg}
+            type="image/avif"
+            width="300px"
+            height="350px"
+          ></source>
+          <source
+            srcSet={props.img || noimg}
+            type="image/webp"
+            width="300px"
+            height="350px"
+          ></source>
+          <source
+            srcSet={props.img || noimg}
+            type="image/jpg"
+            width="300px"
+            height="350px"
+          ></source>
           <SpotEachItemImg
             src={props.img || noimg}
             alt="사진"
@@ -33,7 +48,7 @@ export default MySpotDetail;
 const SpotEachItemWrapper = styled.div`
   width: 100%;
   height: 420px;
-  margin: 22.02px 20px 10px 20px;
+  margin: 22.02px 0px 10px 20px;
   border-radius: 15px;
   @media screen and (max-width: 820px) {
     height: 200px;
@@ -60,7 +75,7 @@ const SpotImgWrapper = styled.div`
 const SpotEachItemImg = styled.img`
   width: 300px;
   height: 350px;
-  aspect-ratio: 1;
+  /* aspect-ratio: 1; */
   cursor: pointer;
   &:hover {
     transform: scale(1.2);
@@ -90,19 +105,19 @@ const SpotTitle = styled.div`
   }
 `;
 
-const SpotSubText1 = styled.p`
-  color: white;
-  position: absolute;
-  margin-top: 251.68px;
-  font-size: 12.86px;
-`;
+// const SpotSubText1 = styled.p`
+//   color: white;
+//   position: absolute;
+//   margin-top: 251.68px;
+//   font-size: 12.86px;
+// `;
 
-const SpotSubText2 = styled.p`
-  color: white;
-  position: absolute;
-  margin-top: 250px;
-  font-weight: bold;
-`;
+// const SpotSubText2 = styled.p`
+//   color: white;
+//   position: absolute;
+//   margin-top: 250px;
+//   font-weight: bold;
+// `;
 
 const SpotTopdiv = styled.div`
   position: absolute;

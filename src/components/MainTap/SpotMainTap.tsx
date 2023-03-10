@@ -191,11 +191,8 @@ const InnerImg = styled.img`
 `;
 
 const OuterImg = styled.img`
-  width: 244px;
-  height: 200px;
-  top: -20px;
-  left: -10px;
-  object-fit: cover;
+  width: 220px;
+  height: 150px;
   position: absolute;
   cursor: pointer;
   &:hover {

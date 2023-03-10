@@ -1,0 +1,83 @@
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { menuSelectionState } from '../recoil/apiDataAtoms';
+import { useEffect } from 'react';
+import Menu from '../components/Menu/Menu';
+import RegionSelection from '../components/Selection/RegionSelection';
+import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
+import StaySelectionResult from '../components/Selection/StaySelectionResult';
+import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
+import SpotMainTap from '../components/MainTap/SpotMainTap';
+import StayMainTap from '../components/MainTap/StayMainTap';
+import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
+import Footer from '../components/Footer/Footer';
+import styled from 'styled-components';
+
+const ListPage = () => {
+  const location = useLocation();
+  const queryString = location.search;
+  const [selectedMenu, setSelectedMenu] = useRecoilState(menuSelectionState);
+  const selected = queryString.split('=')[1];
+
+  useEffect(() => {
+    if (selected) setSelectedMenu(selected);
+  }, [selected]);
+
+  return (
+    <Container>
+      <Menu />
+      {(selectedMenu === 'spot' ||
+        selectedMenu === 'restaurant' ||
+        selectedMenu === 'stay') && (
+        <RegionSelectionBtnWrapper>
+          <RegionSelection />
+        </RegionSelectionBtnWrapper>
+      )}
+      {selectedMenu === 'spot' ? (
+        <>
+          {/* {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />} */}
+          <SpotSelectionResult />
+          <SpotMainTap />
+          <Footer />
+        </>
+      ) : selectedMenu === 'stay' ? (
+        <>
+          <StaySelectionResult />
+          <StayMainTap />
+          <Footer />
+        </>
+      ) : (
+        selectedMenu === 'restaurant' && (
+          <>
+            <RestaurantSelectionResult />
+            <RestaurantMainTap />
+            <Footer />
+          </>
+        )
+      )}
+    </Container>
+  );
+};
+
+export default ListPage;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* padding-bottom: 500px; */
+  background: linear-gradient(white 5%, #8a98f6);
+  position: relative;
+  padding-bottom: 150px;
+`;
+
+const RegionSelectionBtnWrapper = styled.div`
+  display: flex;
+  padding-top: 5px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;

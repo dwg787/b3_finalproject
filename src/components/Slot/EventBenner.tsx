@@ -6,7 +6,7 @@ export default function EventBenner() {
   return (
     <a href="https://forms.gle/qaRbyEX8yGFHFCZ49">
       <WrapDiv>
-        <img src={sidebanner} />
+        <img src={sidebanner} alt="sidebanner" />
         <EventBannerText>지금바로가기!</EventBannerText>
       </WrapDiv>
     </a>

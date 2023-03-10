@@ -5,8 +5,10 @@ import Navbar from './components/Navbar';
 import ChatBotModal from './components/bot/ChatBotModal';
 import TopButton from './components/TopButton/TopButton';
 import SlotMachine from './components/Slot/SlotMechine';
+import ListPage from './pages/ListPage';
 
 const MainPage = lazy(() => import('./pages/MainPage'));
+// const ListPage = lazy(() => import('./pages/ListPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const DetailPage = lazy(() => import('./pages/DetailPage/DetailPage'));
 const MyPage = lazy(() => import('./pages/MyPage/MyPage'));
@@ -27,6 +29,7 @@ const Router = () => {
         <TopButton />
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/list" element={<ListPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/my" element={<MyPage />} />
           <Route path="/spot/:id" element={<DetailPage />} />
