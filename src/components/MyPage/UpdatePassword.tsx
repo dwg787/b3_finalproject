@@ -225,12 +225,16 @@ export default UpdatePassword;
 
 const Error = styled.div`
   position: absolute;
-  top: 90px;
+  top: 110px;
   left: 10px;
   color: #f87038;
   font-weight: 500;
   font-size: 10px;
   line-height: 8px;
+  @media screen and (max-width: 390px) {
+    top: 90px;
+    line-height: 11px;
+  }
 `;
 
 const Error1 = styled.div`
