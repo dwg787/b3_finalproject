@@ -63,6 +63,8 @@ const TopBtn = styled.button`
 `;
 
 const TopImg = styled.img`
+  border-radius: 50%;
+  box-shadow: 1.87043px 1.87043px 1.87043px rgba(0, 0, 0, 0.25);
   @media screen and (max-width: 820px) {
     width: 38px;
     height: 38px;

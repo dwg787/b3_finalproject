@@ -250,6 +250,7 @@ const LikeImg = styled.img`
 const LikeText = styled.p`
   font-size: 15.86px;
   color: #4d4d4d;
+  font-weight: bold;
 `;
 
 const InnerButton = styled.button`
