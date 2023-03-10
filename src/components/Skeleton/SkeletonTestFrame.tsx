@@ -87,6 +87,7 @@ const SpotEachItemWrapper = styled.div`
   width: 216px;
   height: 234px;
   background-color: #f2f2f2;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-bottom: 35.66px;
   border-radius: 7px;
