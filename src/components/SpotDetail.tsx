@@ -9,7 +9,6 @@ import { useEffect, useState, useCallback } from 'react';
 
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
-
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
   const spotRecommendationList = useCallback(async () => {
     const fbdata = await getDoc(doc(db, 'spot_recommendation', `${props.id}`));
