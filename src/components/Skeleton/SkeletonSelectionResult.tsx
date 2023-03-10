@@ -2,18 +2,13 @@ import styled, { keyframes } from 'styled-components';
 
 const SkeletonSelectionResult = () => {
   return (
-    <>
-      <ResultWrapper>
-        <SpotEachItemWrapper></SpotEachItemWrapper>
-        <SpotEachItemWrapper></SpotEachItemWrapper>
-        <SpotEachItemWrapper></SpotEachItemWrapper>
-        <SpotEachItemWrapper></SpotEachItemWrapper>
-        <SpotEachItemWrapper></SpotEachItemWrapper>
-        <SpotEachItemWrapper></SpotEachItemWrapper>
-        <SpotEachItemWrapper></SpotEachItemWrapper>
-        <SpotEachItemWrapper></SpotEachItemWrapper>
-      </ResultWrapper>
-    </>
+    <ResultWrapper>
+      {Array(8)
+        .fill('')
+        .map((_, idx) => {
+          return <SpotEachItemWrapper key={idx}></SpotEachItemWrapper>;
+        })}
+    </ResultWrapper>
   );
 };
 
@@ -43,6 +38,7 @@ const SpotEachItemWrapper = styled.div`
   width: 216px;
   height: 234px;
   background-color: #f2f2f2;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-bottom: 35.66px;
   border-radius: 7px;
