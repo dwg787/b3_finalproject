@@ -32,18 +32,20 @@ const StayDetail = (props: FetchedStayDataType) => {
     const fbdata = await getDoc(doc(db, 'stay_recommendation', `${props.id}`));
     if (fbdata) {
       setLikeData(fbdata.data());
-      const imgResponse = await fetch(
-        `/api${fbdata.data().firstimage.split('kr')[1]}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Request-Method': 'GET',
-            'Access-Control-Request-Headers': 'Content-Type',
-          },
+    }
+  }, []);
+
+  const resizeStayImgFn = async (props: FetchedStayDataType) => {
+    if (props) {
+      const imgResponse = await fetch(`/api${props.img.split('kr')[1]}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Request-Method': 'GET',
+          'Access-Control-Request-Headers': 'Content-Type',
         },
-      );
+      });
       const data = await imgResponse.blob();
       const ext = imgResponse?.url.split('.').pop();
       const filename = imgResponse?.url
@@ -55,35 +57,36 @@ const StayDetail = (props: FetchedStayDataType) => {
       const resizedImg = await resizeFile(imgFile);
       setStayImg(resizedImg as string);
     }
-  }, []);
+  };
 
   useEffect(() => {
     stayRecommendationList();
+    resizeStayImgFn(props);
   }, []);
 
   return (
     <StayEachItemWrapper onClick={() => navigate(`/stay/${props.id}`)}>
       <StayImgWrapper>
         <source
-          srcSet={stayImg || props.img || noimg}
+          srcSet={stayImg || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={stayImg || props.img || noimg}
+          srcSet={stayImg || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={stayImg || props.img || noimg}
+          srcSet={stayImg || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <StayEachItemImg
-          src={stayImg || props.img || noimg}
+          src={stayImg || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"

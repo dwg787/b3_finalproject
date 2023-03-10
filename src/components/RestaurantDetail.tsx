@@ -32,18 +32,20 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
     const fbdata = await getDoc(doc(db, 'restaurant_recommendation', props.id));
     if (fbdata) {
       setLikeData(fbdata.data());
-      const imgResponse = await fetch(
-        `/api${fbdata.data().firstimage.split('kr')[1]}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Request-Method': 'GET',
-            'Access-Control-Request-Headers': 'Content-Type',
-          },
+    }
+  }, []);
+
+  const resizeRestaurantImgFn = async (props: FetchedStayDataType) => {
+    if (props) {
+      const imgResponse = await fetch(`/api${props.img.split('kr')[1]}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Request-Method': 'GET',
+          'Access-Control-Request-Headers': 'Content-Type',
         },
-      );
+      });
       const data = await imgResponse.blob();
       const ext = imgResponse?.url.split('.').pop();
       const filename = imgResponse?.url
@@ -55,10 +57,11 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
       const resizedImg = await resizeFile(imgFile);
       setRestaurantImg(resizedImg as string);
     }
-  }, []);
+  };
 
   useEffect(() => {
     restaurantRecommendationList();
+    resizeRestaurantImgFn(props);
   }, []);
 
   return (
@@ -67,25 +70,25 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
     >
       <RestaurantImgWrapper>
         <source
-          srcSet={restaurantImg || props.img || noimg}
+          srcSet={restaurantImg || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={restaurantImg || props.img || noimg}
+          srcSet={restaurantImg || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={restaurantImg || props.img || noimg}
+          srcSet={restaurantImg || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <RestaurantEachItemImg
-          src={restaurantImg || props.img || noimg}
+          src={restaurantImg || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"
