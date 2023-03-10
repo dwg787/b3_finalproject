@@ -143,7 +143,7 @@ const WrapDiv = styled.div`
 `;
 
 const InnerDiv = styled.div`
-  width: 904px;
+  max-width: 904px;
   margin-top: 18px;
   border-radius: 11px;
   background: #d6dcff;
@@ -176,11 +176,9 @@ const InnerList = styled.div`
 `;
 
 const InnerImg = styled.img`
-  width: 271px;
-  height: 270px;
-
+  width: 261px;
+  height: 200px;
   position: absolute;
-  object-fit: cover;
   cursor: pointer;
   &:hover {
     transform: scale(1.2);
@@ -193,11 +191,8 @@ const InnerImg = styled.img`
 `;
 
 const OuterImg = styled.img`
-  width: 244px;
-  height: 200px;
-  top: -20px;
-  left: -10px;
-  object-fit: cover;
+  width: 220px;
+  height: 150px;
   position: absolute;
   cursor: pointer;
   &:hover {
@@ -231,7 +226,7 @@ const InnerTextBox = styled.div`
 
 const OuterDiv = styled.div`
   width: 100%;
-  /* height: 320px; */
+  /* min-height: 320px; */
   background-color: transparent;
   margin-top: 24px;
   display: flex;
@@ -362,6 +357,9 @@ const HeartBox = styled.div`
   align-items: center;
   gap: 10px;
   margin-top: 20px;
+  /* @media (max-width: 820px) {
+    
+  } */
 `;
 
 const HeartImg = styled.img`
