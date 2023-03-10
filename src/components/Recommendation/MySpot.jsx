@@ -69,7 +69,7 @@ const MySpot = (propsData) => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     arrows: false,
     speed: 400,
     slidesToShow: 3.5,

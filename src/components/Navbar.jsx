@@ -128,7 +128,6 @@ const Navbar = () => {
     localStorage.removeItem('uid');
     localStorage.removeItem('email');
     sessionStorage.removeItem('uid');
-    sessionStorage.removeItem('delete');
     localStorage.removeItem('phoneNumber');
     localStorage.removeItem('token_for_kakaotalk');
     localStorage.removeItem('com.naver.nid.oauth.state_token');
@@ -173,12 +172,15 @@ const Navbar = () => {
           {localId !== null ? (
             <LoginBox>
               <NickNameBtn>{localId}님 환영합니다</NickNameBtn>
-              <InputBox onClick={() => navigate('/search')}>
+              {/* <InputBox onClick={() => navigate('/search')}>
                 <SearchIconImg src={SearchIcon} alt="" />
-              </InputBox>
+              </InputBox> */}
               <NavTextDiv onClick={() => navigate('/my')}>
                 마이페이지
               </NavTextDiv>
+              <InputBox onClick={() => navigate('/search')}>
+                <SearchIconImg src={SearchIcon} alt="" />
+              </InputBox>
               <LoginButton
                 onClick={() => {
                   setAlarmMsg('로그아웃 되었습니다.'); //알람관련 코드4 - 들어갈 내용 정하는 부분

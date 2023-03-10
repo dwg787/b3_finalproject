@@ -48,7 +48,7 @@ export default MySpotDetail;
 const SpotEachItemWrapper = styled.div`
   width: 100%;
   height: 420px;
-  margin: 22.02px 20px 10px 20px;
+  margin: 22.02px 0px 10px 20px;
   border-radius: 15px;
   @media screen and (max-width: 820px) {
     height: 200px;
