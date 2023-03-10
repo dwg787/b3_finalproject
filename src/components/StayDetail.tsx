@@ -68,25 +68,25 @@ const StayDetail = (props: FetchedStayDataType) => {
     <StayEachItemWrapper onClick={() => navigate(`/stay/${props.id}`)}>
       <StayImgWrapper>
         <source
-          srcSet={stayImg || noimg}
+          srcSet={stayImg || props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={stayImg || noimg}
+          srcSet={stayImg || props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={stayImg || noimg}
+          srcSet={stayImg || props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <StayEachItemImg
-          src={stayImg || noimg}
+          src={stayImg || props.img || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"

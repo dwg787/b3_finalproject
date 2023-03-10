@@ -70,25 +70,25 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
     >
       <RestaurantImgWrapper>
         <source
-          srcSet={restaurantImg || noimg}
+          srcSet={restaurantImg || props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={restaurantImg || noimg}
+          srcSet={restaurantImg || props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={restaurantImg || noimg}
+          srcSet={restaurantImg || props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <RestaurantEachItemImg
-          src={restaurantImg || noimg}
+          src={restaurantImg || props.img || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"

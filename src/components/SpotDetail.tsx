@@ -68,25 +68,25 @@ const SpotDetail = (props: FetchedStayDataType) => {
     <SpotEachItemWrapper onClick={() => navigate(`/spot/${props.id}`)}>
       <SpotImgWrapper>
         <source
-          srcSet={spotImg || noimg}
+          srcSet={spotImg || props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={spotImg || noimg}
+          srcSet={spotImg || props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={spotImg || noimg}
+          srcSet={spotImg || props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <SpotEachItemImg
-          srcSet={spotImg || noimg}
+          srcSet={spotImg || props.img || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"
