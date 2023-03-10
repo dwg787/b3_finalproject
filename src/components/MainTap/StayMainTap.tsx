@@ -178,8 +178,7 @@ const InnerList = styled.div`
 const InnerImg = styled.img`
   width: 271px;
   height: 270px;
-  top: -30px;
-  left: -10px;
+
   position: absolute;
   object-fit: cover;
   cursor: pointer;
