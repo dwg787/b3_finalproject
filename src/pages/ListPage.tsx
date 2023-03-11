@@ -1,4 +1,4 @@
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { menuSelectionState } from '../recoil/apiDataAtoms';
 import { useEffect } from 'react';
@@ -7,9 +7,7 @@ import RegionSelection from '../components/Selection/RegionSelection';
 import SpotSelectionResult from '../components/Selection/SpotSelectionResult';
 import StaySelectionResult from '../components/Selection/StaySelectionResult';
 import RestaurantSelectionResult from '../components/Selection/RestaurantSelectionResult';
-import SpotMainTap from '../components/MainTap/SpotMainTap';
-import StayMainTap from '../components/MainTap/StayMainTap';
-import RestaurantMainTap from '../components/MainTap/RestaurantMainTap';
+import PlaceMainTap from '../components/MainTap/PlaceMainTap';
 import Footer from '../components/Footer/Footer';
 import styled from 'styled-components';
 
@@ -37,20 +35,20 @@ const ListPage = () => {
         <>
           {/* {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />} */}
           <SpotSelectionResult />
-          <SpotMainTap />
+          <PlaceMainTap />
           <Footer />
         </>
       ) : selectedMenu === 'stay' ? (
         <>
           <StaySelectionResult />
-          <StayMainTap />
+          <PlaceMainTap />
           <Footer />
         </>
       ) : (
         selectedMenu === 'restaurant' && (
           <>
             <RestaurantSelectionResult />
-            <RestaurantMainTap />
+            <PlaceMainTap />
             <Footer />
           </>
         )

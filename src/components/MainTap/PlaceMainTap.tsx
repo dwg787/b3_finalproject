@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getDocs, query, collection, orderBy, limit } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { db } from '../../apis/firebase';
 import styled from 'styled-components';
 import one from '../../assets/one.avif';
@@ -10,14 +10,20 @@ import noimg from '../../assets/noimg.avif';
 import redheart from '../../assets/redheart.avif';
 import { RankTypeList } from '../../types/apiDataTypes';
 
-const RestaurantMainTap = () => {
+const PlaceMainTap = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const sort = location.search.split('=')[1];
   const [rankList, setRankList] = useState<RankTypeList>([]);
   const medalImg = [one, two, three];
-  const restaurantRankList = async () => {
+
+  console.log('place 메인탭', sort);
+
+  const placeRankList = async () => {
+    console.log('메인탭 현재 메뉴', sort);
     const data = await getDocs(
       query(
-        collection(db, 'restaurant_recommendation'),
+        collection(db, `${sort}_recommendation`),
         orderBy('likeCnt', 'desc'),
         limit(7),
       ),
@@ -27,21 +33,18 @@ const RestaurantMainTap = () => {
         ...doc.data(),
       };
     });
-    return res;
+    console.log('파이어스토어 거쳐서?', res);
+    setRankList(res);
   };
 
   useEffect(() => {
-    const fetchRestaurantRankList = async () => {
-      const res = await restaurantRankList();
-      setRankList(res);
-    };
-    fetchRestaurantRankList();
-  }, []);
+    placeRankList();
+  }, [sort]);
 
   return (
     <WrapDiv>
       <ListTitleWrapper>
-        <ListItemTitle>추천! 인기 맛집</ListItemTitle>
+        <ListItemTitle>추천! 인기 관광지</ListItemTitle>
       </ListTitleWrapper>
       <>
         {rankList ? (
@@ -51,9 +54,9 @@ const RestaurantMainTap = () => {
                 return (
                   <InnerList
                     key={e?.contentid}
-                    onClick={() => navigate(`/restaurant/${e?.contentid}`)}
+                    onClick={() => navigate(`/${sort}/${e?.contentid}`)}
                   >
-                    <InnerImg src={e?.firstimage || noimg} alt="1~3위음식점" />
+                    <InnerImg src={e?.firstimage || noimg} alt="1~3위 장소" />
                     <MedalHeartBox>
                       <HeartImg src={redheart} alt="좋아요" />
                       <HeartText>{e?.likeCnt}</HeartText>
@@ -88,10 +91,10 @@ const RestaurantMainTap = () => {
               return (
                 <OuterList
                   key={e?.contentid}
-                  onClick={() => navigate(`/restaurant/${e.contentid}`)}
+                  onClick={() => navigate(`/${sort}/${e.contentid}`)}
                 >
                   <InnerNmb>{i + 4}</InnerNmb>
-                  <OuterImg src={e.firstimage || noimg} alt="4~7위음식점" />
+                  <OuterImg src={e.firstimage || noimg} alt="4~7위 장소" />
                   <OuterMedalHeartBox>
                     <OuterHeartImg src={redheart} alt="좋아요" />
                     <OuterHeartText>{e.likeCnt}</OuterHeartText>
@@ -123,7 +126,7 @@ const RestaurantMainTap = () => {
   );
 };
 
-export default RestaurantMainTap;
+export default PlaceMainTap;
 
 const WrapDiv = styled.div`
   max-width: 1036px;
