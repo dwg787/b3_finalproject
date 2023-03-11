@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { db } from '../../apis/firebase';
 import { getDocs, collection, orderBy, query, limit } from 'firebase/firestore';
@@ -7,7 +7,7 @@ import Slider from 'react-slick';
 import nextImg from '../../assets/next.avif';
 import pervImg from '../../assets/prev.avif';
 
-const MySpot = (propsData) => {
+const MySpot = () => {
   const [MySpot, setMySpot] = useState();
   const MySpotList = async () => {
     const data = await getDocs(
@@ -131,11 +131,11 @@ const MySpot = (propsData) => {
           {MySpot &&
             MySpot.slice(0, 10).map((e) => {
               return (
-                <div>
+                <div key={e?.contentid}>
                   <h3>
                     {MySpot && (
                       <MySpotDetail
-                        key={e?.contentid}
+                        // key={e?.contentid}
                         id={e?.contentid}
                         img={e?.firstimage}
                       >

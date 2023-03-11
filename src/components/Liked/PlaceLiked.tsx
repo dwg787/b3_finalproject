@@ -18,8 +18,6 @@ import heart from '../../assets/heart.avif';
 import redheart from '../../assets/redheart.avif';
 import { useLocation, useParams } from 'react-router-dom';
 import { DetailDataTypes } from '../../types/apiDataTypes';
-// import { paramTransfer } from '../../recoil/apiDataAtoms';
-// import { useRecoilValue } from 'recoil';
 
 const PlaceLiked = ({
   spotDetailData,
@@ -42,8 +40,6 @@ const PlaceLiked = ({
   const [alarmMsg, setAlarmMsg] = useState('');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
   const uid = sessionStorage.getItem('uid');
-
-  // console.log('url location', sort);
 
   const combinedData = {
     ...spotDetailData,
@@ -84,7 +80,6 @@ const PlaceLiked = ({
   }, []);
 
   const handleLiked = async () => {
-    // const uid = auth.currentUser.uid;
     if (uid && param.id) {
       const docRef = doc(collection(db, 'bookmarks'), uid);
       const placeDocRef = doc(db, `${sort}_recommendation`, param.id);

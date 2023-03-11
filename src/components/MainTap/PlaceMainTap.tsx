@@ -17,10 +17,7 @@ const PlaceMainTap = () => {
   const [rankList, setRankList] = useState<RankTypeList>([]);
   const medalImg = [one, two, three];
 
-  console.log('place 메인탭', sort);
-
   const placeRankList = async () => {
-    console.log('메인탭 현재 메뉴', sort);
     const data = await getDocs(
       query(
         collection(db, `${sort}_recommendation`),
@@ -33,7 +30,6 @@ const PlaceMainTap = () => {
         ...doc.data(),
       };
     });
-    console.log('파이어스토어 거쳐서?', res);
     setRankList(res);
   };
 
