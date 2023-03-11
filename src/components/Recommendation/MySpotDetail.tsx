@@ -35,7 +35,7 @@ const MySpotDetail = (props: FetchedStayDataType) => {
           'Access-Control-Request-Headers': 'Content-Type',
         },
       });
-      console.log('imgRes', imgResponse);
+      // console.log('imgRes', imgResponse);
       const imgdata = await imgResponse.blob();
       const ext = imgResponse?.url?.split('.').pop();
       const filename = imgResponse?.url

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useLayoutEffect } from 'react';
 import Resizer from 'react-image-file-resizer';
 
 const SpotDetail = (props: FetchedStayDataType) => {
@@ -36,32 +36,31 @@ const SpotDetail = (props: FetchedStayDataType) => {
   }, []);
 
   const resizeSpotImgFn = async (props: FetchedStayDataType) => {
-    if (props) {
-      const imgResponse = await fetch(`/api${props.img.split('kr')[1]}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Request-Method': 'GET',
-          'Access-Control-Request-Headers': 'Content-Type',
-        },
-      });
-      const data = await imgResponse.blob();
-      const ext = imgResponse?.url.split('.').pop();
-      const filename = imgResponse?.url
-        .split('/')
-        .pop()
-        .split('.')[0];
-      const metadata = { type: `image/${ext}` };
-      const imgFile = new File([data], filename!, metadata);
-      const resizedImg = await resizeFile(imgFile);
-      setSpotImg(resizedImg as string);
-    }
+    const imgResponse = await fetch(`/api${props.img.split('kr')[1]}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'Content-Type',
+      },
+    });
+    const data = await imgResponse.blob();
+    const ext = imgResponse?.url.split('.').pop();
+    const filename = imgResponse?.url
+      .split('/')
+      .pop()
+      .split('.')[0];
+    const metadata = { type: `image/${ext}` };
+    const imgFile = new File([data], filename!, metadata);
+    const resizedImg = await resizeFile(imgFile);
+    setSpotImg(resizedImg as string);
   };
 
   useEffect(() => {
     spotRecommendationList();
-    resizeSpotImgFn(props);
+    if (props) resizeSpotImgFn(props);
+    // console.log('spotImg', spotImg);
   }, []);
 
   return (
@@ -69,24 +68,28 @@ const SpotDetail = (props: FetchedStayDataType) => {
       <SpotImgWrapper>
         <source
           srcSet={spotImg || props.img || noimg}
+          // srcSet={spotImg || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
           srcSet={spotImg || props.img || noimg}
+          // srcSet={spotImg || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
           srcSet={spotImg || props.img || noimg}
+          // srcSet={spotImg || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <SpotEachItemImg
           srcSet={spotImg || props.img || noimg}
+          // srcSet={spotImg || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"

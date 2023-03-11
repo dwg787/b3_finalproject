@@ -39,6 +39,8 @@ const Chatimgbtn = styled.div`
 `;
 
 const ChatingImg = styled.img`
+  width: 63px;
+  height: 63px;
   @media screen and (max-width: 820px) {
     width: 43px;
     height: 43px;

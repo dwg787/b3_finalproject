@@ -53,12 +53,12 @@ const SpotMainTap = () => {
                     key={e?.contentid}
                     onClick={() => navigate(`/spot/${e?.contentid}`)}
                   >
-                    <InnerImg src={e?.firstimage || noimg} />
+                    <InnerImg src={e?.firstimage || noimg} alt="1~3위관광지" />
                     <MedalHeartBox>
-                      <HeartImg src={redheart} />
+                      <HeartImg src={redheart} alt="좋아요" />
                       <HeartText>{e?.likeCnt}</HeartText>
                     </MedalHeartBox>
-                    <InnerMedals src={medalImg[idx]} alt="" />
+                    <InnerMedals src={medalImg[idx]} alt="순위" />
                     <InnerTextBox>
                       <MedalText>
                         {e?.title.split(/[\\[\]\\(\\)]/)[0]
@@ -72,7 +72,7 @@ const SpotMainTap = () => {
               } else {
                 return (
                   <InnerList>
-                    <InnerMedals src={medalImg[idx]} alt="" />
+                    <InnerMedals src={medalImg[idx]} alt="순위" />
                     <InnerTextBox></InnerTextBox>
                   </InnerList>
                 );
@@ -91,9 +91,9 @@ const SpotMainTap = () => {
                   onClick={() => navigate(`/spot/${e.contentid}`)}
                 >
                   <InnerNmb>{i + 4}</InnerNmb>
-                  <OuterImg src={e.firstimage || noimg} alt="" />
+                  <OuterImg src={e.firstimage || noimg} alt="4~7위관광지" />
                   <OuterMedalHeartBox>
-                    <OuterHeartImg src={redheart} />
+                    <OuterHeartImg src={redheart} alt="좋아요" />
                     <OuterHeartText>{e.likeCnt}</OuterHeartText>
                   </OuterMedalHeartBox>
                   <OuterTextBox>

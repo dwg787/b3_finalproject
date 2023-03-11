@@ -36,32 +36,30 @@ const StayDetail = (props: FetchedStayDataType) => {
   }, []);
 
   const resizeStayImgFn = async (props: FetchedStayDataType) => {
-    if (props) {
-      const imgResponse = await fetch(`/api${props.img.split('kr')[1]}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Request-Method': 'GET',
-          'Access-Control-Request-Headers': 'Content-Type',
-        },
-      });
-      const data = await imgResponse.blob();
-      const ext = imgResponse?.url.split('.').pop();
-      const filename = imgResponse?.url
-        .split('/')
-        .pop()
-        .split('.')[0];
-      const metadata = { type: `image/${ext}` };
-      const imgFile = new File([data], filename!, metadata);
-      const resizedImg = await resizeFile(imgFile);
-      setStayImg(resizedImg as string);
-    }
+    const imgResponse = await fetch(`/api${props.img.split('kr')[1]}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'Content-Type',
+      },
+    });
+    const data = await imgResponse.blob();
+    const ext = imgResponse?.url.split('.').pop();
+    const filename = imgResponse?.url
+      .split('/')
+      .pop()
+      .split('.')[0];
+    const metadata = { type: `image/${ext}` };
+    const imgFile = new File([data], filename!, metadata);
+    const resizedImg = await resizeFile(imgFile);
+    setStayImg(resizedImg as string);
   };
 
   useEffect(() => {
     stayRecommendationList();
-    resizeStayImgFn(props);
+    if (props) resizeStayImgFn(props);
   }, []);
 
   return (

@@ -53,12 +53,12 @@ const StayMainTap = () => {
                     key={e?.contentid}
                     onClick={() => navigate(`/stay/${e?.contentid}`)}
                   >
-                    <InnerImg src={e?.firstimage || noimg} />
+                    <InnerImg src={e?.firstimage || noimg} alt="1~3위숙박" />
                     <MedalHeartBox>
-                      <HeartImg src={redheart} />
+                      <HeartImg src={redheart} alt="좋아요" />
                       <HeartText>{e?.likeCnt}</HeartText>
                     </MedalHeartBox>
-                    <InnerMedals src={medalImg[idx]} alt="" />
+                    <InnerMedals src={medalImg[idx]} alt="순위" />
                     <InnerTextBox>
                       <MedalText>
                         {e?.title.split(/[\\[\]\\(\\)]/)[0]
@@ -72,7 +72,7 @@ const StayMainTap = () => {
               } else {
                 return (
                   <InnerList>
-                    <InnerMedals src={medalImg[idx]} alt="" />
+                    <InnerMedals src={medalImg[idx]} alt="순위" />
                     <InnerTextBox></InnerTextBox>
                   </InnerList>
                 );
@@ -91,9 +91,9 @@ const StayMainTap = () => {
                   onClick={() => navigate(`/stay/${e.contentid}`)}
                 >
                   <InnerNmb>{i + 4}</InnerNmb>
-                  <OuterImg src={e.firstimage || noimg} alt="" />
+                  <OuterImg src={e.firstimage || noimg} alt="4~7위숙박" />
                   <OuterMedalHeartBox>
-                    <OuterHeartImg src={redheart} />
+                    <OuterHeartImg src={redheart} alt="좋아요" />
                     <OuterHeartText>{e.likeCnt}</OuterHeartText>
                   </OuterMedalHeartBox>
                   <OuterTextBox>

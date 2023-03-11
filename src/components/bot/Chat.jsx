@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { addDoc, collection } from 'firebase/firestore';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import styled, { ThemeProvider } from 'styled-components';
 import { db } from '../../apis/firebase';
