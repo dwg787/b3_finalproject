@@ -11,7 +11,6 @@ import {
   DetailText,
   DetailTextArr,
   DetailTextBox,
-  DetailInfoAdd,
   DetailInformationMap,
   TabHr,
   SideInfoWrapper,
@@ -29,7 +28,7 @@ import DetailScroll from '../../components/Scroll/DetailScroll';
 import { fetchRestaurantDetailInfo } from '../../apis/publicAPI';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
-import RestaurantLiked from '../../components/Liked/RestaurantLiked';
+import PlaceLiked from '../../components/Liked/PlaceLiked';
 import {
   getDoc,
   setDoc,
@@ -133,8 +132,10 @@ const RestaurantDetailPage = () => {
                     {restaurantDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DetailImojiBox>
-                    <RestaurantLiked
+                    <PlaceLiked
                       restaurantDetailData={restaurantDetailData}
+                      spotDetailData={undefined}
+                      stayDetailData={undefined}
                     />
                     {/* <p>{likeData !== undefined ? likeData.likeCnt : 0}</p> */}
                   </DetailImojiBox>
