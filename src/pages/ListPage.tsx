@@ -31,28 +31,17 @@ const ListPage = () => {
           <RegionSelection />
         </RegionSelectionBtnWrapper>
       )}
-      {selectedMenu === 'spot' ? (
-        <>
-          {/* {isMobile ? <MobileSpotSelectionResult /> : <SpotSelectionResult />} */}
+      <>
+        {selectedMenu === 'spot' ? (
           <SpotSelectionResult />
-          <PlaceMainTap />
-          <Footer />
-        </>
-      ) : selectedMenu === 'stay' ? (
-        <>
+        ) : selectedMenu === 'stay' ? (
           <StaySelectionResult />
-          <PlaceMainTap />
-          <Footer />
-        </>
-      ) : (
-        selectedMenu === 'restaurant' && (
-          <>
-            <RestaurantSelectionResult />
-            <PlaceMainTap />
-            <Footer />
-          </>
-        )
-      )}
+        ) : (
+          selectedMenu === 'restaurant' && <RestaurantSelectionResult />
+        )}
+        <PlaceMainTap />
+        <Footer />
+      </>
     </Container>
   );
 };

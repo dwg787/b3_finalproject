@@ -16,7 +16,6 @@ import {
   TabHr,
   DetailInfo2,
 } from './styles';
-
 import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
@@ -31,15 +30,17 @@ import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import noimg from '../../assets/noimg.avif';
-
 import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
-
 import PlaceLiked from '../../components/Liked/PlaceLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
 import DetailFooter from '../../components/Footer/DetailFooter';
 import { useMediaQuery } from 'react-responsive';
+
 const DetailPage = () => {
   const param = useParams();
+  // const location = useLocation();
+  // const sort = location.pathname.split('/')[1];
+  // console.log('솔트', sort);
 
   const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
