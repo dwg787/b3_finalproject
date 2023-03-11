@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
-import { useEffect, useState, useCallback, useLayoutEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Resizer from 'react-image-file-resizer';
 
 const SpotDetail = (props: FetchedStayDataType) => {
@@ -36,7 +36,7 @@ const SpotDetail = (props: FetchedStayDataType) => {
   }, []);
 
   const resizeSpotImgFn = async (props: FetchedStayDataType) => {
-    const imgResponse = await fetch(`/api${props.img.split('kr')[1]}`, {
+    const imgResponse = await fetch(`/api${props?.img.split('kr')[1]}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +60,6 @@ const SpotDetail = (props: FetchedStayDataType) => {
   useEffect(() => {
     spotRecommendationList();
     if (props) resizeSpotImgFn(props);
-    // console.log('spotImg', spotImg);
   }, []);
 
   return (

@@ -4,10 +4,10 @@ module.exports = function(app) {
   app.use(
     createProxyMiddleware('/api', {
       target: 'https://tong.visitkorea.or.kr',
+      changeOrigin: true,
       pathRewrite: {
         '^/api': '',
       },
-      changeOrigin: true,
     }),
   );
 };

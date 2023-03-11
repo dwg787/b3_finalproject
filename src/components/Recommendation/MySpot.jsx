@@ -31,7 +31,6 @@ const MySpot = (propsData) => {
   useEffect(() => {
     const fetchRecList = async () => {
       const res = await MySpotList();
-      console.log('나만 알고싶은', res);
       setMySpot(res);
     };
     fetchRecList();

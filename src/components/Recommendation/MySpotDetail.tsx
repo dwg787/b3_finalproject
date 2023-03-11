@@ -25,32 +25,31 @@ const MySpotDetail = (props: FetchedStayDataType) => {
     });
 
   const resizingImgFn = async (props: FetchedStayDataType) => {
-    if (props) {
-      const imgResponse = await fetch(`/api${props.img?.split('kr')[1]}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Request-Method': 'GET',
-          'Access-Control-Request-Headers': 'Content-Type',
-        },
-      });
-      // console.log('imgRes', imgResponse);
-      const imgdata = await imgResponse.blob();
-      const ext = imgResponse?.url?.split('.').pop();
-      const filename = imgResponse?.url
-        .split('/')
-        .pop()
-        .split('.')[0];
-      const metadata = { type: `image/${ext}` };
-      const imgFile = new File([imgdata], filename, metadata);
-      const resizedImg = await resizeFile(imgFile);
-      setMySpotImg(resizedImg as string);
-    }
+    // console.log('프롭스 경로', props.img);
+    const imgResponse = await fetch(`/api/${props.img.split('kr')[1]}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'Content-Type',
+      },
+    });
+    // console.log('imgRes', imgResponse);
+    const imgdata = await imgResponse.blob();
+    const ext = imgResponse?.url?.split('.').pop();
+    const filename = imgResponse?.url
+      .split('/')
+      .pop()
+      .split('.')[0];
+    const metadata = { type: `image/${ext}` };
+    const imgFile = new File([imgdata], filename, metadata);
+    const resizedImg = await resizeFile(imgFile);
+    setMySpotImg(resizedImg as string);
   };
 
   useEffect(() => {
-    resizingImgFn(props);
+    if (props) resizingImgFn(props);
   }, []);
 
   return (

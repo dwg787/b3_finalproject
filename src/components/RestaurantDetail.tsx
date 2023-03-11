@@ -36,7 +36,7 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
   }, []);
 
   const resizeRestaurantImgFn = async (props: FetchedStayDataType) => {
-    const imgResponse = await fetch(`/api${props.img.split('kr')[1]}`, {
+    const imgResponse = await fetch(`/api${props?.img.split('kr')[1]}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

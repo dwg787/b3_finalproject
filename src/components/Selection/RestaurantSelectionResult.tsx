@@ -29,7 +29,7 @@ const RestaurantSelectionResult = () => {
     firstNum.current = 5 * (Math.floor(restCurPage / 5) - 1) + 1;
   }
 
-  const { data, isFetching, isLoading, isPreviousData } = useQuery(
+  const { data, isFetching, isLoading } = useQuery(
     ['rest_data', region, restCurPage],
     () => fetchRestaurantData({ region, restCurPage }),
     {

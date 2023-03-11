@@ -29,7 +29,7 @@ const StaySelectionResult = () => {
     firstNum.current = 5 * (Math.floor(stayCurPage / 5) - 1) + 1;
   }
 
-  const { data, isFetching, isLoading, isPreviousData } = useQuery(
+  const { data, isFetching, isLoading } = useQuery(
     ['stay_data', region, stayCurPage],
     () => fetchStayData({ region, stayCurPage }),
     {

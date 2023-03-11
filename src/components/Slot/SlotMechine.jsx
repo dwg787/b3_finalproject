@@ -1,12 +1,11 @@
 import axios from 'axios';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import noimg from '../../assets/noimg.avif';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import random from '../../assets/random.avif';
-import _ from 'lodash';
 import sadari from '../../assets/sadari.mp3';
 import BlueFooter from '../Footer/BlueFooter';
 import Randomslot from '../../assets/Randomslot.avif';

@@ -29,7 +29,7 @@ const SpotSelectionResult = () => {
     firstNum.current = 5 * (Math.floor(spotCurPage / 5) - 1) + 1;
   }
 
-  const { data, isFetching, isLoading, isPreviousData } = useQuery(
+  const { data, isFetching, isLoading } = useQuery(
     ['spot_data', region, spotCurPage],
     () => fetchSpotData({ region, spotCurPage }),
     {
