@@ -12,7 +12,7 @@ const PlaceDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
   const location = useLocation();
   const sort = location.search.split('=')[1] || 'spot';
-  console.log('솔트', sort);
+  // console.log('솔트', sort);
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
 
   const placeRecommendationList = useCallback(async () => {
