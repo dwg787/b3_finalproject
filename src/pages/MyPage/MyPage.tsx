@@ -82,13 +82,15 @@ const Tab = ({
       onClick={onClick}
       style={{
         color: isActive ? '#6478ff' : '',
-        borderRadius: isActive ? '335.4px' : '',
-        boxShadow: isActive ? '2px 2px 3px gray' : '',
-        width: '150.93px',
-        height: '34.88px',
+        borderRadius: isActive ? '282px' : '',
+
+        boxShadow: isActive ? '0.5px 0.5px 0.5px 0.3px#c6c2c2' : '',
+        width: '126px',
+        height: '29px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        padding: '8px 23px 8px 22px',
       }}
     >
       {title}
