@@ -6,27 +6,28 @@ import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import { useEffect, useState, useCallback } from 'react';
-import Resizer from 'react-image-file-resizer';
+// import Resizer from 'react-image-file-resizer';
 
 const SpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
-  const [spotImg, setSpotImg] = useState('');
-  const resizeFile = (file: File) =>
-    new Promise((resolve) => {
-      Resizer.imageFileResizer(
-        file,
-        440,
-        600,
-        'WEBP',
-        100,
-        0,
-        (uri) => {
-          resolve(uri);
-        },
-        'base64',
-      );
-    });
+  // 이미지 최적화 부분 404에러로 임시 주석화
+  // const [spotImg, setSpotImg] = useState('');
+  // const resizeFile = (file: File) =>
+  //   new Promise((resolve) => {
+  //     Resizer.imageFileResizer(
+  //       file,
+  //       440,
+  //       600,
+  //       'WEBP',
+  //       100,
+  //       0,
+  //       (uri) => {
+  //         resolve(uri);
+  //       },
+  //       'base64',
+  //     );
+  //   });
 
   const spotRecommendationList = useCallback(async () => {
     const fbdata = await getDoc(doc(db, 'spot_recommendation', `${props.id}`));
@@ -35,60 +36,61 @@ const SpotDetail = (props: FetchedStayDataType) => {
     }
   }, []);
 
-  const resizeSpotImgFn = async (props: FetchedStayDataType) => {
-    const imgResponse = await fetch(`/api${props?.img.split('kr')[1]}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Request-Method': 'GET',
-        'Access-Control-Request-Headers': 'Content-Type',
-      },
-    });
-    const data = await imgResponse.blob();
-    const ext = imgResponse?.url.split('.').pop();
-    const filename = imgResponse?.url
-      .split('/')
-      .pop()
-      .split('.')[0];
-    const metadata = { type: `image/${ext}` };
-    const imgFile = new File([data], filename!, metadata);
-    const resizedImg = await resizeFile(imgFile);
-    setSpotImg(resizedImg as string);
-  };
+  // 이미지 최적화 부분 404에러로 임시 주석화
+  // const resizeSpotImgFn = async (props: FetchedStayDataType) => {
+  //   const imgResponse = await fetch(`/api${props?.img.split('kr')[1]}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Access-Control-Request-Method': 'GET',
+  //       'Access-Control-Request-Headers': 'Content-Type',
+  //     },
+  //   });
+  //   const data = await imgResponse.blob();
+  //   const ext = imgResponse?.url.split('.').pop();
+  //   const filename = imgResponse?.url
+  //     .split('/')
+  //     .pop()
+  //     .split('.')[0];
+  //   const metadata = { type: `image/${ext}` };
+  //   const imgFile = new File([data], filename!, metadata);
+  //   const resizedImg = await resizeFile(imgFile);
+  //   setSpotImg(resizedImg as string);
+  // };
 
   useEffect(() => {
     spotRecommendationList();
-    if (props) resizeSpotImgFn(props);
+    // if (props) resizeSpotImgFn(props);
+    // 이미지 최적화 부분 404에러로 임시 주석화
   }, []);
 
   return (
     <SpotEachItemWrapper onClick={() => navigate(`/spot/${props.id}`)}>
       <SpotImgWrapper>
         <source
-          srcSet={spotImg || props.img || noimg}
-          // srcSet={spotImg || noimg}
+          // srcSet={spotImg || props.img || noimg}
+          srcSet={props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={spotImg || props.img || noimg}
-          // srcSet={spotImg || noimg}
+          // srcSet={spotImg || props.img || noimg}
+          srcSet={props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={spotImg || props.img || noimg}
-          // srcSet={spotImg || noimg}
+          // srcSet={spotImg || props.img || noimg}
+          srcSet={props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <SpotEachItemImg
-          srcSet={spotImg || props.img || noimg}
-          // srcSet={spotImg || noimg}
+          src={props.img || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"

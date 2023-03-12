@@ -6,27 +6,29 @@ import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import { useEffect, useState, useCallback } from 'react';
-import Resizer from 'react-image-file-resizer';
+// 이미지 최적화 부분 404에러로 임시 주석화
+// import Resizer from 'react-image-file-resizer';
 
 const RestaurantDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
-  const [restaurantImg, setRestaurantImg] = useState('');
-  const resizeFile = (file: File) =>
-    new Promise((resolve) => {
-      Resizer.imageFileResizer(
-        file,
-        440,
-        600,
-        'WEBP',
-        100,
-        0,
-        (uri) => {
-          resolve(uri);
-        },
-        'base64',
-      );
-    });
+  // 이미지 최적화 부분 404에러로 임시 주석화
+  // const [restaurantImg, setRestaurantImg] = useState('');
+  // const resizeFile = (file: File) =>
+  //   new Promise((resolve) => {
+  //     Resizer.imageFileResizer(
+  //       file,
+  //       440,
+  //       600,
+  //       'WEBP',
+  //       100,
+  //       0,
+  //       (uri) => {
+  //         resolve(uri);
+  //       },
+  //       'base64',
+  //     );
+  //   });
 
   const restaurantRecommendationList = useCallback(async () => {
     const fbdata = await getDoc(doc(db, 'restaurant_recommendation', props.id));
@@ -35,31 +37,33 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
     }
   }, []);
 
-  const resizeRestaurantImgFn = async (props: FetchedStayDataType) => {
-    const imgResponse = await fetch(`/api${props?.img.split('kr')[1]}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Request-Method': 'GET',
-        'Access-Control-Request-Headers': 'Content-Type',
-      },
-    });
-    const data = await imgResponse.blob();
-    const ext = imgResponse?.url.split('.').pop();
-    const filename = imgResponse?.url
-      .split('/')
-      .pop()
-      .split('.')[0];
-    const metadata = { type: `image/${ext}` };
-    const imgFile = new File([data], filename!, metadata);
-    const resizedImg = await resizeFile(imgFile);
-    setRestaurantImg(resizedImg as string);
-  };
+  // 이미지 최적화 부분 404에러로 임시 주석화
+  // const resizeRestaurantImgFn = async (props: FetchedStayDataType) => {
+  //   const imgResponse = await fetch(`/api${props?.img.split('kr')[1]}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Access-Control-Request-Method': 'GET',
+  //       'Access-Control-Request-Headers': 'Content-Type',
+  //     },
+  //   });
+  //   const data = await imgResponse.blob();
+  //   const ext = imgResponse?.url.split('.').pop();
+  //   const filename = imgResponse?.url
+  //     .split('/')
+  //     .pop()
+  //     .split('.')[0];
+  //   const metadata = { type: `image/${ext}` };
+  //   const imgFile = new File([data], filename!, metadata);
+  //   const resizedImg = await resizeFile(imgFile);
+  //   setRestaurantImg(resizedImg as string);
+  // };
 
   useEffect(() => {
     restaurantRecommendationList();
-    if (props) resizeRestaurantImgFn(props);
+    // 이미지 최적화 부분 404에러로 임시 주석화
+    // if (props) resizeRestaurantImgFn(props);
   }, []);
 
   return (
@@ -68,25 +72,28 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
     >
       <RestaurantImgWrapper>
         <source
-          srcSet={restaurantImg || props.img || noimg}
+          // srcSet={restaurantImg || props.img || noimg}
+          srcSet={props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={restaurantImg || props.img || noimg}
+          // srcSet={restaurantImg || props.img || noimg}
+          srcSet={props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={restaurantImg || props.img || noimg}
+          // srcSet={restaurantImg || props.img || noimg}
+          srcSet={props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
         ></source>
         <RestaurantEachItemImg
-          src={restaurantImg || props.img || noimg}
+          src={props.img || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"
