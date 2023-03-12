@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import StayDetail from '../StayDetail';
+import PlaceDetail from '../PlaceDetail';
 import { FetchedStayDataType } from '../../types/apiDataTypes';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
@@ -75,7 +75,7 @@ const StaySelectionResult = () => {
                 <ResultWrapper>
                   {data?.items.item.map((e: FetchedStayDataType) => {
                     return (
-                      <StayDetail
+                      <PlaceDetail
                         key={e.contentid}
                         id={e.contentid}
                         img={e.firstimage || noimg}
@@ -85,7 +85,7 @@ const StaySelectionResult = () => {
                         {e.title.split(/[\\[\]\\(\\)]/)[0]
                           ? e.title.split(/[\\[\]\\(\\)]/)[0]
                           : e.title.split(/[\\[\]\\(\\)]/)[2]}
-                      </StayDetail>
+                      </PlaceDetail>
                     );
                   })}
                 </ResultWrapper>

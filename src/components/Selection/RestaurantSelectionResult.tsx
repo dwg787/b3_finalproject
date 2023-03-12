@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import RestaurantDetail from '../RestaurantDetail';
+import PlaceDetail from '../PlaceDetail';
 import { FetchedStayDataType } from '../../types/apiDataTypes';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
@@ -75,7 +75,7 @@ const RestaurantSelectionResult = () => {
                 <ResultWrapper>
                   {data?.items.item.map((e: FetchedStayDataType) => {
                     return (
-                      <RestaurantDetail
+                      <PlaceDetail
                         key={e.contentid}
                         id={e.contentid}
                         img={e.firstimage || noimg}
@@ -86,7 +86,7 @@ const RestaurantSelectionResult = () => {
                         {e.title.split(/[\\[\]\\(\\)]/)[0]
                           ? e.title.split(/[\\[\]\\(\\)]/)[0]
                           : e.title.split(/[\\[\]\\(\\)]/)[2]}
-                      </RestaurantDetail>
+                      </PlaceDetail>
                     );
                   })}
                 </ResultWrapper>

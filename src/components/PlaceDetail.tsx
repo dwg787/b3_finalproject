@@ -1,104 +1,63 @@
 import { FetchedStayDataType } from '../types/apiDataTypes';
 import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import { useEffect, useState, useCallback } from 'react';
-// 이미지 최적화 부분 404에러로 임시 주석화
 // import Resizer from 'react-image-file-resizer';
 
-const RestaurantDetail = (props: FetchedStayDataType) => {
+const PlaceDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const sort = location.search.split('=')[1];
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
-  // 이미지 최적화 부분 404에러로 임시 주석화
-  // const [restaurantImg, setRestaurantImg] = useState('');
-  // const resizeFile = (file: File) =>
-  //   new Promise((resolve) => {
-  //     Resizer.imageFileResizer(
-  //       file,
-  //       440,
-  //       600,
-  //       'WEBP',
-  //       100,
-  //       0,
-  //       (uri) => {
-  //         resolve(uri);
-  //       },
-  //       'base64',
-  //     );
-  //   });
 
-  const restaurantRecommendationList = useCallback(async () => {
-    const fbdata = await getDoc(doc(db, 'restaurant_recommendation', props.id));
+  const placeRecommendationList = useCallback(async () => {
+    const fbdata = await getDoc(
+      doc(db, `${sort}_recommendation`, `${props.id}`),
+    );
     if (fbdata) {
       setLikeData(fbdata.data());
     }
   }, []);
 
-  // 이미지 최적화 부분 404에러로 임시 주석화
-  // const resizeRestaurantImgFn = async (props: FetchedStayDataType) => {
-  //   const imgResponse = await fetch(`/api${props?.img.split('kr')[1]}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Access-Control-Allow-Origin': '*',
-  //       'Access-Control-Request-Method': 'GET',
-  //       'Access-Control-Request-Headers': 'Content-Type',
-  //     },
-  //   });
-  //   const data = await imgResponse.blob();
-  //   const ext = imgResponse?.url.split('.').pop();
-  //   const filename = imgResponse?.url
-  //     .split('/')
-  //     .pop()
-  //     .split('.')[0];
-  //   const metadata = { type: `image/${ext}` };
-  //   const imgFile = new File([data], filename!, metadata);
-  //   const resizedImg = await resizeFile(imgFile);
-  //   setRestaurantImg(resizedImg as string);
-  // };
-
   useEffect(() => {
-    restaurantRecommendationList();
-    // 이미지 최적화 부분 404에러로 임시 주석화
-    // if (props) resizeRestaurantImgFn(props);
+    placeRecommendationList();
   }, []);
 
   return (
-    <RestaurantEachItemWrapper
-      onClick={() => navigate(`/restaurant/${props.id}`)}
-    >
-      <RestaurantImgWrapper>
-        <source
-          // srcSet={restaurantImg || props.img || noimg}
-          srcSet={props.img || noimg}
+    <PlaceEachItemWrapper onClick={() => navigate(`/${sort}/${props.id}`)}>
+      <PlaceImgWrapper>
+        {/* <source
+          srcSet={placeImg || props.img || noimg}
+          // srcSet={props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          // srcSet={restaurantImg || props.img || noimg}
-          srcSet={props.img || noimg}
+          srcSet={placeImg || props.img || noimg}
+          // srcSet={props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          // srcSet={restaurantImg || props.img || noimg}
-          srcSet={props.img || noimg}
+          srcSet={placeImg || props.img || noimg}
+          // srcSet={props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
-        ></source>
-        <RestaurantEachItemImg
+        ></source> */}
+        <PlaceEachItemImg
           src={props.img || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"
         />
-      </RestaurantImgWrapper>
+      </PlaceImgWrapper>
       <MyCildTextBox>
         <MyChildTexth3>{props.children}</MyChildTexth3>
         <MyChildTextp>{props.address}</MyChildTextp>
@@ -107,13 +66,13 @@ const RestaurantDetail = (props: FetchedStayDataType) => {
           <LikeText>{likeData !== undefined ? likeData.likeCnt : 0}</LikeText>
         </LikeBox>
       </MyCildTextBox>
-    </RestaurantEachItemWrapper>
+    </PlaceEachItemWrapper>
   );
 };
 
-export default RestaurantDetail;
+export default PlaceDetail;
 
-const RestaurantEachItemWrapper = styled.div`
+const PlaceEachItemWrapper = styled.div`
   width: 216px;
   height: 234px;
   /* margin: 20px 20px 20px 20px; */
@@ -130,7 +89,7 @@ const RestaurantEachItemWrapper = styled.div`
   }
 `;
 
-const RestaurantImgWrapper = styled.picture`
+const PlaceImgWrapper = styled.picture`
   width: 100%;
   height: 138.94px;
   display: flex;
@@ -144,7 +103,7 @@ const RestaurantImgWrapper = styled.picture`
   }
 `;
 
-const RestaurantEachItemImg = styled.img`
+const PlaceEachItemImg = styled.img`
   width: 220px;
   height: 300px;
   /* aspect-ratio: 1.2; */
@@ -187,6 +146,9 @@ const MyChildTexth3 = styled.h3`
     font-size: 13px;
     padding-top: 13px;
     padding-left: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -209,7 +171,7 @@ const LikeBox = styled.div`
   display: flex;
   gap: 5px;
   margin-top: 10.83px;
-  margin-left: 142.95px;
+  margin-left: 152.95px;
   align-items: center;
   @media (max-width: 820px) {
     margin-top: 5px;

@@ -3,7 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fuse from 'fuse.js';
 import debounce from 'lodash/debounce';
-import SpotDetail from '../SpotDetail';
+import PlaceDetail from '../PlaceDetail';
+// import SpotDetail from '../SpotDetail';
 import noimg from '../../assets/noimg.avif';
 import Footer from '../Footer/Footer';
 import search from '../../assets/dotbogi.png';
@@ -85,13 +86,13 @@ export default function Search() {
               if (e.score < 0.34) {
                 // console.log(e);
                 return (
-                  <SpotDetail
+                  <PlaceDetail
                     key={e.item.contentid}
                     id={e.item.contentid}
                     img={e.item.firstimage || noimg}
                   >
                     {e.item.title}
-                  </SpotDetail>
+                  </PlaceDetail>
                 );
               }
             })}
