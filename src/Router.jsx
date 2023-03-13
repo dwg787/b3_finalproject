@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import ChatBotModal from './components/bot/ChatBotModal';
 import TopButton from './components/TopButton/TopButton';
 import SlotMachine from './components/Slot/SlotMechine';
-import LoadingPage from './pages/LoadingPage';
 // import MainPage from './pages/MainPage';
 import ListPage from './pages/ListPage';
 // import LoginPage from './pages/LoginPage';
@@ -31,7 +30,7 @@ const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 
 const Router = () => {
   return (
-    <Suspense fallback={<LoadingPage />}>
+    <Suspense fallback={<Loader />}>
       <BrowserRouter>
         <Navbar />
         <ChatBotModal />
