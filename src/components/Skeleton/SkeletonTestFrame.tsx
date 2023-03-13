@@ -71,6 +71,9 @@ const BtnWrapper = styled.div`
   justify-content: center;
   width: 10px;
   height: 30px;
+  @media (max-width: 420px) {
+    display: none;
+  }
 `;
 
 const TotalCountArea = styled.div`
@@ -79,8 +82,8 @@ const TotalCountArea = styled.div`
 `;
 
 const PaginationDotsWrapper = styled.div`
-  margin-top: 30px;
-  width: 500px;
+  margin-top: 20px;
+  width: 100%;
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -112,6 +115,7 @@ const SpotEachItemWrapper = styled.div`
   @media (max-width: 820px) {
     width: 164px;
     height: 177px;
+    border-radius: 6px;
     margin-bottom: 0px;
   }
 `;

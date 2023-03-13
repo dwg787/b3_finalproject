@@ -7,14 +7,7 @@ import TopButton from './components/TopButton/TopButton';
 import SlotMachine from './components/Slot/SlotMechine';
 // import MainPage from './pages/MainPage';
 import ListPage from './pages/ListPage';
-// import LoginPage from './pages/LoginPage';
-// import DetailPage from './pages/DetailPage/DetailPage';
-// import MyPage from './pages/MyPage/MyPage';
-// import SearchPage from './pages/SearchPage';
-// import SignUpPage from './pages/SignUpPage';
-// import StayDetailPage from './pages/DetailPage/StayDetailPage';
-// import RestaurantDetailPage from './pages/DetailPage/RestaurantDetailPage';
-// import ErrorPage from './pages/ErrorPage';
+
 const MainPage = lazy(() => import('./pages/MainPage'));
 // const ListPage = lazy(() => import('./pages/ListPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));

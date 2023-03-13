@@ -153,7 +153,6 @@ const SearchOverallResultContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid #6478ff; */
   background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
   border-radius: 11px;
   box-shadow: 2.16px 2.16px 5.4px rgba(0, 0, 0, 0.18);
@@ -186,7 +185,6 @@ const SearchListWrapper = styled.div`
 const ResultWrapper = styled.div`
   position: relative;
   width: 94%;
-  /* height: 500px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,7 +213,6 @@ const MoveBtnStyle = styled.img`
 
 const PaginationDotsWrapper = styled.div`
   margin-top: 20px;
-  /* width: 500px; */
   width: 100%;
   height: 50px;
   display: flex;
@@ -231,7 +228,6 @@ const PaginationDot = styled.div<{ isSelectedPage: boolean }>`
   height: 10px;
   border-radius: 50%;
   color: ${(props) => (props.isSelectedPage ? '#000000' : '#ffffff')};
-  /* color: #878787; */
   font-weight: 800;
   cursor: pointer;
   font-size: 14.32px;

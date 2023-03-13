@@ -71,7 +71,6 @@ export default PlaceDetail;
 const PlaceEachItemWrapper = styled.div`
   width: 216px;
   height: 234px;
-  /* margin: 20px 20px 20px 20px; */
   margin-bottom: 35.66px;
   border-radius: 7px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
@@ -102,7 +101,6 @@ const PlaceImgWrapper = styled.picture`
 const PlaceEachItemImg = styled.img`
   width: 220px;
   height: 300px;
-  /* aspect-ratio: 1.2; */
   background-color: white;
   border-top-left-radius: 13px;
   border-top-right-radius: 13px;

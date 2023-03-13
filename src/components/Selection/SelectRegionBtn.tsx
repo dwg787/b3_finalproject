@@ -4,8 +4,6 @@ import { AREA_CODE } from '../../apis/apiCodes';
 import { regionSelectionState } from '../../recoil/apiDataAtoms';
 import styled from 'styled-components';
 
-// import noimg from '../../assets/'
-
 const SelectRegionBtn = ({ children }: { children: string }) => {
   const [region, setRegion] = useRecoilState(regionSelectionState);
 

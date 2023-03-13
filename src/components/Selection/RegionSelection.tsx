@@ -6,7 +6,6 @@ import { AREA_CODE } from '../../apis/apiCodes';
 const RegionSelection = () => {
   return (
     <SelectRegionBtnWrapper>
-      {/* <MainImg src={mainImg} alt='이미지' /> */}
       {AREA_CODE.map((e) => {
         return <SelectRegionBtn key={e.id}>{e.area}</SelectRegionBtn>;
       })}
