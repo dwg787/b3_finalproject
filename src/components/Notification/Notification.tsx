@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import useNotification from '../../hooks/useNotification';
 
 const Notification = () => {
-  // const [alarmMsg, setAlarmMsg] = useState();
   const { noti } = useNotification('');
 
   return (
