@@ -2,34 +2,80 @@ import { FetchedStayDataType } from '../../types/apiDataTypes';
 import styled from 'styled-components';
 import noimg from '../../assets/noimg.avif';
 import { useNavigate } from 'react-router-dom';
+import Resizer from 'react-image-file-resizer';
+import { useState, useEffect } from 'react';
 
 const MySpotDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
+  const [mySpotImg, setMySpotImg] = useState('');
+  const resizeFile = (file: File) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        600,
+        700,
+        'WEBP',
+        100,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        'base64',
+      );
+    });
+
+  const resizingImgFn = async (props: FetchedStayDataType) => {
+    // console.log('프롭스 경로', props.img);
+    const imgResponse = await fetch(`/api/${props.img.split('kr')[1]}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'Content-Type',
+      },
+    });
+    // console.log('imgRes', imgResponse);
+    const imgdata = await imgResponse.blob();
+    const ext = imgResponse?.url?.split('.').pop();
+    const filename = imgResponse?.url
+      .split('/')
+      .pop()
+      .split('.')[0];
+    const metadata = { type: `image/${ext}` };
+    const imgFile = new File([imgdata], filename, metadata);
+    const resizedImg = await resizeFile(imgFile);
+    setMySpotImg(resizedImg as string);
+  };
+
+  useEffect(() => {
+    if (props) resizingImgFn(props);
+  }, []);
 
   return (
     <SpotEachItemWrapper>
       <SpotImgWrapper>
         <picture>
           <source
-            srcSet={props.img || noimg}
+            srcSet={mySpotImg || props.img || noimg}
             type="image/avif"
             width="300px"
             height="350px"
           ></source>
           <source
-            srcSet={props.img || noimg}
+            srcSet={mySpotImg || props.img || noimg}
             type="image/webp"
             width="300px"
             height="350px"
           ></source>
           <source
-            srcSet={props.img || noimg}
+            srcSet={mySpotImg || props.img || noimg}
             type="image/jpg"
             width="300px"
             height="350px"
           ></source>
           <SpotEachItemImg
-            src={props.img || noimg}
+            src={mySpotImg || props.img || noimg}
             alt="사진"
             decoding="async"
             loading="lazy"

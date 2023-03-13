@@ -1,6 +1,6 @@
 import React from 'react';
 import { collection, doc, deleteDoc, updateDoc } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { db, auth } from '../../apis/firebase';
 import styled from 'styled-components';
 import { getDate } from '../../common/utils';

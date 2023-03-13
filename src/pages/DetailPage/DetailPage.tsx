@@ -16,21 +16,13 @@ import {
   TabHr,
   DetailInfo2,
 } from './styles';
-
-import {
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-  increment,
-  DocumentData,
-} from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { useQuery } from 'react-query';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchSpotDetailData } from '../../apis/publicAPI';
 import { FetchedStayDataType } from '../../types/apiDataTypes';
 import Loader from '../../components/Loader/Loader';
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { db } from '../../apis/firebase';
 import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
 import StayInfo from '../../components/Recommendation/Info/StayInfo';
@@ -38,17 +30,17 @@ import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import noimg from '../../assets/noimg.avif';
-
 import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
-
-import SpotLiked from '../../components/Liked/SpotLiked';
+import PlaceLiked from '../../components/Liked/PlaceLiked';
 import SideInfoMap from '../../components/Map/SideInfoMap';
 import DetailFooter from '../../components/Footer/DetailFooter';
 import { useMediaQuery } from 'react-responsive';
+
 const DetailPage = () => {
   const param = useParams();
-  const navigate = useNavigate();
-  // const [likeData, setLikeData] = useState<DocumentData | undefined>();
+  // const location = useLocation();
+  // const sort = location.pathname.split('/')[1];
+  // console.log('솔트', sort);
 
   const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
@@ -121,7 +113,11 @@ const DetailPage = () => {
                     {spotDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DetailImojiBox>
-                    <SpotLiked spotDetailData={spotDetailData} />
+                    <PlaceLiked
+                      spotDetailData={spotDetailData}
+                      stayDetailData={undefined}
+                      restaurantDetailData={undefined}
+                    />
                     {/* <p>{likeData !== undefined ? likeData.likeCnt : 0}</p> */}
                   </DetailImojiBox>
                 </DetailTextBox>

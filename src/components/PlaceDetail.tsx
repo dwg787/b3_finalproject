@@ -1,56 +1,64 @@
 import { FetchedStayDataType } from '../types/apiDataTypes';
 import styled from 'styled-components';
 import noimg from '../assets/noimg.avif';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import { useEffect, useState, useCallback } from 'react';
+// import Resizer from 'react-image-file-resizer';
 
-const StayDetail = (props: FetchedStayDataType) => {
+const PlaceDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const sort = location.search.split('=')[1] || 'spot';
+  // console.log('솔트', sort);
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
-  const stayRecommendationList = useCallback(async () => {
-    const fbdata = await getDoc(doc(db, 'stay_recommendation', `${props.id}`));
+
+  const placeRecommendationList = useCallback(async () => {
+    const fbdata = await getDoc(
+      doc(db, `${sort}_recommendation`, `${props.id}`),
+    );
     if (fbdata) {
       setLikeData(fbdata.data());
     }
   }, []);
 
   useEffect(() => {
-    stayRecommendationList();
+    placeRecommendationList();
   }, []);
 
   return (
-    <StayEachItemWrapper onClick={() => navigate(`/stay/${props.id}`)}>
-      <StayImgWrapper>
-        <source
-          srcSet={props.img || noimg}
+    <PlaceEachItemWrapper onClick={() => navigate(`/${sort}/${props.id}`)}>
+      <PlaceImgWrapper>
+        {/* <source
+          srcSet={placeImg || props.img || noimg}
+          // srcSet={props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={props.img || noimg}
+          srcSet={placeImg || props.img || noimg}
+          // srcSet={props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={props.img || noimg}
+          srcSet={placeImg || props.img || noimg}
+          // srcSet={props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
-        ></source>
-        <StayEachItemImg
+        ></source> */}
+        <PlaceEachItemImg
           src={props.img || noimg}
           alt="사진"
           decoding="async"
           loading="lazy"
-          onClick={() => navigate(`/stay/${props.id}`)}
         />
-      </StayImgWrapper>
+      </PlaceImgWrapper>
       <MyCildTextBox>
         <MyChildTexth3>{props.children}</MyChildTexth3>
         <MyChildTextp>{props.address}</MyChildTextp>
@@ -59,13 +67,13 @@ const StayDetail = (props: FetchedStayDataType) => {
           <LikeText>{likeData !== undefined ? likeData.likeCnt : 0}</LikeText>
         </LikeBox>
       </MyCildTextBox>
-    </StayEachItemWrapper>
+    </PlaceEachItemWrapper>
   );
 };
 
-export default StayDetail;
+export default PlaceDetail;
 
-const StayEachItemWrapper = styled.div`
+const PlaceEachItemWrapper = styled.div`
   width: 216px;
   height: 234px;
   /* margin: 20px 20px 20px 20px; */
@@ -82,7 +90,7 @@ const StayEachItemWrapper = styled.div`
   }
 `;
 
-const StayImgWrapper = styled.picture`
+const PlaceImgWrapper = styled.picture`
   width: 100%;
   height: 138.94px;
   display: flex;
@@ -96,7 +104,7 @@ const StayImgWrapper = styled.picture`
   }
 `;
 
-const StayEachItemImg = styled.img`
+const PlaceEachItemImg = styled.img`
   width: 220px;
   height: 300px;
   /* aspect-ratio: 1.2; */
@@ -139,6 +147,9 @@ const MyChildTexth3 = styled.h3`
     font-size: 13px;
     padding-top: 13px;
     padding-left: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -161,7 +172,7 @@ const LikeBox = styled.div`
   display: flex;
   gap: 5px;
   margin-top: 10.83px;
-  margin-left: 142.95px;
+  margin-left: 152.95px;
   align-items: center;
   @media (max-width: 820px) {
     margin-top: 5px;

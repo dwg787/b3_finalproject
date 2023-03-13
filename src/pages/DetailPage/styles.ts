@@ -71,7 +71,7 @@ const DetailTextBox = styled.div`
 const TabHr = styled.hr`
   border: solid #6478ff 1.13px;
   /* width: 933.21px; */
-  width:90%
+  width: 90%;
   margin: 0;
   @media screen and (max-width: 820px) {
     border: solid #6478ff 1px;

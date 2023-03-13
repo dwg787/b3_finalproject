@@ -1,6 +1,6 @@
 import React from 'react';
 import { collection, doc, deleteDoc, updateDoc } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { db, auth } from '../../../apis/firebase';
 import styled from 'styled-components';
 import { getDate } from '../../../common/utils';
@@ -30,7 +30,7 @@ export default function ReviewList({
   reviews,
   key,
 }: ReviewListProps) {
-  const [newReview, setNewReview] = useState<string>('');
+  // const [newReview, setNewReview] = useState<string>('');
   const [editBox, setEditBox] = useState<boolean>(false);
   const [editValue, setEditValue] = useState<string>(reviews[i].review);
   const loginUser = auth.currentUser;
@@ -41,7 +41,7 @@ export default function ReviewList({
   const { addNoti } = useNotification(alarmMsg); // 알람관련코드3 - 찜하기 버튼 클릭할 때 알람메시지 커스텀 훅 내에 addNoti 실행
 
   const KakaoAndNaverLoginid = localStorage.getItem('uid');
-  const Naverloginid = localStorage.getItem('uid');
+  // const Naverloginid = localStorage.getItem('uid');
 
   //삭제
   const handleDelete = async (id: string, i: number) => {

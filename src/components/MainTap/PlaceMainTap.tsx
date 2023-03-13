@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getDocs, query, collection, orderBy, limit } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { db } from '../../apis/firebase';
 import styled from 'styled-components';
 import one from '../../assets/one.avif';
@@ -10,14 +10,17 @@ import noimg from '../../assets/noimg.avif';
 import redheart from '../../assets/redheart.avif';
 import { RankTypeList } from '../../types/apiDataTypes';
 
-const StayMainTap = () => {
+const PlaceMainTap = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const sort = location.search.split('=')[1];
   const [rankList, setRankList] = useState<RankTypeList>([]);
   const medalImg = [one, two, three];
-  const stayRankList = async () => {
+
+  const placeRankList = async () => {
     const data = await getDocs(
       query(
-        collection(db, 'stay_recommendation'),
+        collection(db, `${sort}_recommendation`),
         orderBy('likeCnt', 'desc'),
         limit(7),
       ),
@@ -27,21 +30,17 @@ const StayMainTap = () => {
         ...doc.data(),
       };
     });
-    return res;
+    setRankList(res);
   };
 
   useEffect(() => {
-    const fetchStayRankList = async () => {
-      const res = await stayRankList();
-      setRankList(res);
-    };
-    fetchStayRankList();
-  }, []);
+    placeRankList();
+  }, [sort]);
 
   return (
     <WrapDiv>
       <ListTitleWrapper>
-        <ListItemTitle>추천! 인기 숙소</ListItemTitle>
+        <ListItemTitle>추천! 인기 관광지</ListItemTitle>
       </ListTitleWrapper>
       <>
         {rankList ? (
@@ -51,14 +50,14 @@ const StayMainTap = () => {
                 return (
                   <InnerList
                     key={e?.contentid}
-                    onClick={() => navigate(`/stay/${e?.contentid}`)}
+                    onClick={() => navigate(`/${sort}/${e?.contentid}`)}
                   >
-                    <InnerImg src={e?.firstimage || noimg} />
+                    <InnerImg src={e?.firstimage || noimg} alt="1~3위 장소" />
                     <MedalHeartBox>
-                      <HeartImg src={redheart} />
+                      <HeartImg src={redheart} alt="좋아요" />
                       <HeartText>{e?.likeCnt}</HeartText>
                     </MedalHeartBox>
-                    <InnerMedals src={medalImg[idx]} alt="" />
+                    <InnerMedals src={medalImg[idx]} alt="순위" />
                     <InnerTextBox>
                       <MedalText>
                         {e?.title.split(/[\\[\]\\(\\)]/)[0]
@@ -72,7 +71,7 @@ const StayMainTap = () => {
               } else {
                 return (
                   <InnerList>
-                    <InnerMedals src={medalImg[idx]} alt="" />
+                    <InnerMedals src={medalImg[idx]} alt="순위" />
                     <InnerTextBox></InnerTextBox>
                   </InnerList>
                 );
@@ -88,12 +87,12 @@ const StayMainTap = () => {
               return (
                 <OuterList
                   key={e?.contentid}
-                  onClick={() => navigate(`/stay/${e.contentid}`)}
+                  onClick={() => navigate(`/${sort}/${e.contentid}`)}
                 >
                   <InnerNmb>{i + 4}</InnerNmb>
-                  <OuterImg src={e.firstimage || noimg} alt="" />
+                  <OuterImg src={e.firstimage || noimg} alt="4~7위 장소" />
                   <OuterMedalHeartBox>
-                    <OuterHeartImg src={redheart} />
+                    <OuterHeartImg src={redheart} alt="좋아요" />
                     <OuterHeartText>{e.likeCnt}</OuterHeartText>
                   </OuterMedalHeartBox>
                   <OuterTextBox>
@@ -123,7 +122,7 @@ const StayMainTap = () => {
   );
 };
 
-export default StayMainTap;
+export default PlaceMainTap;
 
 const WrapDiv = styled.div`
   max-width: 1036px;
