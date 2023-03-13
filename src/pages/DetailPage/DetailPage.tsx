@@ -38,10 +38,6 @@ import { useMediaQuery } from 'react-responsive';
 
 const DetailPage = () => {
   const param = useParams();
-  // const location = useLocation();
-  // const sort = location.pathname.split('/')[1];
-  // console.log('솔트', sort);
-
   const { data: spotDetailData, isLoading: isLoadingSpot } = useQuery(
     ['spot_detail', param],
     () => fetchSpotDetailData({ param }),

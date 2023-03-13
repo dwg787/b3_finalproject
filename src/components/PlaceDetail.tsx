@@ -6,13 +6,11 @@ import TapHeart from '../assets/TapHeart.avif';
 import { doc, getDoc, DocumentData } from 'firebase/firestore';
 import { db } from '../apis/firebase';
 import { useEffect, useState, useCallback } from 'react';
-// import Resizer from 'react-image-file-resizer';
 
 const PlaceDetail = (props: FetchedStayDataType) => {
   const navigate = useNavigate();
   const location = useLocation();
   const sort = location.search.split('=')[1] || 'spot';
-  // console.log('솔트', sort);
   const [likeData, setLikeData] = useState<DocumentData | undefined>();
 
   const placeRecommendationList = useCallback(async () => {
@@ -31,27 +29,24 @@ const PlaceDetail = (props: FetchedStayDataType) => {
   return (
     <PlaceEachItemWrapper onClick={() => navigate(`/${sort}/${props.id}`)}>
       <PlaceImgWrapper>
-        {/* <source
-          srcSet={placeImg || props.img || noimg}
-          // srcSet={props.img || noimg}
+        <source
+          srcSet={props.img || noimg}
           type="image/avif"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={placeImg || props.img || noimg}
-          // srcSet={props.img || noimg}
+          srcSet={props.img || noimg}
           type="image/webp"
           width="220px"
           height="300px"
         ></source>
         <source
-          srcSet={placeImg || props.img || noimg}
-          // srcSet={props.img || noimg}
+          srcSet={props.img || noimg}
           type="image/jpg"
           width="220px"
           height="300px"
-        ></source> */}
+        ></source>
         <PlaceEachItemImg
           src={props.img || noimg}
           alt="사진"
