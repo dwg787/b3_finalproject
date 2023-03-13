@@ -3,7 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fuse from 'fuse.js';
 import debounce from 'lodash/debounce';
-import SpotDetail from '../SpotDetail';
+import PlaceDetail from '../PlaceDetail';
+// import SpotDetail from '../SpotDetail';
 import noimg from '../../assets/noimg.avif';
 import Footer from '../Footer/Footer';
 import search from '../../assets/dotbogi.png';
@@ -85,13 +86,13 @@ export default function Search() {
               if (e.score < 0.34) {
                 // console.log(e);
                 return (
-                  <SpotDetail
+                  <PlaceDetail
                     key={e.item.contentid}
                     id={e.item.contentid}
                     img={e.item.firstimage || noimg}
                   >
                     {e.item.title}
-                  </SpotDetail>
+                  </PlaceDetail>
                 );
               }
             })}
@@ -180,7 +181,6 @@ const SearchInput = styled.input`
   margin-top: 50px;
   border: 1px solid #d9d9d9;
   box-shadow: 1.62121px 1.62121px 1.62121px rgba(0, 0, 0, 0.15);
-  transition: all ease-in-out 0.15s;
   &:focus {
     outline: 1px solid #6478ff;
 
@@ -195,7 +195,7 @@ const SearchInput = styled.input`
 `;
 
 const RecommendH4 = styled.h4`
-  margin-top: 10px;
+  margin-top: 17px;
   color: #818181;
   font-size: 12px;
 `;

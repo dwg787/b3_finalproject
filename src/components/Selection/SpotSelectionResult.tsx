@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import SpotDetail from '../SpotDetail';
+import PlaceDetail from '../PlaceDetail';
 import { FetchedStayDataType } from '../../types/apiDataTypes';
 import noimg from '../../assets/noimg.avif';
 import { useQuery } from 'react-query';
@@ -20,7 +20,6 @@ const SpotSelectionResult = () => {
   const [spotCurPage, setSpotCurPage] = useState(1);
   const maxPageNo = useRef(1);
   const firstNum = useRef(1);
-
   //페이지네이션
   if (spotCurPage % 5 === 1) {
     firstNum.current = 5 * Math.floor(spotCurPage / 5) + 1;
@@ -29,7 +28,7 @@ const SpotSelectionResult = () => {
     firstNum.current = 5 * (Math.floor(spotCurPage / 5) - 1) + 1;
   }
 
-  const { data, isFetching, isLoading, isPreviousData } = useQuery(
+  const { data, isFetching, isLoading } = useQuery(
     ['spot_data', region, spotCurPage],
     () => fetchSpotData({ region, spotCurPage }),
     {
@@ -76,7 +75,7 @@ const SpotSelectionResult = () => {
                 <ResultWrapper>
                   {data?.items.item.map((e: FetchedStayDataType) => {
                     return (
-                      <SpotDetail
+                      <PlaceDetail
                         key={e.contentid}
                         id={e.contentid}
                         img={e.firstimage || noimg}
@@ -85,7 +84,7 @@ const SpotSelectionResult = () => {
                         {e.title.split(/[\\[\]\\(\\)]/)[0]
                           ? e.title.split(/[\\[\]\\(\\)]/)[0]
                           : e.title.split(/[\\[\]\\(\\)]/)[2]}
-                      </SpotDetail>
+                      </PlaceDetail>
                     );
                   })}
                 </ResultWrapper>

@@ -16,29 +16,34 @@ import { db } from '../../apis/firebase';
 import useNotification from '../../hooks/useNotification';
 import heart from '../../assets/heart.avif';
 import redheart from '../../assets/redheart.avif';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { DetailDataTypes } from '../../types/apiDataTypes';
-// import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-// import { useRecoilValue } from 'recoil';
-// import { paramTransfer } from '../../recoil/apiDataAtoms';
 
-const RestaurantLiked = ({
+const PlaceLiked = ({
+  spotDetailData,
+  stayDetailData,
   restaurantDetailData,
 }: {
+  spotDetailData: DetailDataTypes;
+  stayDetailData: DetailDataTypes;
   restaurantDetailData: DetailDataTypes;
 }): React.ReactElement => {
   const param = useParams();
+  const location = useLocation();
+  const sort = location.pathname.split('/')[1];
   //좋아요 클릭시 하트 색상 변화
   const [isLiked, setIsLiked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   //좋아요 클릭시 카운트 변화
   const [likeCnt, setLikeCnt] = useState(0);
-  //좋아요 클릭시 팝업창으로 알람뜨게해줌
+  //좋아요 클릭시 팝업창으로 알람뜨게해줌 // 첫 렌더링 시 반영
   const [alarmMsg, setAlarmMsg] = useState('');
   const { addNoti } = useNotification(alarmMsg); //토스트 메시지 띄우는 커스텀훅
   const uid = sessionStorage.getItem('uid');
 
   const combinedData = {
+    ...spotDetailData,
+    ...stayDetailData,
     ...restaurantDetailData,
   };
 
@@ -50,8 +55,8 @@ const RestaurantLiked = ({
     }
   };
 
-  const getLikeCnt = async () => {
-    await onSnapshot(doc(db, 'restaurant_recommendation', param.id), (doc) => {
+  const getLikeCnt = () => {
+    onSnapshot(doc(db, `${sort}_recommendation`, param.id), (doc) => {
       setLikeCnt(doc.data().likeCnt);
     });
   };
@@ -75,10 +80,9 @@ const RestaurantLiked = ({
   }, []);
 
   const handleLiked = async () => {
-    // const uid = auth.currentUser.uid;
     if (uid && param.id) {
-      const restaurantDocRef = doc(db, 'restaurant_recommendation', param.id);
       const docRef = doc(collection(db, 'bookmarks'), uid);
+      const placeDocRef = doc(db, `${sort}_recommendation`, param.id);
       if (isLiked) {
         setAlarmMsg('찜하기 목록에 추가되었습니다.');
         setIsLiked(false);
@@ -97,7 +101,7 @@ const RestaurantLiked = ({
               bookmarks: arrayRemove(TargetBookmark),
               contentid: arrayRemove(combinedData.contentid),
             });
-            updateDoc(restaurantDocRef, {
+            updateDoc(placeDocRef, {
               // likeCnt: arrayRemove(`${uid}`), //좋아요 한 사람 배열에서 제거
               likeCnt: increment(-1),
             });
@@ -124,7 +128,7 @@ const RestaurantLiked = ({
                 }),
                 contentid: arrayUnion(combinedData.contentid),
               });
-              updateDoc(restaurantDocRef, {
+              updateDoc(placeDocRef, {
                 // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
                 likeCnt: increment(1),
               });
@@ -141,7 +145,7 @@ const RestaurantLiked = ({
                 }),
                 contentid: arrayUnion(combinedData.contentid),
               });
-              updateDoc(restaurantDocRef, {
+              updateDoc(placeDocRef, {
                 // likeCnt: arrayUnion(`${uid}`), //좋아요 한 사람이 누군지 알 수 있도록 배열
                 likeCnt: increment(1),
               });
@@ -162,11 +166,6 @@ const RestaurantLiked = ({
           ) : (
             <HeartBtn onClick={handleLiked}>
               {isLiked ? <Heart src={redheart} /> : <Heart src={heart} />}
-              {/* {isLiked ? (
-                <AiFillHeart fontSize="27.09px" />
-              ) : (
-                <AiOutlineHeart fontSize="27.09px" />
-              )} */}
             </HeartBtn>
           )}
         </>
@@ -184,7 +183,7 @@ const RestaurantLiked = ({
   );
 };
 
-export default React.memo(RestaurantLiked);
+export default React.memo(PlaceLiked);
 
 const HeartBtn = styled.button`
   border: none;

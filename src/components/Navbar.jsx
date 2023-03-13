@@ -163,8 +163,8 @@ const Navbar = () => {
   return (
     <Nav>
       <div>
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          <Mainlogo src={mainlogo} alt="" />
+        <Link to="/" aria-label="Tripick" style={{ textDecoration: 'none' }}>
+          <Mainlogo src={mainlogo} alt="트리픽" />
         </Link>
       </div>
       <div>

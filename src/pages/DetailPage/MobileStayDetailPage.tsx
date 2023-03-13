@@ -18,9 +18,8 @@ import {
 import { FetchedStayDataType } from '../../types/apiDataTypes';
 import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
-import Communication from '../../components/Review/Communication';
+// import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
-import StayLiked from '../../components/Liked/StayLiked';
 import noimg from '../../assets/noimg.avif';
 import useNotification from '../../hooks/useNotification';
 import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
@@ -50,6 +49,7 @@ import {
 import DetailFooter from '../../components/Footer/DetailFooter';
 import MobileCommunication from '../../components/Selection/mobile/MobileCommunication';
 import { useMediaQuery } from 'react-responsive';
+import PlaceLiked from '../../components/Liked/PlaceLiked';
 
 const MobileStayDetailPage = () => {
   const param = useParams();
@@ -150,7 +150,11 @@ const MobileStayDetailPage = () => {
                     {stayDetailData.addr1.split(' ', 2)}
                   </DetailTextArr>
                   <DetailImojiBox>
-                    <StayLiked stayDetailData={stayDetailData} />
+                    <PlaceLiked
+                      stayDetailData={stayDetailData}
+                      spotDetailData={undefined}
+                      restaurantDetailData={undefined}
+                    />
                     <p>{likeData !== undefined ? likeData.likeCnt : 0}</p>
                   </DetailImojiBox>
                 </DetailTextBox>

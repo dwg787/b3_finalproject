@@ -20,7 +20,7 @@ import { db } from '../../apis/firebase';
 import DetailScroll from '../../components/Scroll/DetailScroll';
 import Communication from '../../components/Review/Communication';
 import Notification from '../../components/Notification/Notification';
-import StayLiked from '../../components/Liked/StayLiked';
+import PlaceLiked from '../../components/Liked/PlaceLiked';
 import noimg from '../../assets/noimg.avif';
 import useNotification from '../../hooks/useNotification';
 import RestaurantInfo from '../../components/Recommendation/Info/RestaurantInfo';
@@ -157,7 +157,11 @@ const StayDetailPage = () => {
                         {stayDetailData.addr1.split(' ', 2)}
                       </DetailTextArr>
                       <DetailImojiBox>
-                        <StayLiked stayDetailData={stayDetailData} />
+                        <PlaceLiked
+                          stayDetailData={stayDetailData}
+                          spotDetailData={undefined}
+                          restaurantDetailData={undefined}
+                        />
                         {/* <p>{likeData !== undefined ? likeData.likeCnt : 0}</p> */}
                       </DetailImojiBox>
                     </DetailTextBox>

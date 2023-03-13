@@ -5,8 +5,17 @@ import Navbar from './components/Navbar';
 import ChatBotModal from './components/bot/ChatBotModal';
 import TopButton from './components/TopButton/TopButton';
 import SlotMachine from './components/Slot/SlotMechine';
+import LoadingPage from './pages/LoadingPage';
+// import MainPage from './pages/MainPage';
 import ListPage from './pages/ListPage';
-
+// import LoginPage from './pages/LoginPage';
+// import DetailPage from './pages/DetailPage/DetailPage';
+// import MyPage from './pages/MyPage/MyPage';
+// import SearchPage from './pages/SearchPage';
+// import SignUpPage from './pages/SignUpPage';
+// import StayDetailPage from './pages/DetailPage/StayDetailPage';
+// import RestaurantDetailPage from './pages/DetailPage/RestaurantDetailPage';
+// import ErrorPage from './pages/ErrorPage';
 const MainPage = lazy(() => import('./pages/MainPage'));
 // const ListPage = lazy(() => import('./pages/ListPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -22,7 +31,7 @@ const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 
 const Router = () => {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<LoadingPage />}>
       <BrowserRouter>
         <Navbar />
         <ChatBotModal />
@@ -30,7 +39,7 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/list" element={<ListPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          {/* <Route path="/login" element={<LoginPage />} /> */}
           <Route path="/my" element={<MyPage />} />
           <Route path="/spot/:id" element={<DetailPage />} />
           <Route path="/stay/:id" element={<StayDetailPage />} />
