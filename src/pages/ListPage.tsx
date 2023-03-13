@@ -55,7 +55,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* padding-bottom: 500px; */
   background: linear-gradient(white 5%, #8a98f6);
   position: relative;
   padding-bottom: 150px;

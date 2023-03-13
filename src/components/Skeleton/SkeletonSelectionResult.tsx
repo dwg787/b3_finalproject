@@ -55,6 +55,7 @@ const SpotEachItemWrapper = styled.div`
   @media (max-width: 820px) {
     width: 164px;
     height: 177px;
+    border-radius: 6px;
     margin-bottom: 0px;
   }
 `;
