@@ -8,12 +8,8 @@ import SliderBanner from '../components/SliderBanner';
 import SlotBanner from '../components/Slot/SlotBanner';
 import EventBenner from '../components/Slot/EventBenner';
 import Footer from '../components/Footer/Footer';
-// import { useMediaQuery } from 'react-responsive';
 
 const MainPage = () => {
-  // const isMobile: boolean = useMediaQuery({
-  //   query: '(max-width:820px)',
-  // });
   return (
     <Container>
       <Menu />
