@@ -20,11 +20,11 @@
 
 ### Client  
 
-React, Recoil, React-router-dom, React-query, Styled-components
+- React, Recoil, React-router-dom, React-query, Styled-components
 
 ### Server, DB
 
-Firebase Firestore
+- Firebase Firestore
 
 ### API
 
