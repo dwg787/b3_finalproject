@@ -31,11 +31,11 @@
 - Kakao Map API
 - 한국관광공사 Tour API
 
-### Depoloy
+### Deploy
 
-Vercel
+- Vercel
 
-### 🌱주요 기능
+## 🌱주요 기능
 
 <table>
  <tr>
@@ -178,6 +178,42 @@ Vercel
 8.챗봇
 
 - 유저 문의사항을 firebase로 수집
+
+---
+## 기술적 챌린지
+
+### 메뉴탭 카테고라이징
+기존에 새로고침 시 메뉴 상태 유지를 위해 sessionStorage에서 관리했었음. 
+유저 피드백에 따라 기존 방식을 useLocation 훅을 활용하여 url query로 유지하는 방식으로 리팩토링
+
+### 메인페이지 페이지네이션 
+페이지네이션 기능을 위해 초기 react-slick 라이브러리를 도입하여 간편하게 구현하고자 했으나 적용 시점이 늦어 CSS가 깨지는 문제가 있었음. 그래서 라이브러리를 사용하지 않고 직접 로직 구현. 부수적인 효과로 미미하지만 라이브러리 사용으로 인한 번들 크기를 줄일 수 있었음.
+또한 초기에 useInfinitequery를 이용하여 구현하였으나 페이지 건너뛰기 fetching 구현에 한계가 있어 useQuery로 리팩토링 
+API DATA 가 자주 변경되는 데이터는 아니라서 이미 fetch하여 캐싱된 데이터의 빠른 로딩을 위해 query key의 staletime을 1시간으로 적용하였음
+
+### 스켈레톤 UI
+fetching, Loading 상태를 근본적으로 줄이는 방향이 바람직하겠지만 공공 API 서버 상황에 따라 fetching에 시간이 좀 걸리는 경우가 있어 스켈레톤 UI 적용을 고려 및 적용
+스켈레톤 UI 또한 별도의 라이브러리를 사용하지 않고 직접 UI 치수에 따라 커스터마이징 구현.
+스켈레톤 UI 적용 후 lighthouse에서 5점 정도의 Performance 점수 증가. 성능 향상보다는 UX적 입장에서 사용감이 좋았다는 유저 피드백이 있었음. 로딩 시 레이아웃 시프트를 방지하는 이점
+
+### 좋아요 카운트 표시 및 마이페이지 찜하기 추가/제거
+우리 프로젝트에서 좋아요는 곧 유저 개개인이 찜한 내용이므로 bookmarks라는 한 collection에 유저 개개개인의 doc이 있고(doc 이름은 유저 개개인 고유의 uid) doc 안에 한 유저의 찜목록들이 배열 리스트 형태로 저장되도록 설계 및 구현.
+또 하나는 숙소 추천 리스트 수집을 위한 stay_recommendation라는 이름의 collection을 두어 유저가 한 숙소 카드를 클릭하거나 클릭 이후 넘어가는 상세페이지에서 찜하기를 클릭하면 stay_recommendation의 해당 숙소 contentid doc 안에 내가 추가해둔 속성인 viewCnt(조회수 카운트), likeCnt(숙소 총 찜하기(=좋아요) 개수 카운트)가 증가(또는 감소)하도록 설계 및 구현.
+위에서 likeCnt 속성이 8개씩 카드가 나오는 화면에서도 반영되어 보이게 구현.
+상세페이지에서의 좋아요 카운트는 클릭 즉시 반영되어야하는데 기존의 getDoc을 이용하는 방식으로는 약간의 텀이 있고 부가적인 코드가 있어 간단하면서도 바로 상태를 반영할 수 있는 onSnapshot 함수로 리팩토링
+
+### Queue 자료구조를 갖는 토스트 팝업 메시지
+immutable 한 concat과 slice 함수를 사용
+fade-out 애니메이션을 주기 위한 keyframe 사용
+어느 페이지나 토스트 메시지 기능이 필요한 곳에 사용가능하도록 Recoil로 관리 및 해당 로직을 커스텀 훅으로 구현
+
+### 이미지 최적화 도전
+API Data에서 가져오는 이미지가 아닌 asset에 저장하는 이미지인 경우 이미지 압축 및 avif 포맷으로 변환하여 저장(메인페이지 슬라이드 배너 이미지 등)
+img 태그를 picture 태그로 감싸고 source의 srcSet으로 avif, webp로 들어오는 이미지가 있다면 적용되게 함. loading=lazy 속성과 decoding=async 속성 적용.
+배너 이미지를 avif 적용했음에도 크기가 커서 첫 랜딩 시 로딩 시간이 오래걸림. useLayoutEffect로 preload되게 리팩토링
+input에 의한 업로드 이벤트가 아닌 API fetching을 통해 가져온 이미지 포맷을 react-image-file-resizer를 사용하여 webp로 변환 및 렌더링 성공(개발환경에서)
+#### 미해결 부분
+배포버전에는 반영되게 구현하지 못함
 
 ---
 
