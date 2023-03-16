@@ -213,7 +213,9 @@ img 태그를 picture 태그로 감싸고 source의 srcSet으로 avif, webp로 �
 배너 이미지를 avif 적용했음에도 크기가 커서 첫 랜딩 시 로딩 시간이 오래걸림. useLayoutEffect로 preload되게 리팩토링
 input에 의한 업로드 이벤트가 아닌 API fetching을 통해 가져온 이미지 포맷을 react-image-file-resizer를 사용하여 webp로 변환 및 렌더링 성공(개발환경에서)
 #### 미해결 부분
-배포버전에는 반영되게 구현하지 못함
+webp 포맷으로 변환하여 네트워크 통신 비용을 줄이고 좀더 빠른 로딩이 가능하도록 만들고자 하였음.
+api로부터 받아오는 이미지 url의 CORS 정책으로 http-proxy-middleware 라이브러리를 활용해 프록시 우회를 하려고 하였음.   
+위에 채택했던 방법으로는 로컬환경에서밖에 적용이 안되서 시간상 배포버전에는 이미지 포맷을 webp로 변환하지는 못함.
 
 ---
 
