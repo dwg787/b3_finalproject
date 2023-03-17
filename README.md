@@ -6,13 +6,12 @@
 
 ![](https://velog.velcdn.com/images/jini9256/post/c3363126-286a-4cdb-b7a4-5a202d4b26ed/image.png)
 
+- 시연 영상 : https://youtu.be/f-2ipfhSZlg
 ---
 
-💙[Tripick 사이트](https://b3-finalproject.vercel.app/)
+Demo : https://b3-finalproject.vercel.app/
 
-🗂 [S.A](https://coherent-petalite-63a.notion.site/S-A-8bda63e869934236961d7009428b284c)
 
-💻 [시연 영상](https://youtu.be/f-2ipfhSZlg)
 
 ---
 
@@ -244,3 +243,5 @@ api로부터 받아오는 이미지 url의 CORS 정책으로 http-proxy-middlewa
 | 3/8 - 3/13  | 발표 자료 준비 및 최종 발표                 |
 
 ---
+
+🗂 [S.A](https://coherent-petalite-63a.notion.site/S-A-8bda63e869934236961d7009428b284c)
