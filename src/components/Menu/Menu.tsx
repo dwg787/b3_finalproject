@@ -4,17 +4,17 @@ import SelectMenu from './SelectMenu';
 
 const Menu = () => {
   return (
-    <MenuContainer>
+    <MenuNav>
       {MENU_TYPE.map((e) => {
         return <SelectMenu key={e.id}>{e.type}</SelectMenu>;
       })}
-    </MenuContainer>
+    </MenuNav>
   );
 };
 
 export default Menu;
 
-const MenuContainer = styled.div`
+const MenuNav = styled.nav`
   max-width: 1036.01px;
   width: 100%;
   height: 52.26px;
