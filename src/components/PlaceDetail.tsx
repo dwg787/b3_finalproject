@@ -26,6 +26,8 @@ const PlaceDetail = (props: FetchedStayDataType) => {
     placeRecommendationList();
   }, []);
 
+  console.log(likeData);
+
   return (
     <PlaceEachItemWrapper onClick={() => navigate(`/${sort}/${props.id}`)}>
       <PlaceImgWrapper>
