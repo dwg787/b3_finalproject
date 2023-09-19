@@ -124,7 +124,7 @@ const MySpot = () => {
   };
 
   return (
-    <Container>
+    <MySpotSection>
       <MySpotTitle>나만 알고 싶은 감성 스팟</MySpotTitle>
       <div>
         <StyledSlider {...settings}>
@@ -148,12 +148,12 @@ const MySpot = () => {
             })}
         </StyledSlider>
       </div>
-    </Container>
+    </MySpotSection>
   );
 };
 export default MySpot;
 
-const Container = styled.div`
+const MySpotSection = styled.section`
   max-width: 1036px;
   width: 100%;
   height: 426.96px;

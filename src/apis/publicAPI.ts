@@ -11,9 +11,9 @@ export const fetchSpotData = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=8&pageNo=${spotCurPage}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${region}&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=8&pageNo=${spotCurPage}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${region}&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
     );
-    return res.data.response.body;
+    return res?.data.response.body;
   } catch (err) {
     console.log('API Fetch Error:', err);
   }
@@ -29,9 +29,9 @@ export const fetchMobileSpotData = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=8&pageNo=${pageParam}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${region}&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=8&pageNo=${pageParam}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${region}&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
     );
-    return res.data.response.body;
+    return res?.data.response.body;
   } catch (err) {
     console.log('API Fetch Error:', err);
   }
@@ -47,9 +47,9 @@ export const fetchStayData = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=8&pageNo=${stayCurPage}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=${region}&sigunguCode=&cat1=B02&cat2=B0201&cat3=&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=8&pageNo=${stayCurPage}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=${region}&sigunguCode=&cat1=B02&cat2=B0201&cat3=&_type=json`,
     );
-    return res.data.response.body;
+    return res?.data.response.body;
   } catch (err) {
     console.log('API Fetch Error:', err);
   }
@@ -65,9 +65,9 @@ export const fetchRestaurantData = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=8&pageNo=${restCurPage}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=39&areaCode=${region}&sigunguCode=&cat1=A05&cat2=A0502&cat3=&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=8&pageNo=${restCurPage}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=39&areaCode=${region}&sigunguCode=&cat1=A05&cat2=A0502&cat3=&_type=json`,
     );
-    return res.data.response.body;
+    return res?.data.response.body;
   } catch (err) {
     console.log('API Fetch Error:', err);
   }
@@ -77,7 +77,7 @@ export const fetchRestaurantData = async ({
 export const fetchSpotSearchData = async () => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
     );
     return res.data.response.body.items.item;
   } catch (err) {
@@ -93,7 +93,7 @@ export const fetchSpotDetailData = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`,
     );
     return res.data.response.body.items.item[0];
   } catch (err) {
@@ -111,7 +111,7 @@ export const fetchNearSpotData = async ({
 }) => {
   try {
     const res = await axios.get(
-      `https://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
+      `https://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=12&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
     );
     return res.data.response.body.items.item;
   } catch (err) {
@@ -129,7 +129,7 @@ export const fetchNearStayData = async ({
 }) => {
   try {
     const res = await axios.get(
-      `https://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
+      `https://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
     );
     return res.data.response.body.items.item;
   } catch (err) {
@@ -147,7 +147,7 @@ export const fetchNearRestaurantData = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/locationBasedList?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=39&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=39&mapX=${mapx}&mapY=${mapy}&radius=20000&listYN=Y&MobileOS=ETC&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1&_type=json`,
     );
     return res.data.response.body.items.item;
   } catch (err) {
@@ -163,8 +163,10 @@ export const fetchRestaurantDetailInfo = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=39&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=39&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`,
     );
+    console.log(res.data.response);
+
     return res.data.response.body.items.item[0];
   } catch (err) {
     console.log('API Fetch Error:', err);
@@ -179,7 +181,7 @@ export const fetchStayDetailInfo = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`,
     );
     return res.data.response.body.items.item[0];
   } catch (err) {
@@ -192,7 +194,7 @@ export const fetchStayDetailInfo = async ({
 export const fetchAllSpotData = async () => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=12&areaCode=&sigunguCode=&cat1=A02&cat2=A0201&cat3=&_type=json`,
     );
     return res.data.response.body.items.item;
   } catch (err) {
@@ -204,7 +206,7 @@ export const fetchAllSpotData = async () => {
 export const fetchAllStayData = async () => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=3500&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=&sigunguCode=&cat1=B02&cat2=B0201&cat3=&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=3500&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=32&areaCode=&sigunguCode=&cat1=B02&cat2=B0201&cat3=&_type=json`,
     );
     return res.data.response.body.items.item;
   } catch (err) {
@@ -216,7 +218,7 @@ export const fetchAllStayData = async () => {
 export const fetchAllRestaurantData = async () => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=17300&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=39&areaCode=&sigunguCode=&cat1=A05&cat2=A0502&cat3=&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=17300&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&listYN=Y&arrange=A&contentTypeId=39&areaCode=&sigunguCode=&cat1=A05&cat2=A0502&cat3=&_type=json`,
     );
     return res.data.response.body.items.item;
   } catch (err) {
@@ -232,7 +234,7 @@ export const fetchStayAdditionalInfo1 = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/detailIntro?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
     );
     return res.data.response.body.items.item[0];
   } catch (err) {
@@ -248,7 +250,7 @@ export const fetchStayAdditionalInfo2 = async ({
 }) => {
   try {
     const res = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService/detailInfo?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
+      `http://apis.data.go.kr/B551011/KorService1/detailInfo1?ServiceKey=${process.env.REACT_APP_PUBLIC_STAY_API_KEY}&contentTypeId=32&contentId=${param.id}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
     );
     return res.data.response.body.items.item;
   } catch (err) {

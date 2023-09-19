@@ -161,7 +161,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <Nav>
+    <Header>
       <div>
         <Link to="/" aria-label="Tripick" style={{ textDecoration: 'none' }}>
           <Mainlogo src={mainlogo} alt="트리픽" />
@@ -219,7 +219,7 @@ const Navbar = () => {
           )}
         </LoginButtonBox>
       </div>
-    </Nav>
+    </Header>
   );
 };
 
@@ -237,7 +237,7 @@ const Mainlogo = styled.img`
   }
 `;
 
-const Nav = styled.div`
+const Header = styled.header`
   max-width: 1036px;
   width: 100%;
   height: 51px;

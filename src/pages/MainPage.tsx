@@ -6,7 +6,7 @@ import BestDate from '../components/Recommendation/BestDate';
 import MySpot from '../components/Recommendation/MySpot';
 import SliderBanner from '../components/SliderBanner';
 import SlotBanner from '../components/Slot/SlotBanner';
-import EventBenner from '../components/Slot/EventBenner';
+// import EventBenner from '../components/Slot/EventBenner';
 import Footer from '../components/Footer/Footer';
 
 const MainPage = () => {
@@ -16,7 +16,7 @@ const MainPage = () => {
       <SliderBanner />
       <MySpot />
       <SlotBanner />
-      <EventBenner />
+      {/* <EventBenner /> */}
       <WeeklyTop10 />
       <MyChild />
       <BestDate />

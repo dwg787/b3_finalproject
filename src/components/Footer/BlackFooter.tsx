@@ -1,10 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import BlackLogo from '../../assets/BlackLogo.avif';
 
 const BlackFooter = () => {
   return (
-    <WrapDiv>
+    <Footer>
       <TextBox>
         <FooterLogo src={BlackLogo} alt="" />
         <TopText>
@@ -33,13 +32,13 @@ const BlackFooter = () => {
           </FooterText>
         </BottomText>
       </TextBox>
-    </WrapDiv>
+    </Footer>
   );
 };
 
 export default BlackFooter;
 
-const WrapDiv = styled.div`
+const Footer = styled.footer`
   width: 100%;
   height: 300px;
   background-color: transparent;
