@@ -56,9 +56,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "jest --coverage"
   },
   "eslintConfig": {
     "extends": [
@@ -82,6 +83,8 @@
     "@types/lodash": "^4.14.191",
     "@types/react-js-pagination": "^3.0.4",
     "@types/react-scroll": "^1.8.6",
-    "slick-carousel": "^1.8.1"
+    "cra-bundle-analyzer": "^0.1.1",
+    "slick-carousel": "^1.8.1",
+    "webpack-bundle-analyzer": "^4.8.0"
   }
 }

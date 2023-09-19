@@ -4,7 +4,7 @@ import mainlogo from '../../assets/mainlogo.avif';
 
 export default function Footer() {
   return (
-    <WrapDiv>
+    <StyledFooter>
       <TextBox>
         <FooterLogo src={mainlogo} alt="" />
         <TopText>
@@ -33,11 +33,11 @@ export default function Footer() {
           </FooterText>
         </BottomText>
       </TextBox>
-    </WrapDiv>
+    </StyledFooter>
   );
 }
 
-const WrapDiv = styled.div`
+const StyledFooter = styled.footer`
   max-width: 1006px;
   width: 100%;
   height: 300px;

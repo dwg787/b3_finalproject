@@ -20,7 +20,6 @@ export default function Search() {
   const [query, setQuery] = useState('');
   //모든객체를 가지고있음
   const [totalApi, setTotalApi] = useState([]);
-  console.log(totalApi);
   //타이핑 되는 글자 근사치 검색
   const fuse = new Fuse(totalApi, {
     keys: ['addr1', 'title'],

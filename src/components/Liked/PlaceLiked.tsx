@@ -67,6 +67,8 @@ const PlaceLiked = ({
       const res = await fetchBookmarkData();
       const myBookmark = new Set(res?.contentid);
       const likeTarget = myBookmark.has(param.id);
+      // const myBookmark = res?.contentid;
+      // const likeTarget = myBookmark.includes(param.id);
       setIsLiked(likeTarget);
       setAlarmMsg(() =>
         likeTarget
